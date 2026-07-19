@@ -1,0 +1,32 @@
+:root{--motion-ease:cubic-bezier(.22,.8,.24,1);--motion-spring:cubic-bezier(.16,1.25,.3,1);--pointer-x:50%;--pointer-y:28%}
+.portfolio-motion-progress{position:fixed;z-index:120;inset:0 auto auto 0;width:100%;height:3px;pointer-events:none;transform-origin:left center;transform:scaleX(var(--scroll-progress,0));background:linear-gradient(90deg,var(--red),var(--yellow),var(--type-web),var(--type-extension));box-shadow:0 1px 0 rgba(255,255,255,.45);will-change:transform}
+html.motion-ready .motion-reveal{opacity:0;transform:translateY(24px) scale(.985);filter:blur(5px);transition:opacity .72s var(--motion-ease),transform .72s var(--motion-ease),filter .72s var(--motion-ease);transition-delay:calc(var(--motion-index,0) * 45ms)}
+html.motion-ready .motion-reveal.is-visible{opacity:1;transform:none;filter:none}
+.portfolio-wow{isolation:isolate;--mx:50%;--my:30%;--ambient-x:0px;--ambient-y:0px;transition:box-shadow .45s var(--motion-ease),transform .45s var(--motion-ease)}
+.portfolio-wow::after{content:"";position:absolute;z-index:-1;inset:-2px;pointer-events:none;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,255,255,.82),rgba(255,255,255,0) 52%);mix-blend-mode:soft-light;opacity:.62;transition:opacity .3s ease}
+.portfolio-wow:hover{box-shadow:14px 16px 0 var(--yellow);transform:translateY(-2px)}
+.portfolio-wow-head>div:first-child{transform:translate3d(calc(var(--ambient-x) * -.16),calc(var(--ambient-y) * -.12),0);transition:transform .16s linear}
+.portfolio-wow-numbers{transform:translate3d(calc(var(--ambient-x) * .18),calc(var(--ambient-y) * .15),0);transition:transform .16s linear}
+.portfolio-wow-number{position:relative;overflow:hidden}.portfolio-wow-number::after{content:"";position:absolute;inset:0;transform:translateX(-120%) skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent)}.portfolio-wow-number.is-counted::after{animation:motion-number-sweep .85s var(--motion-ease)}
+.portfolio-wow-number strong{display:inline-block;transform-origin:left bottom}.portfolio-wow-number.is-counting strong{animation:motion-number-pop .65s var(--motion-spring)}
+.portfolio-year{perspective:500px;transition:transform .3s var(--motion-spring),filter .3s ease}.portfolio-year:hover{transform:translateY(-6px) scale(1.035);filter:saturate(1.15)}.portfolio-year:active{transform:translateY(-1px) scale(.98)}
+.portfolio-year-bars{transform-style:preserve-3d;transition:transform .35s var(--motion-ease)}.portfolio-year:hover .portfolio-year-bars{transform:rotateX(5deg)}
+.portfolio-year-segment{translate:0 0;animation:portfolio-rise .65s var(--motion-ease) both,motion-strata-float 3.6s ease-in-out calc(.8s + var(--segment-index) * 45ms) infinite alternate;will-change:translate,filter}
+.portfolio-pick-card,.catalog-card,[data-project-surface]{--tilt-x:0deg;--tilt-y:0deg;--lift:0px;transform:perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--lift));transform-style:preserve-3d;transition:transform .28s var(--motion-spring),box-shadow .28s var(--motion-ease),filter .28s ease;will-change:transform}
+.portfolio-pick-card:hover,.catalog-card:hover,[data-project-surface]:hover{--lift:-5px;filter:saturate(1.05)}
+.portfolio-pick-card>*{transform:translateZ(18px)}.portfolio-pick-card .portfolio-pick-actions{transform:translateZ(26px)}
+.portfolio-pick{position:relative;overflow:hidden}.portfolio-pick.is-shuffling::after{content:"";position:absolute;inset:0;pointer-events:none;background:conic-gradient(from 20deg at 72% 58%,transparent 0 8%,rgba(243,182,43,.36) 8% 11%,transparent 11% 25%,rgba(230,64,44,.25) 25% 28%,transparent 28% 100%);animation:motion-flash .48s ease-out}
+.motion-particle{position:fixed;z-index:130;width:8px;height:8px;border-radius:2px;pointer-events:none;background:var(--particle-color,var(--red));animation:motion-particle .72s var(--motion-ease) forwards;will-change:transform,opacity}
+body.is-view-transitioning [data-view-panel]{animation:motion-view-swap .34s var(--motion-ease)}
+.catalog-quick-button,.catalog-taxonomy-button,.portfolio-pick-actions button,.portfolio-pick-actions a{transition:transform .22s var(--motion-spring),box-shadow .22s ease,background-color .22s ease,color .22s ease}.catalog-quick-button:hover,.catalog-taxonomy-button:hover{transform:translateY(-3px)}
+.catalog-row{transition:background .18s ease,transform .25s var(--motion-spring),box-shadow .25s ease}.catalog-row:hover{transform:translateX(5px) scale(1.004);box-shadow:5px 5px 0 rgba(32,36,38,.07)}
+.catalog-mark-button.is-active{animation:motion-mark-pop .42s var(--motion-spring)}
+@keyframes motion-number-sweep{to{transform:translateX(130%) skewX(-18deg)}}
+@keyframes motion-number-pop{0%{transform:translateY(12px) scale(.78);opacity:.1}70%{transform:translateY(-2px) scale(1.08)}100%{transform:none;opacity:1}}
+@keyframes motion-strata-float{0%{translate:0 0;filter:brightness(.96)}100%{translate:0 -5px;filter:brightness(1.08)}}
+@keyframes motion-flash{0%{opacity:0;transform:scale(.8) rotate(-8deg)}45%{opacity:1}100%{opacity:0;transform:scale(1.15) rotate(8deg)}}
+@keyframes motion-particle{0%{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--spin)) scale(.2)}}
+@keyframes motion-view-swap{0%{opacity:.35;transform:translateY(12px) scale(.99)}100%{opacity:1;transform:none}}
+@keyframes motion-mark-pop{0%{transform:scale(.75) rotate(-10deg)}70%{transform:scale(1.14) rotate(4deg)}100%{transform:none}}
+@media(max-width:760px){.portfolio-wow:hover{transform:none;box-shadow:7px 8px 0 var(--yellow)}.portfolio-pick-card,.catalog-card,[data-project-surface]{transform:none!important}.portfolio-year:hover{transform:translateY(-3px) scale(1.015)}.catalog-row:hover{transform:translateX(2px)}}
+@media(prefers-reduced-motion:reduce){.portfolio-motion-progress{display:none}html.motion-ready .motion-reveal{opacity:1;transform:none;filter:none;transition:none}.portfolio-wow,.portfolio-wow-head>div:first-child,.portfolio-wow-numbers,.portfolio-year,.portfolio-year-bars,.portfolio-pick-card,.catalog-card,[data-project-surface],.catalog-row{transform:none!important;transition:none!important}.portfolio-year-segment,.portfolio-wow-number::after,.portfolio-wow-number strong,.catalog-mark-button.is-active{animation:none!important}.motion-particle{display:none!important}}
