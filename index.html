@@ -18,48 +18,138 @@
     <img class="icon" src="assets/favicon.svg" alt="">
     <p class="eyebrow">BUILDING THE SHELF</p>
     <h1>道具を、<br>棚に並べています。</h1>
-    <p class="status" id="status">制作日記を読み込んでいます。最初の一回だけ、少し組み立てます。</p>
+    <p class="status" id="status">制作日記を読み込んでいます。</p>
     <div class="bar" aria-hidden="true"></div>
     <p id="retry" hidden><button type="button" onclick="location.reload()">もう一度組み立てる</button></p>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
   <script>
-    (()=>{
-      const VERSION='20260719-1';
-      const CACHE_KEY='worksportfolio-html-'+VERSION;
-      const status=document.getElementById('status');
-      const retry=document.getElementById('retry');
-      const raw='https://raw.githubusercontent.com/silovar-uk/worksportfolio/main/.bootstrap/';
-      const parts=Array.from({length:7},(_,i)=>raw+'part-'+String(i).padStart(2,'0')+'.b64');
+  (()=>{
+    'use strict';
+    const status=document.getElementById('status');
+    const retry=document.getElementById('retry');
+    const base=new URL('.bootstrap/',location.href);
+    const parts=Array.from({length:7},(_,i)=>new URL(`part-${String(i).padStart(2,'0')}.b64`,base));
 
-      const openPortfolio=html=>{
-        document.open();
-        document.write(html);
-        document.close();
-      };
+    const extras=[
+      {
+        id:'lineworks-scroll-copy',title:'LINE WORKS Scroll & Copy',subtitle:'トーク履歴のさかのぼり・抽出拡張',
+        summary:'LINE WORKSのトークを上へさかのぼり、発言者・日時・本文を分けてJSON、TSV、CSV、Markdown、Textへ保存するChrome拡張。',
+        friction:'長いトーク履歴を必要なところまで手でスクロールし、あとから文章を整理し直す作業が重かった。',
+        firstBuild:'まずは高速で上へさかのぼるScroll Only版を作り、途中停止後のコピーと構造化保存へ広げた。',
+        currentAnswer:'スクロール、収集、形式変換を一つにまとめ、途中で止めても成果を持ち帰れる道具。',
+        type:'chrome-extension',verbs:['記録する','整理する','共有する'],status:'active',visibility:'private',featured:false,
+        createdAt:'2026-05-01',createdAtPrecision:'day',releasedAt:'2026-05-01',updatedAt:'2026-05-01',liveUrl:'',repositoryUrl:'',thumbnail:'',
+        technologies:['Chrome Extension','JavaScript','Manifest V3'],documentationState:'verified',
+        documentationNote:'会話内でv0.2.0〜v0.4.3のZIPを制作。Scroll Only／Chat Collectorの試作を統合。',
+        relatedProjects:[{id:'x-local-post-exporter',relation:'表示済みの情報をローカル保存する'},{id:'converter',relation:'取得後のテキストを整える'}],
+        map:{group:'extension',x:1320,y:398},extension:{version:'0.4.3',serviceWorker:'active'},
+        updates:[
+          {date:'2026-05-01',version:'0.4.3',change:'スクロール後の内容をJSON、TSV、CSV、Markdown、Textから選んで保存できる形へ整理した。',reason:'途中停止時にも、それまで取得した内容を確実に持ち帰るため。'},
+          {date:'2026-05-01',version:'0.3.1',change:'抽出を行わない高速スクロール専用版を分けた。',reason:'まず履歴をさかのぼるだけの安全な用途も必要だったため。'}
+        ],aside:'まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。'
+      },
+      {
+        id:'lineworks-logger',title:'LINE WORKS Logger',subtitle:'トーク・メールのローカル記録拡張',
+        summary:'LINE WORKS上のトークやメールを端末内に記録し、JSON・CSVとして持ち出すためのChrome拡張。',
+        friction:'大量の連絡を画面上だけで追うと、あとから検索・整理・振り返りがしにくかった。',
+        firstBuild:'対象画面の情報を監視し、外部送信せずローカルへ蓄積する仕組みを作った。',
+        currentAnswer:'業務連絡を外部サービスへ転送せず、自分で扱える記録データへ変える入口。',
+        type:'chrome-extension',verbs:['記録する','探す','振り返る'],status:'prototype',visibility:'private',featured:false,
+        createdAt:'2026-05',createdAtPrecision:'month',releasedAt:null,updatedAt:'2026-05',liveUrl:'',repositoryUrl:'',thumbnail:'',
+        technologies:['Chrome Extension','JavaScript','Manifest V3'],documentationState:'verified',
+        documentationNote:'LINE WORKSのトーク・メール監視、ローカル保存、JSON/CSV出力を行う拡張として制作。',
+        relatedProjects:[{id:'lineworks-scroll-copy',relation:'LINE WORKSの情報をローカルへ残す'},{id:'zl-logger-web',relation:'記録をあとから扱える形にする'}],
+        map:{group:'extension',x:1460,y:398},extension:{version:'試作版',serviceWorker:'active'},
+        updates:[{date:'2026-05',version:'prototype',change:'トークとメールをローカル保存し、JSON・CSVで出力できる試作を作った。',reason:'外部転送を使わず、大量の連絡をあとから確認するため。'}],
+        aside:'連絡は流れる。ログは流したくない。'
+      },
+      {
+        id:'x-auto-screenshot-scroll',title:'X 自動スクリーンショット＆スクロール',subtitle:'タイムライン連続撮影拡張',
+        summary:'Xの画面を自動でスクロールしながら連続撮影し、長いタイムラインをまとめて保存するChrome拡張。',
+        friction:'投稿を後で確認するために、一画面ずつスクロールしてスクリーンショットを撮る作業が終わらなかった。',
+        firstBuild:'スクロールと撮影を交互に実行し、画像をまとめて扱えるChrome拡張にした。',
+        currentAnswer:'データ抽出では残らない見た目ごと、タイムラインの状態を記録する道具。',
+        type:'chrome-extension',verbs:['記録する','集める','振り返る'],status:'dormant',visibility:'private',featured:false,
+        createdAt:'2025-06-02',createdAtPrecision:'day',releasedAt:'2025-06-02',updatedAt:'2025-06-02',liveUrl:'',repositoryUrl:'',thumbnail:'',
+        technologies:['Chrome Extension','JavaScript','JSZip'],documentationState:'verified',
+        documentationNote:'manifest.json、background.js、content.js、popup、JSZipを含む拡張として制作。',
+        relatedProjects:[{id:'x-local-post-exporter',relation:'X上の情報を手元へ残す'},{id:'simple-screenshot-editor',relation:'撮影した画面を編集・書き出す'}],
+        map:{group:'extension',x:1180,y:398},extension:{version:'1.0',serviceWorker:'active'},
+        updates:[{date:'2025-06-02',version:'1.0',change:'Xの自動スクロールと連続スクリーンショットを一つの拡張へまとめた。',reason:'長いタイムラインを手作業で撮影する負担を減らすため。'}],
+        aside:'スクロールを自動化したら、撮る枚数まで自動で増えた。'
+      }
+    ];
 
-      const cached=localStorage.getItem(CACHE_KEY);
-      if(cached){openPortfolio(cached);return;}
-
-      Promise.all(parts.map(async(url,index)=>{
-        status.textContent=`制作日記を組み立てています（${index+1} / ${parts.length}）`;
-        const response=await fetch(url,{cache:'no-store'});
-        if(!response.ok)throw new Error('データの取得に失敗しました');
-        return response.text();
-      }))
-      .then(chunks=>JSZip.loadAsync(chunks.join(''),{base64:true}))
-      .then(zip=>zip.file('index.html').async('string'))
-      .then(html=>{
-        localStorage.setItem(CACHE_KEY,html);
-        openPortfolio(html);
-      })
-      .catch(error=>{
-        console.error(error);
-        status.classList.add('error');
-        status.textContent='制作日記を組み立てられませんでした。通信状態を確認して、もう一度お試しください。';
-        retry.hidden=false;
+    const textBlobUrl=(text,type)=>URL.createObjectURL(new Blob([text],{type}));
+    const patchData=(projects,periods,settings)=>{
+      const map=new Map(projects.map(p=>[p.id,p]));
+      extras.forEach(p=>map.set(p.id,p));
+      const portfolio=map.get('build-diary');
+      if(portfolio){
+        portfolio.repositoryUrl='https://github.com/silovar-uk/worksportfolio';
+        portfolio.liveUrl='https://silovar-uk.github.io/worksportfolio/';
+        portfolio.liveUrlStatus='verified';
+        portfolio.updatedAt='2026-07-19';
+        portfolio.summary='作った道具を、年代・目的・つながりから読み直す制作日記ポートフォリオ。';
+      }
+      periods.forEach(period=>{
+        if(period.id==='2026-05'){
+          ['lineworks-scroll-copy','lineworks-logger'].forEach(id=>{if(!period.projectIds.includes(id))period.projectIds.push(id)});
+          if(!period.interests.includes('LINE WORKS'))period.interests.push('LINE WORKS');
+          period.summary='イベントや広報のページに加え、LINE WORKSの長い履歴を自分で扱える形へ変える拡張も作っていた。';
+        }
+        if(period.id==='2025-06'){
+          if(!period.projectIds.includes('x-auto-screenshot-scroll'))period.projectIds.push('x-auto-screenshot-scroll');
+          if(!period.interests.includes('Chrome拡張'))period.interests.push('Chrome拡張');
+          period.summary='小さな変換ツールに加え、Xを自動スクロールしながら画面ごと記録する拡張も試していた。';
+        }
       });
-    })();
+      return {projects:[...map.values()],periods,settings};
+    };
+
+    Promise.all(parts.map(async(url,index)=>{
+      status.textContent=`制作日記を組み立てています（${index+1} / ${parts.length}）`;
+      const response=await fetch(url,{cache:'force-cache'});
+      if(!response.ok)throw new Error(`データの取得に失敗しました: ${response.status}`);
+      return response.text();
+    }))
+    .then(chunks=>JSZip.loadAsync(chunks.join(''),{base64:true}))
+    .then(async zip=>{
+      const [html,css,app,projectsText,periodsText,settingsText]=await Promise.all([
+        zip.file('index.html').async('string'),zip.file('css/styles.css').async('string'),zip.file('js/app.js').async('string'),
+        zip.file('data/projects.json').async('string'),zip.file('data/periods.json').async('string'),zip.file('data/settings.json').async('string')
+      ]);
+      const data=patchData(JSON.parse(projectsText),JSON.parse(periodsText),JSON.parse(settingsText));
+      const inline=`window.BUILD_DIARY_DATA = ${JSON.stringify(data)};`;
+      const patchedCss=css.replace(
+        '.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--ink); font: 800 .8rem "Roboto Mono", monospace; transform: rotate(-3deg); background: var(--paper); }',
+        '.brand-mark { display:block; width:38px; height:38px; object-fit:contain; flex:0 0 auto; }'
+      );
+      let patchedHtml=html
+        .replace('<span class="brand-mark" aria-hidden="true">d/</span>','<img class="brand-mark" src="assets/favicon.svg" alt="" width="38" height="38">')
+        .replace('61のリポジトリも、','GitHubと手元の拡張も、')
+        .replace('GitHub上の61リポジトリと、自作したChrome拡張を統合しています。','GitHub上のリポジトリに加え、ZIPで制作した拡張や、公開リポジトリを持たない手元の道具も統合しています。')
+        .replace(
+          '<select data-verb-filter aria-label="目的で絞り込む">\n          <option value="">すべての目的</option>\n        </select>\n        <button type="button" class="subtle-button" data-clear-filter>全部出す</button>',
+          '<select data-verb-filter aria-label="目的で絞り込む">\n          <option value="">すべての目的</option>\n        </select>\n        <select data-type-filter aria-label="種類で絞り込む">\n          <option value="">すべての種類</option>\n        </select>\n        <select data-documentation-filter aria-label="整理状態で絞り込む">\n          <option value="">すべての整理状態</option>\n        </select>\n        <button type="button" class="subtle-button" data-clear-filter>全部出す</button>'
+        );
+      const cssUrl=textBlobUrl(patchedCss,'text/css');
+      const inlineUrl=textBlobUrl(inline,'text/javascript');
+      const appUrl=textBlobUrl(app,'text/javascript');
+      patchedHtml=patchedHtml
+        .replace('href="css/styles.css"',`href="${cssUrl}"`)
+        .replace('src="data/inline-data.js"',`src="${inlineUrl}"`)
+        .replace('src="js/app.js"',`src="${appUrl}"`)
+        .replace('href="assets/icons/favicon.ico" sizes="any"','href="assets/favicon.svg" type="image/svg+xml"')
+        .replace('href="./" aria-label="つくって考えた トップへ"','href="#" aria-label="つくって考えた トップへ"');
+      document.open();document.write(patchedHtml);document.close();
+    })
+    .catch(error=>{
+      console.error(error);status.classList.add('error');
+      status.textContent='制作日記を組み立てられませんでした。通信状態を確認して、もう一度お試しください。';retry.hidden=false;
+    });
+  })();
   </script>
 </body>
 </html>
