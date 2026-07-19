@@ -12,15 +12,24 @@
     experiment: { label: '実験', order: 8 },
     other: { label: 'その他', order: 9 }
   };
+  const typeClasses = Object.keys(meta).map((type) => `type-${type}`);
   let observer = null;
   let scheduled = false;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
   const audit = () => window.WORKS_PORTFOLIO_AUDIT || { counts: { total: projects().length, byType: {} }, issues: {} };
   const projectMap = () => new Map(projects().map((project) => [project.id, project]));
+  const typeOf = (project) => meta[project?.type] ? project.type : 'other';
 
-  function typeOf(project) {
-    return meta[project?.type] ? project.type : 'other';
+  function replaceHtmlIfChanged(element, html) {
+    if (element.innerHTML !== html) element.innerHTML = html;
+  }
+
+  function setTypeClass(element, type) {
+    const target = `type-${type}`;
+    if (element.classList.contains(target)) return;
+    typeClasses.forEach((className) => element.classList.remove(className));
+    element.classList.add(target);
   }
 
   function ensureTaxonomy() {
@@ -41,7 +50,7 @@
       .map((type) => ({ type: meta[type] ? type : 'other', originalType: type, count: byType[type] }))
       .sort((a, b) => (meta[a.type]?.order || 99) - (meta[b.type]?.order || 99));
     const current = document.querySelector('[data-cat-type]')?.value || '';
-    section.innerHTML = `
+    const html = `
       <div class="catalog-taxonomy-head">
         <strong>種類で見分ける</strong>
         <span>公開対象 ${counts.total || projects().length}件。色と件数は同じデータから自動集計。</span>
@@ -49,6 +58,7 @@
       <div class="catalog-taxonomy-list">
         ${entries.map(({ type, originalType, count }) => `<button type="button" class="catalog-taxonomy-button type-${type}${current === originalType ? ' is-active' : ''}" data-taxonomy-type="${type}" data-taxonomy-filter="${originalType}" aria-pressed="${current === originalType}"><span>${meta[type]?.label || originalType}</span><strong>${count}</strong></button>`).join('')}
       </div>`;
+    replaceHtmlIfChanged(section, html);
   }
 
   function decorateItems() {
@@ -57,32 +67,33 @@
       const project = map.get(item.getAttribute('data-cat-item'));
       if (!project) return;
       const type = typeOf(project);
-      item.dataset.projectType = type;
-      item.classList.add(`type-${type}`);
+      if (item.dataset.projectType !== type) item.dataset.projectType = type;
+      setTypeClass(item, type);
 
       let badge = null;
       if (item.classList.contains('catalog-row')) badge = item.querySelector('.catalog-facts > span:first-child');
       else if (item.classList.contains('catalog-card')) badge = item.querySelector('.catalog-card-top > span:first-child');
       else if (item.tagName === 'TR') badge = item.children[2];
       if (badge) {
-        badge.classList.add('catalog-type-badge', `type-${type}`);
-        badge.dataset.taxonomyType = type;
+        if (!badge.classList.contains('catalog-type-badge')) badge.classList.add('catalog-type-badge');
+        setTypeClass(badge, type);
+        if (badge.dataset.taxonomyType !== type) badge.dataset.taxonomyType = type;
       }
     });
   }
 
   function decorateGroups() {
     document.querySelectorAll('.catalog-group').forEach((group) => {
-      const first = group.querySelector('[data-cat-item]');
-      if (!first) return;
-      const types = new Set([...group.querySelectorAll('[data-cat-item]')].map((item) => item.dataset.projectType).filter(Boolean));
+      const items = [...group.querySelectorAll('[data-cat-item]')];
+      const types = new Set(items.map((item) => item.dataset.projectType).filter(Boolean));
       if (types.size !== 1) {
-        delete group.dataset.groupType;
+        if (group.dataset.groupType) delete group.dataset.groupType;
+        typeClasses.forEach((className) => group.classList.remove(className));
         return;
       }
       const type = [...types][0];
-      group.dataset.groupType = type;
-      group.classList.add(`type-${type}`);
+      if (group.dataset.groupType !== type) group.dataset.groupType = type;
+      setTypeClass(group, type);
     });
   }
 
@@ -101,7 +112,8 @@
       if (Array.isArray(value)) return sum + value.length;
       return sum + (Number(value) || 0);
     }, 0);
-    note.innerHTML = `<strong>集計基準</strong><span>${report.counts?.total || projects().length}件</span><span>公開ページ ${report.counts?.livePages || 0}</span><span>GitHub ${report.counts?.repositories || 0}</span><span>手元のみ ${report.counts?.localOnly || 0}</span><span class="${issueCount ? 'catalog-audit-warn' : 'catalog-audit-ok'}">${issueCount ? `参照整理 ${issueCount}件` : 'データ整合性 OK'}</span>`;
+    const html = `<strong>集計基準</strong><span>${report.counts?.total || projects().length}件</span><span>公開ページ ${report.counts?.livePages || 0}</span><span>GitHub ${report.counts?.repositories || 0}</span><span>手元のみ ${report.counts?.localOnly || 0}</span><span class="${issueCount ? 'catalog-audit-warn' : 'catalog-audit-ok'}">${issueCount ? `参照整理 ${issueCount}件` : 'データ整合性 OK'}</span>`;
+    replaceHtmlIfChanged(note, html);
   }
 
   function apply() {
