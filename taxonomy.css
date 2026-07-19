@@ -1,0 +1,31 @@
+:root{
+  --type-web:#2f6fed;--type-web-soft:#edf3ff;
+  --type-extension:#7651d6;--type-extension-soft:#f2edff;
+  --type-learning:#238b57;--type-learning-soft:#ecf8f1;
+  --type-design:#d64a32;--type-design-soft:#fff0ec;
+  --type-content:#b97800;--type-content-soft:#fff6d9;
+  --type-data:#0b7f87;--type-data-soft:#e8f8f9;
+  --type-utility:#5f6872;--type-utility-soft:#f1f3f5;
+  --type-experiment:#b23a72;--type-experiment-soft:#fff0f6;
+  --type-other:#765b3c;--type-other-soft:#f7f1e9
+}
+.catalog-taxonomy{border-top:1px solid var(--line);padding:11px 14px 13px;background:rgba(255,253,247,.65)}
+.catalog-taxonomy-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}.catalog-taxonomy-head strong{font-size:.78rem}.catalog-taxonomy-head span{color:var(--muted);font-size:.7rem}
+.catalog-taxonomy-list{display:flex;flex-wrap:wrap;gap:6px}.catalog-taxonomy-button{--type-color:var(--type-other);--type-soft:var(--type-other-soft);display:inline-flex;align-items:center;gap:6px;padding:.36rem .5rem;border:1px solid color-mix(in srgb,var(--type-color) 45%,var(--line));background:var(--type-soft);color:var(--ink);font-size:.72rem;cursor:pointer}.catalog-taxonomy-button::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--type-color);box-shadow:0 0 0 1px rgba(0,0,0,.08)}.catalog-taxonomy-button strong{font:850 .72rem "Roboto Mono",monospace;color:var(--type-color)}.catalog-taxonomy-button:hover,.catalog-taxonomy-button.is-active{border-color:var(--type-color);box-shadow:inset 0 -2px 0 var(--type-color)}
+[data-taxonomy-type="web-app"],.type-web-app{--type-color:var(--type-web);--type-soft:var(--type-web-soft)}
+[data-taxonomy-type="chrome-extension"],.type-chrome-extension{--type-color:var(--type-extension);--type-soft:var(--type-extension-soft)}
+[data-taxonomy-type="learning-tool"],.type-learning-tool{--type-color:var(--type-learning);--type-soft:var(--type-learning-soft)}
+[data-taxonomy-type="design-system"],.type-design-system{--type-color:var(--type-design);--type-soft:var(--type-design-soft)}
+[data-taxonomy-type="content-page"],.type-content-page{--type-color:var(--type-content);--type-soft:var(--type-content-soft)}
+[data-taxonomy-type="data-tool"],.type-data-tool{--type-color:var(--type-data);--type-soft:var(--type-data-soft)}
+[data-taxonomy-type="utility"],.type-utility{--type-color:var(--type-utility);--type-soft:var(--type-utility-soft)}
+[data-taxonomy-type="experiment"],.type-experiment{--type-color:var(--type-experiment);--type-soft:var(--type-experiment-soft)}
+[data-taxonomy-type="other"],.type-other{--type-color:var(--type-other);--type-soft:var(--type-other-soft)}
+.catalog-row[data-project-type]{border-left:4px solid var(--type-color)}.catalog-row[data-project-type]:hover{background:linear-gradient(90deg,var(--type-soft),#fffaf0 24%)}
+.catalog-card[data-project-type]{border-top:5px solid var(--type-color)}.catalog-card[data-project-type] .catalog-card-top>span:first-child{color:var(--type-color);font-weight:900}
+.catalog-table tr[data-project-type] td:first-child{border-left:4px solid var(--type-color)}
+.catalog-type-badge{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.17rem .42rem;border:1px solid color-mix(in srgb,var(--type-color) 52%,var(--line));background:var(--type-soft);color:var(--type-color);font-weight:850!important}
+.catalog-group[data-group-type]{border-top:4px solid var(--type-color);padding-top:8px}.catalog-group[data-group-type] .catalog-group-head{border-color:var(--type-color)}.catalog-group[data-group-type] .catalog-group-head h3{color:var(--type-color)}
+[data-cat-quick-value="extension"]{box-shadow:inset 0 4px 0 var(--type-extension)}[data-cat-quick-value="web"]{box-shadow:inset 0 4px 0 var(--type-web)}
+.catalog-audit-note{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0;padding:8px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:.69rem}.catalog-audit-note strong{color:var(--ink)}.catalog-audit-ok{color:var(--type-learning)!important}.catalog-audit-warn{color:var(--type-content)!important}
+@media(max-width:760px){.catalog-taxonomy{padding:10px}.catalog-taxonomy-head{align-items:flex-start;flex-direction:column;gap:2px}.catalog-taxonomy-list{display:grid;grid-template-columns:1fr 1fr;width:100%}.catalog-taxonomy-button{justify-content:space-between}.catalog-audit-note{padding:8px 10px}}
