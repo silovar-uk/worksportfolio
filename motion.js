@@ -4,13 +4,19 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const revealed = new WeakSet();
-  const tilted = new WeakSet();
   let revealObserver = null;
   let numberObserver = null;
   let mutationObserver = null;
   let activeTilt = null;
   let tiltFrame = 0;
   let pointerFrame = 0;
+
+  function matchingElements(root, selectors) {
+    const elements = [];
+    if (root?.nodeType === Node.ELEMENT_NODE && root.matches?.(selectors)) elements.push(root);
+    root?.querySelectorAll?.(selectors).forEach((element) => elements.push(element));
+    return elements;
+  }
 
   function addProgress() {
     if (document.querySelector('.portfolio-motion-progress')) return;
@@ -51,7 +57,7 @@
       '.catalog-table-wrap',
       '[data-project-surface]'
     ].join(',');
-    root.querySelectorAll?.(selectors).forEach((element, index) => {
+    matchingElements(root, selectors).forEach((element, index) => {
       if (revealed.has(element)) return;
       revealed.add(element);
       element.classList.add('motion-reveal');
@@ -62,13 +68,17 @@
   }
 
   function animateNumber(element) {
+    if (element.dataset.motionAnimating === 'true') return;
     const target = Number(String(element.textContent).replace(/[^0-9.-]/g, ''));
     if (!Number.isFinite(target)) return;
-    if (element.dataset.motionValue === String(target)) return;
+    if (element.dataset.motionValue === String(target) && element.dataset.motionCurrent === String(target)) return;
+    element.dataset.motionAnimating = 'true';
     element.dataset.motionValue = String(target);
     const box = element.closest('.portfolio-wow-number');
     if (reduced.matches) {
       element.textContent = String(target);
+      element.dataset.motionCurrent = String(target);
+      delete element.dataset.motionAnimating;
       box?.classList.add('is-counted');
       return;
     }
@@ -85,6 +95,7 @@
       if (progress < 1) requestAnimationFrame(tick);
       else {
         element.dataset.motionCurrent = String(target);
+        delete element.dataset.motionAnimating;
         box?.classList.remove('is-counting');
         box?.classList.add('is-counted');
       }
@@ -97,6 +108,7 @@
     numberObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
+        delete entry.target.dataset.motionPending;
         animateNumber(entry.target);
         numberObserver.unobserve(entry.target);
       });
@@ -105,13 +117,13 @@
 
   function registerNumbers(root = document) {
     setupNumberObserver();
-    root.querySelectorAll?.('.portfolio-wow-number strong').forEach((element) => {
+    matchingElements(root, '.portfolio-wow-number strong').forEach((element) => {
+      if (element.dataset.motionAnimating === 'true' || element.dataset.motionPending === 'true') return;
       const displayed = Number(String(element.textContent).replace(/[^0-9.-]/g, ''));
       if (!Number.isFinite(displayed)) return;
-      if (element.dataset.motionValue !== String(displayed)) {
-        delete element.dataset.motionValue;
-        numberObserver.observe(element);
-      }
+      if (element.dataset.motionValue === String(displayed) && element.dataset.motionCurrent === String(displayed)) return;
+      element.dataset.motionPending = 'true';
+      numberObserver.observe(element);
     });
   }
 
@@ -139,7 +151,7 @@
   }
 
   function registerWow(root = document) {
-    root.querySelectorAll?.('.portfolio-wow').forEach((wow) => {
+    matchingElements(root, '.portfolio-wow').forEach((wow) => {
       if (wow.dataset.motionBound) return;
       wow.dataset.motionBound = 'true';
       wow.addEventListener('pointermove', setWowPointer, { passive: true });
@@ -239,7 +251,6 @@
         record.addedNodes.forEach((node) => {
           if (node.nodeType !== Node.ELEMENT_NODE) return;
           scan(node);
-          if (node.matches?.('.portfolio-wow-number strong')) registerNumbers(node.parentElement || node);
         });
       });
       registerNumbers();
