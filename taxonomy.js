@@ -32,6 +32,13 @@
     element.classList.add(target);
   }
 
+  function assignType(element, type, surface = false) {
+    if (!element) return;
+    if (element.dataset.projectType !== type) element.dataset.projectType = type;
+    if (surface) element.dataset.projectSurface = '';
+    setTypeClass(element, type);
+  }
+
   function ensureTaxonomy() {
     const toolbar = document.querySelector('[data-catalog-toolbar]');
     if (!toolbar) return;
@@ -67,8 +74,7 @@
       const project = map.get(item.getAttribute('data-cat-item'));
       if (!project) return;
       const type = typeOf(project);
-      if (item.dataset.projectType !== type) item.dataset.projectType = type;
-      setTypeClass(item, type);
+      assignType(item, type);
 
       let badge = null;
       if (item.classList.contains('catalog-row')) badge = item.querySelector('.catalog-facts > span:first-child');
@@ -80,6 +86,25 @@
         if (badge.dataset.taxonomyType !== type) badge.dataset.taxonomyType = type;
       }
     });
+  }
+
+  function decorateProjectSurfaces() {
+    const map = projectMap();
+    document.querySelectorAll('[data-project-open]').forEach((control) => {
+      if (control.closest('[data-cat-item]')) return;
+      const id = control.getAttribute('data-project-open');
+      const project = map.get(id);
+      if (!project) return;
+      const type = typeOf(project);
+      const surface = control.closest('[data-project-card],[data-map-node],article,li,g,[class*="timeline-card"],[class*="project-card"],[class*="map-node"]') || control;
+      assignType(surface, type, true);
+      if (surface === control) assignType(control, type, true);
+    });
+
+    const activeId = new URLSearchParams(location.search).get('project');
+    const activeProject = map.get(activeId);
+    if (activeProject) document.documentElement.dataset.activeProjectType = typeOf(activeProject);
+    else delete document.documentElement.dataset.activeProjectType;
   }
 
   function decorateGroups() {
@@ -120,6 +145,7 @@
     if (observer) observer.disconnect();
     ensureTaxonomy();
     decorateItems();
+    decorateProjectSurfaces();
     decorateGroups();
     ensureAuditNote();
     if (observer) observer.observe(document.body, { childList: true, subtree: true });
