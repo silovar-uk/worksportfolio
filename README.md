@@ -8,25 +8,33 @@ https://silovar-uk.github.io/worksportfolio/
 
 ## 収録内容
 
-- 登録制作物：67件
-- GitHubリポジトリ：61件
-- 自作Chrome拡張：9件
+- 登録制作物：70件
+- GitHubリポジトリ：62件
+- 自作Chrome拡張：12件
 - 閲覧方法：年代順／本棚／関連地図
 
-## favicon
+## 今回追加した制作物
 
-「小さな引っかかりが、作ることで構造へ変わる」様子を表現した専用アイコンを使用しています。
+- LINE WORKS Scroll & Copy
+- LINE WORKS Logger
+- X 自動スクリーンショット＆スクロール
+
+GitHubのリポジトリ一覧だけでなく、ZIPで制作した拡張や、公開リポジトリを持たない手元の道具も台帳へ含めています。
+
+## favicon・ヘッダーアイコン
+
+「小さな引っかかりが、作ることで構造へ変わる」様子を表現した専用アイコンを、faviconとヘッダー左上の両方に使用しています。
 
 - `assets/favicon.svg`
 - `site.webmanifest`
 
-## 現在の構成
+## 公開構成
 
-`index.html`は、リポジトリ内の分割データから完成版を初回アクセス時に組み立てます。組み立てたページはブラウザ内に保存され、2回目以降はすぐに表示されます。
+`index.html`がリポジトリ内の制作物パッケージを読み込み、データ・CSS・JavaScriptをブラウザ上で組み立てます。
 
-- `index.html`：公開用ローダー
-- `.bootstrap/part-*.b64`：完成版サイトの分割データ
-- `assets/favicon.svg`：サイトアイコン
+- `index.html`：公開用ローダー兼、追加作品・表示修正
+- `.bootstrap/part-*.b64`：制作物パッケージの分割データ
+- `assets/favicon.svg`：favicon・ヘッダーアイコン
 - `404.html`：404ページ
 
 ## GitHub Pages
