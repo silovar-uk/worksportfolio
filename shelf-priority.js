@@ -95,11 +95,15 @@
       group.hidden = recentOnly && !visible;
     });
 
+    const count = document.querySelector('[data-cat-count]');
     if (recentOnly) {
       const visibleCount = items.filter((item) => !item.hidden).length;
-      const count = document.querySelector('[data-cat-count]');
       const html = `<strong>${visibleCount}</strong>件（最近開いた）`;
       if (count && count.innerHTML !== html) count.innerHTML = html;
+    } else if (count) {
+      const total = window.BUILD_DIARY_DATA?.projects?.length || items.length;
+      const html = `<strong>${items.length}</strong> / ${total}件`;
+      if (count.innerHTML !== html) count.innerHTML = html;
     }
   }
 
@@ -116,6 +120,8 @@
   }
 
   document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-cat-quick-value]')) recentOnly = false;
+
     const openButton = event.target.closest('[data-project-open]');
     if (openButton) recordOpened(openButton.getAttribute('data-project-open'));
 
