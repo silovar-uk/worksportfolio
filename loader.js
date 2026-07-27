@@ -75,6 +75,7 @@
       var repos=${repositoriesJson};
       var hidden=new Set(Array.isArray(cfg.hiddenIds)?cfg.hiddenIds:[]);
       var overrides=cfg.overrides&&typeof cfg.overrides==='object'?cfg.overrides:{};
+      var repositoryProjectIds=cfg.repositoryProjectIds&&typeof cfg.repositoryProjectIds==='object'?cfg.repositoryProjectIds:{};
       var typeByName=[
         [/extension|quicklinks|tabshelter|logger/i,'chrome-extension'],
         [/quiz|english|hangul|study|training|dictionary/i,'learning-tool'],
@@ -91,15 +92,16 @@
       }
       function unique(values){return Array.from(new Set((Array.isArray(values)?values:[]).filter(Boolean)))}
       function projectFromRepo(repo){
-        var id=repo.name||repo.id;if(!id)return null;
+        var repoName=repo.name||repo.id;if(!repoName)return null;
+        var id=repositoryProjectIds[repoName]||repoName;
         var existingMap=new Map(d.projects.map(function(project){return[project.id,project]}));
         var existing=existingMap.get(id)||null;
-        var override=overrides[id]||{};
+        var override=overrides[repoName]||overrides[id]||{};
         var createdAt=cleanDate(repo.createdAt||repo.created_at);
         var updatedAt=cleanDate(repo.updatedAt||repo.pushedAt||repo.updated_at||createdAt);
         var language=repo.language||'';
         var liveUrl=repo.liveUrl||repo.homepage||'';
-        var repositoryUrl=repo.repositoryUrl||repo.html_url||('https://github.com/'+(cfg.owner||'silovar-uk')+'/'+id);
+        var repositoryUrl=repo.repositoryUrl||repo.html_url||('https://github.com/'+(cfg.owner||'silovar-uk')+'/'+repoName);
         var base=existing?Object.assign({},existing):{
           id:id,
           title:id,
@@ -137,7 +139,7 @@
         return merged;
       }
       var map=new Map(d.projects.map(function(project){return[project.id,project]}));
-      repos.forEach(function(repo){var project=projectFromRepo(repo);if(project)map.set(project.id,project)});
+      repos.forEach(function(repo){var repoName=repo&&(repo.name||repo.id);if(hidden.has(repoName))return;var project=projectFromRepo(repo);if(project)map.set(project.id,project)});
       manuals.forEach(function(project){if(project&&project.id)map.set(project.id,Object.assign({},map.get(project.id)||{},project))});
       d.projects=Array.from(map.values()).filter(function(project){return!hidden.has(project.id)});
       var valid=new Set(d.projects.map(function(project){return project.id}));
