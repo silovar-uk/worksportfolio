@@ -78,7 +78,9 @@
     const button = document.querySelector('[data-recent-opened]');
     if (!button) return;
     const ids = recentIds();
-    button.querySelector('strong').textContent = String(ids.size);
+    const strong = button.querySelector('strong');
+    const recentCount = String(ids.size);
+    if (strong && strong.textContent !== recentCount) strong.textContent = recentCount;
     button.classList.toggle('is-active', recentOnly);
     button.setAttribute('aria-pressed', String(recentOnly));
 
@@ -96,7 +98,8 @@
     if (recentOnly) {
       const visibleCount = items.filter((item) => !item.hidden).length;
       const count = document.querySelector('[data-cat-count]');
-      if (count) count.innerHTML = `<strong>${visibleCount}</strong>件（最近開いた）`;
+      const html = `<strong>${visibleCount}</strong>件（最近開いた）`;
+      if (count && count.innerHTML !== html) count.innerHTML = html;
     }
   }
 
