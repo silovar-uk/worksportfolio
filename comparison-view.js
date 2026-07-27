@@ -35,15 +35,41 @@
     inferred: '内容を確認中',
     unreviewed: '未確認'
   };
+  const COMPARE_KEY = 'worksportfolio-compare-ids-v1';
 
   let observer = null;
   let scheduled = false;
+  let compareIds = loadCompareIds();
+  let tray = null;
+  let compareDialog = null;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
   const projectMap = () => new Map(projects().map((project) => [project.id, project]));
-  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"]/g, (char) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
   }[char]));
+  const escapeAttr = (value) => escapeHtml(value).replace(/'/g, '&#39;');
+
+  function loadCompareIds() {
+    try {
+      const value = JSON.parse(sessionStorage.getItem(COMPARE_KEY) || '[]');
+      return Array.isArray(value) ? value.filter((id) => typeof id === 'string').slice(0, 3) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCompareIds() {
+    try {
+      sessionStorage.setItem(COMPARE_KEY, JSON.stringify(compareIds));
+    } catch {
+      // Storage is optional. Comparison still works for the current page.
+    }
+  }
+
+  function replaceHtmlIfChanged(element, html) {
+    if (element && element.innerHTML !== html) element.innerHTML = html;
+  }
 
   function formatDate(value) {
     const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
@@ -64,6 +90,16 @@
     if (project.liveUrl) return '公開中';
     if (project.documentationState === 'verified') return '確認済み';
     return '記録';
+  }
+
+  function selectedProjects() {
+    const map = projectMap();
+    const validIds = compareIds.filter((id) => map.has(id)).slice(0, 3);
+    if (validIds.join('|') !== compareIds.join('|')) {
+      compareIds = validIds;
+      saveCompareIds();
+    }
+    return compareIds.map((id) => map.get(id)).filter(Boolean);
   }
 
   function ensureSwitch() {
@@ -110,6 +146,31 @@
       button.classList.toggle('is-active', active);
       if (button.getAttribute('aria-pressed') !== String(active)) button.setAttribute('aria-pressed', String(active));
     });
+  }
+
+  function ensureCardActions(card, project) {
+    const open = card.querySelector('.catalog-open');
+    if (!open) return;
+
+    let actions = card.querySelector('[data-card-actions]');
+    if (!actions) {
+      actions = document.createElement('div');
+      actions.className = 'catalog-card-actions';
+      actions.dataset.cardActions = '';
+      open.insertAdjacentElement('beforebegin', actions);
+      actions.appendChild(open);
+    }
+
+    let compare = actions.querySelector('[data-compare-toggle]');
+    if (!compare) {
+      compare = document.createElement('button');
+      compare.type = 'button';
+      compare.className = 'catalog-compare-toggle';
+      compare.dataset.compareToggle = project.id;
+      actions.insertBefore(compare, open);
+    }
+    if (compare.dataset.compareToggle !== project.id) compare.dataset.compareToggle = project.id;
+    if (open.textContent !== 'カードを開く') open.textContent = 'カードを開く';
   }
 
   function decorateCards() {
@@ -175,9 +236,159 @@
         tags.remove();
       }
 
-      const open = card.querySelector('.catalog-open');
-      if (open && open.textContent !== 'カードを開く') open.textContent = 'カードを開く';
+      ensureCardActions(card, project);
     });
+  }
+
+  function ensureCompareUi() {
+    tray = document.querySelector('[data-compare-tray]');
+    if (!tray) {
+      tray = document.createElement('aside');
+      tray.className = 'compare-tray';
+      tray.dataset.compareTray = '';
+      tray.hidden = true;
+      tray.setAttribute('aria-label', '比較トレイ');
+      tray.innerHTML = `<div class="compare-tray-inner">
+        <div class="compare-tray-heading"><strong>比較トレイ</strong><span data-compare-count>0/3</span></div>
+        <div class="compare-tray-items" data-compare-items></div>
+        <div class="compare-tray-actions">
+          <button type="button" class="compare-tray-clear" data-compare-clear>クリア</button>
+          <button type="button" class="compare-tray-open" data-compare-open disabled>あと1枚選ぶ</button>
+        </div>
+      </div><p class="sr-only" aria-live="polite" data-compare-live></p>`;
+      document.body.appendChild(tray);
+    }
+
+    compareDialog = document.querySelector('[data-compare-dialog]');
+    if (!compareDialog) {
+      compareDialog = document.createElement('dialog');
+      compareDialog.className = 'compare-dialog';
+      compareDialog.dataset.compareDialog = '';
+      compareDialog.setAttribute('aria-labelledby', 'compare-dialog-title');
+      compareDialog.innerHTML = `<div class="compare-dialog-shell">
+        <header class="compare-dialog-head">
+          <div><p>選んだ制作物</p><h2 id="compare-dialog-title">比較する</h2></div>
+          <button type="button" data-compare-close aria-label="比較を閉じる">×</button>
+        </header>
+        <div class="compare-dialog-grid" data-compare-dialog-grid></div>
+      </div>`;
+      compareDialog.addEventListener('click', (event) => {
+        if (event.target === compareDialog) compareDialog.close();
+      });
+      document.body.appendChild(compareDialog);
+    }
+  }
+
+  function compareLinks(project) {
+    const links = [];
+    if (project.liveUrl) links.push(`<a href="${escapeAttr(project.liveUrl)}" target="_blank" rel="noopener">公開ページ</a>`);
+    if (project.repositoryUrl) links.push(`<a href="${escapeAttr(project.repositoryUrl)}" target="_blank" rel="noopener">GitHub</a>`);
+    return links.length ? links.join('') : '<span>リンク未確認</span>';
+  }
+
+  function compareProjectHtml(project) {
+    const type = project.type || 'other';
+    const typeLabel = TYPE_LABELS[type] || type;
+    const typeMark = TYPE_MARKS[type] || TYPE_MARKS.other;
+    const technologies = (project.technologies || []).filter(Boolean);
+    return `<article class="compare-dialog-card type-${escapeAttr(type)}" data-card-mark="${escapeAttr(typeMark)}">
+      <div class="compare-dialog-card-head"><span><i aria-hidden="true">${escapeHtml(typeMark)}</i>${escapeHtml(typeLabel)}</span><small>${escapeHtml(cardCode(project))}</small></div>
+      <h3>${escapeHtml(project.title || project.id)}</h3>
+      <p class="compare-dialog-summary">${escapeHtml(project.summary || project.friction || '説明を確認中です。')}</p>
+      <dl>
+        <div><dt>制作</dt><dd>${escapeHtml(formatDate(project.createdAt))}</dd></div>
+        <div><dt>更新</dt><dd>${escapeHtml(formatDate(project.updatedAt || project.createdAt))}</dd></div>
+        <div><dt>状態</dt><dd>${escapeHtml(STATUS_LABELS[project.status] || project.status || '未設定')}</dd></div>
+        <div><dt>確認</dt><dd>${escapeHtml(DOC_LABELS[project.documentationState] || DOC_LABELS.unreviewed)}</dd></div>
+      </dl>
+      <div class="compare-dialog-tech"><strong>技術</strong><p>${technologies.length ? technologies.map((item) => `<span>${escapeHtml(item)}</span>`).join('') : '<span>未確認</span>'}</p></div>
+      <div class="compare-dialog-links">${compareLinks(project)}</div>
+    </article>`;
+  }
+
+  function renderCompareDialog() {
+    if (!compareDialog) return;
+    const selected = selectedProjects();
+    const grid = compareDialog.querySelector('[data-compare-dialog-grid]');
+    if (grid) grid.style.setProperty('--compare-count', String(Math.max(2, selected.length)));
+    replaceHtmlIfChanged(grid, selected.map(compareProjectHtml).join(''));
+  }
+
+  function announceCompare(message) {
+    const live = tray?.querySelector('[data-compare-live]');
+    if (live) live.textContent = message;
+  }
+
+  function syncCompareControls() {
+    const selected = new Set(compareIds);
+    const limitReached = compareIds.length >= 3;
+    document.querySelectorAll('[data-compare-toggle]').forEach((button) => {
+      const active = selected.has(button.dataset.compareToggle);
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+      button.disabled = !active && limitReached;
+      const label = active ? '比較から外す' : '比較に追加';
+      if (button.textContent !== label) button.textContent = label;
+      button.closest('[data-cat-item],[data-random-three-item]')?.classList.toggle('is-in-compare', active);
+    });
+  }
+
+  function renderCompareUi(message = '') {
+    ensureCompareUi();
+    const selected = selectedProjects();
+    const isVisible = selected.length > 0;
+    if (tray.hidden === isVisible) tray.hidden = !isVisible;
+    document.documentElement.classList.toggle('has-compare-tray', isVisible);
+
+    const items = tray.querySelector('[data-compare-items]');
+    const itemsHtml = selected.map((project) => `<span class="compare-tray-item"><span>${escapeHtml(project.title || project.id)}</span><button type="button" data-compare-remove="${escapeAttr(project.id)}" aria-label="${escapeAttr(project.title || project.id)}を比較から外す">×</button></span>`).join('');
+    replaceHtmlIfChanged(items, itemsHtml);
+
+    const count = tray.querySelector('[data-compare-count]');
+    if (count && count.textContent !== `${selected.length}/3`) count.textContent = `${selected.length}/3`;
+    const open = tray.querySelector('[data-compare-open]');
+    if (open) {
+      const label = selected.length < 2 ? 'あと1枚選ぶ' : `${selected.length}枚を比較`;
+      if (open.textContent !== label) open.textContent = label;
+      open.disabled = selected.length < 2;
+    }
+
+    syncCompareControls();
+    if (message) announceCompare(message);
+    if (compareDialog?.open) renderCompareDialog();
+  }
+
+  function toggleCompare(id) {
+    if (!projectMap().has(id)) return;
+    const currentIndex = compareIds.indexOf(id);
+    if (currentIndex >= 0) {
+      compareIds.splice(currentIndex, 1);
+      saveCompareIds();
+      renderCompareUi('比較から外しました。');
+      return;
+    }
+    if (compareIds.length >= 3) {
+      tray?.classList.remove('is-limit');
+      requestAnimationFrame(() => tray?.classList.add('is-limit'));
+      announceCompare('比較できるのは3枚までです。');
+      return;
+    }
+    compareIds.push(id);
+    saveCompareIds();
+    renderCompareUi(compareIds.length >= 2 ? '比較できるようになりました。' : '比較トレイに追加しました。');
+  }
+
+  function clearCompare() {
+    compareIds = [];
+    saveCompareIds();
+    if (compareDialog?.open) compareDialog.close();
+    renderCompareUi('比較トレイを空にしました。');
+  }
+
+  function openComparison() {
+    if (selectedProjects().length < 2 || !compareDialog) return;
+    renderCompareDialog();
+    compareDialog.showModal();
   }
 
   function apply() {
@@ -185,6 +396,7 @@
     ensureSwitch();
     syncSwitch();
     decorateCards();
+    renderCompareUi();
   }
 
   function schedule() {
@@ -193,12 +405,45 @@
     requestAnimationFrame(apply);
   }
 
+  function bindCompareEvents() {
+    document.addEventListener('click', (event) => {
+      const toggle = event.target.closest('[data-compare-toggle]');
+      if (toggle) {
+        event.preventDefault();
+        toggleCompare(toggle.dataset.compareToggle);
+        return;
+      }
+      const remove = event.target.closest('[data-compare-remove]');
+      if (remove) {
+        event.preventDefault();
+        toggleCompare(remove.dataset.compareRemove);
+        return;
+      }
+      if (event.target.closest('[data-compare-clear]')) {
+        event.preventDefault();
+        clearCompare();
+        return;
+      }
+      if (event.target.closest('[data-compare-open]')) {
+        event.preventDefault();
+        openComparison();
+        return;
+      }
+      if (event.target.closest('[data-compare-close]')) {
+        event.preventDefault();
+        compareDialog?.close();
+      }
+    });
+  }
+
   function start() {
     const wait = () => {
       if (!window.BUILD_DIARY_DATA || !document.querySelector('[data-catalog-toolbar]')) {
         setTimeout(wait, 80);
         return;
       }
+      ensureCompareUi();
+      bindCompareEvents();
       apply();
       document.querySelector('[data-cat-layout]')?.addEventListener('change', () => setTimeout(syncSwitch, 0));
       observer = new MutationObserver(schedule);
