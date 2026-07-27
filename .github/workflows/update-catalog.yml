@@ -105,9 +105,14 @@ jobs:
           grep -q 'data-view-button="shelf">制作物を見る</button>' index.html
           grep -q "d.settings.defaultView='shelf'" index.html
           grep -q '確認状況' copy-cleanup.js
-          grep -q 'ランダムに3件' random-three.js
+          grep -q 'ランダム3枚' random-three.js
+          grep -q '3枚引き直す' random-three.js
+          grep -q 'data-card-mark' random-three.js
+          grep -q 'data-card-mark' comparison-view.js
           grep -q '比較カード' comparison-view.js
+          grep -Fq "const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];" index.html
           grep -Fq "document.querySelector('[data-random-button]')?.addEventListener" index.html
+          ! grep -Fq "const required = ['id', 'title', 'summary', 'friction', 'type', 'status', 'visibility', 'createdAt'];" index.html
           ! grep -Fq "document.querySelector('[data-random-button]').addEventListener" index.html
           ! grep -q 'catalog-taxonomy-head strong' copy-cleanup.js
           ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
