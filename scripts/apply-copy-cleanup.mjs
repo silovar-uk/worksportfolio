@@ -32,6 +32,11 @@ replaceCopy(
 replaceCopy('<button class="primary-action" type="button" data-view-button="timeline">年代順に読む</button>', '<button class="primary-action" type="button" data-view-button="shelf">制作物を見る</button>');
 replaceCopy('<button class="text-action" type="button" data-random-button>何か見せて</button>', '');
 
+replaceCopy(
+  "document.querySelector('[data-random-button]').addEventListener('click', openRandomProject);",
+  "document.querySelector('[data-random-button]')?.addEventListener('click', openRandomProject);"
+);
+
 replaceCopy('data-view-button="shelf">本棚</button>', 'data-view-button="shelf">一覧</button>');
 replaceCopy('data-view-button="map">地図</button>', 'data-view-button="map">関連</button>');
 replaceCopy('data-about-button>このページ</button>', 'data-about-button>このページについて</button>');
@@ -87,6 +92,9 @@ if (!html.includes('data-view-button="shelf">制作物を見る</button>')) {
 }
 if (!html.includes("d.settings.defaultView='shelf'")) {
   throw new Error('The list view was not set as the default.');
+}
+if (!html.includes("document.querySelector('[data-random-button]')?.addEventListener")) {
+  throw new Error('The optional random button listener was not applied.');
 }
 if (!html.includes('copy-cleanup.css') || !html.includes('copy-cleanup.js')) {
   throw new Error('The copy cleanup assets were not included.');
