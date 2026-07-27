@@ -392,11 +392,12 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
       period.projectIds=ids.filter(function(id){return valid.has(id)});
       if(period.id==='2026-05'&&valid.has('lineworks-logger')&&!period.projectIds.includes('lineworks-logger'))period.projectIds.push('lineworks-logger');
     });
-    if(d.settings){
-      ['featuredProjectIds','recentProjectIds'].forEach(function(key){
-        if(Array.isArray(d.settings[key]))d.settings[key]=d.settings[key].filter(function(id){return valid.has(id)});
-      });
-    }
+    if(!d.settings)d.settings={};
+    d.settings.defaultView='shelf';
+    d.settings.currentNote='GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。';
+    ['featuredProjectIds','recentProjectIds'].forEach(function(key){
+      if(Array.isArray(d.settings[key]))d.settings[key]=d.settings[key].filter(function(id){return valid.has(id)});
+    });
     window.WORKS_PORTFOLIO_CONFIG=cfg;
     window.WORKS_PORTFOLIO_REPOSITORIES=repos;
   })();</script>
@@ -878,7 +879,7 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
           <p class="eyebrow">SELECTED TOOL</p>
           <h3>${escapeHtml(project.title)}</h3>
           <p>${escapeHtml(project.summary)}</p>
-          <p><strong>最初の違和感</strong><br>${escapeHtml(project.friction)}</p>
+          <p><strong>作ったきっかけ</strong><br>${escapeHtml(project.friction)}</p>
           <button class="subtle-button" type="button" data-project-open="${escapeAttr(project.id)}">中を読む →</button>`;
         bindProjectButtons();
       }
@@ -987,40 +988,40 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
           </section>` : ''}
 
         <section class="detail-section">
-          <h3>最初の違和感</h3>
+          <h3>作ったきっかけ</h3>
           <p class="detail-friction">${escapeHtml(project.friction)}</p>
         </section>
 
         <section class="detail-section">
-          <h3>とりあえず作ったもの</h3>
-          <p>${escapeHtml(project.firstBuild || '初期版の記録は、これから追記する。')}</p>
+          <h3>最初の版</h3>
+          <p>${escapeHtml(project.firstBuild || '初期版の記録は未確認です。')}</p>
         </section>
 
         <section class="detail-section">
-          <h3>現在の答え</h3>
+          <h3>現在の状態</h3>
           <p>${escapeHtml(project.currentAnswer || project.summary)}</p>
           ${project.aside ? `<p class="detail-aside">${escapeHtml(project.aside)}</p>` : ''}
         </section>
 
         <section class="detail-section">
-          <h3>改善の履歴</h3>
+          <h3>更新履歴</h3>
           <div class="detail-updates">
             ${(project.updates || []).map(update => `
               <div class="detail-update">
                 <time>${escapeHtml(formatDate(update.date))}${update.version ? ` / ${escapeHtml(update.version)}` : ''}</time>
                 <div><strong>${escapeHtml(update.change)}</strong><br><span class="update-reason">${escapeHtml(update.reason)}</span></div>
-              </div>`).join('') || '<p>履歴はこれから。最初から完璧だったわけではなく、記録がなかった。</p>'}
+              </div>`).join('') || '<p>更新履歴は未確認です。</p>'}
           </div>
         </section>
 
         <section class="detail-section">
-          <h3>使っているもの</h3>
+          <h3>技術</h3>
           <div class="card-meta">${(project.technologies || []).map(item => `<span class="meta-pill">${escapeHtml(item)}</span>`).join('')}</div>
         </section>
 
         ${related.length ? `
           <section class="detail-section">
-            <h3>ここからつながるもの</h3>
+            <h3>関連する制作物</h3>
             <div class="detail-related">
               ${related.map(({ rel, project: item }) => `<button type="button" data-project-open="${escapeAttr(item.id)}"><strong>${escapeHtml(item.title)}</strong><br><small>${escapeHtml(rel.relation)}</small></button>`).join('')}
             </div>
@@ -1116,8 +1117,8 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
         <h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>
         <p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。ここでは、作ったものと更新の記録をまとめています。</p>
         <div class="hero-actions" aria-label="閲覧方法を選ぶ">
-          <button class="primary-action" type="button" data-view-button="timeline">年代順に見る</button>
-          <button class="text-action" type="button" data-random-button>ランダムで見る</button>
+          <button class="primary-action" type="button" data-view-button="shelf">一覧を見る</button>
+          
         </div>
       </div>
 
@@ -1133,9 +1134,9 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
     <section class="current-note section-shell" aria-labelledby="current-note-title">
       <div>
         <p class="eyebrow">RECENTLY</p>
-        <h2 id="current-note-title">最近考えていること</h2>
+        <h2 id="current-note-title">この一覧について</h2>
       </div>
-      <p data-current-note>記録を集めるだけでなく、あとで思い出せる形にすることを考えています。</p>
+      <p data-current-note>GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。</p>
     </section>
 
     <section class="recent-updates section-shell" aria-labelledby="updates-title">
@@ -1153,7 +1154,7 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
       <div class="section-heading explorer-heading">
         <div>
           <p class="eyebrow">EXPLORE</p>
-          <h2 id="explorer-title">制作物を見る</h2>
+          <h2 id="explorer-title">制作物一覧</h2>
         </div>
         <div class="view-switcher" role="group" aria-label="表示形式">
           <button type="button" class="view-chip is-active" data-view-button="timeline">
@@ -1213,7 +1214,7 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
       <p class="eyebrow">ABOUT</p>
       <h2 id="about-title">このページについて</h2>
       <p>作ったものを、時期や種類ごとにまとめています。詳しい内容とGitHub、公開ページへのリンクを確認できます。</p>
-      <p>GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。日付や説明を確認できていないものは、その旨を表示しています。</p>
+      <p>「確認済み」は説明と主なリンクを確認したもの、「内容を確認中」はGitHubの情報から整理したもの、「未確認」は基本情報のみのものです。</p>
     </div>
   </dialog>
 
