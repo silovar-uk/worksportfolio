@@ -102,7 +102,7 @@ jobs:
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
           grep -q '小さな不便から、<br>小さな道具を作る' index.html
-          grep -q 'data-view-button="shelf">一覧を見る</button>' index.html
+          grep -q 'data-view-button="shelf">制作物を見る</button>' index.html
           grep -q "d.settings.defaultView='shelf'" index.html
           grep -q '確認状況' copy-cleanup.js
           grep -q 'ランダムに3件' random-three.js
