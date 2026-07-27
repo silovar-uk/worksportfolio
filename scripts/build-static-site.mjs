@@ -134,15 +134,16 @@ const generatedAt = catalog.generatedAt || new Date().toISOString();
 html = html.replace(
   '</head>',
   `<meta name="worksportfolio-generated-at" content="${generatedAt}">` +
-  '<link rel="stylesheet" href="catalog.css"><link rel="stylesheet" href="taxonomy.css"><link rel="stylesheet" href="wow.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="marks.css"><link rel="stylesheet" href="shelf-priority.css"><style>.recent-updates{display:none!important}</style></head>'
+  '<link rel="stylesheet" href="catalog.css"><link rel="stylesheet" href="taxonomy.css"><link rel="stylesheet" href="floating-random.css"><link rel="stylesheet" href="wow.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="marks.css"><link rel="stylesheet" href="shelf-priority.css"><style>.recent-updates{display:none!important}</style></head>'
 );
 html = html.replace(
   '</body>',
-  '<script src="data-audit.js"></script><script src="catalog.js"></script><script src="catalog-visibility.js"></script><script src="taxonomy.js"></script><script src="wow.js"></script><script src="wow-stage.js"></script><script src="motion.js"></script><script src="marks.js"></script><script src="shelf-priority.js"></script></body>'
+  '<script src="data-audit.js"></script><script src="catalog.js"></script><script src="catalog-visibility.js"></script><script src="taxonomy.js"></script><script src="floating-random.js"></script><script src="wow.js"></script><script src="wow-stage.js"></script><script src="motion.js"></script><script src="marks.js"></script><script src="shelf-priority.js"></script></body>'
 );
 
 if (/jszip|loader\.js/i.test(html)) throw new Error('The generated page still depends on the runtime bootstrap loader.');
 if (!html.includes('shelf-priority.js')) throw new Error('The generated page is missing the shelf enhancement script.');
+if (!html.includes('floating-random.js')) throw new Error('The generated page is missing the floating random popup.');
 if (!html.includes('window.BUILD_DIARY_DATA')) throw new Error('The generated page lost its project data.');
 
 writeFileSync(join(root, 'index.html'), html);
