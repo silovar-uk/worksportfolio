@@ -479,7 +479,7 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
     document.querySelectorAll('[data-view-button]').forEach(button => {
       button.addEventListener('click', () => setView(button.dataset.viewButton));
     });
-    document.querySelector('[data-random-button]').addEventListener('click', openRandomProject);
+    document.querySelector('[data-random-button]')?.addEventListener('click', openRandomProject);
     els.search.addEventListener('input', event => {
       state.search = event.target.value.trim();
       renderCurrentView();
