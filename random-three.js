@@ -50,9 +50,11 @@
       [pool[i], pool[j]] = [pool[j], pool[i]];
     }
     const next = pool.slice(0, Math.min(3, pool.length));
-    if (next.length === 3 && selectedIds.length === 3 && next.every((project) => selectedIds.includes(project.id))) {
-      return pickThree();
-    }
+    const repeatsSameSet = pool.length > 3
+      && next.length === 3
+      && selectedIds.length === 3
+      && next.every((project) => selectedIds.includes(project.id));
+    if (repeatsSameSet) return pickThree();
     selectedIds = next.map((project) => project.id);
     return next;
   }
@@ -87,7 +89,9 @@
   function render() {
     if (!section) return;
     const list = pickThree();
-    section.querySelector('[data-random-three-grid]').innerHTML = list.map(card).join('');
+    const target = section.querySelector('[data-random-three-grid]');
+    const html = list.map(card).join('');
+    if (target && target.innerHTML !== html) target.innerHTML = html;
   }
 
   function openProject(id) {
