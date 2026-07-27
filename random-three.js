@@ -12,6 +12,17 @@
     experiment: '実験',
     other: 'その他'
   };
+  const TYPE_MARKS = {
+    'web-app': 'W',
+    'chrome-extension': '拡',
+    'learning-tool': '学',
+    'design-system': '設',
+    'content-page': '読',
+    'data-tool': '析',
+    utility: '便',
+    experiment: '試',
+    other: '他'
+  };
   const STATUS_LABELS = {
     development: '開発中',
     active: '運用中',
@@ -43,6 +54,19 @@
     return match[1];
   }
 
+  function cardCode(project) {
+    const index = projects().findIndex((item) => item.id === project.id);
+    return `#${String(Math.max(0, index) + 1).padStart(3, '0')}`;
+  }
+
+  function cardLabel(project) {
+    if (project.featured) return '注目';
+    if (project.liveUrl && project.documentationState === 'verified') return '公開・確認済み';
+    if (project.liveUrl) return '公開中';
+    if (project.documentationState === 'verified') return '確認済み';
+    return '記録';
+  }
+
   function pickThree() {
     const pool = [...projects()];
     for (let i = pool.length - 1; i > 0; i -= 1) {
@@ -67,20 +91,26 @@
   }
 
   function card(project) {
-    const type = TYPE_LABELS[project.type] || project.type || 'その他';
+    const type = project.type || 'other';
+    const typeLabel = TYPE_LABELS[type] || type;
+    const typeMark = TYPE_MARKS[type] || TYPE_MARKS.other;
     const status = STATUS_LABELS[project.status] || project.status || '未設定';
     const doc = DOC_LABELS[project.documentationState] || DOC_LABELS.unreviewed;
-    return `<article class="random-three-card" data-random-three-item="${escapeAttr(project.id)}">
-      <div class="random-three-meta"><span>${escapeHtml(type)}</span><span>${escapeHtml(status)}</span></div>
-      <h3>${escapeHtml(project.title || project.id)}</h3>
-      <p>${escapeHtml(project.summary || project.friction || '説明を確認中です。')}</p>
+    return `<article class="random-three-card type-${escapeAttr(type)}" data-random-three-item="${escapeAttr(project.id)}" data-card-mark="${escapeAttr(typeMark)}">
+      <div class="random-three-meta"><span class="random-three-type"><i aria-hidden="true">${escapeHtml(typeMark)}</i>${escapeHtml(typeLabel)}</span><span class="random-three-code">${escapeHtml(cardCode(project))}</span></div>
+      <span class="random-three-label">${escapeHtml(cardLabel(project))}</span>
+      <div class="random-three-art">
+        <h3>${escapeHtml(project.title || project.id)}</h3>
+        <p>${escapeHtml(project.summary || project.friction || '説明を確認中です。')}</p>
+      </div>
       <dl class="random-three-facts">
         <div><dt>制作</dt><dd>${escapeHtml(formatDate(project.createdAt))}</dd></div>
         <div><dt>更新</dt><dd>${escapeHtml(formatDate(project.updatedAt || project.createdAt))}</dd></div>
+        <div><dt>状態</dt><dd>${escapeHtml(status)}</dd></div>
         <div><dt>確認</dt><dd>${escapeHtml(doc)}</dd></div>
       </dl>
       <div class="random-three-actions">
-        <button type="button" data-random-three-open="${escapeAttr(project.id)}">詳細を見る</button>
+        <button type="button" data-random-three-open="${escapeAttr(project.id)}">カードを開く</button>
         ${links(project)}
       </div>
     </article>`;
@@ -119,8 +149,8 @@
       section.className = 'random-three';
       section.dataset.randomThree = '';
       section.innerHTML = `<header class="random-three-head">
-        <div><h2>ランダムに3件</h2><p>全制作物から選んでいます。</p></div>
-        <button type="button" data-random-three-refresh>入れ替える</button>
+        <div><h2>ランダム3枚</h2><p>全制作物から選んでいます。</p></div>
+        <button type="button" data-random-three-refresh>3枚引き直す</button>
       </header>
       <div class="random-three-grid" data-random-three-grid></div>`;
       toolbar.parentNode.insertBefore(section, toolbar);
