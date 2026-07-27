@@ -36,6 +36,10 @@ replaceCopy(
   "document.querySelector('[data-random-button]').addEventListener('click', openRandomProject);",
   "document.querySelector('[data-random-button]')?.addEventListener('click', openRandomProject);"
 );
+replaceCopy(
+  "const required = ['id', 'title', 'summary', 'friction', 'type', 'status', 'visibility', 'createdAt'];",
+  "const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];"
+);
 
 replaceCopy('data-view-button="shelf">本棚</button>', 'data-view-button="shelf">一覧</button>');
 replaceCopy('data-view-button="map">地図</button>', 'data-view-button="map">関連</button>');
@@ -95,6 +99,9 @@ if (!html.includes("d.settings.defaultView='shelf'")) {
 }
 if (!html.includes("document.querySelector('[data-random-button]')?.addEventListener")) {
   throw new Error('The optional random button listener was not applied.');
+}
+if (!html.includes("const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];")) {
+  throw new Error('Optional project notes are still treated as required.');
 }
 if (!html.includes('copy-cleanup.css') || !html.includes('copy-cleanup.js')) {
   throw new Error('The copy cleanup assets were not included.');
