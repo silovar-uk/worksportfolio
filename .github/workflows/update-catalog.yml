@@ -13,6 +13,8 @@ on:
       - 'data/manual-projects.json'
       - 'taxonomy.js'
       - 'taxonomy.css'
+      - 'floating-random.js'
+      - 'floating-random.css'
       - 'scripts/build-catalog.mjs'
       - 'scripts/build-static-site.mjs'
       - '.github/workflows/update-catalog.yml'
@@ -25,6 +27,8 @@ on:
       - 'data/manual-projects.json'
       - 'taxonomy.js'
       - 'taxonomy.css'
+      - 'floating-random.js'
+      - 'floating-random.css'
       - 'scripts/build-catalog.mjs'
       - 'scripts/build-static-site.mjs'
       - '.github/workflows/update-catalog.yml'
@@ -49,7 +53,9 @@ jobs:
           node-version: '22'
 
       - name: Check interface scripts
-        run: node --check taxonomy.js
+        run: |
+          node --check taxonomy.js
+          node --check floating-random.js
 
       - name: Build GitHub catalog
         run: node scripts/build-catalog.mjs
@@ -66,6 +72,8 @@ jobs:
           ! grep -qi 'loader.js' index.html
           grep -q 'window.BUILD_DIARY_DATA' index.html
           grep -q 'shelf-priority.js' index.html
+          grep -q 'floating-random.js' index.html
+          grep -q 'floating-random.css' index.html
 
       - name: Show generated changes
         run: git diff --stat -- data/catalog.json index.html
