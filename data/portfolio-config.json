@@ -1,0 +1,36 @@
+{
+  "owner": "silovar-uk",
+  "defaultView": "shelf",
+  "defaultSort": "updated-desc",
+  "githubApiFallback": true,
+  "hiddenIds": [
+    "python",
+    "scrap_random",
+    "pratchecker",
+    "zl-logger-web",
+    "jumbo",
+    "gamedashboard",
+    "eventmap",
+    "rexanq",
+    "x-event-communication-review-jan-apr",
+    "npwposts",
+    "vsmcintro",
+    "2026eventlist",
+    "predictattendance",
+    "quickliks",
+    "lineworks-scroll-copy",
+    "x-auto-screenshot-scroll"
+  ],
+  "overrides": {
+    "worksportfolio": {
+      "title": "つくって考えた",
+      "subtitle": "制作物を探し、使い直すための作品棚",
+      "summary": "GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。",
+      "type": "web-app",
+      "verbs": ["探す", "整理する", "振り返る"],
+      "status": "active",
+      "documentationState": "verified",
+      "liveUrl": "https://silovar-uk.github.io/worksportfolio/"
+    }
+  }
+}
