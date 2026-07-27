@@ -27,9 +27,9 @@ replaceCopy(
 );
 replaceCopy(
   '<p class="hero-lead">「まあ仕方ないか」で終わる引っかかりが気になると、まず作って試します。GitHubに残る初期コードから、いま手元で動くChrome拡張まで、その試作と改善を残す制作日記です。</p>',
-  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。ここでは、作ったものと更新の記録をまとめています。</p>'
+  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>'
 );
-replaceCopy('<button class="primary-action" type="button" data-view-button="timeline">年代順に読む</button>', '<button class="primary-action" type="button" data-view-button="shelf">一覧を見る</button>');
+replaceCopy('<button class="primary-action" type="button" data-view-button="timeline">年代順に読む</button>', '<button class="primary-action" type="button" data-view-button="shelf">制作物を見る</button>');
 replaceCopy('<button class="text-action" type="button" data-random-button>何か見せて</button>', '');
 
 replaceCopy('data-view-button="shelf">本棚</button>', 'data-view-button="shelf">一覧</button>');
@@ -82,8 +82,8 @@ if (!html.includes('copy-cleanup.js')) {
 if (!html.includes('小さな不便から、<br>小さな道具を作る')) {
   throw new Error('The hero copy was not applied.');
 }
-if (!html.includes('data-view-button="shelf">一覧を見る</button>')) {
-  throw new Error('The list-first action was not applied.');
+if (!html.includes('data-view-button="shelf">制作物を見る</button>')) {
+  throw new Error('The compact list action was not applied.');
 }
 if (!html.includes("d.settings.defaultView='shelf'")) {
   throw new Error('The list view was not set as the default.');
@@ -93,4 +93,4 @@ if (!html.includes('copy-cleanup.css') || !html.includes('copy-cleanup.js')) {
 }
 
 writeFileSync(path, html);
-console.log('Applied the design guide review to the portfolio.');
+console.log('Applied the compact portfolio presentation.');
