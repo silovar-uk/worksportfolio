@@ -87,7 +87,7 @@ jobs:
           grep -q 'floating-random.css' index.html
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
-          grep -q '日常の小さな不便<br>から、小さな道具を作っている。' index.html
+          grep -q '小さな不便から、<br>小さな道具を作る' index.html
           ! grep -q 'YOUR MAKING LANDSCAPE' copy-cleanup.js
 
       - name: Show generated changes

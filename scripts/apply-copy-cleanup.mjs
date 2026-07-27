@@ -19,7 +19,11 @@ replaceCopy('<title>つくって考えた｜制作日記</title>', '<title>制�
 
 replaceCopy(
   '<h1 id="hero-title">日常の小さな不便から、<br>小さな道具を作っている。</h1>',
-  '<h1 id="hero-title">日常の小さな不便<br>から、小さな道具を作っている。</h1>'
+  '<h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>'
+);
+replaceCopy(
+  '<h1 id="hero-title">日常の小さな不便<br>から、小さな道具を作っている。</h1>',
+  '<h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>'
 );
 replaceCopy(
   '<p class="hero-lead">「まあ仕方ないか」で終わる引っかかりが気になると、まず作って試します。GitHubに残る初期コードから、いま手元で動くChrome拡張まで、その試作と改善を残す制作日記です。</p>',
@@ -65,8 +69,8 @@ if (!html.includes('copy-cleanup.js')) {
   html = html.replace('</body>', '<script src="copy-cleanup.js"></script></body>');
 }
 
-if (!html.includes('日常の小さな不便<br>から、小さな道具を作っている。')) {
-  throw new Error('The hero line break was not applied.');
+if (!html.includes('小さな不便から、<br>小さな道具を作る')) {
+  throw new Error('The hero copy was not applied.');
 }
 if (!html.includes('copy-cleanup.css') || !html.includes('copy-cleanup.js')) {
   throw new Error('The copy cleanup assets were not included.');
