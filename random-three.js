@@ -35,16 +35,36 @@
     inferred: '内容を確認中',
     unreviewed: '未確認'
   };
+  const KEEP_KEY = 'worksportfolio-random-keep-v1';
 
   let selectedIds = [];
+  let keptId = loadKeptId();
   let section = null;
   let observer = null;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
-  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"]/g, (char) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+  const projectMap = () => new Map(projects().map((project) => [project.id, project]));
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
   }[char]));
   const escapeAttr = (value) => escapeHtml(value).replace(/'/g, '&#39;');
+
+  function loadKeptId() {
+    try {
+      return sessionStorage.getItem(KEEP_KEY) || '';
+    } catch {
+      return '';
+    }
+  }
+
+  function saveKeptId() {
+    try {
+      if (keptId) sessionStorage.setItem(KEEP_KEY, keptId);
+      else sessionStorage.removeItem(KEEP_KEY);
+    } catch {
+      // Storage is optional. The interaction still works for the current page.
+    }
+  }
 
   function formatDate(value) {
     const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
@@ -67,20 +87,65 @@
     return '記録';
   }
 
-  function pickThree() {
-    const pool = [...projects()];
-    for (let i = pool.length - 1; i > 0; i -= 1) {
+  function shuffle(items) {
+    const next = [...items];
+    for (let i = next.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
+      [next[i], next[j]] = [next[j], next[i]];
     }
-    const next = pool.slice(0, Math.min(3, pool.length));
-    const repeatsSameSet = pool.length > 3
-      && next.length === 3
-      && selectedIds.length === 3
-      && next.every((project) => selectedIds.includes(project.id));
-    if (repeatsSameSet) return pickThree();
-    selectedIds = next.map((project) => project.id);
     return next;
+  }
+
+  function currentProjects() {
+    const map = projectMap();
+    return selectedIds.map((id) => map.get(id)).filter(Boolean);
+  }
+
+  function pickThree() {
+    const all = projects();
+    const count = Math.min(3, all.length);
+    if (!count) {
+      selectedIds = [];
+      return [];
+    }
+
+    const result = new Array(count);
+    let keptProject = keptId ? all.find((project) => project.id === keptId) : null;
+    if (keptId && !keptProject) {
+      keptId = '';
+      saveKeptId();
+    }
+
+    if (keptProject) {
+      const previousIndex = selectedIds.indexOf(keptId);
+      const keepIndex = previousIndex >= 0 && previousIndex < count ? previousIndex : 0;
+      result[keepIndex] = keptProject;
+    }
+
+    const needed = count - (keptProject ? 1 : 0);
+    const previousNonKept = new Set(selectedIds.filter((id) => id !== keptId));
+    const available = all.filter((project) => project.id !== keptId);
+    let candidates = available.filter((project) => !previousNonKept.has(project.id));
+    if (candidates.length < needed) candidates = available;
+    candidates = shuffle(candidates);
+
+    let cursor = 0;
+    for (let index = 0; index < result.length; index += 1) {
+      if (result[index]) continue;
+      while (cursor < candidates.length && result.some((item) => item?.id === candidates[cursor].id)) cursor += 1;
+      if (cursor < candidates.length) result[index] = candidates[cursor++];
+    }
+
+    if (result.some((item) => !item)) {
+      const fallback = shuffle(available).filter((project) => !result.some((item) => item?.id === project.id));
+      let fallbackCursor = 0;
+      for (let index = 0; index < result.length; index += 1) {
+        if (!result[index] && fallbackCursor < fallback.length) result[index] = fallback[fallbackCursor++];
+      }
+    }
+
+    selectedIds = result.filter(Boolean).map((project) => project.id);
+    return result.filter(Boolean);
   }
 
   function links(project) {
@@ -96,9 +161,13 @@
     const typeMark = TYPE_MARKS[type] || TYPE_MARKS.other;
     const status = STATUS_LABELS[project.status] || project.status || '未設定';
     const doc = DOC_LABELS[project.documentationState] || DOC_LABELS.unreviewed;
-    return `<article class="random-three-card type-${escapeAttr(type)}" data-random-three-item="${escapeAttr(project.id)}" data-card-mark="${escapeAttr(typeMark)}">
+    const isKept = project.id === keptId;
+    return `<article class="random-three-card type-${escapeAttr(type)}${isKept ? ' is-kept' : ''}" data-random-three-item="${escapeAttr(project.id)}" data-card-mark="${escapeAttr(typeMark)}">
       <div class="random-three-meta"><span class="random-three-type"><i aria-hidden="true">${escapeHtml(typeMark)}</i>${escapeHtml(typeLabel)}</span><span class="random-three-code">${escapeHtml(cardCode(project))}</span></div>
-      <span class="random-three-label">${escapeHtml(cardLabel(project))}</span>
+      <div class="random-three-flags">
+        <span class="random-three-label">${escapeHtml(cardLabel(project))}</span>
+        <button class="random-three-keep" type="button" data-random-three-keep="${escapeAttr(project.id)}" aria-pressed="${isKept}" aria-label="${isKept ? 'このカードのキープを解除' : 'このカードをキープ'}"><span aria-hidden="true">◆</span>${isKept ? 'キープ中' : 'キープ'}</button>
+      </div>
       <div class="random-three-art">
         <h3>${escapeHtml(project.title || project.id)}</h3>
         <p>${escapeHtml(project.summary || project.friction || '説明を確認中です。')}</p>
@@ -111,17 +180,35 @@
       </dl>
       <div class="random-three-actions">
         <button type="button" data-random-three-open="${escapeAttr(project.id)}">カードを開く</button>
+        <button class="random-three-compare" type="button" data-compare-toggle="${escapeAttr(project.id)}" aria-pressed="false">比較に追加</button>
         ${links(project)}
       </div>
     </article>`;
   }
 
-  function render() {
+  function updateRefreshButton() {
+    const button = section?.querySelector('[data-random-three-refresh]');
+    if (!button) return;
+    const label = keptId ? '残り2枚を引く' : '3枚引き直す';
+    if (button.textContent !== label) button.textContent = label;
+    button.setAttribute('aria-label', keptId ? 'キープした1枚を残して、ほかの2枚を引き直す' : '3枚すべてを引き直す');
+  }
+
+  function render(repick = true) {
     if (!section) return;
-    const list = pickThree();
+    let list = repick ? pickThree() : currentProjects();
+    if (!list.length || list.length !== Math.min(3, projects().length)) list = pickThree();
     const target = section.querySelector('[data-random-three-grid]');
     const html = list.map(card).join('');
     if (target && target.innerHTML !== html) target.innerHTML = html;
+    updateRefreshButton();
+  }
+
+  function toggleKeep(id) {
+    if (!projects().some((project) => project.id === id)) return;
+    keptId = keptId === id ? '' : id;
+    saveKeptId();
+    render(false);
   }
 
   function openProject(id) {
@@ -149,20 +236,25 @@
       section.className = 'random-three';
       section.dataset.randomThree = '';
       section.innerHTML = `<header class="random-three-head">
-        <div><h2>ランダム3枚</h2><p>全制作物から選んでいます。</p></div>
+        <div><h2>ランダム3枚</h2><p>気になる1枚をキープして、残りだけ引き直せます。</p></div>
         <button type="button" data-random-three-refresh>3枚引き直す</button>
       </header>
       <div class="random-three-grid" data-random-three-grid></div>`;
       toolbar.parentNode.insertBefore(section, toolbar);
       section.addEventListener('click', (event) => {
         if (event.target.closest('[data-random-three-refresh]')) {
-          render();
+          render(true);
+          return;
+        }
+        const keep = event.target.closest('[data-random-three-keep]');
+        if (keep) {
+          toggleKeep(keep.dataset.randomThreeKeep);
           return;
         }
         const open = event.target.closest('[data-random-three-open]');
         if (open) openProject(open.dataset.randomThreeOpen);
       });
-      render();
+      render(true);
     }
     syncVisibility();
     return true;
