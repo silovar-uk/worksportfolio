@@ -25,7 +25,7 @@
     setMeta('description', '作ったWebアプリやChrome拡張と、その更新記録をまとめています。');
     setMeta('og:description', '作ったWebアプリやChrome拡張と、その更新記録。', true);
 
-    setHtml(document.querySelector('#hero-title'), '日常の小さな不便<br>から、小さな道具を作っている。');
+    setHtml(document.querySelector('#hero-title'), '小さな不便から、<br>小さな道具を作る');
     setText(
       document.querySelector('.hero-lead'),
       '普段の作業で気になったことを、WebアプリやChrome拡張にしています。ここでは、作ったものと更新の記録をまとめています。'
