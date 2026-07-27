@@ -107,9 +107,15 @@ jobs:
           grep -q '確認状況' copy-cleanup.js
           grep -q 'ランダム3枚' random-three.js
           grep -q '3枚引き直す' random-three.js
+          grep -q '残り2枚を引く' random-three.js
+          grep -q 'data-random-three-keep' random-three.js
+          grep -q 'data-compare-toggle' random-three.js
           grep -q 'data-card-mark' random-three.js
           grep -q 'card.dataset.cardMark' comparison-view.js
           grep -q '比較カード' comparison-view.js
+          grep -q 'data-compare-tray' comparison-view.js
+          grep -q 'worksportfolio-compare-ids-v1' comparison-view.js
+          grep -q 'compare-dialog-grid' comparison-view.css
           grep -Fq "const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];" index.html
           grep -Fq "document.querySelector('[data-random-button]')?.addEventListener" index.html
           ! grep -Fq "const required = ['id', 'title', 'summary', 'friction', 'type', 'status', 'visibility', 'createdAt'];" index.html
