@@ -12,6 +12,17 @@
     experiment: '実験',
     other: 'その他'
   };
+  const TYPE_MARKS = {
+    'web-app': 'W',
+    'chrome-extension': '拡',
+    'learning-tool': '学',
+    'design-system': '設',
+    'content-page': '読',
+    'data-tool': '析',
+    utility: '便',
+    experiment: '試',
+    other: '他'
+  };
   const STATUS_LABELS = {
     development: '開発中',
     active: '運用中',
@@ -40,6 +51,19 @@
     if (match[3]) return `${Number(match[1])}.${Number(match[2])}.${Number(match[3])}`;
     if (match[2]) return `${Number(match[1])}.${Number(match[2])}`;
     return match[1];
+  }
+
+  function cardCode(project) {
+    const index = projects().findIndex((item) => item.id === project.id);
+    return `#${String(Math.max(0, index) + 1).padStart(3, '0')}`;
+  }
+
+  function cardLabel(project) {
+    if (project.featured) return '注目';
+    if (project.liveUrl && project.documentationState === 'verified') return '公開・確認済み';
+    if (project.liveUrl) return '公開中';
+    if (project.documentationState === 'verified') return '確認済み';
+    return '記録';
   }
 
   function ensureSwitch() {
@@ -94,13 +118,31 @@
       const project = map.get(card.dataset.catItem);
       if (!project) return;
 
-      card.classList.add('catalog-comparison-card');
+      const type = project.type || 'other';
+      const typeLabel = TYPE_LABELS[type] || type;
+      const typeMark = TYPE_MARKS[type] || TYPE_MARKS.other;
+      card.classList.add('catalog-comparison-card', `type-${type}`);
+      card.dataset.cardMark = typeMark;
+      card.dataset.cardLabel = cardLabel(project);
+      card.setAttribute('aria-label', `${project.title}、${typeLabel}`);
+
       const top = card.querySelector('.catalog-card-top');
       if (top) {
-        const first = top.querySelector('span:first-child');
-        const nextType = TYPE_LABELS[project.type] || project.type || 'その他';
-        if (first && first.textContent !== nextType) first.textContent = nextType;
+        const topHtml = `<span class="catalog-card-type"><i aria-hidden="true">${escapeHtml(typeMark)}</i>${escapeHtml(typeLabel)}</span><span class="catalog-card-code">${escapeHtml(cardCode(project))}</span>`;
+        if (top.innerHTML !== topHtml) top.innerHTML = topHtml;
       }
+
+      let label = card.querySelector('[data-card-label]');
+      if (!label) {
+        label = document.createElement('span');
+        label.className = 'catalog-card-label';
+        label.dataset.cardLabel = '';
+        card.querySelector('h3')?.insertAdjacentElement('beforebegin', label);
+      }
+      if (label.textContent !== cardLabel(project)) label.textContent = cardLabel(project);
+
+      const summary = card.querySelector(':scope > p');
+      if (summary) summary.classList.add('catalog-card-effect');
 
       let facts = card.querySelector('[data-comparison-facts]');
       if (!facts) {
@@ -134,7 +176,7 @@
       }
 
       const open = card.querySelector('.catalog-open');
-      if (open && open.textContent !== '詳細を見る') open.textContent = '詳細を見る';
+      if (open && open.textContent !== 'カードを開く') open.textContent = 'カードを開く';
     });
   }
 
