@@ -21,8 +21,9 @@ https://silovar-uk.github.io/worksportfolio/
 
 - `scripts/build-catalog.mjs` がGitHub APIから公開リポジトリを取得
 - `data/catalog.json` にリポジトリ名、説明、公開URL、言語、制作日、更新日などを保存
-- GitHub Actionsが毎日1回、および設定変更時にカタログを更新
-- 静的カタログが空の場合は、公開画面からGitHub APIを読み込むフォールバックを使用
+- `scripts/build-static-site.mjs` が既存の制作物データとカタログを統合し、完成版 `index.html` を生成
+- GitHub Actionsが毎日1回、設定変更時、手動実行時にカタログと公開ページを更新
+- ブラウザ側ではGitHub APIやZIP展開を行わず、生成済みの静的HTMLを表示
 - 既存の制作日記データを優先し、GitHub側の更新日・URL・言語などの事実情報だけ更新
 - 新しく作った公開リポジトリは、除外設定がなければ本棚へ自動追加
 
@@ -44,6 +45,8 @@ GitHubにないChrome拡張やローカル制作物は `data/manual-projects.jso
   }
 }
 ```
+
+既存データ内のIDとGitHubリポジトリ名が違う場合は、`repositoryProjectIds` で紐づけます。
 
 ## 本棚の機能
 
@@ -104,15 +107,15 @@ GitHubにないChrome拡張やローカル制作物は `data/manual-projects.jso
 
 ## 公開構成
 
-`index.html` が制作物パッケージと外部カタログを読み込み、データ・CSS・JavaScriptをブラウザ上で組み立てます。
+GitHub Actionsが `.bootstrap/part-*.b64` の制作物パッケージをビルド時に展開し、GitHubカタログと手動作品を統合した完成版 `index.html` を生成します。公開時のブラウザは、この生成済みHTMLを読むだけです。
 
-- `index.html`：公開用ローダー
-- `loader.js`：制作物パッケージ、GitHubカタログ、手動作品、除外設定の統合
-- `data/portfolio-config.json`：非表示設定と作品ごとの上書き
+- `index.html`：GitHub Actionsが生成する完成版の静的ページ
+- `data/portfolio-config.json`：非表示設定、作品ごとの上書き、IDの紐づけ
 - `data/manual-projects.json`：GitHubにない制作物
 - `data/catalog.json`：GitHubから自動生成した公開リポジトリ一覧
-- `scripts/build-catalog.mjs`：カタログ生成スクリプト
-- `.github/workflows/update-catalog.yml`：定期・手動同期
+- `scripts/build-catalog.mjs`：GitHubカタログ生成スクリプト
+- `scripts/build-static-site.mjs`：制作物パッケージを展開し、完成版HTMLを生成するスクリプト
+- `.github/workflows/update-catalog.yml`：定期・手動・変更時のビルド
 - `data-audit.js`：データ整合性確認と自動集計
 - `catalog.js` / `catalog.css`：一覧表示・検索・ソート・選択コピー
 - `shelf-priority.js` / `shelf-priority.css`：本棚の初期表示、検索ショートカット、最近開いた作品、公開導線
@@ -120,18 +123,20 @@ GitHubにないChrome拡張やローカル制作物は `data/manual-projects.jso
 - `wow.js` / `wow.css`：制作の地層・今日の1本
 - `wow-stage.js`：全表示での共通表示とお気に入り件数連動
 - `marks.js` / `marks.css`：お気に入り・あとで見る
-- `.bootstrap/part-*.b64`：既存の制作物パッケージ分割データ
+- `.bootstrap/part-*.b64`：ビルド時だけ使用する制作物パッケージ分割データ
+- `loader.js`：旧ブラウザ組み立て方式の退避ファイル。生成済み `index.html` からは読み込まない
 - `assets/favicon.svg`：favicon・ヘッダーアイコン
 - `404.html`：404ページ
 
-## カタログの手動更新
+## カタログと公開ページの手動更新
 
-GitHubの `Actions → Update portfolio catalog → Run workflow` から更新できます。
+GitHubの `Actions → Build portfolio site → Run workflow` から更新できます。
 
-ローカルで実行する場合：
+ローカルで実行する場合は、`unzip` コマンドが利用できる環境で以下を実行します。
 
 ```bash
 node scripts/build-catalog.mjs
+node scripts/build-static-site.mjs
 ```
 
 ## GitHub Pages
