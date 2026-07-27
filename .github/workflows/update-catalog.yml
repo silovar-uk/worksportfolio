@@ -108,7 +108,7 @@ jobs:
           grep -q 'ランダム3枚' random-three.js
           grep -q '3枚引き直す' random-three.js
           grep -q 'data-card-mark' random-three.js
-          grep -q 'data-card-mark' comparison-view.js
+          grep -q 'card.dataset.cardMark' comparison-view.js
           grep -q '比較カード' comparison-view.js
           grep -Fq "const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];" index.html
           grep -Fq "document.querySelector('[data-random-button]')?.addEventListener" index.html
