@@ -1,21 +1,30 @@
 .catalog-layout-native{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
 .catalog-layout-switch{display:grid;grid-template-columns:repeat(3,minmax(82px,1fr));border:1px solid var(--line-dark);background:var(--paper)}
 .catalog-layout-switch button{min-height:44px;padding:.48rem .65rem;border:0;border-right:1px solid var(--line);background:transparent;font-size:.76rem;font-weight:750;cursor:pointer}
-.catalog-layout-switch button:last-child{border-right:0}
-.catalog-layout-switch button:hover{background:var(--yellow-soft)}
-.catalog-layout-switch button.is-active{background:var(--ink);color:var(--paper)}
+.catalog-layout-switch button:last-child{border-right:0}.catalog-layout-switch button:hover{background:var(--yellow-soft)}.catalog-layout-switch button.is-active{background:var(--ink);color:var(--paper)}
 .catalog-primary{grid-template-columns:minmax(260px,1fr) minmax(155px,auto) minmax(270px,auto) minmax(155px,auto)}
-.catalog-grid{align-items:stretch}
-.catalog-card,.catalog-card.featured{grid-column:span 4;min-height:310px;box-shadow:none}
-.catalog-card-top{font-family:inherit;font-weight:750}
-.catalog-card-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:14px 0 0;padding-top:11px;border-top:1px solid var(--line)}
-.catalog-card-compare div{min-width:0}
-.catalog-card-compare dt{color:var(--muted);font-size:.61rem}
-.catalog-card-compare dd{margin:1px 0 0;font-size:.72rem;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.catalog-card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.catalog-card-tags span{padding:.15rem .36rem;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-size:.61rem}
-.catalog-comparison-card .catalog-card-bottom{margin-top:12px}
-.catalog-comparison-card .catalog-open{margin-top:10px}
-@media(max-width:1100px){.catalog-primary{grid-template-columns:1fr 1fr 1fr}.catalog-search{grid-column:1/-1}.catalog-layout-switch{grid-column:span 2}.catalog-card,.catalog-card.featured{grid-column:span 6}}
-@media(max-width:760px){.catalog-primary{grid-template-columns:1fr}.catalog-search,.catalog-primary select:first-of-type,.catalog-layout-switch{grid-column:1}.catalog-layout-switch{width:100%}.catalog-card,.catalog-card.featured{grid-column:span 12;min-height:250px}.catalog-card-compare{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:480px){.catalog-card-compare{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.catalog-grid{align-items:stretch;gap:18px;padding:4px}
+.catalog-card.catalog-comparison-card,.catalog-card.featured.catalog-comparison-card{--type-color:var(--type-other);--type-soft:var(--type-other-soft);grid-column:span 4;position:relative;isolation:isolate;overflow:hidden;min-height:390px;padding:54px 18px 16px;border:2px solid var(--type-color);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.86),transparent 32%),linear-gradient(180deg,var(--type-soft),var(--paper) 30%,#fffdf8);box-shadow:0 8px 0 color-mix(in srgb,var(--type-color) 25%,transparent),0 14px 28px rgba(32,36,38,.11);transition:transform .18s ease,box-shadow .18s ease}
+.catalog-card.catalog-comparison-card::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--type-color) 38%,white);border-radius:10px;pointer-events:none;z-index:0}
+.catalog-card.catalog-comparison-card::after{content:attr(data-card-mark);position:absolute;right:-4px;top:26px;color:color-mix(in srgb,var(--type-color) 13%,transparent);font:900 7.5rem/1 "Noto Sans JP",sans-serif;letter-spacing:-.08em;pointer-events:none;z-index:0}
+.catalog-card.catalog-comparison-card>*{position:relative;z-index:1}
+.catalog-card.catalog-comparison-card:hover{transform:translateY(-5px) rotate(-.35deg);box-shadow:0 11px 0 color-mix(in srgb,var(--type-color) 30%,transparent),0 20px 36px rgba(32,36,38,.15)}
+.catalog-card.catalog-comparison-card.selected{outline:4px solid var(--yellow);outline-offset:3px;background:linear-gradient(145deg,#fff7bf,transparent 32%),linear-gradient(180deg,var(--type-soft),var(--paper) 30%)}
+.catalog-comparison-card .catalog-check{top:14px;left:14px;z-index:3}.catalog-comparison-card .catalog-check input{filter:drop-shadow(0 1px 0 white)}
+.catalog-comparison-card .catalog-card-top{position:absolute;left:50px;right:14px;top:13px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink);font-family:inherit;font-weight:800}
+.catalog-card-type{display:inline-flex;align-items:center;gap:6px;min-width:0;color:var(--type-color)}.catalog-card-type i{display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--type-color);border-radius:50%;background:var(--paper);font-style:normal;font-size:.7rem;box-shadow:inset 0 0 0 3px var(--type-soft)}
+.catalog-card-code{font:800 .66rem "Roboto Mono",monospace;color:var(--muted)}
+.catalog-card-label{align-self:flex-start;margin:4px 0 9px;padding:.2rem .5rem;border:1px solid color-mix(in srgb,var(--type-color) 48%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--type-soft) 82%,white);color:var(--type-color);font-size:.62rem;font-weight:900;letter-spacing:.04em}
+.catalog-comparison-card h3{margin:0;padding:10px 12px;border:1px solid color-mix(in srgb,var(--type-color) 55%,var(--line));border-radius:8px;background:rgba(255,255,255,.76);font-size:1.24rem;line-height:1.22;box-shadow:inset 0 -3px 0 var(--type-soft)}
+.catalog-comparison-card .catalog-card-effect{min-height:92px;margin:10px 0 0;padding:11px 12px;border:1px solid color-mix(in srgb,var(--type-color) 25%,var(--line));border-radius:8px;background:rgba(255,253,247,.88);color:var(--ink);font-size:.8rem;line-height:1.65;-webkit-line-clamp:4}
+.catalog-card-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:12px 0 0}
+.catalog-card-compare div{min-width:0;padding:8px 9px;border:1px solid color-mix(in srgb,var(--type-color) 28%,var(--line));border-radius:7px;background:rgba(255,255,255,.72)}
+.catalog-card-compare dt{color:var(--muted);font-size:.58rem}.catalog-card-compare dd{margin:2px 0 0;font-size:.72rem;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.catalog-card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.catalog-card-tags span{padding:.16rem .4rem;border:1px solid color-mix(in srgb,var(--type-color) 35%,var(--line));border-radius:999px;background:var(--type-soft);color:var(--type-color);font-size:.6rem;font-weight:800}
+.catalog-comparison-card .catalog-card-bottom{margin-top:12px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--type-color) 35%,var(--line))}.catalog-comparison-card .status{border-color:var(--type-color);background:var(--type-soft);color:var(--type-color)}
+.catalog-comparison-card .catalog-open{margin-top:10px;border:2px solid var(--type-color);border-radius:8px;background:var(--type-color);color:white;font-weight:850;box-shadow:0 3px 0 color-mix(in srgb,var(--type-color) 35%,black)}
+.catalog-comparison-card .catalog-open:hover{transform:translateY(1px);box-shadow:0 1px 0 color-mix(in srgb,var(--type-color) 35%,black)}
+@media(max-width:1100px){.catalog-primary{grid-template-columns:1fr 1fr 1fr}.catalog-search{grid-column:1/-1}.catalog-layout-switch{grid-column:span 2}.catalog-card.catalog-comparison-card,.catalog-card.featured.catalog-comparison-card{grid-column:span 6}}
+@media(max-width:760px){.catalog-primary{grid-template-columns:1fr}.catalog-search,.catalog-primary select:first-of-type,.catalog-layout-switch{grid-column:1}.catalog-layout-switch{width:100%}.catalog-card.catalog-comparison-card,.catalog-card.featured.catalog-comparison-card{grid-column:span 12;min-height:340px}.catalog-card-compare{grid-template-columns:repeat(4,minmax(0,1fr))}.catalog-card.catalog-comparison-card:hover{transform:translateY(-2px)}}
+@media(max-width:520px){.catalog-card-compare{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-card.catalog-comparison-card,.catalog-card.featured.catalog-comparison-card{padding-inline:14px}.catalog-comparison-card .catalog-card-top{right:10px}}
+@media(prefers-reduced-motion:reduce){.catalog-card.catalog-comparison-card{transition:none}.catalog-card.catalog-comparison-card:hover{transform:none}}
