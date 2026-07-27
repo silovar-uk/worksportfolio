@@ -11,6 +11,8 @@ on:
       - '.bootstrap/**'
       - 'data/portfolio-config.json'
       - 'data/manual-projects.json'
+      - 'taxonomy.js'
+      - 'taxonomy.css'
       - 'scripts/build-catalog.mjs'
       - 'scripts/build-static-site.mjs'
       - '.github/workflows/update-catalog.yml'
@@ -21,6 +23,8 @@ on:
       - '.bootstrap/**'
       - 'data/portfolio-config.json'
       - 'data/manual-projects.json'
+      - 'taxonomy.js'
+      - 'taxonomy.css'
       - 'scripts/build-catalog.mjs'
       - 'scripts/build-static-site.mjs'
       - '.github/workflows/update-catalog.yml'
@@ -43,6 +47,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Check interface scripts
+        run: node --check taxonomy.js
 
       - name: Build GitHub catalog
         run: node scripts/build-catalog.mjs
