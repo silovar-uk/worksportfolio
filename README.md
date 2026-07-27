@@ -1,19 +1,62 @@
 # つくって考えた
 
-日常の小さな不便から作ったWebアプリ、Chrome拡張、コンテンツページ、学習ツールを、制作時期と考え方から読み直すポートフォリオです。
+日常の小さな不便から作ったWebアプリ、Chrome拡張、コンテンツページ、学習ツールを、探し直し、使い直すための作品棚です。
 
 ## 公開URL
 
 https://silovar-uk.github.io/worksportfolio/
 
-## 収録内容
+## このサイトの優先順位
 
-- 制作物件数は、公開画面の実データから自動集計
-- GitHubリポジトリ数、公開ページ数、手元のみの作品数も自動集計
-- 種類別の内訳を、色分けしたボタンとして表示
-- 閲覧方法：年代順／本棚／関連地図
+1. 目的の制作物をすぐ探せる
+2. 最近作ったもの・更新したものが分かる
+3. 公開中のツールをすぐ開ける
+4. 制作背景・改善履歴・作品同士の関係を振り返れる
 
-GitHubのリポジトリ一覧だけでなく、ZIPで制作した拡張や、公開リポジトリを持たない手元の道具も台帳へ含めています。台帳には残しつつ、ポートフォリオへ表示しない作品は `loader.js` の `hiddenIds` で管理します。
+初期表示は「本棚」、初期の並び順は更新が新しい順です。`Ctrl + K` または `/` で検索欄へ移動できます。
+
+## GitHub自動同期
+
+公開リポジトリは原則すべて作品候補として取り込み、表示しないものだけ `data/portfolio-config.json` の `hiddenIds` で管理します。
+
+- `scripts/build-catalog.mjs` がGitHub APIから公開リポジトリを取得
+- `data/catalog.json` にリポジトリ名、説明、公開URL、言語、制作日、更新日などを保存
+- GitHub Actionsが毎日1回、および設定変更時にカタログを更新
+- 静的カタログが空の場合は、公開画面からGitHub APIを読み込むフォールバックを使用
+- 既存の制作日記データを優先し、GitHub側の更新日・URL・言語などの事実情報だけ更新
+- 新しく作った公開リポジトリは、除外設定がなければ本棚へ自動追加
+
+GitHubにないChrome拡張やローカル制作物は `data/manual-projects.json` で管理します。
+
+## 作品ごとの上書き
+
+表示名、分類、用途、状態、公開URLなど、GitHubだけでは判断できない情報は `data/portfolio-config.json` の `overrides` へ記述します。
+
+```json
+{
+  "overrides": {
+    "worksportfolio": {
+      "title": "つくって考えた",
+      "type": "web-app",
+      "verbs": ["探す", "整理する", "振り返る"],
+      "status": "active"
+    }
+  }
+}
+```
+
+## 本棚の機能
+
+- 名前・困りごと・技術から検索
+- 最近更新、公開ページ、運用・開発中などのクイック絞り込み
+- 種類、状態、制作年、整理状態、公開状況による詳細絞り込み
+- 更新順、制作順、名前順などの並び替え
+- コンパクト、カード、表の表示切替
+- 制作年、種類、状態ごとのグループ分け
+- 検索状態のURL・ブラウザ保存
+- 最近開いた作品のローカル記録と絞り込み
+- 複数作品の共有用テキスト、Markdown、TSV、JSONコピー
+- 公開ページがある作品は「開く」ボタンから直接起動
 
 ## 制作の地層
 
@@ -24,9 +67,8 @@ GitHubのリポジトリ一覧だけでなく、ZIPで制作した拡張や、�
 - 全制作物数、種類数、制作年数、お気に入り数を実データから表示
 - 「今日の1本」で、埋もれた作品を日替わりで再発見
 - 「別の1本」または `R` キーでランダムに引き直し
-- `/` キーで作品検索へ移動
 
-年代順・本棚・関連地図のどの表示を選んでいても、共通の入口として表示します。
+年代順・関連地図は、制作の背景や流れを振り返るためのサブビューとして残しています。
 
 ## 種類の色
 
@@ -62,19 +104,35 @@ GitHubのリポジトリ一覧だけでなく、ZIPで制作した拡張や、�
 
 ## 公開構成
 
-`index.html`がリポジトリ内の制作物パッケージを読み込み、データ・CSS・JavaScriptをブラウザ上で組み立てます。
+`index.html` が制作物パッケージと外部カタログを読み込み、データ・CSS・JavaScriptをブラウザ上で組み立てます。
 
 - `index.html`：公開用ローダー
-- `loader.js`：制作物の追加・非表示設定・ページ組み立て
+- `loader.js`：制作物パッケージ、GitHubカタログ、手動作品、除外設定の統合
+- `data/portfolio-config.json`：非表示設定と作品ごとの上書き
+- `data/manual-projects.json`：GitHubにない制作物
+- `data/catalog.json`：GitHubから自動生成した公開リポジトリ一覧
+- `scripts/build-catalog.mjs`：カタログ生成スクリプト
+- `.github/workflows/update-catalog.yml`：定期・手動同期
 - `data-audit.js`：データ整合性確認と自動集計
 - `catalog.js` / `catalog.css`：一覧表示・検索・ソート・選択コピー
+- `shelf-priority.js` / `shelf-priority.css`：本棚の初期表示、検索ショートカット、最近開いた作品、公開導線
 - `taxonomy.js` / `taxonomy.css`：種類別の色分けと内訳
 - `wow.js` / `wow.css`：制作の地層・今日の1本
 - `wow-stage.js`：全表示での共通表示とお気に入り件数連動
 - `marks.js` / `marks.css`：お気に入り・あとで見る
-- `.bootstrap/part-*.b64`：制作物パッケージの分割データ
+- `.bootstrap/part-*.b64`：既存の制作物パッケージ分割データ
 - `assets/favicon.svg`：favicon・ヘッダーアイコン
 - `404.html`：404ページ
+
+## カタログの手動更新
+
+GitHubの `Actions → Update portfolio catalog → Run workflow` から更新できます。
+
+ローカルで実行する場合：
+
+```bash
+node scripts/build-catalog.mjs
+```
 
 ## GitHub Pages
 
