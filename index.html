@@ -551,7 +551,7 @@ window.BUILD_DIARY_DATA = {"projects":[{"id":"python","title":"Python","subtitle
   }
 
   function validateProjects(projects) {
-    const required = ['id', 'title', 'summary', 'friction', 'type', 'status', 'visibility', 'createdAt'];
+    const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];
     return projects.filter(project => {
       const missing = required.filter(key => !project[key]);
       if (missing.length) console.warn(`Project ${project.id || '(unknown)'} missing:`, missing);
