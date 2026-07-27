@@ -107,6 +107,8 @@ jobs:
           grep -q '確認状況' copy-cleanup.js
           grep -q 'ランダムに3件' random-three.js
           grep -q '比較カード' comparison-view.js
+          grep -Fq "document.querySelector('[data-random-button]')?.addEventListener" index.html
+          ! grep -Fq "document.querySelector('[data-random-button]').addEventListener" index.html
           ! grep -q 'catalog-taxonomy-head strong' copy-cleanup.js
           ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
 
