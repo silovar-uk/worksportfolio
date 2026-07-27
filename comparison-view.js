@@ -50,7 +50,8 @@
     select.classList.add('catalog-layout-native');
     const optionLabels = { compact: '一覧', cards: '比較カード', table: '表' };
     [...select.options].forEach((option) => {
-      if (optionLabels[option.value]) option.textContent = optionLabels[option.value];
+      const next = optionLabels[option.value];
+      if (next && option.textContent !== next) option.textContent = next;
     });
 
     let switcher = primary.querySelector('[data-comparison-switch]');
@@ -83,7 +84,7 @@
     document.querySelectorAll('[data-comparison-layout]').forEach((button) => {
       const active = button.dataset.comparisonLayout === select.value;
       button.classList.toggle('is-active', active);
-      button.setAttribute('aria-pressed', String(active));
+      if (button.getAttribute('aria-pressed') !== String(active)) button.setAttribute('aria-pressed', String(active));
     });
   }
 
@@ -97,7 +98,8 @@
       const top = card.querySelector('.catalog-card-top');
       if (top) {
         const first = top.querySelector('span:first-child');
-        if (first) first.textContent = TYPE_LABELS[project.type] || project.type || 'その他';
+        const nextType = TYPE_LABELS[project.type] || project.type || 'その他';
+        if (first && first.textContent !== nextType) first.textContent = nextType;
       }
 
       let facts = card.querySelector('[data-comparison-facts]');
@@ -109,11 +111,12 @@
         if (bottom) bottom.insertAdjacentElement('beforebegin', facts);
         else card.querySelector('.catalog-open')?.insertAdjacentElement('beforebegin', facts);
       }
-      facts.innerHTML = `
+      const factsHtml = `
         <div><dt>制作</dt><dd>${escapeHtml(formatDate(project.createdAt))}</dd></div>
         <div><dt>更新</dt><dd>${escapeHtml(formatDate(project.updatedAt || project.createdAt))}</dd></div>
         <div><dt>状態</dt><dd>${escapeHtml(STATUS_LABELS[project.status] || project.status || '未設定')}</dd></div>
         <div><dt>確認</dt><dd>${escapeHtml(DOC_LABELS[project.documentationState] || DOC_LABELS.unreviewed)}</dd></div>`;
+      if (facts.innerHTML !== factsHtml) facts.innerHTML = factsHtml;
 
       let tags = card.querySelector('[data-comparison-tags]');
       const technologies = (project.technologies || []).slice(0, 3);
@@ -124,13 +127,14 @@
           tags.dataset.comparisonTags = '';
           facts.insertAdjacentElement('afterend', tags);
         }
-        tags.innerHTML = technologies.map((item) => `<span>${escapeHtml(item)}</span>`).join('');
+        const tagsHtml = technologies.map((item) => `<span>${escapeHtml(item)}</span>`).join('');
+        if (tags.innerHTML !== tagsHtml) tags.innerHTML = tagsHtml;
       } else if (tags) {
         tags.remove();
       }
 
       const open = card.querySelector('.catalog-open');
-      if (open) open.textContent = '詳細を見る';
+      if (open && open.textContent !== '詳細を見る') open.textContent = '詳細を見る';
     });
   }
 
