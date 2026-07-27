@@ -104,11 +104,12 @@ function dataPatch() {
       period.projectIds=ids.filter(function(id){return valid.has(id)});
       if(period.id==='2026-05'&&valid.has('lineworks-logger')&&!period.projectIds.includes('lineworks-logger'))period.projectIds.push('lineworks-logger');
     });
-    if(d.settings){
-      ['featuredProjectIds','recentProjectIds'].forEach(function(key){
-        if(Array.isArray(d.settings[key]))d.settings[key]=d.settings[key].filter(function(id){return valid.has(id)});
-      });
-    }
+    if(!d.settings)d.settings={};
+    d.settings.defaultView='shelf';
+    d.settings.currentNote='GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。';
+    ['featuredProjectIds','recentProjectIds'].forEach(function(key){
+      if(Array.isArray(d.settings[key]))d.settings[key]=d.settings[key].filter(function(id){return valid.has(id)});
+    });
     window.WORKS_PORTFOLIO_CONFIG=cfg;
     window.WORKS_PORTFOLIO_REPOSITORIES=repos;
   })();<\/script>`;

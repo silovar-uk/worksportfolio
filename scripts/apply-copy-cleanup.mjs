@@ -29,14 +29,15 @@ replaceCopy(
   '<p class="hero-lead">「まあ仕方ないか」で終わる引っかかりが気になると、まず作って試します。GitHubに残る初期コードから、いま手元で動くChrome拡張まで、その試作と改善を残す制作日記です。</p>',
   '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。ここでは、作ったものと更新の記録をまとめています。</p>'
 );
-replaceCopy('>年代順に読む</button>', '>年代順に見る</button>');
-replaceCopy('>何か見せて</button>', '>ランダムで見る</button>');
+replaceCopy('<button class="primary-action" type="button" data-view-button="timeline">年代順に読む</button>', '<button class="primary-action" type="button" data-view-button="shelf">一覧を見る</button>');
+replaceCopy('<button class="text-action" type="button" data-random-button>何か見せて</button>', '');
 
 replaceCopy('data-view-button="shelf">本棚</button>', 'data-view-button="shelf">一覧</button>');
 replaceCopy('data-view-button="map">地図</button>', 'data-view-button="map">関連</button>');
 replaceCopy('data-about-button>このページ</button>', 'data-about-button>このページについて</button>');
-replaceCopy('<h2 id="current-note-title">最近の自分</h2>', '<h2 id="current-note-title">最近考えていること</h2>');
-replaceCopy('<h2 id="explorer-title">三つの見方</h2>', '<h2 id="explorer-title">制作物を見る</h2>');
+replaceCopy('<h2 id="current-note-title">最近の自分</h2>', '<h2 id="current-note-title">この一覧について</h2>');
+replaceCopy('<p data-current-note>記録を集めるだけでなく、あとで思い出せる形にすることを考えています。</p>', '<p data-current-note>GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。</p>');
+replaceCopy('<h2 id="explorer-title">三つの見方</h2>', '<h2 id="explorer-title">制作物一覧</h2>');
 replaceCopy('<span>本棚</span><small>作品を選ぶ</small>', '<span>一覧</span><small>制作物を選ぶ</small>');
 replaceCopy('<span>地図</span><small>興味をたどる</small>', '<span>関連</span><small>関連する制作物を見る</small>');
 replaceCopy('<p>つくって考えた — 小さな不便と、その時点の答え。</p>', '<p>制作物と更新記録。</p>');
@@ -48,7 +49,7 @@ replaceCopy(
 );
 replaceCopy(
   '<p>GitHub上の61リポジトリと、自作したChrome拡張を統合しています。日付が「ごろ」のものはGitHub上の作成順をもとにした暫定整理、点線の「ページ候補」は公開確認前のURLです。Bitly、ChatGPT、Claudeなど第三者が制作した拡張は含めていません。</p>',
-  '<p>GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。日付や説明を確認できていないものは、その旨を表示しています。</p>'
+  '<p>「確認済み」は説明と主なリンクを確認したもの、「内容を確認中」はGitHubの情報から整理したもの、「未確認」は基本情報のみのものです。</p>'
 );
 
 replaceCopy('制作日記を開いています。少しだけ棚が重い。', '制作物を読み込んでいます。');
@@ -56,6 +57,15 @@ replaceCopy('その棚、今は空です。', '条件に合う制作物があり
 replaceCopy('検索語か絞り込みを少し戻してください。', '検索や絞り込みの条件を変更してください。');
 replaceCopy('上の条件を少し戻してください。', '検索や絞り込みの条件を変更してください。');
 replaceCopy('<strong>最初の違和感：</strong>', '<strong>作ったきっかけ：</strong>');
+replaceCopy('<strong>最初の違和感</strong>', '<strong>作ったきっかけ</strong>');
+replaceCopy('<h3>最初の違和感</h3>', '<h3>作ったきっかけ</h3>');
+replaceCopy('<h3>とりあえず作ったもの</h3>', '<h3>最初の版</h3>');
+replaceCopy('<h3>現在の答え</h3>', '<h3>現在の状態</h3>');
+replaceCopy('<h3>改善の履歴</h3>', '<h3>更新履歴</h3>');
+replaceCopy('<h3>使っているもの</h3>', '<h3>技術</h3>');
+replaceCopy('<h3>ここからつながるもの</h3>', '<h3>関連する制作物</h3>');
+replaceCopy('初期版の記録は、これから追記する。', '初期版の記録は未確認です。');
+replaceCopy('履歴はこれから。最初から完璧だったわけではなく、記録がなかった。', '更新履歴は未確認です。');
 html = html.replace(/\$\{items\.length\} TOOLS/g, '${items.length}件');
 
 html = html.replaceAll('内容確認済み', '確認済み');
@@ -72,9 +82,15 @@ if (!html.includes('copy-cleanup.js')) {
 if (!html.includes('小さな不便から、<br>小さな道具を作る')) {
   throw new Error('The hero copy was not applied.');
 }
+if (!html.includes('data-view-button="shelf">一覧を見る</button>')) {
+  throw new Error('The list-first action was not applied.');
+}
+if (!html.includes("d.settings.defaultView='shelf'")) {
+  throw new Error('The list view was not set as the default.');
+}
 if (!html.includes('copy-cleanup.css') || !html.includes('copy-cleanup.js')) {
   throw new Error('The copy cleanup assets were not included.');
 }
 
 writeFileSync(path, html);
-console.log('Applied natural copy and simplified presentation.');
+console.log('Applied the design guide review to the portfolio.');

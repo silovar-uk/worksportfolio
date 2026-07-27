@@ -88,6 +88,11 @@ jobs:
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
           grep -q '小さな不便から、<br>小さな道具を作る' index.html
+          grep -q 'data-view-button="shelf">一覧を見る</button>' index.html
+          grep -q "d.settings.defaultView='shelf'" index.html
+          grep -q 'この一覧について' index.html
+          grep -q '確認状況' copy-cleanup.js
+          ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
           ! grep -q 'YOUR MAKING LANDSCAPE' copy-cleanup.js
 
       - name: Show generated changes
