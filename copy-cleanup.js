@@ -5,7 +5,6 @@
   let scheduled = false;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
-  const total = () => window.WORKS_PORTFOLIO_AUDIT?.counts?.total || projects().length;
 
   function setText(target, value) {
     if (target && target.textContent !== value) target.textContent = value;
@@ -29,12 +28,12 @@
     setHtml(document.querySelector('#hero-title'), '小さな不便から、<br>小さな道具を作る');
     setText(
       document.querySelector('.hero-lead'),
-      '普段の作業で気になったことを、WebアプリやChrome拡張にしています。ここでは、作ったものと更新の記録をまとめています。'
+      '普段の作業で気になったことを、WebアプリやChrome拡張にしています。'
     );
     const heroAction = document.querySelector('.hero-actions [data-view-button]');
     if (heroAction) {
       heroAction.dataset.viewButton = 'shelf';
-      setText(heroAction, '一覧を見る');
+      setText(heroAction, '制作物を見る');
     }
     document.querySelector('.hero-actions [data-random-button]')?.remove();
 
@@ -138,20 +137,6 @@
   }
 
   function applyDynamicCopy() {
-    const count = total();
-    setHtml(document.querySelector('.portfolio-wow-title'), `<strong>${count}</strong>件の制作物`);
-    setText(document.querySelector('.portfolio-strata-head h3'), '制作年');
-
-    const statLabels = ['制作物', '種類', '制作年', 'お気に入り'];
-    document.querySelectorAll('[data-wow-stats] .portfolio-wow-number span').forEach((element, index) => {
-      if (statLabels[index]) setText(element, statLabels[index]);
-    });
-
-    const hints = document.querySelector('.portfolio-wow-hints');
-    setHtml(hints, '<span><kbd>/</kbd> 検索</span><span>年を選ぶと一覧を絞り込み</span>');
-
-    setText(document.querySelector('.catalog-taxonomy-head strong'), '種類');
-
     document.querySelectorAll('.loading').forEach((element) => setText(element, '制作物を読み込んでいます。'));
     document.querySelectorAll('.empty-state').forEach((element) => {
       setText(element.querySelector('h3'), '条件に合う制作物がありません。');
