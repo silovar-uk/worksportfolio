@@ -15,6 +15,10 @@ on:
       - 'taxonomy.css'
       - 'floating-random.js'
       - 'floating-random.css'
+      - 'random-three.js'
+      - 'random-three.css'
+      - 'comparison-view.js'
+      - 'comparison-view.css'
       - 'copy-cleanup.js'
       - 'copy-cleanup.css'
       - 'scripts/build-catalog.mjs'
@@ -32,6 +36,10 @@ on:
       - 'taxonomy.css'
       - 'floating-random.js'
       - 'floating-random.css'
+      - 'random-three.js'
+      - 'random-three.css'
+      - 'comparison-view.js'
+      - 'comparison-view.css'
       - 'copy-cleanup.js'
       - 'copy-cleanup.css'
       - 'scripts/build-catalog.mjs'
@@ -62,6 +70,8 @@ jobs:
         run: |
           node --check taxonomy.js
           node --check floating-random.js
+          node --check random-three.js
+          node --check comparison-view.js
           node --check copy-cleanup.js
           node --check scripts/apply-copy-cleanup.mjs
 
@@ -85,15 +95,20 @@ jobs:
           grep -q 'shelf-priority.js' index.html
           grep -q 'floating-random.js' index.html
           grep -q 'floating-random.css' index.html
+          grep -q 'random-three.js' index.html
+          grep -q 'random-three.css' index.html
+          grep -q 'comparison-view.js' index.html
+          grep -q 'comparison-view.css' index.html
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
           grep -q '小さな不便から、<br>小さな道具を作る' index.html
-          grep -q 'data-view-button="shelf">一覧を見る</button>' index.html
+          grep -q 'data-view-button="shelf">制作物を見る</button>' index.html
           grep -q "d.settings.defaultView='shelf'" index.html
-          grep -q 'この一覧について' index.html
           grep -q '確認状況' copy-cleanup.js
+          grep -q 'ランダムに3件' random-three.js
+          grep -q '比較カード' comparison-view.js
+          ! grep -q 'catalog-taxonomy-head strong' copy-cleanup.js
           ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
-          ! grep -q 'YOUR MAKING LANDSCAPE' copy-cleanup.js
 
       - name: Show generated changes
         run: git diff --stat -- data/catalog.json index.html

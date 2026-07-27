@@ -1,0 +1,21 @@
+.catalog-layout-native{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
+.catalog-layout-switch{display:grid;grid-template-columns:repeat(3,minmax(82px,1fr));border:1px solid var(--line-dark);background:var(--paper)}
+.catalog-layout-switch button{min-height:44px;padding:.48rem .65rem;border:0;border-right:1px solid var(--line);background:transparent;font-size:.76rem;font-weight:750;cursor:pointer}
+.catalog-layout-switch button:last-child{border-right:0}
+.catalog-layout-switch button:hover{background:var(--yellow-soft)}
+.catalog-layout-switch button.is-active{background:var(--ink);color:var(--paper)}
+.catalog-primary{grid-template-columns:minmax(260px,1fr) minmax(155px,auto) minmax(270px,auto) minmax(155px,auto)}
+.catalog-grid{align-items:stretch}
+.catalog-card,.catalog-card.featured{grid-column:span 4;min-height:310px;box-shadow:none}
+.catalog-card-top{font-family:inherit;font-weight:750}
+.catalog-card-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:14px 0 0;padding-top:11px;border-top:1px solid var(--line)}
+.catalog-card-compare div{min-width:0}
+.catalog-card-compare dt{color:var(--muted);font-size:.61rem}
+.catalog-card-compare dd{margin:1px 0 0;font-size:.72rem;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.catalog-card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.catalog-card-tags span{padding:.15rem .36rem;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-size:.61rem}
+.catalog-comparison-card .catalog-card-bottom{margin-top:12px}
+.catalog-comparison-card .catalog-open{margin-top:10px}
+@media(max-width:1100px){.catalog-primary{grid-template-columns:1fr 1fr 1fr}.catalog-search{grid-column:1/-1}.catalog-layout-switch{grid-column:span 2}.catalog-card,.catalog-card.featured{grid-column:span 6}}
+@media(max-width:760px){.catalog-primary{grid-template-columns:1fr}.catalog-search,.catalog-primary select:first-of-type,.catalog-layout-switch{grid-column:1}.catalog-layout-switch{width:100%}.catalog-card,.catalog-card.featured{grid-column:span 12;min-height:250px}.catalog-card-compare{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:480px){.catalog-card-compare{grid-template-columns:repeat(2,minmax(0,1fr))}}

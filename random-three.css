@@ -1,0 +1,24 @@
+.random-three{margin:0 0 16px;border:1px solid var(--line-dark);background:var(--paper)}
+.random-three[hidden]{display:none}
+.random-three-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 15px;border-bottom:1px solid var(--line)}
+.random-three-head h2{margin:0;font-size:1rem;line-height:1.2}
+.random-three-head p{margin:2px 0 0;color:var(--muted);font-size:.72rem}
+.random-three-head button{min-height:36px;padding:.42rem .68rem;border:1px solid var(--line-dark);background:transparent;font-size:.75rem;font-weight:750;cursor:pointer}
+.random-three-head button:hover{background:var(--ink);color:var(--paper)}
+.random-three-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.random-three-card{min-width:0;padding:15px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.random-three-card:last-child{border-right:0}
+.random-three-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:.64rem;font-weight:750}
+.random-three-card h3{margin:.55rem 0 .3rem;font-size:1rem;line-height:1.25}
+.random-three-card>p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.6;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.random-three-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+.random-three-facts div{min-width:0}
+.random-three-facts dt{color:var(--muted);font-size:.58rem}
+.random-three-facts dd{margin:1px 0 0;font-size:.68rem;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.random-three-actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
+.random-three-actions button,.random-three-actions a{min-height:34px;padding:.38rem .58rem;border:1px solid var(--line-dark);background:transparent;color:var(--ink);text-decoration:none;font-size:.68rem;font-weight:750;cursor:pointer}
+.random-three-actions button{background:var(--ink);color:var(--paper)}
+.random-three-actions button:hover,.random-three-actions a:hover{border-color:var(--red);color:var(--red)}
+.random-three-actions button:hover{background:var(--paper)}
+@media(max-width:900px){.random-three-grid{grid-template-columns:1fr}.random-three-card{border-right:0;border-bottom:1px solid var(--line)}.random-three-card:last-child{border-bottom:0}.random-three-facts{grid-template-columns:repeat(3,minmax(0,120px))}}
+@media(max-width:600px){.random-three-head{padding:11px 12px}.random-three-head p{display:none}.random-three-card{padding:13px 12px}.random-three-actions{padding-top:10px}}
