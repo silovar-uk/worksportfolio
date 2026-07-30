@@ -1,5 +1,44 @@
 [
   {
+    "id": "keygrid",
+    "title": "KeyGrid",
+    "subtitle": "Chromeをマウスなしで操作する拡張機能",
+    "summary": "Hint、固定キー式の仮想ブックマークバー、Magnetic Grid、Fine Gridを組み合わせ、Chrome上の操作をキーボードだけで完結させる拡張機能。",
+    "friction": "クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まっていた。",
+    "firstBuild": "画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。",
+    "currentAnswer": "Hint、Magnetic Grid、Fine Grid、固定キー式ブックマークを状況に応じて使い分けるv0.8.0。",
+    "type": "chrome-extension",
+    "verbs": [
+      "操作する",
+      "探す",
+      "移動する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-07-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-07-29",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1600,
+      "y": 398
+    },
+    "relatedProjects": [
+      "quicklinks"
+    ],
+    "updates": [],
+    "aside": "クリック先を探すより、キーを押した方が速い。"
+  },
+  {
     "id": "lineworks-scroll-copy",
     "title": "LINE WORKS Scroll & Copy",
     "subtitle": "トーク履歴のさかのぼり・抽出拡張",
@@ -8,7 +47,10 @@
     "firstBuild": "高速スクロール版から始め、途中停止後のコピーと構造化保存へ広げた。",
     "currentAnswer": "スクロール、収集、形式変換を一つにまとめた道具。",
     "type": "chrome-extension",
-    "verbs": ["記録する", "整理する"],
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
     "status": "active",
     "visibility": "local",
     "featured": false,
@@ -17,9 +59,16 @@
     "updatedAt": "2026-05-01",
     "repositoryUrl": "",
     "liveUrl": "",
-    "technologies": ["Chrome Extension", "JavaScript"],
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
     "documentationState": "verified",
-    "map": {"group": "extension", "x": 1320, "y": 398},
+    "map": {
+      "group": "extension",
+      "x": 1320,
+      "y": 398
+    },
     "relatedProjects": [],
     "updates": [],
     "aside": "まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。"
@@ -33,7 +82,10 @@
     "firstBuild": "対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。",
     "currentAnswer": "業務連絡を自分で扱える記録データへ変える入口。",
     "type": "chrome-extension",
-    "verbs": ["記録する", "探す"],
+    "verbs": [
+      "記録する",
+      "探す"
+    ],
     "status": "prototype",
     "visibility": "local",
     "featured": false,
@@ -42,9 +94,16 @@
     "updatedAt": "2026-05",
     "repositoryUrl": "",
     "liveUrl": "",
-    "technologies": ["Chrome Extension", "JavaScript"],
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
     "documentationState": "verified",
-    "map": {"group": "extension", "x": 1460, "y": 398},
+    "map": {
+      "group": "extension",
+      "x": 1460,
+      "y": 398
+    },
     "relatedProjects": [],
     "updates": [],
     "aside": "連絡は流れる。ログは流したくない。"
@@ -58,7 +117,10 @@
     "firstBuild": "スクロールと撮影を交互に実行する拡張を作った。",
     "currentAnswer": "データだけでなく、見た目ごとタイムラインを記録する道具。",
     "type": "chrome-extension",
-    "verbs": ["記録する", "集める"],
+    "verbs": [
+      "記録する",
+      "集める"
+    ],
     "status": "dormant",
     "visibility": "local",
     "featured": false,
@@ -67,9 +129,16 @@
     "updatedAt": "2025-06-02",
     "repositoryUrl": "",
     "liveUrl": "",
-    "technologies": ["Chrome Extension", "JavaScript"],
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
     "documentationState": "verified",
-    "map": {"group": "extension", "x": 1180, "y": 398},
+    "map": {
+      "group": "extension",
+      "x": 1180,
+      "y": 398
+    },
     "relatedProjects": [],
     "updates": [],
     "aside": "スクロールを自動化したら、撮る枚数まで自動で増えた。"
