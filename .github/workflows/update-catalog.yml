@@ -116,6 +116,9 @@ jobs:
           grep -q 'favorites.css' index.html
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
+          grep -q 'worksportfolio-assets-version' index.html
+          grep -q 'favorites.js?v=' index.html
+          grep -q 'motion.js?v=' index.html
           grep -q '小さな不便から、<br>小さな道具を作る' index.html
           grep -q 'data-view-button="shelf">制作物を見る</button>' index.html
           grep -q "d.settings.defaultView='shelf'" index.html
@@ -136,6 +139,12 @@ jobs:
           grep -q '.catalog-row' favorites.js
           grep -q '.catalog-card' favorites.js
           grep -q 'catalog-table tbody tr' favorites.js
+          grep -q '.random-three-card' favorites.js
+          grep -q '.floating-random-card' favorites.js
+          grep -q 'data-random-three-open' favorites.js
+          grep -q 'data-floating-random-open' favorites.js
+          grep -q 'is-random-three' favorites.css
+          grep -q 'is-floating-random' favorites.css
           grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card');" motion.js
           ! grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card,[data-project-surface]');" motion.js
           grep -Fq '[data-project-surface],[data-project-surface]:hover{transform:none!important' motion.css
