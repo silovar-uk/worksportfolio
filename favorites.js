@@ -10,7 +10,9 @@
     '.catalog-card',
     '.catalog-row',
     '.catalog-table tbody tr[data-cat-item]',
-    '.portfolio-pick-card'
+    '.portfolio-pick-card',
+    '.random-three-card[data-random-three-item]',
+    '.floating-random-card'
   ].join(',');
 
   let ratings = readRatings();
@@ -112,8 +114,11 @@
 
   function projectIdFromSurface(surface) {
     return surface.dataset.catItem
+      || surface.dataset.randomThreeItem
       || surface.querySelector('[data-project-open]')?.dataset.projectOpen
       || surface.querySelector('[data-wow-open]')?.dataset.wowOpen
+      || surface.querySelector('[data-random-three-open]')?.dataset.randomThreeOpen
+      || surface.querySelector('[data-floating-random-open]')?.dataset.floatingRandomOpen
       || '';
   }
 
@@ -128,6 +133,22 @@
     if (surface.matches('.portfolio-pick-card')) {
       rating.classList.add('is-pick');
       const actions = surface.querySelector('.portfolio-pick-actions');
+      if (actions) actions.before(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('.random-three-card')) {
+      rating.classList.add('is-random-three');
+      const actions = surface.querySelector('.random-three-actions');
+      if (actions) actions.before(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('.floating-random-card')) {
+      rating.classList.add('is-floating-random');
+      const actions = surface.querySelector('.floating-random-actions');
       if (actions) actions.before(rating);
       else surface.appendChild(rating);
       return;
@@ -211,7 +232,9 @@
     document.querySelectorAll('.favorite-rating').forEach(syncControl);
   });
   document.addEventListener('click', (event) => {
-    if (event.target.closest('[data-project-open],[data-wow-open],[data-wow-shuffle]')) setTimeout(renderAll, 0);
+    if (event.target.closest('[data-project-open],[data-wow-open],[data-wow-shuffle],[data-random-three-refresh],[data-floating-random-draw]')) {
+      setTimeout(renderAll, 0);
+    }
   });
 
   renderAll();
