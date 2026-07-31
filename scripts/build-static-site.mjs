@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -11,6 +12,50 @@ const config = readJson('data/portfolio-config.json');
 const manualProjects = readJson('data/manual-projects.json');
 const catalog = readJson('data/catalog.json');
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
+
+const cssAssets = [
+  'catalog.css',
+  'taxonomy.css',
+  'floating-random.css',
+  'wow.css',
+  'random-three.css',
+  'comparison-view.css',
+  'motion.css',
+  'marks.css',
+  'shelf-priority.css',
+  'favorites.css',
+  'copy-cleanup.css'
+];
+const jsAssets = [
+  'data-audit.js',
+  'catalog.js',
+  'catalog-visibility.js',
+  'taxonomy.js',
+  'floating-random.js',
+  'wow.js',
+  'random-three.js',
+  'comparison-view.js',
+  'wow-stage.js',
+  'motion.js',
+  'marks.js',
+  'shelf-priority.js',
+  'favorites.js',
+  'copy-cleanup.js'
+];
+
+function createAssetVersion(paths) {
+  const hash = createHash('sha256');
+  paths.forEach((path) => {
+    hash.update(path);
+    hash.update('\0');
+    hash.update(readFileSync(join(root, path)));
+    hash.update('\0');
+  });
+  return hash.digest('hex').slice(0, 12);
+}
+
+const assetVersion = createAssetVersion([...cssAssets, ...jsAssets]);
+const assetUrl = (path) => `${path}?v=${assetVersion}`;
 
 const bootstrapDir = join(root, '.bootstrap');
 const partNames = readdirSync(bootstrapDir)
@@ -132,15 +177,15 @@ if (dataEnd < 0) throw new Error('The BUILD_DIARY_DATA script was not closed.');
 html = html.slice(0, dataEnd + 9) + dataPatch() + html.slice(dataEnd + 9);
 
 const generatedAt = catalog.generatedAt || new Date().toISOString();
+const stylesheetTags = cssAssets.map((path) => `<link rel="stylesheet" href="${assetUrl(path)}">`).join('');
+const scriptTags = jsAssets.map((path) => `<script src="${assetUrl(path)}"><\/script>`).join('');
 html = html.replace(
   '</head>',
   `<meta name="worksportfolio-generated-at" content="${generatedAt}">` +
-  '<link rel="stylesheet" href="catalog.css"><link rel="stylesheet" href="taxonomy.css"><link rel="stylesheet" href="floating-random.css"><link rel="stylesheet" href="wow.css"><link rel="stylesheet" href="random-three.css"><link rel="stylesheet" href="comparison-view.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="marks.css"><link rel="stylesheet" href="shelf-priority.css"><link rel="stylesheet" href="favorites.css"><style>.recent-updates{display:none!important}</style></head>'
+  `<meta name="worksportfolio-assets-version" content="${assetVersion}">` +
+  `${stylesheetTags}<style>.recent-updates{display:none!important}</style></head>`
 );
-html = html.replace(
-  '</body>',
-  '<script src="data-audit.js"></script><script src="catalog.js"></script><script src="catalog-visibility.js"></script><script src="taxonomy.js"></script><script src="floating-random.js"></script><script src="wow.js"></script><script src="random-three.js"></script><script src="comparison-view.js"></script><script src="wow-stage.js"></script><script src="motion.js"></script><script src="marks.js"></script><script src="shelf-priority.js"></script><script src="favorites.js"></script></body>'
-);
+html = html.replace('</body>', `${scriptTags}</body>`);
 
 if (/jszip|loader\.js/i.test(html)) throw new Error('The generated page still depends on the runtime bootstrap loader.');
 if (!html.includes('shelf-priority.js')) throw new Error('The generated page is missing the shelf enhancement script.');
@@ -148,7 +193,8 @@ if (!html.includes('floating-random.js')) throw new Error('The generated page is
 if (!html.includes('random-three.js') || !html.includes('random-three.css')) throw new Error('The generated page is missing the random three showcase.');
 if (!html.includes('comparison-view.js') || !html.includes('comparison-view.css')) throw new Error('The generated page is missing the comparison view.');
 if (!html.includes('favorites.js') || !html.includes('favorites.css')) throw new Error('The generated page is missing favorite rating controls.');
+if (!html.includes(`favorites.js?v=${assetVersion}`) || !html.includes(`motion.js?v=${assetVersion}`)) throw new Error('The generated page is missing cache-busted interface assets.');
 if (!html.includes('window.BUILD_DIARY_DATA')) throw new Error('The generated page lost its project data.');
 
 writeFileSync(join(root, 'index.html'), html);
-console.log(`Generated static index.html (${Buffer.byteLength(html).toLocaleString('en-US')} bytes, ${repositories.length} repositories).`);
+console.log(`Generated static index.html (${Buffer.byteLength(html).toLocaleString('en-US')} bytes, ${repositories.length} repositories, assets ${assetVersion}).`);
