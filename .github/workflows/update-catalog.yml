@@ -141,10 +141,13 @@ jobs:
           grep -q 'catalog-table tbody tr' favorites.js
           grep -q '.random-three-card' favorites.js
           grep -q '.floating-random-card' favorites.js
+          grep -q '.catalog-random-result' favorites.js
           grep -q 'data-random-three-open' favorites.js
           grep -q 'data-floating-random-open' favorites.js
+          grep -q 'data-taxonomy-random-open' favorites.js
           grep -q 'is-random-three' favorites.css
           grep -q 'is-floating-random' favorites.css
+          grep -q 'is-taxonomy-random' favorites.css
           grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card');" motion.js
           ! grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card,[data-project-surface]');" motion.js
           grep -Fq '[data-project-surface],[data-project-surface]:hover{transform:none!important' motion.css
