@@ -3,6 +3,16 @@
 
   const STORAGE_KEY = 'worksPortfolioFavoriteRatingsV1';
   const MAX_RATING = 5;
+  const SURFACE_SELECTOR = [
+    '.project-card',
+    '.timeline-card',
+    '.map-mobile-item',
+    '.catalog-card',
+    '.catalog-row',
+    '.catalog-table tbody tr[data-cat-item]',
+    '.portfolio-pick-card'
+  ].join(',');
+
   let ratings = readRatings();
   let renderQueued = false;
 
@@ -35,11 +45,39 @@
     if (next >= 1 && next <= MAX_RATING) ratings[projectId] = next;
     else delete ratings[projectId];
     saveRatings();
-    renderAll();
+    syncProjectControls(projectId);
+  }
+
+  function syncControl(root) {
+    const projectId = root.dataset.favoriteProject || '';
+    const current = getRating(projectId);
+    root.querySelectorAll('[data-favorite-value]').forEach((button) => {
+      const value = Number(button.dataset.favoriteValue);
+      const active = value <= current;
+      button.setAttribute('aria-pressed', String(active));
+      button.textContent = active ? '★' : '☆';
+    });
+
+    let valueNode = root.querySelector('.favorite-rating__value');
+    if (current > 0) {
+      if (!valueNode) {
+        valueNode = document.createElement('span');
+        valueNode.className = 'favorite-rating__value';
+        root.appendChild(valueNode);
+      }
+      valueNode.textContent = `${current}/5`;
+    } else {
+      valueNode?.remove();
+    }
+  }
+
+  function syncProjectControls(projectId) {
+    document.querySelectorAll('.favorite-rating').forEach((root) => {
+      if (root.dataset.favoriteProject === projectId) syncControl(root);
+    });
   }
 
   function createRating(projectId, compact = false) {
-    const current = getRating(projectId);
     const root = document.createElement('div');
     root.className = `favorite-rating${compact ? ' is-compact' : ''}`;
     root.dataset.favoriteProject = projectId;
@@ -59,48 +97,91 @@
       button.className = 'favorite-rating__star';
       button.dataset.favoriteValue = String(value);
       button.setAttribute('aria-label', `お気に入り度を${value}にする`);
-      button.setAttribute('aria-pressed', String(value <= current));
-      button.textContent = value <= current ? '★' : '☆';
       button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
+        const current = getRating(projectId);
         setRating(projectId, value === current ? 0 : value);
       });
       stars.appendChild(button);
     }
     root.appendChild(stars);
-
-    if (current > 0) {
-      const value = document.createElement('span');
-      value.className = 'favorite-rating__value';
-      value.textContent = `${current}/5`;
-      root.appendChild(value);
-    }
-
+    syncControl(root);
     return root;
   }
 
-  function projectIdFromCard(card) {
-    return card.querySelector('[data-project-open]')?.dataset.projectOpen || '';
+  function projectIdFromSurface(surface) {
+    return surface.dataset.catItem
+      || surface.querySelector('[data-project-open]')?.dataset.projectOpen
+      || surface.querySelector('[data-wow-open]')?.dataset.wowOpen
+      || '';
+  }
+
+  function existingRating(surface, projectId) {
+    return [...surface.querySelectorAll('.favorite-rating')].find((rating) => (
+      rating.dataset.favoriteProject === projectId
+      && rating.closest(SURFACE_SELECTOR) === surface
+    ));
+  }
+
+  function placeRating(surface, rating) {
+    if (surface.matches('.portfolio-pick-card')) {
+      rating.classList.add('is-pick');
+      const actions = surface.querySelector('.portfolio-pick-actions');
+      if (actions) actions.before(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('.catalog-row')) {
+      rating.classList.add('is-catalog-row');
+      const facts = surface.querySelector('.catalog-facts');
+      if (facts) facts.prepend(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('.catalog-card')) {
+      rating.classList.add('is-catalog-card');
+      const summary = surface.querySelector(':scope > p');
+      if (summary) summary.after(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('tr[data-cat-item]')) {
+      rating.classList.add('is-catalog-table');
+      const title = surface.querySelector('.catalog-title');
+      if (title) title.after(rating);
+      else surface.querySelector('td:nth-child(2)')?.appendChild(rating);
+      return;
+    }
+
+    const anchor = surface.querySelector('.card-meta, .summary, h3, h4, h5');
+    if (anchor?.parentNode) anchor.insertAdjacentElement('afterend', rating);
+    else surface.appendChild(rating);
+  }
+
+  function decorateSurface(surface) {
+    const projectId = projectIdFromSurface(surface);
+    if (!projectId || existingRating(surface, projectId)) return;
+    const rating = createRating(projectId, true);
+    placeRating(surface, rating);
   }
 
   function decorateCards() {
-    document.querySelectorAll('.project-card, .timeline-card, .map-mobile-item').forEach((card) => {
-      const projectId = projectIdFromCard(card);
-      if (!projectId) return;
-      card.querySelector(':scope > .favorite-rating')?.remove();
-      const anchor = card.querySelector('.card-meta, .summary, h3, h4, h5');
-      const rating = createRating(projectId, true);
-      if (anchor?.parentNode) anchor.insertAdjacentElement('afterend', rating);
-      else card.appendChild(rating);
-    });
+    document.querySelectorAll(SURFACE_SELECTOR).forEach(decorateSurface);
   }
 
   function decorateDialog() {
     const dialog = document.querySelector('[data-project-dialog]');
     const projectId = new URLSearchParams(location.search).get('project');
     if (!dialog?.open || !projectId) return;
-    dialog.querySelector('.favorite-rating.is-detail')?.remove();
+
+    const existing = dialog.querySelector('.favorite-rating.is-detail');
+    if (existing?.dataset.favoriteProject === projectId) return;
+    existing?.remove();
+
     const rating = createRating(projectId, false);
     rating.classList.add('is-detail');
     const status = dialog.querySelector('.detail-status');
@@ -118,11 +199,19 @@
     });
   }
 
-  const observer = new MutationObserver(renderAll);
+  const observer = new MutationObserver((records) => {
+    if (records.some((record) => record.addedNodes.length)) renderAll();
+  });
   observer.observe(document.documentElement, { childList: true, subtree: true });
+
   window.addEventListener('popstate', renderAll);
+  window.addEventListener('storage', (event) => {
+    if (event.key !== STORAGE_KEY) return;
+    ratings = readRatings();
+    document.querySelectorAll('.favorite-rating').forEach(syncControl);
+  });
   document.addEventListener('click', (event) => {
-    if (event.target.closest('[data-project-open]')) setTimeout(renderAll, 0);
+    if (event.target.closest('[data-project-open],[data-wow-open],[data-wow-shuffle]')) setTimeout(renderAll, 0);
   });
 
   renderAll();
