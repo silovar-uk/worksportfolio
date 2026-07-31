@@ -27,6 +27,7 @@
   cursor: pointer;
   font-size: 1.25rem;
   line-height: 1;
+  transition: transform .12s ease;
 }
 
 .favorite-rating__star:hover,
@@ -63,9 +64,55 @@
   width: fit-content;
 }
 
+/* 個別ページは内容を読む場所なので、3D傾きと浮き上がりを無効化する。 */
+[data-project-surface],
+[data-project-surface]:hover {
+  --tilt-x: 0deg !important;
+  --tilt-y: 0deg !important;
+  --lift: 0px !important;
+  transform-style: flat !important;
+  will-change: auto !important;
+}
+
+/* ランダム表示から、開かずにその場で評価できる。 */
+.portfolio-pick-card > .favorite-rating.is-pick {
+  margin: 1rem 0 0;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(32, 36, 38, .18);
+}
+
+/* 一覧の「ざっと見る」表示。メタ情報欄の先頭へ置く。 */
+.catalog-facts > .favorite-rating.is-catalog-row {
+  grid-column: 1 / -1;
+  margin: 0 0 .1rem;
+}
+
+/* カード表示。概要とステータスの間で選べる。 */
+.catalog-card > .favorite-rating.is-catalog-card {
+  margin: .65rem 0 0;
+}
+
+/* 表表示。タイトル直下へ小さく置く。 */
+.catalog-table .favorite-rating.is-catalog-table {
+  margin: .3rem 0 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .catalog-facts > .favorite-rating.is-catalog-row {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
 @media (max-width: 640px) {
   .favorite-rating__star {
     width: 34px;
     height: 34px;
+  }
+
+  .favorite-rating.is-compact .favorite-rating__star {
+    width: 30px;
+    height: 30px;
   }
 }
