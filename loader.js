@@ -179,11 +179,11 @@
 
     output = output.replace(
       '</head>',
-      '<link rel="stylesheet" href="catalog.css"><link rel="stylesheet" href="taxonomy.css"><link rel="stylesheet" href="wow.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="marks.css"><link rel="stylesheet" href="shelf-priority.css"><style>.recent-updates{display:none!important}</style></head>'
+      '<link rel="stylesheet" href="catalog.css"><link rel="stylesheet" href="taxonomy.css"><link rel="stylesheet" href="wow.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="marks.css"><link rel="stylesheet" href="shelf-priority.css"><link rel="stylesheet" href="favorites.css"><style>.recent-updates{display:none!important}</style></head>'
     );
     output = output.replace(
       '</body>',
-      '<script src="data-audit.js"></script><script src="catalog.js"></script><script src="catalog-visibility.js"></script><script src="taxonomy.js"></script><script src="wow.js"></script><script src="wow-stage.js"></script><script src="motion.js"></script><script src="marks.js"></script><script src="shelf-priority.js"></script></body>'
+      '<script src="data-audit.js"></script><script src="catalog.js"></script><script src="catalog-visibility.js"></script><script src="taxonomy.js"></script><script src="wow.js"></script><script src="wow-stage.js"></script><script src="motion.js"></script><script src="marks.js"></script><script src="shelf-priority.js"></script><script src="favorites.js"></script></body>'
     );
     return output;
   }
