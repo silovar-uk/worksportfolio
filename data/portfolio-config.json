@@ -19,7 +19,8 @@
     "predictattendance",
     "quickliks",
     "lineworks-scroll-copy",
-    "x-auto-screenshot-scroll"
+    "x-auto-screenshot-scroll",
+    "todomanager"
   ],
   "overrides": {
     "worksportfolio": {
