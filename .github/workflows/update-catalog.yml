@@ -19,6 +19,10 @@ on:
       - 'random-three.css'
       - 'comparison-view.js'
       - 'comparison-view.css'
+      - 'motion.js'
+      - 'motion.css'
+      - 'favorites.js'
+      - 'favorites.css'
       - 'copy-cleanup.js'
       - 'copy-cleanup.css'
       - 'scripts/build-catalog.mjs'
@@ -40,6 +44,10 @@ on:
       - 'random-three.css'
       - 'comparison-view.js'
       - 'comparison-view.css'
+      - 'motion.js'
+      - 'motion.css'
+      - 'favorites.js'
+      - 'favorites.css'
       - 'copy-cleanup.js'
       - 'copy-cleanup.css'
       - 'scripts/build-catalog.mjs'
@@ -72,7 +80,10 @@ jobs:
           node --check floating-random.js
           node --check random-three.js
           node --check comparison-view.js
+          node --check motion.js
+          node --check favorites.js
           node --check copy-cleanup.js
+          node --check scripts/build-static-site.mjs
           node --check scripts/apply-copy-cleanup.mjs
 
       - name: Build GitHub catalog
@@ -99,6 +110,10 @@ jobs:
           grep -q 'random-three.css' index.html
           grep -q 'comparison-view.js' index.html
           grep -q 'comparison-view.css' index.html
+          grep -q 'motion.js' index.html
+          grep -q 'motion.css' index.html
+          grep -q 'favorites.js' index.html
+          grep -q 'favorites.css' index.html
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
           grep -q '小さな不便から、<br>小さな道具を作る' index.html
@@ -116,6 +131,14 @@ jobs:
           grep -q 'data-compare-tray' comparison-view.js
           grep -q 'worksportfolio-compare-ids-v1' comparison-view.js
           grep -q 'compare-dialog-grid' comparison-view.css
+          grep -q 'worksPortfolioFavoriteRatingsV1' favorites.js
+          grep -q '.portfolio-pick-card' favorites.js
+          grep -q '.catalog-row' favorites.js
+          grep -q '.catalog-card' favorites.js
+          grep -q 'catalog-table tbody tr' favorites.js
+          grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card');" motion.js
+          ! grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card,[data-project-surface]');" motion.js
+          grep -Fq '[data-project-surface],[data-project-surface]:hover{transform:none!important' motion.css
           grep -Fq "const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];" index.html
           grep -Fq "document.querySelector('[data-random-button]')?.addEventListener" index.html
           ! grep -Fq "const required = ['id', 'title', 'summary', 'friction', 'type', 'status', 'visibility', 'createdAt'];" index.html
