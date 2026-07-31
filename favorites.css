@@ -1,0 +1,71 @@
+.favorite-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+
+.favorite-rating__label {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.favorite-rating__stars {
+  display: inline-flex;
+  gap: .08rem;
+}
+
+.favorite-rating__star {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.favorite-rating__star:hover,
+.favorite-rating__star:focus-visible {
+  transform: translateY(-1px) scale(1.08);
+  outline: 2px solid var(--yellow);
+  outline-offset: 1px;
+}
+
+.favorite-rating__value {
+  color: var(--muted);
+  font: 700 .72rem "Roboto Mono", monospace;
+}
+
+.favorite-rating.is-compact {
+  margin-top: .65rem;
+}
+
+.favorite-rating.is-compact .favorite-rating__label {
+  font-size: .7rem;
+}
+
+.favorite-rating.is-compact .favorite-rating__star {
+  width: 25px;
+  height: 25px;
+  font-size: 1.05rem;
+}
+
+.favorite-rating.is-detail {
+  margin-top: 1.1rem;
+  padding: .8rem 1rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  width: fit-content;
+}
+
+@media (max-width: 640px) {
+  .favorite-rating__star {
+    width: 34px;
+    height: 34px;
+  }
+}
