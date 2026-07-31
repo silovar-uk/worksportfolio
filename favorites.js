@@ -12,7 +12,8 @@
     '.catalog-table tbody tr[data-cat-item]',
     '.portfolio-pick-card',
     '.random-three-card[data-random-three-item]',
-    '.floating-random-card'
+    '.floating-random-card',
+    '.catalog-random-result[data-taxonomy-random-result]'
   ].join(',');
 
   let ratings = readRatings();
@@ -119,6 +120,7 @@
       || surface.querySelector('[data-wow-open]')?.dataset.wowOpen
       || surface.querySelector('[data-random-three-open]')?.dataset.randomThreeOpen
       || surface.querySelector('[data-floating-random-open]')?.dataset.floatingRandomOpen
+      || surface.querySelector('[data-taxonomy-random-open]')?.dataset.taxonomyRandomOpen
       || '';
   }
 
@@ -149,6 +151,14 @@
     if (surface.matches('.floating-random-card')) {
       rating.classList.add('is-floating-random');
       const actions = surface.querySelector('.floating-random-actions');
+      if (actions) actions.before(rating);
+      else surface.appendChild(rating);
+      return;
+    }
+
+    if (surface.matches('.catalog-random-result')) {
+      rating.classList.add('is-taxonomy-random');
+      const actions = surface.querySelector('.catalog-random-actions');
       if (actions) actions.before(rating);
       else surface.appendChild(rating);
       return;
@@ -232,7 +242,7 @@
     document.querySelectorAll('.favorite-rating').forEach(syncControl);
   });
   document.addEventListener('click', (event) => {
-    if (event.target.closest('[data-project-open],[data-wow-open],[data-wow-shuffle],[data-random-three-refresh],[data-floating-random-draw]')) {
+    if (event.target.closest('[data-project-open],[data-wow-open],[data-wow-shuffle],[data-random-three-refresh],[data-floating-random-draw],[data-taxonomy-random]')) {
       setTimeout(renderAll, 0);
     }
   });
