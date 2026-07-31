@@ -161,7 +161,7 @@
 
   function tiltTargetAt(event) {
     if (reduced.matches || !finePointer.matches) return null;
-    return event.target.closest('.portfolio-pick-card,.catalog-card,[data-project-surface]');
+    return event.target.closest('.portfolio-pick-card,.catalog-card');
   }
 
   function applyTilt(event, target) {
