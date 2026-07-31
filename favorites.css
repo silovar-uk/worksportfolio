@@ -97,6 +97,13 @@
   border-top: 1px solid var(--line);
 }
 
+/* 旧ランダム結果が表示された場合にも直接評価する。 */
+.catalog-random-result > .favorite-rating.is-taxonomy-random {
+  margin: .75rem 0 0;
+  padding-top: .6rem;
+  border-top: 1px solid var(--line);
+}
+
 /* 一覧の「ざっと見る」表示。メタ情報欄の先頭へ置く。 */
 .catalog-facts > .favorite-rating.is-catalog-row {
   grid-column: 1 / -1;
