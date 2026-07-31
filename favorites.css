@@ -74,11 +74,27 @@
   will-change: auto !important;
 }
 
-/* ランダム表示から、開かずにその場で評価できる。 */
+/* 今日の1本から、詳細を開かずに評価できる。 */
 .portfolio-pick-card > .favorite-rating.is-pick {
   margin: 1rem 0 0;
   padding-top: .8rem;
   border-top: 1px solid rgba(32, 36, 38, .18);
+}
+
+/* ランダム3枚の各カードから直接評価する。 */
+.random-three-card > .favorite-rating.is-random-three {
+  margin: .7rem 0 0;
+  padding: .55rem .6rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: rgba(255, 253, 247, .9);
+}
+
+/* 右上のランダム1本から直接評価する。 */
+.floating-random-card > .favorite-rating.is-floating-random {
+  margin: .8rem 0 0;
+  padding-top: .65rem;
+  border-top: 1px solid var(--line);
 }
 
 /* 一覧の「ざっと見る」表示。メタ情報欄の先頭へ置く。 */
@@ -102,6 +118,10 @@
   .catalog-facts > .favorite-rating.is-catalog-row {
     flex-basis: 100%;
     width: 100%;
+  }
+
+  .floating-random-card > .favorite-rating.is-floating-random {
+    justify-content: center;
   }
 }
 
