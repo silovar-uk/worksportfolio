@@ -20,7 +20,8 @@
     "quickliks",
     "lineworks-scroll-copy",
     "x-auto-screenshot-scroll",
-    "todomanager"
+    "todomanager",
+    "accountinglearn"
   ],
   "overrides": {
     "worksportfolio": {
@@ -36,6 +37,209 @@
       "status": "active",
       "documentationState": "verified",
       "liveUrl": "https://silovar-uk.github.io/worksportfolio/"
+    },
+    "contentslibrary": {
+      "title": "作品体験ログ",
+      "subtitle": "本・映画・漫画との関係を残す個人アーカイブ",
+      "summary": "読書を中心に、作品・体験履歴・メモ・分類・評価の変化を一つの場所へ残す、招待制のローカル志向Webアプリ。",
+      "friction": "作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。",
+      "firstBuild": "作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。",
+      "currentAnswer": "再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。",
+      "type": "content-page",
+      "verbs": [
+        "記録する",
+        "探す",
+        "振り返る"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "TypeScript",
+        "Cloudflare Workers",
+        "Cloudflare D1",
+        "Cloudflare Access"
+      ]
+    },
+    "designmd": {
+      "title": "designmd",
+      "subtitle": "生成AI時代の文章・スライド・画像制作ガイド",
+      "summary": "整っているだけで誰も選んでいないように見える成果物を避けるため、問い、構成、表現、編集、検証の判断基準をまとめた実務ガイド。",
+      "friction": "生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。",
+      "firstBuild": "文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。",
+      "currentAnswer": "最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。",
+      "type": "design-system",
+      "verbs": [
+        "考える",
+        "組み立てる",
+        "確かめる"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Markdown"
+      ]
+    },
+    "marisast6": {
+      "title": "MODERN MARISA LAB",
+      "subtitle": "モダンマリーザの判断順を学ぶ実戦攻略サイト",
+      "summary": "技表ではなく、距離、画面位置、相手行動、ゲージから次の一手を選ぶ順番を、攻略・逆引き・ドリルで学ぶStreet Fighter 6向けサイト。",
+      "friction": "強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。",
+      "firstBuild": "技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。",
+      "currentAnswer": "技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。",
+      "type": "learning-tool",
+      "verbs": [
+        "学ぶ",
+        "判断する",
+        "練習する"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Actions"
+      ]
+    },
+    "diff": {
+      "title": "Text Review Studio",
+      "subtitle": "原稿の修正・差分確認・出力を一画面で行う",
+      "summary": "変更前と修正後の原稿を並べ、検索置換、表記整形、CMSタグ確認、差分移動、コピー、Excel出力までブラウザ内で完結する文章レビュー用ツール。",
+      "friction": "原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。",
+      "firstBuild": "二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。",
+      "currentAnswer": "右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。",
+      "type": "web-app",
+      "verbs": [
+        "比べる",
+        "直す",
+        "出力する"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "SheetJS"
+      ]
+    },
+    "myspines": {
+      "title": "myspines",
+      "subtitle": "段落を動かしながら長い文章を書くエディタ",
+      "summary": "本文、番号付きアウトライン、メモを一画面で扱い、段落の並べ替えや階層変更をしながら長文を組み立てるローカルファーストエディタ。",
+      "friction": "長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。",
+      "firstBuild": "アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。",
+      "currentAnswer": "本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。",
+      "type": "web-app",
+      "verbs": [
+        "書く",
+        "組み立てる",
+        "整理する"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "IndexedDB"
+      ]
+    },
+    "whatsthiswiki": {
+      "title": "What's This Wiki?",
+      "subtitle": "Wikipediaの目次だけで記事名を当てるクイズ",
+      "summary": "記事本文ではなく目次を読み、Wikipediaの記事名を自由入力で当てるクイズ。ランダム探索、URLからの問題作成、同じ問題セットの共有に対応。",
+      "friction": "Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。",
+      "firstBuild": "確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。",
+      "currentAnswer": "Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。",
+      "type": "learning-tool",
+      "verbs": [
+        "推理する",
+        "遊ぶ",
+        "作る"
+      ],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Wikipedia API"
+      ]
+    },
+    "imagetuning": {
+      "title": "Image Tuning",
+      "subtitle": "画像への修正指示を視覚化して共有する",
+      "summary": "画像上へコメントや修正指示を置き、レイヤーを保ったJSONと確認用PNGで共有するブラウザアプリ。",
+      "friction": "画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。",
+      "firstBuild": "画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。",
+      "currentAnswer": "PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。",
+      "type": "web-app",
+      "verbs": [
+        "確認する",
+        "指示する",
+        "共有する"
+      ],
+      "status": "development",
+      "documentationState": "verified",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite"
+      ]
+    },
+    "cssanimationlists": {
+      "title": "CSS MOTION",
+      "subtitle": "動くプレビューとコードで探すCSSアニメーション図鑑",
+      "summary": "CSSアニメーションを実際に動かしながら、用途、トリガー、難易度、タグで探し、同じソースのHTML・CSSをコピーできるライブラリ。",
+      "friction": "動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。",
+      "firstBuild": "よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。",
+      "currentAnswer": "固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。",
+      "type": "design-system",
+      "verbs": [
+        "探す",
+        "試す",
+        "使う"
+      ],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Shadow DOM"
+      ]
+    },
+    "ennnichimock": {
+      "title": "炎日 2026 特設ページ モック",
+      "subtitle": "秋開催のイベント体験を比較する5つのWeb案",
+      "summary": "2026年9月19日のイベントを題材に、参加型、物語型、探索型、編集型、共同体型の5案を、比較画面と発注仕様書まで含めて形にしたデザインモック。",
+      "friction": "企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。",
+      "firstBuild": "秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。",
+      "currentAnswer": "5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。",
+      "type": "design-system",
+      "verbs": [
+        "比べる",
+        "設計する",
+        "伝える"
+      ],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JSON"
+      ]
     }
   },
   "repositoryProjectIds": {
