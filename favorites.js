@@ -249,3 +249,257 @@
 
   renderAll();
 })();
+
+(() => {
+  'use strict';
+
+  const TYPE_ICONS = {
+    'web-app': '🖥️',
+    'chrome-extension': '🧩',
+    'learning-tool': '📘',
+    'design-system': '✦',
+    'content-page': '📚',
+    'data-tool': '📊',
+    utility: '🛠️',
+    experiment: '🧪'
+  };
+  const STATUS_ICONS = {
+    development: '🛠',
+    active: '●',
+    prototype: '◇',
+    dormant: '◌',
+    legacy: '·'
+  };
+  const VERB_ICONS = {
+    '探す': '⌕', '整理する': '整', '振り返る': '↶', '記録する': '＋', '学ぶ': '学',
+    '判断する': '分', '練習する': '鍛', '比べる': '⇄', '直す': '✎', '出力する': '↗',
+    '書く': '✎', '組み立てる': '組', '推理する': '?', '遊ぶ': '遊', '作る': '＋',
+    '確認する': '✓', '指示する': '☞', '共有する': '↗', '試す': '▷', '使う': '使',
+    '設計する': '設', '伝える': '話', '解く': '解', '考える': '考', '見つける': '⌕',
+    '拾う': '＋', '育てる': '育', '思い出す': '↶', '切り抜く': '✂', '整える': '整',
+    '書き出す': '↗', 'つなぐ': '→', '確かめる': '✓', '選ぶ': '選', '実行する': '▶',
+    '退避する': '↓', '復元する': '↑'
+  };
+  const QUICK_ICONS = {
+    all: '🗂️',
+    recent: '✨',
+    published: '🌍',
+    active: '🔥',
+    extension: '🧩',
+    web: '🖥️'
+  };
+  const SURFACE_SELECTOR = [
+    '.project-card',
+    '.timeline-card',
+    '.map-mobile-item',
+    '.catalog-card',
+    '.catalog-row',
+    '.catalog-table tbody tr[data-cat-item]',
+    '.portfolio-pick-card',
+    '.random-three-card[data-random-three-item]',
+    '.floating-random-card',
+    '.catalog-random-result[data-taxonomy-random-result]'
+  ].join(',');
+
+  let renderQueued = false;
+
+  function projects() {
+    return Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
+  }
+
+  function projectMap() {
+    return new Map(projects().map((project) => [project.id, project]));
+  }
+
+  function projectIdFromSurface(surface) {
+    return surface.dataset.catItem
+      || surface.dataset.randomThreeItem
+      || surface.querySelector('[data-project-open]')?.dataset.projectOpen
+      || surface.querySelector('[data-wow-open]')?.dataset.wowOpen
+      || surface.querySelector('[data-random-three-open]')?.dataset.randomThreeOpen
+      || surface.querySelector('[data-floating-random-open]')?.dataset.floatingRandomOpen
+      || surface.querySelector('[data-taxonomy-random-open]')?.dataset.taxonomyRandomOpen
+      || '';
+  }
+
+  function projectIcon(project) {
+    return String(project?.icon || TYPE_ICONS[project?.type] || '◆');
+  }
+
+  function createIcon(project, className = '') {
+    const icon = document.createElement('span');
+    icon.className = `project-signal-icon${className ? ` ${className}` : ''}`;
+    icon.textContent = projectIcon(project);
+    icon.setAttribute('aria-hidden', 'true');
+    return icon;
+  }
+
+  function prependInlineIcon(target, value, className) {
+    if (!target || target.querySelector(`:scope > .${className}`)) return;
+    const icon = document.createElement('span');
+    icon.className = className;
+    icon.textContent = value;
+    icon.setAttribute('aria-hidden', 'true');
+    target.prepend(icon);
+  }
+
+  function verbList(project, className = '') {
+    const verbs = Array.isArray(project?.verbs) ? project.verbs.slice(0, 3) : [];
+    if (!verbs.length) return null;
+    const list = document.createElement('div');
+    list.className = `project-verb-list${className ? ` ${className}` : ''}`;
+    list.setAttribute('aria-label', 'この制作物でできること');
+    verbs.forEach((verb) => {
+      const chip = document.createElement('span');
+      chip.className = 'project-verb-chip';
+      const icon = document.createElement('span');
+      icon.className = 'project-verb-icon';
+      icon.textContent = VERB_ICONS[verb] || '•';
+      icon.setAttribute('aria-hidden', 'true');
+      const label = document.createElement('span');
+      label.textContent = verb;
+      chip.append(icon, label);
+      list.appendChild(chip);
+    });
+    return list;
+  }
+
+  function decorateQuickButtons() {
+    document.querySelectorAll('[data-cat-quick-value]').forEach((button) => {
+      const key = button.dataset.catQuickValue || '';
+      const label = button.querySelector(':scope > span');
+      if (!label || label.querySelector('.catalog-quick-icon')) return;
+      const icon = document.createElement('span');
+      icon.className = 'catalog-quick-icon';
+      icon.textContent = QUICK_ICONS[key] || '◆';
+      icon.setAttribute('aria-hidden', 'true');
+      label.prepend(icon);
+    });
+  }
+
+  function decorateCatalogRow(surface, project) {
+    const main = surface.querySelector('.catalog-main');
+    if (main && !main.querySelector(':scope > .project-signal-icon')) {
+      main.prepend(createIcon(project, 'is-row'));
+    }
+    const summary = surface.querySelector('.catalog-summaryline');
+    if (summary && !summary.dataset.signalCopy) {
+      const text = [project.subtitle, project.summary].filter(Boolean).join(' — ');
+      if (text) summary.textContent = text;
+      summary.dataset.signalCopy = 'true';
+    }
+    const facts = surface.querySelector('.catalog-facts');
+    const type = facts?.querySelector(':scope > span:not(.favorite-rating)');
+    prependInlineIcon(type, TYPE_ICONS[project.type] || '◆', 'project-type-inline-icon');
+    prependInlineIcon(facts?.querySelector('.status'), STATUS_ICONS[project.status] || '·', 'project-status-inline-icon');
+  }
+
+  function decorateCatalogCard(surface, project) {
+    const heading = surface.querySelector(':scope > h3');
+    if (heading && !surface.querySelector(':scope > .project-signal-icon')) {
+      heading.before(createIcon(project, 'is-card'));
+    }
+    if (heading && project.subtitle && !surface.querySelector(':scope > .project-signal-subtitle')) {
+      const subtitle = document.createElement('div');
+      subtitle.className = 'project-signal-subtitle';
+      subtitle.textContent = project.subtitle;
+      heading.after(subtitle);
+    }
+    const summary = surface.querySelector(':scope > p');
+    if (summary && !surface.querySelector(':scope > .project-verb-list')) {
+      const verbs = verbList(project, 'is-card');
+      if (verbs) summary.after(verbs);
+    }
+    const topType = surface.querySelector('.catalog-card-top > span:first-child');
+    prependInlineIcon(topType, TYPE_ICONS[project.type] || '◆', 'project-type-inline-icon');
+    prependInlineIcon(surface.querySelector('.catalog-card-bottom .status'), STATUS_ICONS[project.status] || '·', 'project-status-inline-icon');
+    if (project.featured && !surface.querySelector(':scope > .project-featured-badge')) {
+      const badge = document.createElement('span');
+      badge.className = 'project-featured-badge';
+      badge.textContent = '✦ まず見る';
+      surface.appendChild(badge);
+    }
+  }
+
+  function decorateCatalogTable(surface, project) {
+    const title = surface.querySelector('.catalog-title');
+    if (title && !title.querySelector(':scope > .project-signal-icon')) {
+      title.prepend(createIcon(project, 'is-table'));
+    }
+    const summary = title?.querySelector('small');
+    if (summary && !summary.dataset.signalCopy) {
+      const text = [project.subtitle, project.summary].filter(Boolean).join(' — ');
+      if (text) summary.textContent = text.slice(0, 120);
+      summary.dataset.signalCopy = 'true';
+    }
+    prependInlineIcon(surface.querySelector('td:nth-child(3)'), TYPE_ICONS[project.type] || '◆', 'project-type-inline-icon');
+    prependInlineIcon(surface.querySelector('.status'), STATUS_ICONS[project.status] || '·', 'project-status-inline-icon');
+  }
+
+  function decorateShowcase(surface, project) {
+    const heading = surface.querySelector('h2,h3,h4,h5,.portfolio-pick-title');
+    if (heading) prependInlineIcon(heading, projectIcon(project), 'project-title-inline-icon');
+    if (surface.querySelector(':scope > .project-verb-list')) return;
+    const actions = surface.querySelector(
+      '.portfolio-pick-actions,.random-three-actions,.floating-random-actions,.catalog-random-actions'
+    );
+    const verbs = verbList(project, 'is-showcase');
+    if (!verbs) return;
+    if (actions) actions.before(verbs);
+    else surface.appendChild(verbs);
+  }
+
+  function decorateSurface(surface, map) {
+    const projectId = projectIdFromSurface(surface);
+    const project = map.get(projectId);
+    if (!project) return;
+    surface.dataset.projectType = project.type || '';
+    surface.dataset.projectStatus = project.status || '';
+    if (surface.matches('.catalog-row')) decorateCatalogRow(surface, project);
+    else if (surface.matches('.catalog-card')) decorateCatalogCard(surface, project);
+    else if (surface.matches('tr[data-cat-item]')) decorateCatalogTable(surface, project);
+    else decorateShowcase(surface, project);
+  }
+
+  function decorateDialog(map) {
+    const dialog = document.querySelector('[data-project-dialog]');
+    const projectId = new URLSearchParams(location.search).get('project') || '';
+    const project = map.get(projectId);
+    if (!dialog?.open || !project) return;
+    const heading = dialog.querySelector('h2,h3,.detail-title');
+    if (heading) prependInlineIcon(heading, projectIcon(project), 'project-title-inline-icon is-detail');
+    if (!dialog.querySelector('.project-verb-list.is-detail')) {
+      const verbs = verbList(project, 'is-detail');
+      const status = dialog.querySelector('.detail-status');
+      if (verbs && status) status.insertAdjacentElement('afterend', verbs);
+      else if (verbs) heading?.insertAdjacentElement('afterend', verbs);
+    }
+  }
+
+  function renderAll() {
+    if (renderQueued) return;
+    renderQueued = true;
+    requestAnimationFrame(() => {
+      renderQueued = false;
+      const map = projectMap();
+      decorateQuickButtons();
+      document.querySelectorAll(SURFACE_SELECTOR).forEach((surface) => decorateSurface(surface, map));
+      decorateDialog(map);
+    });
+  }
+
+  const observer = new MutationObserver((records) => {
+    if (records.some((record) => record.addedNodes.length)) renderAll();
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener('click', (event) => {
+    if (event.target.closest(
+      '[data-view-button],[data-project-open],[data-wow-open],[data-wow-shuffle],'
+      + '[data-random-three-refresh],[data-floating-random-draw],[data-taxonomy-random]'
+    )) setTimeout(renderAll, 0);
+  });
+  window.addEventListener('popstate', renderAll);
+  document.addEventListener('DOMContentLoaded', renderAll);
+  renderAll();
+})();
