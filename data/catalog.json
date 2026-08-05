@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T16:32:38.200Z",
+  "generatedAt": "2026-08-05T17:01:31.909Z",
   "owner": "silovar-uk",
   "repositoryCount": 67,
   "hiddenIds": [
@@ -19,8 +19,7 @@
     "quickliks",
     "lineworks-scroll-copy",
     "x-auto-screenshot-scroll",
-    "todomanager",
-    "accountinglearn"
+    "todomanager"
   ],
   "repositories": [
     {
@@ -97,7 +96,7 @@
       "description": "",
       "repositoryUrl": "https://github.com/silovar-uk/worksportfolio",
       "liveUrl": "https://silovar-uk.github.io/worksportfolio/",
-      "language": "JavaScript",
+      "language": "HTML",
       "topics": [],
       "archived": false,
       "fork": false,
