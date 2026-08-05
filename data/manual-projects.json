@@ -1,1 +1,149 @@
-[{"id":"keygrid","title":"KeyGrid","subtitle":"Chromeをマウスなしで操作する拡張機能","summary":"Hint、固定キー式の仮想ブックマークバー、Magnetic Grid、Fine Gridを組み合わせ、Chrome上の操作をキーボードだけで完結させる拡張機能。","friction":"クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まっていた。","firstBuild":"画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。","currentAnswer":"Hint、Magnetic Grid、Fine Grid、固定キー式ブックマークを状況に応じて使い分けるv0.8.0。","type":"chrome-extension","verbs":["操作する","探す","移動する"],"status":"active","visibility":"local","featured":false,"createdAt":"2026-07-27","createdAtPrecision":"day","updatedAt":"2026-07-29","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript","Manifest V3"],"documentationState":"verified","map":{"group":"extension","x":1600,"y":398},"relatedProjects":[{"id":"quicklinks","relation":"ブラウザ操作のキーボード化"}],"updates":[],"aside":"クリック先を探すより、キーを押した方が速い。"},{"id":"lineworks-scroll-copy","title":"LINE WORKS Scroll & Copy","subtitle":"トーク履歴のさかのぼり・抽出拡張","summary":"LINE WORKSの長いトーク履歴をさかのぼり、複数形式で手元に保存するChrome拡張。","friction":"長いトークを手でスクロールし、あとから整理し直す作業が重かった。","firstBuild":"高速スクロール版から始め、途中停止後のコピーと構造化保存へ広げた。","currentAnswer":"スクロール、収集、形式変換を一つにまとめた道具。","type":"chrome-extension","verbs":["記録する","整理する"],"status":"active","visibility":"local","featured":false,"createdAt":"2026-05-01","createdAtPrecision":"day","updatedAt":"2026-05-01","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript"],"documentationState":"verified","map":{"group":"extension","x":1320,"y":398},"relatedProjects":[],"updates":[],"aside":"まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。"},{"id":"lineworks-logger","title":"LINE WORKS Logger","subtitle":"トーク・メールのローカル記録拡張","summary":"LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。","friction":"大量の連絡を画面上だけで追うと、あとから検索しにくかった。","firstBuild":"対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。","currentAnswer":"業務連絡を自分で扱える記録データへ変える入口。","type":"chrome-extension","verbs":["記録する","探す"],"status":"prototype","visibility":"local","featured":false,"createdAt":"2026-05","createdAtPrecision":"month","updatedAt":"2026-05","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript"],"documentationState":"verified","map":{"group":"extension","x":1460,"y":398},"relatedProjects":[],"updates":[],"aside":"連絡は流れる。ログは流したくない。"},{"id":"x-auto-screenshot-scroll","title":"X 自動スクリーンショット＆スクロール","subtitle":"タイムライン連続撮影拡張","summary":"Xを自動スクロールしながら連続撮影し、長いタイムラインをまとめて保存するChrome拡張。","friction":"一画面ずつスクロールして撮影する作業が終わらなかった。","firstBuild":"スクロールと撮影を交互に実行する拡張を作った。","currentAnswer":"データだけでなく、見た目ごとタイムラインを記録する道具。","type":"chrome-extension","verbs":["記録する","集める"],"status":"dormant","visibility":"local","featured":false,"createdAt":"2025-06-02","createdAtPrecision":"day","updatedAt":"2025-06-02","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript"],"documentationState":"verified","map":{"group":"extension","x":1180,"y":398},"relatedProjects":[],"updates":[],"aside":"スクロールを自動化したら、撮る枚数まで自動で増えた。"}]
+[
+  {
+    "id": "keygrid",
+    "title": "KeyGrid",
+    "subtitle": "Chromeをマウスなしで操作する拡張機能",
+    "summary": "リンク、ボタン、入力欄へHintを割り当て、固定キー式ブックマーク、Grid、全画面リンク一覧、サイト別補助を組み合わせてChrome操作をキーボードだけで進める拡張機能。",
+    "friction": "クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まり、要素が多い画面ほどHint同士も重なっていた。",
+    "firstBuild": "画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。",
+    "currentAnswer": "対象要素の重なり回避、入力要素の常時表示、全画面リンク一覧、折り畳み状態からの復帰、LINE WORKSのチャット選択まで扱うキーボード操作基盤。",
+    "type": "chrome-extension",
+    "verbs": [
+      "操作する",
+      "探す",
+      "移動する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": true,
+    "createdAt": "2026-07-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1600,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "quicklinks",
+        "relation": "ブラウザ操作のキーボード化"
+      }
+    ],
+    "updates": [],
+    "aside": "クリック先を探すより、キーを押した方が速い。"
+  },
+  {
+    "id": "lineworks-scroll-copy",
+    "title": "LINE WORKS Scroll & Copy",
+    "subtitle": "トーク履歴のさかのぼり・抽出拡張",
+    "summary": "LINE WORKSの長いトーク履歴をさかのぼり、複数形式で手元に保存するChrome拡張。",
+    "friction": "長いトークを手でスクロールし、あとから整理し直す作業が重かった。",
+    "firstBuild": "高速スクロール版から始め、途中停止後のコピーと構造化保存へ広げた。",
+    "currentAnswer": "スクロール、収集、形式変換を一つにまとめた道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-01",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-05-01",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1320,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。"
+  },
+  {
+    "id": "lineworks-logger",
+    "title": "LINE WORKS Logger",
+    "subtitle": "トーク・メールのローカル記録拡張",
+    "summary": "LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。",
+    "friction": "大量の連絡を画面上だけで追うと、あとから検索しにくかった。",
+    "firstBuild": "対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。",
+    "currentAnswer": "業務連絡を自分で扱える記録データへ変える入口。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "探す"
+    ],
+    "status": "prototype",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05",
+    "createdAtPrecision": "month",
+    "updatedAt": "2026-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1460,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "連絡は流れる。ログは流したくない。"
+  },
+  {
+    "id": "x-auto-screenshot-scroll",
+    "title": "X 自動スクリーンショット＆スクロール",
+    "subtitle": "タイムライン連続撮影拡張",
+    "summary": "Xを自動スクロールしながら連続撮影し、長いタイムラインをまとめて保存するChrome拡張。",
+    "friction": "一画面ずつスクロールして撮影する作業が終わらなかった。",
+    "firstBuild": "スクロールと撮影を交互に実行する拡張を作った。",
+    "currentAnswer": "データだけでなく、見た目ごとタイムラインを記録する道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "集める"
+    ],
+    "status": "dormant",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2025-06-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2025-06-02",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1180,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "スクロールを自動化したら、撮る枚数まで自動で増えた。"
+  }
+]
