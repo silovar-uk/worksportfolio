@@ -20,20 +20,16 @@
     "quickliks",
     "lineworks-scroll-copy",
     "x-auto-screenshot-scroll",
-    "todomanager",
-    "accountinglearn"
+    "todomanager"
   ],
   "overrides": {
     "worksportfolio": {
       "title": "つくって考えた",
       "subtitle": "制作物を探し、使い直すための作品棚",
       "summary": "GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。",
+      "icon": "🗃️",
       "type": "web-app",
-      "verbs": [
-        "探す",
-        "整理する",
-        "振り返る"
-      ],
+      "verbs": ["探す", "整理する", "振り返る"],
       "status": "active",
       "documentationState": "verified",
       "liveUrl": "https://silovar-uk.github.io/worksportfolio/"
@@ -45,21 +41,13 @@
       "friction": "作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。",
       "firstBuild": "作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。",
       "currentAnswer": "再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。",
+      "icon": "📚",
       "type": "content-page",
-      "verbs": [
-        "記録する",
-        "探す",
-        "振り返る"
-      ],
+      "verbs": ["記録する", "探す", "振り返る"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "TypeScript",
-        "Cloudflare Workers",
-        "Cloudflare D1",
-        "Cloudflare Access"
-      ]
+      "technologies": ["TypeScript", "Cloudflare Workers", "Cloudflare D1", "Cloudflare Access"]
     },
     "designmd": {
       "title": "designmd",
@@ -68,21 +56,13 @@
       "friction": "生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。",
       "firstBuild": "文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。",
       "currentAnswer": "最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。",
+      "icon": "✦",
       "type": "design-system",
-      "verbs": [
-        "考える",
-        "組み立てる",
-        "確かめる"
-      ],
+      "verbs": ["考える", "組み立てる", "確かめる"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Markdown"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "Markdown"]
     },
     "marisast6": {
       "title": "MODERN MARISA LAB",
@@ -91,21 +71,13 @@
       "friction": "強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。",
       "firstBuild": "技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。",
       "currentAnswer": "技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。",
+      "icon": "🥊",
       "type": "learning-tool",
-      "verbs": [
-        "学ぶ",
-        "判断する",
-        "練習する"
-      ],
+      "verbs": ["学ぶ", "判断する", "練習する"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "GitHub Actions"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "GitHub Actions"]
     },
     "diff": {
       "title": "Text Review Studio",
@@ -114,21 +86,13 @@
       "friction": "原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。",
       "firstBuild": "二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。",
       "currentAnswer": "右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。",
+      "icon": "⇄",
       "type": "web-app",
-      "verbs": [
-        "比べる",
-        "直す",
-        "出力する"
-      ],
+      "verbs": ["比べる", "直す", "出力する"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "SheetJS"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "SheetJS"]
     },
     "myspines": {
       "title": "myspines",
@@ -137,21 +101,13 @@
       "friction": "長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。",
       "firstBuild": "アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。",
       "currentAnswer": "本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。",
+      "icon": "✍️",
       "type": "web-app",
-      "verbs": [
-        "書く",
-        "組み立てる",
-        "整理する"
-      ],
+      "verbs": ["書く", "組み立てる", "整理する"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "IndexedDB"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "IndexedDB"]
     },
     "whatsthiswiki": {
       "title": "What's This Wiki?",
@@ -160,21 +116,13 @@
       "friction": "Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。",
       "firstBuild": "確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。",
       "currentAnswer": "Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。",
+      "icon": "🧩",
       "type": "learning-tool",
-      "verbs": [
-        "推理する",
-        "遊ぶ",
-        "作る"
-      ],
+      "verbs": ["推理する", "遊ぶ", "作る"],
       "status": "active",
       "featured": true,
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Wikipedia API"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "Wikipedia API"]
     },
     "imagetuning": {
       "title": "Image Tuning",
@@ -183,19 +131,12 @@
       "friction": "画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。",
       "firstBuild": "画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。",
       "currentAnswer": "PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。",
+      "icon": "🖼️",
       "type": "web-app",
-      "verbs": [
-        "確認する",
-        "指示する",
-        "共有する"
-      ],
+      "verbs": ["確認する", "指示する", "共有する"],
       "status": "development",
       "documentationState": "verified",
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Vite"
-      ]
+      "technologies": ["React", "TypeScript", "Vite"]
     },
     "cssanimationlists": {
       "title": "CSS MOTION",
@@ -204,20 +145,12 @@
       "friction": "動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。",
       "firstBuild": "よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。",
       "currentAnswer": "固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。",
+      "icon": "✨",
       "type": "design-system",
-      "verbs": [
-        "探す",
-        "試す",
-        "使う"
-      ],
+      "verbs": ["探す", "試す", "使う"],
       "status": "active",
       "documentationState": "verified",
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Shadow DOM"
-      ]
+      "technologies": ["React", "TypeScript", "Vite", "Shadow DOM"]
     },
     "ennnichimock": {
       "title": "炎日 2026 特設ページ モック",
@@ -226,20 +159,126 @@
       "friction": "企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。",
       "firstBuild": "秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。",
       "currentAnswer": "5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。",
+      "icon": "🏮",
       "type": "design-system",
-      "verbs": [
-        "比べる",
-        "設計する",
-        "伝える"
-      ],
+      "verbs": ["比べる", "設計する", "伝える"],
       "status": "active",
       "documentationState": "verified",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "JSON"
-      ]
+      "technologies": ["HTML", "CSS", "JavaScript", "JSON"]
+    },
+    "accountinglearn": {
+      "title": "Accounting Quest｜実践簿記",
+      "subtitle": "短い経営ケースで簿記と経営分析を学ぶ",
+      "summary": "黒字なのに現金がない、といった経営の出来事を読み、計算・仕訳・異常値発見・提案まで手を動かして学ぶスマホ優先の簿記学習アプリ。",
+      "friction": "勘定科目や仕訳を単独で覚えても、実際の経営で数字が何を意味し、次に何を判断すべきかへつながりにくかった。",
+      "firstBuild": "CASE 1「黒字なのに、口座にお金がない」を、8ページの物語と設問として実装した。",
+      "currentAnswer": "教材をJSONで追加でき、選択・計算・仕訳・提案へ即時フィードバックし、誤答復習と進捗書き出しまで行えるケース学習基盤。",
+      "icon": "🧾",
+      "type": "learning-tool",
+      "verbs": ["学ぶ", "解く", "考える"],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": ["HTML", "CSS", "JavaScript", "JSON"]
+    },
+    "mydailylog": {
+      "title": "日々の棚",
+      "subtitle": "今日の断片を、あとから使える記録へ育てる",
+      "summary": "形式を決めずに残した出来事を、食事・支出・運動・ゲームなどへ整理し、カレンダー・検索・月別集計・イベント単位で読み返すローカル完結型PWA。",
+      "friction": "その日に起きた細かなことは残したい一方、入力項目を先に決めると面倒になり、自由記述だけでは後から探しにくかった。",
+      "firstBuild": "日付ごとの自由なログと、気分・タイトル・持ち越しメモを一つの画面へ置いた。",
+      "currentAnswer": "自由入力、分類提案、詳細編集、前後3日をつなぐイベントビュー、全文検索、集計、JSONバックアップ、CSV出力、オフライン利用を備えた日常ログ。",
+      "icon": "📅",
+      "type": "web-app",
+      "verbs": ["記録する", "見つける", "振り返る"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["TypeScript", "PWA", "IndexedDB", "Vite"]
+    },
+    "mydictionary": {
+      "title": "私辞典",
+      "subtitle": "出会った言葉を拾い、育て、忘れたころに開く",
+      "summary": "気になった言葉・文章・概念を5秒で登録し、意味・出典・場面・使い方を後から追記しながら、自分だけの辞書として育てるローカルファーストアプリ。",
+      "friction": "言葉との出会いは一瞬なのに、最初から意味や出典をきれいに埋めようとすると記録できず、保存しても再び開く機会が少なかった。",
+      "firstBuild": "見出し語だけをすぐ登録し、詳細は後から足せる小さな辞書を作った。",
+      "currentAnswer": "全文検索、未閲覧・久しぶり・育て途中・ランダムの再会導線、JSONバックアップ、CSV・TXT入出力、PWAオフライン利用まで備えた私的辞書。",
+      "icon": "🔤",
+      "type": "learning-tool",
+      "verbs": ["拾う", "育てる", "思い出す"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["React", "TypeScript", "Dexie", "MiniSearch", "PWA"]
+    },
+    "pdfclipper": {
+      "title": "PDF Clipper",
+      "subtitle": "画像やPDFの必要な範囲だけを素早く切り抜く",
+      "summary": "画像・PDFをブラウザ内で開き、範囲指定、縦横比、整列、回転、余白削除を調整して、PNG・JPG・クリップボード・ZIPへ書き出す軽量ツール。",
+      "friction": "資料の一部分だけを使いたい時、PDFを画像化し、別ソフトで切り抜き、複数箇所を一件ずつ保存する工程が長かった。",
+      "firstBuild": "画像を読み込み、ドラッグした範囲をPNGとして保存する一画面ツールから始めた。",
+      "currentAnswer": "PDFページ一覧、150／300dpi描画、タッチ・ペン操作、数値指定、余白削除、複数候補、ZIP一括保存までブラウザ内で完結するクリッパー。",
+      "icon": "✂️",
+      "type": "utility",
+      "verbs": ["切り抜く", "整える", "書き出す"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["HTML", "CSS", "JavaScript", "Canvas API", "PDF.js", "JSZip"]
+    },
+    "flowmap": {
+      "title": "Flowmap",
+      "subtitle": "文章で工程を作り、図で前後関係を確かめる",
+      "summary": "左側のアウトラインへ工程を書くだけで通常の矢印を自動生成し、分岐・合流・参照だけをGUIで補う、業務フロー向けホワイトボード。",
+      "friction": "フロー図は見やすい一方、最初からキャンバスへ図形を置くと入力が遅く、工程名や順序の修正にも手間がかかった。",
+      "firstBuild": "カードと矢印をキャンバスへ置き、業務工程を自由に結ぶボードから始めた。",
+      "currentAnswer": "アウトライン編集、自動・手動接続の分離、図への整列、囲み・折りたたみ、複数ボード、JSON・YAML入出力、PDF出力を備えた工程設計ツール。",
+      "icon": "🔀",
+      "type": "web-app",
+      "verbs": ["書く", "つなぐ", "確かめる"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["HTML", "CSS", "JavaScript", "IndexedDB"]
+    },
+    "prompts": {
+      "title": "Prompts",
+      "subtitle": "人が選び、AIもURLから読める公開プロンプト・ライブラリ",
+      "summary": "用途を人向けの説明から選び、同じ内容を固定URL・Markdown・JSONでAIへ渡せる、文章・会議・企画・調査・広報・画像・学習のプロンプト集。",
+      "friction": "プロンプト本文だけを並べると、何に向くか、何を用意するか、何が返るかが人には分かりにくく、AIへ渡す版との不一致も起きやすかった。",
+      "firstBuild": "入力フォームから実行用テキストを組み立てるプロンプトランチャーとして始めた。",
+      "currentAnswer": "Schema v2の一つのデータから49件のHTML・Markdown・JSON・固定版を生成し、人向け説明、AI向け仕様、検索、検証、旧ランチャーを共存させた公開ライブラリ。",
+      "icon": "💬",
+      "type": "design-system",
+      "verbs": ["探す", "選ぶ", "実行する"],
+      "status": "active",
+      "featured": true,
+      "documentationState": "verified",
+      "technologies": ["React", "TypeScript", "Vite", "Markdown", "JSON", "GitHub Actions"]
+    },
+    "tabshelter": {
+      "title": "Tab Shelter｜タブ退避箱",
+      "subtitle": "Chromeを閉じる前に、全ウィンドウを一つの退避セットへ",
+      "summary": "開いている通常Chromeウィンドウとタブをまとめて保存し、次回はタイトルとURLを見ながら必要なものだけ新しいウィンドウへ復元する拡張機能。",
+      "friction": "作業中のタブを失いたくなくてChromeを閉じられず、次回すべて復元すると不要なタブまで戻ってきた。",
+      "firstBuild": "開いているタブのURLを保存し、後からまとめて開く小さな退避機能を作った。",
+      "currentAnswer": "全通常ウィンドウの保存・終了、タブ単位／ウィンドウ単位の選択復元、重複抑制、名称変更、JSONバックアップを備えたv1.0.0。",
+      "icon": "🗂️",
+      "type": "chrome-extension",
+      "verbs": ["退避する", "選ぶ", "復元する"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["Chrome Extension", "JavaScript", "Manifest V3"]
+    },
+    "kakidas": {
+      "title": "kakidas",
+      "subtitle": "単語・文・段落を置き、気持ちとタグで育てるメモ",
+      "summary": "頭にあるものを単語・文・段落の粒度で置き、タグ、気持ち、リンク、満足度、完了状態を後から足しながら整理する、ローカル優先のメモアプリ。",
+      "friction": "考えを最初から文章やタスクへ整えようとすると書き出せず、短い断片と長い段落を同じ方法で扱うのも難しかった。",
+      "firstBuild": "思いついた単語・文・段落を、それぞれの欄へすぐ置けるメモとして始めた。",
+      "currentAnswer": "任意タイトル、タグ別表示、気持ち・リンク、満足度、完了、派生メモ、バックアップ、IndexedDB、任意のSupabase同期まで備えた断片整理ツール。",
+      "icon": "📝",
+      "type": "web-app",
+      "verbs": ["書き出す", "整理する", "育てる"],
+      "status": "active",
+      "documentationState": "verified",
+      "technologies": ["React", "TypeScript", "Vite", "IndexedDB", "Supabase"]
     }
   },
   "repositoryProjectIds": {
