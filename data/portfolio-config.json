@@ -221,7 +221,7 @@
       "verbs": ["切り抜く", "整える", "書き出す"],
       "status": "active",
       "documentationState": "verified",
-      "technologies": ["HTML", "CSS", "JavaScript", "Canvas API", "PDF.js", "JSZip"]
+      "technologies": ["HTML", "CSS", "JavaScript", "Canvas API", "PDF.js", "ZIP出力"]
     },
     "flowmap": {
       "title": "Flowmap",
