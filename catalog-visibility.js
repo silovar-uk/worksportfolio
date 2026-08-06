@@ -193,3 +193,5 @@
     scheduleDecorateUrls();
   }, 160));
 })();
+
+// redeploy trigger: 2026-08-07 08:43 JST
