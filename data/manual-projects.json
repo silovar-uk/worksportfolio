@@ -145,5 +145,70 @@
     "relatedProjects": [],
     "updates": [],
     "aside": "スクロールを自動化したら、撮る枚数まで自動で増えた。"
+  },
+  {
+    "id": "payment-case-manager",
+    "title": "支払案件管理アプリ",
+    "subtitle": "支払案件の進捗とfreee申請チェックをまとめるChrome拡張",
+    "summary": "支払月・支払先・案件名を登録し、発注・納品・請求書・支払の進捗を月別に管理。freeeの支払申請画面では入力内容を自動チェックし、経理関連のQuick Linksへすぐ移動できるChromeサイドパネル拡張。",
+    "friction": "支払案件の進捗、証憑、申請画面、関連シートやトークルームが複数の場所に分かれ、確認漏れと画面移動の手間が生まれていた。",
+    "firstBuild": "支払案件を月別に登録し、発注から支払までの工程をチェックできるサイドパネルとして作った。",
+    "currentAnswer": "案件の追加・編集・並べ替え、完了表示、Undo・Redo、JSON入出力、関連リンク、freee支払申請の入力チェックを一つにまとめた業務用Chrome拡張。",
+    "type": "learning-tool",
+    "verbs": [
+      "管理する",
+      "確認する",
+      "申請する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-08",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-06",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3",
+      "freee"
+    ],
+    "documentationState": "verified",
+    "extension": {
+      "version": "1.4",
+      "extensionId": "",
+      "serviceWorker": "active"
+    },
+    "map": {
+      "group": "extension",
+      "x": 1040,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "accountinglearn",
+        "relation": "会計・経理を扱う"
+      },
+      {
+        "id": "quicklinks",
+        "relation": "業務リンクをすぐ開く"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-06",
+        "version": "1.4",
+        "change": "経理関連のQuick Linksを追加",
+        "reason": "支払シート、証憑、トークルーム、適格証明書の案内へすぐ移動できるようにするため。"
+      },
+      {
+        "date": "2026-05-08",
+        "version": "1.2",
+        "change": "freee支払申請の入力チェックを追加",
+        "reason": "支払先、メモタグ、勘定科目、支払期限などの確認漏れを減らすため。"
+      }
+    ],
+    "aside": "申請を始める前に、確認漏れを減らす場所を先に作った。"
   }
 ]
