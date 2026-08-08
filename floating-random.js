@@ -18,6 +18,7 @@
   let poolSize = 0;
   let fromVisible = false;
   let expanded = false;
+  let bound = false;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
   const projectMap = () => new Map(projects().map((project) => [project.id, project]));
@@ -54,6 +55,7 @@
   }
 
   function openProject(id) {
+    if (!id) return;
     const params = new URLSearchParams(location.search);
     params.set('project', id);
     history.pushState({}, '', `${location.pathname}?${params}${location.hash}`);
@@ -92,65 +94,74 @@
       </div>`;
   }
 
-  function render() {
+  function ensureHost() {
     let host = document.querySelector('[data-floating-random]');
-    if (!host) {
+    if (!host && document.body) {
       host = document.createElement('aside');
       host.className = 'floating-random';
       host.dataset.floatingRandom = '';
       host.setAttribute('aria-live', 'polite');
       document.body.appendChild(host);
     }
+    return host;
+  }
+
+  function render() {
+    const host = ensureHost();
+    if (!host) return;
     const project = projects().find((item) => item.id === currentId);
     host.classList.toggle('is-expanded', Boolean(expanded && project));
     host.innerHTML = expanded && project ? resultHtml(project) : compactHtml();
   }
 
+  function bindEvents() {
+    if (bound) return;
+    bound = true;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target) return;
+
+      const open = target.closest('[data-floating-random-open]');
+      if (open) {
+        event.preventDefault();
+        openProject(open.dataset.floatingRandomOpen);
+        return;
+      }
+
+      if (target.closest('[data-floating-random-draw]')) {
+        event.preventDefault();
+        chooseRandom();
+        return;
+      }
+
+      if (target.closest('[data-floating-random-minimize]')) {
+        event.preventDefault();
+        expanded = false;
+        render();
+      }
+    }, true);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && expanded) {
+        expanded = false;
+        render();
+      }
+    });
+  }
+
   function start() {
+    bindEvents();
     const wait = () => {
       if (!window.BUILD_DIARY_DATA || !document.body) {
         setTimeout(wait, 80);
         return;
       }
       render();
-
-      document.addEventListener('click', (event) => {
-        const legacyTrigger = event.target.closest('[data-taxonomy-random]');
-        if (legacyTrigger && !legacyTrigger.closest('[data-floating-random]')) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          chooseRandom();
-          return;
-        }
-
-        const open = event.target.closest('[data-floating-random-open]');
-        if (open) {
-          event.preventDefault();
-          openProject(open.dataset.floatingRandomOpen);
-          return;
-        }
-        if (event.target.closest('[data-floating-random-draw]')) {
-          event.preventDefault();
-          chooseRandom();
-          return;
-        }
-        if (event.target.closest('[data-floating-random-minimize]')) {
-          event.preventDefault();
-          expanded = false;
-          render();
-        }
-      }, true);
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && expanded) {
-          expanded = false;
-          render();
-        }
-      });
     };
     wait();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
   else start();
 })();
