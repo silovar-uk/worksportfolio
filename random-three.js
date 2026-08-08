@@ -40,6 +40,7 @@
   let selectedIds = [];
   let keptId = loadKeptId();
   let section = null;
+  let bound = false;
   let observer = null;
 
   const projects = () => window.BUILD_DIARY_DATA?.projects || [];
@@ -199,8 +200,8 @@
     let list = repick ? pickThree() : currentProjects();
     if (!list.length || list.length !== Math.min(3, projects().length)) list = pickThree();
     const target = section.querySelector('[data-random-three-grid]');
-    const html = list.map(card).join('');
-    if (target && target.innerHTML !== html) target.innerHTML = html;
+    if (!target) return;
+    target.innerHTML = list.map(card).join('');
     updateRefreshButton();
   }
 
@@ -212,6 +213,7 @@
   }
 
   function openProject(id) {
+    if (!id) return;
     const params = new URLSearchParams(location.search);
     params.set('project', id);
     history.pushState({}, '', `${location.pathname}?${params}${location.hash}`);
@@ -221,14 +223,12 @@
   function syncVisibility() {
     if (!section) return;
     const active = document.querySelector('[data-view-button].is-active')?.getAttribute('data-view-button');
-    section.hidden = active && active !== 'shelf';
+    section.hidden = Boolean(active && active !== 'shelf');
   }
 
-  function create() {
+  function ensureSection() {
     const toolbar = document.querySelector('[data-catalog-toolbar]');
     if (!toolbar || !window.BUILD_DIARY_DATA) return false;
-
-    document.querySelectorAll('[data-portfolio-wow]').forEach((element) => element.remove());
 
     section = document.querySelector('[data-random-three]');
     if (!section) {
@@ -241,42 +241,71 @@
       </header>
       <div class="random-three-grid" data-random-three-grid></div>`;
       toolbar.parentNode.insertBefore(section, toolbar);
-      section.addEventListener('click', (event) => {
-        if (event.target.closest('[data-random-three-refresh]')) {
-          render(true);
-          return;
-        }
-        const keep = event.target.closest('[data-random-three-keep]');
-        if (keep) {
-          toggleKeep(keep.dataset.randomThreeKeep);
-          return;
-        }
-        const open = event.target.closest('[data-random-three-open]');
-        if (open) openProject(open.dataset.randomThreeOpen);
-      });
+      render(true);
+    } else if (!section.querySelector('[data-random-three-grid]')?.children.length) {
       render(true);
     }
+
     syncVisibility();
     return true;
   }
 
+  function bindEvents() {
+    if (bound) return;
+    bound = true;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target) return;
+
+      if (target.closest('[data-random-three-refresh]')) {
+        event.preventDefault();
+        ensureSection();
+        render(true);
+        return;
+      }
+
+      const keep = target.closest('[data-random-three-keep]');
+      if (keep) {
+        event.preventDefault();
+        ensureSection();
+        toggleKeep(keep.dataset.randomThreeKeep);
+        return;
+      }
+
+      const open = target.closest('[data-random-three-open]');
+      if (open) {
+        event.preventDefault();
+        openProject(open.dataset.randomThreeOpen);
+      }
+    }, true);
+
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (target?.closest('[data-view-button]')) setTimeout(() => {
+        ensureSection();
+        syncVisibility();
+      }, 0);
+    });
+  }
+
   function start() {
+    bindEvents();
     const wait = () => {
-      if (!create()) {
+      if (!ensureSection()) {
         setTimeout(wait, 80);
         return;
       }
-      document.querySelectorAll('[data-view-button]').forEach((button) => {
-        button.addEventListener('click', () => setTimeout(syncVisibility, 0));
-      });
-      observer = new MutationObserver(() => {
-        document.querySelectorAll('[data-portfolio-wow]').forEach((element) => element.remove());
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
+      if (!observer) {
+        observer = new MutationObserver(() => {
+          if (!document.querySelector('[data-random-three]')) setTimeout(ensureSection, 0);
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
     };
     wait();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
   else start();
 })();
