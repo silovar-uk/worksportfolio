@@ -1,0 +1,35 @@
+[
+  {
+    "id": "dailyenglishchunks",
+    "title": "Daily English Chunks",
+    "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
+    "summary": "短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。",
+    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
+    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
+    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
+    "type": "learning-tool",
+    "verbs": ["読む", "区切る", "声に出す"],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-07",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
+    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
+    "technologies": ["HTML", "CSS", "JavaScript", "localStorage"],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {"id": "hangul", "relation": "短い反復練習とローカル進捗保存"}
+    ],
+    "updates": [
+      {
+        "date": "2026-08-10",
+        "version": "0.1",
+        "change": "チャンクリーディングの毎日練習サイトをポートフォリオへ追加",
+        "reason": "英語を一語ずつ訳さず、意味のまとまりで前から受け取る練習を毎日の短いルーティンにするため。"
+      }
+    ],
+    "aside": "訳す前に、場面を置く。"
+  }
+]

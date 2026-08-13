@@ -1,0 +1,393 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-10",
+  "stage": "candidate-mining",
+  "projectCount": 53,
+  "candidateCount": 173,
+  "candidateFiles": [
+    "data/pattern-candidates-01.json",
+    "data/pattern-candidates-02.json",
+    "data/pattern-candidates-03.json"
+  ],
+  "taxonomyFile": "data/pattern-taxonomy.json",
+  "coverage": [
+    {
+      "projectId": "hangul",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "likewhat",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "mydailylog",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "myessays",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "quicklinks",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "vocabularies",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "build-diary",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "accountinglearn",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "contentslibrary",
+      "candidateCount": 9,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "marisast6",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "designmd",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "diff",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "kakidas",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "ennnichimock",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "cssanimationlists",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "whatsthiswiki",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "imagetuning",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "flowmap",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "mydictionary",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "prompts",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "st6training",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "pdfclipper",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "countupapp",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "fourier",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "myspines",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "zeldasbsp",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "consultingstudy",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "gantt",
+      "candidateCount": 5,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "commonpoint",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "newsquiz",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "sukan",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "tabshelter",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "countvoice",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "converter",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "mymindmap",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "pdflinks",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "ooh",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "rockvsbra",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "akasma",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "resultcalc",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "patternlanguage",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "footballisfun",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "englisharcade",
+      "candidateCount": 3,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "mmmpocket",
+      "candidateCount": 4,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "manontec",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "simplememotool",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "100yearvision",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "shogibanmen",
+      "candidateCount": 2,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "timeconverter",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "memo",
+      "candidateCount": 1,
+      "verification": [
+        "verified"
+      ]
+    },
+    {
+      "projectId": "keygrid",
+      "candidateCount": 3,
+      "verification": [
+        "documented"
+      ]
+    },
+    {
+      "projectId": "lineworks-logger",
+      "candidateCount": 2,
+      "verification": [
+        "documented"
+      ]
+    },
+    {
+      "projectId": "payment-case-manager",
+      "candidateCount": 3,
+      "verification": [
+        "documented"
+      ]
+    }
+  ],
+  "nextStep": [
+    "mergeHintと意味の近さで重複候補を統合する",
+    "正式Patternにタイトル・副題・詳細・向いている場面・注意点・関連リンクを付与する",
+    "documented候補を実装確認してverifiedへ上げる",
+    "data/patterns.jsonを生成する",
+    "ポートフォリオへ独立した「工夫から探す」ビューを実装する"
+  ]
+}

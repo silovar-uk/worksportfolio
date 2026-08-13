@@ -1,0 +1,582 @@
+{
+  "version": 1,
+  "principle": "技術名ではなく、同じ問題に対する同じ設計判断かどうかで統合する。",
+  "groups": [
+    {
+      "id": "progressive-enrichment",
+      "members": [
+        "mydailylog--capture-first",
+        "quicklinks--classify-later",
+        "mydictionary--five-second-capture"
+      ],
+      "title": "まず残す。整えるのはあと",
+      "subtitle": "入力時の摩擦を減らし、分類や詳細化を後段へ送る",
+      "officialName": "Progressive Enrichment Capture",
+      "summary": "最初から分類・説明・属性まで埋めさせず、最低限の情報だけで保存できるようにする。情報の整理は、記憶が消える前の捕捉より後に回す。",
+      "problem": "登録時に必須項目が多いほど、思いつきやURL、言葉などの軽い情報は保存前に脱落する。",
+      "solution": "最小入力でいったん確定し、分類・タグ・意味・備考などは後から足せる二段階以上の記録フローにする。",
+      "useWhen": [
+        "メモ・日誌・辞書・ブックマークなど、入力頻度が高い",
+        "分類をその場で決めにくい",
+        "まず取りこぼさないことが価値になる"
+      ],
+      "cautions": [
+        "後回し項目が永遠に未整理にならないよう、整理キューや検索を用意する",
+        "最小入力でも重複判定に必要な識別子は確保する"
+      ],
+      "transferIdeas": [
+        "問い合わせメモ",
+        "アイデア収集",
+        "イベント運用ログ",
+        "素材・参考URL収集"
+      ]
+    },
+    {
+      "id": "local-first-portable-backup",
+      "members": [
+        "mydailylog--idb-backup",
+        "flowmap--idb-autosave",
+        "mydictionary--full-backup"
+      ],
+      "title": "端末に置く。でも逃げ道は作る",
+      "subtitle": "ローカル保存の軽さと、持ち出せる完全バックアップを両立する",
+      "officialName": "Local-First Storage with Portable Backup",
+      "summary": "日常利用はIndexedDBなど端末内保存で完結させつつ、ブラウザデータ削除や端末移行に備えて完全なJSON等を書き出せるようにする。",
+      "problem": "ローカル保存は速くて簡単だが、ブラウザデータ削除や端末故障でまとめて失われる。",
+      "solution": "通常操作は自動ローカル保存に任せ、節目で完全バックアップを書き出し・復元できる経路を独立して持つ。",
+      "useWhen": [
+        "個人利用中心でアカウント機能を持たせたくない",
+        "入力データを外部送信したくない",
+        "長期利用するローカルツール"
+      ],
+      "cautions": [
+        "バックアップがあること自体では安全にならない。復元テストも必要",
+        "保存先が同一端末だけだと故障対策にならない"
+      ],
+      "transferIdeas": [
+        "個人CRM",
+        "執筆ツール",
+        "案件管理",
+        "学習ログ"
+      ]
+    },
+    {
+      "id": "progressive-unlock",
+      "members": [
+        "hangul--staged-unlock",
+        "accountinglearn--conditional-unlock"
+      ],
+      "title": "次は、理解してから開く",
+      "subtitle": "学習順序を一覧ではなく通過条件で設計する",
+      "officialName": "Conditional Progressive Unlocking",
+      "summary": "全コンテンツを最初から同列に見せず、理解・演習などの条件を通過したら次を開ける。",
+      "problem": "教材が多いほど、初心者は順番を選ぶこと自体に認知資源を使い、必要な前提を飛ばしやすい。",
+      "solution": "依存関係のある学習単位にGateを置き、前段の達成状態から次の利用可能範囲を決める。",
+      "useWhen": [
+        "前提知識の順序が重要",
+        "段階的な技能習得",
+        "全体量を見せると圧迫感が強い"
+      ],
+      "cautions": [
+        "既知の利用者まで強制的に足止めしない",
+        "解除条件は学習目的と直接つながるものにする"
+      ],
+      "transferIdeas": [
+        "研修教材",
+        "オンボーディング",
+        "資格学習",
+        "操作チュートリアル"
+      ]
+    },
+    {
+      "id": "single-source-truth",
+      "members": [
+        "designmd--canonical-doc",
+        "diff--single-comparison-model",
+        "ennnichimock--event-json",
+        "cssanimationlists--same-source-preview",
+        "prompts--one-schema-many-surfaces"
+      ],
+      "title": "正本は一つだけ",
+      "subtitle": "画面・出力・仕様・プレビューを同じデータから作る",
+      "officialName": "Single Source of Truth",
+      "summary": "同じ内容を複数箇所で別々に管理せず、一つの正本から画面、Excel、HTML、Markdown、プレビューなどを派生させる。",
+      "problem": "表示先ごとに同じ情報や計算を持つと、修正漏れや結果の食い違いが必ず生まれる。",
+      "solution": "意味上の正本を一つ決め、他の表現は再計算・再入力せずそこから生成する。",
+      "useWhen": [
+        "同じデータを複数形式へ出力する",
+        "プレビューと実コードを一致させたい",
+        "仕様書と実装の不整合を減らしたい"
+      ],
+      "cautions": [
+        "正本の責務を広げすぎて巨大データモデルにしない",
+        "派生側で独自ロジックを足すと正本化が崩れる"
+      ],
+      "transferIdeas": [
+        "イベント情報ページ",
+        "レポートとExcel",
+        "CMS",
+        "デザインシステム",
+        "プロンプトライブラリ"
+      ]
+    },
+    {
+      "id": "responsive-side-to-sheet",
+      "members": [
+        "contentslibrary--responsive-edit-surface",
+        "pdfclipper--responsive-panels",
+        "myspines--responsive-memo"
+      ],
+      "title": "横の道具箱を、スマホでは下から出す",
+      "subtitle": "同じ機能でも画面幅に合わせて編集面の形を変える",
+      "officialName": "Responsive Side Panel to Bottom Sheet",
+      "summary": "PCでは本文やキャンバスを残したまま横に置ける補助パネルを、狭い画面ではオーバーレイやBottom Sheetへ変形する。",
+      "problem": "PCのサイドパネルをそのままスマホへ縮めると、主作業領域も補助領域も狭くなる。",
+      "solution": "機能は維持しつつ、常駐・オーバーレイ・Bottom Sheetをブレークポイントで切り替える。",
+      "useWhen": [
+        "本文＋設定・詳細の二領域UI",
+        "画像・PDF編集",
+        "一覧＋詳細編集"
+      ],
+      "cautions": [
+        "端末によって機能の場所が完全に別物にならないよう名称と状態を揃える",
+        "Bottom Sheet内の長文・キーボード表示時の高さを検証する"
+      ],
+      "transferIdeas": [
+        "案件一覧",
+        "CMS編集",
+        "画像校正",
+        "ダッシュボード"
+      ]
+    },
+    {
+      "id": "stable-identifiers",
+      "members": [
+        "accountinglearn--stable-record-id",
+        "cssanimationlists--stable-ref-id"
+      ],
+      "title": "一度公開したIDは使い回さない",
+      "subtitle": "履歴・リンク・引用を壊さない識別子運用",
+      "officialName": "Stable Persistent Identifiers",
+      "summary": "表示順や名称が変わっても、永続参照に使うIDは変更・再利用しない。削除した番号も必要なら欠番として残す。",
+      "problem": "名称や並び順を識別子にすると、編集・削除・追加のたびに履歴や外部リンクが壊れる。",
+      "solution": "人向け表示とは独立した安定IDを付与し、公開後は原則不変とする。",
+      "useWhen": [
+        "共有URLがある",
+        "学習履歴やお気に入りが紐づく",
+        "外部からIDで引用される"
+      ],
+      "cautions": [
+        "IDへ意味を詰めすぎない",
+        "削除済みIDを新規データへ再割当しない"
+      ],
+      "transferIdeas": [
+        "コンテンツ管理",
+        "FAQ",
+        "パターン集",
+        "教材問題バンク"
+      ]
+    },
+    {
+      "id": "derived-counts",
+      "members": [
+        "build-diary--audited-counts",
+        "marisast6--dynamic-counts"
+      ],
+      "title": "件数は書かず、数える",
+      "subtitle": "変動する数字をデータから導出して表示する",
+      "officialName": "Derived Metrics over Hard-Coded Counts",
+      "summary": "『全48件』『作品58本』のような変動値を文章やUIへ固定せず、監査済みデータから都度算出する。",
+      "problem": "固定件数はデータ追加後に更新を忘れやすく、サイト内で数字が食い違う。",
+      "solution": "件数・内訳・集計値を正本データの派生値として計算し、同じ計算結果を各表示へ渡す。",
+      "useWhen": [
+        "項目が継続追加される一覧",
+        "種類別件数を複数箇所で表示する",
+        "READMEと画面の数字がずれやすい"
+      ],
+      "cautions": [
+        "非表示・退役など集計対象の定義を先に固定する",
+        "異なる画面で別々の集計式を持たない"
+      ],
+      "transferIdeas": [
+        "作品集",
+        "商品一覧",
+        "データカタログ",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "serendipitous-rediscovery",
+      "members": [
+        "build-diary--rediscovery",
+        "mydictionary--rediscovery-views"
+      ],
+      "title": "探していないものも、たまに戻す",
+      "subtitle": "検索だけでは再会できない情報を意図的に再浮上させる",
+      "officialName": "Serendipitous Resurfacing",
+      "summary": "検索語を思い出せなくても、ランダム・久しぶり・未閲覧などの条件で過去の情報を再提示する。",
+      "problem": "蓄積型ツールは、存在を忘れた項目ほど検索対象にすらならず埋没する。",
+      "solution": "目的検索とは別に、時間・未閲覧・ランダム性を使った再発見入口を設ける。",
+      "useWhen": [
+        "個人アーカイブ",
+        "語彙・読書・制作物など蓄積が価値になる",
+        "過去資産の再利用を促したい"
+      ],
+      "cautions": [
+        "完全ランダムだけだとノイズ化しやすい",
+        "直近表示を避けるなど再提示の偏りを制御する"
+      ],
+      "transferIdeas": [
+        "過去企画",
+        "写真アーカイブ",
+        "学習カード",
+        "ナレッジベース"
+      ]
+    },
+    {
+      "id": "problem-first-search",
+      "members": [
+        "vocabularies--feeling-first",
+        "marisast6--situation-first",
+        "zeldasbsp--situation-filter"
+      ],
+      "title": "名前を知らなくても探せる",
+      "subtitle": "専門名ではなく、困りごと・状況・感覚を検索入口にする",
+      "officialName": "Problem-First Retrieval",
+      "summary": "ユーザーが対象の正式名称を知らない前提で、症状・用途・状況・違和感から対象へ逆引きできるようにする。",
+      "problem": "検索対象の名称を知っている人しか使えない索引は、初心者が最も困る瞬間に機能しない。",
+      "solution": "専門名に加えて、利用者が実際に頭に浮かべる困りごとや状況を検索語・ファセットとして持つ。",
+      "useWhen": [
+        "専門用語集",
+        "機能・技・FAQの逆引き",
+        "初心者向けナレッジ"
+      ],
+      "cautions": [
+        "自然語の入口と正式概念を混同せず対応関係を保持する",
+        "入口語は実際の利用者の言い方から増やす"
+      ],
+      "transferIdeas": [
+        "社内FAQ",
+        "観戦ガイド",
+        "トラブルシューティング",
+        "デザインパターン集"
+      ]
+    },
+    {
+      "id": "evidence-states",
+      "members": [
+        "marisast6--evidence-state",
+        "st6training--verification-flag",
+        "zeldasbsp--data-basis",
+        "ennnichimock--uncertain-copy-state"
+      ],
+      "title": "未確認を、確認済みに見せない",
+      "subtitle": "データや文言に根拠・確度・基準日を持たせる",
+      "officialName": "Evidence-State Data",
+      "summary": "値や記述そのものだけでなく、仮・確認済み・出典あり・基準日などの証拠状態をデータとして保持する。",
+      "problem": "推測値や仮文言が通常データと同じ見た目で残ると、後から事実として再利用されやすい。",
+      "solution": "内容と証拠状態を別フィールドで管理し、表示・公開条件・昇格ルールへ反映する。",
+      "useWhen": [
+        "検証途中の数値",
+        "モックの仮情報",
+        "更新される外部データ",
+        "攻略・研究データ"
+      ],
+      "cautions": [
+        "verifiedの基準を曖昧にしない",
+        "確認状態をUI上でも認識できるようにする"
+      ],
+      "transferIdeas": [
+        "広報原稿",
+        "選手・イベント情報",
+        "調査メモ",
+        "分析ダッシュボード"
+      ]
+    },
+    {
+      "id": "undoable-action",
+      "members": [
+        "imagetuning--undo-redo",
+        "payment-case-manager--undo-case"
+      ],
+      "title": "取り消せるなら、確認を減らせる",
+      "subtitle": "頻繁な変更はUndoで安全性を作る",
+      "officialName": "Undoable Action",
+      "summary": "編集や状態変更のように頻度が高い操作は、毎回確認ダイアログを出す代わりに直前操作を戻せるようにする。",
+      "problem": "確認ダイアログを増やすほど安全には見えるが、頻繁な操作では読み飛ばされ、作業速度も落ちる。",
+      "solution": "操作を即時反映し、履歴または直前状態を保持してUndoできる設計にする。",
+      "useWhen": [
+        "画像・テキスト編集",
+        "並べ替え",
+        "ステータス変更",
+        "一括整形"
+      ],
+      "cautions": [
+        "外部送信・完全削除など不可逆操作までUndo前提にしない",
+        "Undo対象と保持期間を分かりやすくする"
+      ],
+      "transferIdeas": [
+        "CMS",
+        "タスク管理",
+        "表編集",
+        "タグ整理"
+      ]
+    },
+    {
+      "id": "progressive-disclosure",
+      "members": [
+        "newsquiz--advanced-on-demand",
+        "100yearvision--accordion-context"
+      ],
+      "title": "最初から全部は見せない",
+      "subtitle": "必要になった情報・設定だけ段階的に開示する",
+      "officialName": "Progressive Disclosure",
+      "summary": "高度な設定、長い説明、大量の設問などを初期画面から外し、利用者の次の行動に応じて開く。",
+      "problem": "選択肢や説明が多いほど、重要な入口が埋もれ、始める前に疲れる。",
+      "solution": "初期状態では主要行動と最低限の情報だけを見せ、詳細は明示的な操作や進行に応じて開示する。",
+      "useWhen": [
+        "設定項目が多い",
+        "初心者と上級者が同じ画面を使う",
+        "長い背景説明がある"
+      ],
+      "cautions": [
+        "隠した結果、重要情報が発見不能にならないよう入口を残す",
+        "頻繁に使う機能まで奥へ追いやらない"
+      ],
+      "transferIdeas": [
+        "応募フォーム",
+        "設定画面",
+        "FAQ",
+        "データ分析ツール"
+      ]
+    },
+    {
+      "id": "safe-destructive-action",
+      "members": [
+        "tabshelter--save-before-close",
+        "keygrid--danger-double"
+      ],
+      "title": "壊す前に、一段だけ安全を足す",
+      "subtitle": "不可逆操作だけを保存確認・二段階操作で守る",
+      "officialName": "Safe Destructive Action",
+      "summary": "閉じる・削除するなど戻しにくい操作にだけ、保存成功の確認や二度押しなど追加の安全層を置く。",
+      "problem": "すべての操作へ確認を付けると形骸化する一方、不可逆操作の誤発火は損失が大きい。",
+      "solution": "操作の可逆性で扱いを分け、破壊的なものだけ明確な追加手順を要求する。",
+      "useWhen": [
+        "大量データ削除",
+        "ウィンドウを閉じる",
+        "初期化",
+        "外部送信"
+      ],
+      "cautions": [
+        "二重確認の文言を同じにせず、二段目では対象と結果を具体化する",
+        "保存処理と破壊処理の成功順序をコード上でも保証する"
+      ],
+      "transferIdeas": [
+        "端末データ削除",
+        "一括アーカイブ",
+        "公開操作",
+        "支払申請"
+      ]
+    },
+    {
+      "id": "contextual-actions",
+      "members": [
+        "countvoice--contextual-recovery",
+        "mymindmap--selection-actions",
+        "mmmpocket--selected-actions"
+      ],
+      "title": "必要な時だけ操作を出す",
+      "subtitle": "状態や選択に応じて、その瞬間に意味のある操作だけ見せる",
+      "officialName": "Contextual Actions",
+      "summary": "常時すべてのボタンを並べず、対象を選んだ時、エラーが起きた時など、その操作が成立する文脈でだけ表示する。",
+      "problem": "常時表示の操作が増えるほど、普段の情報が埋もれ、押せないボタンの理由も分かりにくくなる。",
+      "solution": "選択状態・異常状態・モードなどを条件に、関連する操作群を出現させる。",
+      "useWhen": [
+        "編集対象を選んで操作する",
+        "復旧操作が通常時は不要",
+        "モバイルで表示面積が限られる"
+      ],
+      "cautions": [
+        "入口が完全に消えることで機能自体が知られなくならないようにする",
+        "表示・非表示の変化でレイアウトを大きく揺らさない"
+      ],
+      "transferIdeas": [
+        "カード編集",
+        "画像校正",
+        "表の一括操作",
+        "エラー復旧"
+      ]
+    },
+    {
+      "id": "manifest-driven-content",
+      "members": [
+        "pdflinks--json-index",
+        "englisharcade--manifest-content"
+      ],
+      "title": "中身を増やす時、画面は触らない",
+      "subtitle": "manifestへ1件足せば一覧に反映される構成にする",
+      "officialName": "Manifest-Driven Content",
+      "summary": "コンテンツ追加時にHTMLや画面ロジックを修正せず、JSON等のmanifestへメタデータを追加するだけで一覧・読み込み対象へ反映する。",
+      "problem": "項目追加のたびにUIコードを編集すると、増補作業が実装作業になりミスも増える。",
+      "solution": "コンテンツファイルと索引manifestを分け、画面はmanifestを読んで自動生成する。",
+      "useWhen": [
+        "PDF・教材・問題セットなどを継続追加する",
+        "非エンジニアでも内容を増やしたい",
+        "静的サイトで運用する"
+      ],
+      "cautions": [
+        "manifestと実ファイルの不一致を自動検査する",
+        "スキーマ変更時の互換性を考える"
+      ],
+      "transferIdeas": [
+        "ニュースレターアーカイブ",
+        "資料集",
+        "FAQ",
+        "キャンペーン事例集"
+      ]
+    },
+    {
+      "id": "next-best-action",
+      "members": [
+        "fourier--one-next-step",
+        "newsquiz--dynamic-next-action"
+      ],
+      "title": "ホームには『次の一手』を置く",
+      "subtitle": "機能一覧より、今の状態から次にやる行動を優先する",
+      "officialName": "Next-Best-Action Home",
+      "summary": "ホーム画面で全機能を同じ強さで並べず、現在の進捗や未完了状態から最も自然な次の一手を一つ強く提示する。",
+      "problem": "機能が増えると、ホームがメニュー表になり、再訪者ほど『で、今日は何をすればいい？』となる。",
+      "solution": "状態データから次行動を決め、開始・再開・復習など最優先のCTAを動的に切り替える。",
+      "useWhen": [
+        "継続利用する学習・業務ツール",
+        "途中状態がある",
+        "利用頻度の高い再訪画面"
+      ],
+      "cautions": [
+        "推奨以外の機能へ行く経路も残す",
+        "推薦ロジックを複雑にしすぎず説明可能にする"
+      ],
+      "transferIdeas": [
+        "案件管理",
+        "オンボーディング",
+        "会員マイページ",
+        "振り返りツール"
+      ]
+    },
+    {
+      "id": "pointer-aware-interaction",
+      "members": [
+        "footballisfun--pointer-only-play",
+        "shogibanmen--touch-hover"
+      ],
+      "title": "マウスの演出を、指に押し付けない",
+      "subtitle": "hover前提の操作・装飾を入力デバイス能力で切り替える",
+      "officialName": "Pointer-Aware Progressive Enhancement",
+      "summary": "hoverや精密ポインターが使える端末だけにカーソル演出やhover反応を有効化し、タッチ端末ではactiveなど適切な状態へ置き換える。",
+      "problem": "PC向けhover表現をスマホにも残すと、意図しない残留状態や無意味な演出が発生する。",
+      "solution": "画面幅ではなくhover/pointer能力も条件にしてインタラクションを分岐する。",
+      "useWhen": [
+        "カスタムカーソル",
+        "hoverで補足や強調を出す",
+        "PCとタッチを同一UIで扱う"
+      ],
+      "cautions": [
+        "タッチ端末でも同じ情報へ到達できるようにする",
+        "pointer種別だけで端末を断定しない"
+      ],
+      "transferIdeas": [
+        "展示LP",
+        "カードUI",
+        "編集ツール",
+        "ゲーム系サイト"
+      ]
+    },
+    {
+      "id": "static-first-delivery",
+      "members": [
+        "build-diary--generated-static",
+        "prompts--static-first"
+      ],
+      "title": "更新は動的、閲覧は静的",
+      "subtitle": "ビルド時に重い仕事を済ませ、公開ページは完成HTMLを読む",
+      "officialName": "Static-First Delivery",
+      "summary": "外部API取得やデータ統合はビルド時に行い、利用者のブラウザには生成済み静的成果物を配信する。",
+      "problem": "閲覧時にAPI取得・組み立てを行うと、速度・レート制限・外部障害・JavaScript依存が利用者体験へ直結する。",
+      "solution": "更新処理と閲覧処理を分離し、GitHub Actions等でデータを事前生成する。",
+      "useWhen": [
+        "更新頻度より閲覧頻度が高い",
+        "GitHub Pages等の静的配信",
+        "AIやクローラにも本文を読ませたい"
+      ],
+      "cautions": [
+        "更新遅延を許容できるか確認する",
+        "生成失敗時に古い正常版を壊さない"
+      ],
+      "transferIdeas": [
+        "ポートフォリオ",
+        "ナレッジサイト",
+        "プロンプト集",
+        "事例データベース"
+      ]
+    },
+    {
+      "id": "semantic-design-tokens",
+      "members": [
+        "rockvsbra--semantic-tier-colors",
+        "manontec--token-layers",
+        "manontec--motion-tokens"
+      ],
+      "title": "色や速さを、意味の名前で呼ぶ",
+      "subtitle": "値そのものではなく役割をDesign Tokenにする",
+      "officialName": "Semantic Design Tokens",
+      "summary": "赤・220msのような物理値を直接ばらまかず、danger・tier-god・duration-baseのような意味レイヤーを介して利用する。",
+      "problem": "値を直接参照すると、見た目の変更が各所修正になり、同じ色でも役割が混ざる。",
+      "solution": "Primitive → Semanticの二層以上でトークンを定義し、必要なら旧名をLegacy Aliasとして残す。",
+      "useWhen": [
+        "画面数が増える",
+        "テーマ・配色変更がある",
+        "状態色やモーションに一貫性が必要"
+      ],
+      "cautions": [
+        "意味トークンを細分化しすぎて名前探しを難しくしない",
+        "色だけで状態を伝えない"
+      ],
+      "transferIdeas": [
+        "ブランドサイト",
+        "業務アプリ",
+        "デザインシステム",
+        "テーマ切替"
+      ]
+    },
+    {
+      "id": "purpose-specific-outputs",
+      "members": [
+        "imagetuning--editable-plus-proof",
+        "lineworks-logger--export-two-formats",
+        "converter--deliver-code-with-assets"
+      ],
+      "title": "渡す相手ごとに、出力を変える",
+      "subtitle": "再編集・確認・表計算・組み込みを同じファイルに押し込まない",
+      "officialName": "Purpose-Specific Outputs",
+      "summary": "一つの万能形式へ詰め込むのではなく、再編集用・確認用・分析用・組み込み用など利用目的ごとに最適な出力を用意する。",
+      "problem": "保存には向くが見にくい形式、見やすいが再編集できない形式など、一形式では利用目的を両立できない。",
+      "solution": "同じ正本から用途別の成果物を生成し、用途をボタン名や説明で明示する。",
+      "useWhen": [
+        "JSONと画像を両方扱う",
+        "CSV/Excelで二次利用する",
+        "制作物を別サービスへ受け渡す"
+      ],
+      "cautions": [
+        "出力ごとに別ロジックで内容がずれないよう正本を共有する",
+        "似た名称の出力を増やしすぎない"
+      ],
+      "transferIdeas": [
+        "広報素材共有",
+        "分析レポート",
+        "画像校正",
+        "データ受け渡し"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+[
+  {
+    "id": "keygrid",
+    "title": "KeyGrid",
+    "subtitle": "Chromeをマウスなしで操作する拡張機能",
+    "summary": "リンク、ボタン、入力欄へHintを割り当て、固定キー式ブックマーク、Grid、全画面リンク一覧、サイト別補助を組み合わせてChrome操作をキーボードだけで進める拡張機能。",
+    "friction": "クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まり、要素が多い画面ほどHint同士も重なっていた。",
+    "firstBuild": "画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。",
+    "currentAnswer": "対象要素の重なり回避、入力要素の常時表示、全画面リンク一覧、折り畳み状態からの復帰、LINE WORKSのチャット選択まで扱うキーボード操作基盤。",
+    "type": "chrome-extension",
+    "verbs": [
+      "操作する",
+      "探す",
+      "移動する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": true,
+    "createdAt": "2026-07-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1600,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "quicklinks",
+        "relation": "ブラウザ操作のキーボード化"
+      }
+    ],
+    "updates": [],
+    "aside": "クリック先を探すより、キーを押した方が速い。"
+  },
+  {
+    "id": "lineworks-scroll-copy",
+    "title": "LINE WORKS Scroll & Copy",
+    "subtitle": "トーク履歴のさかのぼり・抽出拡張",
+    "summary": "LINE WORKSの長いトーク履歴をさかのぼり、複数形式で手元に保存するChrome拡張。",
+    "friction": "長いトークを手でスクロールし、あとから整理し直す作業が重かった。",
+    "firstBuild": "高速スクロール版から始め、途中停止後のコピーと構造化保存へ広げた。",
+    "currentAnswer": "スクロール、収集、形式変換を一つにまとめた道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-01",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-05-01",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1320,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。"
+  },
+  {
+    "id": "lineworks-logger",
+    "title": "LINE WORKS Logger",
+    "subtitle": "トーク・メールのローカル記録拡張",
+    "summary": "LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。",
+    "friction": "大量の連絡を画面上だけで追うと、あとから検索しにくかった。",
+    "firstBuild": "対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。",
+    "currentAnswer": "業務連絡を自分で扱える記録データへ変える入口。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "探す"
+    ],
+    "status": "prototype",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05",
+    "createdAtPrecision": "month",
+    "updatedAt": "2026-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1460,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "連絡は流れる。ログは流したくない。"
+  },
+  {
+    "id": "x-auto-screenshot-scroll",
+    "title": "X 自動スクリーンショット＆スクロール",
+    "subtitle": "タイムライン連続撮影拡張",
+    "summary": "Xを自動スクロールしながら連続撮影し、長いタイムラインをまとめて保存するChrome拡張。",
+    "friction": "一画面ずつスクロールして撮影する作業が終わらなかった。",
+    "firstBuild": "スクロールと撮影を交互に実行する拡張を作った。",
+    "currentAnswer": "データだけでなく、見た目ごとタイムラインを記録する道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "集める"
+    ],
+    "status": "dormant",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2025-06-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2025-06-02",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1180,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "スクロールを自動化したら、撮る枚数まで自動で増えた。"
+  },
+  {
+    "id": "payment-case-manager",
+    "title": "支払案件管理アプリ",
+    "subtitle": "支払案件の進捗とfreee申請チェックをまとめるChrome拡張",
+    "summary": "支払月・支払先・案件名を登録し、発注・納品・請求書・支払の進捗を月別に管理。freeeの支払申請画面では入力内容を自動チェックし、経理関連のQuick Linksへすぐ移動できるChromeサイドパネル拡張。",
+    "friction": "支払案件の進捗、証憑、申請画面、関連シートやトークルームが複数の場所に分かれ、確認漏れと画面移動の手間が生まれていた。",
+    "firstBuild": "支払案件を月別に登録し、発注から支払までの工程をチェックできるサイドパネルとして作った。",
+    "currentAnswer": "案件の追加・編集・並べ替え、完了表示、Undo・Redo、JSON入出力、関連リンク、freee支払申請の入力チェックを一つにまとめた業務用Chrome拡張。",
+    "type": "learning-tool",
+    "verbs": [
+      "管理する",
+      "確認する",
+      "申請する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-08",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-06",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3",
+      "freee"
+    ],
+    "documentationState": "verified",
+    "extension": {
+      "version": "1.4",
+      "extensionId": "",
+      "serviceWorker": "active"
+    },
+    "map": {
+      "group": "extension",
+      "x": 1040,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "accountinglearn",
+        "relation": "会計・経理を扱う"
+      },
+      {
+        "id": "quicklinks",
+        "relation": "業務リンクをすぐ開く"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-06",
+        "version": "1.4",
+        "change": "経理関連のQuick Linksを追加",
+        "reason": "支払シート、証憑、トークルーム、適格証明書の案内へすぐ移動できるようにするため。"
+      },
+      {
+        "date": "2026-05-08",
+        "version": "1.2",
+        "change": "freee支払申請の入力チェックを追加",
+        "reason": "支払先、メモタグ、勘定科目、支払期限などの確認漏れを減らすため。"
+      }
+    ],
+    "aside": "申請を始める前に、確認漏れを減らす場所を先に作った。"
+  },
+  {
+    "id": "vocabularies",
+    "title": "Vocabularies",
+    "subtitle": "言葉にできない感覚から、より精密な概念へたどり着く語彙集",
+    "summary": "「ごちゃごちゃする」「文章が固い」のような感覚や違和感を入口に、専門語・概念・関連語へたどり着く発見型ボキャブラリーサイト。感覚・分野・用語の3方向から探せる。",
+    "friction": "名前を知らない概念ほど検索できず、辞書や用語集も「知りたい言葉をすでに知っている」ことを前提にしがちだった。",
+    "firstBuild": "言葉に困った瞬間を入口に、用語の定義だけでなく、選んだ背景、Before→After、関連概念、出典までつなぐ語彙カードから始めた。",
+    "currentAnswer": "感覚から探す・分野から探す・用語から探すの3入口を持ち、専門分野を横断して関連語をつなぎながら、曖昧な感覚をより精密な言葉へ変えていく個人用の語彙探索サイト。",
+    "type": "learning-tool",
+    "verbs": [
+      "探す",
+      "言語化する",
+      "学ぶ"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-09",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-09",
+    "repositoryUrl": "https://github.com/silovar-uk/vocabularies",
+    "liveUrl": "https://silovar-uk.github.io/vocabularies/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 760,
+      "y": 650
+    },
+    "relatedProjects": [
+      {
+        "id": "designmd",
+        "relation": "言葉と判断基準を精密にする"
+      },
+      {
+        "id": "myspines",
+        "relation": "文章を書くための言語化を支える"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-09",
+        "version": "0.1",
+        "change": "感覚・分野・用語の3入口を持つ語彙探索サイトを公開",
+        "reason": "専門語の名前を知らない状態からでも、より精密な概念へたどり着けるようにするため。"
+      }
+    ],
+    "aside": "言葉を知っている人だけが、言葉を探せるのはちょっと変だ。"
+  },
+  {
+    "id": "likewhat",
+    "title": "LikeWhat",
+    "subtitle": "「この感じ」を言葉とモックで探すデザイン参照集",
+    "summary": "Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。",
+    "friction": "『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。",
+    "firstBuild": "既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。",
+    "currentAnswer": "ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。",
+    "type": "design-system",
+    "verbs": [
+      "探す",
+      "比べる",
+      "言語化する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-09",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "repositoryUrl": "https://github.com/silovar-uk/likewhat",
+    "liveUrl": "https://silovar-uk.github.io/likewhat/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "designmd",
+        "relation": "デザイン判断を言葉にする"
+      },
+      {
+        "id": "vocabularies",
+        "relation": "曖昧な感覚から精密な言葉へ進む"
+      },
+      {
+        "id": "ennnichimock",
+        "relation": "言語化した方向性を実際のモックで比較する"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-10",
+        "version": "0.1",
+        "change": "ブランド・サービス由来のデザインパターンを言語化とモックで探索する参照集を追加",
+        "reason": "『〜っぽい』という曖昧な感覚を、再利用可能なデザイン要素へ分解して探せるようにするため。"
+      }
+    ],
+    "aside": "『それっぽい』を、そこで終わらせない。"
+  },
+  {
+    "id": "dailyenglishchunks",
+    "title": "Daily English Chunks",
+    "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
+    "summary": "短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。",
+    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
+    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
+    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
+    "type": "learning-tool",
+    "verbs": [
+      "読む",
+      "区切る",
+      "声に出す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-07",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
+    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "hangul",
+        "relation": "短い反復練習とローカル進捗保存"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-10",
+        "version": "0.1",
+        "change": "チャンクリーディングの毎日練習サイトをポートフォリオへ追加",
+        "reason": "英語を一語ずつ訳さず、意味のまとまりで前から受け取る練習を毎日の短いルーティンにするため。"
+      }
+    ],
+    "aside": "訳す前に、場面を置く。"
+  }
+]

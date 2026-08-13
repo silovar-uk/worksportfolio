@@ -1,0 +1,51 @@
+name: Sync manual project extras
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/manual-projects-extra.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-manual-project-extras-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Merge extras into manual projects
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const basePath = 'data/manual-projects.json';
+          const extraPath = 'data/manual-projects-extra.json';
+          const base = JSON.parse(fs.readFileSync(basePath, 'utf8'));
+          const extras = JSON.parse(fs.readFileSync(extraPath, 'utf8'));
+          const map = new Map(base.map((project) => [project.id, project]));
+          for (const project of extras) {
+            if (!project || !project.id) throw new Error('Every extra project needs an id.');
+            map.set(project.id, { ...(map.get(project.id) || {}), ...project });
+          }
+          fs.writeFileSync(basePath, JSON.stringify([...map.values()], null, 2) + '\n');
+          NODE
+
+      - name: Commit merged manual projects
+        run: |
+          if git diff --quiet -- data/manual-projects.json; then
+            echo "Manual projects are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/manual-projects.json
+          git commit -m "Sync manual project extras"
+          git push

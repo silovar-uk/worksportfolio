@@ -1,0 +1,782 @@
+{
+  "version": 1,
+  "stage": "candidate-mining",
+  "part": 2,
+  "generatedAt": "2026-08-10",
+  "candidates": [
+    {
+      "id": "ennnichimock--uncertain-copy-state",
+      "projectId": "ennnichimock",
+      "title": "仮情報を仮のまま見せる",
+      "officialName": "Content Verification States",
+      "categories": [
+        "resilience",
+        "information-design"
+      ],
+      "mergeHint": "evidence-state",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/ennnichimock"
+    },
+    {
+      "id": "cssanimationlists--same-source-preview",
+      "projectId": "cssanimationlists",
+      "title": "見えている動き＝コピーするコード",
+      "officialName": "Same-Source Live Preview",
+      "categories": [
+        "architecture-automation",
+        "resilience",
+        "visual-design"
+      ],
+      "mergeHint": "single-source-truth",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/cssanimationlists"
+    },
+    {
+      "id": "cssanimationlists--shadow-isolation",
+      "projectId": "cssanimationlists",
+      "title": "サンプルをShadow DOMに閉じ込める",
+      "officialName": "Shadow DOM Style Isolation",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/cssanimationlists"
+    },
+    {
+      "id": "cssanimationlists--offscreen-pause",
+      "projectId": "cssanimationlists",
+      "title": "見えていない動きは止める",
+      "officialName": "Offscreen Animation Suspension",
+      "categories": [
+        "feedback-motion",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/cssanimationlists"
+    },
+    {
+      "id": "cssanimationlists--stable-ref-id",
+      "projectId": "cssanimationlists",
+      "title": "消しても番号は使い回さない",
+      "officialName": "Immutable Reference IDs",
+      "categories": [
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "stable-public-id",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/cssanimationlists"
+    },
+    {
+      "id": "whatsthiswiki--url-state-share",
+      "projectId": "whatsthiswiki",
+      "title": "状態をURLに詰めて共有",
+      "officialName": "Compressed Client-Side URL State",
+      "categories": [
+        "data-state",
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/whatsthiswiki"
+    },
+    {
+      "id": "whatsthiswiki--graduated-hints",
+      "projectId": "whatsthiswiki",
+      "title": "ヒントを二段階で強くする",
+      "officialName": "Graduated Hint Escalation",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/whatsthiswiki"
+    },
+    {
+      "id": "whatsthiswiki--structure-only",
+      "projectId": "whatsthiswiki",
+      "title": "本文を隠して構造だけ見せる",
+      "officialName": "Structure-Only Guessing",
+      "categories": [
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/whatsthiswiki"
+    },
+    {
+      "id": "imagetuning--editable-plus-proof",
+      "projectId": "imagetuning",
+      "title": "編集用JSONと確認用PNGを両方出す",
+      "officialName": "Editable + Flattened Deliverables",
+      "categories": [
+        "data-state",
+        "resilience",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/imagetuning"
+    },
+    {
+      "id": "imagetuning--coordinate-comments",
+      "projectId": "imagetuning",
+      "title": "コメントを画像上の場所に結ぶ",
+      "officialName": "Spatial Annotation",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/imagetuning"
+    },
+    {
+      "id": "imagetuning--undo-redo",
+      "projectId": "imagetuning",
+      "title": "破壊編集にはUndoを置く",
+      "officialName": "Undoable Editing",
+      "categories": [
+        "interaction",
+        "resilience"
+      ],
+      "mergeHint": "undoable-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/imagetuning"
+    },
+    {
+      "id": "flowmap--text-first-diagram",
+      "projectId": "flowmap",
+      "title": "文章で作って、図で確かめる",
+      "officialName": "Text-First Diagramming",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/flowmap"
+    },
+    {
+      "id": "flowmap--auto-manual-source",
+      "projectId": "flowmap",
+      "title": "自動と手動を混ぜずに覚える",
+      "officialName": "Generated/Manual State Separation",
+      "categories": [
+        "data-state",
+        "resilience",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/flowmap"
+    },
+    {
+      "id": "flowmap--edge-halo",
+      "projectId": "flowmap",
+      "title": "線の下に白い道を敷く",
+      "officialName": "Edge Halo / Underlay",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/flowmap"
+    },
+    {
+      "id": "flowmap--collapsed-boundary",
+      "projectId": "flowmap",
+      "title": "折り畳んでも外との関係は切らない",
+      "officialName": "Collapsed Group Boundary Routing",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/flowmap"
+    },
+    {
+      "id": "flowmap--idb-autosave",
+      "projectId": "flowmap",
+      "title": "キャンバスも端末へ自動保存",
+      "officialName": "IndexedDB Autosave",
+      "categories": [
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "local-first-backup",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/flowmap"
+    },
+    {
+      "id": "mydictionary--five-second-capture",
+      "projectId": "mydictionary",
+      "title": "見出し語だけ5秒で拾う",
+      "officialName": "Progressive Enrichment Capture",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "progressive-enrichment",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mydictionary"
+    },
+    {
+      "id": "mydictionary--rediscovery-views",
+      "projectId": "mydictionary",
+      "title": "忘れた頃にもう一度出す",
+      "officialName": "Serendipitous Resurfacing",
+      "categories": [
+        "navigation-search",
+        "information-design"
+      ],
+      "mergeHint": "serendipity",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mydictionary"
+    },
+    {
+      "id": "mydictionary--full-backup",
+      "projectId": "mydictionary",
+      "title": "ローカル辞書に完全バックアップ",
+      "officialName": "Portable Full Backup",
+      "categories": [
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "local-first-backup",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mydictionary"
+    },
+    {
+      "id": "prompts--one-schema-many-surfaces",
+      "projectId": "prompts",
+      "title": "一つの正本から三つの読み方",
+      "officialName": "Multi-Surface Single Source",
+      "categories": [
+        "architecture-automation",
+        "information-design",
+        "resilience"
+      ],
+      "mergeHint": "single-source-truth",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/prompts"
+    },
+    {
+      "id": "prompts--latest-fixed-url",
+      "projectId": "prompts",
+      "title": "最新版と固定版を両方持つ",
+      "officialName": "Latest + Immutable Versioned URLs",
+      "categories": [
+        "architecture-automation",
+        "resilience",
+        "navigation-search"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/prompts"
+    },
+    {
+      "id": "prompts--static-first",
+      "projectId": "prompts",
+      "title": "JavaScriptなしでも本文を読める",
+      "officialName": "Static-First Content Delivery",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/prompts"
+    },
+    {
+      "id": "prompts--sensitive-no-autosave",
+      "projectId": "prompts",
+      "title": "貼り付け本文は勝手に保存しない",
+      "officialName": "Sensitive Input Non-Persistence",
+      "categories": [
+        "account-security",
+        "data-state"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/prompts"
+    },
+    {
+      "id": "st6training--stable-timebase",
+      "projectId": "st6training",
+      "title": "描画ではなく音の時計を正にする",
+      "officialName": "Stable Audio Timebase",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/st6training"
+    },
+    {
+      "id": "st6training--verification-flag",
+      "projectId": "st6training",
+      "title": "プリセットに確認済みかを持たせる",
+      "officialName": "Verified Data Flag",
+      "categories": [
+        "data-state",
+        "information-design"
+      ],
+      "mergeHint": "evidence-state",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/st6training"
+    },
+    {
+      "id": "st6training--multi-input",
+      "projectId": "st6training",
+      "title": "同じ練習をキーボード・タッチ・パッドで",
+      "officialName": "Input Modality Abstraction",
+      "categories": [
+        "interaction",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/st6training"
+    },
+    {
+      "id": "pdfclipper--lazy-thumbnails",
+      "projectId": "pdfclipper",
+      "title": "見えているページから描く",
+      "officialName": "Viewport-Aware Lazy Rendering",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdfclipper"
+    },
+    {
+      "id": "pdfclipper--direct-plus-numeric",
+      "projectId": "pdfclipper",
+      "title": "手でも数字でも同じ範囲を動かせる",
+      "officialName": "Direct Manipulation + Numeric Input",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdfclipper"
+    },
+    {
+      "id": "pdfclipper--responsive-panels",
+      "projectId": "pdfclipper",
+      "title": "PCの三領域をスマホではBottom Sheetへ",
+      "officialName": "Responsive Side Panel to Bottom Sheet",
+      "categories": [
+        "visual-design",
+        "interaction"
+      ],
+      "mergeHint": "responsive-side-to-sheet",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdfclipper"
+    },
+    {
+      "id": "pdfclipper--output-queue",
+      "projectId": "pdfclipper",
+      "title": "書き出し候補を貯めて最後にまとめる",
+      "officialName": "Output Staging Queue",
+      "categories": [
+        "interaction",
+        "data-state"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdfclipper"
+    },
+    {
+      "id": "pdfclipper--lazy-dependency",
+      "projectId": "pdfclipper",
+      "title": "重いライブラリは使う時だけ読む",
+      "officialName": "On-Demand Dependency Loading",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdfclipper"
+    },
+    {
+      "id": "countupapp--keep-storage-key",
+      "projectId": "countupapp",
+      "title": "作り直しても保存キーは変えない",
+      "officialName": "Persistent Storage Compatibility",
+      "categories": [
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countupapp"
+    },
+    {
+      "id": "countupapp--cross-tab-sync",
+      "projectId": "countupapp",
+      "title": "別タブの変更も追いかける",
+      "officialName": "Cross-Tab State Synchronization",
+      "categories": [
+        "data-state",
+        "feedback-motion"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countupapp"
+    },
+    {
+      "id": "fourier--one-next-step",
+      "projectId": "fourier",
+      "title": "全体より『今日の一手』を先に出す",
+      "officialName": "Next-Best-Action Home",
+      "categories": [
+        "information-design",
+        "navigation-search"
+      ],
+      "mergeHint": "next-best-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/fourier"
+    },
+    {
+      "id": "fourier--predict-before-observe",
+      "projectId": "fourier",
+      "title": "触る前に予想させる",
+      "officialName": "Predict-Before-Observe",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/fourier"
+    },
+    {
+      "id": "fourier--learning-cycle",
+      "projectId": "fourier",
+      "title": "読む→触る→説明→想起→応用",
+      "officialName": "Read-Interact-Explain-Retrieve-Apply Cycle",
+      "categories": [
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/fourier"
+    },
+    {
+      "id": "myspines--responsive-memo",
+      "projectId": "myspines",
+      "title": "メモは幅で姿を変える",
+      "officialName": "Persistent → Overlay → Bottom Sheet",
+      "categories": [
+        "visual-design",
+        "interaction"
+      ],
+      "mergeHint": "responsive-side-to-sheet",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/myspines"
+    },
+    {
+      "id": "myspines--measure-near-input",
+      "projectId": "myspines",
+      "title": "文字数は数える対象のそばへ",
+      "officialName": "Proximal Metrics",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/myspines"
+    },
+    {
+      "id": "myspines--texture-off-content",
+      "projectId": "myspines",
+      "title": "装飾は本文の背後へ置かない",
+      "officialName": "Content-Safe Materiality",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/myspines"
+    },
+    {
+      "id": "myspines--role-based-fonts",
+      "projectId": "myspines",
+      "title": "明朝はタイトルと見出しだけ",
+      "officialName": "Role-Based Typography",
+      "categories": [
+        "visual-design",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/myspines"
+    },
+    {
+      "id": "myspines--semantic-action-label",
+      "projectId": "myspines",
+      "title": "『…』より『操作』と書く",
+      "officialName": "Explicit Action Labeling",
+      "categories": [
+        "microcopy",
+        "interaction"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/myspines"
+    },
+    {
+      "id": "zeldasbsp--card-table-toggle",
+      "projectId": "zeldasbsp",
+      "title": "同じデータをカードと表で切り替える",
+      "officialName": "Dual Representation Toggle",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/zeldasbsp"
+    },
+    {
+      "id": "zeldasbsp--situation-filter",
+      "projectId": "zeldasbsp",
+      "title": "用途・状況から技を逆引き",
+      "officialName": "Situation-Based Faceted Search",
+      "categories": [
+        "navigation-search",
+        "information-design"
+      ],
+      "mergeHint": "problem-first-search",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/zeldasbsp"
+    },
+    {
+      "id": "zeldasbsp--data-basis",
+      "projectId": "zeldasbsp",
+      "title": "データの基準版と確認日を見せる",
+      "officialName": "Visible Data Provenance",
+      "categories": [
+        "information-design",
+        "resilience"
+      ],
+      "mergeHint": "evidence-state",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/zeldasbsp"
+    },
+    {
+      "id": "consultingstudy--fact-hypothesis-separate",
+      "projectId": "consultingstudy",
+      "title": "観察と解釈を混ぜない",
+      "officialName": "Observation / Interpretation / Hypothesis Separation",
+      "categories": [
+        "information-design",
+        "interaction"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/consultingstudy"
+    },
+    {
+      "id": "consultingstudy--goal-entry",
+      "projectId": "consultingstudy",
+      "title": "機能一覧ではなく目的から入る",
+      "officialName": "Goal-Oriented Entry Points",
+      "categories": [
+        "navigation-search",
+        "information-design",
+        "microcopy"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/consultingstudy"
+    },
+    {
+      "id": "consultingstudy--artifact-progress",
+      "projectId": "consultingstudy",
+      "title": "学習進捗に成果物を入れる",
+      "officialName": "Artifact-Centered Progress",
+      "categories": [
+        "information-design",
+        "data-state"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/consultingstudy"
+    },
+    {
+      "id": "gantt--import-preview",
+      "projectId": "gantt",
+      "title": "反映する前に一度見せる",
+      "officialName": "Import Preview Before Commit",
+      "categories": [
+        "resilience",
+        "interaction",
+        "data-state"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/gantt"
+    },
+    {
+      "id": "gantt--share-mode",
+      "projectId": "gantt",
+      "title": "編集画面と見せる画面を分ける",
+      "officialName": "Presentation Mode",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/gantt"
+    },
+    {
+      "id": "gantt--same-render-output",
+      "projectId": "gantt",
+      "title": "画面と出力で色ルールを変えない",
+      "officialName": "WYSIWYG Export Semantics",
+      "categories": [
+        "visual-design",
+        "resilience",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/gantt"
+    },
+    {
+      "id": "gantt--bulk-category",
+      "projectId": "gantt",
+      "title": "カテゴリ変更を項目単位で繰り返さない",
+      "officialName": "Bulk Taxonomy Refactor",
+      "categories": [
+        "interaction",
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/gantt"
+    },
+    {
+      "id": "gantt--density-control",
+      "projectId": "gantt",
+      "title": "用途に合わせて密度を変える",
+      "officialName": "User-Controlled Information Density",
+      "categories": [
+        "visual-design",
+        "interaction"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/gantt"
+    },
+    {
+      "id": "commonpoint--embedded-experience",
+      "projectId": "commonpoint",
+      "title": "LPを増やさず文脈の途中に体験を差す",
+      "officialName": "Contextual Embedded Experience",
+      "categories": [
+        "information-design",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/commonpoint"
+    },
+    {
+      "id": "commonpoint--cap-results",
+      "projectId": "commonpoint",
+      "title": "3件まで見せ、続きは本体へ",
+      "officialName": "Capped Results with Escape Hatch",
+      "categories": [
+        "information-design",
+        "navigation-search"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/commonpoint"
+    },
+    {
+      "id": "commonpoint--instance-isolation",
+      "projectId": "commonpoint",
+      "title": "同じページに複数置いても混ざらない",
+      "officialName": "Instance-Scoped Component State",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/commonpoint"
+    },
+    {
+      "id": "commonpoint--connection-copy",
+      "projectId": "commonpoint",
+      "title": "『検索』ではなく『つながる』と呼ぶ",
+      "officialName": "Experience-Reframed Microcopy",
+      "categories": [
+        "microcopy",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/commonpoint"
+    },
+    {
+      "id": "newsquiz--two-step-explanation",
+      "projectId": "newsquiz",
+      "title": "まず結論、詳しくはあと",
+      "officialName": "Two-Stage Explanation",
+      "categories": [
+        "information-design",
+        "interaction"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/newsquiz"
+    },
+    {
+      "id": "newsquiz--dynamic-next-action",
+      "projectId": "newsquiz",
+      "title": "ホームは『今やる一手』に変わる",
+      "officialName": "Dynamic Next-Best Action",
+      "categories": [
+        "information-design",
+        "data-state",
+        "microcopy"
+      ],
+      "mergeHint": "next-best-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/newsquiz"
+    },
+    {
+      "id": "newsquiz--review-auto-queue",
+      "projectId": "newsquiz",
+      "title": "間違いとヒント使用を自動で復習へ",
+      "officialName": "Automatic Review Queue",
+      "categories": [
+        "data-state",
+        "navigation-search"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/newsquiz"
+    }
+  ]
+}

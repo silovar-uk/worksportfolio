@@ -1,0 +1,204 @@
+.favorite-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+
+.favorite-rating__label {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.favorite-rating__stars {
+  display: inline-flex;
+  gap: .08rem;
+}
+
+.favorite-rating__star {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform .12s ease;
+}
+
+.favorite-rating__star:hover,
+.favorite-rating__star:focus-visible {
+  transform: translateY(-1px) scale(1.08);
+  outline: 2px solid var(--yellow);
+  outline-offset: 1px;
+}
+
+.favorite-rating__value {
+  color: var(--muted);
+  font: 700 .72rem "Roboto Mono", monospace;
+}
+
+.favorite-rating.is-compact {
+  margin-top: .65rem;
+}
+
+.favorite-rating.is-compact .favorite-rating__label {
+  font-size: .7rem;
+}
+
+.favorite-rating.is-compact .favorite-rating__star {
+  width: 25px;
+  height: 25px;
+  font-size: 1.05rem;
+}
+
+.favorite-rating.is-detail {
+  margin-top: 1.1rem;
+  padding: .8rem 1rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  width: fit-content;
+}
+
+/* 個別ページは内容を読む場所なので、3D傾きと浮き上がりを無効化する。 */
+[data-project-surface],
+[data-project-surface]:hover {
+  --tilt-x: 0deg !important;
+  --tilt-y: 0deg !important;
+  --lift: 0px !important;
+  transform-style: flat !important;
+  will-change: auto !important;
+}
+
+/* 今日の1本から、詳細を開かずに評価できる。 */
+.portfolio-pick-card > .favorite-rating.is-pick {
+  margin: 1rem 0 0;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(32, 36, 38, .18);
+}
+
+/* ランダム3枚の各カードから直接評価する。 */
+.random-three-card > .favorite-rating.is-random-three {
+  margin: .7rem 0 0;
+  padding: .55rem .6rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: rgba(255, 253, 247, .9);
+}
+
+/* 右上のランダム1本から直接評価する。 */
+.floating-random-card > .favorite-rating.is-floating-random {
+  margin: .8rem 0 0;
+  padding-top: .65rem;
+  border-top: 1px solid var(--line);
+}
+
+/* 旧ランダム結果が表示された場合にも直接評価する。 */
+.catalog-random-result > .favorite-rating.is-taxonomy-random {
+  margin: .75rem 0 0;
+  padding-top: .6rem;
+  border-top: 1px solid var(--line);
+}
+
+/* 一覧の「ざっと見る」表示。メタ情報欄の先頭へ置く。 */
+.catalog-facts > .favorite-rating.is-catalog-row {
+  grid-column: 1 / -1;
+  margin: 0 0 .1rem;
+}
+
+/* カード表示。概要とステータスの間で選べる。 */
+.catalog-card > .favorite-rating.is-catalog-card {
+  margin: .65rem 0 0;
+}
+
+/* 表表示。タイトル直下へ小さく置く。 */
+.catalog-table .favorite-rating.is-catalog-table {
+  margin: .3rem 0 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .catalog-facts > .favorite-rating.is-catalog-row {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .floating-random-card > .favorite-rating.is-floating-random {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .favorite-rating__star {
+    width: 34px;
+    height: 34px;
+  }
+
+  .favorite-rating.is-compact .favorite-rating__star {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.catalog-quick-button>span{display:inline-flex;align-items:center;gap:.42rem;min-width:0}
+.catalog-quick-icon{display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;flex:0 0 auto;border-radius:999px;background:rgba(255,255,255,.72);font-size:.85rem;line-height:1;box-shadow:inset 0 0 0 1px rgba(32,36,38,.08)}
+.catalog-quick-button.is-active .catalog-quick-icon{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+
+.project-signal-icon{display:inline-grid;place-items:center;flex:0 0 auto;width:42px;height:42px;border:1px solid var(--line-dark);border-radius:14px;background:#f4f1ea;font-size:1.25rem;line-height:1;box-shadow:3px 3px 0 rgba(32,36,38,.07);transform:rotate(-2deg)}
+[data-project-type="learning-tool"] .project-signal-icon{background:#fff3bd}
+[data-project-type="chrome-extension"] .project-signal-icon{background:#e8f1ff}
+[data-project-type="design-system"] .project-signal-icon{background:#f2eaff}
+[data-project-type="content-page"] .project-signal-icon{background:#e7f6ed}
+[data-project-type="data-tool"] .project-signal-icon{background:#e5f5f7}
+[data-project-type="utility"] .project-signal-icon{background:#ffe9df}
+[data-project-type="experiment"] .project-signal-icon{background:#f2f2f2}
+
+.catalog-main{display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center}
+.catalog-main>.project-signal-icon{grid-column:1;grid-row:1/3}
+.catalog-main>.catalog-titleline,.catalog-main>.catalog-summaryline{grid-column:2}
+.catalog-main>.catalog-titleline{grid-row:1}
+.catalog-main>.catalog-summaryline{grid-row:2}
+.catalog-row:hover .project-signal-icon{transform:rotate(2deg) translateY(-1px)}
+
+.catalog-card>.project-signal-icon.is-card{margin:.75rem 0 .1rem}
+.project-signal-subtitle{margin:.15rem 0 .5rem;color:var(--ink);font-size:.76rem;font-weight:800;line-height:1.35}
+.project-featured-badge{position:absolute;top:10px;right:10px;padding:.25rem .48rem;border:1px solid #b88700;border-radius:999px;background:#fff4b8;color:#6f5200;font-size:.64rem;font-weight:900;letter-spacing:.02em}
+.catalog-card.featured{background:linear-gradient(145deg,var(--paper) 0%,#fffaf0 72%,#fff0ba 100%)}
+.catalog-card.featured.selected{background:#fff4b8}
+.catalog-card.featured:hover .project-signal-icon{transform:rotate(3deg) scale(1.04)}
+
+.project-type-inline-icon,.project-status-inline-icon,.project-title-inline-icon{display:inline-block;margin-right:.34em;line-height:1}
+.project-type-inline-icon{font-size:.95em}
+.project-status-inline-icon{font-size:.82em}
+.project-title-inline-icon{vertical-align:-.04em}
+.project-title-inline-icon.is-detail{margin-right:.45em}
+
+.project-verb-list{display:flex;flex-wrap:wrap;gap:5px}
+.project-verb-list.is-card{margin:10px 0 0}
+.project-verb-list.is-showcase{margin:10px 0}
+.project-verb-list.is-detail{margin:9px 0 14px}
+.project-verb-chip{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .45rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.72);color:var(--muted);font-size:.67rem;font-weight:800;line-height:1}
+.project-verb-icon{display:inline-grid;place-items:center;min-width:1.15em;color:var(--red-dark);font-size:.92em;font-weight:950}
+
+.catalog-title{grid-template-columns:32px minmax(0,1fr);grid-template-rows:auto auto;column-gap:8px;align-items:center}
+.catalog-title>.project-signal-icon{grid-column:1;grid-row:1/3;width:28px;height:28px;border-radius:9px;font-size:.9rem;box-shadow:2px 2px 0 rgba(32,36,38,.05)}
+.catalog-title>strong,.catalog-title>small{grid-column:2}
+
+.portfolio-pick-card .project-title-inline-icon,
+.random-three-card .project-title-inline-icon,
+.floating-random-card .project-title-inline-icon,
+.catalog-random-result .project-title-inline-icon{display:inline-grid;place-items:center;width:1.7em;height:1.7em;margin-right:.42em;border:1px solid var(--line);border-radius:.55em;background:rgba(255,255,255,.72);font-size:.82em}
+
+@media(max-width:760px){
+  .catalog-main{grid-template-columns:38px minmax(0,1fr);column-gap:8px}
+  .project-signal-icon{width:36px;height:36px;border-radius:12px;font-size:1.05rem;box-shadow:2px 2px 0 rgba(32,36,38,.06)}
+  .catalog-summaryline{font-size:.72rem}
+  .project-featured-badge{top:9px;right:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-signal-icon,.catalog-row:hover .project-signal-icon,.catalog-card.featured:hover .project-signal-icon{transform:none!important}
+}

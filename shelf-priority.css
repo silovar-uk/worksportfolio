@@ -1,0 +1,48 @@
+:root {
+  --shelf-sticky-offset: 8px;
+}
+
+.catalog-overview {
+  position: sticky;
+  top: var(--shelf-sticky-offset);
+  z-index: 30;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.catalog-search input {
+  min-height: 46px;
+  font-size: 1rem;
+}
+
+.catalog-links a[title="公開ページ"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 800;
+}
+
+.catalog-links a[title="公開ページ"]::before {
+  content: '↗ ';
+}
+
+.catalog-quick-button[data-recent-opened].is-active {
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+[data-cat-item][hidden] {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --shelf-sticky-offset: 0px;
+  }
+
+  .catalog-overview {
+    margin-inline: calc(50% - 50vw);
+    padding-inline: max(14px, calc((100vw - 100%) / 2));
+    border-radius: 0;
+  }
+}

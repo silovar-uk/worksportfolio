@@ -1,0 +1,691 @@
+{
+  "version": 1,
+  "stage": "candidate-mining",
+  "part": 3,
+  "generatedAt": "2026-08-10",
+  "candidates": [
+    {
+      "id": "newsquiz--advanced-on-demand",
+      "projectId": "newsquiz",
+      "title": "細かい配分は開いた時だけ",
+      "officialName": "Progressive Disclosure for Advanced Controls",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "progressive-disclosure",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/newsquiz"
+    },
+    {
+      "id": "sukan--selective-persistence",
+      "projectId": "sukan",
+      "title": "失敗まで全部保存しない",
+      "officialName": "Selective Persistence",
+      "categories": [
+        "data-state",
+        "account-security"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/sukan"
+    },
+    {
+      "id": "sukan--anti-repeat-random",
+      "projectId": "sukan",
+      "title": "直近に出たものは避ける",
+      "officialName": "Recency-Aware Randomization",
+      "categories": [
+        "navigation-search",
+        "data-state"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/sukan"
+    },
+    {
+      "id": "sukan--timeout-learning",
+      "projectId": "sukan",
+      "title": "時間切れも学びに変える",
+      "officialName": "Post-Timeout Feedback",
+      "categories": [
+        "feedback-motion",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/sukan"
+    },
+    {
+      "id": "tabshelter--save-before-close",
+      "projectId": "tabshelter",
+      "title": "保存成功してから閉じる",
+      "officialName": "Save-Before-Destructive Action",
+      "categories": [
+        "resilience",
+        "interaction",
+        "data-state"
+      ],
+      "mergeHint": "safe-destructive-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/tabshelter"
+    },
+    {
+      "id": "tabshelter--title-primary-url-secondary",
+      "projectId": "tabshelter",
+      "title": "人が見る情報を主、識別子を副に",
+      "officialName": "Human Label over Technical Identifier",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/tabshelter"
+    },
+    {
+      "id": "tabshelter--non-destructive-restore",
+      "projectId": "tabshelter",
+      "title": "復元しても退避セットを消さない",
+      "officialName": "Non-Destructive Restore",
+      "categories": [
+        "data-state",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/tabshelter"
+    },
+    {
+      "id": "tabshelter--permission-rationale",
+      "projectId": "tabshelter",
+      "title": "権限ごとに理由を書く",
+      "officialName": "Permission Rationale",
+      "categories": [
+        "account-security",
+        "microcopy"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/tabshelter"
+    },
+    {
+      "id": "countvoice--local-proxy",
+      "projectId": "countvoice",
+      "title": "ローカル同士をプロキシでつなぐ",
+      "officialName": "Local Reverse Proxy for CORS",
+      "categories": [
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countvoice"
+    },
+    {
+      "id": "countvoice--contextual-recovery",
+      "projectId": "countvoice",
+      "title": "必要な時だけ『音を復帰』を出す",
+      "officialName": "Contextual Recovery Action",
+      "categories": [
+        "interaction",
+        "feedback-motion",
+        "resilience"
+      ],
+      "mergeHint": "contextual-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countvoice"
+    },
+    {
+      "id": "countvoice--focus-running",
+      "projectId": "countvoice",
+      "title": "実行中は道具を片付ける",
+      "officialName": "Task Focus Mode",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countvoice"
+    },
+    {
+      "id": "countvoice--fixed-digit-clock",
+      "projectId": "countvoice",
+      "title": "数字の幅を固定して揺らさない",
+      "officialName": "Tabular / Fixed-Width Time Display",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/countvoice"
+    },
+    {
+      "id": "converter--deliver-code-with-assets",
+      "projectId": "converter",
+      "title": "素材だけでなく貼るコードも同梱",
+      "officialName": "Asset Pack with Integration Snippet",
+      "categories": [
+        "architecture-automation",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/converter"
+    },
+    {
+      "id": "mymindmap--selection-actions",
+      "projectId": "mymindmap",
+      "title": "選んだ時だけ操作を出す",
+      "officialName": "Selection-Scoped Actions",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "contextual-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mymindmap"
+    },
+    {
+      "id": "mymindmap--io-side-panel",
+      "projectId": "mymindmap",
+      "title": "入出力は作業面の横へ隔離",
+      "officialName": "Dedicated I/O Side Panel",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mymindmap"
+    },
+    {
+      "id": "pdflinks--json-index",
+      "projectId": "pdflinks",
+      "title": "ファイルを置いて索引だけ追記",
+      "officialName": "Manifest-Driven Static Library",
+      "categories": [
+        "architecture-automation",
+        "data-state"
+      ],
+      "mergeHint": "manifest-driven-content",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdflinks"
+    },
+    {
+      "id": "pdflinks--stable-direct-url",
+      "projectId": "pdflinks",
+      "title": "一覧とは別に固定URLを持つ",
+      "officialName": "Stable Direct Asset URLs",
+      "categories": [
+        "navigation-search",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/pdflinks"
+    },
+    {
+      "id": "ooh--backward-timeline",
+      "projectId": "ooh",
+      "title": "公開日から逆算して見る",
+      "officialName": "Backward Scheduling Timeline",
+      "categories": [
+        "information-design",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/ooh"
+    },
+    {
+      "id": "rockvsbra--semantic-tier-colors",
+      "projectId": "rockvsbra",
+      "title": "強さの意味を色トークンへ",
+      "officialName": "Semantic Tier Color Tokens",
+      "categories": [
+        "visual-design",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/rockvsbra"
+    },
+    {
+      "id": "akasma--image-overlay-actions",
+      "projectId": "akasma",
+      "title": "完成画像の上に操作だけ重ねる",
+      "officialName": "Transparent Interaction Overlay",
+      "categories": [
+        "interaction",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/akasma"
+    },
+    {
+      "id": "akasma--sr-only-duplicate",
+      "projectId": "akasma",
+      "title": "画像の重要文言をHTMLにも持つ",
+      "officialName": "Accessible Text Mirror",
+      "categories": [
+        "account-security",
+        "information-design",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/akasma"
+    },
+    {
+      "id": "akasma--placeholder-link",
+      "projectId": "akasma",
+      "title": "未確定リンクは死なせず仮モーダルへ",
+      "officialName": "Placeholder Interaction for Unresolved Links",
+      "categories": [
+        "feedback-motion",
+        "microcopy",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/akasma"
+    },
+    {
+      "id": "resultcalc--ambient-save-status",
+      "projectId": "resultcalc",
+      "title": "保存状態を小さく常駐させる",
+      "officialName": "Ambient Save Status",
+      "categories": [
+        "feedback-motion",
+        "visual-design"
+      ],
+      "mergeHint": "save-status",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/resultcalc"
+    },
+    {
+      "id": "patternlanguage--reading-measure",
+      "projectId": "patternlanguage",
+      "title": "長文の横幅を先に決める",
+      "officialName": "Readable Measure Constraint",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/patternlanguage"
+    },
+    {
+      "id": "patternlanguage--css-paper",
+      "projectId": "patternlanguage",
+      "title": "画像を使わず紙の繊維感を出す",
+      "officialName": "CSS-Only Paper Texture",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "css-materiality",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/patternlanguage"
+    },
+    {
+      "id": "footballisfun--reading-progress",
+      "projectId": "footballisfun",
+      "title": "読了位置を上端で見せる",
+      "officialName": "Reading Progress Indicator",
+      "categories": [
+        "feedback-motion",
+        "navigation-search"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/footballisfun"
+    },
+    {
+      "id": "footballisfun--pointer-only-play",
+      "projectId": "footballisfun",
+      "title": "マウスの遊びはタッチで消す",
+      "officialName": "Pointer-Capability Progressive Enhancement",
+      "categories": [
+        "visual-design",
+        "interaction",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/footballisfun"
+    },
+    {
+      "id": "englisharcade--choice-feedback",
+      "projectId": "englisharcade",
+      "title": "正解だけでなく各誤答の理由を書く",
+      "officialName": "Choice-Level Diagnostic Feedback",
+      "categories": [
+        "information-design",
+        "feedback-motion"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/englisharcade"
+    },
+    {
+      "id": "englisharcade--manifest-content",
+      "projectId": "englisharcade",
+      "title": "問題セットをmanifestで増やす",
+      "officialName": "Manifest-Driven Content Packs",
+      "categories": [
+        "architecture-automation",
+        "data-state"
+      ],
+      "mergeHint": "manifest-driven-content",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/englisharcade"
+    },
+    {
+      "id": "englisharcade--evoke-not-copy",
+      "projectId": "englisharcade",
+      "title": "権利物を使わず雰囲気だけ作る",
+      "officialName": "Reference Without Direct Asset Reuse",
+      "categories": [
+        "visual-design",
+        "account-security"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/englisharcade"
+    },
+    {
+      "id": "mmmpocket--fixed-composer",
+      "projectId": "mmmpocket",
+      "title": "書く場所を画面下に固定",
+      "officialName": "Persistent Mobile Composer",
+      "categories": [
+        "interaction",
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mmmpocket"
+    },
+    {
+      "id": "mmmpocket--three-mode",
+      "projectId": "mmmpocket",
+      "title": "書く→整える→渡す",
+      "officialName": "Capture-Organize-Handoff Modes",
+      "categories": [
+        "information-design",
+        "microcopy"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mmmpocket"
+    },
+    {
+      "id": "mmmpocket--selected-actions",
+      "projectId": "mmmpocket",
+      "title": "普段は静か、選ぶと操作が出る",
+      "officialName": "Selection-Revealed Controls",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "contextual-action",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mmmpocket"
+    },
+    {
+      "id": "mmmpocket--depth-color",
+      "projectId": "mmmpocket",
+      "title": "階層を余白だけでなく色線でも示す",
+      "officialName": "Redundant Hierarchy Encoding",
+      "categories": [
+        "visual-design",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/mmmpocket"
+    },
+    {
+      "id": "manontec--token-layers",
+      "projectId": "manontec",
+      "title": "原色→意味→旧名の三層トークン",
+      "officialName": "Primitive → Semantic → Legacy Tokens",
+      "categories": [
+        "visual-design",
+        "architecture-automation",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/manontec"
+    },
+    {
+      "id": "manontec--motion-tokens",
+      "projectId": "manontec",
+      "title": "動きの速度もトークン化",
+      "officialName": "Motion Design Tokens",
+      "categories": [
+        "visual-design",
+        "feedback-motion"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/manontec"
+    },
+    {
+      "id": "simplememotool--tabbed-docs",
+      "projectId": "simplememotool",
+      "title": "メモをタブで並行保持",
+      "officialName": "Tabbed Document Workspace",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/simplememotool"
+    },
+    {
+      "id": "simplememotool--disabled-state",
+      "projectId": "simplememotool",
+      "title": "できない時は薄くして押せなくする",
+      "officialName": "Explicit Disabled State",
+      "categories": [
+        "visual-design",
+        "interaction"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/simplememotool"
+    },
+    {
+      "id": "100yearvision--accent-only-action",
+      "projectId": "100yearvision",
+      "title": "ブランド色をアクションだけに使う",
+      "officialName": "Action-Scoped Accent Color",
+      "categories": [
+        "visual-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/100yearvision"
+    },
+    {
+      "id": "100yearvision--accordion-context",
+      "projectId": "100yearvision",
+      "title": "背景説明は必要な人だけ開く",
+      "officialName": "Contextual Accordion",
+      "categories": [
+        "information-design",
+        "interaction"
+      ],
+      "mergeHint": "progressive-disclosure",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/100yearvision"
+    },
+    {
+      "id": "shogibanmen--touch-hover",
+      "projectId": "shogibanmen",
+      "title": "タッチではhoverをactiveへ置き換える",
+      "officialName": "Pointer-Aware Interaction States",
+      "categories": [
+        "interaction",
+        "visual-design",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/shogibanmen"
+    },
+    {
+      "id": "shogibanmen--orientation-piece",
+      "projectId": "shogibanmen",
+      "title": "相手駒は向きで区別する",
+      "officialName": "Orientation as Semantic Encoding",
+      "categories": [
+        "visual-design",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/shogibanmen"
+    },
+    {
+      "id": "timeconverter--split-precision-input",
+      "projectId": "timeconverter",
+      "title": "日時と分を別の入力にする",
+      "officialName": "Split Precision Input",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/timeconverter"
+    },
+    {
+      "id": "memo--timer-with-note",
+      "projectId": "memo",
+      "title": "考える時間とメモを同じ画面に置く",
+      "officialName": "Integrated Timer + Capture Workspace",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "verified",
+      "sourceUrl": "https://github.com/silovar-uk/memo"
+    },
+    {
+      "id": "keygrid--fixed-hints",
+      "projectId": "keygrid",
+      "title": "画面要素を固定キーで呼ぶ",
+      "officialName": "Fixed-Key Hint Navigation",
+      "categories": [
+        "interaction",
+        "navigation-search"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "keygrid--hint-overlap",
+      "projectId": "keygrid",
+      "title": "Hint同士を重ねない",
+      "officialName": "Collision-Aware Overlay Placement",
+      "categories": [
+        "visual-design",
+        "resilience"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "keygrid--danger-double",
+      "projectId": "keygrid",
+      "title": "危険操作は二度押し",
+      "officialName": "Two-Step Dangerous Action Confirmation",
+      "categories": [
+        "interaction",
+        "account-security",
+        "resilience"
+      ],
+      "mergeHint": "safe-destructive-action",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "lineworks-logger--local-communication-log",
+      "projectId": "lineworks-logger",
+      "title": "流れる連絡をローカルデータへ",
+      "officialName": "Local Capture of Ephemeral Communication",
+      "categories": [
+        "data-state",
+        "account-security",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "lineworks-logger--export-two-formats",
+      "projectId": "lineworks-logger",
+      "title": "保存用JSONと表計算用CSVを分ける",
+      "officialName": "Purpose-Specific Export Formats",
+      "categories": [
+        "data-state",
+        "architecture-automation"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "payment-case-manager--side-panel-workflow",
+      "projectId": "payment-case-manager",
+      "title": "本体を離れず進捗を横で見る",
+      "officialName": "Browser Side Panel Workflow",
+      "categories": [
+        "interaction",
+        "information-design"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "payment-case-manager--in-context-validation",
+      "projectId": "payment-case-manager",
+      "title": "申請画面その場でチェックする",
+      "officialName": "In-Context Form Validation",
+      "categories": [
+        "interaction",
+        "resilience",
+        "feedback-motion"
+      ],
+      "mergeHint": "",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    },
+    {
+      "id": "payment-case-manager--undo-case",
+      "projectId": "payment-case-manager",
+      "title": "業務ステータス変更にもUndo",
+      "officialName": "Undoable Workflow State",
+      "categories": [
+        "interaction",
+        "resilience",
+        "data-state"
+      ],
+      "mergeHint": "undoable-action",
+      "verification": "documented",
+      "sourceUrl": "https://github.com/silovar-uk/worksportfolio/blob/main/data/manual-projects.json"
+    }
+  ]
+}

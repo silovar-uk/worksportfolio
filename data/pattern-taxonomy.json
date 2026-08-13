@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "categories": [
+    {"id":"interaction","label":"操作","labelEn":"Interaction","description":"入力、編集、選択、ショートカット、確認など、ユーザーが直接触る仕組み。"},
+    {"id":"navigation-search","label":"探索・移動","labelEn":"Navigation & Search","description":"検索、絞り込み、逆引き、再発見、ページ間移動など、目的の情報へたどり着く仕組み。"},
+    {"id":"information-design","label":"情報設計","labelEn":"Information Design","description":"一覧と詳細、段階開示、比較、分類、状態表示など、情報を理解しやすい構造へ変える工夫。"},
+    {"id":"data-state","label":"保存・状態","labelEn":"Data & State","description":"IndexedDB、localStorage、履歴、同期、移行など、データと画面状態を扱う工夫。"},
+    {"id":"resilience","label":"壊れにくさ","labelEn":"Resilience","description":"バックアップ、Undo、互換性、検証、フォールバックなど、失敗や変更に耐える工夫。"},
+    {"id":"account-security","label":"認証・安全","labelEn":"Account & Security","description":"認証、権限、危険操作、プライバシー、アクセス制御などの安全設計。"},
+    {"id":"visual-design","label":"見た目","labelEn":"Visual Design","description":"配色、タイポグラフィ、余白、質感、レイアウト、レスポンシブなどの視覚設計。"},
+    {"id":"microcopy","label":"言葉","labelEn":"Microcopy","description":"ボタン名、状態名、注意文、エラー、説明ラベルなど、操作を支える短い言葉。"},
+    {"id":"feedback-motion","label":"反応・動き","labelEn":"Feedback & Motion","description":"ローディング、進捗、保存状態、アニメーション、成功・失敗フィードバック。"},
+    {"id":"architecture-automation","label":"実装基盤","labelEn":"Architecture & Automation","description":"静的生成、PWA、Cloudflare、GitHub Actions、スキーマ、API構成などの実装方針。"}
+  ],
+  "verificationLevels": [
+    {"id":"verified","label":"実装確認済み","description":"READMEまたは実コードで具体的な実装を確認した。"},
+    {"id":"documented","label":"作品説明で確認","description":"ポートフォリオ等の作品説明で確認したが、今回の棚卸しでは実コードまで追っていない。"},
+    {"id":"pending","label":"要再確認","description":"候補として価値はあるが、実装詳細を次工程で再確認する。"}
+  ]
+}

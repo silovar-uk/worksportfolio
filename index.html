@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="description" content="作ったWebアプリやChrome拡張と、その更新記録をまとめています。">
+  <meta name="theme-color" content="#f4f1e8">
+  <meta property="og:title" content="つくって考えた">
+  <meta property="og:description" content="作ったWebアプリやChrome拡張と、その更新記録。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://silovar-uk.github.io/worksportfolio/">
+  <meta property="og:image" content="https://silovar-uk.github.io/worksportfolio/assets/favicon.svg">
+  <link rel="canonical" href="https://silovar-uk.github.io/worksportfolio/">
+  <title>制作物一覧｜つくって考えた</title>
+  <style>
+:root {
+  --bg: #f4f1e8;
+  --paper: #fffdf7;
+  --ink: #202426;
+  --muted: #667074;
+  --line: #c9c5b9;
+  --line-dark: #777a73;
+  --red: #b51f2e;
+  --red-dark: #821522;
+  --blue: #245e7a;
+  --yellow: #e7cf68;
+  --green: #486f55;
+  --shadow: 0 14px 34px rgba(32, 36, 38, .10);
+  --radius: 5px;
+  --max: 1180px;
+  --fast: 120ms;
+  --normal: 220ms;
+  --slow: 420ms;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.75; }
+button, input, select { font: inherit; }
+button { color: inherit; }
+a { color: inherit; text-underline-offset: .2em; }
+img { max-width: 100%; display: block; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 200; padding: .7rem 1rem; background: var(--ink); color: white; }
+.skip-link:focus { top: 1rem; }
+
+.section-shell { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+.eyebrow { margin: 0 0 .5rem; font: 700 .72rem/1.3 "Roboto Mono", "Noto Sans Mono", monospace; letter-spacing: .14em; color: var(--red); }
+
+.site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(119,122,115,.45); background: rgba(244,241,232,.92); backdrop-filter: blur(14px); transition: transform var(--normal), background var(--normal); }
+.header-inner { width: min(calc(100% - 40px), var(--max)); min-height: 68px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.site-brand { display: inline-flex; align-items: center; gap: .65rem; font-weight: 800; text-decoration: none; }
+.brand-mark { display:block; width:38px; height:38px; object-fit:contain; flex:0 0 auto; }
+.global-nav { display: flex; align-items: center; gap: .2rem; }
+.nav-button { border: 0; background: transparent; padding: .55rem .7rem; cursor: pointer; border-bottom: 2px solid transparent; }
+.nav-button:hover, .nav-button:focus-visible, .nav-button.is-active { color: var(--red); border-bottom-color: currentColor; }
+
+.hero { min-height: 640px; padding-block: clamp(70px, 10vw, 130px) 60px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 34px 80px; align-items: center; position: relative; }
+.hero::before { content: ""; position: absolute; inset: 36px 0 auto auto; width: 42%; height: 1px; background: var(--line); }
+.hero-copy h1 { margin: 0; max-width: 820px; font-size: clamp(2.55rem, 6.2vw, 5.9rem); line-height: 1.06; letter-spacing: -.045em; }
+.hero-lead { max-width: 680px; margin: 2rem 0 0; font-size: clamp(1rem, 1.8vw, 1.2rem); }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.4rem; margin-top: 2rem; }
+.primary-action, .subtle-button { border: 1px solid var(--ink); background: var(--ink); color: var(--paper); padding: .82rem 1.15rem; cursor: pointer; box-shadow: 4px 4px 0 var(--yellow); transition: transform var(--fast), box-shadow var(--fast); }
+.primary-action:hover, .primary-action:focus-visible { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--yellow); }
+.text-action { border: 0; border-bottom: 1px solid currentColor; background: none; cursor: pointer; padding: .25rem 0; }
+.hero-note { justify-self: end; width: min(100%, 270px); padding: 2rem 1.6rem 1.35rem; background: var(--yellow); box-shadow: 8px 9px 0 rgba(32,36,38,.15); transform: rotate(2.2deg); position: relative; }
+.hero-note p { margin: 0; font-size: 1.12rem; line-height: 1.65; }
+.hero-note small { display: block; margin-top: 1rem; color: rgba(32,36,38,.68); }
+.note-pin { position: absolute; width: 13px; height: 13px; border-radius: 50%; top: 10px; left: 50%; background: var(--red); box-shadow: inset 0 0 0 3px rgba(255,255,255,.38); }
+.hero-stats { grid-column: 1 / -1; margin: 24px 0 0; padding: 22px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.hero-stats div { display: grid; gap: .15rem; }
+.hero-stats dt { order: 2; color: var(--muted); font-size: .85rem; }
+.hero-stats dd { margin: 0; font: 700 clamp(1.7rem, 4vw, 3rem)/1 "Roboto Mono", monospace; }
+
+.current-note { margin-top: 40px; padding: 34px 36px; border: 1px solid var(--line-dark); background: var(--paper); display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; box-shadow: 5px 5px 0 rgba(32,36,38,.06); }
+.current-note h2 { margin: 0; font-size: 1.25rem; }
+.current-note > p { margin: 0; font-size: clamp(1.12rem, 2.6vw, 1.65rem); line-height: 1.6; }
+
+.recent-updates, .explorer, .principles { padding-top: 110px; }
+.section-heading { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 30px; }
+.section-heading h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.15; }
+.section-heading > p { max-width: 320px; margin: 0; color: var(--muted); }
+.updates-list { border-top: 1px solid var(--ink); }
+.update-row { display: grid; grid-template-columns: 145px minmax(150px, 220px) 1fr; gap: 1.5rem; padding: 23px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.update-date { font: 700 .78rem "Roboto Mono", monospace; color: var(--red); }
+.update-title { margin: 0; font-size: 1.05rem; }
+.update-copy { margin: 0; }
+.update-reason { color: var(--muted); }
+
+.explorer-heading { align-items: start; }
+.view-switcher { display: grid; grid-template-columns: repeat(3, 1fr); min-width: min(600px, 62vw); border: 1px solid var(--ink); background: var(--paper); }
+.view-chip { min-height: 82px; padding: .8rem 1rem; border: 0; border-right: 1px solid var(--line); background: transparent; cursor: pointer; text-align: left; }
+.view-chip:last-child { border-right: 0; }
+.view-chip span, .view-chip small { display: block; }
+.view-chip span { font-weight: 800; }
+.view-chip small { margin-top: .2rem; color: var(--muted); }
+.view-chip:hover, .view-chip:focus-visible, .view-chip.is-active { background: var(--ink); color: var(--paper); }
+.view-chip.is-active small { color: rgba(255,255,255,.72); }
+.toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(145px, 205px)) auto; gap: .75rem; margin: 0 0 20px; }
+.search-box input, .toolbar select { width: 100%; min-height: 48px; padding: .7rem .85rem; border: 1px solid var(--line-dark); background: var(--paper); color: var(--ink); border-radius: 0; }
+.subtle-button { box-shadow: none; min-height: 48px; padding: .65rem 1rem; }
+
+.view-panel { min-height: 600px; }
+.loading, .empty-state { padding: 80px 20px; border: 1px dashed var(--line-dark); text-align: center; background: rgba(255,253,247,.45); }
+
+.timeline { display: grid; gap: 70px; }
+.timeline-year { position: relative; }
+.timeline-year-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 24px; }
+.timeline-year-heading h3 { margin: 0; font: 700 clamp(2.3rem, 6vw, 5rem)/1 "Roboto Mono", monospace; color: var(--red); }
+.timeline-year-heading::after { content: ""; height: 1px; background: var(--line-dark); flex: 1; }
+.timeline-period { display: grid; grid-template-columns: 180px 1fr; gap: 34px; padding: 32px 0; border-top: 1px solid var(--line); }
+.period-aside { position: sticky; top: 94px; align-self: start; }
+.period-aside h4 { margin: 0; font: 800 1.25rem "Roboto Mono", monospace; }
+.period-summary { margin: .75rem 0 0; color: var(--muted); font-size: .9rem; }
+.period-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .8rem; }
+.period-tag { padding: .2rem .45rem; border: 1px solid var(--line); font-size: .72rem; background: var(--paper); }
+.period-projects { display: grid; gap: 18px; }
+.timeline-card { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 1.4rem; padding: 25px 24px; border: 1px solid var(--line-dark); background: var(--paper); box-shadow: 4px 4px 0 rgba(32,36,38,.07); position: relative; }
+.timeline-card::before { content: attr(data-index); font: 700 2.6rem "Roboto Mono", monospace; color: rgba(32,36,38,.13); }
+.timeline-card h5 { margin: 0; font-size: 1.35rem; }
+.timeline-card p { margin: .4rem 0 0; }
+.friction-line { font-size: .96rem; }
+.card-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.meta-pill { border: 1px solid var(--line); padding: .18rem .5rem; font-size: .72rem; background: var(--bg); }
+.card-open { align-self: center; min-width: 46px; min-height: 46px; border: 1px solid var(--ink); background: transparent; cursor: pointer; font-size: 1.3rem; }
+.card-open:hover, .card-open:focus-visible { background: var(--ink); color: white; }
+.card-aside { margin-top: 1rem; padding-left: .8rem; border-left: 3px solid var(--yellow); color: var(--muted); font-size: .9rem; }
+
+.shelves { display: grid; gap: 54px; }
+.shelf-section { position: relative; }
+.shelf-heading { display: flex; align-items: end; gap: 1rem; margin-bottom: 16px; }
+.shelf-heading h3 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.shelf-heading span { color: var(--muted); font: .8rem "Roboto Mono", monospace; }
+.shelf-track { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; align-items: end; padding: 24px 0 18px; border-bottom: 18px solid #7c5d43; box-shadow: inset 0 -4px 0 #4d392a; }
+.project-card { grid-column: span 3; min-height: 290px; border: 1px solid var(--line-dark); background: var(--paper); padding: 18px; position: relative; display: flex; flex-direction: column; box-shadow: 6px 6px 0 rgba(32,36,38,.07); transition: transform var(--normal), box-shadow var(--normal); overflow: hidden; }
+.project-card:nth-child(4n+2) { min-height: 330px; }
+.project-card:nth-child(5n) { transform: rotate(.7deg); }
+.project-card:hover, .project-card:focus-within { transform: translateY(-7px) rotate(0); box-shadow: 9px 11px 0 rgba(32,36,38,.11); }
+.project-card.is-featured { grid-column: span 6; min-height: 350px; }
+.project-card.is-prototype { transform: rotate(-1.1deg); border-style: dashed; }
+.project-card.is-legacy { opacity: .82; }
+.project-card.is-dormant::after { content: "しばらく棚の奥"; position: absolute; top: 14px; right: -42px; width: 160px; text-align: center; transform: rotate(34deg); background: rgba(102,112,116,.12); color: var(--muted); font-size: .68rem; }
+.card-kicker { font: 700 .68rem "Roboto Mono", monospace; letter-spacing: .08em; color: var(--red); }
+.project-card h4 { margin: .65rem 0 .25rem; font-size: 1.35rem; line-height: 1.25; }
+.project-card .summary { margin: 0; }
+.project-card .friction { margin: auto 0 0; padding-top: 1.2rem; color: var(--muted); font-size: .88rem; }
+.project-card button { width: 100%; margin-top: 1rem; padding: .7rem; border: 1px solid var(--ink); background: transparent; cursor: pointer; text-align: left; }
+.project-card button:hover, .project-card button:focus-visible { background: var(--ink); color: white; }
+
+.map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; }
+.map-canvas-shell { min-height: 650px; border: 1px solid var(--line-dark); background: var(--paper); position: relative; overflow: hidden; }
+.map-canvas { width: 100%; height: 650px; display: block; touch-action: none; }
+.map-line { stroke: var(--line); stroke-width: 1.2; transition: opacity var(--normal), stroke var(--normal), stroke-width var(--normal); }
+.map-line.is-active { stroke: var(--red); stroke-width: 2.4; opacity: 1; }
+.map-line.is-muted { opacity: .14; }
+.map-node { cursor: pointer; }
+.map-node rect, .map-node path, .map-node circle { fill: var(--paper); stroke: var(--ink); stroke-width: 1.3; transition: fill var(--normal), stroke var(--normal), opacity var(--normal); }
+.map-node text { font: 700 12px "Noto Sans JP", sans-serif; pointer-events: none; }
+.map-node.is-featured rect, .map-node.is-featured path { stroke-width: 2.4; }
+.map-node.is-selected rect, .map-node.is-selected path, .map-node.is-selected circle { fill: var(--yellow); stroke: var(--red); }
+.map-node.is-muted { opacity: .24; }
+.map-tools { position: absolute; left: 12px; bottom: 12px; display: flex; gap: .4rem; }
+.map-tools button { border: 1px solid var(--ink); background: var(--paper); min-width: 42px; min-height: 42px; cursor: pointer; }
+.map-side { border: 1px solid var(--line-dark); background: var(--paper); padding: 20px; align-self: start; position: sticky; top: 94px; }
+.map-side h3 { margin-top: 0; }
+.map-side-list { display: grid; gap: .55rem; }
+.map-side-list button { border: 0; border-bottom: 1px solid var(--line); background: transparent; padding: .55rem 0; text-align: left; cursor: pointer; }
+.map-mobile-list { display: none; }
+
+.principle-flow { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.principle-flow li { padding: 25px 20px 34px; border-right: 1px solid var(--line); }
+.principle-flow li:last-child { border-right: 0; }
+.principle-flow span { font: 700 .72rem "Roboto Mono", monospace; color: var(--red); }
+.principle-flow strong { display: block; margin-top: 1.2rem; font-size: 1.25rem; }
+.principle-flow p { margin: .65rem 0 0; color: var(--muted); }
+.site-footer { margin-top: 120px; padding-block: 28px 50px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .9rem; }
+
+.project-dialog, .about-dialog { width: min(920px, calc(100% - 28px)); max-height: calc(100vh - 28px); padding: 0; border: 1px solid var(--ink); background: var(--paper); box-shadow: var(--shadow); }
+.project-dialog::backdrop, .about-dialog::backdrop { background: rgba(32,36,38,.58); backdrop-filter: blur(4px); }
+.dialog-shell { position: relative; padding: clamp(28px, 6vw, 70px); }
+.dialog-close { position: sticky; top: 0; float: right; z-index: 2; width: 44px; height: 44px; border: 1px solid var(--ink); background: var(--paper); cursor: pointer; font-size: 1.35rem; }
+.detail-title { margin: 0; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 1; letter-spacing: -.04em; }
+.detail-subtitle { margin: .8rem 0 0; font-size: 1.1rem; color: var(--muted); }
+.detail-status { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.detail-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+.detail-links a { border: 1px solid var(--ink); padding: .65rem .85rem; text-decoration: none; }
+.detail-links a:hover, .detail-links a:focus-visible { background: var(--ink); color: white; }
+.detail-section { margin-top: 55px; }
+.detail-section h3 { margin: 0 0 1rem; font-size: 1.35rem; }
+.detail-friction { padding: 26px; border-left: 8px solid var(--red); background: var(--bg); font-size: 1.2rem; }
+.detail-aside { margin-top: 2rem; padding: 20px; background: var(--yellow); transform: rotate(-.4deg); max-width: 520px; }
+.detail-updates { border-top: 1px solid var(--ink); }
+.detail-update { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.detail-update time { font: 700 .74rem "Roboto Mono", monospace; color: var(--red); }
+.detail-related { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+.detail-related button { padding: 1rem; border: 1px solid var(--line-dark); background: transparent; text-align: left; cursor: pointer; }
+.about-shell { max-width: 720px; }
+.about-shell h2 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; }
+.noscript { margin: 1rem; padding: 1rem; background: var(--yellow); }
+
+
+@media (max-width: 1180px) and (min-width: 641px) {
+  .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toolbar .search-box { grid-column: 1 / -1; }
+  .toolbar .subtle-button { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  .global-nav .nav-button:nth-child(-n+3) { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; gap: 40px; }
+  .hero-note { justify-self: start; margin-left: 5%; }
+  .current-note { grid-template-columns: 1fr; }
+  .section-heading, .explorer-heading { display: grid; }
+  .view-switcher { min-width: 0; width: 100%; }
+  .timeline-period { grid-template-columns: 1fr; }
+  .period-aside { position: static; }
+  .project-card { grid-column: span 4; }
+  .project-card.is-featured { grid-column: span 8; }
+  .map-layout { grid-template-columns: 1fr; }
+  .map-side { position: static; }
+  .principle-flow { grid-template-columns: repeat(2, 1fr); }
+  .principle-flow li:nth-child(2) { border-right: 0; }
+  .principle-flow li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+
+@media (max-width: 640px) {
+  .section-shell, .header-inner { width: min(calc(100% - 24px), var(--max)); }
+  .header-inner { min-height: 60px; }
+  .site-brand { font-size: .92rem; }
+  .global-nav { gap: 0; }
+  .nav-button { padding-inline: .5rem; font-size: .82rem; }
+  .hero { padding-top: 64px; }
+  .hero-copy h1 { font-size: clamp(2.45rem, 13vw, 4.6rem); }
+  .hero-actions { align-items: stretch; }
+  .primary-action { width: 100%; }
+  .hero-note { width: 85%; margin-left: 3%; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .current-note { padding: 24px 20px; }
+  .recent-updates, .explorer, .principles { padding-top: 85px; }
+  .update-row { grid-template-columns: 1fr; gap: .35rem; padding: 20px 0; }
+  .view-switcher { grid-template-columns: 1fr; }
+  .view-chip { min-height: 58px; border-right: 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; align-items: center; }
+  .view-chip:last-child { border-bottom: 0; }
+  .view-chip small { margin-top: 0; }
+  .toolbar { grid-template-columns: 1fr; }
+  .timeline { gap: 50px; }
+  .timeline-card { grid-template-columns: 1fr auto; padding: 20px; }
+  .timeline-card::before { display: none; }
+  .timeline-card > div { min-width: 0; }
+  .shelf-track { grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; border-bottom-width: 14px; }
+  .project-card, .project-card.is-featured { grid-column: span 2; min-height: 260px; }
+  .project-card:nth-child(4n+2) { min-height: 280px; }
+  .map-canvas-shell { display: none; }
+  .map-side { display: none; }
+  .map-mobile-list { display: grid; gap: .8rem; }
+  .map-mobile-item { border: 1px solid var(--line-dark); background: var(--paper); padding: 18px; }
+  .map-mobile-item button { width: 100%; margin-top: 1rem; padding: .65rem; border: 1px solid var(--ink); background: transparent; text-align: left; }
+  .principle-flow { grid-template-columns: 1fr; }
+  .principle-flow li, .principle-flow li:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
+  .principle-flow li:last-child { border-bottom: 0; }
+  .site-footer { display: grid; }
+  .dialog-shell { padding: 24px 18px 40px; }
+  .detail-update { grid-template-columns: 1fr; }
+  .detail-related { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* GitHub・拡張機能の網羅版 */
+.catalog-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: .2rem .45rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: .65rem;
+  line-height: 1.2;
+}
+.catalog-badge.is-verified { border-color: rgba(72,111,85,.45); color: var(--green); }
+.catalog-badge.is-unreviewed { border-style: dashed; }
+.project-card.is-legacy { opacity: .82; }
+.project-card.is-legacy::after {
+  content: "かなり昔";
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  color: var(--muted);
+  font: 700 .65rem "Roboto Mono", monospace;
+}
+.detail-links a.is-candidate { border-style: dashed; color: var(--muted); }
+.detail-links a.is-candidate::after { content: "（未確認）"; font-size: .7em; margin-left: .25rem; }
+.extension-spec {
+  padding: 22px;
+  border: 1px solid var(--line-dark);
+  background: var(--bg);
+}
+.extension-spec dl { margin: 0; display: grid; gap: .7rem; }
+.extension-spec dl div { display: grid; grid-template-columns: 130px minmax(0,1fr); gap: 1rem; border-bottom: 1px solid var(--line); padding-bottom: .7rem; }
+.extension-spec dl div:last-child { border-bottom: 0; padding-bottom: 0; }
+.extension-spec dt { color: var(--muted); }
+.extension-spec dd { margin: 0; min-width: 0; }
+.extension-spec code { font-size: .78rem; overflow-wrap: anywhere; }
+.map-canvas-shell { min-height: 720px; }
+.map-canvas { height: 720px; }
+.map-group rect { fill: rgba(244,241,232,.38); stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 7; }
+.map-group text { fill: var(--muted); font: 700 15px "Noto Sans JP", sans-serif; letter-spacing: .08em; }
+.map-side-list { max-height: 480px; overflow: auto; padding-right: .4rem; }
+.map-node text { font-size: 11px; }
+
+@media (max-width: 720px) {
+  .catalog-badge { position: static; align-self: flex-start; margin-top: .55rem; }
+  .extension-spec dl div { grid-template-columns: 1fr; gap: .2rem; }
+}
+
+</style>
+  <script>
+window.BUILD_DIARY_DATA = {"projects":[{"id":"shogibanmen","title":"将棋盤面","subtitle":"将棋の局面整理ツール","summary":"将棋の盤面や局面を、見返しやすい形で扱う。","friction":"対局後に、どの局面で迷ったかを盤面付きで残しにくかった。","firstBuild":"盤面をブラウザ上へ再現するところから始めた。","currentAnswer":"将棋学習を、記憶頼みから見える記録へ移す道具。","type":"learning-tool","verbs":["学ぶ","振り返る"],"status":"dormant","visibility":"public","featured":false,"createdAt":"2025-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/shogibanmen","githubId":"993324710","liveUrl":"https://silovar-uk.github.io/shogibanmen/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"learning","x":350,"y":110},"relatedProjects":[],"updates":[],"updatedAt":"2025-07-24","startedAt":"2025-05-30","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"memo","title":"Memo","subtitle":"初期メモアプリ","summary":"考えや文章をブラウザ上へ残す、初期のメモ制作。","friction":"保存場所を選んでいる間に、書きたいことを逃していた。","firstBuild":"入力欄と保存機能だけの小さなメモから始めた。","currentAnswer":"後のMemoToolや記録系アプリへ続く原型。","type":"web-app","verbs":["記録する","整理する"],"status":"dormant","visibility":"public","featured":false,"createdAt":"2025-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/memo","githubId":"994786161","liveUrl":"https://silovar-uk.github.io/memo/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"archive","x":550,"y":540},"relatedProjects":[{"id":"simplememotool","relation":"メモ機能の発展"}],"updates":[],"updatedAt":"2025-06-05","startedAt":"2025-06-02","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"timeconverter","title":"Time Converter","subtitle":"時間変換ツール","summary":"異なる時間表現を、入力してすぐ変換する。","friction":"時刻や所要時間の換算を、そのたびに頭で計算していた。","firstBuild":"入力値を別の時間表現へ変換する一画面ツールから始めた。","currentAnswer":"計算の正確さより先に、迷わず入力できることを重視した道具。","type":"utility","verbs":["変換する","確認する"],"status":"dormant","visibility":"public","featured":false,"createdAt":"2025-06","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/timeconverter","githubId":"998680493","liveUrl":"https://silovar-uk.github.io/timeconverter/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"work","x":980,"y":110},"relatedProjects":[],"updates":[],"updatedAt":"2025-06-09","startedAt":"2025-06-09","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"manontec","title":"マノン実戦ポテンシャル","subtitle":"スト6・マノン分析ページ","summary":"ストリートファイター6のマノンを、技や状況ごとに実戦視点で整理する。","friction":"攻略情報は多いのに、自分が試合中に使える判断へ変換しにくかった。","firstBuild":"技と状況をカード形式で並べるページから始めた。","currentAnswer":"知識量ではなく、対戦中に選べる形へ変える攻略ノート。","type":"learning-tool","verbs":["学ぶ","整理する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-03","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/manontec","githubId":"1189209834","liveUrl":"https://silovar-uk.github.io/manontec/","liveUrlStatus":"confirmed","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":490,"y":110},"relatedProjects":[{"id":"marisast6","relation":"スト6の攻略整理"}],"updates":[],"updatedAt":"2026-04-20","startedAt":"2026-03-23","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"100yearvision","title":"100年構想","subtitle":"Jリーグの思想を読むページ","summary":"Jリーグ百年構想を、背景と意味から読み直すコンテンツページ。","friction":"有名な言葉ほど、知っているつもりで背景を読まなくなっていた。","firstBuild":"重要な論点をページとして再構成した。","currentAnswer":"スポーツの理念を、現在の仕事とつなげて考える記録。","type":"content-page","verbs":["学ぶ","考える"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-03","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/100yearvision","githubId":"1192768451","liveUrl":"https://silovar-uk.github.io/100yearvision/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"content","x":980,"y":540},"relatedProjects":[{"id":"footballisfun","relation":"サッカーの意味を伝える"}],"updates":[],"updatedAt":"2026-03-27","startedAt":"2026-03-26","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"mymindmap","title":"My Mind Map","subtitle":"個人用マインドマップ","summary":"考えを枝分かれさせながら、関係ごと見える形にする。","friction":"メモが縦に増えると、考え同士のつながりが見えなくなった。","firstBuild":"ノード追加と接続を試せる画面から始めた。","currentAnswer":"考えを整理してから書くのではなく、広げながら考える道具。","type":"web-app","verbs":["整理する","考える"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-04","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/mymindmap","githubId":"1207565216","liveUrl":"https://silovar-uk.github.io/mymindmap/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"archive","x":800,"y":540},"relatedProjects":[{"id":"flowmap","relation":"ノードとつながり"},{"id":"mmmpocket","relation":"階層で考える"}],"updates":[],"updatedAt":"2026-06-12","startedAt":"2026-04-11","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"simplememotool","title":"MemoTool","subtitle":"タブ切り替え・装飾対応メモ","summary":"タブでメモを切り替え、文章を装飾しながら保存するChrome拡張。","friction":"簡単なメモは欲しいが、用途ごとに分けると別アプリを開く必要があった。","firstBuild":"ブラウザ内で一枚のメモを保存する機能から始めた。","currentAnswer":"ブラウザから離れず、用途別のメモを持てる作業机。","type":"chrome-extension","verbs":["記録する","整理する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-04","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/simplememotool","githubId":"1210195390","liveUrl":"https://silovar-uk.github.io/simplememotool/","liveUrlStatus":"","technologies":["Chrome Extension","JavaScript","Local Storage","HTML"],"documentationState":"verified","map":{"group":"extension","x":1180,"y":110},"relatedProjects":[{"id":"memo","relation":"メモ機能の発展"},{"id":"mmmpocket","relation":"小さな記録画面"}],"updates":[{"date":"2026-07","version":"2.0","change":"タブ切り替えと文字装飾へ対応した。","reason":"用途ごとにメモを分けながら、一つの拡張内で完結させるため。"}],"extension":{"version":"2.0","extensionId":"mlemlfglilljmfhpjiomkdfahimljgcd","serviceWorker":"disabled"},"updatedAt":"2026-04-15","startedAt":"2026-04-14","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"mmmpocket","title":"MMM Pocket Lite","subtitle":"スマホ用アウトライン・メモ","summary":"スマートフォンで階層メモ、チェック、ノートを素早く扱う。","friction":"PC向けの整理ツールは、移動中に項目を足すには重かった。","firstBuild":"タイトルと項目をすぐ追加できる小型画面から始めた。","currentAnswer":"ポケットの中で使える、軽量なアウトライン作業台。","type":"web-app","verbs":["記録する","整理する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/mmmpocket","githubId":"1225401968","liveUrl":"https://silovar-uk.github.io/mmmpocket/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"archive","x":550,"y":612},"relatedProjects":[{"id":"simplememotool","relation":"小さな記録画面"},{"id":"mymindmap","relation":"階層で考える"}],"updates":[],"updatedAt":"2026-04-30","startedAt":"2026-04-30","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"countupapp","title":"Count Up App","subtitle":"カウントアップツール","summary":"回数や進捗を、押すだけで積み上げる。","friction":"反復練習や作業回数を、毎回メモするのが面倒だった。","firstBuild":"大きな加算ボタンと履歴から始めた。","currentAnswer":"計測を目的にせず、続ける流れを止めないためのカウンター。","type":"utility","verbs":["記録する","続ける"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/countupapp","githubId":"1225524903","liveUrl":"https://silovar-uk.github.io/countupapp/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"learning","x":210,"y":182},"relatedProjects":[],"updates":[],"updatedAt":"2026-07-13","startedAt":"2026-05","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"englisharcade","title":"English Arcade","subtitle":"英語練習ゲーム","summary":"短い英語問題を、ゲーム感覚で反復する。","friction":"英語学習が説明を読む時間に偏り、口や指を動かす回数が少なかった。","firstBuild":"選択式の短問をテンポよく繰り返す画面から始めた。","currentAnswer":"正しさを理解する前に、使う回数を増やす練習場。","type":"learning-tool","verbs":["学ぶ","続ける"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/englisharcade","githubId":"1230879414","liveUrl":"https://silovar-uk.github.io/englisharcade/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"learning","x":350,"y":182},"relatedProjects":[{"id":"hangul","relation":"言語学習"}],"updates":[],"updatedAt":"2026-05-06","startedAt":"2026-05-06","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"footballisfun","title":"Football Is Fun","subtitle":"サッカーを楽しむコンテンツページ","summary":"サッカーの面白さを、試合やテーマごとに伝えるページ。","friction":"詳しい人向けの情報と、初めて見る人の入口が分かれていた。","firstBuild":"一つのテーマを読み物として見せるページから始めた。","currentAnswer":"知識を誇るより、面白さへ連れていくためのページ。","type":"content-page","verbs":["伝える","学ぶ"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/footballisfun","githubId":"1231419653","liveUrl":"https://silovar-uk.github.io/footballisfun/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"content","x":1105,"y":540},"relatedProjects":[{"id":"100yearvision","relation":"サッカーの意味を伝える"},{"id":"rockvsbra","relation":"対戦コンテンツ"}],"updates":[],"updatedAt":"2026-05-07","startedAt":"2026-05-07","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"patternlanguage","title":"Pattern Language","subtitle":"パターン・ランゲージ整理ページ","summary":"繰り返し現れる実践知を、名前と構造で整理する。","friction":"経験則はあるのに、他人へ共有できる言葉になっていなかった。","firstBuild":"パターンをカード形式で並べた。","currentAnswer":"暗黙知を、再利用できる判断の単位へ変えるページ。","type":"content-page","verbs":["整理する","共有する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/patternlanguage","githubId":"1232493137","liveUrl":"https://silovar-uk.github.io/patternlanguage/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"content","x":980,"y":612},"relatedProjects":[{"id":"designmd","relation":"実践知をルール化"}],"updates":[],"updatedAt":"2026-05-08","startedAt":"2026-05-08","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"akasma","title":"アカスマ","subtitle":"身内スマブラ大会プログラムLP","summary":"身内スマブラ大会の参加者、進行、プログラムを一枚にまとめたLP。","friction":"身内大会でも、当日の流れと期待感をちゃんと共有したかった。","firstBuild":"スマートフォン幅のプログラムLPとして作った。","currentAnswer":"小さな遊びでも、イベントとして本気で整える実験。","type":"content-page","verbs":["参加する","伝える"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/akasma","githubId":"1233726681","liveUrl":"https://silovar-uk.github.io/akasma/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"content","x":1105,"y":612},"relatedProjects":[],"updates":[],"updatedAt":"2026-05-09","startedAt":"2026-05-09","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"resultcalc","title":"Result Calc","subtitle":"結果計算ツール","summary":"入力した結果から順位や数値を計算する小型ツール。","friction":"試合や企画の結果を手計算すると、確認が増えた。","firstBuild":"入力と計算結果を同じ画面へ置いた。","currentAnswer":"計算式より、入力ミスを減らすUIを重視した道具。","type":"utility","verbs":["計算する","確認する"],"status":"prototype","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/resultcalc","githubId":"1233802346","liveUrl":"https://silovar-uk.github.io/resultcalc/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"work","x":700,"y":182},"relatedProjects":[],"updates":[],"updatedAt":"2026-05-09","startedAt":"2026-05-09","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"rockvsbra","title":"Rock vs BRA","subtitle":"対戦コンテンツページ","summary":"特定の対戦やテーマを見せる短編ページ。","friction":"話したい対戦の面白さを、文章だけでは再現しにくかった。","firstBuild":"一枚のビジュアルページへまとめた。","currentAnswer":"試合の背景を、読む順番ごと設計する試作。","type":"content-page","verbs":["伝える","学ぶ"],"status":"prototype","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/rockvsbra","githubId":"1234397283","liveUrl":"https://silovar-uk.github.io/rockvsbra/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"unreviewed","map":{"group":"content","x":1230,"y":612},"relatedProjects":[{"id":"footballisfun","relation":"対戦コンテンツ"}],"updates":[],"updatedAt":"2026-05-10","startedAt":"2026-05-10","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"ooh","title":"OOH","subtitle":"屋外広告整理ページ","summary":"OOH施策の考え方や事例を整理する。","friction":"媒体名と掲出場所だけでは、狙いと役割を説明しづらかった。","firstBuild":"情報を一枚のレビュー画面にまとめた。","currentAnswer":"屋外広告を「出す場所」ではなく、街で起こす接点として考える資料。","type":"content-page","verbs":["伝える","考える"],"status":"prototype","visibility":"public","featured":false,"createdAt":"2026-05","createdAtPrecision":"estimated-month","repositoryUrl":"https://github.com/silovar-uk/ooh","githubId":"1238408160","liveUrl":"https://silovar-uk.github.io/ooh/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"pr","x":350,"y":684},"relatedProjects":[],"updates":[],"updatedAt":"2026-05-14","startedAt":"2026-05-14","startedAtPrecision":"estimated-month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"quicklinks","title":"Quick Project Links","subtitle":"プロジェクト別リンク・POP拡張","summary":"プロジェクトごとにリンクを一時保管し、ショートカットから右下POPを直接操作する。","friction":"仕事ごとに開くページが違い、ブックマークの階層を毎回たどっていた。","firstBuild":"サイドパネルへリンクを保存する機能から始めた。","currentAnswer":"リンク集ではなく、作業文脈をChromeへ呼び戻すランチャー。","type":"chrome-extension","verbs":["見つける","切り替える"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/quicklinks","githubId":"1254925599","liveUrl":"https://silovar-uk.github.io/quicklinks/","liveUrlStatus":"","technologies":["Chrome Extension","JavaScript","Local Storage","HTML"],"documentationState":"verified","map":{"group":"extension","x":1460,"y":110},"relatedProjects":[{"id":"tabshelter","relation":"ブラウザ作業の文脈"},{"id":"converter","relation":"サイドパネル工具箱"}],"updates":[{"date":"2026-07-19","version":"1.9.0","change":"Chrome全体ショートカットから右下POPを直接操作できるようにした。","reason":"サイドパネルを開く操作そのものを減らすため。"}],"extension":{"version":"1.9.0","extensionId":"nlooeckajnfamnlbcagbffgpmhibngda","serviceWorker":"disabled"},"updatedAt":"2026-08-13","startedAt":"2026-06","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"pdflinks","title":"PDF Links","subtitle":"PDF内リンク整理ツール","summary":"PDFに含まれるリンクや参照先を取り出し、確認しやすくする。","friction":"PDF内のリンクを一つずつ開いて確認するのが面倒だった。","firstBuild":"PDFを読み込み、リンク一覧を出す処理から始めた。","currentAnswer":"文書を読む道具ではなく、文書の外へ出る導線を確認する道具。","type":"utility","verbs":["見つける","確認する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/pdflinks","githubId":"1255213092","liveUrl":"https://silovar-uk.github.io/pdflinks/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"work","x":840,"y":182},"relatedProjects":[{"id":"pdfclipper","relation":"PDFを扱う"}],"updates":[],"updatedAt":"2026-06-01","startedAt":"2026-05-31","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"kakidas","title":"kakidas","subtitle":"単語・文・段落を置き、気持ちとタグで育てるメモ","summary":"頭にあるものを単語・文・段落の粒度で置き、タグ、気持ち、リンク、満足度、完了状態を後から足しながら整理する、ローカル優先のメモアプリ。","friction":"考えを最初から文章やタスクへ整えようとすると書き出せず、短い断片と長い段落を同じ方法で扱うのも難しかった。","firstBuild":"思いついた単語・文・段落を、それぞれの欄へすぐ置けるメモとして始めた。","currentAnswer":"任意タイトル、タグ別表示、気持ち・リンク、満足度、完了、派生メモ、バックアップ、IndexedDB、任意のSupabase同期まで備えた断片整理ツール。","type":"web-app","verbs":["書き出す","整理する","育てる"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/kakidas","githubId":"1276624673","liveUrl":"https://kakidas.vercel.app","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","TypeScript","React","Vite","IndexedDB","Supabase"],"documentationState":"verified","map":{"group":"archive","x":675,"y":612},"relatedProjects":[],"updates":[],"icon":"📝","updatedAt":"2026-07-30","startedAt":"2026-06-22","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"converter","title":"テキスト便利変換ツール","subtitle":"サイドパネル版ユーティリティ集","summary":"改行修正、検索、時間選択、条件カード編集などをまとめたChrome拡張。","friction":"小さな文字処理や日程調整のために、別々のページを開いていた。","firstBuild":"テキスト変換を一つ置くところから始まり、便利機能が増えた。","currentAnswer":"単機能ツールではなく、日々の細かな摩擦を置く工具箱。","type":"chrome-extension","verbs":["変換する","確認する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/converter","githubId":"1276860002","liveUrl":"https://silovar-uk.github.io/converter/","liveUrlStatus":"","technologies":["Chrome Extension","JavaScript","Local Storage","HTML"],"documentationState":"verified","map":{"group":"extension","x":1180,"y":182},"relatedProjects":[{"id":"quicklinks","relation":"サイドパネル工具箱"}],"updates":[{"date":"2026-07","version":"2.0.0","change":"改行修正、検索、時間選択、条件カード編集をサイドパネルへ統合した。","reason":"小さな便利機能を別々に開く手間を減らすため。"}],"extension":{"version":"2.0.0","extensionId":"effpkmnompcagibhbbdpdlbnpobfmema","serviceWorker":"disabled"},"updatedAt":"2026-06-22","startedAt":"2026-06-22","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"countvoice","title":"CountVoice","subtitle":"音声カウント・集中支援","summary":"一定間隔の音声カウントと環境音で、時間の経過を耳から把握する。","friction":"画面を見ずに、経過時間や区切りを知りたかった。","firstBuild":"毎秒または一定間隔で数字を読む機能から始めた。","currentAnswer":"タイマーではなく、時間を身体で感じるための音声道具。","type":"learning-tool","verbs":["集中する","続ける"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/countvoice","githubId":"1278117035","liveUrl":"https://silovar-uk.github.io/countvoice/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":490,"y":182},"relatedProjects":[{"id":"st6training","relation":"リズムと時間"}],"updates":[],"updatedAt":"2026-06-28","startedAt":"2026-06","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"tabshelter","title":"Tab Shelter｜タブ退避箱","subtitle":"Chromeを閉じる前に、全ウィンドウを一つの退避セットへ","summary":"開いている通常Chromeウィンドウとタブをまとめて保存し、次回はタイトルとURLを見ながら必要なものだけ新しいウィンドウへ復元する拡張機能。","friction":"作業中のタブを失いたくなくてChromeを閉じられず、次回すべて復元すると不要なタブまで戻ってきた。","firstBuild":"開いているタブのURLを保存し、後からまとめて開く小さな退避機能を作った。","currentAnswer":"全通常ウィンドウの保存・終了、タブ単位／ウィンドウ単位の選択復元、重複抑制、名称変更、JSONバックアップを備えたv1.0.0。","type":"chrome-extension","verbs":["退避する","選ぶ","復元する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/tabshelter","githubId":"1284087416","liveUrl":"","liveUrlStatus":"","technologies":["Chrome Extension","JavaScript","Local Storage","Manifest V3"],"documentationState":"verified","map":{"group":"extension","x":1320,"y":182},"relatedProjects":[{"id":"quicklinks","relation":"ブラウザ作業の文脈"}],"updates":[{"date":"2026-07","version":"1.0.3","change":"すべてのChromeウィンドウを保存し、必要なタブだけ復元できる形へ更新した。","reason":"復元時に全部を開き直す負担を減らすため。"}],"extension":{"version":"1.0.3","extensionId":"dcebccfcgaoffnlefifopolpiljihggp","serviceWorker":"disabled"},"icon":"🗂️","updatedAt":"2026-06-29","startedAt":"2026-06","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"sukan","title":"数感","subtitle":"1分推定トレーニング","summary":"短い問題を通して、数量をざっくり見積もる感覚を鍛える。","friction":"数字を正確に計算できても、妥当な規模感を素早くつかみにくかった。","firstBuild":"1分・4択の推定問題から始めた。","currentAnswer":"正解暗記ではなく、現実的な桁を選ぶ感覚のトレーニング。","type":"learning-tool","verbs":["学ぶ","続ける"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/sukan","githubId":"1287213529","liveUrl":"https://silovar-uk.github.io/sukan/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":70,"y":254},"relatedProjects":[{"id":"newsquiz","relation":"短問反復"},{"id":"fourier","relation":"数を感覚へ変える"}],"updates":[],"updatedAt":"2026-07-03","startedAt":"2026-07-02","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"diff","title":"Text Review Studio","subtitle":"原稿の修正・差分確認・出力を一画面で行う","summary":"変更前と修正後の原稿を並べ、検索置換、表記整形、CMSタグ確認、差分移動、コピー、Excel出力までブラウザ内で完結する文章レビュー用ツール。","friction":"原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。","firstBuild":"二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。","currentAnswer":"右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。","type":"web-app","verbs":["比べる","直す","出力する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/diff","githubId":"1287340409","liveUrl":"https://silovar-uk.github.io/diff/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","SheetJS"],"documentationState":"verified","map":{"group":"work","x":980,"y":182},"relatedProjects":[{"id":"commonpoint","relation":"文章を比べる"},{"id":"designmd","relation":"制作物の品質確認"}],"updates":[{"date":"2026-07-18","version":"0.4","change":"見えない文字を差分対象から除外する設計を追加した。","reason":"確認したい変更が、意味のない差分に埋もれていたため。"}],"aside":"空白を消したかった。空行ではなかった。","icon":"⇄","updatedAt":"2026-08-10","startedAt":"2026-07-02","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"consultingstudy","title":"Consulting Study","subtitle":"コンサルティング思考の学習ツール","summary":"ケース、論点、仮説を反復して学ぶ。","friction":"解説を読むだけでは、問いを立てる順番が身につかなかった。","firstBuild":"短いケースと回答欄を並べるところから始めた。","currentAnswer":"知識集より、考える手順を練習する教材。","type":"learning-tool","verbs":["学ぶ","考える"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/consultingstudy","githubId":"1289211681","liveUrl":"https://silovar-uk.github.io/consultingstudy/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"learning","x":210,"y":254},"relatedProjects":[],"updates":[],"updatedAt":"2026-07-10","startedAt":"2026-07-04","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"newsquiz","title":"News Quiz","subtitle":"ニュース理解クイズ","summary":"ニュースを問いに変え、思い出しながら理解する。","friction":"記事を読んだ直後は分かっても、数日後には要点を説明できなかった。","firstBuild":"一問一答形式のニュース問題から始めた。","currentAnswer":"読む量ではなく、思い出す回数を増やす学習ツール。","type":"learning-tool","verbs":["学ぶ","振り返る"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/newsquiz","githubId":"1289217782","liveUrl":"https://silovar-uk.github.io/newsquiz/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","TypeScript"],"documentationState":"inferred","map":{"group":"learning","x":350,"y":254},"relatedProjects":[{"id":"sukan","relation":"短問反復"}],"updates":[],"updatedAt":"2026-07-08","startedAt":"2026-07-04","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"mydailylog","title":"日々の棚","subtitle":"今日の断片を、あとから使える記録へ育てる","summary":"形式を決めずに残した出来事を、食事・支出・運動・ゲームなどへ整理し、カレンダー・検索・月別集計・イベント単位で読み返すローカル完結型PWA。","friction":"その日に起きた細かなことは残したい一方、入力項目を先に決めると面倒になり、自由記述だけでは後から探しにくかった。","firstBuild":"日付ごとの自由なログと、気分・タイトル・持ち越しメモを一つの画面へ置いた。","currentAnswer":"自由入力、分類提案、詳細編集、前後3日をつなぐイベントビュー、全文検索、集計、JSONバックアップ、CSV出力、オフライン利用を備えた日常ログ。","type":"web-app","verbs":["記録する","見つける","振り返る"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/mydailylog","githubId":"1291089091","liveUrl":"https://silovar-uk.github.io/mydailylog/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","TypeScript","PWA","IndexedDB","Vite"],"documentationState":"verified","map":{"group":"life","x":1410,"y":612},"relatedProjects":[{"id":"myspines","relation":"日々から価値観を読む"}],"updates":[],"icon":"📅","updatedAt":"2026-08-10","startedAt":"2026-06","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"commonpoint","title":"Common Point","subtitle":"共通点抽出ツール","summary":"複数の文章や項目から、重なる論点を見つける。","friction":"似ている意見を読んでも、どこが共通かを頭の中だけで整理していた。","firstBuild":"項目を並べて共通語を比較するところから始めた。","currentAnswer":"一致を探すより、違う言葉の奥にある同じ問題を見つける道具。","type":"data-tool","verbs":["比べる","整理する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/commonpoint","githubId":"1292116568","liveUrl":"https://silovar-uk.github.io/commonpoint/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"work","x":700,"y":254},"relatedProjects":[{"id":"diff","relation":"文章を比べる"}],"updates":[],"updatedAt":"2026-07-08","startedAt":"2026-07-07","startedAtPrecision":"month","startedAtBasis":"repository-created","searchAliases":[]},{"id":"gantt","title":"Gantt","subtitle":"工程・進行管理ツール","summary":"仕事の工程、期限、担当をガント形式で見渡す。","friction":"タスク一覧だけでは、前後関係と重なりが分かりにくかった。","firstBuild":"期間を横棒で表示する画面から始めた。","currentAnswer":"予定表ではなく、詰まりそうな場所を先に見つける道具。","type":"web-app","verbs":["計画する","整理する"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-06","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/gantt","githubId":"1292302987","liveUrl":"https://silovar-uk.github.io/gantt/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"work","x":840,"y":254},"relatedProjects":[{"id":"flowmap","relation":"計画から業務構造へ"}],"updates":[],"updatedAt":"2026-07-10","startedAt":"2026-05","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"fourier","title":"Fourier","subtitle":"フーリエ変換の可視化","summary":"複雑な波が単純な波の組み合わせとして表せる様子を可視化する。","friction":"数式だけでは、分解と再構成の感覚をつかみにくかった。","firstBuild":"複数の波と合成結果を動かして比べる画面から始めた。","currentAnswer":"理解するために、数式を動く形へ翻訳する学習実験。","type":"learning-tool","verbs":["学ぶ","見る"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/fourier","githubId":"1295423598","liveUrl":"https://silovar-uk.github.io/fourier/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"inferred","map":{"group":"learning","x":490,"y":254},"relatedProjects":[{"id":"sukan","relation":"数を感覚へ変える"}],"updates":[],"updatedAt":"2026-07-13","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"designmd","title":"designmd","subtitle":"生成AI時代の文章・スライド・画像制作ガイド","summary":"整っているだけで誰も選んでいないように見える成果物を避けるため、問い、構成、表現、編集、検証の判断基準をまとめた実務ガイド。","friction":"生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。","firstBuild":"文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。","currentAnswer":"最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。","type":"design-system","verbs":["考える","組み立てる","確かめる"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/designmd","githubId":"1298045706","liveUrl":"https://silovar-uk.github.io/designmd/","liveUrlStatus":"confirmed","technologies":["HTML","CSS","JavaScript","Markdown"],"documentationState":"verified","map":{"group":"content","x":980,"y":684},"relatedProjects":[{"id":"diff","relation":"制作物の品質確認"},{"id":"prompts","relation":"制作ルールを実行へ移す"},{"id":"build-diary","relation":"制作判断を見せる"},{"id":"patternlanguage","relation":"実践知をルール化"}],"updates":[],"icon":"✦","updatedAt":"2026-08-13","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"myspines","title":"myspines","subtitle":"段落を動かしながら長い文章を書くエディタ","summary":"本文、番号付きアウトライン、メモを一画面で扱い、段落の並べ替えや階層変更をしながら長文を組み立てるローカルファーストエディタ。","friction":"長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。","firstBuild":"アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。","currentAnswer":"本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。","type":"web-app","verbs":["書く","組み立てる","整理する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/myspines","githubId":"1298193339","liveUrl":"https://silovar-uk.github.io/myspines/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","IndexedDB"],"documentationState":"verified","map":{"group":"life","x":1530,"y":612},"relatedProjects":[{"id":"mydailylog","relation":"日々から価値観を読む"}],"updates":[],"icon":"✍️","updatedAt":"2026-07-13","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"hangul","title":"Hangul","subtitle":"ハングル学習アプリ","summary":"ハングルと読みを、選択問題と単語で反復する。","friction":"一覧を眺めるだけでは、文字を見てすぐ音へ変換できなかった。","firstBuild":"文字とカタカナ読みの選択問題から始めた。","currentAnswer":"知識の確認ではなく、見た瞬間に読む反射を作る教材。","type":"learning-tool","verbs":["学ぶ","続ける"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/hangul","githubId":"1298221726","liveUrl":"https://silovar-uk.github.io/hangul/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":70,"y":326},"relatedProjects":[{"id":"englisharcade","relation":"言語学習"}],"updates":[],"updatedAt":"2026-08-09","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"marisast6","title":"MODERN MARISA LAB","subtitle":"モダンマリーザの判断順を学ぶ実戦攻略サイト","summary":"技表ではなく、距離、画面位置、相手行動、ゲージから次の一手を選ぶ順番を、攻略・逆引き・ドリルで学ぶStreet Fighter 6向けサイト。","friction":"強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。","firstBuild":"技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。","currentAnswer":"技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。","type":"learning-tool","verbs":["学ぶ","判断する","練習する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/marisast6","githubId":"1298884217","liveUrl":"https://silovar-uk.github.io/marisast6/","liveUrlStatus":"confirmed","technologies":["HTML","CSS","JavaScript","GitHub Actions"],"documentationState":"verified","map":{"group":"learning","x":210,"y":326},"relatedProjects":[{"id":"manontec","relation":"スト6の攻略整理"},{"id":"st6training","relation":"知識から入力練習へ"}],"updates":[],"icon":"🥊","updatedAt":"2026-08-12","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"zeldasbsp","title":"ゼルダ実戦ノート","subtitle":"スマブラSP・ゼルダ学習","summary":"スマブラSPのゼルダについて、対戦結果と実戦課題を整理する。","friction":"勝敗だけ残しても、次の対戦で何を変えるかが曖昧だった。","firstBuild":"対戦記録と改善点を一緒に残した。","currentAnswer":"戦績表ではなく、負け方を練習内容へ変えるノート。","type":"learning-tool","verbs":["学ぶ","振り返る"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/zeldasbsp","githubId":"1298885556","liveUrl":"https://silovar-uk.github.io/zeldasbsp/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":350,"y":326},"relatedProjects":[],"updates":[],"updatedAt":"2026-07-13","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"prompts","title":"Prompts","subtitle":"人が選び、AIもURLから読める公開プロンプト・ライブラリ","summary":"用途を人向けの説明から選び、同じ内容を固定URL・Markdown・JSONでAIへ渡せる、文章・会議・企画・調査・広報・画像・学習のプロンプト集。","friction":"プロンプト本文だけを並べると、何に向くか、何を用意するか、何が返るかが人には分かりにくく、AIへ渡す版との不一致も起きやすかった。","firstBuild":"入力フォームから実行用テキストを組み立てるプロンプトランチャーとして始めた。","currentAnswer":"Schema v2の一つのデータから49件のHTML・Markdown・JSON・固定版を生成し、人向け説明、AI向け仕様、検索、検証、旧ランチャーを共存させた公開ライブラリ。","type":"design-system","verbs":["探す","選ぶ","実行する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/prompts","githubId":"1299286948","liveUrl":"https://silovar-uk.github.io/prompts/","liveUrlStatus":"confirmed","technologies":["HTML","CSS","JavaScript","TypeScript","React","Vite","Markdown","JSON","GitHub Actions"],"documentationState":"verified","map":{"group":"work","x":980,"y":254},"relatedProjects":[{"id":"designmd","relation":"制作ルールを実行へ移す"}],"updates":[],"icon":"💬","updatedAt":"2026-07-18","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"pdfclipper","title":"PDF Clipper","subtitle":"画像やPDFの必要な範囲だけを素早く切り抜く","summary":"画像・PDFをブラウザ内で開き、範囲指定、縦横比、整列、回転、余白削除を調整して、PNG・JPG・クリップボード・ZIPへ書き出す軽量ツール。","friction":"資料の一部分だけを使いたい時、PDFを画像化し、別ソフトで切り抜き、複数箇所を一件ずつ保存する工程が長かった。","firstBuild":"画像を読み込み、ドラッグした範囲をPNGとして保存する一画面ツールから始めた。","currentAnswer":"PDFページ一覧、150／300dpi描画、タッチ・ペン操作、数値指定、余白削除、複数候補、ZIP一括保存までブラウザ内で完結するクリッパー。","type":"utility","verbs":["切り抜く","整える","書き出す"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/pdfclipper","githubId":"1302198116","liveUrl":"https://silovar-uk.github.io/pdfclipper/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","Canvas API","PDF.js","ZIP出力"],"documentationState":"verified","map":{"group":"work","x":700,"y":326},"relatedProjects":[{"id":"pdflinks","relation":"PDFを扱う"}],"updates":[],"icon":"✂️","updatedAt":"2026-07-16","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"contentslibrary","title":"作品体験ログ","subtitle":"本・映画・漫画との関係を残す個人アーカイブ","summary":"読書を中心に、作品・体験履歴・メモ・分類・評価の変化を一つの場所へ残す、招待制のローカル志向Webアプリ。","friction":"作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。","firstBuild":"作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。","currentAnswer":"再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。","type":"content-page","verbs":["記録する","探す","振り返る"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/contentslibrary","githubId":"1304125974","liveUrl":"https://contentslibrary.silovar-uk.workers.dev","liveUrlStatus":"confirmed","technologies":["HTML","CSS","JavaScript","TypeScript","Cloudflare Workers","Cloudflare D1","Cloudflare Access"],"documentationState":"verified","map":{"group":"archive","x":800,"y":612},"relatedProjects":[{"id":"mydictionary","relation":"個人の記憶を残す"},{"id":"build-diary","relation":"人生の記録"}],"updates":[{"date":"2026-07-17","version":"0.2","change":"Cloudflare Accessで本人だけが開ける状態にした。","reason":"個人の記録を公開せず、オンラインで使うため。"}],"aside":"Worker名を間違えて作ったが、そのまま正式名称になった。","icon":"📚","updatedAt":"2026-08-13","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"mydictionary","title":"私辞典","subtitle":"出会った言葉を拾い、育て、忘れたころに開く","summary":"気になった言葉・文章・概念を5秒で登録し、意味・出典・場面・使い方を後から追記しながら、自分だけの辞書として育てるローカルファーストアプリ。","friction":"言葉との出会いは一瞬なのに、最初から意味や出典をきれいに埋めようとすると記録できず、保存しても再び開く機会が少なかった。","firstBuild":"見出し語だけをすぐ登録し、詳細は後から足せる小さな辞書を作った。","currentAnswer":"全文検索、未閲覧・久しぶり・育て途中・ランダムの再会導線、JSONバックアップ、CSV・TXT入出力、PWAオフライン利用まで備えた私的辞書。","type":"learning-tool","verbs":["拾う","育てる","思い出す"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/mydictionary","githubId":"1304149077","liveUrl":"https://silovar-uk.github.io/mydictionary/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","TypeScript","React","Dexie","MiniSearch","PWA"],"documentationState":"verified","map":{"group":"archive","x":550,"y":684},"relatedProjects":[{"id":"contentslibrary","relation":"個人の記憶を残す"}],"updates":[],"icon":"🔤","updatedAt":"2026-07-20","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"st6training","title":"ST6 Training","subtitle":"格闘ゲーム入力練習","summary":"コンボ入力を、動画を見るだけでなく、指のリズムとして練習する。","friction":"コンボ表を読んでも、どの間隔でボタンを押すかが身体に入らなかった。","firstBuild":"コントローラー画像と入力列を表示する画面から始めた。","currentAnswer":"コマンド暗記ではなく、入力の時間感覚を練習する道具。","type":"learning-tool","verbs":["学ぶ","集中する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/st6training","githubId":"1304174100","liveUrl":"https://silovar-uk.github.io/st6training/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript"],"documentationState":"verified","map":{"group":"learning","x":490,"y":326},"relatedProjects":[{"id":"marisast6","relation":"知識から入力練習へ"},{"id":"countvoice","relation":"リズムと時間"}],"updates":[{"date":"2026-07-18","version":"0.3","change":"iPhoneの同時押しを前提にしない入力UIへ見直した。","reason":"PCで成立した操作が、タッチ端末では成立しなかったため。"}],"aside":"頭の中では完璧だった操作が、iPhoneで急に敗北した。","updatedAt":"2026-07-17","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"flowmap","title":"Flowmap","subtitle":"文章で工程を作り、図で前後関係を確かめる","summary":"左側のアウトラインへ工程を書くだけで通常の矢印を自動生成し、分岐・合流・参照だけをGUIで補う、業務フロー向けホワイトボード。","friction":"フロー図は見やすい一方、最初からキャンバスへ図形を置くと入力が遅く、工程名や順序の修正にも手間がかかった。","firstBuild":"カードと矢印をキャンバスへ置き、業務工程を自由に結ぶボードから始めた。","currentAnswer":"アウトライン編集、自動・手動接続の分離、図への整列、囲み・折りたたみ、複数ボード、JSON・YAML入出力、PDF出力を備えた工程設計ツール。","type":"web-app","verbs":["書く","つなぐ","確かめる"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07","createdAtPrecision":"month","repositoryUrl":"https://github.com/silovar-uk/flowmap","githubId":"1304491398","liveUrl":"https://silovar-uk.github.io/flowmap/","liveUrlStatus":"candidate","technologies":["HTML","CSS","JavaScript","IndexedDB"],"documentationState":"verified","map":{"group":"work","x":840,"y":326},"relatedProjects":[{"id":"gantt","relation":"計画から業務構造へ"},{"id":"mymindmap","relation":"ノードとつながり"}],"updates":[{"date":"2026-07-18","version":"0.4","change":"ホワイトボードと付箋を基調にし、線と余白を再設計した。","reason":"かっこよさより更新しやすさを優先するため。"}],"icon":"🔀","updatedAt":"2026-07-21","startedAt":"2026-07","startedAtPrecision":"month","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"build-diary","title":"つくって考えた","subtitle":"制作物を探し、使い直すための作品棚","summary":"GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。","friction":"作ったものは増えたが、なぜ作ったかと当時の関心が別々の会話に散らばっていた。","firstBuild":"15件の仮台帳と三つの閲覧モードから始めた。","currentAnswer":"完成品の展示ではなく、日常の小さな不便へ反応してきた記録。","type":"web-app","verbs":["探す","整理する","振り返る"],"status":"active","visibility":"local","featured":true,"createdAt":"2026-07-19","createdAtPrecision":"day","updatedAt":"2026-08-13","repositoryUrl":"https://github.com/silovar-uk/worksportfolio","liveUrl":"https://silovar-uk.github.io/worksportfolio/","liveUrlStatus":"","technologies":["HTML","CSS","JavaScript","JSON","SVG"],"documentationState":"verified","map":{"group":"archive","x":675,"y":684},"relatedProjects":[{"id":"contentslibrary","relation":"人生の記録"},{"id":"designmd","relation":"制作判断を見せる"}],"updates":[{"date":"2026-07-19","version":"0.2","change":"GitHubの61リポジトリと自作Chrome拡張を統合した。","reason":"完成作だけでなく、試作と興味の変化まで網羅するため。"}],"aside":"作ったものをまとめるために、また一つ作った。","icon":"🗃️","startedAt":"2026-07-19","startedAtPrecision":"day","startedAtBasis":"conversation-log","searchAliases":[]},{"id":"keygridexpansion","title":"keygridexpansion","subtitle":"GitHubリポジトリ","summary":"GitHub上で管理している制作物。","friction":"","firstBuild":"","currentAnswer":"","type":"web-app","verbs":["作る"],"status":"development","visibility":"public","featured":false,"createdAt":"2026-08-13","createdAtPrecision":"day","updatedAt":"2026-08-13","startedAt":"2026-08-13","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/keygridexpansion","liveUrl":"","technologies":[],"documentationState":"unreviewed","relatedProjects":[],"updates":[],"aside":"","searchAliases":[]},{"id":"myessays","title":"myessays","subtitle":"GitHubリポジトリ","summary":"GitHub上で管理している制作物。","friction":"","firstBuild":"","currentAnswer":"","type":"web-app","verbs":["作る"],"status":"development","visibility":"public","featured":false,"createdAt":"2026-08-07","createdAtPrecision":"day","updatedAt":"2026-08-13","startedAt":"2026-08-07","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/myessays","liveUrl":"https://silovar-uk.github.io/myessays/","technologies":["JavaScript"],"documentationState":"unreviewed","relatedProjects":[],"updates":[],"aside":"","searchAliases":[]},{"id":"quicklinksexpansion","title":"quicklinksexpansion","subtitle":"GitHubリポジトリ","summary":"GitHub上で管理している制作物。","friction":"","firstBuild":"","currentAnswer":"","type":"chrome-extension","verbs":["作る"],"status":"development","visibility":"public","featured":false,"createdAt":"2026-08-13","createdAtPrecision":"day","updatedAt":"2026-08-13","startedAt":"2026-08-13","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/quicklinksexpansion","liveUrl":"","technologies":["JavaScript"],"documentationState":"unreviewed","relatedProjects":[],"updates":[],"aside":"","searchAliases":[]},{"id":"dailyenglishchunks","title":"Daily English Chunks","subtitle":"意味のまとまりで前から読む、毎日10分の英語練習","summary":"短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。","friction":"英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。","firstBuild":"1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。","currentAnswer":"場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。","type":"learning-tool","verbs":["読む","区切る","声に出す"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-08-07","createdAtPrecision":"day","updatedAt":"2026-08-10","startedAt":"2026-08-10","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/dailyenglishchunks","liveUrl":"https://silovar-uk.github.io/dailyenglishchunks/","technologies":["HTML","CSS","JavaScript","localStorage"],"documentationState":"verified","relatedProjects":[{"id":"hangul","relation":"短い反復練習とローカル進捗保存"}],"updates":[{"date":"2026-08-10","version":"0.1","change":"チャンクリーディングの毎日練習サイトをポートフォリオへ追加","reason":"英語を一語ずつ訳さず、意味のまとまりで前から受け取る練習を毎日の短いルーティンにするため。"}],"aside":"訳す前に、場面を置く。","searchAliases":[]},{"id":"vocabularies","title":"Vocabularies","subtitle":"言葉にできない感覚から、より精密な概念へたどり着く語彙集","summary":"「ごちゃごちゃする」「文章が固い」のような感覚や違和感を入口に、専門語・概念・関連語へたどり着く発見型ボキャブラリーサイト。感覚・分野・用語の3方向から探せる。","friction":"名前を知らない概念ほど検索できず、辞書や用語集も「知りたい言葉をすでに知っている」ことを前提にしがちだった。","firstBuild":"言葉に困った瞬間を入口に、用語の定義だけでなく、選んだ背景、Before→After、関連概念、出典までつなぐ語彙カードから始めた。","currentAnswer":"感覚から探す・分野から探す・用語から探すの3入口を持ち、専門分野を横断して関連語をつなぎながら、曖昧な感覚をより精密な言葉へ変えていく個人用の語彙探索サイト。","type":"learning-tool","verbs":["探す","言語化する","学ぶ"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-08-09","createdAtPrecision":"day","updatedAt":"2026-08-09","startedAt":"2026-08-09","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/vocabularies","liveUrl":"https://silovar-uk.github.io/vocabularies/","technologies":["HTML","CSS","JavaScript","JSON"],"documentationState":"verified","relatedProjects":[{"id":"designmd","relation":"言葉と判断基準を精密にする"},{"id":"myspines","relation":"文章を書くための言語化を支える"}],"updates":[{"date":"2026-08-09","version":"0.1","change":"感覚・分野・用語の3入口を持つ語彙探索サイトを公開","reason":"専門語の名前を知らない状態からでも、より精密な概念へたどり着けるようにするため。"}],"aside":"言葉を知っている人だけが、言葉を探せるのはちょっと変だ。","searchAliases":[],"map":{"group":"learning","x":760,"y":650}},{"id":"likewhat","title":"LikeWhat","subtitle":"「この感じ」を言葉とモックで探すデザイン参照集","summary":"Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。","friction":"『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。","firstBuild":"既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。","currentAnswer":"ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。","type":"design-system","verbs":["探す","比べる","言語化する"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-08-09","createdAtPrecision":"day","updatedAt":"2026-08-10","startedAt":"2026-08-09","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/likewhat","liveUrl":"https://silovar-uk.github.io/likewhat/","technologies":["HTML","CSS","JavaScript","JSON"],"documentationState":"verified","relatedProjects":[{"id":"designmd","relation":"デザイン判断を言葉にする"},{"id":"vocabularies","relation":"曖昧な感覚から精密な言葉へ進む"},{"id":"ennnichimock","relation":"言語化した方向性を実際のモックで比較する"}],"updates":[{"date":"2026-08-10","version":"0.1","change":"ブランド・サービス由来のデザインパターンを言語化とモックで探索する参照集を追加","reason":"『〜っぽい』という曖昧な感覚を、再利用可能なデザイン要素へ分解して探せるようにするため。"}],"aside":"『それっぽい』を、そこで終わらせない。","searchAliases":[]},{"id":"accountinglearn","title":"Accounting Quest｜実践簿記","subtitle":"短い経営ケースで簿記と経営分析を学ぶ","summary":"黒字なのに現金がない、といった経営の出来事を読み、計算・仕訳・異常値発見・提案まで手を動かして学ぶスマホ優先の簿記学習アプリ。","friction":"勘定科目や仕訳を単独で覚えても、実際の経営で数字が何を意味し、次に何を判断すべきかへつながりにくかった。","firstBuild":"CASE 1「黒字なのに、口座にお金がない」を、8ページの物語と設問として実装した。","currentAnswer":"教材をJSONで追加でき、選択・計算・仕訳・提案へ即時フィードバックし、誤答復習と進捗書き出しまで行えるケース学習基盤。","type":"learning-tool","verbs":["学ぶ","解く","考える"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-08-05","createdAtPrecision":"day","updatedAt":"2026-08-10","startedAt":"2026-08-05","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/accountinglearn","liveUrl":"https://silovar-uk.github.io/accountinglearn/","technologies":["JavaScript","HTML","CSS","JSON"],"documentationState":"verified","relatedProjects":[],"updates":[],"aside":"","icon":"🧾","searchAliases":[]},{"id":"ennnichimock","title":"炎日 2026 特設ページ モック","subtitle":"秋開催のイベント体験を比較する5つのWeb案","summary":"2026年9月19日のイベントを題材に、参加型、物語型、探索型、編集型、共同体型の5案を、比較画面と発注仕様書まで含めて形にしたデザインモック。","friction":"企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。","firstBuild":"秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。","currentAnswer":"5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。","type":"design-system","verbs":["比べる","設計する","伝える"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07-27","createdAtPrecision":"day","updatedAt":"2026-07-28","startedAt":"2026-07-27","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/ennnichimock","liveUrl":"https://silovar-uk.github.io/ennnichimock/","technologies":["HTML","CSS","JavaScript","JSON"],"documentationState":"verified","relatedProjects":[],"updates":[],"aside":"","icon":"🏮","searchAliases":[]},{"id":"cssanimationlists","title":"CSS MOTION","subtitle":"動くプレビューとコードで探すCSSアニメーション図鑑","summary":"CSSアニメーションを実際に動かしながら、用途、トリガー、難易度、タグで探し、同じソースのHTML・CSSをコピーできるライブラリ。","friction":"動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。","firstBuild":"よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。","currentAnswer":"固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。","type":"design-system","verbs":["探す","試す","使う"],"status":"active","visibility":"public","featured":false,"createdAt":"2026-07-24","createdAtPrecision":"day","updatedAt":"2026-07-26","startedAt":"2026-07-24","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/cssanimationlists","liveUrl":"https://silovar-uk.github.io/cssanimationlists/","technologies":["TypeScript","React","Vite","Shadow DOM"],"documentationState":"verified","relatedProjects":[],"updates":[],"aside":"","icon":"✨","searchAliases":[]},{"id":"whatsthiswiki","title":"What's This Wiki?","subtitle":"Wikipediaの目次だけで記事名を当てるクイズ","summary":"記事本文ではなく目次を読み、Wikipediaの記事名を自由入力で当てるクイズ。ランダム探索、URLからの問題作成、同じ問題セットの共有に対応。","friction":"Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。","firstBuild":"確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。","currentAnswer":"Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。","type":"learning-tool","verbs":["推理する","遊ぶ","作る"],"status":"active","visibility":"public","featured":true,"createdAt":"2026-07-24","createdAtPrecision":"day","updatedAt":"2026-07-26","startedAt":"2026-07-24","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/whatsthiswiki","liveUrl":"https://silovar-uk.github.io/whatsthiswiki/","technologies":["JavaScript","HTML","CSS","Wikipedia API"],"documentationState":"verified","relatedProjects":[],"updates":[],"aside":"","icon":"🧩","searchAliases":[]},{"id":"imagetuning","title":"Image Tuning","subtitle":"画像への修正指示を視覚化して共有する","summary":"画像上へコメントや修正指示を置き、レイヤーを保ったJSONと確認用PNGで共有するブラウザアプリ。","friction":"画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。","firstBuild":"画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。","currentAnswer":"PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。","type":"web-app","verbs":["確認する","指示する","共有する"],"status":"development","visibility":"public","featured":false,"createdAt":"2026-07-21","createdAtPrecision":"day","updatedAt":"2026-07-22","startedAt":"2026-07-21","startedAtPrecision":"day","startedAtBasis":"repository-created","repositoryUrl":"https://github.com/silovar-uk/imagetuning","liveUrl":"https://silovar-uk.github.io/imagetuning/","technologies":["TypeScript","React","Vite"],"documentationState":"verified","relatedProjects":[],"updates":[],"aside":"","icon":"🖼️","searchAliases":[]},{"id":"keygrid","title":"KeyGrid","subtitle":"Chromeをマウスなしで操作する拡張機能","summary":"リンク、ボタン、入力欄へHintを割り当て、固定キー式ブックマーク、Grid、全画面リンク一覧、サイト別補助を組み合わせてChrome操作をキーボードだけで進める拡張機能。","friction":"クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まり、要素が多い画面ほどHint同士も重なっていた。","firstBuild":"画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。","currentAnswer":"対象要素の重なり回避、入力要素の常時表示、全画面リンク一覧、折り畳み状態からの復帰、LINE WORKSのチャット選択まで扱うキーボード操作基盤。","type":"chrome-extension","verbs":["操作する","探す","移動する"],"status":"active","visibility":"local","featured":true,"createdAt":"2026-07-27","createdAtPrecision":"day","updatedAt":"2026-08-05","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript","Manifest V3"],"documentationState":"verified","map":{"group":"extension","x":1600,"y":398},"relatedProjects":[{"id":"quicklinks","relation":"ブラウザ操作のキーボード化"}],"updates":[],"aside":"クリック先を探すより、キーを押した方が速い。","startedAt":"2026-07-27","startedAtPrecision":"day","startedAtBasis":"record-created"},{"id":"lineworks-logger","title":"LINE WORKS Logger","subtitle":"トーク・メールのローカル記録拡張","summary":"LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。","friction":"大量の連絡を画面上だけで追うと、あとから検索しにくかった。","firstBuild":"対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。","currentAnswer":"業務連絡を自分で扱える記録データへ変える入口。","type":"chrome-extension","verbs":["記録する","探す"],"status":"prototype","visibility":"local","featured":false,"createdAt":"2026-05","createdAtPrecision":"month","updatedAt":"2026-05","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript"],"documentationState":"verified","map":{"group":"extension","x":1460,"y":398},"relatedProjects":[],"updates":[],"aside":"連絡は流れる。ログは流したくない。","startedAt":"2026-05","startedAtPrecision":"month","startedAtBasis":"record-created"},{"id":"payment-case-manager","title":"支払案件管理アプリ","subtitle":"支払案件の進捗とfreee申請チェックをまとめるChrome拡張","summary":"支払月・支払先・案件名を登録し、発注・納品・請求書・支払の進捗を月別に管理。freeeの支払申請画面では入力内容を自動チェックし、経理関連のQuick Linksへすぐ移動できるChromeサイドパネル拡張。","friction":"支払案件の進捗、証憑、申請画面、関連シートやトークルームが複数の場所に分かれ、確認漏れと画面移動の手間が生まれていた。","firstBuild":"支払案件を月別に登録し、発注から支払までの工程をチェックできるサイドパネルとして作った。","currentAnswer":"案件の追加・編集・並べ替え、完了表示、Undo・Redo、JSON入出力、関連リンク、freee支払申請の入力チェックを一つにまとめた業務用Chrome拡張。","type":"learning-tool","verbs":["管理する","確認する","申請する"],"status":"active","visibility":"local","featured":false,"createdAt":"2026-05-08","createdAtPrecision":"day","updatedAt":"2026-08-06","repositoryUrl":"","liveUrl":"","technologies":["Chrome Extension","JavaScript","Manifest V3","freee"],"documentationState":"verified","extension":{"version":"1.4","extensionId":"","serviceWorker":"active"},"map":{"group":"extension","x":1040,"y":398},"relatedProjects":[{"id":"accountinglearn","relation":"会計・経理を扱う"},{"id":"quicklinks","relation":"業務リンクをすぐ開く"}],"updates":[{"date":"2026-08-06","version":"1.4","change":"経理関連のQuick Linksを追加","reason":"支払シート、証憑、トークルーム、適格証明書の案内へすぐ移動できるようにするため。"},{"date":"2026-05-08","version":"1.2","change":"freee支払申請の入力チェックを追加","reason":"支払先、メモタグ、勘定科目、支払期限などの確認漏れを減らすため。"}],"aside":"申請を始める前に、確認漏れを減らす場所を先に作った。","startedAt":"2026-05-08","startedAtPrecision":"day","startedAtBasis":"record-created"}],"periods":[{"id":"2026-07","label":"2026年7月","summary":"学習、業務、Chrome拡張、個人記録が一気につながり、作ったもの自体を残すページまで作り始めた。","interests":["制作記録","Chrome拡張","学習ツール"],"projectIds":["fourier","designmd","myspines","hangul","marisast6","zeldasbsp","prompts","pdfclipper","contentslibrary","mydictionary","st6training","flowmap","build-diary"]},{"id":"2026-06","label":"2026年6月ごろ","summary":"文章確認、工程管理、転職、ブラウザ作業など、日常の実務を直接ツールへ変えていた。","interests":["業務改善","自己整理","比較"],"projectIds":["quicklinks","pdflinks","kakidas","converter","countvoice","tabshelter","sukan","diff","consultingstudy","newsquiz","mydailylog","commonpoint","gantt"]},{"id":"2026-05","label":"2026年5月ごろ","summary":"イベント、広報、学習、身内大会まで、テーマごとに一枚のページを作る時期。","interests":["イベント","広報","コンテンツ"],"projectIds":["mmmpocket","countupapp","englisharcade","footballisfun","patternlanguage","akasma","resultcalc","rockvsbra","ooh","lineworks-logger"]},{"id":"2026-04","label":"2026年4月ごろ","summary":"メモ、マインドマップ、イベント地図など、情報を置く器を試していた。","interests":["情報整理","メモ","可視化"],"projectIds":["mymindmap","simplememotool"]},{"id":"2026-03","label":"2026年3月ごろ","summary":"記録、ゲーム分析、サッカー企画のページが増え始めた。","interests":["記録","ゲーム","サッカー"],"projectIds":["manontec","100yearvision"]},{"id":"2025-06","label":"2025年6月ごろ","summary":"小さな変換や確認を、ブラウザ上の単機能ツールへしていた。","interests":["小型ツール","変換"],"projectIds":["timeconverter"]},{"id":"2025-05","label":"2025年5月ごろ","summary":"将棋、タスク、メモなど、自分用の道具を作り始めた時期。","interests":["将棋","タスク","メモ"],"projectIds":["shogibanmen","memo"]},{"id":"2020-08","label":"2020年ごろ","summary":"スクレイピングや自動処理を試した、初期の実験。","interests":["Python","スクレイピング"],"projectIds":[]},{"id":"2019-01","label":"2019年ごろ","summary":"GitHubに最初のコードを置いた。まだ棚はほぼ空。","interests":["Python","最初の記録"],"projectIds":[]}],"settings":{"siteTitle":"つくって考えた","currentNote":"GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。","defaultView":"shelf","featuredProjectIds":["diff","flowmap","quicklinks","contentslibrary","designmd","tabshelter","st6training"],"defaultSort":"created-desc"}};
+</script><script data-worksportfolio-runtime>window.WORKS_PORTFOLIO_CONFIG={"owner":"silovar-uk","defaultView":"shelf","defaultSort":"updated-desc","githubApiFallback":true,"hiddenIds":["python","scrap_random","pratchecker","zl-logger-web","jumbo","gamedashboard","eventmap","rexanq","vsmcintro","2026eventlist","predictattendance","quickliks","lineworks-scroll-copy","x-auto-screenshot-scroll","todomanager"],"overrides":{"worksportfolio":{"title":"つくって考えた","subtitle":"制作物を探し、使い直すための作品棚","summary":"GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。","icon":"🗃️","type":"web-app","verbs":["探す","整理する","振り返る"],"status":"active","documentationState":"verified","liveUrl":"https://silovar-uk.github.io/worksportfolio/"},"contentslibrary":{"title":"作品体験ログ","subtitle":"本・映画・漫画との関係を残す個人アーカイブ","summary":"読書を中心に、作品・体験履歴・メモ・分類・評価の変化を一つの場所へ残す、招待制のローカル志向Webアプリ。","friction":"作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。","firstBuild":"作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。","currentAnswer":"再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。","icon":"📚","type":"content-page","verbs":["記録する","探す","振り返る"],"status":"active","featured":true,"documentationState":"verified","technologies":["TypeScript","Cloudflare Workers","Cloudflare D1","Cloudflare Access"]},"designmd":{"title":"designmd","subtitle":"生成AI時代の文章・スライド・画像制作ガイド","summary":"整っているだけで誰も選んでいないように見える成果物を避けるため、問い、構成、表現、編集、検証の判断基準をまとめた実務ガイド。","friction":"生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。","firstBuild":"文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。","currentAnswer":"最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。","icon":"✦","type":"design-system","verbs":["考える","組み立てる","確かめる"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","Markdown"]},"marisast6":{"title":"MODERN MARISA LAB","subtitle":"モダンマリーザの判断順を学ぶ実戦攻略サイト","summary":"技表ではなく、距離、画面位置、相手行動、ゲージから次の一手を選ぶ順番を、攻略・逆引き・ドリルで学ぶStreet Fighter 6向けサイト。","friction":"強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。","firstBuild":"技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。","currentAnswer":"技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。","icon":"🥊","type":"learning-tool","verbs":["学ぶ","判断する","練習する"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","GitHub Actions"]},"diff":{"title":"Text Review Studio","subtitle":"原稿の修正・差分確認・出力を一画面で行う","summary":"変更前と修正後の原稿を並べ、検索置換、表記整形、CMSタグ確認、差分移動、コピー、Excel出力までブラウザ内で完結する文章レビュー用ツール。","friction":"原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。","firstBuild":"二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。","currentAnswer":"右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。","icon":"⇄","type":"web-app","verbs":["比べる","直す","出力する"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","SheetJS"]},"myspines":{"title":"myspines","subtitle":"段落を動かしながら長い文章を書くエディタ","summary":"本文、番号付きアウトライン、メモを一画面で扱い、段落の並べ替えや階層変更をしながら長文を組み立てるローカルファーストエディタ。","friction":"長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。","firstBuild":"アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。","currentAnswer":"本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。","icon":"✍️","type":"web-app","verbs":["書く","組み立てる","整理する"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","IndexedDB"]},"whatsthiswiki":{"title":"What's This Wiki?","subtitle":"Wikipediaの目次だけで記事名を当てるクイズ","summary":"記事本文ではなく目次を読み、Wikipediaの記事名を自由入力で当てるクイズ。ランダム探索、URLからの問題作成、同じ問題セットの共有に対応。","friction":"Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。","firstBuild":"確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。","currentAnswer":"Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。","icon":"🧩","type":"learning-tool","verbs":["推理する","遊ぶ","作る"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","Wikipedia API"]},"imagetuning":{"title":"Image Tuning","subtitle":"画像への修正指示を視覚化して共有する","summary":"画像上へコメントや修正指示を置き、レイヤーを保ったJSONと確認用PNGで共有するブラウザアプリ。","friction":"画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。","firstBuild":"画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。","currentAnswer":"PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。","icon":"🖼️","type":"web-app","verbs":["確認する","指示する","共有する"],"status":"development","documentationState":"verified","technologies":["React","TypeScript","Vite"]},"cssanimationlists":{"title":"CSS MOTION","subtitle":"動くプレビューとコードで探すCSSアニメーション図鑑","summary":"CSSアニメーションを実際に動かしながら、用途、トリガー、難易度、タグで探し、同じソースのHTML・CSSをコピーできるライブラリ。","friction":"動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。","firstBuild":"よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。","currentAnswer":"固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。","icon":"✨","type":"design-system","verbs":["探す","試す","使う"],"status":"active","documentationState":"verified","technologies":["React","TypeScript","Vite","Shadow DOM"]},"ennnichimock":{"title":"炎日 2026 特設ページ モック","subtitle":"秋開催のイベント体験を比較する5つのWeb案","summary":"2026年9月19日のイベントを題材に、参加型、物語型、探索型、編集型、共同体型の5案を、比較画面と発注仕様書まで含めて形にしたデザインモック。","friction":"企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。","firstBuild":"秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。","currentAnswer":"5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。","icon":"🏮","type":"design-system","verbs":["比べる","設計する","伝える"],"status":"active","documentationState":"verified","technologies":["HTML","CSS","JavaScript","JSON"]},"accountinglearn":{"title":"Accounting Quest｜実践簿記","subtitle":"短い経営ケースで簿記と経営分析を学ぶ","summary":"黒字なのに現金がない、といった経営の出来事を読み、計算・仕訳・異常値発見・提案まで手を動かして学ぶスマホ優先の簿記学習アプリ。","friction":"勘定科目や仕訳を単独で覚えても、実際の経営で数字が何を意味し、次に何を判断すべきかへつながりにくかった。","firstBuild":"CASE 1「黒字なのに、口座にお金がない」を、8ページの物語と設問として実装した。","currentAnswer":"教材をJSONで追加でき、選択・計算・仕訳・提案へ即時フィードバックし、誤答復習と進捗書き出しまで行えるケース学習基盤。","icon":"🧾","type":"learning-tool","verbs":["学ぶ","解く","考える"],"status":"active","featured":true,"documentationState":"verified","technologies":["HTML","CSS","JavaScript","JSON"]},"mydailylog":{"title":"日々の棚","subtitle":"今日の断片を、あとから使える記録へ育てる","summary":"形式を決めずに残した出来事を、食事・支出・運動・ゲームなどへ整理し、カレンダー・検索・月別集計・イベント単位で読み返すローカル完結型PWA。","friction":"その日に起きた細かなことは残したい一方、入力項目を先に決めると面倒になり、自由記述だけでは後から探しにくかった。","firstBuild":"日付ごとの自由なログと、気分・タイトル・持ち越しメモを一つの画面へ置いた。","currentAnswer":"自由入力、分類提案、詳細編集、前後3日をつなぐイベントビュー、全文検索、集計、JSONバックアップ、CSV出力、オフライン利用を備えた日常ログ。","icon":"📅","type":"web-app","verbs":["記録する","見つける","振り返る"],"status":"active","documentationState":"verified","technologies":["TypeScript","PWA","IndexedDB","Vite"]},"mydictionary":{"title":"私辞典","subtitle":"出会った言葉を拾い、育て、忘れたころに開く","summary":"気になった言葉・文章・概念を5秒で登録し、意味・出典・場面・使い方を後から追記しながら、自分だけの辞書として育てるローカルファーストアプリ。","friction":"言葉との出会いは一瞬なのに、最初から意味や出典をきれいに埋めようとすると記録できず、保存しても再び開く機会が少なかった。","firstBuild":"見出し語だけをすぐ登録し、詳細は後から足せる小さな辞書を作った。","currentAnswer":"全文検索、未閲覧・久しぶり・育て途中・ランダムの再会導線、JSONバックアップ、CSV・TXT入出力、PWAオフライン利用まで備えた私的辞書。","icon":"🔤","type":"learning-tool","verbs":["拾う","育てる","思い出す"],"status":"active","documentationState":"verified","technologies":["React","TypeScript","Dexie","MiniSearch","PWA"]},"pdfclipper":{"title":"PDF Clipper","subtitle":"画像やPDFの必要な範囲だけを素早く切り抜く","summary":"画像・PDFをブラウザ内で開き、範囲指定、縦横比、整列、回転、余白削除を調整して、PNG・JPG・クリップボード・ZIPへ書き出す軽量ツール。","friction":"資料の一部分だけを使いたい時、PDFを画像化し、別ソフトで切り抜き、複数箇所を一件ずつ保存する工程が長かった。","firstBuild":"画像を読み込み、ドラッグした範囲をPNGとして保存する一画面ツールから始めた。","currentAnswer":"PDFページ一覧、150／300dpi描画、タッチ・ペン操作、数値指定、余白削除、複数候補、ZIP一括保存までブラウザ内で完結するクリッパー。","icon":"✂️","type":"utility","verbs":["切り抜く","整える","書き出す"],"status":"active","documentationState":"verified","technologies":["HTML","CSS","JavaScript","Canvas API","PDF.js","ZIP出力"]},"flowmap":{"title":"Flowmap","subtitle":"文章で工程を作り、図で前後関係を確かめる","summary":"左側のアウトラインへ工程を書くだけで通常の矢印を自動生成し、分岐・合流・参照だけをGUIで補う、業務フロー向けホワイトボード。","friction":"フロー図は見やすい一方、最初からキャンバスへ図形を置くと入力が遅く、工程名や順序の修正にも手間がかかった。","firstBuild":"カードと矢印をキャンバスへ置き、業務工程を自由に結ぶボードから始めた。","currentAnswer":"アウトライン編集、自動・手動接続の分離、図への整列、囲み・折りたたみ、複数ボード、JSON・YAML入出力、PDF出力を備えた工程設計ツール。","icon":"🔀","type":"web-app","verbs":["書く","つなぐ","確かめる"],"status":"active","documentationState":"verified","technologies":["HTML","CSS","JavaScript","IndexedDB"]},"prompts":{"title":"Prompts","subtitle":"人が選び、AIもURLから読める公開プロンプト・ライブラリ","summary":"用途を人向けの説明から選び、同じ内容を固定URL・Markdown・JSONでAIへ渡せる、文章・会議・企画・調査・広報・画像・学習のプロンプト集。","friction":"プロンプト本文だけを並べると、何に向くか、何を用意するか、何が返るかが人には分かりにくく、AIへ渡す版との不一致も起きやすかった。","firstBuild":"入力フォームから実行用テキストを組み立てるプロンプトランチャーとして始めた。","currentAnswer":"Schema v2の一つのデータから49件のHTML・Markdown・JSON・固定版を生成し、人向け説明、AI向け仕様、検索、検証、旧ランチャーを共存させた公開ライブラリ。","icon":"💬","type":"design-system","verbs":["探す","選ぶ","実行する"],"status":"active","featured":true,"documentationState":"verified","technologies":["React","TypeScript","Vite","Markdown","JSON","GitHub Actions"]},"tabshelter":{"title":"Tab Shelter｜タブ退避箱","subtitle":"Chromeを閉じる前に、全ウィンドウを一つの退避セットへ","summary":"開いている通常Chromeウィンドウとタブをまとめて保存し、次回はタイトルとURLを見ながら必要なものだけ新しいウィンドウへ復元する拡張機能。","friction":"作業中のタブを失いたくなくてChromeを閉じられず、次回すべて復元すると不要なタブまで戻ってきた。","firstBuild":"開いているタブのURLを保存し、後からまとめて開く小さな退避機能を作った。","currentAnswer":"全通常ウィンドウの保存・終了、タブ単位／ウィンドウ単位の選択復元、重複抑制、名称変更、JSONバックアップを備えたv1.0.0。","icon":"🗂️","type":"chrome-extension","verbs":["退避する","選ぶ","復元する"],"status":"active","documentationState":"verified","technologies":["Chrome Extension","JavaScript","Manifest V3"]},"kakidas":{"title":"kakidas","subtitle":"単語・文・段落を置き、気持ちとタグで育てるメモ","summary":"頭にあるものを単語・文・段落の粒度で置き、タグ、気持ち、リンク、満足度、完了状態を後から足しながら整理する、ローカル優先のメモアプリ。","friction":"考えを最初から文章やタスクへ整えようとすると書き出せず、短い断片と長い段落を同じ方法で扱うのも難しかった。","firstBuild":"思いついた単語・文・段落を、それぞれの欄へすぐ置けるメモとして始めた。","currentAnswer":"任意タイトル、タグ別表示、気持ち・リンク、満足度、完了、派生メモ、バックアップ、IndexedDB、任意のSupabase同期まで備えた断片整理ツール。","icon":"📝","type":"web-app","verbs":["書き出す","整理する","育てる"],"status":"active","documentationState":"verified","technologies":["React","TypeScript","Vite","IndexedDB","Supabase"]}},"repositoryProjectIds":{"worksportfolio":"build-diary"}};window.WORKS_PORTFOLIO_REPOSITORIES=[{"id":"contentslibrary","name":"contentslibrary","description":"","repositoryUrl":"https://github.com/silovar-uk/contentslibrary","liveUrl":"","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-17","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":false,"defaultBranch":"main"},{"id":"designmd","name":"designmd","description":"","repositoryUrl":"https://github.com/silovar-uk/designmd","liveUrl":"https://silovar-uk.github.io/designmd/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-12","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":true,"defaultBranch":"main"},{"id":"keygridexpansion","name":"keygridexpansion","description":"","repositoryUrl":"https://github.com/silovar-uk/keygridexpansion","liveUrl":"","language":"","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-13","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":false,"defaultBranch":"main"},{"id":"myessays","name":"myessays","description":"","repositoryUrl":"https://github.com/silovar-uk/myessays","liveUrl":"https://silovar-uk.github.io/myessays/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-07","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":true,"defaultBranch":"main"},{"id":"quicklinks","name":"quicklinks","description":"","repositoryUrl":"https://github.com/silovar-uk/quicklinks","liveUrl":"https://silovar-uk.github.io/quicklinks/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-31","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":true,"defaultBranch":"main"},{"id":"quicklinksexpansion","name":"quicklinksexpansion","description":"","repositoryUrl":"https://github.com/silovar-uk/quicklinksexpansion","liveUrl":"","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-13","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":false,"defaultBranch":"main"},{"id":"worksportfolio","name":"worksportfolio","description":"","repositoryUrl":"https://github.com/silovar-uk/worksportfolio","liveUrl":"https://silovar-uk.github.io/worksportfolio/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-19","updatedAt":"2026-08-13","pushedAt":"2026-08-13","hasPages":true,"defaultBranch":"main"},{"id":"dailyenglishchunks","name":"dailyenglishchunks","description":"","repositoryUrl":"https://github.com/silovar-uk/dailyenglishchunks","liveUrl":"https://silovar-uk.github.io/dailyenglishchunks/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-10","updatedAt":"2026-08-12","pushedAt":"2026-08-12","hasPages":true,"defaultBranch":"main"},{"id":"marisast6","name":"marisast6","description":"","repositoryUrl":"https://github.com/silovar-uk/marisast6","liveUrl":"https://silovar-uk.github.io/marisast6/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-13","updatedAt":"2026-08-12","pushedAt":"2026-08-12","hasPages":true,"defaultBranch":"main"},{"id":"vocabularies","name":"vocabularies","description":"","repositoryUrl":"https://github.com/silovar-uk/vocabularies","liveUrl":"https://silovar-uk.github.io/vocabularies/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-09","updatedAt":"2026-08-12","pushedAt":"2026-08-12","hasPages":true,"defaultBranch":"main"},{"id":"likewhat","name":"likewhat","description":"","repositoryUrl":"https://github.com/silovar-uk/likewhat","liveUrl":"https://silovar-uk.github.io/likewhat/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-09","updatedAt":"2026-08-11","pushedAt":"2026-08-11","hasPages":true,"defaultBranch":"main"},{"id":"accountinglearn","name":"accountinglearn","description":"","repositoryUrl":"https://github.com/silovar-uk/accountinglearn","liveUrl":"https://silovar-uk.github.io/accountinglearn/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-08-05","updatedAt":"2026-08-10","pushedAt":"2026-08-10","hasPages":true,"defaultBranch":"main"},{"id":"diff","name":"diff","description":"","repositoryUrl":"https://github.com/silovar-uk/diff","liveUrl":"https://silovar-uk.github.io/diff/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-02","updatedAt":"2026-08-10","pushedAt":"2026-08-10","hasPages":true,"defaultBranch":"main"},{"id":"mydailylog","name":"mydailylog","description":"","repositoryUrl":"https://github.com/silovar-uk/mydailylog","liveUrl":"https://silovar-uk.github.io/mydailylog/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-06","updatedAt":"2026-08-10","pushedAt":"2026-08-10","hasPages":true,"defaultBranch":"main"},{"id":"hangul","name":"hangul","description":"","repositoryUrl":"https://github.com/silovar-uk/hangul","liveUrl":"https://silovar-uk.github.io/hangul/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-12","updatedAt":"2026-08-09","pushedAt":"2026-08-09","hasPages":true,"defaultBranch":"main"},{"id":"kakidas","name":"kakidas","description":"","repositoryUrl":"https://github.com/silovar-uk/kakidas","liveUrl":"https://kakidas.vercel.app","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-06-22","updatedAt":"2026-07-30","pushedAt":"2026-07-30","hasPages":true,"defaultBranch":"main"},{"id":"ennnichimock","name":"ennnichimock","description":"","repositoryUrl":"https://github.com/silovar-uk/ennnichimock","liveUrl":"https://silovar-uk.github.io/ennnichimock/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-27","updatedAt":"2026-07-28","pushedAt":"2026-07-28","hasPages":true,"defaultBranch":"main"},{"id":"cssanimationlists","name":"cssanimationlists","description":"","repositoryUrl":"https://github.com/silovar-uk/cssanimationlists","liveUrl":"https://silovar-uk.github.io/cssanimationlists/","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-24","updatedAt":"2026-07-26","pushedAt":"2026-07-26","hasPages":true,"defaultBranch":"main"},{"id":"whatsthiswiki","name":"whatsthiswiki","description":"","repositoryUrl":"https://github.com/silovar-uk/whatsthiswiki","liveUrl":"https://silovar-uk.github.io/whatsthiswiki/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-24","updatedAt":"2026-07-26","pushedAt":"2026-07-26","hasPages":true,"defaultBranch":"main"},{"id":"imagetuning","name":"imagetuning","description":"","repositoryUrl":"https://github.com/silovar-uk/imagetuning","liveUrl":"https://silovar-uk.github.io/imagetuning/","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-21","updatedAt":"2026-07-22","pushedAt":"2026-07-22","hasPages":true,"defaultBranch":"main"},{"id":"flowmap","name":"flowmap","description":"","repositoryUrl":"https://github.com/silovar-uk/flowmap","liveUrl":"https://silovar-uk.github.io/flowmap/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-18","updatedAt":"2026-07-21","pushedAt":"2026-07-21","hasPages":true,"defaultBranch":"main"},{"id":"mydictionary","name":"mydictionary","description":"","repositoryUrl":"https://github.com/silovar-uk/mydictionary","liveUrl":"https://silovar-uk.github.io/mydictionary/","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-17","updatedAt":"2026-07-20","pushedAt":"2026-07-20","hasPages":true,"defaultBranch":"main"},{"id":"prompts","name":"prompts","description":"","repositoryUrl":"https://github.com/silovar-uk/prompts","liveUrl":"https://silovar-uk.github.io/prompts/","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-13","updatedAt":"2026-07-18","pushedAt":"2026-07-18","hasPages":true,"defaultBranch":"main"},{"id":"st6training","name":"st6training","description":"","repositoryUrl":"https://github.com/silovar-uk/st6training","liveUrl":"https://silovar-uk.github.io/st6training/","language":"CSS","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-17","updatedAt":"2026-07-17","pushedAt":"2026-07-17","hasPages":true,"defaultBranch":"main"},{"id":"pdfclipper","name":"pdfclipper","description":"","repositoryUrl":"https://github.com/silovar-uk/pdfclipper","liveUrl":"https://silovar-uk.github.io/pdfclipper/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-16","updatedAt":"2026-07-16","pushedAt":"2026-07-16","hasPages":true,"defaultBranch":"main"},{"id":"countupapp","name":"countupapp","description":"","repositoryUrl":"https://github.com/silovar-uk/countupapp","liveUrl":"https://silovar-uk.github.io/countupapp/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-30","updatedAt":"2026-07-13","pushedAt":"2026-07-13","hasPages":true,"defaultBranch":"main"},{"id":"fourier","name":"fourier","description":"","repositoryUrl":"https://github.com/silovar-uk/fourier","liveUrl":"https://silovar-uk.github.io/fourier/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-09","updatedAt":"2026-07-13","pushedAt":"2026-07-13","hasPages":true,"defaultBranch":"main"},{"id":"myspines","name":"myspines","description":"","repositoryUrl":"https://github.com/silovar-uk/myspines","liveUrl":"https://silovar-uk.github.io/myspines/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-12","updatedAt":"2026-07-13","pushedAt":"2026-07-13","hasPages":true,"defaultBranch":"main"},{"id":"zeldasbsp","name":"zeldasbsp","description":"","repositoryUrl":"https://github.com/silovar-uk/zeldasbsp","liveUrl":"https://silovar-uk.github.io/zeldasbsp/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-13","updatedAt":"2026-07-13","pushedAt":"2026-07-13","hasPages":true,"defaultBranch":"main"},{"id":"consultingstudy","name":"consultingstudy","description":"","repositoryUrl":"https://github.com/silovar-uk/consultingstudy","liveUrl":"https://silovar-uk.github.io/consultingstudy/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-04","updatedAt":"2026-07-10","pushedAt":"2026-07-10","hasPages":true,"defaultBranch":"main"},{"id":"gantt","name":"gantt","description":"","repositoryUrl":"https://github.com/silovar-uk/gantt","liveUrl":"https://silovar-uk.github.io/gantt/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-07","updatedAt":"2026-07-10","pushedAt":"2026-07-10","hasPages":true,"defaultBranch":"main"},{"id":"commonpoint","name":"commonpoint","description":"","repositoryUrl":"https://github.com/silovar-uk/commonpoint","liveUrl":"https://silovar-uk.github.io/commonpoint/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-07","updatedAt":"2026-07-08","pushedAt":"2026-07-08","hasPages":true,"defaultBranch":"main"},{"id":"newsquiz","name":"newsquiz","description":"","repositoryUrl":"https://github.com/silovar-uk/newsquiz","liveUrl":"https://silovar-uk.github.io/newsquiz/","language":"TypeScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-04","updatedAt":"2026-07-08","pushedAt":"2026-07-08","hasPages":true,"defaultBranch":"main"},{"id":"sukan","name":"sukan","description":"","repositoryUrl":"https://github.com/silovar-uk/sukan","liveUrl":"https://silovar-uk.github.io/sukan/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-07-02","updatedAt":"2026-07-03","pushedAt":"2026-07-03","hasPages":true,"defaultBranch":"main"},{"id":"tabshelter","name":"tabshelter","description":"","repositoryUrl":"https://github.com/silovar-uk/tabshelter","liveUrl":"","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-06-29","updatedAt":"2026-06-29","pushedAt":"2026-06-29","hasPages":false,"defaultBranch":"main"},{"id":"countvoice","name":"countvoice","description":"","repositoryUrl":"https://github.com/silovar-uk/countvoice","liveUrl":"https://silovar-uk.github.io/countvoice/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-06-23","updatedAt":"2026-06-28","pushedAt":"2026-06-28","hasPages":true,"defaultBranch":"main"},{"id":"converter","name":"converter","description":"","repositoryUrl":"https://github.com/silovar-uk/converter","liveUrl":"https://silovar-uk.github.io/converter/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-06-22","updatedAt":"2026-06-22","pushedAt":"2026-06-22","hasPages":true,"defaultBranch":"main"},{"id":"mymindmap","name":"mymindmap","description":"","repositoryUrl":"https://github.com/silovar-uk/mymindmap","liveUrl":"https://silovar-uk.github.io/mymindmap/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-11","updatedAt":"2026-06-12","pushedAt":"2026-06-12","hasPages":true,"defaultBranch":"main"},{"id":"pdflinks","name":"pdflinks","description":"","repositoryUrl":"https://github.com/silovar-uk/pdflinks","liveUrl":"https://silovar-uk.github.io/pdflinks/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-31","updatedAt":"2026-06-01","pushedAt":"2026-06-01","hasPages":true,"defaultBranch":"main"},{"id":"quickliks","name":"quickliks","description":"","repositoryUrl":"https://github.com/silovar-uk/quickliks","liveUrl":"https://silovar-uk.github.io/quickliks/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-31","updatedAt":"2026-05-31","pushedAt":"2026-05-31","hasPages":true,"defaultBranch":"main"},{"id":"ooh","name":"ooh","description":"","repositoryUrl":"https://github.com/silovar-uk/ooh","liveUrl":"https://silovar-uk.github.io/ooh/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-14","updatedAt":"2026-05-14","pushedAt":"2026-05-14","hasPages":true,"defaultBranch":"main"},{"id":"predictattendance","name":"predictattendance","description":"","repositoryUrl":"https://github.com/silovar-uk/predictattendance","liveUrl":"https://silovar-uk.github.io/predictattendance/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-14","updatedAt":"2026-05-14","pushedAt":"2026-05-14","hasPages":true,"defaultBranch":"main"},{"id":"rockvsbra","name":"rockvsbra","description":"","repositoryUrl":"https://github.com/silovar-uk/rockvsbra","liveUrl":"https://silovar-uk.github.io/rockvsbra/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-10","updatedAt":"2026-05-10","pushedAt":"2026-05-10","hasPages":true,"defaultBranch":"main"},{"id":"akasma","name":"akasma","description":"","repositoryUrl":"https://github.com/silovar-uk/akasma","liveUrl":"https://silovar-uk.github.io/akasma/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-09","updatedAt":"2026-05-09","pushedAt":"2026-05-09","hasPages":true,"defaultBranch":"main"},{"id":"resultcalc","name":"resultcalc","description":"","repositoryUrl":"https://github.com/silovar-uk/resultcalc","liveUrl":"https://silovar-uk.github.io/resultcalc/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-09","updatedAt":"2026-05-09","pushedAt":"2026-05-09","hasPages":true,"defaultBranch":"main"},{"id":"2026eventlist","name":"2026eventlist","description":"","repositoryUrl":"https://github.com/silovar-uk/2026eventlist","liveUrl":"https://silovar-uk.github.io/2026eventlist/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-08","updatedAt":"2026-05-08","pushedAt":"2026-05-08","hasPages":true,"defaultBranch":"main"},{"id":"patternlanguage","name":"patternlanguage","description":"","repositoryUrl":"https://github.com/silovar-uk/patternlanguage","liveUrl":"https://silovar-uk.github.io/patternlanguage/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-08","updatedAt":"2026-05-08","pushedAt":"2026-05-08","hasPages":true,"defaultBranch":"main"},{"id":"footballisfun","name":"footballisfun","description":"","repositoryUrl":"https://github.com/silovar-uk/footballisfun","liveUrl":"https://silovar-uk.github.io/footballisfun/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-07","updatedAt":"2026-05-07","pushedAt":"2026-05-07","hasPages":true,"defaultBranch":"main"},{"id":"vsmcintro","name":"vsmcintro","description":"","repositoryUrl":"https://github.com/silovar-uk/vsmcintro","liveUrl":"https://silovar-uk.github.io/vsmcintro/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-07","updatedAt":"2026-05-07","pushedAt":"2026-05-07","hasPages":true,"defaultBranch":"main"},{"id":"englisharcade","name":"englisharcade","description":"","repositoryUrl":"https://github.com/silovar-uk/englisharcade","liveUrl":"https://silovar-uk.github.io/englisharcade/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-05-06","updatedAt":"2026-05-06","pushedAt":"2026-05-06","hasPages":true,"defaultBranch":"main"},{"id":"mmmpocket","name":"mmmpocket","description":"","repositoryUrl":"https://github.com/silovar-uk/mmmpocket","liveUrl":"https://silovar-uk.github.io/mmmpocket/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-30","updatedAt":"2026-04-30","pushedAt":"2026-04-30","hasPages":true,"defaultBranch":"main"},{"id":"rexanq","name":"rexanq","description":"","repositoryUrl":"https://github.com/silovar-uk/rexanq","liveUrl":"https://silovar-uk.github.io/rexanq/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-27","updatedAt":"2026-04-27","pushedAt":"2026-04-27","hasPages":true,"defaultBranch":"main"},{"id":"eventmap","name":"eventmap","description":"","repositoryUrl":"https://github.com/silovar-uk/eventmap","liveUrl":"https://silovar-uk.github.io/eventmap/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-22","updatedAt":"2026-04-23","pushedAt":"2026-04-23","hasPages":true,"defaultBranch":"main"},{"id":"gamedashboard","name":"gamedashboard","description":"","repositoryUrl":"https://github.com/silovar-uk/gamedashboard","liveUrl":"https://silovar-uk.github.io/gamedashboard/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-13","updatedAt":"2026-04-21","pushedAt":"2026-04-21","hasPages":true,"defaultBranch":"main"},{"id":"manontec","name":"manontec","description":"","repositoryUrl":"https://github.com/silovar-uk/manontec","liveUrl":"https://silovar-uk.github.io/manontec/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-03-23","updatedAt":"2026-04-20","pushedAt":"2026-04-20","hasPages":true,"defaultBranch":"main"},{"id":"simplememotool","name":"simplememotool","description":"","repositoryUrl":"https://github.com/silovar-uk/simplememotool","liveUrl":"https://silovar-uk.github.io/simplememotool/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-04-14","updatedAt":"2026-04-15","pushedAt":"2026-04-15","hasPages":true,"defaultBranch":"main"},{"id":"100yearvision","name":"100yearvision","description":"","repositoryUrl":"https://github.com/silovar-uk/100yearvision","liveUrl":"https://silovar-uk.github.io/100yearvision/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-03-26","updatedAt":"2026-03-27","pushedAt":"2026-03-27","hasPages":true,"defaultBranch":"main"},{"id":"jumbo","name":"jumbo","description":"","repositoryUrl":"https://github.com/silovar-uk/jumbo","liveUrl":"https://silovar-uk.github.io/jumbo/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-03-27","updatedAt":"2026-03-27","pushedAt":"2026-03-27","hasPages":true,"defaultBranch":"main"},{"id":"zl-logger-web","name":"zl-logger-web","description":"日誌用","repositoryUrl":"https://github.com/silovar-uk/zl-logger-web","liveUrl":"https://silovar-uk.github.io/zl-logger-web/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2026-03-21","updatedAt":"2026-03-27","pushedAt":"2026-03-27","hasPages":true,"defaultBranch":"main"},{"id":"pratchecker","name":"pratchecker","description":"","repositoryUrl":"https://github.com/silovar-uk/pratchecker","liveUrl":"https://silovar-uk.github.io/pratchecker/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2025-06-02","updatedAt":"2025-07-26","pushedAt":"2025-07-26","hasPages":true,"defaultBranch":"main"},{"id":"shogibanmen","name":"shogibanmen","description":"","repositoryUrl":"https://github.com/silovar-uk/shogibanmen","liveUrl":"https://silovar-uk.github.io/shogibanmen/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2025-05-30","updatedAt":"2025-07-24","pushedAt":"2025-07-24","hasPages":true,"defaultBranch":"main"},{"id":"timeconverter","name":"timeconverter","description":"","repositoryUrl":"https://github.com/silovar-uk/timeconverter","liveUrl":"https://silovar-uk.github.io/timeconverter/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2025-06-09","updatedAt":"2025-06-09","pushedAt":"2025-06-09","hasPages":true,"defaultBranch":"main"},{"id":"todomanager","name":"todomanager","description":"","repositoryUrl":"https://github.com/silovar-uk/todomanager","liveUrl":"https://silovar-uk.github.io/todomanager/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2025-05-31","updatedAt":"2025-06-09","pushedAt":"2025-06-09","hasPages":true,"defaultBranch":"main"},{"id":"memo","name":"memo","description":"","repositoryUrl":"https://github.com/silovar-uk/memo","liveUrl":"https://silovar-uk.github.io/memo/","language":"HTML","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2025-06-02","updatedAt":"2025-06-05","pushedAt":"2025-06-05","hasPages":true,"defaultBranch":"main"},{"id":"scrap_random","name":"scrap_random","description":"Scrapbox試す用","repositoryUrl":"https://github.com/silovar-uk/scrap_random","liveUrl":"https://silovar-uk.github.io/scrap_random/","language":"JavaScript","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2020-08-02","updatedAt":"2020-08-03","pushedAt":"2020-08-03","hasPages":true,"defaultBranch":"master"},{"id":"python","name":"python","description":"","repositoryUrl":"https://github.com/silovar-uk/python","liveUrl":"","language":"","topics":[],"archived":false,"fork":false,"visibility":"public","createdAt":"2018-12-29","updatedAt":"2018-12-29","pushedAt":"2018-12-29","hasPages":false,"defaultBranch":"master"}];window.WORKS_PORTFOLIO_START_DATES={"build-diary":{"date":"2026-07-19","precision":"day","basis":"conversation-log"},"countupapp":{"date":"2026-05","precision":"month","basis":"conversation-log"},"quicklinks":{"date":"2026-06","precision":"month","basis":"conversation-log"},"tabshelter":{"date":"2026-06","precision":"month","basis":"conversation-log"},"mydailylog":{"date":"2026-06","precision":"month","basis":"conversation-log"},"fourier":{"date":"2026-07","precision":"month","basis":"conversation-log"},"designmd":{"date":"2026-07","precision":"month","basis":"conversation-log"},"myspines":{"date":"2026-07","precision":"month","basis":"conversation-log"},"hangul":{"date":"2026-07","precision":"month","basis":"conversation-log"},"marisast6":{"date":"2026-07","precision":"month","basis":"conversation-log"},"zeldasbsp":{"date":"2026-07","precision":"month","basis":"conversation-log"},"prompts":{"date":"2026-07","precision":"month","basis":"conversation-log"},"pdfclipper":{"date":"2026-07","precision":"month","basis":"conversation-log"},"contentslibrary":{"date":"2026-07","precision":"month","basis":"conversation-log"},"mydictionary":{"date":"2026-07","precision":"month","basis":"conversation-log"},"st6training":{"date":"2026-07","precision":"month","basis":"conversation-log"},"flowmap":{"date":"2026-07","precision":"month","basis":"conversation-log"},"gantt":{"date":"2026-05","precision":"month","basis":"conversation-log"},"countvoice":{"date":"2026-06","precision":"month","basis":"conversation-log"}};</script>
+  <script>
+(() => {
+  'use strict';
+
+  const state = {
+    projects: [],
+    periods: [],
+    settings: {},
+    view: 'timeline',
+    search: '',
+    verb: '',
+    type: '',
+    documentation: '',
+    selectedProjectId: null,
+    mapScale: 1,
+    mapX: 0,
+    mapY: 0
+  };
+
+  const els = {};
+  const statusLabels = {
+    development: '開発中', active: '運用中', prototype: '試作中', dormant: '休止中', legacy: '初期記録'
+  };
+  const typeLabels = {
+    'web-app': 'Webアプリ', 'chrome-extension': 'Chrome拡張', 'learning-tool': '学習ツール',
+    'design-system': '設計ガイド', 'content-page': 'コンテンツページ', 'data-tool': '分析・データ',
+    utility: '便利ツール', experiment: '実験'
+  };
+  const documentationLabels = { verified: '確認済み', inferred: '内容を確認中', unreviewed: '未確認' };
+  const groupLabels = { learning: '学ぶ・遊ぶ', archive: '記録する', work: '仕事を整える', extension: 'Chromeの中', pr: '広報・イベント', content: '伝える・読む', life: '自分を考える' };
+
+  document.addEventListener('DOMContentLoaded', init);
+
+  async function init() {
+    cacheElements();
+    bindStaticEvents();
+    setLoading();
+
+    try {
+      const data = await loadData();
+
+      state.projects = validateProjects(data.projects);
+      state.periods = Array.isArray(data.periods) ? data.periods : [];
+      state.settings = data.settings || {};
+      applyUrlState();
+      renderAll();
+      openProjectFromUrl();
+    } catch (error) {
+      console.error(error);
+      els.viewPanel.innerHTML = `
+        <div class="empty-state">
+          <h3>制作物データを読み込めませんでした。</h3>
+          <p>GitHub Pagesまたはローカルサーバー上で開いてください。</p>
+          <button class="primary-action" type="button" onclick="location.reload()">再読み込みする</button>
+        </div>`;
+    }
+  }
+
+  function cacheElements() {
+    els.viewPanel = document.querySelector('[data-view-panel]');
+    els.toolbar = document.querySelector('[data-toolbar]');
+    els.search = document.querySelector('[data-search-input]');
+    els.verb = document.querySelector('[data-verb-filter]');
+    els.type = document.querySelector('[data-type-filter]');
+    els.documentation = document.querySelector('[data-documentation-filter]');
+    els.clear = document.querySelector('[data-clear-filter]');
+    els.stats = document.querySelector('[data-stats]');
+    els.currentNote = document.querySelector('[data-current-note]');
+    els.updates = document.querySelector('[data-updates-list]');
+    els.projectDialog = document.querySelector('[data-project-dialog]');
+    els.projectDetail = document.querySelector('[data-project-detail]');
+    els.aboutDialog = document.querySelector('[data-about-dialog]');
+  }
+
+  function bindStaticEvents() {
+    document.querySelectorAll('[data-view-button]').forEach(button => {
+      button.addEventListener('click', () => setView(button.dataset.viewButton));
+    });
+    document.querySelector('[data-random-button]')?.addEventListener('click', openRandomProject);
+    els.search.addEventListener('input', event => {
+      state.search = event.target.value.trim();
+      renderCurrentView();
+      updateUrl();
+    });
+    els.verb.addEventListener('change', event => {
+      state.verb = event.target.value;
+      renderCurrentView();
+      updateUrl();
+    });
+    els.type.addEventListener('change', event => {
+      state.type = event.target.value;
+      renderCurrentView();
+      updateUrl();
+    });
+    els.documentation.addEventListener('change', event => {
+      state.documentation = event.target.value;
+      renderCurrentView();
+      updateUrl();
+    });
+    els.clear.addEventListener('click', () => {
+      state.search = '';
+      state.verb = '';
+      state.type = '';
+      state.documentation = '';
+      els.search.value = '';
+      els.verb.value = '';
+      els.type.value = '';
+      els.documentation.value = '';
+      renderCurrentView();
+      updateUrl();
+    });
+    document.querySelector('[data-dialog-close]').addEventListener('click', closeProject);
+    document.querySelector('[data-about-button]').addEventListener('click', () => els.aboutDialog.showModal());
+    document.querySelector('[data-about-close]').addEventListener('click', () => els.aboutDialog.close());
+    els.projectDialog.addEventListener('click', event => {
+      if (isBackdropClick(event)) closeProject();
+    });
+    els.projectDialog.addEventListener('cancel', event => {
+      event.preventDefault();
+      closeProject();
+    });
+    els.aboutDialog.addEventListener('click', event => {
+      if (isBackdropClick(event)) els.aboutDialog.close();
+    });
+    window.addEventListener('popstate', () => {
+      applyUrlState();
+      renderAll();
+      openProjectFromUrl();
+    });
+  }
+
+  async function loadData() {
+    const inline = window.BUILD_DIARY_DATA;
+    if (inline?.projects && inline?.periods && inline?.settings) return inline;
+
+    const [projects, periods, settings] = await Promise.all([
+      fetchJson('data/projects.json'),
+      fetchJson('data/periods.json'),
+      fetchJson('data/settings.json')
+    ]);
+    return { projects, periods, settings };
+  }
+
+  async function fetchJson(path) {
+    const response = await fetch(path, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`${path}: ${response.status}`);
+    return response.json();
+  }
+
+  function validateProjects(projects) {
+    const required = ['id', 'title', 'summary', 'type', 'status', 'visibility', 'createdAt'];
+    return projects.filter(project => {
+      const missing = required.filter(key => !project[key]);
+      if (missing.length) console.warn(`Project ${project.id || '(unknown)'} missing:`, missing);
+      return !missing.length;
+    });
+  }
+
+  function applyUrlState() {
+    const params = new URLSearchParams(location.search);
+    const requestedView = params.get('view');
+    state.view = ['timeline', 'shelf', 'map'].includes(requestedView)
+      ? requestedView
+      : (readStorage('buildDiaryView') || state.settings.defaultView || 'timeline');
+    state.search = params.get('q') || '';
+    state.verb = params.get('verb') || '';
+    state.type = params.get('type') || '';
+    state.documentation = params.get('doc') || '';
+    state.selectedProjectId = params.get('project');
+    if (els.search) els.search.value = state.search;
+  }
+
+  function renderAll() {
+    renderStats();
+    renderCurrentNote();
+    renderUpdates();
+    populateVerbFilter();
+    populateTypeFilter();
+    populateDocumentationFilter();
+    syncViewButtons();
+    renderCurrentView();
+  }
+
+  function renderStats() {
+    const repoCount = state.projects.filter(p => Boolean(p.repositoryUrl)).length;
+    const extensionCount = state.projects.filter(p => Boolean(p.extension)).length;
+    const verifiedCount = state.projects.filter(p => p.documentationState === 'verified').length;
+    const items = [
+      ['GitHubリポジトリ', repoCount],
+      ['自作Chrome拡張', extensionCount],
+      ['登録した制作物', state.projects.length],
+      ['確認済み', verifiedCount]
+    ];
+    els.stats.innerHTML = items.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join('');
+  }
+
+  function renderCurrentNote() {
+    els.currentNote.textContent = state.settings.currentNote || '';
+  }
+
+  function renderUpdates() {
+    const updates = state.projects
+      .flatMap(project => (project.updates || []).map(update => ({ project, update })))
+      .sort((a, b) => String(b.update.date).localeCompare(String(a.update.date)))
+      .slice(0, 5);
+
+    els.updates.innerHTML = updates.map(({ project, update }) => `
+      <article class="update-row">
+        <time class="update-date">${escapeHtml(formatDate(update.date))}</time>
+        <h3 class="update-title">${escapeHtml(project.title)}</h3>
+        <p class="update-copy">${escapeHtml(update.change)} <span class="update-reason">— ${escapeHtml(update.reason)}</span></p>
+      </article>`).join('');
+  }
+
+  function populateVerbFilter() {
+    const verbs = [...new Set(state.projects.flatMap(p => p.verbs || []))].sort((a, b) => a.localeCompare(b, 'ja'));
+    els.verb.innerHTML = '<option value="">すべての目的</option>' + verbs.map(verb => `<option value="${escapeAttr(verb)}">${escapeHtml(verb)}</option>`).join('');
+    els.verb.value = state.verb;
+  }
+
+  function populateTypeFilter() {
+    const types = [...new Set(state.projects.map(project => project.type))].sort((a, b) => (typeLabels[a] || a).localeCompare(typeLabels[b] || b, 'ja'));
+    els.type.innerHTML = '<option value="">すべての種類</option>' + types.map(type => `<option value="${escapeAttr(type)}">${escapeHtml(typeLabels[type] || type)}</option>`).join('');
+    els.type.value = state.type;
+  }
+
+  function populateDocumentationFilter() {
+    els.documentation.innerHTML = '<option value="">すべての整理状態</option>' + Object.entries(documentationLabels).map(([value, label]) => `<option value="${escapeAttr(value)}">${escapeHtml(label)}</option>`).join('');
+    els.documentation.value = state.documentation;
+  }
+
+  function setView(view) {
+    if (!['timeline', 'shelf', 'map'].includes(view)) return;
+    state.view = view;
+    writeStorage('buildDiaryView', view);
+    syncViewButtons();
+    renderCurrentView();
+    updateUrl();
+    document.querySelector('.explorer').scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  function syncViewButtons() {
+    document.querySelectorAll('[data-view-button]').forEach(button => {
+      const active = button.dataset.viewButton === state.view;
+      button.classList.toggle('is-active', active);
+      if (button.classList.contains('view-chip')) button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function setLoading() {
+    els.viewPanel.innerHTML = '<div class="loading">制作物を読み込んでいます。</div>';
+  }
+
+  function renderCurrentView() {
+    els.toolbar.hidden = state.view === 'timeline';
+    const filtered = getFilteredProjects();
+    if (state.view === 'timeline') renderTimeline();
+    if (state.view === 'shelf') renderShelf(filtered);
+    if (state.view === 'map') renderMap(filtered);
+  }
+
+  function getFilteredProjects() {
+    const query = normalize(state.search);
+    return state.projects.filter(project => {
+      const text = normalize([
+        project.title, project.subtitle, project.summary, project.friction, project.id,
+        project.extension?.extensionId, project.extension?.version, documentationLabels[project.documentationState],
+        ...(project.verbs || []), ...(project.technologies || [])
+      ].join(' '));
+      const matchesSearch = !query || text.includes(query);
+      const matchesVerb = !state.verb || (project.verbs || []).includes(state.verb);
+      const matchesType = !state.type || project.type === state.type;
+      const matchesDocumentation = !state.documentation || project.documentationState === state.documentation;
+      return matchesSearch && matchesVerb && matchesType && matchesDocumentation;
+    });
+  }
+
+  function renderTimeline() {
+    const grouped = new Map();
+    state.periods.forEach(period => {
+      const year = period.id.slice(0, 4);
+      if (!grouped.has(year)) grouped.set(year, []);
+      grouped.get(year).push(period);
+    });
+
+    els.viewPanel.innerHTML = `<div class="timeline">${[...grouped.entries()].map(([year, periods]) => `
+      <section class="timeline-year">
+        <div class="timeline-year-heading"><h3>${escapeHtml(year)}</h3></div>
+        ${periods.map(renderPeriod).join('')}
+      </section>`).join('')}</div>`;
+    bindProjectButtons();
+  }
+
+  function renderPeriod(period) {
+    const projects = period.projectIds.map(id => state.projects.find(p => p.id === id)).filter(Boolean);
+    return `
+      <section class="timeline-period" aria-labelledby="period-${escapeAttr(period.id)}">
+        <aside class="period-aside">
+          <h4 id="period-${escapeAttr(period.id)}">${escapeHtml(period.label)}</h4>
+          <p class="period-summary">${escapeHtml(period.summary || '')}</p>
+          <div class="period-tags">${(period.interests || []).map(tag => `<span class="period-tag">${escapeHtml(tag)}</span>`).join('')}</div>
+        </aside>
+        <div class="period-projects">
+          ${projects.map((project, index) => renderTimelineCard(project, index + 1)).join('')}
+        </div>
+      </section>`;
+  }
+
+  function renderTimelineCard(project, index) {
+    return `
+      <article class="timeline-card" data-index="${String(index).padStart(2, '0')}">
+        <div>
+          <p class="eyebrow">${escapeHtml(typeLabels[project.type] || project.type)} / ${escapeHtml(formatProjectDate(project))}</p>
+          <h5>${escapeHtml(project.title)}</h5>
+          <p>${escapeHtml(project.summary)}</p>
+          <p class="friction-line"><strong>作ったきっかけ：</strong>${escapeHtml(project.friction)}</p>
+          <div class="card-meta">
+            <span class="meta-pill">${escapeHtml(statusLabels[project.status] || project.status)}</span>
+            <span class="meta-pill">${escapeHtml(documentationLabels[project.documentationState] || '内容を確認中')}</span>
+            ${(project.verbs || []).slice(0, 3).map(verb => `<span class="meta-pill">${escapeHtml(verb)}</span>`).join('')}
+          </div>
+          ${project.aside ? `<p class="card-aside">${escapeHtml(project.aside)}</p>` : ''}
+        </div>
+        <button type="button" class="card-open" data-project-open="${escapeAttr(project.id)}" aria-label="${escapeAttr(project.title)}の詳細を見る">↗</button>
+      </article>`;
+  }
+
+  function renderShelf(projects) {
+    if (!projects.length) {
+      els.viewPanel.innerHTML = '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>検索や絞り込みの条件を変更してください。</p></div>';
+      return;
+    }
+    const groups = new Map();
+    projects.forEach(project => {
+      const verb = project.verbs?.[0] || 'その他';
+      if (!groups.has(verb)) groups.set(verb, []);
+      groups.get(verb).push(project);
+    });
+
+    els.viewPanel.innerHTML = `<div class="shelves">${[...groups.entries()].map(([verb, items]) => `
+      <section class="shelf-section">
+        <div class="shelf-heading"><h3>${escapeHtml(verb)}</h3><span>${items.length}件</span></div>
+        <div class="shelf-track">${items.map(renderProjectCard).join('')}</div>
+      </section>`).join('')}</div>`;
+    bindProjectButtons();
+  }
+
+  function renderProjectCard(project) {
+    const classes = ['project-card'];
+    if (project.featured) classes.push('is-featured');
+    if (project.status === 'prototype') classes.push('is-prototype');
+    if (project.status === 'dormant') classes.push('is-dormant');
+    if (project.status === 'legacy') classes.push('is-legacy');
+    return `
+      <article class="${classes.join(' ')}">
+        <span class="card-kicker">${escapeHtml(typeLabels[project.type] || project.type)} / ${escapeHtml(formatProjectDate(project))}</span>
+        <span class="catalog-badge is-${escapeAttr(project.documentationState || 'inferred')}">${escapeHtml(documentationLabels[project.documentationState] || '内容を確認中')}</span>
+        <h4>${escapeHtml(project.title)}</h4>
+        <p class="summary">${escapeHtml(project.summary)}</p>
+        <p class="friction"><strong>困っていたこと</strong><br>${escapeHtml(project.friction)}</p>
+        <button type="button" data-project-open="${escapeAttr(project.id)}">中を読む →</button>
+      </article>`;
+  }
+
+  function renderMap(projects) {
+    if (!projects.length) {
+      els.viewPanel.innerHTML = '<div class="empty-state"><h3>地図から全員いなくなりました。</h3><p>絞り込みを解除すると戻ってきます。</p></div>';
+      return;
+    }
+
+    const projectIds = new Set(projects.map(p => p.id));
+    const relations = [];
+    projects.forEach(project => {
+      (project.relatedProjects || []).forEach(rel => {
+        if (!projectIds.has(rel.id)) return;
+        const key = [project.id, rel.id].sort().join('__');
+        if (!relations.some(item => item.key === key)) relations.push({ key, from: project.id, to: rel.id, label: rel.relation });
+      });
+    });
+
+    els.viewPanel.innerHTML = `
+      <div class="map-layout">
+        <div class="map-canvas-shell">
+          <svg class="map-canvas" viewBox="0 0 1700 900" role="img" aria-labelledby="map-title map-desc" data-map-svg>
+            <title id="map-title">制作物の関連地図</title>
+            <desc id="map-desc">制作物を選択すると、関連する制作物と線が強調されます。</desc>
+            <g data-map-transform>
+              ${renderMapGroups(projects)}
+              ${relations.map(rel => renderMapLine(rel)).join('')}
+              ${projects.map(renderMapNode).join('')}
+            </g>
+          </svg>
+          <div class="map-tools" aria-label="地図操作">
+            <button type="button" data-map-zoom="in" aria-label="拡大">＋</button>
+            <button type="button" data-map-zoom="out" aria-label="縮小">−</button>
+            <button type="button" data-map-reset aria-label="地図を初期位置に戻す">迷子を終了</button>
+          </div>
+        </div>
+        <aside class="map-side" data-map-side>
+          <p class="eyebrow">MAP GUIDE</p>
+          <h3>気になる道具を選ぶ</h3>
+          <p>選ぶと、派生・共通課題・同じ時期のつながりが見えます。</p>
+          <div class="map-side-list">${projects.map(p => `<button type="button" data-map-select="${escapeAttr(p.id)}">${escapeHtml(p.title)}</button>`).join('')}</div>
+        </aside>
+      </div>
+      <div class="map-mobile-list">${projects.map(project => `
+        <article class="map-mobile-item">
+          <p class="eyebrow">${escapeHtml(typeLabels[project.type] || project.type)}</p>
+          <h3>${escapeHtml(project.title)}</h3>
+          <p>${escapeHtml(project.summary)}</p>
+          <button type="button" data-project-open="${escapeAttr(project.id)}">詳細を見る →</button>
+        </article>`).join('')}</div>`;
+
+    bindProjectButtons();
+    bindMapEvents(projects, relations);
+  }
+
+
+  function renderMapGroups(projects) {
+    const groups = [...new Set(projects.map(project => project.map?.group).filter(Boolean))];
+    return groups.map(group => {
+      const items = projects.filter(project => project.map?.group === group);
+      if (!items.length) return '';
+      const xs = items.map(item => Number(item.map.x));
+      const ys = items.map(item => Number(item.map.y));
+      const minX = Math.min(...xs) - 95;
+      const maxX = Math.max(...xs) + 95;
+      const minY = Math.min(...ys) - 64;
+      const maxY = Math.max(...ys) + 64;
+      return `<g class="map-group"><rect x="${minX}" y="${minY}" width="${maxX-minX}" height="${maxY-minY}" rx="20"></rect><text x="${minX+18}" y="${minY+28}">${escapeHtml(groupLabels[group] || group)}</text></g>`;
+    }).join('');
+  }
+
+  function renderMapLine(rel) {
+    const from = state.projects.find(p => p.id === rel.from);
+    const to = state.projects.find(p => p.id === rel.to);
+    if (!from?.map || !to?.map) return '';
+    return `<line class="map-line" data-map-line="${escapeAttr(rel.key)}" data-from="${escapeAttr(rel.from)}" data-to="${escapeAttr(rel.to)}" x1="${from.map.x}" y1="${from.map.y}" x2="${to.map.x}" y2="${to.map.y}"><title>${escapeHtml(rel.label)}</title></line>`;
+  }
+
+  function renderMapNode(project) {
+    const { x = 0, y = 0 } = project.map || {};
+    const width = project.featured ? 132 : 112;
+    const height = project.type === 'chrome-extension' ? 48 : 42;
+    const className = `map-node${project.featured ? ' is-featured' : ''}`;
+    const shape = project.type === 'chrome-extension'
+      ? `<path d="M${x - width/2},${y - height/2 + 8} h${width} v${height - 8} h-${width}z M${x - width/2},${y - height/2 + 8} q0,-8 8,-8 h${width - 16} q8,0 8,8" />`
+      : `<rect x="${x - width/2}" y="${y - height/2}" width="${width}" height="${height}" rx="${project.type === 'learning-tool' ? 12 : 2}" />`;
+    return `
+      <g class="${className}" tabindex="0" role="button" aria-label="${escapeAttr(project.title)}を選択" data-map-node="${escapeAttr(project.id)}">
+        ${shape}
+        <text x="${x}" y="${y + 4}" text-anchor="middle">${escapeHtml(truncate(project.title, 18))}</text>
+      </g>`;
+  }
+
+  function bindMapEvents(projects, relations) {
+    const svg = document.querySelector('[data-map-svg]');
+    const transformGroup = document.querySelector('[data-map-transform]');
+    const selectProject = id => {
+      state.selectedProjectId = id;
+      document.querySelectorAll('[data-map-node]').forEach(node => {
+        const nodeId = node.dataset.mapNode;
+        const related = relations.some(rel => (rel.from === id && rel.to === nodeId) || (rel.to === id && rel.from === nodeId));
+        node.classList.toggle('is-selected', nodeId === id);
+        node.classList.toggle('is-muted', nodeId !== id && !related);
+      });
+      document.querySelectorAll('[data-map-line]').forEach(line => {
+        const active = line.dataset.from === id || line.dataset.to === id;
+        line.classList.toggle('is-active', active);
+        line.classList.toggle('is-muted', !active);
+      });
+      const project = projects.find(p => p.id === id);
+      const side = document.querySelector('[data-map-side]');
+      if (project && side) {
+        side.innerHTML = `
+          <p class="eyebrow">SELECTED TOOL</p>
+          <h3>${escapeHtml(project.title)}</h3>
+          <p>${escapeHtml(project.summary)}</p>
+          <p><strong>作ったきっかけ</strong><br>${escapeHtml(project.friction)}</p>
+          <button class="subtle-button" type="button" data-project-open="${escapeAttr(project.id)}">中を読む →</button>`;
+        bindProjectButtons();
+      }
+    };
+
+    document.querySelectorAll('[data-map-node]').forEach(node => {
+      node.addEventListener('click', () => selectProject(node.dataset.mapNode));
+      node.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectProject(node.dataset.mapNode);
+        }
+      });
+    });
+    document.querySelectorAll('[data-map-select]').forEach(button => button.addEventListener('click', () => selectProject(button.dataset.mapSelect)));
+    document.querySelectorAll('[data-map-zoom]').forEach(button => button.addEventListener('click', () => {
+      state.mapScale = clamp(state.mapScale + (button.dataset.mapZoom === 'in' ? .15 : -.15), .65, 1.8);
+      applyMapTransform(transformGroup);
+    }));
+    document.querySelector('[data-map-reset]').addEventListener('click', () => {
+      state.mapScale = 1; state.mapX = 0; state.mapY = 0;
+      applyMapTransform(transformGroup);
+      document.querySelectorAll('[data-map-node], [data-map-line]').forEach(el => el.classList.remove('is-selected', 'is-muted', 'is-active'));
+    });
+
+    let dragging = false; let startX = 0; let startY = 0;
+    svg.addEventListener('pointerdown', event => {
+      if (event.target.closest('[data-map-node]')) return;
+      dragging = true; startX = event.clientX - state.mapX; startY = event.clientY - state.mapY;
+      svg.setPointerCapture(event.pointerId);
+    });
+    svg.addEventListener('pointermove', event => {
+      if (!dragging) return;
+      state.mapX = event.clientX - startX; state.mapY = event.clientY - startY;
+      applyMapTransform(transformGroup);
+    });
+    svg.addEventListener('pointerup', () => dragging = false);
+  }
+
+  function applyMapTransform(group) {
+    if (!group) return;
+    group.setAttribute('transform', `translate(${state.mapX} ${state.mapY}) scale(${state.mapScale})`);
+  }
+
+  function bindProjectButtons() {
+    document.querySelectorAll('[data-project-open]').forEach(button => {
+      button.addEventListener('click', () => openProject(button.dataset.projectOpen));
+    });
+  }
+
+  function openProject(id, push = true) {
+    const project = state.projects.find(item => item.id === id);
+    if (!project) return;
+    state.selectedProjectId = id;
+    els.projectDetail.innerHTML = renderProjectDetail(project);
+    if (!els.projectDialog.open) els.projectDialog.showModal();
+    bindProjectButtons();
+    if (push) updateUrl();
+  }
+
+  function openProjectFromUrl() {
+    if (state.selectedProjectId) openProject(state.selectedProjectId, false);
+    else if (els.projectDialog?.open) els.projectDialog.close();
+  }
+
+  function closeProject() {
+    if (els.projectDialog.open) els.projectDialog.close();
+    state.selectedProjectId = null;
+    updateUrl();
+  }
+
+  function isBackdropClick(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    return event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+  }
+
+  function renderProjectDetail(project) {
+    const related = (project.relatedProjects || []).map(rel => ({ rel, project: state.projects.find(p => p.id === rel.id) })).filter(item => item.project);
+    const liveLabel = project.liveUrlStatus === 'candidate' ? 'ページ候補を開く' : (project.visibility === 'private' ? '限定ページを開く' : '公開ページを開く');
+    const extension = project.extension || null;
+    return `
+      <article>
+        <p class="eyebrow">${escapeHtml(typeLabels[project.type] || project.type)} / ${escapeHtml(formatProjectDate(project))}</p>
+        <h2 class="detail-title" id="dialog-title">${escapeHtml(project.title)}</h2>
+        <p class="detail-subtitle">${escapeHtml(project.subtitle || project.summary)}</p>
+        <div class="detail-status">
+          <span class="meta-pill">${escapeHtml(statusLabels[project.status] || project.status)}</span>
+          <span class="meta-pill">制作 ${escapeHtml(formatProjectDate(project))}</span>
+          <span class="meta-pill">最終更新 ${escapeHtml(formatDate(project.updatedAt || project.createdAt))}</span>
+          <span class="meta-pill">${escapeHtml(documentationLabels[project.documentationState] || '内容を確認中')}</span>
+          ${(project.verbs || []).map(verb => `<span class="meta-pill">${escapeHtml(verb)}</span>`).join('')}
+        </div>
+        <div class="detail-links">
+          ${project.liveUrl ? `<a class="${project.liveUrlStatus === 'candidate' ? 'is-candidate' : ''}" href="${escapeAttr(project.liveUrl)}" target="_blank" rel="noreferrer">${liveLabel} ↗</a>` : '<span class="meta-pill">公開ページ：未登録</span>'}
+          ${project.repositoryUrl ? `<a href="${escapeAttr(project.repositoryUrl)}" target="_blank" rel="noreferrer">GitHub ↗</a>` : '<span class="meta-pill">GitHub：手元のみ</span>'}
+        </div>
+
+        ${extension ? `
+          <section class="detail-section extension-spec">
+            <h3>Chrome拡張情報</h3>
+            <dl>
+              <div><dt>バージョン</dt><dd>${escapeHtml(extension.version || '要確認')}</dd></div>
+              <div><dt>拡張ID</dt><dd><code>${escapeHtml(extension.extensionId || '要確認')}</code></dd></div>
+              ${extension.serviceWorker ? `<div><dt>Service Worker</dt><dd>${extension.serviceWorker === 'active' ? '有効' : '無効'}</dd></div>` : ''}
+            </dl>
+          </section>` : ''}
+
+        <section class="detail-section">
+          <h3>作ったきっかけ</h3>
+          <p class="detail-friction">${escapeHtml(project.friction)}</p>
+        </section>
+
+        <section class="detail-section">
+          <h3>最初の版</h3>
+          <p>${escapeHtml(project.firstBuild || '初期版の記録は未確認です。')}</p>
+        </section>
+
+        <section class="detail-section">
+          <h3>現在の状態</h3>
+          <p>${escapeHtml(project.currentAnswer || project.summary)}</p>
+          ${project.aside ? `<p class="detail-aside">${escapeHtml(project.aside)}</p>` : ''}
+        </section>
+
+        <section class="detail-section">
+          <h3>更新履歴</h3>
+          <div class="detail-updates">
+            ${(project.updates || []).map(update => `
+              <div class="detail-update">
+                <time>${escapeHtml(formatDate(update.date))}${update.version ? ` / ${escapeHtml(update.version)}` : ''}</time>
+                <div><strong>${escapeHtml(update.change)}</strong><br><span class="update-reason">${escapeHtml(update.reason)}</span></div>
+              </div>`).join('') || '<p>更新履歴は未確認です。</p>'}
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h3>技術</h3>
+          <div class="card-meta">${(project.technologies || []).map(item => `<span class="meta-pill">${escapeHtml(item)}</span>`).join('')}</div>
+        </section>
+
+        ${related.length ? `
+          <section class="detail-section">
+            <h3>関連する制作物</h3>
+            <div class="detail-related">
+              ${related.map(({ rel, project: item }) => `<button type="button" data-project-open="${escapeAttr(item.id)}"><strong>${escapeHtml(item.title)}</strong><br><small>${escapeHtml(rel.relation)}</small></button>`).join('')}
+            </div>
+          </section>` : ''}
+      </article>`;
+  }
+
+  function openRandomProject() {
+    const candidates = state.projects.filter(p => p.id !== state.selectedProjectId);
+    const project = candidates[Math.floor(Math.random() * candidates.length)];
+    if (project) openProject(project.id);
+  }
+
+  function updateUrl() {
+    const params = new URLSearchParams();
+    if (state.view !== (state.settings.defaultView || 'timeline')) params.set('view', state.view);
+    else if (state.view !== 'timeline') params.set('view', state.view);
+    if (state.search) params.set('q', state.search);
+    if (state.verb) params.set('verb', state.verb);
+    if (state.type) params.set('type', state.type);
+    if (state.documentation) params.set('doc', state.documentation);
+    if (state.selectedProjectId) params.set('project', state.selectedProjectId);
+    const url = `${location.pathname}${params.toString() ? `?${params}` : ''}${location.hash}`;
+    try {
+      history.pushState({}, '', url);
+    } catch (error) {
+      console.warn('URL状態を更新できませんでした。', error);
+    }
+  }
+
+  function readStorage(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  }
+
+  function writeStorage(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* 保存できない環境では、その場限りで使う */ }
+  }
+
+  function formatDate(value) {
+    if (!value) return '要確認';
+    const match = String(value).match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+    if (!match) return String(value);
+    const [, year, month, day] = match;
+    if (day) return `${Number(year)}年${Number(month)}月${Number(day)}日`;
+    if (month) return `${Number(year)}年${Number(month)}月`;
+    return `${year}年`;
+  }
+
+  function formatProjectDate(project) {
+    const formatted = formatDate(project.createdAt);
+    return project.createdAtPrecision === 'estimated-month' ? `${formatted}ごろ` : formatted;
+  }
+
+  function normalize(value) {
+    return String(value || '').toLowerCase().normalize('NFKC').replace(/\s+/g, '');
+  }
+
+  function truncate(value, max) {
+    const text = String(value);
+    return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+  }
+
+  function clamp(value, min, max) { return Math.min(Math.max(value, min), max); }
+  function prefersReducedMotion() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char])); }
+  function escapeAttr(value) { return escapeHtml(value).replace(/'/g, '&#39;'); }
+})();
+
+</script>
+<!-- d.settings.defaultView='shelf'; d.settings.defaultSort='created-desc' --><meta name="worksportfolio-generated-at" content="2026-08-13T04:49:32.905Z"><meta name="worksportfolio-assets-version" content="ca0ea0141e78"><link rel="stylesheet" href="catalog.css?v=ca0ea0141e78"><link rel="stylesheet" href="taxonomy.css?v=ca0ea0141e78"><link rel="stylesheet" href="floating-random.css?v=ca0ea0141e78"><link rel="stylesheet" href="wow.css?v=ca0ea0141e78"><link rel="stylesheet" href="random-three.css?v=ca0ea0141e78"><link rel="stylesheet" href="comparison-view.css?v=ca0ea0141e78"><link rel="stylesheet" href="motion.css?v=ca0ea0141e78"><link rel="stylesheet" href="marks.css?v=ca0ea0141e78"><link rel="stylesheet" href="shelf-priority.css?v=ca0ea0141e78"><link rel="stylesheet" href="favorites.css?v=ca0ea0141e78"><link rel="stylesheet" href="copy-cleanup.css?v=ca0ea0141e78"><style>.recent-updates{display:none!important}</style></head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a class="site-brand" href="./" aria-label="つくって考えた トップへ">
+        <img class="brand-mark" src="assets/favicon.svg" alt="" width="38" height="38">
+        <span>つくって考えた</span>
+      </a>
+      <nav class="global-nav" aria-label="主なメニュー">
+        <button class="nav-button is-active" type="button" data-view-button="timeline">年代順</button>
+        <button class="nav-button" type="button" data-view-button="shelf">一覧</button>
+        <button class="nav-button" type="button" data-view-button="map">関連</button>
+        <button class="nav-button" type="button" data-about-button>このページについて</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">BUILD DIARY / SINCE 2019</p>
+        <h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>
+        <p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>
+        <div class="hero-actions" aria-label="閲覧方法を選ぶ">
+          <button class="primary-action" type="button" data-view-button="shelf">制作物を見る</button>
+          
+        </div>
+      </div>
+
+      <aside class="hero-note" aria-label="このページの見方">
+        <span class="note-pin" aria-hidden="true"></span>
+        <p>61のリポジトリも、<br><strong>「なんで作ったん？」</strong><br>から読み直しています。</p>
+        <small>※昔の作品は未確認</small>
+      </aside>
+
+      <dl class="hero-stats" data-stats aria-label="制作物の集計"></dl>
+    </section>
+
+    <section class="current-note section-shell" aria-labelledby="current-note-title">
+      <div>
+        <p class="eyebrow">RECENTLY</p>
+        <h2 id="current-note-title">この一覧について</h2>
+      </div>
+      <p data-current-note>GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。</p>
+    </section>
+
+    <section class="recent-updates section-shell" aria-labelledby="updates-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LATEST PATCHES</p>
+          <h2 id="updates-title">最近、考え直したこと</h2>
+        </div>
+        <p>更新履歴というより、判断履歴。</p>
+      </div>
+      <div class="updates-list" data-updates-list></div>
+    </section>
+
+    <section class="explorer section-shell" aria-labelledby="explorer-title">
+      <div class="section-heading explorer-heading">
+        <div>
+          <p class="eyebrow">EXPLORE</p>
+          <h2 id="explorer-title">制作物一覧</h2>
+        </div>
+        <div class="view-switcher" role="group" aria-label="表示形式">
+          <button type="button" class="view-chip is-active" data-view-button="timeline">
+            <span>年代順</span><small>人生の日記</small>
+          </button>
+          <button type="button" class="view-chip" data-view-button="shelf">
+            <span>一覧</span><small>制作物を選ぶ</small>
+          </button>
+          <button type="button" class="view-chip" data-view-button="map">
+            <span>関連</span><small>関連する制作物を見る</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar" data-toolbar hidden>
+        <label class="search-box">
+          <span class="sr-only">制作物を検索</span>
+          <input type="search" data-search-input placeholder="名前・困りごと・タグで探す">
+        </label>
+        <select data-verb-filter aria-label="目的で絞り込む"><option value="">すべての目的</option></select><select data-type-filter aria-label="種類で絞り込む"><option value="">すべての種類</option></select><select data-documentation-filter aria-label="整理状態で絞り込む"><option value="">すべての整理状態</option></select><button type="button" class="subtle-button" data-clear-filter>全部出す</button>
+      </div>
+
+      <div class="view-panel" data-view-panel aria-live="polite"></div>
+    </section>
+
+    <section class="principles section-shell" aria-labelledby="principles-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">HOW I BUILD</p>
+          <h2 id="principles-title">作り方は、だいたいこの順番</h2>
+        </div>
+      </div>
+      <ol class="principle-flow">
+        <li><span>01</span><strong>引っかかる</strong><p>毎回ちょっと面倒。だが毎回なので、まあまあ面倒。</p></li>
+        <li><span>02</span><strong>すぐ作る</strong><p>考え切る前に、押せるボタンを一個置く。</p></li>
+        <li><span>03</span><strong>使って違う</strong><p>頭の中では完璧だったものが、iPhoneで急に敗北する。</p></li>
+        <li><span>04</span><strong>また直す</strong><p>完成ではなく、今のところ一番マシな答えへ。</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <p>制作物と更新記録。</p>
+    <p><a href="https://github.com/silovar-uk" target="_blank" rel="noreferrer">GitHubを見る</a></p>
+  </footer>
+
+  <dialog class="project-dialog" data-project-dialog aria-labelledby="dialog-title">
+    <div class="dialog-shell">
+      <button type="button" class="dialog-close" data-dialog-close aria-label="詳細を閉じる">×</button>
+      <div data-project-detail></div>
+    </div>
+  </dialog>
+
+  <dialog class="about-dialog" data-about-dialog aria-labelledby="about-title">
+    <div class="dialog-shell about-shell">
+      <button type="button" class="dialog-close" data-about-close aria-label="このページについてを閉じる">×</button>
+      <p class="eyebrow">ABOUT</p>
+      <h2 id="about-title">このページについて</h2>
+      <p>作ったものを、時期や種類ごとにまとめています。詳しい内容とGitHub、公開ページへのリンクを確認できます。</p>
+      <p>「確認済み」は説明と主なリンクを確認したもの、「内容を確認中」はGitHubの情報から整理したもの、「未確認」は基本情報のみのものです。</p>
+    </div>
+  </dialog>
+
+  <noscript>
+    <div class="noscript">このページは制作物データの切り替えにJavaScriptを使用します。GitHub PagesなどのWebサーバー上で開いてください。</div>
+  </noscript>
+<script src="data-audit.js?v=ca0ea0141e78"></script><script src="catalog.js?v=ca0ea0141e78"></script><script src="catalog-visibility.js?v=ca0ea0141e78"></script><script src="taxonomy.js?v=ca0ea0141e78"></script><script src="floating-random.js?v=ca0ea0141e78"></script><script src="wow.js?v=ca0ea0141e78"></script><script src="random-three.js?v=ca0ea0141e78"></script><script src="comparison-view.js?v=ca0ea0141e78"></script><script src="wow-stage.js?v=ca0ea0141e78"></script><script src="motion.js?v=ca0ea0141e78"></script><script src="marks.js?v=ca0ea0141e78"></script><script src="shelf-priority.js?v=ca0ea0141e78"></script><script src="favorites.js?v=ca0ea0141e78"></script><script src="copy-cleanup.js?v=ca0ea0141e78"></script><script src="favorite-catalog.js?v=45a4cc092d108ad18f96bb52b8b5dc3a39b1afca"></script></body>
+</html>

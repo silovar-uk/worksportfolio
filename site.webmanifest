@@ -1,0 +1,10 @@
+{
+  "name": "つくって考えた",
+  "short_name": "つくって考えた",
+  "description": "日常の小さな不便から生まれたツールと、その時に考えていたことを残す制作日記。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#f4f1e8",
+  "icons": [{"src":"assets/favicon.svg","sizes":"any","type":"image/svg+xml"}]
+}

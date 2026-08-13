@@ -1,0 +1,97 @@
+{
+  "build-diary": {
+    "date": "2026-07-19",
+    "precision": "day",
+    "basis": "conversation-log"
+  },
+  "countupapp": {
+    "date": "2026-05",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "quicklinks": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "tabshelter": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "mydailylog": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "fourier": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "designmd": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "myspines": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "hangul": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "marisast6": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "zeldasbsp": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "prompts": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "pdfclipper": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "contentslibrary": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "mydictionary": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "st6training": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "flowmap": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "gantt": {
+    "date": "2026-05",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "countvoice": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  }
+}
