@@ -31,5 +31,75 @@
       }
     ],
     "aside": "訳す前に、場面を置く。"
+  },
+  {
+    "id": "multimemos",
+    "title": "MultiMemos",
+    "subtitle": "複数の文章を横に並べたまま、見比べながら書く軽量メモワークスペース",
+    "summary": "2〜4つの文章欄を同時に開き、資料・案・作業文・メモなどを並べたまま比較しながら書けるブラウザツール。欄名は自由に変更でき、固定、コピー、集中表示、幅調整、文字サイズ変更、自動保存に対応する。",
+    "friction": "元原稿、参考文、AI案、作業中の文章を別タブや別アプリに置くと、行き来するたびに比較の文脈が切れ、どこを見ながら書いていたかを見失いやすかった。",
+    "firstBuild": "用途を固定せず、2欄・3欄・4欄を横並びにして、それぞれへ自由に文章を置ける小さな比較メモとして作った。",
+    "currentAnswer": "各欄を薄い色で見分けながら、欄名変更、固定、全文コピー、集中表示、個別・全体の文字サイズ調整、欄幅変更、コンパクト表示、localStorage自動保存、スマホの横送り表示、Alt+1〜4移動を使える。Diffも別タブですぐ開ける。",
+    "type": "learning-tool",
+    "verbs": ["書く", "比べる", "整理する"],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-14",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-14",
+    "repositoryUrl": "https://github.com/silovar-uk/multimemos",
+    "liveUrl": "https://silovar-uk.github.io/multimemos/",
+    "technologies": ["HTML", "CSS", "JavaScript", "localStorage"],
+    "documentationState": "verified",
+    "searchAliases": ["マルチメモ", "比較メモ", "並列メモ", "文章比較"],
+    "relatedProjects": [
+      {"id": "diff", "relation": "並べて書いた文章の差分を確認する"},
+      {"id": "myspines", "relation": "文章を組み立てながら書く"},
+      {"id": "kakidas", "relation": "頭の中の断片を書き出す"}
+    ],
+    "updates": [
+      {
+        "date": "2026-08-14",
+        "version": "0.1",
+        "change": "2〜4欄、自由な欄名、固定・コピー・集中表示、欄ごとの識別色、Diff導線を備えた比較メモを公開",
+        "reason": "複数の文章を切り替えず、同じ視界に置いたまま考えて書けるようにするため。"
+      }
+    ],
+    "aside": "切り替えるより、並べたまま考える。"
+  },
+  {
+    "id": "memoexpansion",
+    "title": "MemoTool Expansion",
+    "subtitle": "Chromeサイドパネルで文章をため、並べ替え、育てるアウトライナー型メモ",
+    "summary": "ブラウザを開いたまま使えるChromeサイドパネルのメモ拡張。複数タブとアウトライナー型の項目を扱い、入力、複数選択、並べ替え、完了管理、Undo・Redo、ローカル保存を一つの場所で行う。",
+    "friction": "ブラウザ作業中のメモを別アプリへ取りに行くと集中が切れ、短い断片をあとから並べ替えたり、まとまりとして育てたりする操作も重くなりやすかった。",
+    "firstBuild": "既存のMemoToolをChromeサイドパネル中心の構成へ整理し、タブとアウトライナーを分けて扱える編集環境へ拡張した。",
+    "currentAnswer": "入力・タブ・描画・複数選択・保存などの責務を分割しつつ、赤太字行の改行時の書式継承、複数選択、ドラッグ移動、Undo・Redoを維持。不要だった三点メニューを撤去し、保存競合、キーボード操作、ARIA、タップ領域、reduced motionも改善した。",
+    "type": "chrome-extension",
+    "verbs": ["書く", "並べ替える", "残す"],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-14",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-14",
+    "repositoryUrl": "https://github.com/silovar-uk/memoexpansion",
+    "liveUrl": "",
+    "technologies": ["Chrome Extension", "JavaScript", "Manifest V3"],
+    "documentationState": "verified",
+    "searchAliases": ["MemoTool", "メモツール", "サイドパネルメモ"],
+    "relatedProjects": [
+      {"id": "memo", "relation": "元になったメモツール"}
+    ],
+    "updates": [
+      {
+        "date": "2026-08-14",
+        "version": "2.1.0",
+        "change": "赤太字の改行継承、三点メニュー撤去、Side Panelの責務分割、保存・アクセシビリティ改善を実施",
+        "reason": "既存機能を保ちながら、操作の迷いと内部の密結合を減らし、長く使える構成へ整理するため。"
+      }
+    ],
+    "aside": "メモは増えていい。操作は増やしすぎない。"
   }
 ]
