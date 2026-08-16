@@ -1,7 +1,7 @@
 {
   "owner": "silovar-uk",
   "defaultView": "shelf",
-  "defaultSort": "updated-desc",
+  "defaultSort": "created-desc",
   "githubApiFallback": true,
   "hiddenIds": [
     "python",

@@ -31,7 +31,8 @@
     extension: 'Chrome拡張',
     web: 'Webアプリ'
   };
-  const STORAGE_KEY = 'worksportfolio-catalog-v2';
+  const STORAGE_KEY = 'worksportfolio-catalog-v3';
+  const LEGACY_STORAGE_KEY = 'worksportfolio-catalog-v2';
   const selected = new Set();
   let ready = false;
   let quickFilter = 'all';
@@ -61,7 +62,8 @@
     if (match[2]) return `${Number(match[1])}.${Number(match[2])}`;
     return match[1];
   };
-  const yearOf = (project) => String(project.createdAt || '').slice(0, 4) || '時期不明';
+  const chronologyDate = (project) => project?.startedAt || project?.createdAt || '';
+  const yearOf = (project) => String(chronologyDate(project)).slice(0, 4) || '時期不明';
   const controls = () => ({
     search: document.querySelector('[data-cat-search]'),
     verb: document.querySelector('[data-cat-verb]'),
@@ -86,8 +88,8 @@
           </label>
           <select data-cat-sort aria-label="並び順">
             <option value="updated-desc">更新が新しい順</option>
-            <option value="created-desc">制作が新しい順</option>
-            <option value="created-asc">制作が古い順</option>
+            <option value="created-desc">制作開始が新しい順</option>
+            <option value="created-asc">制作開始が古い順</option>
             <option value="title-asc">名前順</option>
             <option value="type-asc">種類順</option>
             <option value="status-asc">状態順</option>
@@ -99,7 +101,7 @@
           </select>
           <select data-cat-group aria-label="グループ分け">
             <option value="none">まとめず表示</option>
-            <option value="year">制作年でまとめる</option>
+            <option value="year">制作開始年でまとめる</option>
             <option value="type">種類でまとめる</option>
             <option value="status">状態でまとめる</option>
           </select>
@@ -110,7 +112,7 @@
             <select data-cat-verb><option value="">すべての目的</option></select>
             <select data-cat-type><option value="">すべての種類</option></select>
             <select data-cat-status><option value="">すべての状態</option></select>
-            <select data-cat-year><option value="">すべての制作年</option></select>
+            <select data-cat-year><option value="">すべての制作開始年</option></select>
             <select data-cat-doc><option value="">すべての整理状態</option></select>
             <select data-cat-link>
               <option value="">すべての公開状況</option>
@@ -172,7 +174,7 @@
     const statuses = [...new Set(list.map((project) => project.status))].sort();
     c.status.innerHTML = '<option value="">すべての状態</option>' + statuses.map((value) => `<option value="${attr(value)}">${esc(statusLabels[value] || value)}</option>`).join('');
     const years = [...new Set(list.map(yearOf).filter((value) => /^\d{4}$/.test(value)))].sort().reverse();
-    c.year.innerHTML = '<option value="">すべての制作年</option>' + years.map((value) => `<option value="${value}">${value}年</option>`).join('');
+    c.year.innerHTML = '<option value="">すべての制作開始年</option>' + years.map((value) => `<option value="${value}">${value}年</option>`).join('');
     c.doc.innerHTML = '<option value="">すべての整理状態</option>' + Object.keys(docLabels).map((value) => `<option value="${value}">${docLabels[value]}</option>`).join('');
     renderQuickButtons();
   }
@@ -181,7 +183,16 @@
     const c = controls();
     const params = new URLSearchParams(location.search);
     let saved = {};
-    try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (_) { saved = {}; }
+    try {
+      const current = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (current && typeof current === 'object') {
+        saved = current;
+      } else {
+        const legacy = JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY) || '{}');
+        saved = legacy && typeof legacy === 'object' ? { ...legacy } : {};
+        if (!saved.sort || saved.sort === 'updated-desc') saved.sort = 'created-desc';
+      }
+    } catch (_) { saved = {}; }
     const get = (name, fallback = '') => params.has(`cat_${name}`) ? params.get(`cat_${name}`) : (saved[name] ?? fallback);
     c.search.value = get('q');
     c.verb.value = get('verb');
@@ -190,7 +201,7 @@
     c.year.value = get('year');
     c.doc.value = get('doc');
     c.link.value = get('link');
-    c.sort.value = get('sort', 'updated-desc');
+    c.sort.value = get('sort', 'created-desc');
     c.layout.value = get('layout', 'compact');
     c.group.value = get('group', 'none');
     quickFilter = get('quick', 'all');
@@ -215,7 +226,7 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     const params = new URLSearchParams(location.search);
     Object.entries(state).forEach(([key, value]) => {
-      if (value && !(['sort', 'layout', 'group', 'quick'].includes(key) && value === ({ sort: 'updated-desc', layout: 'compact', group: 'none', quick: 'all' }[key]))) {
+      if (value && !(['sort', 'layout', 'group', 'quick'].includes(key) && value === ({ sort: 'created-desc', layout: 'compact', group: 'none', quick: 'all' }[key]))) {
         params.set(`cat_${key}`, value);
       } else {
         params.delete(`cat_${key}`);
@@ -258,8 +269,8 @@
     });
     const sort = c.sort.value;
     list.sort(
-      sort === 'created-asc' ? (a, b) => dateNumber(a.createdAt).localeCompare(dateNumber(b.createdAt))
-        : sort === 'created-desc' ? (a, b) => dateNumber(b.createdAt).localeCompare(dateNumber(a.createdAt))
+      sort === 'created-asc' ? (a, b) => dateNumber(chronologyDate(a)).localeCompare(dateNumber(chronologyDate(b)))
+        : sort === 'created-desc' ? (a, b) => dateNumber(chronologyDate(b)).localeCompare(dateNumber(chronologyDate(a)))
           : sort === 'title-asc' ? (a, b) => a.title.localeCompare(b.title, 'ja')
             : sort === 'type-asc' ? (a, b) => (typeLabels[a.type] || a.type).localeCompare(typeLabels[b.type] || b.type, 'ja')
               : sort === 'status-asc' ? (a, b) => (statusLabels[a.status] || a.status).localeCompare(statusLabels[b.status] || b.status, 'ja')
@@ -310,7 +321,7 @@
       <div class="catalog-facts">
         <span>${esc(typeLabels[project.type] || project.type)}</span>
         <span class="status status-${attr(project.status)}">${esc(statusLabels[project.status] || project.status)}</span>
-        <span>制作 ${esc(formatDate(project.createdAt))}</span>
+        <span>開始 ${esc(formatDate(chronologyDate(project)))}</span>
         <span>更新 ${esc(formatDate(project.updatedAt || project.createdAt))}</span>
       </div>
       <div class="catalog-links">${linkButtons(project)}</div>
@@ -334,7 +345,7 @@
       <td><button class="catalog-title" type="button" data-project-open="${attr(project.id)}"><strong>${esc(project.title)}</strong><small>${esc((project.summary || '').slice(0, 90))}</small></button></td>
       <td>${esc(typeLabels[project.type] || project.type)}</td>
       <td><span class="status status-${attr(project.status)}">${esc(statusLabels[project.status] || project.status)}</span></td>
-      <td>${esc(formatDate(project.createdAt))}</td>
+      <td>${esc(formatDate(chronologyDate(project)))}</td>
       <td>${esc(formatDate(project.updatedAt || project.createdAt))}</td>
       <td><div class="catalog-links">${linkButtons(project)}</div></td>
     </tr>`;
@@ -354,13 +365,22 @@
     const label = (key) => groupBy === 'year' ? (/^\d{4}$/.test(key) ? `${key}年` : key)
       : groupBy === 'type' ? (typeLabels[key] || key)
         : (statusLabels[key] || key);
-    return [...map.entries()].map(([key, items]) => ({ key, label: label(key), items }));
+    const entries = [...map.entries()];
+    if (groupBy === 'year') {
+      const direction = controls().sort.value === 'created-asc' ? 1 : -1;
+      entries.sort(([a], [b]) => {
+        if (a === '時期不明') return 1;
+        if (b === '時期不明') return -1;
+        return direction * String(a).localeCompare(String(b));
+      });
+    }
+    return entries.map(([key, items]) => ({ key, label: label(key), items }));
   }
 
   function groupSection(group, layout) {
     const heading = group.label ? `<header class="catalog-group-head"><h3>${esc(group.label)}</h3><span>${group.items.length}件</span></header>` : '';
     if (layout === 'table') {
-      return `<section class="catalog-group">${heading}<div class="catalog-table-wrap"><table class="catalog-table"><thead><tr><th class="check-cell">選択</th><th>制作物</th><th>種類</th><th>状態</th><th>制作</th><th>更新</th><th>リンク</th></tr></thead><tbody>${group.items.map(tableRow).join('')}</tbody></table></div></section>`;
+      return `<section class="catalog-group">${heading}<div class="catalog-table-wrap"><table class="catalog-table"><thead><tr><th class="check-cell">選択</th><th>制作物</th><th>種類</th><th>状態</th><th>制作開始</th><th>更新</th><th>リンク</th></tr></thead><tbody>${group.items.map(tableRow).join('')}</tbody></table></div></section>`;
     }
     if (layout === 'cards') return `<section class="catalog-group">${heading}<div class="catalog-grid">${group.items.map(card).join('')}</div></section>`;
     return `<section class="catalog-group">${heading}<div class="catalog-list">${group.items.map(row).join('')}</div></section>`;
@@ -419,8 +439,8 @@
     const primaryUrl = (project) => project.liveUrl || project.repositoryUrl || '';
     if (format === 'markdown') return list.map((project) => primaryUrl(project) ? `- [${project.title}](${primaryUrl(project)}) — ${project.summary}` : `- **${project.title}** — ${project.summary}`).join('\n');
     if (format === 'tsv') {
-      const rows = [['タイトル', '概要', '種類', '状態', '制作日', '更新日', '公開ページ', 'GitHub']];
-      list.forEach((project) => rows.push([project.title, project.summary, typeLabels[project.type] || project.type, statusLabels[project.status] || project.status, formatDate(project.createdAt), formatDate(project.updatedAt || project.createdAt), project.liveUrl || '', project.repositoryUrl || '']));
+      const rows = [['タイトル', '概要', '種類', '状態', '制作開始日', '更新日', '公開ページ', 'GitHub']];
+      list.forEach((project) => rows.push([project.title, project.summary, typeLabels[project.type] || project.type, statusLabels[project.status] || project.status, formatDate(chronologyDate(project)), formatDate(project.updatedAt || project.createdAt), project.liveUrl || '', project.repositoryUrl || '']));
       return rows.map((rowData) => rowData.map((value) => String(value).replace(/\t/g, ' ').replace(/\r?\n/g, ' ')).join('\t')).join('\n');
     }
     if (format === 'json') return JSON.stringify(list.map((project) => ({
@@ -428,7 +448,8 @@
       summary: project.summary,
       type: typeLabels[project.type] || project.type,
       status: statusLabels[project.status] || project.status,
-      createdAt: project.createdAt,
+      startedAt: chronologyDate(project),
+      repositoryCreatedAt: project.createdAt || null,
       updatedAt: project.updatedAt || project.createdAt,
       liveUrl: project.liveUrl || null,
       repositoryUrl: project.repositoryUrl || null
@@ -480,7 +501,7 @@
       c.year.value = '';
       c.doc.value = '';
       c.link.value = '';
-      c.sort.value = 'updated-desc';
+      c.sort.value = 'created-desc';
       c.layout.value = 'compact';
       c.group.value = 'none';
       quickFilter = 'all';

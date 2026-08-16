@@ -3,8 +3,8 @@
 
   const RATINGS_KEY = 'worksPortfolioFavoriteRatingsV1';
   const STATE_KEY = 'worksportfolio-favorite-catalog-v1';
-  const BASE_STATE_KEY = 'worksportfolio-catalog-v2';
-  const SORT_MIGRATION_KEY = 'worksportfolio-start-sort-default-v1';
+  const BASE_STATE_KEY = 'worksportfolio-catalog-v3';
+  const SORT_MIGRATION_KEY = 'worksportfolio-start-sort-default-v2';
   const STYLE_ID = 'favorite-catalog-enhancement-style';
   const FAVORITE_SORTS = new Set(['favorite-desc', 'favorite-asc']);
   const START_SORTS = new Set(['created-desc', 'created-asc']);
