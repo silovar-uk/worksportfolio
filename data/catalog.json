@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-16T23:30:16.839Z",
+  "generatedAt": "2026-08-16T23:37:45.884Z",
   "owner": "silovar-uk",
-  "repositoryCount": 70,
+  "repositoryCount": 71,
   "hiddenIds": [
     "python",
     "scrap_random",
@@ -188,6 +188,23 @@
       "updatedAt": "2026-08-16",
       "pushedAt": "2026-08-16",
       "hasPages": true,
+      "defaultBranch": "main"
+    },
+    {
+      "id": "myglossary",
+      "name": "myglossary",
+      "description": "",
+      "repositoryUrl": "https://github.com/silovar-uk/myglossary",
+      "liveUrl": "",
+      "language": "",
+      "topics": [],
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "createdAt": "2026-08-16",
+      "updatedAt": "2026-08-16",
+      "pushedAt": "2026-08-16",
+      "hasPages": false,
       "defaultBranch": "main"
     },
     {
