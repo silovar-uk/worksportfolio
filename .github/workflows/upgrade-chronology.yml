@@ -39,17 +39,16 @@ jobs:
           grep -q '制作開始が新しい順' catalog.js
           grep -Fq "project?.startedAt || project?.createdAt" catalog.js
           grep -q "defaultSort.*created-desc" data/portfolio-config.json
-          grep -q "node --check catalog.js" .github/workflows/update-catalog.yml
 
       - name: Commit upgraded chronology
         run: |
-          if git diff --quiet -- catalog.js favorite-catalog.js data/portfolio-config.json .github/workflows/update-catalog.yml; then
+          if git diff --quiet -- catalog.js favorite-catalog.js data/portfolio-config.json; then
             echo "Chronology is already upgraded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog.js favorite-catalog.js data/portfolio-config.json .github/workflows/update-catalog.yml
+          git add catalog.js favorite-catalog.js data/portfolio-config.json
           git commit -m "Use project start dates for portfolio chronology"
           git pull --rebase origin main
           git push
