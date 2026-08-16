@@ -1,0 +1,61 @@
+name: Audit project start dates
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/audit-project-start-dates.mjs'
+      - '.github/workflows/audit-project-start-dates.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-start-date-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Audit project start dates
+        run: node scripts/audit-project-start-dates.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate start date data
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('data/project-start-dates.json', 'utf8'));
+          const rows = Object.entries(data);
+          if (rows.length < 20) throw new Error(`Too few start-date records: ${rows.length}`);
+          for (const [id, row] of rows) {
+            if (!/^\d{4}(?:-\d{2})?(?:-\d{2})?$/.test(String(row.date || ''))) throw new Error(`Invalid date for ${id}`);
+            if (!row.basis) throw new Error(`Missing basis for ${id}`);
+          }
+          console.log(`Validated ${rows.length} project start-date records.`);
+          NODE
+
+      - name: Commit audited dates
+        run: |
+          if git diff --quiet -- data/project-start-dates.json; then
+            echo "Project start dates are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/project-start-dates.json
+          git commit -m "Audit project start dates from repository history"
+          git pull --rebase origin main
+          git push
