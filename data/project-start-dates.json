@@ -1,90 +1,87 @@
 {
+  "100yearvision": {
+    "date": "2026-03-26",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "100yearvision",
+    "source": "https://github.com/silovar-uk/100yearvision/commit/68555e7da1cea02eeb0267e264ed4d4d78e8fe9e",
+    "commit": "68555e7da1cea02eeb0267e264ed4d4d78e8fe9e"
+  },
+  "2026eventlist": {
+    "date": "2026-05-08",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "2026eventlist",
+    "source": "https://github.com/silovar-uk/2026eventlist/commit/51d8d3f51c6b4a9eda0b9d497637447bdfe39ec8",
+    "commit": "51d8d3f51c6b4a9eda0b9d497637447bdfe39ec8"
+  },
+  "accountinglearn": {
+    "date": "2026-08-05",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "accountinglearn",
+    "source": "https://github.com/silovar-uk/accountinglearn/commit/1726a98e8d1328b004fb6549799f7a712a759054",
+    "commit": "1726a98e8d1328b004fb6549799f7a712a759054"
+  },
+  "akasma": {
+    "date": "2026-05-09",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "akasma",
+    "source": "https://github.com/silovar-uk/akasma/commit/13d7fda9df803290214fd12e411f57bfb7259823",
+    "commit": "13d7fda9df803290214fd12e411f57bfb7259823"
+  },
+  "baseballquiz": {
+    "date": "2026-08-16",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "baseballquiz",
+    "source": "https://github.com/silovar-uk/baseballquiz/commit/a3a8c2dfbac58b88a5dc956816305a699a346454",
+    "commit": "a3a8c2dfbac58b88a5dc956816305a699a346454"
+  },
   "build-diary": {
     "date": "2026-07-19",
     "precision": "day",
     "basis": "conversation-log"
   },
-  "countupapp": {
-    "date": "2026-05",
-    "precision": "month",
-    "basis": "conversation-log"
+  "commonpoint": {
+    "date": "2026-07-07",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "commonpoint",
+    "source": "https://github.com/silovar-uk/commonpoint/commit/bb35b665d89c390970b60dd038674c7620b3a983",
+    "commit": "bb35b665d89c390970b60dd038674c7620b3a983"
   },
-  "quicklinks": {
-    "date": "2026-06",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "tabshelter": {
-    "date": "2026-06",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "mydailylog": {
-    "date": "2026-06",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "fourier": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "designmd": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "myspines": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "hangul": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "marisast6": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "zeldasbsp": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "prompts": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "pdfclipper": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
+  "consultingstudy": {
+    "date": "2026-07-04",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "consultingstudy",
+    "source": "https://github.com/silovar-uk/consultingstudy/commit/0f37ebfa8bd6eccd6cb22f015b9d5886c5c7df0e",
+    "commit": "0f37ebfa8bd6eccd6cb22f015b9d5886c5c7df0e"
   },
   "contentslibrary": {
     "date": "2026-07",
     "precision": "month",
     "basis": "conversation-log"
   },
-  "mydictionary": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
+  "converter": {
+    "date": "2026-06-22",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "converter",
+    "source": "https://github.com/silovar-uk/converter/commit/bb6b4d4842fa1d64fcf53a3f3e2ceae1c139078e",
+    "commit": "bb6b4d4842fa1d64fcf53a3f3e2ceae1c139078e"
   },
-  "st6training": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
+  "convinitools": {
+    "date": "2026-08-13",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "convinitools",
+    "source": "https://github.com/silovar-uk/convinitools/commit/e832abe24052ca99f16af090676705a92068458e",
+    "commit": "e832abe24052ca99f16af090676705a92068458e"
   },
-  "flowmap": {
-    "date": "2026-07",
-    "precision": "month",
-    "basis": "conversation-log"
-  },
-  "gantt": {
+  "countupapp": {
     "date": "2026-05",
     "precision": "month",
     "basis": "conversation-log"
@@ -93,5 +90,437 @@
     "date": "2026-06",
     "precision": "month",
     "basis": "conversation-log"
+  },
+  "cssanimationlists": {
+    "date": "2026-07-25",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "cssanimationlists",
+    "source": "https://github.com/silovar-uk/cssanimationlists/commit/11f84389a4860577a00ebfdc84678655133d2771",
+    "commit": "11f84389a4860577a00ebfdc84678655133d2771"
+  },
+  "dailyenglishchunks": {
+    "date": "2026-08-10",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "dailyenglishchunks",
+    "source": "https://github.com/silovar-uk/dailyenglishchunks/commit/8a48839fa0338fb327870ecb8ad89e2c30997efd",
+    "commit": "8a48839fa0338fb327870ecb8ad89e2c30997efd"
+  },
+  "designmd": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "diff": {
+    "date": "2026-07-02",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "diff",
+    "source": "https://github.com/silovar-uk/diff/commit/5e57b6b7a6d5bd2e629da7d80d902e29a3a2f78d",
+    "commit": "5e57b6b7a6d5bd2e629da7d80d902e29a3a2f78d"
+  },
+  "englisharcade": {
+    "date": "2026-05-06",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "englisharcade",
+    "source": "https://github.com/silovar-uk/englisharcade/commit/e37605f53e922429b7825e7b67d0cb3293a2f798",
+    "commit": "e37605f53e922429b7825e7b67d0cb3293a2f798"
+  },
+  "ennnichimock": {
+    "date": "2026-07-27",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "ennnichimock",
+    "source": "https://github.com/silovar-uk/ennnichimock/commit/7fa82013d6fd96a32ed565ba3c3f0a9fe8fbe17f",
+    "commit": "7fa82013d6fd96a32ed565ba3c3f0a9fe8fbe17f"
+  },
+  "eventmap": {
+    "date": "2026-04-22",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "eventmap",
+    "source": "https://github.com/silovar-uk/eventmap/commit/c873926d3c03b2e43f8581cdfdf9c133a9578549",
+    "commit": "c873926d3c03b2e43f8581cdfdf9c133a9578549"
+  },
+  "flowmap": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "footballisfun": {
+    "date": "2026-05-07",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "footballisfun",
+    "source": "https://github.com/silovar-uk/footballisfun/commit/f95770cbd8bedcc8cb0d8c0b5ad777dd7ed0ccac",
+    "commit": "f95770cbd8bedcc8cb0d8c0b5ad777dd7ed0ccac"
+  },
+  "fourier": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "gamedashboard": {
+    "date": "2026-04-13",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "gamedashboard",
+    "source": "https://github.com/silovar-uk/gamedashboard/commit/e40c051ebd1b859b76fb7abdac9367859c50c8d4",
+    "commit": "e40c051ebd1b859b76fb7abdac9367859c50c8d4"
+  },
+  "gantt": {
+    "date": "2026-05",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "hangul": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "imagetuning": {
+    "date": "2026-07-21",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "imagetuning",
+    "source": "https://github.com/silovar-uk/imagetuning/commit/4b3e6b8056ff62dea6a79ac51402a1da8eb86b74",
+    "commit": "4b3e6b8056ff62dea6a79ac51402a1da8eb86b74"
+  },
+  "jumbo": {
+    "date": "2026-03-27",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "jumbo",
+    "source": "https://github.com/silovar-uk/jumbo/commit/434c3003b064c78c50cf19fa16158cb2bdda8ade",
+    "commit": "434c3003b064c78c50cf19fa16158cb2bdda8ade"
+  },
+  "kakidas": {
+    "date": "2026-06-22",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "kakidas",
+    "source": "https://github.com/silovar-uk/kakidas/commit/a8ced0ab59ea3e9d347bcbd4004f50d2d18d9cb2",
+    "commit": "a8ced0ab59ea3e9d347bcbd4004f50d2d18d9cb2"
+  },
+  "keygrid": {
+    "date": "2026-07-27",
+    "precision": "day",
+    "basis": "manual-record"
+  },
+  "keygridexpansion": {
+    "date": "2026-08-13",
+    "precision": "day",
+    "basis": "repository-created-fallback",
+    "repository": "keygridexpansion"
+  },
+  "likewhat": {
+    "date": "2026-08-09",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "likewhat",
+    "source": "https://github.com/silovar-uk/likewhat/commit/df9153c8f0bd6fd723ec0d54392902fc5dad6245",
+    "commit": "df9153c8f0bd6fd723ec0d54392902fc5dad6245"
+  },
+  "lineworks-logger": {
+    "date": "2026-05",
+    "precision": "month",
+    "basis": "manual-record"
+  },
+  "lineworks-scroll-copy": {
+    "date": "2026-05-01",
+    "precision": "day",
+    "basis": "manual-record"
+  },
+  "manontec": {
+    "date": "2026-03-23",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "manontec",
+    "source": "https://github.com/silovar-uk/manontec/commit/7a182d79f4fb66d894210ea1e6cf82e7cdbf8649",
+    "commit": "7a182d79f4fb66d894210ea1e6cf82e7cdbf8649"
+  },
+  "marisast6": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "memo": {
+    "date": "2025-06-02",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "memo",
+    "source": "https://github.com/silovar-uk/memo/commit/419d5dae77576d33145cc43a1c93259f7e6f7a47",
+    "commit": "419d5dae77576d33145cc43a1c93259f7e6f7a47"
+  },
+  "memoexpansion": {
+    "date": "2026-08-14",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "memoexpansion",
+    "source": "https://github.com/silovar-uk/memoexpansion/commit/4674665deb966888a246a886b09d60669a4200a6",
+    "commit": "4674665deb966888a246a886b09d60669a4200a6"
+  },
+  "mmmpocket": {
+    "date": "2026-04-30",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "mmmpocket",
+    "source": "https://github.com/silovar-uk/mmmpocket/commit/bd89ccda132a4bf3fa79858ccf7d85ca92e5837d",
+    "commit": "bd89ccda132a4bf3fa79858ccf7d85ca92e5837d"
+  },
+  "multimemos": {
+    "date": "2026-08-14",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "multimemos",
+    "source": "https://github.com/silovar-uk/multimemos/commit/051f65740fa1419827fb762f6d539ba66a41b099",
+    "commit": "051f65740fa1419827fb762f6d539ba66a41b099"
+  },
+  "mydailylog": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "mydictionary": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "myessays": {
+    "date": "2026-08-07",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "myessays",
+    "source": "https://github.com/silovar-uk/myessays/commit/a4efbef15f01e301dd9446280687f7c668c39047",
+    "commit": "a4efbef15f01e301dd9446280687f7c668c39047"
+  },
+  "mymindmap": {
+    "date": "2026-04-11",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "mymindmap",
+    "source": "https://github.com/silovar-uk/mymindmap/commit/10bd46da291303923d071f7b3296eca39dc28bea",
+    "commit": "10bd46da291303923d071f7b3296eca39dc28bea"
+  },
+  "myspines": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "newsquiz": {
+    "date": "2026-07-04",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "newsquiz",
+    "source": "https://github.com/silovar-uk/newsquiz/commit/064dd2a162ce5d3445494b36acd0f6bd3169b32a",
+    "commit": "064dd2a162ce5d3445494b36acd0f6bd3169b32a"
+  },
+  "ooh": {
+    "date": "2026-05-14",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "ooh",
+    "source": "https://github.com/silovar-uk/ooh/commit/71300e35eacbecaa91a7f382d6e9fd253b145a61",
+    "commit": "71300e35eacbecaa91a7f382d6e9fd253b145a61"
+  },
+  "patternlanguage": {
+    "date": "2026-05-08",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "patternlanguage",
+    "source": "https://github.com/silovar-uk/patternlanguage/commit/503c3955cd793bac236cbfae68c9b2bd1e290165",
+    "commit": "503c3955cd793bac236cbfae68c9b2bd1e290165"
+  },
+  "payment-case-manager": {
+    "date": "2026-05-08",
+    "precision": "day",
+    "basis": "manual-record"
+  },
+  "pdfclipper": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "pdflinks": {
+    "date": "2026-05-31",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "pdflinks",
+    "source": "https://github.com/silovar-uk/pdflinks/commit/6c43ef44fd46260a746e5314ec9231ae244c0633",
+    "commit": "6c43ef44fd46260a746e5314ec9231ae244c0633"
+  },
+  "pratchecker": {
+    "date": "2025-06-02",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "pratchecker",
+    "source": "https://github.com/silovar-uk/pratchecker/commit/5da9bc01a1d4ba81c717a5ceb64a21b11cce316b",
+    "commit": "5da9bc01a1d4ba81c717a5ceb64a21b11cce316b"
+  },
+  "predictattendance": {
+    "date": "2026-05-14",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "predictattendance",
+    "source": "https://github.com/silovar-uk/predictattendance/commit/36b59b5206445a53e2d1ced630ca8738287da013",
+    "commit": "36b59b5206445a53e2d1ced630ca8738287da013"
+  },
+  "prompts": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "python": {
+    "date": "2018-12-29",
+    "precision": "day",
+    "basis": "repository-created-fallback",
+    "repository": "python"
+  },
+  "quickliks": {
+    "date": "2026-05-31",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "quickliks",
+    "source": "https://github.com/silovar-uk/quickliks/commit/80d884db1a74eec97815ed4b0cffb329403d6d45",
+    "commit": "80d884db1a74eec97815ed4b0cffb329403d6d45"
+  },
+  "quicklinks": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "quicklinksexpansion": {
+    "date": "2026-08-13",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "quicklinksexpansion",
+    "source": "https://github.com/silovar-uk/quicklinksexpansion/commit/4b9406e20c4b0bd8b5d289c44e26cdb7f7d19e12",
+    "commit": "4b9406e20c4b0bd8b5d289c44e26cdb7f7d19e12"
+  },
+  "resultcalc": {
+    "date": "2026-05-09",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "resultcalc",
+    "source": "https://github.com/silovar-uk/resultcalc/commit/bd670e4bf34ec58524e82854790265af951ac4c9",
+    "commit": "bd670e4bf34ec58524e82854790265af951ac4c9"
+  },
+  "rexanq": {
+    "date": "2026-04-27",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "rexanq",
+    "source": "https://github.com/silovar-uk/rexanq/commit/e0d1f657ef325b239a6442218121d502f9f8ac8f",
+    "commit": "e0d1f657ef325b239a6442218121d502f9f8ac8f"
+  },
+  "rockvsbra": {
+    "date": "2026-05-10",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "rockvsbra",
+    "source": "https://github.com/silovar-uk/rockvsbra/commit/97662698c19232bed02f67a2c3d3c90261ef241a",
+    "commit": "97662698c19232bed02f67a2c3d3c90261ef241a"
+  },
+  "scrap_random": {
+    "date": "2020-08-02",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "scrap_random",
+    "source": "https://github.com/silovar-uk/scrap_random/commit/c629a24864a4951e173df4dcee50be85203b3654",
+    "commit": "c629a24864a4951e173df4dcee50be85203b3654"
+  },
+  "shogibanmen": {
+    "date": "2025-05-30",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "shogibanmen",
+    "source": "https://github.com/silovar-uk/shogibanmen/commit/cd03cb2be2f857ffa40a45b0a92531bd4e36a4d3",
+    "commit": "cd03cb2be2f857ffa40a45b0a92531bd4e36a4d3"
+  },
+  "simplememotool": {
+    "date": "2026-04-14",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "simplememotool",
+    "source": "https://github.com/silovar-uk/simplememotool/commit/b6cfe213d0d4a10338cce987ccc3abc70a698535",
+    "commit": "b6cfe213d0d4a10338cce987ccc3abc70a698535"
+  },
+  "st6training": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "sukan": {
+    "date": "2026-07-02",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "sukan",
+    "source": "https://github.com/silovar-uk/sukan/commit/cb4f681fe39fcfebcc30b95f0c526de879e07fbc",
+    "commit": "cb4f681fe39fcfebcc30b95f0c526de879e07fbc"
+  },
+  "tabshelter": {
+    "date": "2026-06",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "timeconverter": {
+    "date": "2025-06-09",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "timeconverter",
+    "source": "https://github.com/silovar-uk/timeconverter/commit/240f89765e6a56f0732a3c9db833319376b71067",
+    "commit": "240f89765e6a56f0732a3c9db833319376b71067"
+  },
+  "todomanager": {
+    "date": "2025-05-31",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "todomanager",
+    "source": "https://github.com/silovar-uk/todomanager/commit/08fbc59223663003c38e4e29768c3748e5b2f69f",
+    "commit": "08fbc59223663003c38e4e29768c3748e5b2f69f"
+  },
+  "vocabularies": {
+    "date": "2026-08-09",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "vocabularies",
+    "source": "https://github.com/silovar-uk/vocabularies/commit/89f514f90e4205afa36f94adf8232e68d189f15b",
+    "commit": "89f514f90e4205afa36f94adf8232e68d189f15b"
+  },
+  "vsmcintro": {
+    "date": "2026-05-07",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "vsmcintro",
+    "source": "https://github.com/silovar-uk/vsmcintro/commit/817684a737a368c216a8dc28934d4405751e36d6",
+    "commit": "817684a737a368c216a8dc28934d4405751e36d6"
+  },
+  "whatsthiswiki": {
+    "date": "2026-07-24",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "whatsthiswiki",
+    "source": "https://github.com/silovar-uk/whatsthiswiki/commit/2a1f2aeb66df58892c4f5e87b73b8fc7014a7cfb",
+    "commit": "2a1f2aeb66df58892c4f5e87b73b8fc7014a7cfb"
+  },
+  "x-auto-screenshot-scroll": {
+    "date": "2025-06-02",
+    "precision": "day",
+    "basis": "manual-record"
+  },
+  "zeldasbsp": {
+    "date": "2026-07",
+    "precision": "month",
+    "basis": "conversation-log"
+  },
+  "zl-logger-web": {
+    "date": "2026-03-21",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "zl-logger-web",
+    "source": "https://github.com/silovar-uk/zl-logger-web/commit/90ca0d8f58d82fd19ffae1277827284106378ce6",
+    "commit": "90ca0d8f58d82fd19ffae1277827284106378ce6"
   }
 }
