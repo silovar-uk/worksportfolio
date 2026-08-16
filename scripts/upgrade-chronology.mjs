@@ -100,34 +100,7 @@ async function upgradeConfig() {
   await write(path, `${JSON.stringify(config, null, 2)}\n`);
 }
 
-async function upgradeWorkflow() {
-  const path = '.github/workflows/update-catalog.yml';
-  let source = await read(path);
-
-  source = source.replaceAll(
-    "      - 'catalog-visibility.js'\n",
-    "      - 'catalog.js'\n      - 'catalog.css'\n      - 'catalog-visibility.js'\n"
-  );
-
-  source = replaceRequired(
-    source,
-    '          node --check taxonomy.js\n',
-    '          node --check catalog.js\n          node --check taxonomy.js\n',
-    'catalog syntax check'
-  );
-
-  source = replaceRequired(
-    source,
-    "          grep -Fq \"d.settings.defaultSort='created-desc'\" index.html\n",
-    "          grep -Fq \"d.settings.defaultSort='created-desc'\" index.html\n          grep -q '制作開始が新しい順' catalog.js\n          grep -Fq \"project?.startedAt || project?.createdAt\" catalog.js\n",
-    'chronology verification'
-  );
-
-  await write(path, source);
-}
-
 await upgradeCatalog();
 await upgradeFavoriteCatalog();
 await upgradeConfig();
-await upgradeWorkflow();
-console.log('Chronology upgraded: startedAt is now the canonical portfolio chronology, with legacy state migration and CI coverage.');
+console.log('Chronology upgraded: startedAt is now the canonical portfolio chronology, with legacy state migration.');
