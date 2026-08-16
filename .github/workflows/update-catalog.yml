@@ -16,6 +16,7 @@ on:
       - 'data/pattern-audit.json'
       - 'data/pattern-candidates-*.json'
       - 'data/pattern-merge-rules.json'
+      - 'catalog-visibility.js'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -51,6 +52,7 @@ on:
       - 'data/pattern-audit.json'
       - 'data/pattern-candidates-*.json'
       - 'data/pattern-merge-rules.json'
+      - 'catalog-visibility.js'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -96,6 +98,7 @@ jobs:
 
       - name: Check interface scripts
         run: |
+          node --check catalog-visibility.js
           node --check taxonomy.js
           node --check floating-random.js
           node --check random-three.js
@@ -167,6 +170,8 @@ jobs:
           grep -q 'favorite-catalog.js' index.html
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
+          grep -q 'catalog-visibility.js' index.html
+          grep -q 'data-header-catalog' catalog-visibility.js
           grep -q 'ランダム3枚' random-three.js
           grep -q '3枚引き直す' random-three.js
           ! grep -q '残り2枚を引く' random-three.js
