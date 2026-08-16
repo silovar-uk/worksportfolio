@@ -147,3 +147,5 @@ console.log(JSON.stringify({
   failed,
   basisCounts
 }, null, 2));
+
+// This audit is intentionally rerunnable: curated dates are preserved and only missing records are backfilled.
