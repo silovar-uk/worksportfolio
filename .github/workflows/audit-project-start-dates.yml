@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: worksportfolio-start-date-audit
@@ -59,3 +60,15 @@ jobs:
           git commit -m "Audit project start dates from repository history"
           git pull --rebase origin main
           git push
+
+      - name: Rebuild portfolio with audited chronology
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl --fail-with-body -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/update-catalog.yml/dispatches \
+            -d '{"ref":"main"}'
