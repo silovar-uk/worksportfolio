@@ -470,5 +470,64 @@
       }
     ],
     "aside": "メモは増えていい。操作は増やしすぎない。"
+  },
+  {
+    "id": "myglossary",
+    "title": "My Glossary",
+    "subtitle": "学んだ言葉を、使える形で少しずつ残す個人用語集",
+    "summary": "学んだ言葉を「一言で・もう少し詳しく・具体例・なぜ覚えた？・関連語」の形で残し、検索や最近の学習履歴から引き直せる個人用の用語集。",
+    "friction": "言葉の意味をその場では理解しても、あとで自分の言葉として説明したり、具体的な場面で使ったりできないまま忘れやすかった。",
+    "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
+    "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "言語化する",
+      "引き直す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-17",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-17",
+    "startedAt": "2026-08-17",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-first-commit-jst",
+    "repositoryUrl": "https://github.com/silovar-uk/myglossary",
+    "liveUrl": "https://silovar-uk.github.io/myglossary/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "searchAliases": [
+      "MyGlossary",
+      "マイグロッサリー",
+      "用語集",
+      "個人用語集",
+      "学習用語集"
+    ],
+    "relatedProjects": [
+      {
+        "id": "vocabularies",
+        "relation": "曖昧な感覚から言葉へたどる"
+      },
+      {
+        "id": "mydictionary",
+        "relation": "出会った言葉を蓄積して育てる"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-17",
+        "version": "0.1",
+        "change": "学んだ言葉を検索・タグ・関連語とともに残す個人用語集を公開",
+        "reason": "知った言葉を、その場の理解で終わらせず、自分の説明と具体例を伴う再利用できる知識へ変えるため。"
+      }
+    ],
+    "aside": "知った言葉を、使える言葉まで育てる。"
   }
 ]
