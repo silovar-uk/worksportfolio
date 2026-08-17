@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T23:37:45.884Z",
+  "generatedAt": "2026-08-17T00:09:39.619Z",
   "owner": "silovar-uk",
   "repositoryCount": 71,
   "hiddenIds": [
@@ -20,6 +20,23 @@
     "todomanager"
   ],
   "repositories": [
+    {
+      "id": "worksportfolio",
+      "name": "worksportfolio",
+      "description": "",
+      "repositoryUrl": "https://github.com/silovar-uk/worksportfolio",
+      "liveUrl": "https://silovar-uk.github.io/worksportfolio/",
+      "language": "JavaScript",
+      "topics": [],
+      "archived": false,
+      "fork": false,
+      "visibility": "public",
+      "createdAt": "2026-07-19",
+      "updatedAt": "2026-08-17",
+      "pushedAt": "2026-08-17",
+      "hasPages": true,
+      "defaultBranch": "main"
+    },
     {
       "id": "baseballquiz",
       "name": "baseballquiz",
@@ -195,8 +212,8 @@
       "name": "myglossary",
       "description": "",
       "repositoryUrl": "https://github.com/silovar-uk/myglossary",
-      "liveUrl": "",
-      "language": "",
+      "liveUrl": "https://silovar-uk.github.io/myglossary/",
+      "language": "CSS",
       "topics": [],
       "archived": false,
       "fork": false,
@@ -204,7 +221,7 @@
       "createdAt": "2026-08-16",
       "updatedAt": "2026-08-16",
       "pushedAt": "2026-08-16",
-      "hasPages": false,
+      "hasPages": true,
       "defaultBranch": "main"
     },
     {
@@ -219,23 +236,6 @@
       "fork": false,
       "visibility": "public",
       "createdAt": "2026-08-09",
-      "updatedAt": "2026-08-16",
-      "pushedAt": "2026-08-16",
-      "hasPages": true,
-      "defaultBranch": "main"
-    },
-    {
-      "id": "worksportfolio",
-      "name": "worksportfolio",
-      "description": "",
-      "repositoryUrl": "https://github.com/silovar-uk/worksportfolio",
-      "liveUrl": "https://silovar-uk.github.io/worksportfolio/",
-      "language": "JavaScript",
-      "topics": [],
-      "archived": false,
-      "fork": false,
-      "visibility": "public",
-      "createdAt": "2026-07-19",
       "updatedAt": "2026-08-16",
       "pushedAt": "2026-08-16",
       "hasPages": true,
