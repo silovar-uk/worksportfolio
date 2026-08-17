@@ -144,3 +144,10 @@
   else replaceStaticCounts();
   document.dispatchEvent(new CustomEvent('worksportfolio:audit', { detail: window.WORKS_PORTFOLIO_AUDIT }));
 })();
+
+(() => {
+  const script = document.createElement('script');
+  script.src = 'catalog-search-redesign.js?v=20260817-1953';
+  script.defer = true;
+  document.head.appendChild(script);
+})();
