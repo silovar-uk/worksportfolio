@@ -141,6 +141,45 @@
     ],
     "aside": "知った言葉を、使える言葉まで育てる。"
   },
+  {
+    "id": "private-memo",
+    "title": "Private Memo",
+    "subtitle": "本人だけが開ける、ログイン必須・E2EEの個人用メモ",
+    "summary": "Cloudflare Accessで本人認証し、メモ本文はブラウザ側で暗号化してから保存する個人用の非公開メモ。D1には暗号文だけを置き、サーバー側で平文を読まない構成にしている。",
+    "friction": "思いつきや個人的な記録を複数端末からすぐ書きたい一方、公開URLやサーバー保存を前提にすると、誤公開やデータ流出時に平文が見える不安が残った。",
+    "firstBuild": "Kakidasのようにすぐ書ける感覚を残しつつ、Cloudflare AccessのメールOTPで入口を閉じ、ブラウザのWeb Cryptoでメモを暗号化してからD1へ保存する構成にした。",
+    "currentAnswer": "本人のメールだけを許可するCloudflare Access、パスフレーズで開くブラウザ内Vault、AES-256-GCMによるクライアント側暗号化、暗号文のみを保持するWorker/D1を組み合わせた。ロック時は鍵を破棄し、一定時間で自動ロックする。",
+    "type": "learning-tool",
+    "verbs": ["書く", "保存する", "守る"],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-17",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-17",
+    "startedAt": "2026-08-17",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual",
+    "repositoryUrl": "",
+    "liveUrl": "https://private-memo.silovar-uk.workers.dev/",
+    "technologies": ["Cloudflare Workers", "Cloudflare Access", "Cloudflare D1", "Web Crypto API", "AES-256-GCM"],
+    "documentationState": "verified",
+    "searchAliases": ["Private Memo", "private memo", "プライベートメモ", "非公開メモ", "秘密メモ", "個人用メモ", "暗号化メモ", "E2EE", "encrypted memo", "Cloudflare Access", "D1"],
+    "relatedProjects": [
+      {"id": "kakidas", "relation": "思いつきをすぐ書き出す操作感"},
+      {"id": "memo", "relation": "個人用メモという共通用途"},
+      {"id": "contentslibrary", "relation": "個人データを保存して後から参照する"}
+    ],
+    "updates": [
+      {
+        "date": "2026-08-17",
+        "version": "0.1",
+        "change": "ログイン必須・クライアント側暗号化の個人用メモを公開",
+        "reason": "複数端末から使える便利さを保ちながら、サーバーやDBから平文が漏れにくいメモ環境を作るため。"
+      }
+    ],
+    "aside": "サーバーには、読める本文を置かない。"
+  },
   {"id":"shogibanmen","searchAliases":["将棋盤","しょうぎばん","shogi board","将棋","局面","盤面"]},
   {"id":"memo","searchAliases":["メモ","めも","memo app","note","notes","メモアプリ","ノート"]},
   {"id":"timeconverter","searchAliases":["時間変換","時刻変換","time converter","time conversion","時間換算","時差","timezone"]},
