@@ -1,0 +1,77 @@
+name: Add Techniques portfolio entry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/add-techniques-entry.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add Techniques entry
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'data/manual-projects-extra.json';
+          const projects = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const entry = {
+            id: 'techniques',
+            title: 'Techniques',
+            subtitle: '「あれ、どうやるんやったっけ？」を10秒で取り戻す、生活と仕事の手順辞典',
+            summary: 'PC・動画・Webだけでなく、仕事や暮らしまで含めて、あとで忘れそうな小さなやり方を「結論 → 最短手順 → 補足」の形で蓄積する個人用How-to集。検索とカテゴリから目的の手順へすぐ戻れる。',
+            friction: '一度調べて解決した小ネタほど、数週間後には手順を忘れて同じことをまた検索し直していた。IT系だけでなく、生活や仕事の細かな手順も同じように散らばっていた。',
+            firstBuild: 'MOVファイルから音声だけ抜く方法を1本目として、FFmpegのコマンド、手順、コマンドの意味、音質を落とさず抜く方法をひとまとまりにした。',
+            currentAnswer: '検索を主役に、カテゴリ・タグ・個別ページ・コマンドコピーを備え、JSONへ1件追加すれば一覧と検索へ反映できる静的な手順辞典。ITに限定せず、PC・仕事・暮らしなどの小さな実用知を増やしていく。',
+            type: 'utility',
+            verbs: ['探す', '思い出す', '試す'],
+            status: 'active',
+            visibility: 'public',
+            featured: false,
+            createdAt: '2026-08-18',
+            createdAtPrecision: 'day',
+            updatedAt: '2026-08-18',
+            startedAt: '2026-08-18',
+            startedAtPrecision: 'day',
+            startedAtBasis: 'repository-first-commit-jst',
+            repositoryUrl: 'https://github.com/silovar-uk/techniques',
+            liveUrl: 'https://silovar-uk.github.io/techniques/',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'JSON', 'GitHub Pages'],
+            documentationState: 'verified',
+            searchAliases: ['Techniques', 'テクニック', '小ネタ', '小技', 'やり方', '手順', 'how to', 'how-to', 'tips', '生活の知恵', '便利技', 'MOV 音声', 'FFmpeg'],
+            relatedProjects: [
+              { id: 'myglossary', relation: 'あとで引き直すために知識を蓄積する' },
+              { id: 'contentslibrary', relation: '個人的な情報を集めて検索できる形で残す' }
+            ],
+            updates: [
+              {
+                date: '2026-08-18',
+                version: '0.1',
+                change: '生活と仕事の小さな手順を検索できるHow-to集を作成し、MOVから音声を抜く方法を1本目として追加',
+                reason: '一度解決したやり方を何度も調べ直さず、必要なときに10秒で思い出せる場所を作るため。'
+              }
+            ],
+            aside: '覚えるより、戻れる場所を作る。'
+          };
+          const index = projects.findIndex((project) => project && project.id === entry.id);
+          if (index >= 0) projects[index] = { ...projects[index], ...entry };
+          else projects.unshift(entry);
+          fs.writeFileSync(path, JSON.stringify(projects, null, 2) + '\n');
+          NODE
+
+      - name: Commit entry and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/add-techniques-entry.yml
+          git add data/manual-projects-extra.json
+          git commit -m "Add Techniques to portfolio"
+          git push
