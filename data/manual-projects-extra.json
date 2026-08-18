@@ -1,5 +1,73 @@
 [
   {
+    "id": "techniques",
+    "title": "Techniques",
+    "subtitle": "「あれ、どうやるんやったっけ？」を10秒で取り戻す、生活と仕事の手順辞典",
+    "summary": "PC・動画・Webだけでなく、仕事や暮らしまで含めて、あとで忘れそうな小さなやり方を「結論 → 最短手順 → 補足」の形で蓄積する個人用How-to集。検索とカテゴリから目的の手順へすぐ戻れる。",
+    "friction": "一度調べて解決した小ネタほど、数週間後には手順を忘れて同じことをまた検索し直していた。IT系だけでなく、生活や仕事の細かな手順も同じように散らばっていた。",
+    "firstBuild": "MOVファイルから音声だけ抜く方法を1本目として、FFmpegのコマンド、手順、コマンドの意味、音質を落とさず抜く方法をひとまとまりにした。",
+    "currentAnswer": "検索を主役に、カテゴリ・タグ・個別ページ・コマンドコピーを備え、JSONへ1件追加すれば一覧と検索へ反映できる静的な手順辞典。ITに限定せず、PC・仕事・暮らしなどの小さな実用知を増やしていく。",
+    "type": "utility",
+    "verbs": [
+      "探す",
+      "思い出す",
+      "試す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-18",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-18",
+    "startedAt": "2026-08-18",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-first-commit-jst",
+    "repositoryUrl": "https://github.com/silovar-uk/techniques",
+    "liveUrl": "https://silovar-uk.github.io/techniques/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "searchAliases": [
+      "Techniques",
+      "テクニック",
+      "小ネタ",
+      "小技",
+      "やり方",
+      "手順",
+      "how to",
+      "how-to",
+      "tips",
+      "生活の知恵",
+      "便利技",
+      "MOV 音声",
+      "FFmpeg"
+    ],
+    "relatedProjects": [
+      {
+        "id": "myglossary",
+        "relation": "あとで引き直すために知識を蓄積する"
+      },
+      {
+        "id": "contentslibrary",
+        "relation": "個人的な情報を集めて検索できる形で残す"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-18",
+        "version": "0.1",
+        "change": "生活と仕事の小さな手順を検索できるHow-to集を作成し、MOVから音声を抜く方法を1本目として追加",
+        "reason": "一度解決したやり方を何度も調べ直さず、必要なときに10秒で思い出せる場所を作るため。"
+      }
+    ],
+    "aside": "覚えるより、戻れる場所を作る。"
+  },
+  {
     "id": "dailyenglishchunks",
     "title": "Daily English Chunks",
     "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
@@ -8,7 +76,11 @@
     "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
     "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
     "type": "learning-tool",
-    "verbs": ["読む", "区切る", "声に出す"],
+    "verbs": [
+      "読む",
+      "区切る",
+      "声に出す"
+    ],
     "status": "active",
     "visibility": "public",
     "featured": true,
@@ -17,11 +89,29 @@
     "updatedAt": "2026-08-10",
     "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
     "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
-    "technologies": ["HTML", "CSS", "JavaScript", "localStorage"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
     "documentationState": "verified",
-    "searchAliases": ["デイリー英語チャンク", "英語チャンク", "チャンクリーディング", "chunk reading", "english chunks", "英語音読", "音読", "英語学習", "reading practice"],
+    "searchAliases": [
+      "デイリー英語チャンク",
+      "英語チャンク",
+      "チャンクリーディング",
+      "chunk reading",
+      "english chunks",
+      "英語音読",
+      "音読",
+      "英語学習",
+      "reading practice"
+    ],
     "relatedProjects": [
-      {"id": "hangul", "relation": "短い反復練習とローカル進捗保存"}
+      {
+        "id": "hangul",
+        "relation": "短い反復練習とローカル進捗保存"
+      }
     ],
     "updates": [
       {
@@ -42,7 +132,11 @@
     "firstBuild": "用途を固定せず、2欄・3欄・4欄を横並びにして、それぞれへ自由に文章を置ける小さな比較メモとして作った。",
     "currentAnswer": "各欄を薄い色で見分けながら、欄名変更、固定、全文コピー、集中表示、個別・全体の文字サイズ調整、欄幅変更、コンパクト表示、localStorage自動保存、スマホの横送り表示、Alt+1〜4移動を使える。Diffも別タブですぐ開ける。",
     "type": "learning-tool",
-    "verbs": ["書く", "比べる", "整理する"],
+    "verbs": [
+      "書く",
+      "比べる",
+      "整理する"
+    ],
     "status": "active",
     "visibility": "public",
     "featured": false,
@@ -51,13 +145,37 @@
     "updatedAt": "2026-08-14",
     "repositoryUrl": "https://github.com/silovar-uk/multimemos",
     "liveUrl": "https://silovar-uk.github.io/multimemos/",
-    "technologies": ["HTML", "CSS", "JavaScript", "localStorage"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
     "documentationState": "verified",
-    "searchAliases": ["マルチメモ", "比較メモ", "並列メモ", "文章比較", "multi memos", "side by side", "split editor", "比較エディタ", "parallel memo"],
+    "searchAliases": [
+      "マルチメモ",
+      "比較メモ",
+      "並列メモ",
+      "文章比較",
+      "multi memos",
+      "side by side",
+      "split editor",
+      "比較エディタ",
+      "parallel memo"
+    ],
     "relatedProjects": [
-      {"id": "diff", "relation": "並べて書いた文章の差分を確認する"},
-      {"id": "myspines", "relation": "文章を組み立てながら書く"},
-      {"id": "kakidas", "relation": "頭の中の断片を書き出す"}
+      {
+        "id": "diff",
+        "relation": "並べて書いた文章の差分を確認する"
+      },
+      {
+        "id": "myspines",
+        "relation": "文章を組み立てながら書く"
+      },
+      {
+        "id": "kakidas",
+        "relation": "頭の中の断片を書き出す"
+      }
     ],
     "updates": [
       {
@@ -78,7 +196,11 @@
     "firstBuild": "既存のMemoToolをChromeサイドパネル中心の構成へ整理し、タブとアウトライナーを分けて扱える編集環境へ拡張した。",
     "currentAnswer": "入力・タブ・描画・複数選択・保存などの責務を分割しつつ、赤太字行の改行時の書式継承、複数選択、ドラッグ移動、Undo・Redoを維持。不要だった三点メニューを撤去し、保存競合、キーボード操作、ARIA、タップ領域、reduced motionも改善した。",
     "type": "chrome-extension",
-    "verbs": ["書く", "並べ替える", "残す"],
+    "verbs": [
+      "書く",
+      "並べ替える",
+      "残す"
+    ],
     "status": "active",
     "visibility": "public",
     "featured": false,
@@ -87,11 +209,28 @@
     "updatedAt": "2026-08-14",
     "repositoryUrl": "https://github.com/silovar-uk/memoexpansion",
     "liveUrl": "",
-    "technologies": ["Chrome Extension", "JavaScript", "Manifest V3"],
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
     "documentationState": "verified",
-    "searchAliases": ["MemoTool", "メモツール", "サイドパネルメモ", "memo expansion", "メモ拡張", "chrome memo", "アウトライナー", "outline memo", "side panel memo"],
+    "searchAliases": [
+      "MemoTool",
+      "メモツール",
+      "サイドパネルメモ",
+      "memo expansion",
+      "メモ拡張",
+      "chrome memo",
+      "アウトライナー",
+      "outline memo",
+      "side panel memo"
+    ],
     "relatedProjects": [
-      {"id": "memo", "relation": "元になったメモツール"}
+      {
+        "id": "memo",
+        "relation": "元になったメモツール"
+      }
     ],
     "updates": [
       {
@@ -112,7 +251,11 @@
     "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
     "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
     "type": "learning-tool",
-    "verbs": ["学ぶ", "言語化する", "引き直す"],
+    "verbs": [
+      "学ぶ",
+      "言語化する",
+      "引き直す"
+    ],
     "status": "active",
     "visibility": "public",
     "featured": false,
@@ -124,12 +267,34 @@
     "startedAtBasis": "repository-first-commit-jst",
     "repositoryUrl": "https://github.com/silovar-uk/myglossary",
     "liveUrl": "https://silovar-uk.github.io/myglossary/",
-    "technologies": ["HTML", "CSS", "JavaScript", "JSON"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
     "documentationState": "verified",
-    "searchAliases": ["MyGlossary", "マイグロッサリー", "用語集", "個人用語集", "学習用語集", "glossary", "term list", "terms", "言葉メモ", "学習辞書"],
+    "searchAliases": [
+      "MyGlossary",
+      "マイグロッサリー",
+      "用語集",
+      "個人用語集",
+      "学習用語集",
+      "glossary",
+      "term list",
+      "terms",
+      "言葉メモ",
+      "学習辞書"
+    ],
     "relatedProjects": [
-      {"id": "vocabularies", "relation": "曖昧な感覚から言葉へたどる"},
-      {"id": "mydictionary", "relation": "出会った言葉を蓄積して育てる"}
+      {
+        "id": "vocabularies",
+        "relation": "曖昧な感覚から言葉へたどる"
+      },
+      {
+        "id": "mydictionary",
+        "relation": "出会った言葉を蓄積して育てる"
+      }
     ],
     "updates": [
       {
@@ -150,7 +315,11 @@
     "firstBuild": "Kakidasのようにすぐ書ける感覚を残しつつ、Cloudflare AccessのメールOTPで入口を閉じ、ブラウザのWeb Cryptoでメモを暗号化してからD1へ保存する構成にした。",
     "currentAnswer": "本人のメールだけを許可するCloudflare Access、パスフレーズで開くブラウザ内Vault、AES-256-GCMによるクライアント側暗号化、暗号文のみを保持するWorker/D1を組み合わせた。ロック時は鍵を破棄し、一定時間で自動ロックする。",
     "type": "learning-tool",
-    "verbs": ["書く", "保存する", "守る"],
+    "verbs": [
+      "書く",
+      "保存する",
+      "守る"
+    ],
     "status": "active",
     "visibility": "public",
     "featured": false,
@@ -162,13 +331,40 @@
     "startedAtBasis": "manual",
     "repositoryUrl": "",
     "liveUrl": "https://private-memo.silovar-uk.workers.dev/",
-    "technologies": ["Cloudflare Workers", "Cloudflare Access", "Cloudflare D1", "Web Crypto API", "AES-256-GCM"],
+    "technologies": [
+      "Cloudflare Workers",
+      "Cloudflare Access",
+      "Cloudflare D1",
+      "Web Crypto API",
+      "AES-256-GCM"
+    ],
     "documentationState": "verified",
-    "searchAliases": ["Private Memo", "private memo", "プライベートメモ", "非公開メモ", "秘密メモ", "個人用メモ", "暗号化メモ", "E2EE", "encrypted memo", "Cloudflare Access", "D1"],
+    "searchAliases": [
+      "Private Memo",
+      "private memo",
+      "プライベートメモ",
+      "非公開メモ",
+      "秘密メモ",
+      "個人用メモ",
+      "暗号化メモ",
+      "E2EE",
+      "encrypted memo",
+      "Cloudflare Access",
+      "D1"
+    ],
     "relatedProjects": [
-      {"id": "kakidas", "relation": "思いつきをすぐ書き出す操作感"},
-      {"id": "memo", "relation": "個人用メモという共通用途"},
-      {"id": "contentslibrary", "relation": "個人データを保存して後から参照する"}
+      {
+        "id": "kakidas",
+        "relation": "思いつきをすぐ書き出す操作感"
+      },
+      {
+        "id": "memo",
+        "relation": "個人用メモという共通用途"
+      },
+      {
+        "id": "contentslibrary",
+        "relation": "個人データを保存して後から参照する"
+      }
     ],
     "updates": [
       {
@@ -180,63 +376,757 @@
     ],
     "aside": "サーバーには、読める本文を置かない。"
   },
-  {"id":"shogibanmen","searchAliases":["将棋盤","しょうぎばん","shogi board","将棋","局面","盤面"]},
-  {"id":"memo","searchAliases":["メモ","めも","memo app","note","notes","メモアプリ","ノート"]},
-  {"id":"timeconverter","searchAliases":["時間変換","時刻変換","time converter","time conversion","時間換算","時差","timezone"]},
-  {"id":"manontec","searchAliases":["マノン","スト6マノン","manon","sf6 manon","street fighter 6 manon","格ゲー攻略"]},
-  {"id":"100yearvision","searchAliases":["百年構想","100年構想","Jリーグ百年構想","Jリーグ","j league","jleague vision","サッカー理念"]},
-  {"id":"mymindmap","searchAliases":["マインドマップ","mind map","mindmap","思考整理","発想整理","ノード","アイデア整理"]},
-  {"id":"simplememotool","searchAliases":["MemoTool","メモツール","chromeメモ","タブメモ","memo tool","メモ拡張","ブラウザメモ"]},
-  {"id":"mmmpocket","searchAliases":["MMM Pocket","ポケットメモ","階層メモ","アウトラインメモ","outline memo","スマホメモ","pocket memo"]},
-  {"id":"countupapp","searchAliases":["カウンター","count up","countup","回数カウント","tally","計数","カウントアプリ"]},
-  {"id":"englisharcade","searchAliases":["英語ゲーム","英語学習","english quiz","english game","英語クイズ","arcade","語学学習"]},
-  {"id":"footballisfun","searchAliases":["サッカー","football","soccer","サッカー入門","サッカーコンテンツ","football is fun"]},
-  {"id":"patternlanguage","searchAliases":["パターンランゲージ","pattern language","実践知","暗黙知","パターン","経験則","ナレッジ"]},
-  {"id":"akasma","searchAliases":["アカスマ","スマブラ大会","smash bros","smash tournament","大会LP","イベントLP","大会ページ"]},
-  {"id":"resultcalc","searchAliases":["結果計算","result calculator","順位計算","集計","calculator","結果集計","順位"]},
-  {"id":"rockvsbra","searchAliases":["対戦コンテンツ","match page","試合ページ","対戦LP","battle page","rock vs bra"]},
-  {"id":"ooh","searchAliases":["屋外広告","OOH広告","out of home","outdoor advertising","広告","屋外メディア","媒体"]},
-  {"id":"quicklinks","searchAliases":["クイックリンク","quick links","quick project links","launcher","ランチャー","bookmark","ブックマーク","プロジェクトリンク","サイドパネルリンク"]},
-  {"id":"pdflinks","searchAliases":["PDFリンク","pdf links","PDF内リンク","リンク抽出","url extraction","PDF URL","参照リンク"]},
-  {"id":"kakidas","searchAliases":["かきだす","書き出す","kakidasu","メモ","note","thought dump","brain dump","断片メモ","思考メモ"]},
-  {"id":"converter","searchAliases":["テキスト変換","converter","変換ツール","text converter","文字変換","改行修正","便利変換"]},
-  {"id":"countvoice","searchAliases":["カウントボイス","voice counter","音声カウント","読み上げ","timer","タイマー","音声タイマー","集中"]},
-  {"id":"tabshelter","searchAliases":["タブ退避","tab shelter","tab saver","session saver","タブ保存","chrome session","タブ復元","セッション保存"]},
-  {"id":"sukan","searchAliases":["数感","数量感覚","number sense","estimation","推定","フェルミ推定","見積もり","概算"]},
-  {"id":"diff","searchAliases":["差分","diff","text diff","文章比較","原稿比較","text review studio","review","校正","差分確認","文章レビュー"]},
-  {"id":"consultingstudy","searchAliases":["コンサル学習","consulting study","ケース面接","case interview","論点","仮説","コンサル","ケース問題"]},
-  {"id":"newsquiz","searchAliases":["ニュースクイズ","news quiz","時事クイズ","current affairs","ニュース学習","時事問題","ニュース理解"]},
-  {"id":"mydailylog","searchAliases":["日々の棚","daily log","diary","日記","ライフログ","life log","生活記録","日常ログ"]},
-  {"id":"commonpoint","searchAliases":["共通点","common point","共通項","overlap","類似点","共通部分","比較"]},
-  {"id":"gantt","searchAliases":["ガント","gantt chart","工程表","スケジュール","進行管理","project management","工程管理","タスク管理"]},
-  {"id":"fourier","searchAliases":["フーリエ","Fourier transform","フーリエ変換","波","wave","周波数","frequency","数学可視化"]},
-  {"id":"designmd","searchAliases":["デザインMD","design guide","design system","制作ガイド","AI制作","文章デザイン","スライド制作","デザイン指針","制作ルール"]},
-  {"id":"myspines","searchAliases":["スパイン","longform editor","長文エディタ","アウトライナー","outline","執筆","writing","文章構成","長文執筆"]},
-  {"id":"hangul","searchAliases":["ハングル","韓国語","Korean","hangul","한글","韓国語学習","文字学習"]},
-  {"id":"marisast6","searchAliases":["マリーザ","modern marisa","sf6 marisa","スト6","ストリートファイター6","street fighter 6","格ゲー攻略","マリーザ攻略"]},
-  {"id":"zeldasbsp","searchAliases":["ゼルダ","スマブラゼルダ","smash zelda","smash ultimate","スマブラSP","対戦ノート","ゼルダ攻略"]},
-  {"id":"prompts","searchAliases":["プロンプト","prompts","prompt library","AIプロンプト","prompt collection","プロンプト集","生成AI","テンプレート"]},
-  {"id":"pdfclipper","searchAliases":["PDF切り抜き","pdf crop","pdf clipper","cropper","画像切り抜き","トリミング","PDFトリミング","画像クロップ"]},
-  {"id":"contentslibrary","searchAliases":["作品体験ログ","コンテンツライブラリ","content library","読書記録","book log","映画記録","蔵書","作品記録","読書ログ"]},
-  {"id":"mydictionary","searchAliases":["私辞典","dictionary","辞書","単語帳","vocabulary notebook","word collection","言葉","言葉メモ","個人辞書"]},
-  {"id":"st6training","searchAliases":["スト6トレーニング","sf6 training","コンボ練習","格ゲー練習","input training","コマンド練習","入力練習","ストリートファイター6"]},
-  {"id":"flowmap","searchAliases":["フローマップ","flow map","フロー図","業務フロー","workflow","process map","工程図","業務整理","プロセス"]},
-  {"id":"build-diary","searchAliases":["worksportfolio","works portfolio","ポートフォリオ","portfolio","作品棚","制作物一覧","つくって考えた","build diary","制作記録"]},
-  {"id":"keygridexpansion","searchAliases":["keygrid expansion","キーグリッド拡張","keygrid","keyboard navigation","chrome操作","キーボード操作"]},
-  {"id":"myessays","searchAliases":["マイエッセイ","my essays","essays","エッセイ","コラム","記事","article library","読み物","論考"]},
-  {"id":"quicklinksexpansion","searchAliases":["quicklinks expansion","クイックリンク拡張","launcher","bookmarks","chrome extension","リンク管理"]},
-  {"id":"vocabularies","searchAliases":["ボキャブラリーズ","vocabulary","vocab","語彙","用語","言語化","感覚語","言葉探し","概念"]},
-  {"id":"likewhat","searchAliases":["ライクワット","like what","デザイン参照","design reference","brand reference","デザインリファレンス","モック","ブランドデザイン","UI参考"]},
-  {"id":"accountinglearn","searchAliases":["会計学習","簿記","accounting","bookkeeping","accounting quest","仕訳","経営分析","会計クエスト","財務"]},
-  {"id":"ennnichimock","searchAliases":["炎日","えんにち","ennichi","event mock","LP mock","特設ページ","イベントLP","炎日2026","イベントモック"]},
-  {"id":"cssanimationlists","searchAliases":["CSSアニメーション","css motion","motion library","animation library","動き","モーション","アニメーション図鑑","css animation"]},
-  {"id":"whatsthiswiki","searchAliases":["Wikipediaクイズ","ウィキクイズ","wikipedia","目次クイズ","推理クイズ","wiki quiz","what's this wiki","ウィキペディア"]},
-  {"id":"imagetuning","searchAliases":["画像修正","image tuning","画像レビュー","image annotation","コメント","修正指示","画像校正","画像コメント","レビュー"]},
-  {"id":"keygrid","searchAliases":["キーグリッド","key grid","keyboard navigation","キーボード操作","chromeキーボード","hint","ヒント","マウスなし","ブラウザ操作"]},
-  {"id":"lineworks-logger","searchAliases":["ラインワークス","LINE WORKS","logger","ロガー","トーク保存","メール保存","chat export","ログ保存","業務ログ"]},
-  {"id":"lineworks-scroll-copy","searchAliases":["LINE WORKS Scroll Copy","スクロールコピー","トーク履歴","chat history","履歴抽出","lineworks","トーク保存"]},
-  {"id":"x-auto-screenshot-scroll","searchAliases":["Xスクショ","Twitter screenshot","自動スクロール","screenshot","X保存","タイムライン保存","連続スクショ","twitter保存"]},
-  {"id":"payment-case-manager","searchAliases":["支払管理","payment manager","freee","支払申請","経理","請求書","案件管理","支払案件","会計業務"]},
-  {"id":"convinitools","searchAliases":["コンビニツール","convenience tools","便利ツール","utility","小道具","ツール集"]},
-  {"id":"baseballquiz","searchAliases":["野球クイズ","baseball quiz","NPB","プロ野球","選手クイズ","baseball learning","野球学習","選手名鑑"]}
+  {
+    "id": "shogibanmen",
+    "searchAliases": [
+      "将棋盤",
+      "しょうぎばん",
+      "shogi board",
+      "将棋",
+      "局面",
+      "盤面"
+    ]
+  },
+  {
+    "id": "memo",
+    "searchAliases": [
+      "メモ",
+      "めも",
+      "memo app",
+      "note",
+      "notes",
+      "メモアプリ",
+      "ノート"
+    ]
+  },
+  {
+    "id": "timeconverter",
+    "searchAliases": [
+      "時間変換",
+      "時刻変換",
+      "time converter",
+      "time conversion",
+      "時間換算",
+      "時差",
+      "timezone"
+    ]
+  },
+  {
+    "id": "manontec",
+    "searchAliases": [
+      "マノン",
+      "スト6マノン",
+      "manon",
+      "sf6 manon",
+      "street fighter 6 manon",
+      "格ゲー攻略"
+    ]
+  },
+  {
+    "id": "100yearvision",
+    "searchAliases": [
+      "百年構想",
+      "100年構想",
+      "Jリーグ百年構想",
+      "Jリーグ",
+      "j league",
+      "jleague vision",
+      "サッカー理念"
+    ]
+  },
+  {
+    "id": "mymindmap",
+    "searchAliases": [
+      "マインドマップ",
+      "mind map",
+      "mindmap",
+      "思考整理",
+      "発想整理",
+      "ノード",
+      "アイデア整理"
+    ]
+  },
+  {
+    "id": "simplememotool",
+    "searchAliases": [
+      "MemoTool",
+      "メモツール",
+      "chromeメモ",
+      "タブメモ",
+      "memo tool",
+      "メモ拡張",
+      "ブラウザメモ"
+    ]
+  },
+  {
+    "id": "mmmpocket",
+    "searchAliases": [
+      "MMM Pocket",
+      "ポケットメモ",
+      "階層メモ",
+      "アウトラインメモ",
+      "outline memo",
+      "スマホメモ",
+      "pocket memo"
+    ]
+  },
+  {
+    "id": "countupapp",
+    "searchAliases": [
+      "カウンター",
+      "count up",
+      "countup",
+      "回数カウント",
+      "tally",
+      "計数",
+      "カウントアプリ"
+    ]
+  },
+  {
+    "id": "englisharcade",
+    "searchAliases": [
+      "英語ゲーム",
+      "英語学習",
+      "english quiz",
+      "english game",
+      "英語クイズ",
+      "arcade",
+      "語学学習"
+    ]
+  },
+  {
+    "id": "footballisfun",
+    "searchAliases": [
+      "サッカー",
+      "football",
+      "soccer",
+      "サッカー入門",
+      "サッカーコンテンツ",
+      "football is fun"
+    ]
+  },
+  {
+    "id": "patternlanguage",
+    "searchAliases": [
+      "パターンランゲージ",
+      "pattern language",
+      "実践知",
+      "暗黙知",
+      "パターン",
+      "経験則",
+      "ナレッジ"
+    ]
+  },
+  {
+    "id": "akasma",
+    "searchAliases": [
+      "アカスマ",
+      "スマブラ大会",
+      "smash bros",
+      "smash tournament",
+      "大会LP",
+      "イベントLP",
+      "大会ページ"
+    ]
+  },
+  {
+    "id": "resultcalc",
+    "searchAliases": [
+      "結果計算",
+      "result calculator",
+      "順位計算",
+      "集計",
+      "calculator",
+      "結果集計",
+      "順位"
+    ]
+  },
+  {
+    "id": "rockvsbra",
+    "searchAliases": [
+      "対戦コンテンツ",
+      "match page",
+      "試合ページ",
+      "対戦LP",
+      "battle page",
+      "rock vs bra"
+    ]
+  },
+  {
+    "id": "ooh",
+    "searchAliases": [
+      "屋外広告",
+      "OOH広告",
+      "out of home",
+      "outdoor advertising",
+      "広告",
+      "屋外メディア",
+      "媒体"
+    ]
+  },
+  {
+    "id": "quicklinks",
+    "searchAliases": [
+      "クイックリンク",
+      "quick links",
+      "quick project links",
+      "launcher",
+      "ランチャー",
+      "bookmark",
+      "ブックマーク",
+      "プロジェクトリンク",
+      "サイドパネルリンク"
+    ]
+  },
+  {
+    "id": "pdflinks",
+    "searchAliases": [
+      "PDFリンク",
+      "pdf links",
+      "PDF内リンク",
+      "リンク抽出",
+      "url extraction",
+      "PDF URL",
+      "参照リンク"
+    ]
+  },
+  {
+    "id": "kakidas",
+    "searchAliases": [
+      "かきだす",
+      "書き出す",
+      "kakidasu",
+      "メモ",
+      "note",
+      "thought dump",
+      "brain dump",
+      "断片メモ",
+      "思考メモ"
+    ]
+  },
+  {
+    "id": "converter",
+    "searchAliases": [
+      "テキスト変換",
+      "converter",
+      "変換ツール",
+      "text converter",
+      "文字変換",
+      "改行修正",
+      "便利変換"
+    ]
+  },
+  {
+    "id": "countvoice",
+    "searchAliases": [
+      "カウントボイス",
+      "voice counter",
+      "音声カウント",
+      "読み上げ",
+      "timer",
+      "タイマー",
+      "音声タイマー",
+      "集中"
+    ]
+  },
+  {
+    "id": "tabshelter",
+    "searchAliases": [
+      "タブ退避",
+      "tab shelter",
+      "tab saver",
+      "session saver",
+      "タブ保存",
+      "chrome session",
+      "タブ復元",
+      "セッション保存"
+    ]
+  },
+  {
+    "id": "sukan",
+    "searchAliases": [
+      "数感",
+      "数量感覚",
+      "number sense",
+      "estimation",
+      "推定",
+      "フェルミ推定",
+      "見積もり",
+      "概算"
+    ]
+  },
+  {
+    "id": "diff",
+    "searchAliases": [
+      "差分",
+      "diff",
+      "text diff",
+      "文章比較",
+      "原稿比較",
+      "text review studio",
+      "review",
+      "校正",
+      "差分確認",
+      "文章レビュー"
+    ]
+  },
+  {
+    "id": "consultingstudy",
+    "searchAliases": [
+      "コンサル学習",
+      "consulting study",
+      "ケース面接",
+      "case interview",
+      "論点",
+      "仮説",
+      "コンサル",
+      "ケース問題"
+    ]
+  },
+  {
+    "id": "newsquiz",
+    "searchAliases": [
+      "ニュースクイズ",
+      "news quiz",
+      "時事クイズ",
+      "current affairs",
+      "ニュース学習",
+      "時事問題",
+      "ニュース理解"
+    ]
+  },
+  {
+    "id": "mydailylog",
+    "searchAliases": [
+      "日々の棚",
+      "daily log",
+      "diary",
+      "日記",
+      "ライフログ",
+      "life log",
+      "生活記録",
+      "日常ログ"
+    ]
+  },
+  {
+    "id": "commonpoint",
+    "searchAliases": [
+      "共通点",
+      "common point",
+      "共通項",
+      "overlap",
+      "類似点",
+      "共通部分",
+      "比較"
+    ]
+  },
+  {
+    "id": "gantt",
+    "searchAliases": [
+      "ガント",
+      "gantt chart",
+      "工程表",
+      "スケジュール",
+      "進行管理",
+      "project management",
+      "工程管理",
+      "タスク管理"
+    ]
+  },
+  {
+    "id": "fourier",
+    "searchAliases": [
+      "フーリエ",
+      "Fourier transform",
+      "フーリエ変換",
+      "波",
+      "wave",
+      "周波数",
+      "frequency",
+      "数学可視化"
+    ]
+  },
+  {
+    "id": "designmd",
+    "searchAliases": [
+      "デザインMD",
+      "design guide",
+      "design system",
+      "制作ガイド",
+      "AI制作",
+      "文章デザイン",
+      "スライド制作",
+      "デザイン指針",
+      "制作ルール"
+    ]
+  },
+  {
+    "id": "myspines",
+    "searchAliases": [
+      "スパイン",
+      "longform editor",
+      "長文エディタ",
+      "アウトライナー",
+      "outline",
+      "執筆",
+      "writing",
+      "文章構成",
+      "長文執筆"
+    ]
+  },
+  {
+    "id": "hangul",
+    "searchAliases": [
+      "ハングル",
+      "韓国語",
+      "Korean",
+      "hangul",
+      "한글",
+      "韓国語学習",
+      "文字学習"
+    ]
+  },
+  {
+    "id": "marisast6",
+    "searchAliases": [
+      "マリーザ",
+      "modern marisa",
+      "sf6 marisa",
+      "スト6",
+      "ストリートファイター6",
+      "street fighter 6",
+      "格ゲー攻略",
+      "マリーザ攻略"
+    ]
+  },
+  {
+    "id": "zeldasbsp",
+    "searchAliases": [
+      "ゼルダ",
+      "スマブラゼルダ",
+      "smash zelda",
+      "smash ultimate",
+      "スマブラSP",
+      "対戦ノート",
+      "ゼルダ攻略"
+    ]
+  },
+  {
+    "id": "prompts",
+    "searchAliases": [
+      "プロンプト",
+      "prompts",
+      "prompt library",
+      "AIプロンプト",
+      "prompt collection",
+      "プロンプト集",
+      "生成AI",
+      "テンプレート"
+    ]
+  },
+  {
+    "id": "pdfclipper",
+    "searchAliases": [
+      "PDF切り抜き",
+      "pdf crop",
+      "pdf clipper",
+      "cropper",
+      "画像切り抜き",
+      "トリミング",
+      "PDFトリミング",
+      "画像クロップ"
+    ]
+  },
+  {
+    "id": "contentslibrary",
+    "searchAliases": [
+      "作品体験ログ",
+      "コンテンツライブラリ",
+      "content library",
+      "読書記録",
+      "book log",
+      "映画記録",
+      "蔵書",
+      "作品記録",
+      "読書ログ"
+    ]
+  },
+  {
+    "id": "mydictionary",
+    "searchAliases": [
+      "私辞典",
+      "dictionary",
+      "辞書",
+      "単語帳",
+      "vocabulary notebook",
+      "word collection",
+      "言葉",
+      "言葉メモ",
+      "個人辞書"
+    ]
+  },
+  {
+    "id": "st6training",
+    "searchAliases": [
+      "スト6トレーニング",
+      "sf6 training",
+      "コンボ練習",
+      "格ゲー練習",
+      "input training",
+      "コマンド練習",
+      "入力練習",
+      "ストリートファイター6"
+    ]
+  },
+  {
+    "id": "flowmap",
+    "searchAliases": [
+      "フローマップ",
+      "flow map",
+      "フロー図",
+      "業務フロー",
+      "workflow",
+      "process map",
+      "工程図",
+      "業務整理",
+      "プロセス"
+    ]
+  },
+  {
+    "id": "build-diary",
+    "searchAliases": [
+      "worksportfolio",
+      "works portfolio",
+      "ポートフォリオ",
+      "portfolio",
+      "作品棚",
+      "制作物一覧",
+      "つくって考えた",
+      "build diary",
+      "制作記録"
+    ]
+  },
+  {
+    "id": "keygridexpansion",
+    "searchAliases": [
+      "keygrid expansion",
+      "キーグリッド拡張",
+      "keygrid",
+      "keyboard navigation",
+      "chrome操作",
+      "キーボード操作"
+    ]
+  },
+  {
+    "id": "myessays",
+    "searchAliases": [
+      "マイエッセイ",
+      "my essays",
+      "essays",
+      "エッセイ",
+      "コラム",
+      "記事",
+      "article library",
+      "読み物",
+      "論考"
+    ]
+  },
+  {
+    "id": "quicklinksexpansion",
+    "searchAliases": [
+      "quicklinks expansion",
+      "クイックリンク拡張",
+      "launcher",
+      "bookmarks",
+      "chrome extension",
+      "リンク管理"
+    ]
+  },
+  {
+    "id": "vocabularies",
+    "searchAliases": [
+      "ボキャブラリーズ",
+      "vocabulary",
+      "vocab",
+      "語彙",
+      "用語",
+      "言語化",
+      "感覚語",
+      "言葉探し",
+      "概念"
+    ]
+  },
+  {
+    "id": "likewhat",
+    "searchAliases": [
+      "ライクワット",
+      "like what",
+      "デザイン参照",
+      "design reference",
+      "brand reference",
+      "デザインリファレンス",
+      "モック",
+      "ブランドデザイン",
+      "UI参考"
+    ]
+  },
+  {
+    "id": "accountinglearn",
+    "searchAliases": [
+      "会計学習",
+      "簿記",
+      "accounting",
+      "bookkeeping",
+      "accounting quest",
+      "仕訳",
+      "経営分析",
+      "会計クエスト",
+      "財務"
+    ]
+  },
+  {
+    "id": "ennnichimock",
+    "searchAliases": [
+      "炎日",
+      "えんにち",
+      "ennichi",
+      "event mock",
+      "LP mock",
+      "特設ページ",
+      "イベントLP",
+      "炎日2026",
+      "イベントモック"
+    ]
+  },
+  {
+    "id": "cssanimationlists",
+    "searchAliases": [
+      "CSSアニメーション",
+      "css motion",
+      "motion library",
+      "animation library",
+      "動き",
+      "モーション",
+      "アニメーション図鑑",
+      "css animation"
+    ]
+  },
+  {
+    "id": "whatsthiswiki",
+    "searchAliases": [
+      "Wikipediaクイズ",
+      "ウィキクイズ",
+      "wikipedia",
+      "目次クイズ",
+      "推理クイズ",
+      "wiki quiz",
+      "what's this wiki",
+      "ウィキペディア"
+    ]
+  },
+  {
+    "id": "imagetuning",
+    "searchAliases": [
+      "画像修正",
+      "image tuning",
+      "画像レビュー",
+      "image annotation",
+      "コメント",
+      "修正指示",
+      "画像校正",
+      "画像コメント",
+      "レビュー"
+    ]
+  },
+  {
+    "id": "keygrid",
+    "searchAliases": [
+      "キーグリッド",
+      "key grid",
+      "keyboard navigation",
+      "キーボード操作",
+      "chromeキーボード",
+      "hint",
+      "ヒント",
+      "マウスなし",
+      "ブラウザ操作"
+    ]
+  },
+  {
+    "id": "lineworks-logger",
+    "searchAliases": [
+      "ラインワークス",
+      "LINE WORKS",
+      "logger",
+      "ロガー",
+      "トーク保存",
+      "メール保存",
+      "chat export",
+      "ログ保存",
+      "業務ログ"
+    ]
+  },
+  {
+    "id": "lineworks-scroll-copy",
+    "searchAliases": [
+      "LINE WORKS Scroll Copy",
+      "スクロールコピー",
+      "トーク履歴",
+      "chat history",
+      "履歴抽出",
+      "lineworks",
+      "トーク保存"
+    ]
+  },
+  {
+    "id": "x-auto-screenshot-scroll",
+    "searchAliases": [
+      "Xスクショ",
+      "Twitter screenshot",
+      "自動スクロール",
+      "screenshot",
+      "X保存",
+      "タイムライン保存",
+      "連続スクショ",
+      "twitter保存"
+    ]
+  },
+  {
+    "id": "payment-case-manager",
+    "searchAliases": [
+      "支払管理",
+      "payment manager",
+      "freee",
+      "支払申請",
+      "経理",
+      "請求書",
+      "案件管理",
+      "支払案件",
+      "会計業務"
+    ]
+  },
+  {
+    "id": "convinitools",
+    "searchAliases": [
+      "コンビニツール",
+      "convenience tools",
+      "便利ツール",
+      "utility",
+      "小道具",
+      "ツール集"
+    ]
+  },
+  {
+    "id": "baseballquiz",
+    "searchAliases": [
+      "野球クイズ",
+      "baseball quiz",
+      "NPB",
+      "プロ野球",
+      "選手クイズ",
+      "baseball learning",
+      "野球学習",
+      "選手名鑑"
+    ]
+  }
 ]
