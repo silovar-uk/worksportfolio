@@ -1358,5 +1358,66 @@
       }
     ],
     "aside": "サーバーには、読める本文を置かない。"
+  },
+  {
+    "id": "karaoke-db",
+    "title": "MY DENMOKU",
+    "subtitle": "自分しか見れない、デンモク風カラオケ持ち歌データベース",
+    "summary": "Cloudflare Accessで本人だけに絞った、カラオケの持ち歌を検索・一覧しやすく管理するデータベース。AI機能はアプリ自体には組み込まず、外部のAIで曲情報を整形してから貼り付けて登録する運用にしている。",
+    "friction": "持ち歌やキー、ノリ、履歴をメモやアプリに散らして書いていたが、当日その場で「何を歌うか」を検索・絞り込みで素早く選べる場所がなかった。",
+    "firstBuild": "曲名・アーティスト・キー・年代・ノリ・ランクなどを登録できるCRUDと、テーブル/カード切り替え、検索・絞り込みを最初に作った。",
+    "currentAnswer": "Cloudflare Access(メール認証)で本人限定にし、Workers+D1でCRUDと一括インポートを提供。年代・ノリのチップ絞り込みとURL連携、当日歌う曲をためる予約リスト、ChatGPT等に整形してもらうための登録用プロンプトのコピー機能を備えたデンモク風レトロUIにした。",
+    "type": "learning-tool",
+    "verbs": [
+      "探す",
+      "選ぶ",
+      "歌う"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-20",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-20",
+    "startedAt": "2026-08-20",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual",
+    "repositoryUrl": "",
+    "liveUrl": "https://karaoke-db.silovar-uk.workers.dev",
+    "technologies": [
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "searchAliases": [
+      "MY DENMOKU",
+      "karaoke db",
+      "カラオケDB",
+      "持ち歌管理",
+      "デンモク",
+      "denmoku",
+      "karaoke",
+      "持ち歌リスト",
+      "予約リスト"
+    ],
+    "relatedProjects": [
+      {
+        "id": "private-memo",
+        "relation": "Cloudflare Accessで本人限定にする構成が共通"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-20",
+        "version": "0.1",
+        "change": "本人限定・検索と絞り込み重視のカラオケ持ち歌DBを公開",
+        "reason": "当日その場で歌う曲を素早く選べる、検索性と一覧性を優先した個人用データベースを作るため。"
+      }
+    ],
+    "aside": "選曲は自分で。AIは、メモを整えるときだけ手を貸す。"
   }
 ]
