@@ -3,10 +3,58 @@
 
   const STYLE_ID = 'catalog-visible-url-style';
   const HEADER_STYLE_ID = 'catalog-header-search-style';
+  const SEARCH_MODE_CLASS = 'is-catalog-searching';
+  const CATALOG_STORAGE_KEY = 'worksportfolio-catalog-v3';
+  const LEGACY_CATALOG_STORAGE_KEY = 'worksportfolio-catalog-v2';
+  const MARK_FILTER_KEY = 'worksportfolio-mark-filter-v1';
+  const TRANSIENT_QUERY_KEYS = [
+    'cat_q', 'cat_verb', 'cat_type', 'cat_status', 'cat_year', 'cat_doc', 'cat_link', 'cat_quick', 'cat_mark',
+    'q', 'verb', 'type', 'doc'
+  ];
   let decorateScheduled = false;
+
+  function resetTransientCatalogState() {
+    try {
+      let saved = {};
+      try {
+        const parsed = JSON.parse(localStorage.getItem(CATALOG_STORAGE_KEY) || '{}');
+        if (parsed && typeof parsed === 'object') saved = parsed;
+      } catch (_) { saved = {}; }
+
+      const viewPreferences = {};
+      if (saved.sort) viewPreferences.sort = saved.sort;
+      if (saved.layout) viewPreferences.layout = saved.layout;
+      if (saved.group) viewPreferences.group = saved.group;
+
+      localStorage.setItem(CATALOG_STORAGE_KEY, JSON.stringify(viewPreferences));
+      localStorage.removeItem(LEGACY_CATALOG_STORAGE_KEY);
+      localStorage.removeItem(MARK_FILTER_KEY);
+    } catch (_) { /* storage unavailable: continue with in-memory defaults */ }
+
+    try {
+      const params = new URLSearchParams(location.search);
+      let changed = false;
+      TRANSIENT_QUERY_KEYS.forEach((key) => {
+        if (!params.has(key)) return;
+        params.delete(key);
+        changed = true;
+      });
+      if (changed) {
+        history.replaceState({}, '', `${location.pathname}${params.toString() ? `?${params}` : ''}${location.hash}`);
+      }
+    } catch (_) { /* URL cleanup is best effort */ }
+  }
 
   function currentView() {
     return document.querySelector('[data-view-button].is-active')?.getAttribute('data-view-button') || '';
+  }
+
+  function isSearching() {
+    return Boolean(document.querySelector('[data-cat-search]')?.value.trim());
+  }
+
+  function syncSearchMode() {
+    document.documentElement.classList.toggle(SEARCH_MODE_CLASS, isSearching());
   }
 
   function activateShelf() {
@@ -22,6 +70,7 @@
     if (toolbar) toolbar.hidden = !shelf;
     if (bulk && !shelf) bulk.hidden = true;
     if (shelf) scheduleDecorateUrls();
+    syncSearchMode();
   }
 
   function promoteCatalogControls() {
@@ -64,8 +113,12 @@
       searchInput.setAttribute('aria-label', '制作物を検索');
     }
 
-    tools.addEventListener('input', activateShelf, true);
+    tools.addEventListener('input', (event) => {
+      if (event.target.matches('[data-cat-search]')) syncSearchMode();
+      activateShelf();
+    }, true);
     tools.addEventListener('change', activateShelf, true);
+    syncSearchMode();
     return true;
   }
 
@@ -189,6 +242,25 @@
       [data-catalog-toolbar] .catalog-primary:empty { display:none; }
       [data-catalog-toolbar] .catalog-quick { border-top:1px solid var(--line-dark); }
 
+      html.${SEARCH_MODE_CLASS} .hero,
+      html.${SEARCH_MODE_CLASS} .current-note,
+      html.${SEARCH_MODE_CLASS} .recent-updates,
+      html.${SEARCH_MODE_CLASS} .principles,
+      html.${SEARCH_MODE_CLASS} [data-portfolio-wow],
+      html.${SEARCH_MODE_CLASS} [data-random-three],
+      html.${SEARCH_MODE_CLASS} [data-floating-random] {
+        display:none !important;
+      }
+      html.${SEARCH_MODE_CLASS} .explorer {
+        padding-top:18px !important;
+      }
+      html.${SEARCH_MODE_CLASS} .explorer > .explorer-heading {
+        display:none !important;
+      }
+      html.${SEARCH_MODE_CLASS} [data-catalog-toolbar] {
+        margin-top:0 !important;
+      }
+
       @media (max-width:900px) {
         .header-catalog-tools { grid-template-columns:1fr; gap:8px; }
         .header-catalog-search .catalog-search input { min-height:46px; }
@@ -201,6 +273,7 @@
         .header-catalog-filters { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
         .header-catalog-filters select { min-height:38px; padding:.42rem .38rem; font-size:.68rem; }
         [data-catalog-toolbar] .catalog-primary { grid-template-columns:1fr 1fr; }
+        html.${SEARCH_MODE_CLASS} .explorer { padding-top:10px !important; }
       }
     `;
     document.head.appendChild(style);
@@ -305,6 +378,18 @@
     document.head.appendChild(style);
   }
 
+  resetTransientCatalogState();
+
+  document.addEventListener('input', (event) => {
+    if (!event.target.matches?.('[data-cat-search]')) return;
+    syncSearchMode();
+  }, true);
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest?.('[data-cat-reset],[data-cat-clear-one="q"]')) return;
+    setTimeout(syncSearchMode, 0);
+  }, true);
+
   document.addEventListener('DOMContentLoaded', () => setTimeout(() => {
     injectStyles();
     injectHeaderStyles();
@@ -316,6 +401,7 @@
     window.addEventListener('popstate', () => setTimeout(sync, 0));
     const observer = new MutationObserver(() => {
       if (!document.querySelector('[data-header-catalog]')) promoteCatalogControls();
+      syncSearchMode();
       scheduleDecorateUrls();
     });
     observer.observe(document.body, { childList:true, subtree:true });
