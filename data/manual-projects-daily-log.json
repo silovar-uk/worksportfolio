@@ -1,0 +1,45 @@
+[
+  {
+    "id": "daily-log",
+    "title": "Daily Log",
+    "subtitle": "「今日やった」を最小操作で残す日次ログ",
+    "summary": "タスク管理ではなく、その日にやったことを最小の操作で記録し、週・月単位で積み上がりを振り返るための個人用Webアプリ。",
+    "friction": "やることを管理する仕組みは増えても、実際に何をやったかを気軽に残して後から振り返る場所がなかった。",
+    "firstBuild": "「今日これをやった」をすぐ記録できることを起点に、日・週・月で振り返れる形へ広げた。",
+    "currentAnswer": "ReactとCloudflare Workers/D1で、記録・保存・振り返りを同じWorker上にまとめ、Cloudflare Accessで個人利用を保護する構成。",
+    "type": "web-app",
+    "verbs": [
+      "記録する",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-24",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-24",
+    "repositoryUrl": "",
+    "liveUrl": "https://daily-log.silovar-uk.workers.dev/",
+    "technologies": [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "予定ではなく、やったことを残す。",
+    "searchAliases": [
+      "daily log",
+      "日次ログ",
+      "行動記録",
+      "実績記録",
+      "振り返り",
+      "Cloudflare Workers",
+      "D1"
+    ]
+  }
+]
