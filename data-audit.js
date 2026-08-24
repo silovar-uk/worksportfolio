@@ -1,6 +1,49 @@
 (() => {
   'use strict';
 
+  // カタログの絞り込み状態はアクセスごとに初期化する。
+  // ただし、アクセス時点の URL に明示された cat_* 条件は初期条件として維持する。
+  const CATALOG_STORAGE_KEYS = new Set([
+    'worksportfolio-catalog-v3',
+    'worksportfolio-catalog-v2'
+  ]);
+  const catalogStorage = (() => {
+    try { return window.localStorage; } catch { return null; }
+  })();
+  if (catalogStorage) {
+    CATALOG_STORAGE_KEYS.forEach((key) => {
+      try { catalogStorage.removeItem(key); } catch { /* 保存領域を使えない環境では何もしない */ }
+    });
+  }
+
+  // catalog.js は従来どおり saveState() を呼ぶが、カタログ状態だけは永続化させない。
+  const nativeStorageSetItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function(key, value) {
+    if (catalogStorage && this === catalogStorage && CATALOG_STORAGE_KEYS.has(String(key))) return;
+    return nativeStorageSetItem.call(this, key, value);
+  };
+
+  // ユーザー操作で cat_* を URL へ書き戻さない。
+  // 入口 URL に明示されていた cat_* だけは維持し、ディープリンクを壊さない。
+  const initialUrl = new URL(location.href);
+  const initialCatalogParams = [...initialUrl.searchParams.entries()].filter(([key]) => key.startsWith('cat_'));
+  const nativeReplaceState = history.replaceState.bind(history);
+  history.replaceState = function(state, unused, url) {
+    if (typeof url === 'string') {
+      try {
+        const next = new URL(url, location.href);
+        if (next.origin === location.origin && next.pathname === location.pathname) {
+          [...next.searchParams.keys()]
+            .filter((key) => key.startsWith('cat_'))
+            .forEach((key) => next.searchParams.delete(key));
+          initialCatalogParams.forEach(([key, value]) => next.searchParams.append(key, value));
+          return nativeReplaceState(state, unused, `${next.pathname}${next.search}${next.hash}`);
+        }
+      } catch { /* URLを解釈できない場合は元の処理へ戻す */ }
+    }
+    return nativeReplaceState(state, unused, url);
+  };
+
   const data = window.BUILD_DIARY_DATA;
   if (!data || !Array.isArray(data.projects)) return;
 
