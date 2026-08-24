@@ -187,8 +187,14 @@
 })();
 
 (() => {
-  const script = document.createElement('script');
-  script.src = 'catalog-search-redesign.js?v=20260817-1953';
-  script.defer = true;
-  document.head.appendChild(script);
+  const scripts = [
+    'catalog-search-redesign.js?v=20260817-1953',
+    'catalog-layout-fix.js?v=20260824-1131'
+  ];
+  scripts.forEach((src) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.defer = true;
+    document.head.appendChild(script);
+  });
 })();
