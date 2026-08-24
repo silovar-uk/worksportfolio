@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  // カタログの絞り込み状態はアクセスごとに初期化する。
-  // ただし、アクセス時点の URL に明示された cat_* 条件は初期条件として維持する。
+  // カタログの検索・絞り込み状態はページ更新のたびに初期化する。
+  // 入口 URL の cat_* 条件は初回表示にだけ使い、その後 URL から取り除く。
   const CATALOG_STORAGE_KEYS = new Set([
     'worksportfolio-catalog-v3',
     'worksportfolio-catalog-v2'
@@ -24,9 +24,8 @@
   };
 
   // ユーザー操作で cat_* を URL へ書き戻さない。
-  // 入口 URL に明示されていた cat_* だけは維持し、ディープリンクを壊さない。
-  const initialUrl = new URL(location.href);
-  const initialCatalogParams = [...initialUrl.searchParams.entries()].filter(([key]) => key.startsWith('cat_'));
+  // 入口 URL に cat_* がある場合は catalog.js の readState() が一度だけ読み取り、
+  // 最初の render() 後にここで URL から消えるため、次の更新では初期状態へ戻る。
   const nativeReplaceState = history.replaceState.bind(history);
   history.replaceState = function(state, unused, url) {
     if (typeof url === 'string') {
@@ -36,7 +35,6 @@
           [...next.searchParams.keys()]
             .filter((key) => key.startsWith('cat_'))
             .forEach((key) => next.searchParams.delete(key));
-          initialCatalogParams.forEach(([key, value]) => next.searchParams.append(key, value));
           return nativeReplaceState(state, unused, `${next.pathname}${next.search}${next.hash}`);
         }
       } catch { /* URLを解釈できない場合は元の処理へ戻す */ }
