@@ -13,11 +13,13 @@
       "振り返る"
     ],
     "status": "active",
-    "visibility": "public",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
     "featured": false,
     "createdAt": "2026-08-24",
     "createdAtPrecision": "day",
-    "updatedAt": "2026-08-24",
+    "updatedAt": "2026-08-25",
     "repositoryUrl": "",
     "liveUrl": "https://daily-log.silovar-uk.workers.dev/",
     "technologies": [
