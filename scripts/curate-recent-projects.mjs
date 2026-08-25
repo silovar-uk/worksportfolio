@@ -80,10 +80,12 @@ const curated = {
   }
 };
 
-config.hiddenIds = Array.from(new Set([...(Array.isArray(config.hiddenIds) ? config.hiddenIds : []), 'tecniques']));
+const previousHidden = Array.isArray(config.hiddenIds) ? config.hiddenIds : [];
+const nextHidden = Array.from(new Set([...previousHidden, 'tecniques']));
+let changed = JSON.stringify(nextHidden) !== JSON.stringify(previousHidden);
+config.hiddenIds = nextHidden;
 config.overrides = config.overrides && typeof config.overrides === 'object' ? config.overrides : {};
 
-let changed = false;
 for (const [id, defaults] of Object.entries(curated)) {
   const current = config.overrides[id] && typeof config.overrides[id] === 'object' ? config.overrides[id] : {};
   const next = { ...defaults, ...current };
@@ -92,8 +94,6 @@ for (const [id, defaults] of Object.entries(curated)) {
     changed = true;
   }
 }
-
-if (!Array.isArray(config.hiddenIds) || !config.hiddenIds.includes('tecniques')) changed = true;
 
 if (changed) {
   await writeFile(configUrl, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
