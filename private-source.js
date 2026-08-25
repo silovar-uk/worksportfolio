@@ -27,7 +27,7 @@
     button.replaceWith(div);
   }
 
-  function markItem(item, project) {
+  function markCatalogItem(item, project) {
     if (!item || !project) return;
     item.classList.add('is-private-source');
     item.dataset.sourceVisibility = 'private';
@@ -47,9 +47,16 @@
       links.appendChild(badge());
     }
 
-    if (project.summaryOnly) {
-      item.querySelectorAll('[data-project-open]').forEach((button) => makeStatic(button));
-    }
+    if (project.summaryOnly) item.querySelectorAll('[data-project-open]').forEach((button) => makeStatic(button));
+  }
+
+  function markRandomItem(item, project) {
+    if (!item || !project) return;
+    item.classList.add('is-private-source');
+    item.dataset.sourceVisibility = 'private';
+    const flags = item.querySelector('.random-three-flags');
+    if (flags && !flags.querySelector('.catalog-private-source')) flags.appendChild(badge());
+    if (project.summaryOnly) item.querySelectorAll('[data-random-three-open]').forEach((button) => button.remove());
   }
 
   let applying = false;
@@ -59,7 +66,11 @@
     const privateMap = privateById();
     document.querySelectorAll('[data-cat-item]').forEach((item) => {
       const id = item.getAttribute('data-cat-item');
-      if (privateMap.has(id)) markItem(item, privateMap.get(id));
+      if (privateMap.has(id)) markCatalogItem(item, privateMap.get(id));
+    });
+    document.querySelectorAll('[data-random-three-item]').forEach((item) => {
+      const id = item.getAttribute('data-random-three-item');
+      if (privateMap.has(id)) markRandomItem(item, privateMap.get(id));
     });
     applying = false;
   }
