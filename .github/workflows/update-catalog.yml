@@ -11,6 +11,8 @@ on:
       - 'data/portfolio-config.json'
       - 'data/manual-projects.json'
       - 'data/manual-projects-extra.json'
+      - 'data/manual-projects-daily-log.json'
+      - 'data/manual-projects-private.json'
       - 'data/project-start-dates.json'
       - 'data/pattern-taxonomy.json'
       - 'data/pattern-audit.json'
@@ -19,6 +21,8 @@ on:
       - 'catalog.js'
       - 'catalog.css'
       - 'catalog-visibility.js'
+      - 'private-source.js'
+      - 'private-source.css'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -38,6 +42,10 @@ on:
       - 'scripts/sanitize-project-data.mjs'
       - 'scripts/build-static-site.mjs'
       - 'scripts/apply-copy-cleanup.mjs'
+      - 'scripts/curate-recent-projects.mjs'
+      - 'scripts/audit-portfolio.mjs'
+      - 'scripts/validate-private-summaries.mjs'
+      - 'scripts/inject-private-summaries.mjs'
       - 'scripts/validate-pattern-candidates.mjs'
       - 'scripts/build-patterns.mjs'
       - 'scripts/validate-patterns.mjs'
@@ -49,6 +57,8 @@ on:
       - 'data/portfolio-config.json'
       - 'data/manual-projects.json'
       - 'data/manual-projects-extra.json'
+      - 'data/manual-projects-daily-log.json'
+      - 'data/manual-projects-private.json'
       - 'data/project-start-dates.json'
       - 'data/pattern-taxonomy.json'
       - 'data/pattern-audit.json'
@@ -57,6 +67,8 @@ on:
       - 'catalog.js'
       - 'catalog.css'
       - 'catalog-visibility.js'
+      - 'private-source.js'
+      - 'private-source.css'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -76,6 +88,10 @@ on:
       - 'scripts/sanitize-project-data.mjs'
       - 'scripts/build-static-site.mjs'
       - 'scripts/apply-copy-cleanup.mjs'
+      - 'scripts/curate-recent-projects.mjs'
+      - 'scripts/audit-portfolio.mjs'
+      - 'scripts/validate-private-summaries.mjs'
+      - 'scripts/inject-private-summaries.mjs'
       - 'scripts/validate-pattern-candidates.mjs'
       - 'scripts/build-patterns.mjs'
       - 'scripts/validate-patterns.mjs'
@@ -104,6 +120,7 @@ jobs:
         run: |
           node --check catalog.js
           node --check catalog-visibility.js
+          node --check private-source.js
           node --check taxonomy.js
           node --check floating-random.js
           node --check random-three.js
@@ -116,9 +133,16 @@ jobs:
           node --check scripts/sanitize-project-data.mjs
           node --check scripts/build-static-site.mjs
           node --check scripts/apply-copy-cleanup.mjs
+          node --check scripts/curate-recent-projects.mjs
+          node --check scripts/audit-portfolio.mjs
+          node --check scripts/validate-private-summaries.mjs
+          node --check scripts/inject-private-summaries.mjs
           node --check scripts/validate-pattern-candidates.mjs
           node --check scripts/build-patterns.mjs
           node --check scripts/validate-patterns.mjs
+
+      - name: Validate Private summaries
+        run: node scripts/validate-private-summaries.mjs
 
       - name: Build GitHub catalog
         run: node scripts/build-catalog.mjs
@@ -142,6 +166,9 @@ jobs:
 
       - name: Apply natural copy
         run: node scripts/apply-copy-cleanup.mjs
+
+      - name: Inject Private summaries
+        run: node scripts/inject-private-summaries.mjs
 
       - name: Inject favorite catalog controls
         run: |
@@ -176,6 +203,8 @@ jobs:
           grep -q 'copy-cleanup.js' index.html
           grep -q 'copy-cleanup.css' index.html
           grep -q 'catalog-visibility.js' index.html
+          grep -q 'private-source.js' index.html
+          grep -q 'private-source.css' index.html
           grep -q 'data-header-catalog' catalog-visibility.js
           grep -q '制作開始が新しい順' catalog.js
           grep -Fq "project?.startedAt || project?.createdAt" catalog.js
@@ -200,6 +229,12 @@ jobs:
           grep -Fq "d.settings.defaultView='shelf'" index.html
           grep -Fq "d.settings.defaultSort='created-desc'" index.html
           ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
+          grep -q 'UI Cleaner' index.html
+          grep -q 'Prompt Launcher' index.html
+          grep -q 'Source private' private-source.js
+          ! grep -q 'github.com/silovar-uk/uicleaner' index.html
+          ! grep -q 'github.com/silovar-uk/private-memo' index.html
+          ! grep -q 'github.com/silovar-uk/prompt-caller' index.html
 
       - name: Show generated changes
         run: git diff --stat -- data/portfolio-config.json data/catalog.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
