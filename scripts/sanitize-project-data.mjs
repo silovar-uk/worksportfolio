@@ -76,3 +76,6 @@ const nextStartDates = Object.fromEntries(Object.entries(projectStartDates).filt
 if (JSON.stringify(nextStartDates) !== JSON.stringify(projectStartDates)) await writeJson('data/project-start-dates.json', nextStartDates);
 
 console.log(`Sanitized project-derived data: ${allCandidates.length} pattern candidates kept, ${removedCandidates} removed, ${coverage.length} candidate source projects.`);
+
+await import('./curate-recent-projects.mjs');
+await import('./audit-portfolio.mjs');
