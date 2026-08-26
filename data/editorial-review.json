@@ -1,0 +1,1056 @@
+{
+  "generatedAt": "2026-08-26T02:39:31.739Z",
+  "policyVersion": 1,
+  "publicRepositoriesOnly": true,
+  "summary": {
+    "total": 72,
+    "published": 59,
+    "hidden": 13,
+    "withWarnings": 53
+  },
+  "items": [
+    {
+      "id": "keygridexpansion",
+      "projectId": "keygridexpansion",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family",
+        "no-live-url",
+        "technology-unknown"
+      ],
+      "families": [],
+      "createdAt": "2026-08-13",
+      "updatedAt": "2026-08-13",
+      "hasLiveUrl": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "convinitools",
+      "projectId": "convinitools",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family",
+        "no-live-url"
+      ],
+      "families": [],
+      "createdAt": "2026-08-13",
+      "updatedAt": "2026-08-13",
+      "hasLiveUrl": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "100yearvision",
+      "projectId": "100yearvision",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-03-26",
+      "updatedAt": "2026-03-27",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "akasma",
+      "projectId": "akasma",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-09",
+      "updatedAt": "2026-05-09",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "baseballquiz",
+      "projectId": "baseballquiz",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-08-16",
+      "updatedAt": "2026-08-18",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "commonpoint",
+      "projectId": "commonpoint",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-07",
+      "updatedAt": "2026-07-08",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "consultingstudy",
+      "projectId": "consultingstudy",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-04",
+      "updatedAt": "2026-07-10",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "converter",
+      "projectId": "converter",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-06-22",
+      "updatedAt": "2026-06-22",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "countupapp",
+      "projectId": "countupapp",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-30",
+      "updatedAt": "2026-07-13",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "countvoice",
+      "projectId": "countvoice",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-06-23",
+      "updatedAt": "2026-08-13",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "englisharcade",
+      "projectId": "englisharcade",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-06",
+      "updatedAt": "2026-05-06",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "footballisfun",
+      "projectId": "footballisfun",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-07",
+      "updatedAt": "2026-05-07",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "fourier",
+      "projectId": "fourier",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-09",
+      "updatedAt": "2026-07-13",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "gantt",
+      "projectId": "gantt",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-07",
+      "updatedAt": "2026-07-10",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "hangul",
+      "projectId": "hangul",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-12",
+      "updatedAt": "2026-08-13",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "manontec",
+      "projectId": "manontec",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-03-23",
+      "updatedAt": "2026-04-20",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "memo",
+      "projectId": "memo",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2025-06-02",
+      "updatedAt": "2025-06-05",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "memoexpansion",
+      "projectId": "memoexpansion",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-live-url"
+      ],
+      "families": [
+        "writing-knowledge"
+      ],
+      "createdAt": "2026-08-14",
+      "updatedAt": "2026-08-25",
+      "hasLiveUrl": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "mmmpocket",
+      "projectId": "mmmpocket",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-30",
+      "updatedAt": "2026-04-30",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "mymindmap",
+      "projectId": "mymindmap",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-11",
+      "updatedAt": "2026-06-12",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "newsquiz",
+      "projectId": "newsquiz",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-04",
+      "updatedAt": "2026-07-08",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "ooh",
+      "projectId": "ooh",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-14",
+      "updatedAt": "2026-05-14",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "patternlanguage",
+      "projectId": "patternlanguage",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-08",
+      "updatedAt": "2026-05-08",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "pdflinks",
+      "projectId": "pdflinks",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-31",
+      "updatedAt": "2026-06-01",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "quicklinks",
+      "projectId": "quicklinks",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-31",
+      "updatedAt": "2026-08-24",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "quicklinksexpansion",
+      "projectId": "quicklinksexpansion",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-live-url"
+      ],
+      "families": [
+        "browser-productivity"
+      ],
+      "createdAt": "2026-08-13",
+      "updatedAt": "2026-08-24",
+      "hasLiveUrl": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "resultcalc",
+      "projectId": "resultcalc",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-09",
+      "updatedAt": "2026-05-09",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "rockvsbra",
+      "projectId": "rockvsbra",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-10",
+      "updatedAt": "2026-05-10",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "shogibanmen",
+      "projectId": "shogibanmen",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2025-05-30",
+      "updatedAt": "2025-07-24",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "simplememotool",
+      "projectId": "simplememotool",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-14",
+      "updatedAt": "2026-04-15",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "st6training",
+      "projectId": "st6training",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "timeconverter",
+      "projectId": "timeconverter",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2025-06-09",
+      "updatedAt": "2025-06-09",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "zeldasbsp",
+      "projectId": "zeldasbsp",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-13",
+      "updatedAt": "2026-07-13",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "contentslibrary",
+      "projectId": "contentslibrary",
+      "state": "published",
+      "reasons": [
+        "no-family",
+        "no-live-url"
+      ],
+      "families": [],
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-08-25",
+      "hasLiveUrl": false,
+      "documentationState": "verified"
+    },
+    {
+      "id": "multimemos",
+      "projectId": "multimemos",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [
+        "writing-knowledge"
+      ],
+      "createdAt": "2026-08-14",
+      "updatedAt": "2026-08-20",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "tabshelter",
+      "projectId": "tabshelter",
+      "state": "published",
+      "reasons": [
+        "no-family",
+        "no-live-url"
+      ],
+      "families": [],
+      "createdAt": "2026-06-29",
+      "updatedAt": "2026-06-29",
+      "hasLiveUrl": false,
+      "documentationState": "verified"
+    },
+    {
+      "id": "vocabularies",
+      "projectId": "vocabularies",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [
+        "learning-practice"
+      ],
+      "createdAt": "2026-08-09",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "accountinglearn",
+      "projectId": "accountinglearn",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-08-05",
+      "updatedAt": "2026-08-10",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "cssanimationlists",
+      "projectId": "cssanimationlists",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-24",
+      "updatedAt": "2026-07-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "designmd",
+      "projectId": "designmd",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-12",
+      "updatedAt": "2026-08-16",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "diff",
+      "projectId": "diff",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-02",
+      "updatedAt": "2026-08-20",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "ennnichimock",
+      "projectId": "ennnichimock",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-27",
+      "updatedAt": "2026-07-28",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "flowmap",
+      "projectId": "flowmap",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-18",
+      "updatedAt": "2026-08-20",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "imagetuning",
+      "projectId": "imagetuning",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-21",
+      "updatedAt": "2026-07-22",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "kakidas",
+      "projectId": "kakidas",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-06-22",
+      "updatedAt": "2026-08-21",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "marisast6",
+      "projectId": "marisast6",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-13",
+      "updatedAt": "2026-08-15",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "mydailylog",
+      "projectId": "mydailylog",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-06",
+      "updatedAt": "2026-08-20",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "mydictionary",
+      "projectId": "mydictionary",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-08-16",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "myspines",
+      "projectId": "myspines",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-12",
+      "updatedAt": "2026-07-13",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "pdfclipper",
+      "projectId": "pdfclipper",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-16",
+      "updatedAt": "2026-07-16",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "prompts",
+      "projectId": "prompts",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-13",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "whatsthiswiki",
+      "projectId": "whatsthiswiki",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-24",
+      "updatedAt": "2026-07-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "worksportfolio",
+      "projectId": "build-diary",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-07-19",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "dailyenglishchunks",
+      "projectId": "dailyenglishchunks",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "learning-practice"
+      ],
+      "createdAt": "2026-08-10",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "likewhat",
+      "projectId": "likewhat",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "design-communication"
+      ],
+      "createdAt": "2026-08-09",
+      "updatedAt": "2026-08-17",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "myessays",
+      "projectId": "myessays",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "writing-knowledge"
+      ],
+      "createdAt": "2026-08-07",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "myglossary",
+      "projectId": "myglossary",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "learning-practice"
+      ],
+      "createdAt": "2026-08-16",
+      "updatedAt": "2026-08-23",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "sukan",
+      "projectId": "sukan",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "learning-practice"
+      ],
+      "createdAt": "2026-07-02",
+      "updatedAt": "2026-08-24",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "techniques",
+      "projectId": "techniques",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "writing-knowledge"
+      ],
+      "createdAt": "2026-08-18",
+      "updatedAt": "2026-08-26",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
+      "id": "python",
+      "projectId": "python",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family",
+        "no-live-url",
+        "technology-unknown"
+      ],
+      "families": [],
+      "createdAt": "2018-12-29",
+      "updatedAt": "2018-12-29",
+      "hasLiveUrl": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "2026eventlist",
+      "projectId": "2026eventlist",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-08",
+      "updatedAt": "2026-05-08",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "eventmap",
+      "projectId": "eventmap",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-22",
+      "updatedAt": "2026-04-23",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "gamedashboard",
+      "projectId": "gamedashboard",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-13",
+      "updatedAt": "2026-04-21",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "jumbo",
+      "projectId": "jumbo",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-03-27",
+      "updatedAt": "2026-03-27",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "pratchecker",
+      "projectId": "pratchecker",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2025-06-02",
+      "updatedAt": "2025-07-26",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "predictattendance",
+      "projectId": "predictattendance",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-14",
+      "updatedAt": "2026-05-14",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "quickliks",
+      "projectId": "quickliks",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-31",
+      "updatedAt": "2026-05-31",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "rexanq",
+      "projectId": "rexanq",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-04-27",
+      "updatedAt": "2026-04-27",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "todomanager",
+      "projectId": "todomanager",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2025-05-31",
+      "updatedAt": "2025-06-09",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "vsmcintro",
+      "projectId": "vsmcintro",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-05-07",
+      "updatedAt": "2026-05-07",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "scrap_random",
+      "projectId": "scrap_random",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2020-08-02",
+      "updatedAt": "2020-08-03",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "zl-logger-web",
+      "projectId": "zl-logger-web",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-03-21",
+      "updatedAt": "2026-03-27",
+      "hasLiveUrl": true,
+      "documentationState": "unreviewed"
+    }
+  ]
+}
