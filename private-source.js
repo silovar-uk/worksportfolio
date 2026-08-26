@@ -9,8 +9,8 @@
   function badge() {
     const span = document.createElement('span');
     span.className = 'catalog-private-source';
-    span.textContent = 'Source private';
-    span.title = 'ソースコード・内部情報は非公開';
+    span.textContent = 'Source not public';
+    span.title = '作品概要のみ公開しています';
     return span;
   }
 

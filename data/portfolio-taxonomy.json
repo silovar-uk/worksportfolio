@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "showcase": {
+    "eyebrow": "MAKING SYSTEMS FROM SMALL FRICTIONS",
+    "title": "小さな引っかかりを、使える道具に変える。",
+    "summary": "忘れる、探す、切り替える、迷う。日常や仕事の小さな摩擦を、Webアプリ・Chrome拡張・学習ツール・知識の置き場へ変えてきた制作記録です。",
+    "featuredProjectIds": [
+      "dailyenglishchunks",
+      "myessays",
+      "sukan",
+      "likewhat",
+      "ui-cleaner",
+      "daily-log"
+    ],
+    "recentLimit": 4
+  },
+  "families": [
+    {
+      "id": "learning-practice",
+      "label": "Learning & Practice",
+      "description": "短い反復で、読む・計算する・言葉にする感覚を育てる。",
+      "projectIds": ["dailyenglishchunks", "sukan", "myglossary", "vocabularies"]
+    },
+    {
+      "id": "writing-knowledge",
+      "label": "Writing & Knowledge",
+      "description": "書いたものや調べたことを、あとから戻れる知識にする。",
+      "projectIds": ["myessays", "techniques", "multimemos", "memoexpansion"]
+    },
+    {
+      "id": "browser-productivity",
+      "label": "Browser Productivity",
+      "description": "ブラウザ操作のクリック、移動、誤操作を小さくする。",
+      "projectIds": ["keygrid", "quicklinksexpansion", "ui-cleaner", "prompt-launcher"]
+    },
+    {
+      "id": "personal-systems",
+      "label": "Personal Systems",
+      "description": "記録・メモ・選択を、毎日使える自分用の仕組みにする。",
+      "projectIds": ["daily-log", "secure-private-memo", "karaoke-library"]
+    },
+    {
+      "id": "design-communication",
+      "label": "Design & Communication",
+      "description": "曖昧な世界観や発信の課題を、比較・分析・プロトタイプで見える形にする。",
+      "projectIds": ["likewhat", "landing-page-prototype", "event-communication-review", "communication-benchmark-review", "social-operations-benchmark", "communication-design-vision"]
+    }
+  ],
+  "principles": [
+    {
+      "id": "reduce-friction",
+      "label": "Reduce everyday friction",
+      "description": "小さな面倒を我慢せず、1操作でも減らせる形にする。",
+      "projectIds": ["ui-cleaner", "prompt-launcher", "multimemos"]
+    },
+    {
+      "id": "retrievable-knowledge",
+      "label": "Make knowledge retrievable",
+      "description": "覚え続けるより、必要な瞬間に戻れる場所を作る。",
+      "projectIds": ["myessays", "techniques", "myglossary"]
+    },
+    {
+      "id": "small-practice",
+      "label": "Keep practice small",
+      "description": "学習や記録を、毎日触れる小ささまで削る。",
+      "projectIds": ["dailyenglishchunks", "sukan", "daily-log"]
+    },
+    {
+      "id": "design-for-recovery",
+      "label": "Design for recovery",
+      "description": "失敗しない前提ではなく、壊れても戻れる・やり直せる設計にする。",
+      "projectIds": ["prompt-launcher", "secure-private-memo", "ui-cleaner"]
+    },
+    {
+      "id": "turn-work-into-systems",
+      "label": "Turn repetition into systems",
+      "description": "繰り返す作業は、次から考えなくていい仕組みに変える。",
+      "projectIds": ["daily-log", "likewhat", "memoexpansion"]
+    }
+  ]
+}

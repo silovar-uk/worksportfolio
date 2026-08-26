@@ -9,6 +9,8 @@ on:
       - main
     paths:
       - 'data/portfolio-config.json'
+      - 'data/portfolio-taxonomy.json'
+      - 'data/editorial-policy.json'
       - 'data/manual-projects.json'
       - 'data/manual-projects-extra.json'
       - 'data/manual-projects-daily-log.json'
@@ -23,6 +25,8 @@ on:
       - 'catalog-visibility.js'
       - 'private-source.js'
       - 'private-source.css'
+      - 'showcase.js'
+      - 'showcase.css'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -42,6 +46,10 @@ on:
       - 'scripts/sanitize-project-data.mjs'
       - 'scripts/build-static-site.mjs'
       - 'scripts/apply-copy-cleanup.mjs'
+      - 'scripts/apply-editorial-gate.mjs'
+      - 'scripts/build-editorial-review.mjs'
+      - 'scripts/inject-showcase.mjs'
+      - 'scripts/validate-portfolio-model.mjs'
       - 'scripts/curate-recent-projects.mjs'
       - 'scripts/audit-portfolio.mjs'
       - 'scripts/validate-private-summaries.mjs'
@@ -55,6 +63,8 @@ on:
       - main
     paths:
       - 'data/portfolio-config.json'
+      - 'data/portfolio-taxonomy.json'
+      - 'data/editorial-policy.json'
       - 'data/manual-projects.json'
       - 'data/manual-projects-extra.json'
       - 'data/manual-projects-daily-log.json'
@@ -69,6 +79,8 @@ on:
       - 'catalog-visibility.js'
       - 'private-source.js'
       - 'private-source.css'
+      - 'showcase.js'
+      - 'showcase.css'
       - 'taxonomy.js'
       - 'taxonomy.css'
       - 'floating-random.js'
@@ -88,6 +100,10 @@ on:
       - 'scripts/sanitize-project-data.mjs'
       - 'scripts/build-static-site.mjs'
       - 'scripts/apply-copy-cleanup.mjs'
+      - 'scripts/apply-editorial-gate.mjs'
+      - 'scripts/build-editorial-review.mjs'
+      - 'scripts/inject-showcase.mjs'
+      - 'scripts/validate-portfolio-model.mjs'
       - 'scripts/curate-recent-projects.mjs'
       - 'scripts/audit-portfolio.mjs'
       - 'scripts/validate-private-summaries.mjs'
@@ -121,6 +137,7 @@ jobs:
           node --check catalog.js
           node --check catalog-visibility.js
           node --check private-source.js
+          node --check showcase.js
           node --check taxonomy.js
           node --check floating-random.js
           node --check random-three.js
@@ -133,6 +150,10 @@ jobs:
           node --check scripts/sanitize-project-data.mjs
           node --check scripts/build-static-site.mjs
           node --check scripts/apply-copy-cleanup.mjs
+          node --check scripts/apply-editorial-gate.mjs
+          node --check scripts/build-editorial-review.mjs
+          node --check scripts/inject-showcase.mjs
+          node --check scripts/validate-portfolio-model.mjs
           node --check scripts/curate-recent-projects.mjs
           node --check scripts/audit-portfolio.mjs
           node --check scripts/validate-private-summaries.mjs
@@ -152,6 +173,12 @@ jobs:
       - name: Sanitize project-derived data
         run: node scripts/sanitize-project-data.mjs
 
+      - name: Validate portfolio model
+        run: node scripts/validate-portfolio-model.mjs
+
+      - name: Build editorial review queue
+        run: node scripts/build-editorial-review.mjs
+
       - name: Validate pattern candidates
         run: node scripts/validate-pattern-candidates.mjs
 
@@ -167,8 +194,14 @@ jobs:
       - name: Apply natural copy
         run: node scripts/apply-copy-cleanup.mjs
 
+      - name: Apply editorial publication gate
+        run: node scripts/apply-editorial-gate.mjs
+
       - name: Inject Private summaries
         run: node scripts/inject-private-summaries.mjs
+
+      - name: Inject Showcase and Project Families
+        run: node scripts/inject-showcase.mjs
 
       - name: Inject favorite catalog controls
         run: |
@@ -186,11 +219,15 @@ jobs:
         run: |
           test -s index.html
           test -s data/patterns.json
+          test -s data/editorial-review.json
           ! grep -qi 'jszip' index.html
           ! grep -qi 'loader.js' index.html
           grep -q 'window.BUILD_DIARY_DATA' index.html
+          grep -q 'window.WORKS_PORTFOLIO_SHOWCASE' index.html
           grep -q 'worksportfolio-assets-version' index.html
           grep -q 'shelf-priority.js' index.html
+          grep -q 'showcase.js' index.html
+          grep -q 'showcase.css' index.html
           grep -q 'random-three.js' index.html
           grep -q 'random-three.css' index.html
           grep -q 'floating-random.js' index.html
@@ -221,6 +258,8 @@ jobs:
           grep -q 'お気に入り度が高い順' favorite-catalog.js
           grep -q '制作開始が新しい順' favorite-catalog.js
           grep -q 'startedAt' index.html
+          grep -q 'portfolioFamilies' index.html
+          grep -q 'makingPrinciples' index.html
           grep -q 'project-start-dates.json' scripts/build-static-site.mjs
           grep -q '確認状況' copy-cleanup.js
           grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card');" motion.js
@@ -231,24 +270,30 @@ jobs:
           ! grep -q '<button class="text-action" type="button" data-random-button>' index.html
           grep -q 'UI Cleaner' index.html
           grep -q 'Prompt Launcher' index.html
-          grep -q 'Source private' private-source.js
+          grep -q 'Source not public' private-source.js
+          ! grep -q 'Source private' private-source.js
           ! grep -q 'github.com/silovar-uk/uicleaner' index.html
           ! grep -q 'github.com/silovar-uk/private-memo' index.html
           ! grep -q 'github.com/silovar-uk/prompt-caller' index.html
+          grep -q '"publicRepositoriesOnly": true' data/editorial-review.json
+          ! grep -qi 'private-memo' data/editorial-review.json
+          ! grep -qi 'karaoke-db' data/editorial-review.json
+          ! grep -qi 'prompt-caller' data/editorial-review.json
+          ! grep -qi 'uicleaner' data/editorial-review.json
 
       - name: Show generated changes
-        run: git diff --stat -- data/portfolio-config.json data/catalog.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
+        run: git diff --stat -- data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
 
       - name: Commit generated files when changed
         if: github.event_name != 'pull_request'
         run: |
-          if git diff --quiet -- data/portfolio-config.json data/catalog.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html; then
-            echo "Portfolio and pattern data are already current."
+          if git diff --quiet -- data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html; then
+            echo "Portfolio, editorial review, and pattern data are already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/portfolio-config.json data/catalog.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
-          git commit -m "Build static portfolio and pattern data"
+          git add data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
+          git commit -m "Build static portfolio, editorial review, and pattern data"
           git pull --rebase origin main
           git push

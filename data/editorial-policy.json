@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "publicationGate": {
+    "enabled": true,
+    "baselineCreatedDateMax": "2026-08-25",
+    "defaultNewRepositoryState": "discovered",
+    "publishOverrideField": "editorialState"
+  },
+  "states": {
+    "discovered": "GitHubで見つかったが、作品としての編集は未着手",
+    "candidate": "公開候補として確認中",
+    "curated": "タイトル・概要・分類を編集済み",
+    "published": "Portfolioへ掲載",
+    "hidden": "Portfolioへ掲載しない"
+  },
+  "failurePolicy": {
+    "fail": ["private-risk", "schema-corruption", "duplicate-id", "invalid-reference"],
+    "warn": ["no-curation", "generic-summary", "no-family", "no-live-url", "technology-unknown"]
+  }
+}
