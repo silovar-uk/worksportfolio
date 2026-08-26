@@ -1,148 +1,219 @@
 # つくって考えた
 
-日常の小さな不便から作ったWebアプリ、Chrome拡張、コンテンツページ、学習ツールを、探し直し、使い直すための作品棚です。
+日常や仕事の小さな不便から作ったWebアプリ、Chrome拡張、学習ツール、知識の置き場をまとめるPortfolioです。
 
-## 公開URL
+公開URL: https://silovar-uk.github.io/worksportfolio/
 
-https://silovar-uk.github.io/worksportfolio/
+## Portfolioの3層
 
-## このサイトの優先順位
+このサイトは、単なるGitHubリポジトリ一覧ではなく、次の3層で運用します。
 
-1. 目的の制作物をすぐ探せる
-2. 最近作ったもの・更新したものが分かる
-3. 公開中のツールをすぐ開ける
-4. 制作背景・改善履歴・作品同士の関係を振り返れる
+1. **Showcase** — 初見の人が30〜60秒で「何を作る人か」を理解する
+2. **Catalog** — 全制作物を検索・比較・再発見する
+3. **Editorial System** — GitHub上の制作活動を発見し、編集・安全確認して公開する
 
-初期表示は「本棚」、初期の並び順は更新が新しい順です。`Ctrl + K` または `/` で検索欄へ移動できます。
+Showcaseでは代表作、Making Principles、Project Families、最近育てた作品を表示します。Catalogでは従来の作品棚、ランダム3枚、比較、検索、絞り込みを維持します。
 
-## GitHub自動同期
+初期表示は「本棚」、初期の並び順は**制作開始が新しい順**です。`Ctrl + K` または `/` で検索欄へ移動できます。
 
-公開リポジトリは原則すべて作品候補として取り込み、表示しないものだけ `data/portfolio-config.json` の `hiddenIds` で管理します。
+## Showcase
 
-- `scripts/build-catalog.mjs` がGitHub APIから公開リポジトリを取得
-- `data/catalog.json` にリポジトリ名、説明、公開URL、言語、制作日、更新日などを保存
-- `scripts/build-static-site.mjs` が既存の制作物データとカタログを統合し、完成版 `index.html` を生成
-- GitHub Actionsが毎日1回、設定変更時、手動実行時にカタログと公開ページを更新
-- ブラウザ側ではGitHub APIやZIP展開を行わず、生成済みの静的HTMLを表示
-- 既存の制作日記データを優先し、GitHub側の更新日・URL・言語などの事実情報だけ更新
-- 新しく作った公開リポジトリは、除外設定がなければ本棚へ自動追加
+Showcaseの編集データは `data/portfolio-taxonomy.json` に置きます。
 
-GitHubにないChrome拡張やローカル制作物は `data/manual-projects.json` で管理します。
+- `showcase.featuredProjectIds`: 代表作
+- `families`: Project Family（最大5〜7系統を目安）
+- `principles`: 制作物から帰納したMaking Principles
 
-## 作品ごとの上書き
+表示側は `showcase.js` / `showcase.css`、生成時の注入は `scripts/inject-showcase.mjs` が担当します。
 
-表示名、分類、用途、状態、公開URLなど、GitHubだけでは判断できない情報は `data/portfolio-config.json` の `overrides` へ記述します。
+FamilyやPrincipleは公開用project dataへラベルとして注入されるため、GitHubのリポジトリ構造とは独立して整理できます。
 
-```json
-{
-  "overrides": {
-    "worksportfolio": {
-      "title": "つくって考えた",
-      "type": "web-app",
-      "verbs": ["探す", "整理する", "振り返る"],
-      "status": "active"
-    }
-  }
-}
-```
+## Catalog
 
-既存データ内のIDとGitHubリポジトリ名が違う場合は、`repositoryProjectIds` で紐づけます。
-
-## 本棚の機能
+作品棚は「深く探す」ための層です。
 
 - 名前・困りごと・技術から検索
 - 最近更新、公開ページ、運用・開発中などのクイック絞り込み
 - 種類、状態、制作年、整理状態、公開状況による詳細絞り込み
-- 更新順、制作順、名前順などの並び替え
+- 更新順、制作開始順、名前順などの並び替え
 - コンパクト、カード、表の表示切替
 - 制作年、種類、状態ごとのグループ分け
-- 検索状態のURL・ブラウザ保存
-- 最近開いた作品のローカル記録と絞り込み
-- 複数作品の共有用テキスト、Markdown、TSV、JSONコピー
-- 公開ページがある作品は「開く」ボタンから直接起動
+- 最近開いた作品
+- 複数作品の共有用テキスト / Markdown / TSV / JSONコピー
+- ランダム3枚
+- 比較
+- お気に入り
 
-## 制作の地層
+ShowcaseのProject FamilyからCatalogを一時的に絞り込むこともできます。
 
-ページ上部には、公開対象の制作物を年・種類から見渡す「制作の地層」を表示します。
+## Public GitHub discovery
 
-- 年ごとの制作量を、種類別の色で可視化
-- 年を押すと本棚へ切り替わり、その年の作品だけに絞り込み
-- 全制作物数、種類数、制作年数、お気に入り数を実データから表示
-- 「今日の1本」で、埋もれた作品を日替わりで再発見
-- 「別の1本」または `R` キーでランダムに引き直し
+`scripts/build-catalog.mjs` がGitHub APIから**Public repositoryだけ**を取得し、`data/catalog.json` に保存します。
 
-年代順・関連地図は、制作の背景や流れを振り返るためのサブビューとして残しています。
+重要なのは、**発見と公開を分離する**ことです。
 
-## 種類の色
+### 既存作品
 
-- Webアプリ：青
-- Chrome拡張：紫
-- 学習ツール：緑
-- 設計ガイド：赤
-- コンテンツページ：黄土
-- 分析・データ：青緑
-- 便利ツール：グレー
-- 実験：ピンク
+2026-08-25までに存在していたPublic repositoryは移行時のbaselineとして、従来どおりPortfolioに掲載します。
 
-色だけに依存せず、種類名のラベルと左罫線を併用しています。
+### 今後の新規Public repository
 
-## データ整合性
+新しく発見したrepositoryは、原則 `discovered` として扱い、即時公開しません。
 
-`data-audit.js` が公開時に以下を確認・整理します。
+Editorial State:
 
-- 重複ID
-- 存在しない関連作品への参照
-- 年代区分に残った非表示作品ID
-- 代表作・最近の作品に残った非表示作品ID
-- 種類、状態、整理状態の未設定値
+- `discovered`: GitHubで発見、編集前
+- `candidate`: 公開候補として確認中
+- `curated`: タイトル・概要・分類を編集済み
+- `published`: Portfolioへ掲載
+- `hidden`: 掲載しない
 
-一覧上部の件数、種類別内訳、公開ページ数、GitHub数は同じ監査済みデータから計算します。READMEには変動する固定件数を持たせません。
+新しいrepositoryを明示的に公開する場合は `data/portfolio-config.json` のoverrideへ `editorialState: "published"` を設定します。
 
-## favicon・ヘッダーアイコン
+公開ゲートは `data/editorial-policy.json` と `scripts/apply-editorial-gate.mjs` が担当します。
 
-「小さな引っかかりが、作ることで構造へ変わる」様子を表現した専用アイコンを、faviconとヘッダー左上の両方に使用しています。
+## Editorial review queue
 
-- `assets/favicon.svg`
-- `site.webmanifest`
+`scripts/build-editorial-review.mjs` が `data/editorial-review.json` を生成します。
 
-## 公開構成
+ここに含めるのは**Public repositoryのみ**です。Private repository名やPrivate GitHub metadataは絶対に入れません。
 
-GitHub Actionsが `.bootstrap/part-*.b64` の制作物パッケージをビルド時に展開し、GitHubカタログと手動作品を統合した完成版 `index.html` を生成します。公開時のブラウザは、この生成済みHTMLを読むだけです。
+レビュー理由の例:
 
-- `index.html`：GitHub Actionsが生成する完成版の静的ページ
-- `data/portfolio-config.json`：非表示設定、作品ごとの上書き、IDの紐づけ
-- `data/manual-projects.json`：GitHubにない制作物
-- `data/catalog.json`：GitHubから自動生成した公開リポジトリ一覧
-- `scripts/build-catalog.mjs`：GitHubカタログ生成スクリプト
-- `scripts/build-static-site.mjs`：制作物パッケージを展開し、完成版HTMLを生成するスクリプト
-- `.github/workflows/update-catalog.yml`：定期・手動・変更時のビルド
-- `data-audit.js`：データ整合性確認と自動集計
-- `catalog.js` / `catalog.css`：一覧表示・検索・ソート・選択コピー
-- `shelf-priority.js` / `shelf-priority.css`：本棚の初期表示、検索ショートカット、最近開いた作品、公開導線
-- `taxonomy.js` / `taxonomy.css`：種類別の色分けと内訳
-- `wow.js` / `wow.css`：制作の地層・今日の1本
-- `wow-stage.js`：全表示での共通表示とお気に入り件数連動
-- `marks.js` / `marks.css`：お気に入り・あとで見る
-- `.bootstrap/part-*.b64`：ビルド時だけ使用する制作物パッケージ分割データ
-- `loader.js`：旧ブラウザ組み立て方式の退避ファイル。生成済み `index.html` からは読み込まない
-- `assets/favicon.svg`：favicon・ヘッダーアイコン
-- `404.html`：404ページ
+- `no-curation`
+- `generic-summary`
+- `no-family`
+- `no-live-url`
+- `technology-unknown`
 
-## カタログと公開ページの手動更新
+編集不足はWARNING、漏えい・schema破損・不正参照はFAILとして扱います。
 
-GitHubの `Actions → Build portfolio site → Run workflow` から更新できます。
+## Private-source projects
 
-ローカルで実行する場合は、`unzip` コマンドが利用できる環境で以下を実行します。
+Private repositoryはPublic catalogと完全に別経路で扱います。
+
+流れ:
+
+`Private repoを確認 → 公開可否判断 → 安全な概要を手動作成 → allowlistへ追加 → validation → publish`
+
+公開可能な概要だけを `data/manual-projects-private.json` に保存します。
+
+Private-source projectは必ず次を満たします。
+
+```json
+{
+  "sourceVisibility": "private",
+  "summaryOnly": true,
+  "repositoryUrl": ""
+}
+```
+
+UIでは実装事情を強く見せず、必要な箇所だけ `Source not public` と表示します。
+
+### 公開してはいけないもの
+
+- Private GitHub URL
+- Private repository名（安全確認なし）
+- README本文
+- source code
+- file path / branch / commit / issue / PR
+- secret / API key
+- 内部URL
+- account / database identifier
+- 個人・顧客・組織の内部情報
+
+`scripts/validate-private-summaries.mjs` と `scripts/validate-portfolio-model.mjs` が検査します。
+
+## データの責務
+
+### 手書き・編集データ
+
+- `data/portfolio-config.json`: Public作品の上書き、hidden、editorial state
+- `data/portfolio-taxonomy.json`: Showcase / Family / Principle
+- `data/editorial-policy.json`: Editorial Stateと公開ゲート方針
+- `data/manual-projects.json`: GitHubにない制作物
+- `data/manual-projects-extra.json`: 追加の手動制作物
+- `data/manual-projects-daily-log.json`: Daily Logの公開用記録
+- `data/manual-projects-private.json`: 安全確認済みPrivate概要
+
+### 生成データ
+
+- `data/catalog.json`: Public GitHub repository catalog
+- `data/editorial-review.json`: Public repositoryの編集レビューキュー
+- `data/patterns.json` など: 制作パターン生成物
+- `index.html`: 公開用の完成版HTML
+
+生成ファイルを日常的な編集のSource of Truthにしません。
+
+## ビルドパイプライン
+
+GitHub Actionsの主な流れ:
+
+```text
+Public GitHub discovery
+  ↓
+Catalog build
+  ↓
+Sanitize
+  ↓
+Portfolio model validation
+  ↓
+Editorial review queue
+  ↓
+Pattern validation / build
+  ↓
+Static portfolio build
+  ↓
+Editorial publication gate
+  ↓
+Safe Private summaries injection
+  ↓
+Showcase / Family / Principle injection
+  ↓
+Generated-page security checks
+  ↓
+Commit generated files
+  ↓
+GitHub Pages
+```
+
+Private repositoryの検出情報はこのPublic CIへ渡しません。
+
+## 主なファイル
+
+- `catalog.js` / `catalog.css`: Catalog
+- `showcase.js` / `showcase.css`: Showcase / Project Family
+- `private-source.js` / `private-source.css`: Private-source表示制御
+- `random-three.js` / `random-three.css`: ランダム3枚
+- `comparison-view.js` / `comparison-view.css`: 比較
+- `shelf-priority.js` / `shelf-priority.css`: 本棚の初期導線
+- `scripts/build-catalog.mjs`: Public GitHub discovery
+- `scripts/build-static-site.mjs`: Static site build
+- `scripts/apply-editorial-gate.mjs`: 新規Public repoの公開ゲート
+- `scripts/build-editorial-review.mjs`: Public editorial review queue
+- `scripts/validate-portfolio-model.mjs`: taxonomy / privacy / reference validation
+- `scripts/inject-private-summaries.mjs`: 安全なPrivate概要の注入
+- `scripts/inject-showcase.mjs`: Showcase taxonomyの注入
+- `.github/workflows/update-catalog.yml`: CI / generated build
+
+## ローカル確認
+
+Public GitHub APIを利用できる環境では、概ね次の順で確認します。
 
 ```bash
 node scripts/build-catalog.mjs
+node scripts/sanitize-project-data.mjs
+node scripts/validate-private-summaries.mjs
+node scripts/validate-portfolio-model.mjs
+node scripts/build-editorial-review.mjs
+node scripts/validate-pattern-candidates.mjs
+node scripts/build-patterns.mjs
+node scripts/validate-patterns.mjs
 node scripts/build-static-site.mjs
+node scripts/apply-copy-cleanup.mjs
+node scripts/apply-editorial-gate.mjs
+node scripts/inject-private-summaries.mjs
+node scripts/inject-showcase.mjs
 ```
 
-## GitHub Pages
-
-公開されていない場合は、リポジトリの `Settings → Pages` で以下を設定してください。
-
-- Source：Deploy from a branch
-- Branch：main
-- Folder：/ (root)
+最終的な完了条件は、CI成功だけではなくGitHub Pagesへproduction deployされたことです。
