@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T02:39:31.739Z",
+  "generatedAt": "2026-08-27T00:47:25.918Z",
   "policyVersion": 1,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -537,7 +537,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-14",
-      "updatedAt": "2026-08-20",
+      "updatedAt": "2026-08-26",
       "hasLiveUrl": true,
       "documentationState": "unreviewed"
     },
@@ -814,7 +814,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
