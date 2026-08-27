@@ -196,5 +196,39 @@
     "documentationState": "verified",
     "relatedProjects": [],
     "updates": []
+  },
+  {
+    "id": "private-myessays",
+    "title": "Private MyEssays",
+    "subtitle": "公開を前提としない文章を、認証の内側に残す個人アーカイブ",
+    "summary": "公開版MyEssaysの情報設計と操作感を引き継ぎつつ、外へ出さない論考だけを別環境で蓄積・閲覧するPrivateエッセイアーカイブ。公開版とはコンテンツと配信環境を分離し、認証付きのダークテーマで運用する。",
+    "type": "content-page",
+    "verbs": ["書く", "残す", "守る"],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-08-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-27",
+    "repositoryUrl": "",
+    "liveUrl": "https://private-myessays.silovar-uk.workers.dev/",
+    "technologies": ["JavaScript", "Markdown", "Cloudflare Workers", "Cloudflare Access"],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "myessays",
+        "relation": "公開版の情報設計を継承し、非公開用途へ分離"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-27",
+        "version": "0.1",
+        "change": "認証付きのPrivateエッセイアーカイブをポートフォリオへ追加",
+        "reason": "公開を前提にすると残しにくい論考も、公開版と明確に分けて蓄積できる場所を持つため。"
+      }
+    ]
   }
 ]
