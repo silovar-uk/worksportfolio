@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T14:16:55.687Z",
+  "generatedAt": "2026-08-28T05:24:04.062Z",
   "policyVersion": 1,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -233,7 +233,7 @@
       ],
       "families": [],
       "createdAt": "2026-07-12",
-      "updatedAt": "2026-08-13",
+      "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
       "documentationState": "unreviewed"
     },
@@ -402,7 +402,7 @@
         "browser-productivity"
       ],
       "createdAt": "2026-08-13",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-28",
       "hasLiveUrl": false,
       "documentationState": "unreviewed"
     },
@@ -749,7 +749,7 @@
       ],
       "families": [],
       "createdAt": "2026-07-13",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
@@ -853,7 +853,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-18",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
