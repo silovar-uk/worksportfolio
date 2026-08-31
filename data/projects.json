@@ -3251,16 +3251,17 @@
   },
   {
     "id": "rockvsbra",
-    "title": "Rock vs BRA",
-    "subtitle": "対戦コンテンツページ",
-    "summary": "特定の対戦やテーマを見せる短編ページ。",
-    "friction": "話したい対戦の面白さを、文章だけでは再現しにくかった。",
-    "firstBuild": "一枚のビジュアルページへまとめた。",
-    "currentAnswer": "試合の背景を、読む順番ごと設計する試作。",
-    "type": "content-page",
+    "title": "ロックマン 全キャラ対策ガイド ULTIMATE",
+    "subtitle": "スマブラSPのロックマンで89マッチアップを検索・確認する対策ガイド",
+    "summary": "ロックマンの共通戦術、撃墜技、危険度、89キャラ分のマッチアップ対策を検索・Tierフィルター・チェックリスト・練習前ミニカンペで確認できるスマブラSP非公式ガイド。",
+    "friction": "対戦相手ごとの注意点や撃墜プランを頭の中だけで覚えると、試合前に必要な対策をすぐ呼び戻しにくかった。",
+    "firstBuild": "ロックマンの共通戦術とキャラ別対策を単一HTMLへ集約し、検索とTier表示を付けた対戦ガイドとして作った。",
+    "currentAnswer": "「弾を当てる」より「相手を動かす」を軸に、共通戦術・撃墜技・危険度・89マッチアップ・対戦中の合言葉・練習前カンペを一画面で行き来できる。",
+    "type": "learning-tool",
     "verbs": [
-      "伝える",
-      "学ぶ"
+      "学ぶ",
+      "確認する",
+      "練習する"
     ],
     "status": "prototype",
     "visibility": "public",
@@ -3276,30 +3277,27 @@
       "CSS",
       "JavaScript"
     ],
-    "documentationState": "unreviewed",
+    "documentationState": "inferred",
     "map": {
       "group": "content",
       "x": 1230,
       "y": 612
     },
-    "relatedProjects": [
-      {
-        "id": "footballisfun",
-        "relation": "対戦コンテンツ"
-      }
-    ],
+    "relatedProjects": [],
     "updates": [],
     "updatedAt": "2026-05-10",
     "startedAt": "2026-05-10",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "対戦コンテンツ",
-      "match page",
-      "試合ページ",
-      "対戦LP",
-      "battle page",
-      "rock vs bra"
+      "ロックマン",
+      "rockman",
+      "Mega Man",
+      "スマブラSP",
+      "smash ultimate",
+      "全キャラ対策",
+      "マッチアップ",
+      "rockvsbra"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
