@@ -7,7 +7,7 @@
     "published": 59,
     "hidden": 14,
     "withWarnings": 0,
-    "artifactReviewNeeded": 4
+    "artifactReviewNeeded": 0
   },
   "items": [
     {
@@ -19,6 +19,7 @@
       "createdAt": "2026-03-26",
       "updatedAt": "2026-03-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -31,6 +32,7 @@
       "createdAt": "2026-08-05",
       "updatedAt": "2026-08-10",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -43,6 +45,7 @@
       "createdAt": "2026-05-09",
       "updatedAt": "2026-05-09",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -55,6 +58,7 @@
       "createdAt": "2026-08-16",
       "updatedAt": "2026-08-18",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -67,6 +71,7 @@
       "createdAt": "2026-07-07",
       "updatedAt": "2026-07-08",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -79,6 +84,7 @@
       "createdAt": "2026-07-04",
       "updatedAt": "2026-07-10",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -91,6 +97,7 @@
       "createdAt": "2026-07-17",
       "updatedAt": "2026-08-25",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -103,6 +110,7 @@
       "createdAt": "2026-06-22",
       "updatedAt": "2026-06-22",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -115,7 +123,8 @@
       "createdAt": "2026-08-13",
       "updatedAt": "2026-08-13",
       "hasLiveUrl": false,
-      "artifactReviewNeeded": true,
+      "artifactStatus": "extension-no-public-url-expected",
+      "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
     {
@@ -127,6 +136,7 @@
       "createdAt": "2026-04-30",
       "updatedAt": "2026-07-13",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -139,6 +149,7 @@
       "createdAt": "2026-06-23",
       "updatedAt": "2026-08-13",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -151,6 +162,7 @@
       "createdAt": "2026-07-24",
       "updatedAt": "2026-07-26",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -165,6 +177,7 @@
       "createdAt": "2026-08-10",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -177,6 +190,7 @@
       "createdAt": "2026-07-12",
       "updatedAt": "2026-08-16",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -189,6 +203,7 @@
       "createdAt": "2026-07-02",
       "updatedAt": "2026-08-20",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -201,6 +216,7 @@
       "createdAt": "2026-05-06",
       "updatedAt": "2026-05-06",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -213,6 +229,7 @@
       "createdAt": "2026-07-27",
       "updatedAt": "2026-07-28",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -225,6 +242,7 @@
       "createdAt": "2026-07-18",
       "updatedAt": "2026-08-20",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -237,6 +255,7 @@
       "createdAt": "2026-05-07",
       "updatedAt": "2026-05-07",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -249,6 +268,7 @@
       "createdAt": "2026-07-09",
       "updatedAt": "2026-07-13",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -261,6 +281,7 @@
       "createdAt": "2026-07-07",
       "updatedAt": "2026-07-10",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -273,6 +294,7 @@
       "createdAt": "2026-07-12",
       "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -285,6 +307,7 @@
       "createdAt": "2026-07-21",
       "updatedAt": "2026-07-22",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -297,6 +320,7 @@
       "createdAt": "2026-06-22",
       "updatedAt": "2026-08-21",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -311,6 +335,7 @@
       "createdAt": "2026-08-09",
       "updatedAt": "2026-08-17",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -323,6 +348,7 @@
       "createdAt": "2026-03-23",
       "updatedAt": "2026-04-20",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -335,6 +361,7 @@
       "createdAt": "2026-07-13",
       "updatedAt": "2026-08-15",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -347,6 +374,7 @@
       "createdAt": "2025-06-02",
       "updatedAt": "2025-06-05",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -361,7 +389,8 @@
       "createdAt": "2026-08-14",
       "updatedAt": "2026-08-27",
       "hasLiveUrl": false,
-      "artifactReviewNeeded": true,
+      "artifactStatus": "extension-no-public-url-expected",
+      "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
     {
@@ -373,6 +402,7 @@
       "createdAt": "2026-04-30",
       "updatedAt": "2026-04-30",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -387,6 +417,7 @@
       "createdAt": "2026-08-14",
       "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -399,6 +430,7 @@
       "createdAt": "2026-07-06",
       "updatedAt": "2026-08-20",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -411,6 +443,7 @@
       "createdAt": "2026-07-17",
       "updatedAt": "2026-08-16",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -425,6 +458,7 @@
       "createdAt": "2026-08-07",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -439,6 +473,7 @@
       "createdAt": "2026-08-16",
       "updatedAt": "2026-08-23",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -451,6 +486,7 @@
       "createdAt": "2026-04-11",
       "updatedAt": "2026-06-12",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -463,6 +499,7 @@
       "createdAt": "2026-07-12",
       "updatedAt": "2026-07-13",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -475,6 +512,7 @@
       "createdAt": "2026-07-04",
       "updatedAt": "2026-07-08",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -487,6 +525,7 @@
       "createdAt": "2026-05-14",
       "updatedAt": "2026-05-14",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -499,6 +538,7 @@
       "createdAt": "2026-05-08",
       "updatedAt": "2026-05-08",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -511,6 +551,7 @@
       "createdAt": "2026-07-16",
       "updatedAt": "2026-07-16",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -523,6 +564,7 @@
       "createdAt": "2026-05-31",
       "updatedAt": "2026-06-01",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -535,6 +577,7 @@
       "createdAt": "2026-08-31",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -547,6 +590,7 @@
       "createdAt": "2026-07-13",
       "updatedAt": "2026-08-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -559,6 +603,7 @@
       "createdAt": "2026-05-31",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -573,7 +618,8 @@
       "createdAt": "2026-08-13",
       "updatedAt": "2026-08-28",
       "hasLiveUrl": false,
-      "artifactReviewNeeded": true,
+      "artifactStatus": "extension-no-public-url-expected",
+      "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
     {
@@ -585,6 +631,7 @@
       "createdAt": "2026-05-09",
       "updatedAt": "2026-05-09",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -597,8 +644,9 @@
       "createdAt": "2026-05-10",
       "updatedAt": "2026-05-10",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
-      "documentationState": "unreviewed"
+      "documentationState": "inferred"
     },
     {
       "id": "shogibanmen",
@@ -609,6 +657,7 @@
       "createdAt": "2025-05-30",
       "updatedAt": "2025-07-24",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -621,6 +670,7 @@
       "createdAt": "2026-04-14",
       "updatedAt": "2026-04-15",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -633,6 +683,7 @@
       "createdAt": "2026-07-17",
       "updatedAt": "2026-07-17",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -647,6 +698,7 @@
       "createdAt": "2026-07-02",
       "updatedAt": "2026-08-24",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -659,7 +711,8 @@
       "createdAt": "2026-06-29",
       "updatedAt": "2026-06-29",
       "hasLiveUrl": false,
-      "artifactReviewNeeded": true,
+      "artifactStatus": "extension-no-public-url-expected",
+      "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
     {
@@ -673,6 +726,7 @@
       "createdAt": "2026-08-18",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -685,6 +739,7 @@
       "createdAt": "2025-06-09",
       "updatedAt": "2025-06-09",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
     },
@@ -699,6 +754,7 @@
       "createdAt": "2026-08-09",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -711,6 +767,7 @@
       "createdAt": "2026-07-24",
       "updatedAt": "2026-07-26",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -723,6 +780,7 @@
       "createdAt": "2026-07-19",
       "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -735,6 +793,7 @@
       "createdAt": "2026-07-13",
       "updatedAt": "2026-07-13",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     },
@@ -751,6 +810,7 @@
       "createdAt": "2018-12-29",
       "updatedAt": "2018-12-29",
       "hasLiveUrl": false,
+      "artifactStatus": "review-needed",
       "artifactReviewNeeded": true,
       "documentationState": "unreviewed"
     },
@@ -766,6 +826,7 @@
       "createdAt": "2026-05-08",
       "updatedAt": "2026-05-08",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -781,6 +842,7 @@
       "createdAt": "2026-04-22",
       "updatedAt": "2026-04-23",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -796,6 +858,7 @@
       "createdAt": "2026-04-13",
       "updatedAt": "2026-04-21",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -811,6 +874,7 @@
       "createdAt": "2026-03-27",
       "updatedAt": "2026-03-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -826,6 +890,7 @@
       "createdAt": "2025-06-02",
       "updatedAt": "2025-07-26",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -841,6 +906,7 @@
       "createdAt": "2026-05-14",
       "updatedAt": "2026-05-14",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -856,6 +922,7 @@
       "createdAt": "2026-04-27",
       "updatedAt": "2026-04-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -871,6 +938,7 @@
       "createdAt": "2025-05-31",
       "updatedAt": "2025-06-09",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -886,6 +954,7 @@
       "createdAt": "2026-05-07",
       "updatedAt": "2026-05-07",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -900,6 +969,7 @@
       "createdAt": "2026-08-13",
       "updatedAt": "2026-08-13",
       "hasLiveUrl": false,
+      "artifactStatus": "review-needed",
       "artifactReviewNeeded": true,
       "documentationState": "unreviewed"
     },
@@ -914,6 +984,7 @@
       "createdAt": "2020-08-02",
       "updatedAt": "2020-08-03",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -928,6 +999,7 @@
       "createdAt": "2026-03-21",
       "updatedAt": "2026-03-27",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
     },
@@ -940,6 +1012,7 @@
       "createdAt": "2026-05-31",
       "updatedAt": "2026-05-31",
       "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "verified"
     }
