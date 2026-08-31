@@ -6,10 +6,7 @@ const repositoryName = (process.env.GITHUB_REPOSITORY || `${owner}/worksportfoli
 const token = process.env.GITHUB_TOKEN || '';
 const outputPath = new URL('../data/catalog.json', import.meta.url);
 const configPath = new URL('../data/portfolio-config.json', import.meta.url);
-const manualProjectPaths = [
-  new URL('../data/manual-projects.json', import.meta.url),
-  new URL('../data/manual-projects-extra.json', import.meta.url)
-];
+const projectsPath = new URL('../data/projects.json', import.meta.url);
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -59,50 +56,10 @@ async function fetchLastHumanCommitDate() {
   }
 }
 
-async function readManualProjectIds() {
-  const ids = new Set();
-  for (const path of manualProjectPaths) {
-    try {
-      const rows = JSON.parse(await readFile(path, 'utf8'));
-      if (!Array.isArray(rows)) continue;
-      rows.forEach((item) => {
-        if (item?.id) ids.add(String(item.id));
-      });
-    } catch (error) {
-      if (error?.code !== 'ENOENT') {
-        console.warn(`Could not read ${path.pathname}: ${error.message}`);
-      }
-    }
-  }
-  return ids;
-}
-
-function sanitizeConfig(config, publicRepoIds, manualProjectIds) {
-  const keepId = (value) => {
-    const id = String(value || '');
-    return publicRepoIds.has(id) || manualProjectIds.has(id);
-  };
-
-  const hiddenIds = Array.isArray(config.hiddenIds)
-    ? config.hiddenIds.filter(keepId)
-    : [];
-
-  const overrides = config.overrides && typeof config.overrides === 'object'
-    ? Object.fromEntries(Object.entries(config.overrides).filter(([id]) => keepId(id)))
-    : {};
-
-  return { ...config, hiddenIds, overrides };
-}
-
-function cleanDate(value) {
-  return value ? String(value).slice(0, 10) : '';
-}
-
+function cleanDate(value) { return value ? String(value).slice(0, 10) : ''; }
 function toCatalogEntry(repo, selfUpdatedAt) {
   const pagesUrl = repo.has_pages ? `https://${owner}.github.io/${repo.name}/` : '';
-  const updatedAt = repo.name === repositoryName && selfUpdatedAt
-    ? selfUpdatedAt
-    : (repo.pushed_at || repo.updated_at);
+  const updatedAt = repo.name === repositoryName && selfUpdatedAt ? selfUpdatedAt : (repo.pushed_at || repo.updated_at);
   return {
     id: repo.name,
     name: repo.name,
@@ -123,14 +80,13 @@ function toCatalogEntry(repo, selfUpdatedAt) {
 }
 
 async function readExistingCatalog() {
-  try {
-    return JSON.parse(await readFile(outputPath, 'utf8'));
-  } catch (_) {
-    return null;
-  }
+  try { return JSON.parse(await readFile(outputPath, 'utf8')); }
+  catch (_) { return null; }
 }
 
 const rawConfig = JSON.parse(await readFile(configPath, 'utf8'));
+const projects = JSON.parse(await readFile(projectsPath, 'utf8'));
+const canonicalIds = new Set((Array.isArray(projects) ? projects : []).map((project) => String(project?.id || '')).filter(Boolean));
 const selfUpdatedAt = await fetchLastHumanCommitDate();
 const repositories = (await fetchRepositories())
   .filter((repo) => repo.visibility === 'public' || !repo.visibility)
@@ -138,17 +94,27 @@ const repositories = (await fetchRepositories())
   .sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)) || a.name.localeCompare(b.name));
 
 const publicRepoIds = new Set(repositories.map((repo) => repo.id));
-const manualProjectIds = await readManualProjectIds();
-const config = sanitizeConfig(rawConfig, publicRepoIds, manualProjectIds);
-const configChanged = JSON.stringify(config) !== JSON.stringify(rawConfig);
-if (configChanged) {
-  await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
-  console.log('Removed stale/private repository references from portfolio-config.json');
+const keepId = (value) => publicRepoIds.has(String(value || '')) || canonicalIds.has(String(value || ''));
+const config = {
+  ...rawConfig,
+  hiddenIds: Array.isArray(rawConfig.hiddenIds) ? rawConfig.hiddenIds.filter(keepId) : []
+};
+if (config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object') {
+  config.repositoryProjectIds = Object.fromEntries(
+    Object.entries(config.repositoryProjectIds).filter(([source, target]) => publicRepoIds.has(source) || canonicalIds.has(target))
+  );
+}
+if ('overrides' in config) {
+  console.warn('Legacy portfolio-config.overrides still exists; migrate it into data/projects.json.');
 }
 
-const hiddenIds = Array.isArray(config.hiddenIds) ? config.hiddenIds : [];
+if (JSON.stringify(config) !== JSON.stringify(rawConfig)) {
+  await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
+  console.log('Removed stale repository references from portfolio-config.json');
+}
+
 const existing = await readExistingCatalog();
-const nextPayload = { owner, repositoryCount: repositories.length, hiddenIds, repositories };
+const nextPayload = { owner, repositoryCount: repositories.length, hiddenIds: config.hiddenIds || [], repositories };
 const existingPayload = existing ? {
   owner: existing.owner,
   repositoryCount: existing.repositoryCount,
@@ -156,11 +122,7 @@ const existingPayload = existing ? {
   repositories: existing.repositories
 } : null;
 const unchanged = existingPayload && JSON.stringify(existingPayload) === JSON.stringify(nextPayload);
-
-const output = {
-  generatedAt: unchanged && existing.generatedAt ? existing.generatedAt : new Date().toISOString(),
-  ...nextPayload
-};
+const output = { generatedAt: unchanged && existing.generatedAt ? existing.generatedAt : new Date().toISOString(), ...nextPayload };
 
 await mkdir(new URL('../data/', import.meta.url), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
