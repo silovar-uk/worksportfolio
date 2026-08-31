@@ -67,13 +67,23 @@ const checkRefs = (label, ids, allowed = knownProjects) => {
     if (!allowed.has(id)) errors.push(`${label}: unknown reference ${id}`);
   }
 };
+const checkLegacyRelations = (label, ids) => {
+  const seen = new Set();
+  for (const raw of ids || []) {
+    const id = String(raw || '');
+    if (!id) continue;
+    if (seen.has(id)) warnings.push(`${label}: duplicate legacy relation ${id}`);
+    seen.add(id);
+    if (!knownProjects.has(id)) warnings.push(`${label}: stale legacy relation ${id}`);
+  }
+};
 
 checkRefs('hiddenIds', config.hiddenIds || [], knownSourcesOrProjects);
 checkRefs('showcase.featuredProjectIds', taxonomy.showcase?.featuredProjectIds || []);
 for (const family of taxonomy.families || []) checkRefs(`family:${family.id}`, family.projectIds || []);
 for (const principle of taxonomy.principles || []) checkRefs(`principle:${principle.id}`, principle.projectIds || []);
 for (const project of projects) {
-  checkRefs(`relations:${project.id}`, (project.relatedProjects || []).map((relation) => relation?.id || relation?.target));
+  checkLegacyRelations(`relations:${project.id}`, (project.relatedProjects || []).map((relation) => relation?.id || relation?.target));
 }
 for (const projectId of Object.keys(starts || {})) {
   if (!knownProjects.has(projectId) && !repoNames.has(projectId)) warnings.push(`project-start-dates: orphan record ${projectId}`);
