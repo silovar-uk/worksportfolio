@@ -6,10 +6,7 @@ const writeJson = async (path, value) => writeFile(new URL(path, root), `${JSON.
 
 const config = await readJson('data/portfolio-config.json');
 const catalog = await readJson('data/catalog.json');
-const manualProjects = [
-  ...(await readJson('data/manual-projects.json')),
-  ...(await readJson('data/manual-projects-extra.json'))
-];
+const projects = await readJson('data/projects.json');
 const audit = await readJson('data/pattern-audit.json');
 const rules = await readJson('data/pattern-merge-rules.json');
 const projectStartDates = await readJson('data/project-start-dates.json');
@@ -24,8 +21,8 @@ const publicProjectIds = repositories
     return repositoryId ? (repositoryProjectIds[repositoryId] || repositoryId) : '';
   })
   .filter(Boolean);
-const manualProjectIds = manualProjects.map((project) => project?.id ? String(project.id) : '').filter(Boolean);
-const allowed = new Set([...publicProjectIds, ...manualProjectIds]);
+const canonicalIds = (Array.isArray(projects) ? projects : []).map((project) => project?.id ? String(project.id) : '').filter(Boolean);
+const allowed = new Set([...publicProjectIds, ...canonicalIds]);
 
 const candidateFiles = Array.isArray(audit.candidateFiles) ? audit.candidateFiles : [];
 const allCandidates = [];
@@ -59,17 +56,8 @@ for (const candidate of allCandidates) {
 const originalOrder = new Map((Array.isArray(audit.coverage) ? audit.coverage : []).map((item, index) => [item.projectId, index]));
 const coverage = [...projectCounts.keys()]
   .sort((a, b) => (originalOrder.get(a) ?? 9999) - (originalOrder.get(b) ?? 9999) || a.localeCompare(b))
-  .map((projectId) => ({
-    projectId,
-    candidateCount: projectCounts.get(projectId),
-    verification: [...projectVerification.get(projectId)]
-  }));
-const nextAudit = {
-  ...audit,
-  projectCount: coverage.length,
-  candidateCount: allCandidates.length,
-  coverage
-};
+  .map((projectId) => ({ projectId, candidateCount: projectCounts.get(projectId), verification: [...projectVerification.get(projectId)] }));
+const nextAudit = { ...audit, projectCount: coverage.length, candidateCount: allCandidates.length, coverage };
 if (JSON.stringify(nextAudit) !== JSON.stringify(audit)) await writeJson('data/pattern-audit.json', nextAudit);
 
 const nextStartDates = Object.fromEntries(Object.entries(projectStartDates).filter(([projectId]) => allowed.has(projectId)));
