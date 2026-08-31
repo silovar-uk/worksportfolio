@@ -16,7 +16,8 @@
     "2026eventlist",
     "predictattendance",
     "quickliks",
-    "todomanager"
+    "todomanager",
+    "keygridexpansion"
   ],
   "repositoryProjectIds": {
     "worksportfolio": "build-diary",
