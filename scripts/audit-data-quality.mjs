@@ -39,11 +39,9 @@ function distance(a, b) {
 const familyIds = new Set();
 for (const family of taxonomy.families || []) for (const id of family.projectIds || []) familyIds.add(id);
 
-const hiddenProjectIds = new Set();
-for (const id of hidden) {
-  hiddenProjectIds.add(repositoryProjectIds[id] || id);
-}
-const reviewableCanonical = canonical.filter((project) => project?.id && !hidden.has(project.id) && !hiddenProjectIds.has(project.id));
+// hiddenIds may refer to either a source repository or a Project ID. A hidden source
+// alias must not hide its canonical target when another visible source still represents it.
+const reviewableCanonical = canonical.filter((project) => project?.id && !hidden.has(project.id));
 const excludedCanonical = canonical.filter((project) => !reviewableCanonical.includes(project)).map((project) => project.id);
 
 const verbCounts = new Map();
