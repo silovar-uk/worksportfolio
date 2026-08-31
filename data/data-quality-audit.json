@@ -1,0 +1,1270 @@
+{
+  "summary": {
+    "generatedAt": "2026-08-31T13:56:48.064Z",
+    "canonicalProjects": 67,
+    "privateSafeProjects": 11,
+    "publicRepositories": 73,
+    "visiblePublicRepositories": 60,
+    "verifiedDocumentation": 46,
+    "inferredDocumentation": 16,
+    "unreviewedDocumentation": 5,
+    "missingFriction": 5,
+    "missingFirstBuild": 5,
+    "missingCurrentAnswer": 5,
+    "missingStartedAt": 2,
+    "withoutRelations": 23,
+    "consistencyIssues": 3,
+    "unresolvedDuplicateCandidates": 0,
+    "canonicalWithoutPublicRepo": 7,
+    "sourceWithoutCanonical": 0
+  },
+  "records": [
+    {
+      "id": "keygridexpansion",
+      "score": 4,
+      "maxScore": 12,
+      "quality": "poor",
+      "documentationState": "unreviewed",
+      "missing": [
+        "description",
+        "friction",
+        "firstBuild",
+        "currentAnswer",
+        "technology",
+        "documentation",
+        "relation",
+        "artifact"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "repository-created-fallback",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "convinitools",
+      "score": 5,
+      "maxScore": 12,
+      "quality": "needs-review",
+      "documentationState": "unreviewed",
+      "missing": [
+        "description",
+        "friction",
+        "firstBuild",
+        "currentAnswer",
+        "documentation",
+        "relation",
+        "artifact"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "quicklinksexpansion",
+      "score": 5,
+      "maxScore": 12,
+      "quality": "needs-review",
+      "documentationState": "unreviewed",
+      "missing": [
+        "description",
+        "friction",
+        "firstBuild",
+        "currentAnswer",
+        "documentation",
+        "relation",
+        "artifact"
+      ],
+      "hasFamily": true,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "baseballquiz",
+      "score": 6,
+      "maxScore": 12,
+      "quality": "needs-review",
+      "documentationState": "unreviewed",
+      "missing": [
+        "description",
+        "friction",
+        "firstBuild",
+        "currentAnswer",
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "myessays",
+      "score": 8,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "verified",
+      "missing": [
+        "friction",
+        "firstBuild",
+        "currentAnswer",
+        "relation"
+      ],
+      "hasFamily": true,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "consultingstudy",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "countupapp",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "lineworks-scroll-copy",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "verified",
+      "missing": [
+        "chronology",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "ooh",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "resultcalc",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "shogibanmen",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "timeconverter",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "x-auto-screenshot-scroll",
+      "score": 10,
+      "maxScore": 12,
+      "quality": "good",
+      "documentationState": "verified",
+      "missing": [
+        "chronology",
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "100yearvision",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "accountinglearn",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "akasma",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "commonpoint",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "cssanimationlists",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "englisharcade",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "ennnichimock",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "footballisfun",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "fourier",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "imagetuning",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "kakidas",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "lineworks-logger",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "memo",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "memoexpansion",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "artifact"
+      ],
+      "hasFamily": true,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "mymindmap",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "newsquiz",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "patternlanguage",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "pdflinks",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "poco-a-poco",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "repository-created",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "rockvsbra",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "unreviewed",
+      "missing": [
+        "documentation"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "tabshelter",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "artifact"
+      ],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "whatsthiswiki",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "zeldasbsp",
+      "score": 11,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [
+        "relation"
+      ],
+      "hasFamily": false,
+      "relationCount": 0,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "build-diary",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "contentslibrary",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "converter",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "countvoice",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "dailyenglishchunks",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "designmd",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 4,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "diff",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "flowmap",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "gantt",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "hangul",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "karaoke-db",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "manual",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "keygrid",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 1,
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "likewhat",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 3,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "manontec",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "marisast6",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "mmmpocket",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "multimemos",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 3,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "mydailylog",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "mydictionary",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "myglossary",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 2,
+      "startedAtBasis": "repository-first-commit-jst",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "myspines",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "payment-case-manager",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "pdfclipper",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "private-memo",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 3,
+      "startedAtBasis": "manual",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "prompts",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "quicklinks",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "simplememotool",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "st6training",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
+      "id": "sukan",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "techniques",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 2,
+      "startedAtBasis": "repository-first-commit-jst",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "vocabularies",
+      "score": 12,
+      "maxScore": 12,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missing": [],
+      "hasFamily": true,
+      "relationCount": 2,
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    }
+  ],
+  "consistencyIssues": [
+    {
+      "id": "lineworks-scroll-copy",
+      "issue": "verified-but-core-metadata-missing"
+    },
+    {
+      "id": "payment-case-manager",
+      "issue": "chrome-extension-type-mismatch",
+      "type": "learning-tool",
+      "technologies": [
+        "Chrome Extension",
+        "JavaScript",
+        "Manifest V3",
+        "freee"
+      ]
+    },
+    {
+      "id": "x-auto-screenshot-scroll",
+      "issue": "verified-but-core-metadata-missing"
+    }
+  ],
+  "duplicateCandidates": [
+    {
+      "a": "quicklinks",
+      "b": "quickliks",
+      "distance": 1,
+      "aProject": "quicklinks",
+      "bProject": "quicklinks",
+      "resolution": "same-project-mapped"
+    }
+  ],
+  "duplicateTitles": [],
+  "canonicalWithoutPublicRepo": [
+    "karaoke-db",
+    "keygrid",
+    "lineworks-logger",
+    "lineworks-scroll-copy",
+    "payment-case-manager",
+    "private-memo",
+    "x-auto-screenshot-scroll"
+  ],
+  "sourceWithoutCanonical": [],
+  "vocabulary": {
+    "types": [
+      {
+        "value": "learning-tool",
+        "count": 24
+      },
+      {
+        "value": "web-app",
+        "count": 13
+      },
+      {
+        "value": "chrome-extension",
+        "count": 10
+      },
+      {
+        "value": "content-page",
+        "count": 8
+      },
+      {
+        "value": "utility",
+        "count": 6
+      },
+      {
+        "value": "design-system",
+        "count": 5
+      },
+      {
+        "value": "data-tool",
+        "count": 1
+      }
+    ],
+    "verbs": [
+      {
+        "value": "学ぶ",
+        "count": 17
+      },
+      {
+        "value": "整理する",
+        "count": 13
+      },
+      {
+        "value": "探す",
+        "count": 11
+      },
+      {
+        "value": "記録する",
+        "count": 9
+      },
+      {
+        "value": "確認する",
+        "count": 6
+      },
+      {
+        "value": "考える",
+        "count": 6
+      },
+      {
+        "value": "書く",
+        "count": 6
+      },
+      {
+        "value": "振り返る",
+        "count": 6
+      },
+      {
+        "value": "作る",
+        "count": 5
+      },
+      {
+        "value": "伝える",
+        "count": 5
+      },
+      {
+        "value": "比べる",
+        "count": 5
+      },
+      {
+        "value": "続ける",
+        "count": 4
+      },
+      {
+        "value": "見つける",
+        "count": 3
+      },
+      {
+        "value": "言語化する",
+        "count": 3
+      },
+      {
+        "value": "選ぶ",
+        "count": 3
+      },
+      {
+        "value": "育てる",
+        "count": 2
+      },
+      {
+        "value": "確かめる",
+        "count": 2
+      },
+      {
+        "value": "共有する",
+        "count": 2
+      },
+      {
+        "value": "計算する",
+        "count": 2
+      },
+      {
+        "value": "思い出す",
+        "count": 2
+      },
+      {
+        "value": "試す",
+        "count": 2
+      },
+      {
+        "value": "集中する",
+        "count": 2
+      },
+      {
+        "value": "書き出す",
+        "count": 2
+      },
+      {
+        "value": "組み立てる",
+        "count": 2
+      },
+      {
+        "value": "変換する",
+        "count": 2
+      },
+      {
+        "value": "つなぐ",
+        "count": 1
+      },
+      {
+        "value": "移動する",
+        "count": 1
+      },
+      {
+        "value": "引き直す",
+        "count": 1
+      },
+      {
+        "value": "歌う",
+        "count": 1
+      },
+      {
+        "value": "解く",
+        "count": 1
+      },
+      {
+        "value": "管理する",
+        "count": 1
+      },
+      {
+        "value": "区切る",
+        "count": 1
+      },
+      {
+        "value": "計画する",
+        "count": 1
+      },
+      {
+        "value": "見る",
+        "count": 1
+      },
+      {
+        "value": "見積もる",
+        "count": 1
+      },
+      {
+        "value": "参加する",
+        "count": 1
+      },
+      {
+        "value": "残す",
+        "count": 1
+      },
+      {
+        "value": "使う",
+        "count": 1
+      },
+      {
+        "value": "指示する",
+        "count": 1
+      },
+      {
+        "value": "実行する",
+        "count": 1
+      },
+      {
+        "value": "守る",
+        "count": 1
+      },
+      {
+        "value": "拾う",
+        "count": 1
+      },
+      {
+        "value": "集める",
+        "count": 1
+      },
+      {
+        "value": "出力する",
+        "count": 1
+      },
+      {
+        "value": "申請する",
+        "count": 1
+      },
+      {
+        "value": "推理する",
+        "count": 1
+      },
+      {
+        "value": "整える",
+        "count": 1
+      },
+      {
+        "value": "声に出す",
+        "count": 1
+      },
+      {
+        "value": "切り替える",
+        "count": 1
+      },
+      {
+        "value": "切り抜く",
+        "count": 1
+      },
+      {
+        "value": "設計する",
+        "count": 1
+      },
+      {
+        "value": "操作する",
+        "count": 1
+      },
+      {
+        "value": "退避する",
+        "count": 1
+      },
+      {
+        "value": "鍛える",
+        "count": 1
+      },
+      {
+        "value": "直す",
+        "count": 1
+      },
+      {
+        "value": "読み返す",
+        "count": 1
+      },
+      {
+        "value": "読む",
+        "count": 1
+      },
+      {
+        "value": "判断する",
+        "count": 1
+      },
+      {
+        "value": "復元する",
+        "count": 1
+      },
+      {
+        "value": "復習する",
+        "count": 1
+      },
+      {
+        "value": "並べ替える",
+        "count": 1
+      },
+      {
+        "value": "保存する",
+        "count": 1
+      },
+      {
+        "value": "遊ぶ",
+        "count": 1
+      },
+      {
+        "value": "練習する",
+        "count": 1
+      },
+      {
+        "value": "話す",
+        "count": 1
+      }
+    ]
+  }
+}
