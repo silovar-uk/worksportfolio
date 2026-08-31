@@ -24,6 +24,14 @@ for (const family of taxonomy.families || []) {
   }
 }
 
+const artifactStatus = (repo, project) => {
+  if (repo.liveUrl || project.liveUrl) return 'live-url-recorded';
+  if (project.type === 'chrome-extension') return 'extension-no-public-url-expected';
+  if (project.visibility === 'local') return 'local-only';
+  if (project.visibility === 'private' || project.sourceVisibility === 'private') return 'private';
+  return 'review-needed';
+};
+
 const validStates = new Set(['discovered', 'candidate', 'curated', 'published', 'hidden']);
 const items = [];
 for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : []) {
@@ -41,6 +49,7 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
   if (!repo.description && !project.summary) reasons.push('generic-summary');
   if (!repo.language && !(Array.isArray(project.technologies) && project.technologies.length)) reasons.push('technology-unknown');
 
+  const artifact = artifactStatus(repo, project);
   items.push({
     id: repoId,
     projectId,
@@ -50,7 +59,8 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
     createdAt: createdAt || null,
     updatedAt: String(repo.updatedAt || repo.pushedAt || '').slice(0, 10) || null,
     hasLiveUrl: Boolean(repo.liveUrl || project.liveUrl),
-    artifactReviewNeeded: !repo.liveUrl && !project.liveUrl,
+    artifactStatus: artifact,
+    artifactReviewNeeded: artifact === 'review-needed',
     documentationState: project.documentationState || 'unreviewed'
   });
 }
