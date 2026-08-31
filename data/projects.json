@@ -721,13 +721,10 @@
     "makingPrinciples": []
   },
   {
-    "id": "dailyenglishchunks",
     "title": "Daily English Chunks",
     "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
     "summary": "短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。",
-    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
-    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
-    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
+    "icon": "🗣️",
     "type": "learning-tool",
     "verbs": [
       "読む",
@@ -735,6 +732,18 @@
       "声に出す"
     ],
     "status": "active",
+    "documentationState": "verified",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
+    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
+    "id": "dailyenglishchunks",
+    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
+    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
+    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
     "visibility": "public",
     "featured": true,
     "createdAt": "2026-08-07",
@@ -744,14 +753,6 @@
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
-    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "localStorage"
-    ],
-    "documentationState": "verified",
     "relatedProjects": [
       {
         "id": "hangul",
@@ -778,7 +779,6 @@
       "英語学習",
       "reading practice"
     ],
-    "icon": "🗣️",
     "portfolioFamilies": [
       "Learning & Practice"
     ],
@@ -1609,13 +1609,10 @@
     "makingPrinciples": []
   },
   {
-    "id": "likewhat",
     "title": "LikeWhat",
     "subtitle": "「この感じ」を言葉とモックで探すデザイン参照集",
     "summary": "Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。",
-    "friction": "『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。",
-    "firstBuild": "既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。",
-    "currentAnswer": "ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。",
+    "icon": "◫",
     "type": "design-system",
     "verbs": [
       "探す",
@@ -1623,8 +1620,20 @@
       "言語化する"
     ],
     "status": "active",
-    "visibility": "public",
     "featured": true,
+    "documentationState": "verified",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "liveUrl": "https://silovar-uk.github.io/likewhat/",
+    "id": "likewhat",
+    "friction": "『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。",
+    "firstBuild": "既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。",
+    "currentAnswer": "ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。",
+    "visibility": "public",
     "createdAt": "2026-08-09",
     "createdAtPrecision": "day",
     "updatedAt": "2026-08-10",
@@ -1632,14 +1641,6 @@
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "repositoryUrl": "https://github.com/silovar-uk/likewhat",
-    "liveUrl": "https://silovar-uk.github.io/likewhat/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
     "relatedProjects": [
       {
         "id": "designmd",
@@ -1674,7 +1675,6 @@
       "ブランドデザイン",
       "UI参考"
     ],
-    "icon": "◫",
     "portfolioFamilies": [
       "Design & Communication"
     ],
@@ -2272,13 +2272,10 @@
     "makingPrinciples": []
   },
   {
-    "id": "myessays",
     "title": "My Essays",
     "subtitle": "論文・エッセイ・レビューを育てる個人アーカイブ",
     "summary": "Markdownで書いた論考を、全文検索・分類・お気に入り・読書ビューとともに蓄積し、あとから読み直しやすくする公開アーカイブ。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
+    "icon": "📄",
     "type": "content-page",
     "verbs": [
       "書く",
@@ -2286,6 +2283,18 @@
       "読み返す"
     ],
     "status": "active",
+    "documentationState": "verified",
+    "technologies": [
+      "Markdown",
+      "HTML",
+      "JavaScript",
+      "GitHub Pages"
+    ],
+    "liveUrl": "https://silovar-uk.github.io/myessays/",
+    "id": "myessays",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
     "visibility": "public",
     "featured": false,
     "createdAt": "2026-08-07",
@@ -2295,14 +2304,6 @@
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "repositoryUrl": "https://github.com/silovar-uk/myessays",
-    "liveUrl": "https://silovar-uk.github.io/myessays/",
-    "technologies": [
-      "Markdown",
-      "HTML",
-      "JavaScript",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
     "relatedProjects": [],
     "updates": [],
     "aside": "",
@@ -2317,7 +2318,6 @@
       "読み物",
       "論考"
     ],
-    "icon": "📄",
     "portfolioFamilies": [
       "Writing & Knowledge"
     ],
@@ -2326,13 +2326,10 @@
     ]
   },
   {
-    "id": "myglossary",
     "title": "My Glossary",
     "subtitle": "学んだ言葉を、使える形で少しずつ残す個人用語集",
     "summary": "学んだ言葉を「一言で・もう少し詳しく・具体例・なぜ覚えた？・関連語」の形で残し、検索や最近の学習履歴から引き直せる個人用の用語集。",
-    "friction": "言葉の意味をその場では理解しても、あとで自分の言葉として説明したり、具体的な場面で使ったりできないまま忘れやすかった。",
-    "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
-    "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
+    "icon": "📚",
     "type": "learning-tool",
     "verbs": [
       "学ぶ",
@@ -2340,6 +2337,18 @@
       "引き直す"
     ],
     "status": "active",
+    "documentationState": "verified",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "liveUrl": "https://silovar-uk.github.io/myglossary/",
+    "id": "myglossary",
+    "friction": "言葉の意味をその場では理解しても、あとで自分の言葉として説明したり、具体的な場面で使ったりできないまま忘れやすかった。",
+    "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
+    "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
     "visibility": "public",
     "featured": false,
     "createdAt": "2026-08-17",
@@ -2349,14 +2358,6 @@
     "startedAtPrecision": "day",
     "startedAtBasis": "repository-first-commit-jst",
     "repositoryUrl": "https://github.com/silovar-uk/myglossary",
-    "liveUrl": "https://silovar-uk.github.io/myglossary/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
     "relatedProjects": [
       {
         "id": "vocabularies",
@@ -2388,7 +2389,6 @@
       "言葉メモ",
       "学習辞書"
     ],
-    "icon": "📚",
     "portfolioFamilies": [
       "Learning & Practice"
     ],
@@ -3471,13 +3471,10 @@
     "makingPrinciples": []
   },
   {
-    "id": "sukan",
     "title": "数感",
     "subtitle": "数字の勘を1分ずつ鍛えるミニゲーム",
     "summary": "8問・最大60秒で、暗算だけでなく人口・地理・宇宙・人体など現実の数字の桁感まで練習できる数字ゲーム。",
-    "friction": "数字を正確に計算できても、妥当な規模感を素早くつかみにくかった。",
-    "firstBuild": "1分・4択の推定問題から始めた。",
-    "currentAnswer": "正解暗記ではなく、現実的な桁を選ぶ感覚のトレーニング。",
+    "icon": "🔢",
     "type": "learning-tool",
     "verbs": [
       "計算する",
@@ -3485,21 +3482,25 @@
       "鍛える"
     ],
     "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/sukan",
-    "githubId": "1287213529",
-    "liveUrl": "https://silovar-uk.github.io/sukan/",
-    "liveUrlStatus": "candidate",
+    "documentationState": "verified",
     "technologies": [
       "HTML",
       "CSS",
       "JavaScript",
       "localStorage"
     ],
-    "documentationState": "verified",
+    "liveUrl": "https://silovar-uk.github.io/sukan/",
+    "id": "sukan",
+    "friction": "数字を正確に計算できても、妥当な規模感を素早くつかみにくかった。",
+    "firstBuild": "1分・4択の推定問題から始めた。",
+    "currentAnswer": "正解暗記ではなく、現実的な桁を選ぶ感覚のトレーニング。",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/sukan",
+    "githubId": "1287213529",
+    "liveUrlStatus": "candidate",
     "map": {
       "group": "learning",
       "x": 70,
@@ -3530,7 +3531,6 @@
       "見積もり",
       "概算"
     ],
-    "icon": "🔢",
     "portfolioFamilies": [
       "Learning & Practice"
     ],
@@ -3610,13 +3610,10 @@
     "makingPrinciples": []
   },
   {
-    "id": "techniques",
     "title": "Techniques",
     "subtitle": "「あれ、どうやるんやったっけ？」を10秒で取り戻す、生活と仕事の手順辞典",
     "summary": "PC・動画・Webだけでなく、仕事や暮らしまで含めて、あとで忘れそうな小さなやり方を「結論 → 最短手順 → 補足」の形で蓄積する個人用How-to集。検索とカテゴリから目的の手順へすぐ戻れる。",
-    "friction": "一度調べて解決した小ネタほど、数週間後には手順を忘れて同じことをまた検索し直していた。IT系だけでなく、生活や仕事の細かな手順も同じように散らばっていた。",
-    "firstBuild": "MOVファイルから音声だけ抜く方法を1本目として、FFmpegのコマンド、手順、コマンドの意味、音質を落とさず抜く方法をひとまとまりにした。",
-    "currentAnswer": "検索を主役に、カテゴリ・タグ・個別ページ・コマンドコピーを備え、JSONへ1件追加すれば一覧と検索へ反映できる静的な手順辞典。ITに限定せず、PC・仕事・暮らしなどの小さな実用知を増やしていく。",
+    "icon": "🛠️",
     "type": "utility",
     "verbs": [
       "探す",
@@ -3624,6 +3621,19 @@
       "試す"
     ],
     "status": "active",
+    "documentationState": "verified",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON",
+      "GitHub Pages"
+    ],
+    "liveUrl": "https://silovar-uk.github.io/techniques/",
+    "id": "techniques",
+    "friction": "一度調べて解決した小ネタほど、数週間後には手順を忘れて同じことをまた検索し直していた。IT系だけでなく、生活や仕事の細かな手順も同じように散らばっていた。",
+    "firstBuild": "MOVファイルから音声だけ抜く方法を1本目として、FFmpegのコマンド、手順、コマンドの意味、音質を落とさず抜く方法をひとまとまりにした。",
+    "currentAnswer": "検索を主役に、カテゴリ・タグ・個別ページ・コマンドコピーを備え、JSONへ1件追加すれば一覧と検索へ反映できる静的な手順辞典。ITに限定せず、PC・仕事・暮らしなどの小さな実用知を増やしていく。",
     "visibility": "public",
     "featured": false,
     "createdAt": "2026-08-18",
@@ -3633,15 +3643,6 @@
     "startedAtPrecision": "day",
     "startedAtBasis": "repository-first-commit-jst",
     "repositoryUrl": "https://github.com/silovar-uk/techniques",
-    "liveUrl": "https://silovar-uk.github.io/techniques/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
     "searchAliases": [
       "Techniques",
       "テクニック",
@@ -3676,7 +3677,6 @@
       }
     ],
     "aside": "覚えるより、戻れる場所を作る。",
-    "icon": "🛠️",
     "portfolioFamilies": [
       "Writing & Knowledge"
     ],
