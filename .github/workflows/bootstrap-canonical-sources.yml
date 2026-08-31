@@ -1,0 +1,71 @@
+name: Bootstrap canonical portfolio sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/bootstrap-canonical-sources.mjs'
+      - '.github/workflows/bootstrap-canonical-sources.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-bootstrap-canonical
+  cancel-in-progress: true
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate migration script
+        run: node --check scripts/bootstrap-canonical-sources.mjs
+
+      - name: Bootstrap explicit source files
+        run: node scripts/bootstrap-canonical-sources.mjs
+
+      - name: Validate migrated project data
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const projects = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
+          const periods = JSON.parse(fs.readFileSync('data/periods.json', 'utf8'));
+          const settings = JSON.parse(fs.readFileSync('data/settings.json', 'utf8'));
+          if (!Array.isArray(projects) || projects.length < 50) throw new Error(`Too few migrated projects: ${projects.length}`);
+          if (!Array.isArray(periods)) throw new Error('periods.json must be an array');
+          if (!settings || typeof settings !== 'object') throw new Error('settings.json must be an object');
+          const ids = new Set();
+          for (const project of projects) {
+            if (!project?.id) throw new Error('Migrated project without id');
+            if (ids.has(project.id)) throw new Error(`Duplicate migrated id: ${project.id}`);
+            ids.add(project.id);
+            if (project.sourceVisibility === 'private' || project.summaryOnly === true) throw new Error(`Private project leaked into canonical public registry: ${project.id}`);
+          }
+          const template = fs.readFileSync('src/index.template.html', 'utf8');
+          if (!template.includes('window.BUILD_DIARY_DATA = __BUILD_DIARY_DATA__;')) throw new Error('Template placeholder missing');
+          if (/worksportfolio-generated-at/.test(template)) throw new Error('Generated metadata leaked into template');
+          console.log(`Validated ${projects.length} migrated projects.`);
+          NODE
+
+      - name: Commit canonical sources
+        run: |
+          if git diff --quiet -- data/projects.json data/periods.json data/settings.json src/index.template.html; then
+            echo "Canonical sources are already bootstrapped."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "4189822+github-actions[bot]@users.noreply.github.com"
+          git add data/projects.json data/periods.json data/settings.json src/index.template.html
+          git commit -m "Bootstrap canonical portfolio sources"
+          git pull --rebase origin main
+          git push
