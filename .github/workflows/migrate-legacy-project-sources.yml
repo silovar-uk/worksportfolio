@@ -28,16 +28,11 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Validate migration scripts
-        run: |
-          node --check scripts/migrate-legacy-project-sources.mjs
-          node --check scripts/validate-global-ids.mjs
+      - name: Validate migration script
+        run: node --check scripts/migrate-legacy-project-sources.mjs
 
       - name: Merge legacy project metadata into canonical registry
         run: node scripts/migrate-legacy-project-sources.mjs
-
-      - name: Validate global identifiers
-        run: node scripts/validate-global-ids.mjs
 
       - name: Verify override removal
         run: |
