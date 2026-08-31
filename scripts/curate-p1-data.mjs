@@ -76,8 +76,23 @@ patch('myessays', {
   currentAnswer: '日本語Markdownを正本に、全文検索、Reader、English Mix / Español Mix、Argument Structure、読書状態を記事IDで束ねる個人アーカイブとして運用している。'
 });
 
+patch('rockvsbra', {
+  title: 'ロックマン 全キャラ対策ガイド ULTIMATE',
+  subtitle: 'スマブラSPのロックマンで89マッチアップを検索・確認する対策ガイド',
+  summary: 'ロックマンの共通戦術、撃墜技、危険度、89キャラ分のマッチアップ対策を検索・Tierフィルター・チェックリスト・練習前ミニカンペで確認できるスマブラSP非公式ガイド。',
+  friction: '対戦相手ごとの注意点や撃墜プランを頭の中だけで覚えると、試合前に必要な対策をすぐ呼び戻しにくかった。',
+  firstBuild: 'ロックマンの共通戦術とキャラ別対策を単一HTMLへ集約し、検索とTier表示を付けた対戦ガイドとして作った。',
+  currentAnswer: '「弾を当てる」より「相手を動かす」を軸に、共通戦術・撃墜技・危険度・89マッチアップ・対戦中の合言葉・練習前カンペを一画面で行き来できる。',
+  type: 'learning-tool',
+  verbs: ['学ぶ', '確認する', '練習する'],
+  technologies: ['HTML', 'CSS', 'JavaScript'],
+  documentationState: 'inferred',
+  relatedProjects: [],
+  searchAliases: ['ロックマン', 'rockman', 'Mega Man', 'スマブラSP', 'smash ultimate', '全キャラ対策', 'マッチアップ', 'rockvsbra']
+});
+
 config.hiddenIds = Array.from(new Set([...(config.hiddenIds || []), 'keygridexpansion']));
 
 await writeFile(projectsPath, `${JSON.stringify(projects, null, 2)}\n`, 'utf8');
 await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
-console.log('Applied P1 metadata curation: 6 project records updated, 2 chronology gaps synced, 1 empty source hidden.');
+console.log('Applied P1 metadata curation: metadata mismatches corrected, chronology gaps synced, one empty source hidden.');
