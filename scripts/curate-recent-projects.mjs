@@ -1,9 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
-const configUrl = new URL('data/portfolio-config.json', root);
 const projectsUrl = new URL('data/projects.json', root);
-const config = JSON.parse(await readFile(configUrl, 'utf8'));
 const projects = JSON.parse(await readFile(projectsUrl, 'utf8'));
 
 const curated = {
@@ -46,25 +44,18 @@ const curated = {
 };
 
 const map = new Map((Array.isArray(projects) ? projects : []).filter((project) => project?.id).map((project) => [project.id, project]));
-let projectChanged = false;
+let changed = false;
 for (const [id, defaults] of Object.entries(curated)) {
   const current = map.get(id) || { id };
   const next = { ...defaults, ...current, id };
   if (JSON.stringify(next) !== JSON.stringify(current)) {
     map.set(id, next);
-    projectChanged = true;
+    changed = true;
   }
 }
 
-const previousHidden = Array.isArray(config.hiddenIds) ? config.hiddenIds : [];
-const nextHidden = Array.from(new Set([...previousHidden, 'tecniques']));
-const configChanged = JSON.stringify(nextHidden) !== JSON.stringify(previousHidden);
-if (configChanged) {
-  config.hiddenIds = nextHidden;
-  await writeFile(configUrl, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
-}
-if (projectChanged) {
+if (changed) {
   const nextProjects = [...map.values()].sort((a, b) => String(a.id).localeCompare(String(b.id)));
   await writeFile(projectsUrl, `${JSON.stringify(nextProjects, null, 2)}\n`, 'utf8');
 }
-console.log(projectChanged || configChanged ? `Curated ${Object.keys(curated).length} recent projects in canonical registry.` : 'Recent project curation is already current.');
+console.log(changed ? `Curated ${Object.keys(curated).length} recent projects in canonical registry.` : 'Recent project curation is already current.');
