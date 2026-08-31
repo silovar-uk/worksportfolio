@@ -3,16 +3,17 @@ import { readFile, writeFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 
-const [policy, config, catalog, taxonomy] = await Promise.all([
+const [policy, config, catalog, taxonomy, projects] = await Promise.all([
   readJson('data/editorial-policy.json'),
   readJson('data/portfolio-config.json'),
   readJson('data/catalog.json'),
-  readJson('data/portfolio-taxonomy.json')
+  readJson('data/portfolio-taxonomy.json'),
+  readJson('data/projects.json')
 ]);
 
 const hidden = new Set(Array.isArray(config.hiddenIds) ? config.hiddenIds : []);
-const overrides = config.overrides && typeof config.overrides === 'object' ? config.overrides : {};
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object' ? config.repositoryProjectIds : {};
+const canonical = new Map((Array.isArray(projects) ? projects : []).filter((project) => project?.id).map((project) => [String(project.id), project]));
 const baseline = String(policy?.publicationGate?.baselineCreatedDateMax || '9999-12-31');
 const familyByProject = new Map();
 for (const family of taxonomy.families || []) {
@@ -29,18 +30,18 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
   const repoId = repo?.name || repo?.id;
   if (!repoId) continue;
   const projectId = repositoryProjectIds[repoId] || repoId;
-  const override = overrides[repoId] || overrides[projectId] || {};
+  const project = canonical.get(projectId) || {};
   const createdAt = String(repo.createdAt || '').slice(0, 10);
   const grandfathered = Boolean(createdAt && createdAt <= baseline);
-  let state = hidden.has(repoId) || hidden.has(projectId) ? 'hidden' : (validStates.has(override.editorialState) ? override.editorialState : '');
+  let state = hidden.has(repoId) || hidden.has(projectId) ? 'hidden' : (validStates.has(project.editorialState) ? project.editorialState : '');
   if (!state) state = grandfathered ? 'published' : (policy?.publicationGate?.defaultNewRepositoryState || 'discovered');
 
   const reasons = [];
-  if (!Object.keys(override).length) reasons.push('no-curation');
-  if (!repo.description && !override.summary) reasons.push('generic-summary');
+  if (!canonical.has(projectId)) reasons.push('no-curation');
+  if (!repo.description && !project.summary) reasons.push('generic-summary');
   if (!(familyByProject.get(projectId) || []).length) reasons.push('no-family');
-  if (!repo.liveUrl && !override.liveUrl) reasons.push('no-live-url');
-  if (!repo.language && !(Array.isArray(override.technologies) && override.technologies.length)) reasons.push('technology-unknown');
+  if (!repo.liveUrl && !project.liveUrl) reasons.push('no-live-url');
+  if (!repo.language && !(Array.isArray(project.technologies) && project.technologies.length)) reasons.push('technology-unknown');
 
   items.push({
     id: repoId,
@@ -50,8 +51,8 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
     families: familyByProject.get(projectId) || [],
     createdAt: createdAt || null,
     updatedAt: String(repo.updatedAt || repo.pushedAt || '').slice(0, 10) || null,
-    hasLiveUrl: Boolean(repo.liveUrl || override.liveUrl),
-    documentationState: override.documentationState || 'unreviewed'
+    hasLiveUrl: Boolean(repo.liveUrl || project.liveUrl),
+    documentationState: project.documentationState || 'unreviewed'
   });
 }
 
@@ -66,11 +67,7 @@ const payload = {
   generatedAt: catalog.generatedAt || new Date().toISOString(),
   policyVersion: policy.version || 1,
   publicRepositoriesOnly: true,
-  summary: {
-    total: items.length,
-    ...counts,
-    withWarnings: warnings
-  },
+  summary: { total: items.length, ...counts, withWarnings: warnings },
   items
 };
 
