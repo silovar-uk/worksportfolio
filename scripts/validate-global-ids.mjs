@@ -10,7 +10,7 @@ const [config, catalog, projects, privateProjects, taxonomy, starts] = await Pro
   readJson('data/portfolio-config.json'),
   readJson('data/catalog.json'),
   readJson('data/projects.json', []),
-  readJson('data/manual-projects-private.json', []),
+  readJson('data/private-projects.json', []),
   readJson('data/portfolio-taxonomy.json'),
   readJson('data/project-start-dates.json', {})
 ]);
@@ -29,8 +29,8 @@ for (const project of projects) {
 }
 for (const project of privateProjects) {
   const id = String(project?.id || '');
-  if (!id) { errors.push('manual-projects-private.json: missing project id'); continue; }
-  if (privateIds.has(id)) errors.push(`manual-projects-private.json: duplicate project id ${id}`);
+  if (!id) { errors.push('private-projects.json: missing project id'); continue; }
+  if (privateIds.has(id)) errors.push(`private-projects.json: duplicate project id ${id}`);
   if (projectIds.has(id)) errors.push(`global-id: private/public collision ${id}`);
   privateIds.add(id);
 }
