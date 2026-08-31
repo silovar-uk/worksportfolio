@@ -1,0 +1,47 @@
+name: Audit portfolio data quality
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/projects.json'
+      - 'data/private-projects.json'
+      - 'data/catalog.json'
+      - 'data/portfolio-config.json'
+      - 'data/portfolio-taxonomy.json'
+      - 'data/project-start-dates.json'
+      - 'scripts/audit-data-quality.mjs'
+      - '.github/workflows/audit-data-quality.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-data-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit data quality
+        run: |
+          node --check scripts/audit-data-quality.mjs
+          node scripts/audit-data-quality.mjs
+      - name: Commit audit when changed
+        run: |
+          if [ -z "$(git status --porcelain -- data/data-quality-audit.json)" ]; then
+            echo "Data quality audit is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/data-quality-audit.json
+          git commit -m "Update portfolio data quality audit"
+          git pull --rebase origin main
+          git push
