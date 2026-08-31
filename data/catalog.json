@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T12:50:28.378Z",
+  "generatedAt": "2026-08-31T14:03:55.294Z",
   "owner": "silovar-uk",
   "repositoryCount": 73,
   "hiddenIds": [
@@ -15,7 +15,8 @@
     "2026eventlist",
     "predictattendance",
     "quickliks",
-    "todomanager"
+    "todomanager",
+    "keygridexpansion"
   ],
   "repositories": [
     {

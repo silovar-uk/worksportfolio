@@ -1,29 +1,15 @@
 {
-  "generatedAt": "2026-08-31T12:50:28.378Z",
+  "generatedAt": "2026-08-31T14:03:55.294Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 73,
-    "published": 60,
-    "hidden": 13,
-    "withWarnings": 1,
-    "artifactReviewNeeded": 5
+    "published": 59,
+    "hidden": 14,
+    "withWarnings": 0,
+    "artifactReviewNeeded": 4
   },
   "items": [
-    {
-      "id": "keygridexpansion",
-      "projectId": "keygridexpansion",
-      "state": "published",
-      "reasons": [
-        "technology-unknown"
-      ],
-      "families": [],
-      "createdAt": "2026-08-13",
-      "updatedAt": "2026-08-13",
-      "hasLiveUrl": false,
-      "artifactReviewNeeded": true,
-      "documentationState": "unreviewed"
-    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -70,7 +56,7 @@
       "updatedAt": "2026-08-18",
       "hasLiveUrl": true,
       "artifactReviewNeeded": false,
-      "documentationState": "unreviewed"
+      "documentationState": "verified"
     },
     {
       "id": "commonpoint",
@@ -130,7 +116,7 @@
       "updatedAt": "2026-08-13",
       "hasLiveUrl": false,
       "artifactReviewNeeded": true,
-      "documentationState": "unreviewed"
+      "documentationState": "inferred"
     },
     {
       "id": "countupapp",
@@ -588,7 +574,7 @@
       "updatedAt": "2026-08-28",
       "hasLiveUrl": false,
       "artifactReviewNeeded": true,
-      "documentationState": "unreviewed"
+      "documentationState": "inferred"
     },
     {
       "id": "resultcalc",
@@ -901,6 +887,20 @@
       "updatedAt": "2026-05-07",
       "hasLiveUrl": true,
       "artifactReviewNeeded": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "keygridexpansion",
+      "projectId": "keygridexpansion",
+      "state": "hidden",
+      "reasons": [
+        "technology-unknown"
+      ],
+      "families": [],
+      "createdAt": "2026-08-13",
+      "updatedAt": "2026-08-13",
+      "hasLiveUrl": false,
+      "artifactReviewNeeded": true,
       "documentationState": "unreviewed"
     },
     {
