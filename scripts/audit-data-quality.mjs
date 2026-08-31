@@ -52,9 +52,10 @@ const consistencyIssues = [];
 const documentationScore = (state) => state === 'verified' ? 1 : state === 'inferred' ? 0.5 : 0;
 const artifactStatus = (project) => {
   if (present(project.liveUrl)) return 'public-url-recorded';
+  if (project.type === 'chrome-extension') return 'extension-no-public-url-expected';
   if (project.visibility === 'local') return 'local-only';
   if (project.visibility === 'private' || project.sourceVisibility === 'private') return 'private';
-  return 'no-public-artifact-recorded';
+  return 'review-needed';
 };
 
 for (const project of reviewableCanonical) {
@@ -161,7 +162,7 @@ const summary = {
   missingCurrentAnswer: reviewableCanonical.filter((project) => !present(project.currentAnswer)).length,
   missingStartedAt: reviewableCanonical.filter((project) => !present(project.startedAt)).length,
   withoutRelations: reviewableCanonical.filter((project) => !present(project.relatedProjects)).length,
-  withoutPublicArtifactRecorded: reviewableCanonical.filter((project) => artifactStatus(project) === 'no-public-artifact-recorded').length,
+  artifactReviewNeeded: reviewableCanonical.filter((project) => artifactStatus(project) === 'review-needed').length,
   consistencyIssues: consistencyIssues.length,
   unresolvedDuplicateCandidates: duplicateCandidates.filter((item) => item.resolution === 'unresolved').length,
   canonicalWithoutPublicRepo: canonicalWithoutPublicRepo.length,
@@ -190,6 +191,6 @@ const payload = {
 
 await writeFile(new URL('data/data-quality-audit.json', root), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 console.log(`Data quality audit: ${summary.reviewableCanonicalProjects} reviewable canonical / ${summary.privateSafeProjects} private-safe / ${summary.publicRepositories} repos; ${summary.consistencyIssues} consistency issues; ${summary.unresolvedDuplicateCandidates} unresolved duplicate candidates.`);
-console.log(`Core completeness: friction ${summary.missingFriction}; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}. Informational: no relations ${summary.withoutRelations}; no public artifact recorded ${summary.withoutPublicArtifactRecorded}.`);
+console.log(`Core completeness: friction ${summary.missingFriction}; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}. Informational: no relations ${summary.withoutRelations}; artifact reviews ${summary.artifactReviewNeeded}.`);
 if (consistencyIssues.length) console.log(`Consistency issues: ${consistencyIssues.map((item) => `${item.id}[${item.issue}]`).join(' | ')}`);
 if (duplicateCandidates.length) console.log(`Duplicate candidates: ${duplicateCandidates.map((item) => `${item.a}↔${item.b}[${item.resolution}]`).join(' | ')}`);
