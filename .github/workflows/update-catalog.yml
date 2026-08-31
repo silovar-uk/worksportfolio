@@ -180,6 +180,21 @@ jobs:
       - name: Validate Private summaries
         run: node scripts/validate-private-summaries.mjs
 
+      - name: Validate canonical boundary
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const projects = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
+          const config = JSON.parse(fs.readFileSync('data/portfolio-config.json', 'utf8'));
+          if ('overrides' in config) throw new Error('Project metadata must not live in portfolio-config.overrides');
+          for (const project of projects) {
+            if (project?.sourceVisibility === 'private' || project?.summaryOnly === true) {
+              throw new Error(`Private summary leaked into canonical public registry: ${project?.id || '(missing)'}`);
+            }
+          }
+          console.log(`Canonical boundary valid: ${projects.length} non-private project records.`);
+          NODE
+
       - name: Build GitHub catalog
         run: node scripts/build-catalog.mjs
         env:
