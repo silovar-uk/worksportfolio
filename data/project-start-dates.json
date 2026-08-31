@@ -404,14 +404,6 @@
     "basis": "repository-created-fallback",
     "repository": "python"
   },
-  "quickliks": {
-    "date": "2026-05-31",
-    "precision": "day",
-    "basis": "first-repository-commit",
-    "repository": "quickliks",
-    "source": "https://github.com/silovar-uk/quickliks/commit/80d884db1a74eec97815ed4b0cffb329403d6d45",
-    "commit": "80d884db1a74eec97815ed4b0cffb329403d6d45"
-  },
   "quicklinks": {
     "date": "2026-06",
     "precision": "month",
