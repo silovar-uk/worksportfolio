@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
-const path = new URL('data/manual-projects-private.json', root);
+const path = new URL('data/private-projects.json', root);
 const projects = JSON.parse(await readFile(path, 'utf8'));
 const issues = [];
 const ids = new Set();
