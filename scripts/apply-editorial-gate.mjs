@@ -5,10 +5,11 @@ const readText = (path) => readFile(new URL(path, root), 'utf8');
 const readJson = async (path) => JSON.parse(await readText(path));
 const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 
-const [policy, config, catalog] = await Promise.all([
+const [policy, config, catalog, projects] = await Promise.all([
   readJson('data/editorial-policy.json'),
   readJson('data/portfolio-config.json'),
-  readJson('data/catalog.json')
+  readJson('data/catalog.json'),
+  readJson('data/projects.json')
 ]);
 
 if (!policy?.publicationGate?.enabled) {
@@ -17,8 +18,8 @@ if (!policy?.publicationGate?.enabled) {
 }
 
 const baseline = String(policy.publicationGate.baselineCreatedDateMax || '9999-12-31');
-const overrides = config.overrides && typeof config.overrides === 'object' ? config.overrides : {};
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object' ? config.repositoryProjectIds : {};
+const canonical = new Map((Array.isArray(projects) ? projects : []).filter((project) => project?.id).map((project) => [String(project.id), project]));
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
 const withheld = new Set();
 
@@ -26,8 +27,8 @@ for (const repo of repositories) {
   const repoId = repo?.name || repo?.id;
   if (!repoId) continue;
   const projectId = repositoryProjectIds[repoId] || repoId;
-  const override = overrides[repoId] || overrides[projectId] || {};
-  const state = override.editorialState || '';
+  const project = canonical.get(projectId) || {};
+  const state = project.editorialState || '';
   const createdAt = String(repo.createdAt || repo.created_at || '').slice(0, 10);
   const grandfathered = Boolean(createdAt && createdAt <= baseline);
   const explicitlyPublished = state === 'published';
@@ -55,7 +56,7 @@ diary.projects = before.filter((project) => !withheld.has(project?.id));
 const valid = new Set(diary.projects.map((project) => project.id));
 
 diary.projects.forEach((project) => {
-  if (Array.isArray(project.relatedProjects)) project.relatedProjects = project.relatedProjects.filter((relation) => relation && valid.has(relation.id));
+  if (Array.isArray(project.relatedProjects)) project.relatedProjects = project.relatedProjects.filter((relation) => relation && valid.has(relation.id || relation.target));
 });
 if (Array.isArray(diary.periods)) diary.periods.forEach((period) => {
   if (Array.isArray(period.projectIds)) period.projectIds = period.projectIds.filter((id) => valid.has(id));
