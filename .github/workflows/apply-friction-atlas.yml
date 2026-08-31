@@ -1,0 +1,84 @@
+name: Apply Friction Atlas UI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'friction-atlas.js'
+      - 'friction-atlas.css'
+      - '.github/workflows/apply-friction-atlas.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-friction-atlas-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check Atlas script
+        run: node --check friction-atlas.js
+
+      - name: Inject Atlas assets into static page
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import re
+
+          html_path = Path('index.html')
+          css_path = Path('friction-atlas.css')
+          js_path = Path('friction-atlas.js')
+
+          html = html_path.read_text(encoding='utf-8')
+          digest = hashlib.sha256(css_path.read_bytes() + b'\0' + js_path.read_bytes()).hexdigest()[:12]
+
+          html = re.sub(r'<link rel="stylesheet" href="friction-atlas\.css\?v=[^"]+">', '', html)
+          html = re.sub(r'<script src="friction-atlas\.js\?v=[^"]+"></script>', '', html)
+
+          css_tag = f'<link rel="stylesheet" href="friction-atlas.css?v={digest}">'
+          js_tag = f'<script src="friction-atlas.js?v={digest}"></script>'
+
+          if '</head>' not in html or '</body>' not in html:
+              raise SystemExit('index.html is missing head/body closing tags')
+
+          html = html.replace('</head>', css_tag + '</head>', 1)
+          html = html.replace('</body>', js_tag + '</body>', 1)
+          html_path.write_text(html, encoding='utf-8')
+          print(f'Injected Friction Atlas assets {digest}')
+          PY
+
+      - name: Verify Atlas integration
+        run: |
+          grep -q 'friction-atlas.css?v=' index.html
+          grep -q 'friction-atlas.js?v=' index.html
+          grep -q 'FRICTION ATLAS' friction-atlas.js
+          grep -q 'data-friction-atlas' friction-atlas.js
+          grep -q 'prefers-reduced-motion' friction-atlas.css
+          grep -q 'global-nav .nav-button:nth-child(-n+3)' friction-atlas.css
+
+      - name: Commit integrated page when changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Friction Atlas is already connected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Apply Friction Atlas UI"
+          git pull --rebase origin main
+          git push
