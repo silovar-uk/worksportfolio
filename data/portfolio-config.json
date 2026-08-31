@@ -566,6 +566,30 @@
         "GitHub Actions"
       ],
       "liveUrl": "https://silovar-uk.github.io/likewhat/"
+    },
+    "poco-a-poco": {
+      "title": "Poco a Poco",
+      "subtitle": "日本語話者向け、5分ずつ進めるスペイン語学習アプリ",
+      "summary": "日本語話者の初心者が「5分で一つ話せる」状態を目指し、Can-do型レッスン、発話練習、ランダム復習、日本語支援レベルを組み合わせたスペイン語学習Webアプリ。",
+      "friction": "単語や文法を覚えても、実際の場面で短く話すところまでつながりにくかった。",
+      "firstBuild": "HOMEの「今日の5分」とCan-do型レッスンを軸に、短時間で意味理解から発話まで進める学習導線を作った。",
+      "currentAnswer": "PATH、PRACTICE、Smart Random、DISCOVERY、自作文、confidence、学習履歴保存をまとめ、9段階の学習フローで反復できるスマホ対応SPA。",
+      "icon": "🗣️",
+      "type": "learning-tool",
+      "verbs": [
+        "学ぶ",
+        "話す",
+        "復習する"
+      ],
+      "status": "active",
+      "documentationState": "verified",
+      "editorialState": "published",
+      "technologies": [
+        "JavaScript",
+        "localStorage",
+        "GitHub Pages"
+      ],
+      "liveUrl": "https://silovar-uk.github.io/poco-a-poco/#home"
     }
   },
   "repositoryProjectIds": {
