@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-08-31",
+  "purpose": "Hidden repositories are reviewed separately from canonical project quality. Public GitHub visibility does not imply Portfolio publication.",
+  "decisions": [
+    {
+      "sourceId": "python",
+      "decision": "hidden-correct",
+      "reason": "Empty repository; no independent artifact to catalogue.",
+      "evidence": "repository-size-0"
+    },
+    {
+      "sourceId": "scrap_random",
+      "decision": "hidden-correct",
+      "reason": "Small legacy scrap/experiment repository; keep out unless it is later promoted as an independent project.",
+      "evidence": "tiny-readme-and-minimal-html-js"
+    },
+    {
+      "sourceId": "quickliks",
+      "decision": "merged-into-other-project",
+      "targetProjectId": "quicklinks",
+      "reason": "Older one-file Quick Links source; repositoryProjectIds explicitly resolves it to the stable quicklinks Project ID.",
+      "evidence": "source-alias-mapping"
+    },
+    {
+      "sourceId": "keygridexpansion",
+      "decision": "hidden-correct",
+      "reason": "Empty placeholder repository; do not invent metadata for it.",
+      "evidence": "empty-repository"
+    },
+    {
+      "sourceId": "pratchecker",
+      "decision": "review-required",
+      "reason": "Substantive implemented tool (PR@文字チェッカー), but publication should be an explicit editorial decision rather than inferred from a public repository.",
+      "evidence": "implemented-index-html"
+    },
+    {
+      "sourceId": "zl-logger-web",
+      "decision": "review-required",
+      "reason": "Substantive PWA-style work titled あなたと浦和レッズの物語. Treat work/publication context separately from repository visibility.",
+      "evidence": "implemented-index-html-pwa"
+    },
+    {
+      "sourceId": "jumbo",
+      "decision": "review-required",
+      "reason": "Substantive REDSジャンボ campaign page. Publication in a personal Portfolio needs explicit editorial approval.",
+      "evidence": "implemented-campaign-page"
+    },
+    {
+      "sourceId": "gamedashboard",
+      "decision": "review-required",
+      "reason": "Large implemented 浦和レッズ ホームゲーム来場分析アプリ. Keep hidden until work-data/publication suitability is explicitly reviewed.",
+      "evidence": "large-implemented-dashboard"
+    },
+    {
+      "sourceId": "eventmap",
+      "decision": "review-required",
+      "reason": "Implemented match-day event/football timetable. It is a real artifact, but professional-context publication needs an explicit decision.",
+      "evidence": "implemented-matchday-tool"
+    },
+    {
+      "sourceId": "rexanq",
+      "decision": "review-required",
+      "reason": "Implemented communications/event announcement review report. Treat analytical work content as editorially sensitive until approved.",
+      "evidence": "implemented-analysis-report"
+    },
+    {
+      "sourceId": "vsmcintro",
+      "decision": "review-required",
+      "reason": "Implemented VSMC reference/definition page. Determine whether it is an independent project, a knowledge artifact, or supporting documentation before publication.",
+      "evidence": "implemented-reference-page"
+    },
+    {
+      "sourceId": "2026eventlist",
+      "decision": "review-required",
+      "reason": "Implemented Jリーグ＋NPB event-case collection. Determine scope and source/publication suitability before adding to the public Portfolio.",
+      "evidence": "implemented-research-collection"
+    },
+    {
+      "sourceId": "predictattendance",
+      "decision": "review-required",
+      "reason": "Implemented 来場目標逆算ダッシュボード. Keep hidden until professional-data/publication boundaries are reviewed.",
+      "evidence": "implemented-planning-dashboard"
+    },
+    {
+      "sourceId": "todomanager",
+      "decision": "review-required",
+      "reason": "Substantive React prototype source, but repository packaging and independent-artifact status are unclear.",
+      "evidence": "react-prototype-source"
+    }
+  ],
+  "summary": {
+    "hiddenCorrect": 3,
+    "mergedIntoOtherProject": 1,
+    "reviewRequired": 10,
+    "autoPublish": 0
+  }
+}
