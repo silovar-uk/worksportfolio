@@ -19,6 +19,7 @@
     "todomanager"
   ],
   "repositoryProjectIds": {
-    "worksportfolio": "build-diary"
+    "worksportfolio": "build-diary",
+    "quickliks": "quicklinks"
   }
 }
