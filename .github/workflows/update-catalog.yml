@@ -9,120 +9,42 @@ on:
       - main
     paths:
       - 'data/projects.json'
+      - 'data/private-projects.json'
       - 'data/periods.json'
       - 'data/settings.json'
       - 'data/portfolio-config.json'
       - 'data/portfolio-taxonomy.json'
       - 'data/editorial-policy.json'
-      - 'data/manual-projects-private.json'
       - 'data/project-start-dates.json'
       - 'data/pattern-taxonomy.json'
       - 'data/pattern-audit.json'
       - 'data/pattern-candidates-*.json'
       - 'data/pattern-merge-rules.json'
       - 'src/index.template.html'
-      - 'catalog.js'
-      - 'catalog.css'
-      - 'catalog-visibility.js'
-      - 'private-source.js'
-      - 'private-source.css'
-      - 'showcase.js'
-      - 'showcase.css'
-      - 'taxonomy.js'
-      - 'taxonomy.css'
-      - 'floating-random.js'
-      - 'floating-random.css'
-      - 'random-three.js'
-      - 'random-three.css'
-      - 'comparison-view.js'
-      - 'comparison-view.css'
-      - 'motion.js'
-      - 'motion.css'
-      - 'favorites.js'
-      - 'favorites.css'
-      - 'favorite-catalog.js'
-      - 'copy-cleanup.js'
-      - 'copy-cleanup.css'
-      - 'friction-atlas.js'
-      - 'friction-atlas.css'
-      - 'live-index.js'
-      - 'live-index.css'
-      - 'scripts/build-catalog.mjs'
-      - 'scripts/sanitize-project-data.mjs'
-      - 'scripts/build-static-site.mjs'
-      - 'scripts/apply-copy-cleanup.mjs'
-      - 'scripts/apply-editorial-gate.mjs'
-      - 'scripts/build-editorial-review.mjs'
-      - 'scripts/inject-showcase.mjs'
-      - 'scripts/validate-portfolio-model.mjs'
-      - 'scripts/validate-global-ids.mjs'
-      - 'scripts/curate-recent-projects.mjs'
-      - 'scripts/audit-portfolio.mjs'
-      - 'scripts/validate-private-summaries.mjs'
-      - 'scripts/inject-private-summaries.mjs'
-      - 'scripts/validate-pattern-candidates.mjs'
-      - 'scripts/build-patterns.mjs'
-      - 'scripts/validate-patterns.mjs'
+      - '*.js'
+      - '*.css'
+      - 'scripts/*.mjs'
       - '.github/workflows/update-catalog.yml'
   push:
     branches:
       - main
     paths:
       - 'data/projects.json'
+      - 'data/private-projects.json'
       - 'data/periods.json'
       - 'data/settings.json'
       - 'data/portfolio-config.json'
       - 'data/portfolio-taxonomy.json'
       - 'data/editorial-policy.json'
-      - 'data/manual-projects-private.json'
       - 'data/project-start-dates.json'
       - 'data/pattern-taxonomy.json'
       - 'data/pattern-audit.json'
       - 'data/pattern-candidates-*.json'
       - 'data/pattern-merge-rules.json'
       - 'src/index.template.html'
-      - 'catalog.js'
-      - 'catalog.css'
-      - 'catalog-visibility.js'
-      - 'private-source.js'
-      - 'private-source.css'
-      - 'showcase.js'
-      - 'showcase.css'
-      - 'taxonomy.js'
-      - 'taxonomy.css'
-      - 'floating-random.js'
-      - 'floating-random.css'
-      - 'random-three.js'
-      - 'random-three.css'
-      - 'comparison-view.js'
-      - 'comparison-view.css'
-      - 'motion.js'
-      - 'motion.css'
-      - 'favorites.js'
-      - 'favorites.css'
-      - 'favorite-catalog.js'
-      - 'copy-cleanup.js'
-      - 'copy-cleanup.css'
-      - 'friction-atlas.js'
-      - 'friction-atlas.css'
-      - 'live-index.js'
-      - 'live-index.css'
-      - 'scripts/build-catalog.mjs'
-      - 'scripts/sanitize-project-data.mjs'
-      - 'scripts/build-static-site.mjs'
-      - 'scripts/apply-copy-cleanup.mjs'
-      - 'scripts/apply-editorial-gate.mjs'
-      - 'scripts/build-editorial-review.mjs'
-      - 'scripts/inject-showcase.mjs'
-      - 'scripts/validate-portfolio-model.mjs'
-      - 'scripts/validate-global-ids.mjs'
-      - 'scripts/curate-recent-projects.mjs'
-      - 'scripts/audit-portfolio.mjs'
-      - 'scripts/validate-private-summaries.mjs'
-      - 'scripts/inject-private-summaries.mjs'
-      - 'scripts/validate-pattern-candidates.mjs'
-      - 'scripts/build-patterns.mjs'
-      - 'scripts/validate-patterns.mjs'
+      - '*.js'
+      - '*.css'
+      - 'scripts/*.mjs'
       - '.github/workflows/update-catalog.yml'
 
 permissions:
@@ -177,11 +99,18 @@ jobs:
           node --check scripts/build-patterns.mjs
           node --check scripts/validate-patterns.mjs
 
-      - name: Validate Private summaries
-        run: node scripts/validate-private-summaries.mjs
-
-      - name: Validate canonical boundary
+      - name: Validate source-of-truth boundary
         run: |
+          test -s data/projects.json
+          test -s data/private-projects.json
+          test -s data/periods.json
+          test -s data/settings.json
+          test -s src/index.template.html
+          test ! -e data/manual-projects.json
+          test ! -e data/manual-projects-extra.json
+          test ! -e data/manual-projects-daily-log.json
+          test ! -e data/manual-projects-private.json
+          test ! -e loader.js
           node - <<'NODE'
           const fs = require('fs');
           const projects = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
@@ -192,8 +121,11 @@ jobs:
               throw new Error(`Private summary leaked into canonical public registry: ${project?.id || '(missing)'}`);
             }
           }
-          console.log(`Canonical boundary valid: ${projects.length} non-private project records.`);
+          console.log(`Canonical public boundary valid: ${projects.length} project records.`);
           NODE
+
+      - name: Validate Private summaries
+        run: node scripts/validate-private-summaries.mjs
 
       - name: Build GitHub catalog
         run: node scripts/build-catalog.mjs
@@ -241,10 +173,6 @@ jobs:
       - name: Verify generated page
         run: |
           test -s index.html
-          test -s data/projects.json
-          test -s data/periods.json
-          test -s data/settings.json
-          test -s src/index.template.html
           test -s data/patterns.json
           test -s data/editorial-review.json
           ! grep -qi 'jszip' index.html
