@@ -27,7 +27,7 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-08-31T14:06:29.080Z",
+    "generatedAt": "2026-08-31T14:14:51.015Z",
     "canonicalProjects": 67,
     "reviewableCanonicalProjects": 66,
     "excludedHiddenCanonicalProjects": 1,
@@ -35,33 +35,20 @@
     "publicRepositories": 73,
     "visiblePublicRepositories": 59,
     "verifiedDocumentation": 47,
-    "inferredDocumentation": 18,
-    "unreviewedDocumentation": 1,
+    "inferredDocumentation": 19,
+    "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 20,
-    "withoutPublicArtifactRecorded": 4,
+    "withoutRelations": 21,
+    "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
     "sourceWithoutCanonical": 0
   },
   "records": [
-    {
-      "id": "rockvsbra",
-      "score": 9,
-      "maxScore": 10,
-      "quality": "good",
-      "documentationState": "unreviewed",
-      "missingCore": [],
-      "hasFamily": false,
-      "relationCount": 1,
-      "artifactStatus": "public-url-recorded",
-      "startedAtBasis": "first-repository-commit",
-      "startedAtPrecision": "day"
-    },
     {
       "id": "100yearvision",
       "score": 9.5,
@@ -110,7 +97,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 1,
-      "artifactStatus": "no-public-artifact-recorded",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
@@ -253,12 +240,25 @@
       "missingCore": [],
       "hasFamily": true,
       "relationCount": 1,
-      "artifactStatus": "no-public-artifact-recorded",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
     {
       "id": "resultcalc",
+      "score": 9.5,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "inferred",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 0,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "rockvsbra",
       "score": 9.5,
       "maxScore": 10,
       "quality": "verified-shape",
@@ -539,7 +539,7 @@
       "missingCore": [],
       "hasFamily": true,
       "relationCount": 1,
-      "artifactStatus": "local-only",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "day"
     },
@@ -565,7 +565,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 0,
-      "artifactStatus": "local-only",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "month"
     },
@@ -578,7 +578,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 0,
-      "artifactStatus": "local-only",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "day"
     },
@@ -617,7 +617,7 @@
       "missingCore": [],
       "hasFamily": true,
       "relationCount": 1,
-      "artifactStatus": "no-public-artifact-recorded",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
@@ -721,7 +721,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 2,
-      "artifactStatus": "local-only",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "day"
     },
@@ -838,7 +838,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 1,
-      "artifactStatus": "no-public-artifact-recorded",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "conversation-log",
       "startedAtPrecision": "month"
     },
@@ -890,7 +890,7 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 0,
-      "artifactStatus": "local-only",
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "day"
     },
@@ -949,7 +949,7 @@
     "types": [
       {
         "value": "learning-tool",
-        "count": 23
+        "count": 24
       },
       {
         "value": "chrome-extension",
@@ -961,7 +961,7 @@
       },
       {
         "value": "content-page",
-        "count": 8
+        "count": 7
       },
       {
         "value": "utility",
@@ -995,7 +995,7 @@
       },
       {
         "value": "確認する",
-        "count": 6
+        "count": 7
       },
       {
         "value": "考える",
@@ -1010,15 +1010,15 @@
         "count": 6
       },
       {
-        "value": "伝える",
-        "count": 5
-      },
-      {
         "value": "比べる",
         "count": 5
       },
       {
         "value": "続ける",
+        "count": 4
+      },
+      {
+        "value": "伝える",
         "count": 4
       },
       {
@@ -1087,6 +1087,10 @@
       },
       {
         "value": "復習する",
+        "count": 2
+      },
+      {
+        "value": "練習する",
         "count": 2
       },
       {
@@ -1231,10 +1235,6 @@
       },
       {
         "value": "遊ぶ",
-        "count": 1
-      },
-      {
-        "value": "練習する",
         "count": 1
       },
       {
