@@ -52,22 +52,23 @@ for (const [target, sources] of mappedTargets) {
 }
 for (const [repoId, projectId] of Object.entries(repositoryProjectIds)) {
   if (!repoNames.has(repoId)) warnings.push(`repositoryProjectIds: source repository not currently discovered: ${repoId}`);
-  if (!projectIds.has(projectId) && !repoNames.has(projectId)) warnings.push(`repositoryProjectIds: target project has no canonical record yet: ${repoId} -> ${projectId}`);
+  if (!projectIds.has(projectId) && !mappedTargets.has(projectId)) warnings.push(`repositoryProjectIds: target project has no canonical record yet: ${repoId} -> ${projectId}`);
 }
 
-const known = new Set([...projectIds, ...privateIds, ...mappedTargets.keys()]);
-const checkRefs = (label, ids) => {
+const knownProjects = new Set([...projectIds, ...privateIds, ...mappedTargets.keys()]);
+const knownSourcesOrProjects = new Set([...knownProjects, ...repoNames]);
+const checkRefs = (label, ids, allowed = knownProjects) => {
   const seen = new Set();
   for (const raw of ids || []) {
     const id = String(raw || '');
     if (!id) continue;
     if (seen.has(id)) errors.push(`${label}: duplicate reference ${id}`);
     seen.add(id);
-    if (!known.has(id)) errors.push(`${label}: unknown project reference ${id}`);
+    if (!allowed.has(id)) errors.push(`${label}: unknown reference ${id}`);
   }
 };
 
-checkRefs('hiddenIds', config.hiddenIds || []);
+checkRefs('hiddenIds', config.hiddenIds || [], knownSourcesOrProjects);
 checkRefs('showcase.featuredProjectIds', taxonomy.showcase?.featuredProjectIds || []);
 for (const family of taxonomy.families || []) checkRefs(`family:${family.id}`, family.projectIds || []);
 for (const principle of taxonomy.principles || []) checkRefs(`principle:${principle.id}`, principle.projectIds || []);
@@ -75,7 +76,7 @@ for (const project of projects) {
   checkRefs(`relations:${project.id}`, (project.relatedProjects || []).map((relation) => relation?.id || relation?.target));
 }
 for (const projectId of Object.keys(starts || {})) {
-  if (!known.has(projectId)) warnings.push(`project-start-dates: orphan record ${projectId}`);
+  if (!knownProjects.has(projectId) && !repoNames.has(projectId)) warnings.push(`project-start-dates: orphan record ${projectId}`);
 }
 
 warnings.forEach((message) => console.warn(`WARNING ${message}`));
