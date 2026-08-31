@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "publicationGate": {
     "enabled": true,
     "baselineCreatedDateMax": "2026-08-25",
@@ -15,6 +15,10 @@
   },
   "failurePolicy": {
     "fail": ["private-risk", "schema-corruption", "duplicate-id", "invalid-reference"],
-    "warn": ["no-curation", "generic-summary", "no-family", "no-live-url", "technology-unknown"]
+    "warn": ["no-curation", "generic-summary", "technology-unknown"]
+  },
+  "reviewNotes": {
+    "family": "Project Family is an editorial grouping, not required metadata for every project.",
+    "liveUrl": "A missing live URL can be valid for extensions, local tools, archived work, and source-only projects; review artifact availability separately."
   }
 }
