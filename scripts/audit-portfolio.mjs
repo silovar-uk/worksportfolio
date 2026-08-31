@@ -34,6 +34,14 @@ const visible = repositories.filter((repo) => {
   return repoId && !hidden.has(repoId) && !hidden.has(projectId);
 });
 
+const artifactStatus = (repo, project) => {
+  if (repo.liveUrl || project.liveUrl) return 'live-url-recorded';
+  if (project.type === 'chrome-extension') return 'extension-no-public-url-expected';
+  if (project.visibility === 'local') return 'local-only';
+  if (project.visibility === 'private' || project.sourceVisibility === 'private') return 'private';
+  return 'review-needed';
+};
+
 const metadataReview = [];
 const confidenceReview = [];
 const artifactReview = [];
@@ -47,7 +55,8 @@ for (const repo of visible) {
   if (!repo.language && !(Array.isArray(project.technologies) && project.technologies.length)) reasons.push('technology-unknown');
   if (reasons.length) metadataReview.push({ id: repoId, projectId, reasons });
   if (!project.documentationState || project.documentationState === 'unreviewed') confidenceReview.push({ id: repoId, projectId, state: project.documentationState || 'unreviewed' });
-  if (!repo.liveUrl && !project.liveUrl) artifactReview.push({ id: repoId, projectId, status: 'no-public-artifact-recorded' });
+  const artifact = artifactStatus(repo, project);
+  if (artifact === 'review-needed') artifactReview.push({ id: repoId, projectId, status: artifact });
 }
 
 const duplicateCandidates = [];
