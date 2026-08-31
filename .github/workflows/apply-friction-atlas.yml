@@ -8,6 +8,8 @@ on:
     paths:
       - 'friction-atlas.js'
       - 'friction-atlas.css'
+      - 'live-index.js'
+      - 'live-index.css'
       - '.github/workflows/apply-friction-atlas.yml'
 
 permissions:
@@ -29,10 +31,12 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Check Atlas script
-        run: node --check friction-atlas.js
+      - name: Check interface scripts
+        run: |
+          node --check friction-atlas.js
+          node --check live-index.js
 
-      - name: Inject Atlas assets into static page
+      - name: Inject Atlas and Live Index assets into static page
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -40,45 +44,64 @@ jobs:
           import re
 
           html_path = Path('index.html')
-          css_path = Path('friction-atlas.css')
-          js_path = Path('friction-atlas.js')
+          paths = [
+              Path('friction-atlas.css'),
+              Path('friction-atlas.js'),
+              Path('live-index.css'),
+              Path('live-index.js'),
+          ]
 
           html = html_path.read_text(encoding='utf-8')
-          digest = hashlib.sha256(css_path.read_bytes() + b'\0' + js_path.read_bytes()).hexdigest()[:12]
+          digest_source = b'\0'.join(path.read_bytes() for path in paths)
+          digest = hashlib.sha256(digest_source).hexdigest()[:12]
 
-          html = re.sub(r'<link rel="stylesheet" href="friction-atlas\.css\?v=[^"]+">', '', html)
-          html = re.sub(r'<script src="friction-atlas\.js\?v=[^"]+"></script>', '', html)
+          for name in ('friction-atlas.css', 'live-index.css'):
+              html = re.sub(rf'<link rel="stylesheet" href="{re.escape(name)}\?v=[^"]+">', '', html)
+          for name in ('friction-atlas.js', 'live-index.js'):
+              html = re.sub(rf'<script src="{re.escape(name)}\?v=[^"]+"></script>', '', html)
 
-          css_tag = f'<link rel="stylesheet" href="friction-atlas.css?v={digest}">'
-          js_tag = f'<script src="friction-atlas.js?v={digest}"></script>'
+          css_tags = ''.join(
+              f'<link rel="stylesheet" href="{name}?v={digest}">'
+              for name in ('friction-atlas.css', 'live-index.css')
+          )
+          js_tags = ''.join(
+              f'<script src="{name}?v={digest}"></script>'
+              for name in ('friction-atlas.js', 'live-index.js')
+          )
 
           if '</head>' not in html or '</body>' not in html:
               raise SystemExit('index.html is missing head/body closing tags')
 
-          html = html.replace('</head>', css_tag + '</head>', 1)
-          html = html.replace('</body>', js_tag + '</body>', 1)
+          html = html.replace('</head>', css_tags + '</head>', 1)
+          html = html.replace('</body>', js_tags + '</body>', 1)
           html_path.write_text(html, encoding='utf-8')
-          print(f'Injected Friction Atlas assets {digest}')
+          print(f'Injected Atlas + Live Index assets {digest}')
           PY
 
-      - name: Verify Atlas integration
+      - name: Verify Atlas and Live Index integration
         run: |
           grep -q 'friction-atlas.css?v=' index.html
           grep -q 'friction-atlas.js?v=' index.html
+          grep -q 'live-index.css?v=' index.html
+          grep -q 'live-index.js?v=' index.html
           grep -q 'FRICTION ATLAS' friction-atlas.js
           grep -q 'data-friction-atlas' friction-atlas.js
+          grep -q '制作物一覧' live-index.js
+          grep -q 'data-live-search' live-index.js
+          grep -q '名前・困りごと・技術から探す' live-index.js
           grep -q 'prefers-reduced-motion' friction-atlas.css
+          grep -q 'prefers-reduced-motion' live-index.css
           grep -q 'global-nav .nav-button:nth-child(-n+3)' friction-atlas.css
 
       - name: Commit integrated page when changed
         run: |
           if git diff --quiet -- index.html; then
-            echo "Friction Atlas is already connected."
+            echo "Atlas and Live Index are already connected."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Apply Friction Atlas UI"
+          git commit -m "Apply Live Index hero and Friction Atlas UI"
           git pull --rebase origin main
           git push
