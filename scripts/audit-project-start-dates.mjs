@@ -15,10 +15,7 @@ if (token) headers.Authorization = `Bearer ${token}`;
 
 const config = await readJson('data/portfolio-config.json');
 const catalog = await readJson('data/catalog.json');
-const manualProjects = [
-  ...(await readJson('data/manual-projects.json')),
-  ...(await readJson('data/manual-projects-extra.json'))
-];
+const projects = await readJson('data/projects.json');
 const existing = await readJson('data/project-start-dates.json');
 
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object'
@@ -26,10 +23,7 @@ const repositoryProjectIds = config.repositoryProjectIds && typeof config.reposi
   : {};
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
 
-function cleanDate(value) {
-  return value ? String(value).slice(0, 10) : '';
-}
-
+function cleanDate(value) { return value ? String(value).slice(0, 10) : ''; }
 function parseLastPage(linkHeader) {
   if (!linkHeader) return 1;
   const part = String(linkHeader).split(',').find((value) => /rel="last"/.test(value));
@@ -59,18 +53,13 @@ async function fetchOldestCommit(repoName) {
 
   const date = cleanDate(oldest?.commit?.author?.date || oldest?.commit?.committer?.date);
   if (!date) return null;
-  return {
-    date,
-    sha: oldest.sha || '',
-    url: oldest.html_url || `https://github.com/${owner}/${repoName}/commit/${oldest.sha || ''}`
-  };
+  return { date, sha: oldest.sha || '', url: oldest.html_url || `https://github.com/${owner}/${repoName}/commit/${oldest.sha || ''}` };
 }
 
 const candidates = new Map();
 let commitBased = 0;
 let repositoryFallback = 0;
 let failed = 0;
-
 for (const repo of repositories) {
   const repositoryId = repo?.name || repo?.id || '';
   if (!repositoryId) continue;
@@ -81,33 +70,19 @@ for (const repo of repositories) {
   try {
     const commit = await fetchOldestCommit(repositoryId);
     if (commit?.date) {
-      candidate = {
-        date: commit.date,
-        precision: 'day',
-        basis: 'first-repository-commit',
-        repository: repositoryId,
-        source: commit.url,
-        commit: commit.sha
-      };
+      candidate = { date: commit.date, precision: 'day', basis: 'first-repository-commit', repository: repositoryId, source: commit.url, commit: commit.sha };
       commitBased += 1;
     }
   } catch (error) {
     failed += 1;
     console.warn(`Could not inspect ${repositoryId}: ${error.message}`);
   }
-
   if (!candidate) {
     const createdAt = cleanDate(repo.createdAt || repo.created_at);
     if (!createdAt) continue;
-    candidate = {
-      date: createdAt,
-      precision: 'day',
-      basis: 'repository-created-fallback',
-      repository: repositoryId
-    };
+    candidate = { date: createdAt, precision: 'day', basis: 'repository-created-fallback', repository: repositoryId };
     repositoryFallback += 1;
   }
-
   const current = candidates.get(projectId);
   if (!current || candidate.date < current.date) candidates.set(projectId, candidate);
 }
@@ -115,37 +90,24 @@ for (const repo of repositories) {
 const next = { ...existing };
 for (const [projectId, candidate] of candidates) next[projectId] = candidate;
 
-let manualFallback = 0;
-for (const project of manualProjects) {
+let canonicalFallback = 0;
+for (const project of Array.isArray(projects) ? projects : []) {
   if (!project?.id || next[project.id]) continue;
-  const date = cleanDate(project.createdAt);
+  const date = cleanDate(project.startedAt || project.createdAt);
   if (!date) continue;
   next[project.id] = {
     date,
-    precision: project.createdAtPrecision || (date.length === 10 ? 'day' : 'month'),
-    basis: 'manual-record'
+    precision: project.startedAtPrecision || project.createdAtPrecision || (date.length === 10 ? 'day' : 'month'),
+    basis: project.startedAtBasis || 'canonical-record'
   };
-  manualFallback += 1;
+  canonicalFallback += 1;
 }
 
 const sorted = Object.fromEntries(Object.entries(next).sort(([a], [b]) => a.localeCompare(b)));
 await writeJson('data/project-start-dates.json', sorted);
-
 const basisCounts = Object.values(sorted).reduce((acc, item) => {
   const basis = item?.basis || 'unknown';
   acc[basis] = (acc[basis] || 0) + 1;
   return acc;
 }, {});
-
-console.log(JSON.stringify({
-  total: Object.keys(sorted).length,
-  preserved: Object.keys(existing).length,
-  added: Object.keys(sorted).length - Object.keys(existing).length,
-  commitBased,
-  repositoryFallback,
-  manualFallback,
-  failed,
-  basisCounts
-}, null, 2));
-
-// This audit is intentionally rerunnable: curated dates are preserved and only missing records are backfilled.
+console.log(JSON.stringify({ total: Object.keys(sorted).length, preserved: Object.keys(existing).length, added: Object.keys(sorted).length - Object.keys(existing).length, commitBased, repositoryFallback, canonicalFallback, failed, basisCounts }, null, 2));
