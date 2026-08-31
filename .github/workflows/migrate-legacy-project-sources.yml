@@ -1,0 +1,64 @@
+name: Migrate legacy project sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/migrate-legacy-project-sources.mjs'
+      - '.github/workflows/migrate-legacy-project-sources.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worksportfolio-migrate-project-sources
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate migration scripts
+        run: |
+          node --check scripts/migrate-legacy-project-sources.mjs
+          node --check scripts/validate-global-ids.mjs
+
+      - name: Merge legacy project metadata into canonical registry
+        run: node scripts/migrate-legacy-project-sources.mjs
+
+      - name: Validate global identifiers
+        run: node scripts/validate-global-ids.mjs
+
+      - name: Verify override removal
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const config = JSON.parse(fs.readFileSync('data/portfolio-config.json', 'utf8'));
+          const projects = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
+          if ('overrides' in config) throw new Error('Legacy config.overrides still exists');
+          if (!Array.isArray(projects) || projects.length < 50) throw new Error(`Canonical project registry unexpectedly small: ${projects.length}`);
+          console.log(`Canonical registry now owns ${projects.length} projects.`);
+          NODE
+
+      - name: Commit canonical migration
+        run: |
+          if [ -z "$(git status --porcelain -- data/projects.json data/portfolio-config.json)" ]; then
+            echo "Legacy project metadata is already migrated."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/projects.json data/portfolio-config.json
+          git commit -m "Move project metadata into canonical registry"
+          git pull --rebase origin main
+          git push
