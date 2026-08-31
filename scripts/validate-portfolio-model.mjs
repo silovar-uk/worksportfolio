@@ -9,7 +9,7 @@ const [taxonomy, policy, config, catalog, projects, privateProjects] = await Pro
   readJson('data/portfolio-config.json'),
   readJson('data/catalog.json'),
   readJson('data/projects.json'),
-  readJson('data/manual-projects-private.json')
+  readJson('data/private-projects.json')
 ]);
 
 const errors = [];
