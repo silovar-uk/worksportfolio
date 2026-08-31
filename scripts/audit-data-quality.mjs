@@ -39,12 +39,27 @@ function distance(a, b) {
 const familyIds = new Set();
 for (const family of taxonomy.families || []) for (const id of family.projectIds || []) familyIds.add(id);
 
+const hiddenProjectIds = new Set();
+for (const id of hidden) {
+  hiddenProjectIds.add(repositoryProjectIds[id] || id);
+}
+const reviewableCanonical = canonical.filter((project) => project?.id && !hidden.has(project.id) && !hiddenProjectIds.has(project.id));
+const excludedCanonical = canonical.filter((project) => !reviewableCanonical.includes(project)).map((project) => project.id);
+
 const verbCounts = new Map();
 const typeCounts = new Map();
 const records = [];
 const consistencyIssues = [];
 
-for (const project of canonical) {
+const documentationScore = (state) => state === 'verified' ? 1 : state === 'inferred' ? 0.5 : 0;
+const artifactStatus = (project) => {
+  if (present(project.liveUrl)) return 'public-url-recorded';
+  if (project.visibility === 'local') return 'local-only';
+  if (project.visibility === 'private' || project.sourceVisibility === 'private') return 'private';
+  return 'no-public-artifact-recorded';
+};
+
+for (const project of reviewableCanonical) {
   const checks = {
     identity: present(project.id) && present(project.title),
     description: present(project.summary) && project.summary !== 'GitHub上で管理している制作物。',
@@ -54,14 +69,14 @@ for (const project of canonical) {
     chronology: present(project.startedAt),
     type: present(project.type),
     verbs: present(project.verbs),
-    technology: present(project.technologies),
-    documentation: project.documentationState === 'verified',
-    relation: present(project.relatedProjects),
-    artifact: present(project.liveUrl) || ['local', 'private'].includes(project.visibility)
+    technology: present(project.technologies)
   };
-  const score = Object.values(checks).reduce((sum, ok) => sum + (ok ? 1 : 0), 0);
-  const missing = Object.entries(checks).filter(([, ok]) => !ok).map(([key]) => key);
+  const docScore = documentationScore(project.documentationState);
+  const score = Object.values(checks).reduce((sum, ok) => sum + (ok ? 1 : 0), 0) + docScore;
+  const maxScore = Object.keys(checks).length + 1;
+  const missingCore = Object.entries(checks).filter(([, ok]) => !ok).map(([key]) => key);
   const technologies = (project.technologies || []).map(String);
+
   if (technologies.some((item) => /chrome extension|manifest v3/i.test(item)) && project.type !== 'chrome-extension') {
     consistencyIssues.push({ id: project.id, issue: 'chrome-extension-type-mismatch', type: project.type, technologies });
   }
@@ -71,17 +86,20 @@ for (const project of canonical) {
   if (project.documentationState === 'verified' && (!present(project.summary) || !present(project.startedAt) || !present(project.type))) {
     consistencyIssues.push({ id: project.id, issue: 'verified-but-core-metadata-missing' });
   }
+
   for (const verb of project.verbs || []) verbCounts.set(verb, (verbCounts.get(verb) || 0) + 1);
   if (project.type) typeCounts.set(project.type, (typeCounts.get(project.type) || 0) + 1);
+
   records.push({
     id: project.id,
     score,
-    maxScore: Object.keys(checks).length,
-    quality: score >= 11 ? 'verified-shape' : score >= 8 ? 'good' : score >= 5 ? 'needs-review' : 'poor',
+    maxScore,
+    quality: score >= 9.5 ? 'verified-shape' : score >= 8 ? 'good' : score >= 6 ? 'needs-review' : 'poor',
     documentationState: project.documentationState || 'unreviewed',
-    missing,
+    missingCore,
     hasFamily: familyIds.has(project.id),
     relationCount: Array.isArray(project.relatedProjects) ? project.relatedProjects.length : 0,
+    artifactStatus: artifactStatus(project),
     startedAtBasis: project.startedAtBasis || starts?.[project.id]?.basis || null,
     startedAtPrecision: project.startedAtPrecision || starts?.[project.id]?.precision || null
   });
@@ -107,7 +125,7 @@ for (let i = 0; i < repositories.length; i += 1) {
 }
 
 const exactTitleGroups = new Map();
-for (const project of canonical) {
+for (const project of reviewableCanonical) {
   const key = normalize(project.title);
   if (!key) continue;
   const ids = exactTitleGroups.get(key) || [];
@@ -122,24 +140,30 @@ const visibleRepos = repositories.filter((repo) => {
   return repoId && !hidden.has(repoId) && !hidden.has(projectId);
 });
 const mappedVisibleIds = new Set(visibleRepos.map((repo) => repositoryProjectIds[repo.name || repo.id] || repo.name || repo.id));
-const canonicalWithoutPublicRepo = canonical.filter((project) => !mappedVisibleIds.has(project.id)).map((project) => project.id);
-const sourceWithoutCanonical = visibleRepos.map((repo) => ({ repoId: repo.name || repo.id, projectId: repositoryProjectIds[repo.name || repo.id] || repo.name || repo.id })).filter(({ projectId }) => !canonical.some((project) => project.id === projectId));
+const canonicalWithoutPublicRepo = reviewableCanonical.filter((project) => !mappedVisibleIds.has(project.id)).map((project) => project.id);
+const canonicalIds = new Set(canonical.map((project) => project.id));
+const sourceWithoutCanonical = visibleRepos
+  .map((repo) => ({ repoId: repo.name || repo.id, projectId: repositoryProjectIds[repo.name || repo.id] || repo.name || repo.id }))
+  .filter(({ projectId }) => !canonicalIds.has(projectId));
 
 records.sort((a, b) => a.score - b.score || a.id.localeCompare(b.id));
 const summary = {
   generatedAt: new Date().toISOString(),
   canonicalProjects: canonical.length,
+  reviewableCanonicalProjects: reviewableCanonical.length,
+  excludedHiddenCanonicalProjects: excludedCanonical.length,
   privateSafeProjects: privateSafe.length,
   publicRepositories: repositories.length,
   visiblePublicRepositories: visibleRepos.length,
-  verifiedDocumentation: canonical.filter((project) => project.documentationState === 'verified').length,
-  inferredDocumentation: canonical.filter((project) => project.documentationState === 'inferred').length,
-  unreviewedDocumentation: canonical.filter((project) => !project.documentationState || project.documentationState === 'unreviewed').length,
-  missingFriction: canonical.filter((project) => !present(project.friction)).length,
-  missingFirstBuild: canonical.filter((project) => !present(project.firstBuild)).length,
-  missingCurrentAnswer: canonical.filter((project) => !present(project.currentAnswer)).length,
-  missingStartedAt: canonical.filter((project) => !present(project.startedAt)).length,
-  withoutRelations: canonical.filter((project) => !present(project.relatedProjects)).length,
+  verifiedDocumentation: reviewableCanonical.filter((project) => project.documentationState === 'verified').length,
+  inferredDocumentation: reviewableCanonical.filter((project) => project.documentationState === 'inferred').length,
+  unreviewedDocumentation: reviewableCanonical.filter((project) => !project.documentationState || project.documentationState === 'unreviewed').length,
+  missingFriction: reviewableCanonical.filter((project) => !present(project.friction)).length,
+  missingFirstBuild: reviewableCanonical.filter((project) => !present(project.firstBuild)).length,
+  missingCurrentAnswer: reviewableCanonical.filter((project) => !present(project.currentAnswer)).length,
+  missingStartedAt: reviewableCanonical.filter((project) => !present(project.startedAt)).length,
+  withoutRelations: reviewableCanonical.filter((project) => !present(project.relatedProjects)).length,
+  withoutPublicArtifactRecorded: reviewableCanonical.filter((project) => artifactStatus(project) === 'no-public-artifact-recorded').length,
   consistencyIssues: consistencyIssues.length,
   unresolvedDuplicateCandidates: duplicateCandidates.filter((item) => item.resolution === 'unresolved').length,
   canonicalWithoutPublicRepo: canonicalWithoutPublicRepo.length,
@@ -147,6 +171,12 @@ const summary = {
 };
 
 const payload = {
+  semantics: {
+    scoredCoreFields: ['identity', 'description', 'friction', 'firstBuild', 'currentAnswer', 'chronology', 'type', 'verbs', 'technology', 'documentationConfidence'],
+    documentationConfidence: { verified: 1, inferred: 0.5, unreviewed: 0 },
+    notRequiredForQualityScore: ['relation', 'family', 'publicArtifact'],
+    excludedFromQualityPopulation: excludedCanonical
+  },
   summary,
   records,
   consistencyIssues,
@@ -161,7 +191,7 @@ const payload = {
 };
 
 await writeFile(new URL('data/data-quality-audit.json', root), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-console.log(`Data quality audit: ${summary.canonicalProjects} canonical / ${summary.privateSafeProjects} private-safe / ${summary.publicRepositories} repos; ${summary.consistencyIssues} consistency issues; ${summary.unresolvedDuplicateCandidates} unresolved duplicate candidates.`);
-console.log(`Completeness: friction ${summary.missingFriction} missing; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}; no relations ${summary.withoutRelations}.`);
+console.log(`Data quality audit: ${summary.reviewableCanonicalProjects} reviewable canonical / ${summary.privateSafeProjects} private-safe / ${summary.publicRepositories} repos; ${summary.consistencyIssues} consistency issues; ${summary.unresolvedDuplicateCandidates} unresolved duplicate candidates.`);
+console.log(`Core completeness: friction ${summary.missingFriction}; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}. Informational: no relations ${summary.withoutRelations}; no public artifact recorded ${summary.withoutPublicArtifactRecorded}.`);
 if (consistencyIssues.length) console.log(`Consistency issues: ${consistencyIssues.map((item) => `${item.id}[${item.issue}]`).join(' | ')}`);
 if (duplicateCandidates.length) console.log(`Duplicate candidates: ${duplicateCandidates.map((item) => `${item.a}↔${item.b}[${item.resolution}]`).join(' | ')}`);
