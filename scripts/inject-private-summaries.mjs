@@ -6,7 +6,7 @@ const readText = (path) => readFile(new URL(path, root), 'utf8');
 const readJson = async (path) => JSON.parse(await readText(path));
 
 const [privateProjects, js, css] = await Promise.all([
-  readJson('data/manual-projects-private.json'),
+  readJson('data/private-projects.json'),
   readText('private-source.js'),
   readText('private-source.css')
 ]);
