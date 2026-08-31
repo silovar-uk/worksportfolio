@@ -1,217 +1,5 @@
 [
   {
-    "id": "shogibanmen",
-    "title": "将棋盤面",
-    "subtitle": "将棋の局面整理ツール",
-    "summary": "将棋の盤面や局面を、見返しやすい形で扱う。",
-    "friction": "対局後に、どの局面で迷ったかを盤面付きで残しにくかった。",
-    "firstBuild": "盤面をブラウザ上へ再現するところから始めた。",
-    "currentAnswer": "将棋学習を、記憶頼みから見える記録へ移す道具。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "振り返る"
-    ],
-    "status": "dormant",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2025-05",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/shogibanmen",
-    "githubId": "993324710",
-    "liveUrl": "https://silovar-uk.github.io/shogibanmen/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "learning",
-      "x": 350,
-      "y": 110
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "updatedAt": "2025-07-24",
-    "startedAt": "2025-05-30",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "将棋盤",
-      "しょうぎばん",
-      "shogi board",
-      "将棋",
-      "局面",
-      "盤面"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "memo",
-    "title": "Memo",
-    "subtitle": "初期メモアプリ",
-    "summary": "考えや文章をブラウザ上へ残す、初期のメモ制作。",
-    "friction": "保存場所を選んでいる間に、書きたいことを逃していた。",
-    "firstBuild": "入力欄と保存機能だけの小さなメモから始めた。",
-    "currentAnswer": "後のMemoToolや記録系アプリへ続く原型。",
-    "type": "web-app",
-    "verbs": [
-      "記録する",
-      "整理する"
-    ],
-    "status": "dormant",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2025-05",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/memo",
-    "githubId": "994786161",
-    "liveUrl": "https://silovar-uk.github.io/memo/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "archive",
-      "x": 550,
-      "y": 540
-    },
-    "relatedProjects": [
-      {
-        "id": "simplememotool",
-        "relation": "メモ機能の発展"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2025-06-05",
-    "startedAt": "2025-06-02",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "メモ",
-      "めも",
-      "memo app",
-      "note",
-      "notes",
-      "メモアプリ",
-      "ノート"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "timeconverter",
-    "title": "Time Converter",
-    "subtitle": "時間変換ツール",
-    "summary": "異なる時間表現を、入力してすぐ変換する。",
-    "friction": "時刻や所要時間の換算を、そのたびに頭で計算していた。",
-    "firstBuild": "入力値を別の時間表現へ変換する一画面ツールから始めた。",
-    "currentAnswer": "計算の正確さより先に、迷わず入力できることを重視した道具。",
-    "type": "utility",
-    "verbs": [
-      "変換する",
-      "確認する"
-    ],
-    "status": "dormant",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2025-06",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/timeconverter",
-    "githubId": "998680493",
-    "liveUrl": "https://silovar-uk.github.io/timeconverter/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "work",
-      "x": 980,
-      "y": 110
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "updatedAt": "2025-06-09",
-    "startedAt": "2025-06-09",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "時間変換",
-      "時刻変換",
-      "time converter",
-      "time conversion",
-      "時間換算",
-      "時差",
-      "timezone"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "manontec",
-    "title": "マノン実戦ポテンシャル",
-    "subtitle": "スト6・マノン分析ページ",
-    "summary": "ストリートファイター6のマノンを、技や状況ごとに実戦視点で整理する。",
-    "friction": "攻略情報は多いのに、自分が試合中に使える判断へ変換しにくかった。",
-    "firstBuild": "技と状況をカード形式で並べるページから始めた。",
-    "currentAnswer": "知識量ではなく、対戦中に選べる形へ変える攻略ノート。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "整理する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-03",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/manontec",
-    "githubId": "1189209834",
-    "liveUrl": "https://silovar-uk.github.io/manontec/",
-    "liveUrlStatus": "confirmed",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 490,
-      "y": 110
-    },
-    "relatedProjects": [
-      {
-        "id": "marisast6",
-        "relation": "スト6の攻略整理"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-04-20",
-    "startedAt": "2026-03-23",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "マノン",
-      "スト6マノン",
-      "manon",
-      "sf6 manon",
-      "street fighter 6 manon",
-      "格ゲー攻略"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
     "id": "100yearvision",
     "title": "100年構想",
     "subtitle": "Jリーグの思想を読むページ",
@@ -268,26 +56,243 @@
     "makingPrinciples": []
   },
   {
-    "id": "mymindmap",
-    "title": "My Mind Map",
-    "subtitle": "個人用マインドマップ",
-    "summary": "考えを枝分かれさせながら、関係ごと見える形にする。",
-    "friction": "メモが縦に増えると、考え同士のつながりが見えなくなった。",
-    "firstBuild": "ノード追加と接続を試せる画面から始めた。",
-    "currentAnswer": "考えを整理してから書くのではなく、広げながら考える道具。",
-    "type": "web-app",
+    "id": "accountinglearn",
+    "title": "Accounting Quest｜実践簿記",
+    "subtitle": "短い経営ケースで簿記と経営分析を学ぶ",
+    "summary": "黒字なのに現金がない、といった経営の出来事を読み、計算・仕訳・異常値発見・提案まで手を動かして学ぶスマホ優先の簿記学習アプリ。",
+    "friction": "勘定科目や仕訳を単独で覚えても、実際の経営で数字が何を意味し、次に何を判断すべきかへつながりにくかった。",
+    "firstBuild": "CASE 1「黒字なのに、口座にお金がない」を、8ページの物語と設問として実装した。",
+    "currentAnswer": "教材をJSONで追加でき、選択・計算・仕訳・提案へ即時フィードバックし、誤答復習と進捗書き出しまで行えるケース学習基盤。",
+    "type": "learning-tool",
     "verbs": [
-      "整理する",
+      "学ぶ",
+      "解く",
       "考える"
     ],
     "status": "active",
     "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-05",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "startedAt": "2026-08-05",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/accountinglearn",
+    "liveUrl": "https://silovar-uk.github.io/accountinglearn/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "icon": "🧾",
+    "searchAliases": [
+      "会計学習",
+      "簿記",
+      "accounting",
+      "bookkeeping",
+      "accounting quest",
+      "仕訳",
+      "経営分析",
+      "会計クエスト",
+      "財務"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "akasma",
+    "title": "アカスマ",
+    "subtitle": "身内スマブラ大会プログラムLP",
+    "summary": "身内スマブラ大会の参加者、進行、プログラムを一枚にまとめたLP。",
+    "friction": "身内大会でも、当日の流れと期待感をちゃんと共有したかった。",
+    "firstBuild": "スマートフォン幅のプログラムLPとして作った。",
+    "currentAnswer": "小さな遊びでも、イベントとして本気で整える実験。",
+    "type": "content-page",
+    "verbs": [
+      "参加する",
+      "伝える"
+    ],
+    "status": "active",
+    "visibility": "public",
     "featured": false,
-    "createdAt": "2026-04",
+    "createdAt": "2026-05",
     "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/mymindmap",
-    "githubId": "1207565216",
-    "liveUrl": "https://silovar-uk.github.io/mymindmap/",
+    "repositoryUrl": "https://github.com/silovar-uk/akasma",
+    "githubId": "1233726681",
+    "liveUrl": "https://silovar-uk.github.io/akasma/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "content",
+      "x": 1105,
+      "y": 612
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "updatedAt": "2026-05-09",
+    "startedAt": "2026-05-09",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "アカスマ",
+      "スマブラ大会",
+      "smash bros",
+      "smash tournament",
+      "大会LP",
+      "イベントLP",
+      "大会ページ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "baseballquiz",
+    "title": "baseballquiz",
+    "subtitle": "GitHubリポジトリ",
+    "summary": "GitHub上で管理している制作物。",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
+    "type": "learning-tool",
+    "verbs": [
+      "作る"
+    ],
+    "status": "development",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-16",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-18",
+    "startedAt": "2026-08-16",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/baseballquiz",
+    "liveUrl": "https://silovar-uk.github.io/baseballquiz/",
+    "technologies": [
+      "JavaScript"
+    ],
+    "documentationState": "unreviewed",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "searchAliases": [
+      "野球クイズ",
+      "baseball quiz",
+      "NPB",
+      "プロ野球",
+      "選手クイズ",
+      "baseball learning",
+      "野球学習",
+      "選手名鑑"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "build-diary",
+    "title": "つくって考えた",
+    "subtitle": "制作物を探し、使い直すための作品棚",
+    "summary": "GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。",
+    "friction": "作ったものは増えたが、なぜ作ったかと当時の関心が別々の会話に散らばっていた。",
+    "firstBuild": "15件の仮台帳と三つの閲覧モードから始めた。",
+    "currentAnswer": "完成品の展示ではなく、日常の小さな不便へ反応してきた記録。",
+    "type": "web-app",
+    "verbs": [
+      "探す",
+      "整理する",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": true,
+    "createdAt": "2026-07-19",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-31",
+    "repositoryUrl": "https://github.com/silovar-uk/worksportfolio",
+    "liveUrl": "https://silovar-uk.github.io/worksportfolio/",
+    "liveUrlStatus": "",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON",
+      "SVG"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "archive",
+      "x": 675,
+      "y": 684
+    },
+    "relatedProjects": [
+      {
+        "id": "contentslibrary",
+        "relation": "人生の記録"
+      },
+      {
+        "id": "designmd",
+        "relation": "制作判断を見せる"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-07-19",
+        "version": "0.2",
+        "change": "GitHubの61リポジトリと自作Chrome拡張を統合した。",
+        "reason": "完成作だけでなく、試作と興味の変化まで網羅するため。"
+      }
+    ],
+    "aside": "作ったものをまとめるために、また一つ作った。",
+    "icon": "🗃️",
+    "startedAt": "2026-07-19",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "worksportfolio",
+      "works portfolio",
+      "ポートフォリオ",
+      "portfolio",
+      "作品棚",
+      "制作物一覧",
+      "つくって考えた",
+      "build diary",
+      "制作記録"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "commonpoint",
+    "title": "Common Point",
+    "subtitle": "共通点抽出ツール",
+    "summary": "複数の文章や項目から、重なる論点を見つける。",
+    "friction": "似ている意見を読んでも、どこが共通かを頭の中だけで整理していた。",
+    "firstBuild": "項目を並べて共通語を比較するところから始めた。",
+    "currentAnswer": "一致を探すより、違う言葉の奥にある同じ問題を見つける道具。",
+    "type": "data-tool",
+    "verbs": [
+      "比べる",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/commonpoint",
+    "githubId": "1292116568",
+    "liveUrl": "https://silovar-uk.github.io/commonpoint/",
     "liveUrlStatus": "candidate",
     "technologies": [
       "HTML",
@@ -296,58 +301,179 @@
     ],
     "documentationState": "inferred",
     "map": {
-      "group": "archive",
-      "x": 800,
-      "y": 540
+      "group": "work",
+      "x": 700,
+      "y": 254
     },
     "relatedProjects": [
       {
-        "id": "flowmap",
-        "relation": "ノードとつながり"
-      },
-      {
-        "id": "mmmpocket",
-        "relation": "階層で考える"
+        "id": "diff",
+        "relation": "文章を比べる"
       }
     ],
     "updates": [],
-    "updatedAt": "2026-06-12",
-    "startedAt": "2026-04-11",
+    "updatedAt": "2026-07-08",
+    "startedAt": "2026-07-07",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "マインドマップ",
-      "mind map",
-      "mindmap",
-      "思考整理",
-      "発想整理",
-      "ノード",
-      "アイデア整理"
+      "共通点",
+      "common point",
+      "共通項",
+      "overlap",
+      "類似点",
+      "共通部分",
+      "比較"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
   },
   {
-    "id": "simplememotool",
-    "title": "MemoTool",
-    "subtitle": "タブ切り替え・装飾対応メモ",
-    "summary": "タブでメモを切り替え、文章を装飾しながら保存するChrome拡張。",
-    "friction": "簡単なメモは欲しいが、用途ごとに分けると別アプリを開く必要があった。",
-    "firstBuild": "ブラウザ内で一枚のメモを保存する機能から始めた。",
-    "currentAnswer": "ブラウザから離れず、用途別のメモを持てる作業机。",
-    "type": "chrome-extension",
+    "id": "consultingstudy",
+    "title": "Consulting Study",
+    "subtitle": "コンサルティング思考の学習ツール",
+    "summary": "ケース、論点、仮説を反復して学ぶ。",
+    "friction": "解説を読むだけでは、問いを立てる順番が身につかなかった。",
+    "firstBuild": "短いケースと回答欄を並べるところから始めた。",
+    "currentAnswer": "知識集より、考える手順を練習する教材。",
+    "type": "learning-tool",
     "verbs": [
-      "記録する",
-      "整理する"
+      "学ぶ",
+      "考える"
     ],
     "status": "active",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-04",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/simplememotool",
-    "githubId": "1210195390",
-    "liveUrl": "https://silovar-uk.github.io/simplememotool/",
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/consultingstudy",
+    "githubId": "1289211681",
+    "liveUrl": "https://silovar-uk.github.io/consultingstudy/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "learning",
+      "x": 210,
+      "y": 254
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "updatedAt": "2026-07-10",
+    "startedAt": "2026-07-04",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "コンサル学習",
+      "consulting study",
+      "ケース面接",
+      "case interview",
+      "論点",
+      "仮説",
+      "コンサル",
+      "ケース問題"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "contentslibrary",
+    "title": "作品体験ログ",
+    "subtitle": "本・映画・漫画との関係を残す個人アーカイブ",
+    "summary": "読書を中心に、作品・体験履歴・メモ・分類・評価の変化を一つの場所へ残す、招待制のローカル志向Webアプリ。",
+    "friction": "作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。",
+    "firstBuild": "作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。",
+    "currentAnswer": "再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。",
+    "type": "content-page",
+    "verbs": [
+      "記録する",
+      "探す",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/contentslibrary",
+    "githubId": "1304125974",
+    "liveUrl": "https://contentslibrary.silovar-uk.workers.dev",
+    "liveUrlStatus": "confirmed",
+    "technologies": [
+      "TypeScript",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "archive",
+      "x": 800,
+      "y": 612
+    },
+    "relatedProjects": [
+      {
+        "id": "mydictionary",
+        "relation": "個人の記憶を残す"
+      },
+      {
+        "id": "build-diary",
+        "relation": "人生の記録"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-07-17",
+        "version": "0.2",
+        "change": "Cloudflare Accessで本人だけが開ける状態にした。",
+        "reason": "個人の記録を公開せず、オンラインで使うため。"
+      }
+    ],
+    "aside": "Worker名を間違えて作ったが、そのまま正式名称になった。",
+    "icon": "📚",
+    "updatedAt": "2026-08-25",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "作品体験ログ",
+      "コンテンツライブラリ",
+      "content library",
+      "読書記録",
+      "book log",
+      "映画記録",
+      "蔵書",
+      "作品記録",
+      "読書ログ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "converter",
+    "title": "テキスト便利変換ツール",
+    "subtitle": "サイドパネル版ユーティリティ集",
+    "summary": "改行修正、検索、時間選択、条件カード編集などをまとめたChrome拡張。",
+    "friction": "小さな文字処理や日程調整のために、別々のページを開いていた。",
+    "firstBuild": "テキスト変換を一つ置くところから始まり、便利機能が増えた。",
+    "currentAnswer": "単機能ツールではなく、日々の細かな摩擦を置く工具箱。",
+    "type": "chrome-extension",
+    "verbs": [
+      "変換する",
+      "確認する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/converter",
+    "githubId": "1276860002",
+    "liveUrl": "https://silovar-uk.github.io/converter/",
     "liveUrlStatus": "",
     "technologies": [
       "Chrome Extension",
@@ -359,103 +485,80 @@
     "map": {
       "group": "extension",
       "x": 1180,
-      "y": 110
+      "y": 182
     },
     "relatedProjects": [
       {
-        "id": "memo",
-        "relation": "メモ機能の発展"
-      },
-      {
-        "id": "mmmpocket",
-        "relation": "小さな記録画面"
+        "id": "quicklinks",
+        "relation": "サイドパネル工具箱"
       }
     ],
     "updates": [
       {
         "date": "2026-07",
-        "version": "2.0",
-        "change": "タブ切り替えと文字装飾へ対応した。",
-        "reason": "用途ごとにメモを分けながら、一つの拡張内で完結させるため。"
+        "version": "2.0.0",
+        "change": "改行修正、検索、時間選択、条件カード編集をサイドパネルへ統合した。",
+        "reason": "小さな便利機能を別々に開く手間を減らすため。"
       }
     ],
     "extension": {
-      "version": "2.0",
-      "extensionId": "mlemlfglilljmfhpjiomkdfahimljgcd",
+      "version": "2.0.0",
+      "extensionId": "effpkmnompcagibhbbdpdlbnpobfmema",
       "serviceWorker": "disabled"
     },
-    "updatedAt": "2026-04-15",
-    "startedAt": "2026-04-14",
+    "updatedAt": "2026-06-22",
+    "startedAt": "2026-06-22",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "MemoTool",
-      "メモツール",
-      "chromeメモ",
-      "タブメモ",
-      "memo tool",
-      "メモ拡張",
-      "ブラウザメモ"
+      "テキスト変換",
+      "converter",
+      "変換ツール",
+      "text converter",
+      "文字変換",
+      "改行修正",
+      "便利変換"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
   },
   {
-    "id": "mmmpocket",
-    "title": "MMM Pocket Lite",
-    "subtitle": "スマホ用アウトライン・メモ",
-    "summary": "スマートフォンで階層メモ、チェック、ノートを素早く扱う。",
-    "friction": "PC向けの整理ツールは、移動中に項目を足すには重かった。",
-    "firstBuild": "タイトルと項目をすぐ追加できる小型画面から始めた。",
-    "currentAnswer": "ポケットの中で使える、軽量なアウトライン作業台。",
+    "id": "convinitools",
+    "title": "convinitools",
+    "subtitle": "GitHubリポジトリ",
+    "summary": "GitHub上で管理している制作物。",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
     "type": "web-app",
     "verbs": [
-      "記録する",
-      "整理する"
+      "作る"
     ],
-    "status": "active",
+    "status": "development",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-05",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/mmmpocket",
-    "githubId": "1225401968",
-    "liveUrl": "https://silovar-uk.github.io/mmmpocket/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "archive",
-      "x": 550,
-      "y": 612
-    },
-    "relatedProjects": [
-      {
-        "id": "simplememotool",
-        "relation": "小さな記録画面"
-      },
-      {
-        "id": "mymindmap",
-        "relation": "階層で考える"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-04-30",
-    "startedAt": "2026-04-30",
+    "createdAt": "2026-08-13",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-13",
+    "startedAt": "2026-08-13",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/convinitools",
+    "liveUrl": "",
+    "technologies": [
+      "JavaScript"
+    ],
+    "documentationState": "unreviewed",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
     "searchAliases": [
-      "MMM Pocket",
-      "ポケットメモ",
-      "階層メモ",
-      "アウトラインメモ",
-      "outline memo",
-      "スマホメモ",
-      "pocket memo"
+      "コンビニツール",
+      "convenience tools",
+      "便利ツール",
+      "utility",
+      "小道具",
+      "ツール集"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
@@ -512,6 +615,370 @@
     "makingPrinciples": []
   },
   {
+    "id": "countvoice",
+    "title": "CountVoice",
+    "subtitle": "音声カウント・集中支援",
+    "summary": "一定間隔の音声カウントと環境音で、時間の経過を耳から把握する。",
+    "friction": "画面を見ずに、経過時間や区切りを知りたかった。",
+    "firstBuild": "毎秒または一定間隔で数字を読む機能から始めた。",
+    "currentAnswer": "タイマーではなく、時間を身体で感じるための音声道具。",
+    "type": "learning-tool",
+    "verbs": [
+      "集中する",
+      "続ける"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/countvoice",
+    "githubId": "1278117035",
+    "liveUrl": "https://silovar-uk.github.io/countvoice/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 490,
+      "y": 182
+    },
+    "relatedProjects": [
+      {
+        "id": "st6training",
+        "relation": "リズムと時間"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-08-13",
+    "startedAt": "2026-06",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "カウントボイス",
+      "voice counter",
+      "音声カウント",
+      "読み上げ",
+      "timer",
+      "タイマー",
+      "音声タイマー",
+      "集中"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "cssanimationlists",
+    "title": "CSS MOTION",
+    "subtitle": "動くプレビューとコードで探すCSSアニメーション図鑑",
+    "summary": "CSSアニメーションを実際に動かしながら、用途、トリガー、難易度、タグで探し、同じソースのHTML・CSSをコピーできるライブラリ。",
+    "friction": "動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。",
+    "firstBuild": "よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。",
+    "currentAnswer": "固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。",
+    "type": "design-system",
+    "verbs": [
+      "探す",
+      "試す",
+      "使う"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07-24",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-07-26",
+    "startedAt": "2026-07-25",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/cssanimationlists",
+    "liveUrl": "https://silovar-uk.github.io/cssanimationlists/",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Shadow DOM"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "icon": "✨",
+    "searchAliases": [
+      "CSSアニメーション",
+      "css motion",
+      "motion library",
+      "animation library",
+      "動き",
+      "モーション",
+      "アニメーション図鑑",
+      "css animation"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "daily-log",
+    "title": "Daily Log",
+    "subtitle": "「今日やった」を最小操作で残す日次ログ",
+    "summary": "タスク管理ではなく、その日にやったことを最小の操作で記録し、週・月単位で積み上がりを振り返るための個人用Webアプリ。",
+    "friction": "やることを管理する仕組みは増えても、実際に何をやったかを気軽に残して後から振り返る場所がなかった。",
+    "firstBuild": "「今日これをやった」をすぐ記録できることを起点に、日・週・月で振り返れる形へ広げた。",
+    "currentAnswer": "ReactとCloudflare Workers/D1で、記録・保存・振り返りを同じWorker上にまとめ、Cloudflare Accessで個人利用を保護する構成。",
+    "type": "web-app",
+    "verbs": [
+      "記録する",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-08-24",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-25",
+    "repositoryUrl": "",
+    "liveUrl": "https://daily-log.silovar-uk.workers.dev/",
+    "technologies": [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "予定ではなく、やったことを残す。",
+    "searchAliases": [
+      "daily log",
+      "日次ログ",
+      "行動記録",
+      "実績記録",
+      "振り返り",
+      "Cloudflare Workers",
+      "D1"
+    ]
+  },
+  {
+    "id": "dailyenglishchunks",
+    "title": "Daily English Chunks",
+    "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
+    "summary": "短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。",
+    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
+    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
+    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
+    "type": "learning-tool",
+    "verbs": [
+      "読む",
+      "区切る",
+      "声に出す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-07",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "startedAt": "2026-08-10",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
+    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "hangul",
+        "relation": "短い反復練習とローカル進捗保存"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-10",
+        "version": "0.1",
+        "change": "チャンクリーディングの毎日練習サイトをポートフォリオへ追加",
+        "reason": "英語を一語ずつ訳さず、意味のまとまりで前から受け取る練習を毎日の短いルーティンにするため。"
+      }
+    ],
+    "aside": "訳す前に、場面を置く。",
+    "searchAliases": [
+      "デイリー英語チャンク",
+      "英語チャンク",
+      "チャンクリーディング",
+      "chunk reading",
+      "english chunks",
+      "英語音読",
+      "音読",
+      "英語学習",
+      "reading practice"
+    ],
+    "icon": "🗣️",
+    "portfolioFamilies": [
+      "Learning & Practice"
+    ],
+    "makingPrinciples": [
+      "Keep practice small"
+    ]
+  },
+  {
+    "id": "designmd",
+    "title": "designmd",
+    "subtitle": "生成AI時代の文章・スライド・画像制作ガイド",
+    "summary": "整っているだけで誰も選んでいないように見える成果物を避けるため、問い、構成、表現、編集、検証の判断基準をまとめた実務ガイド。",
+    "friction": "生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。",
+    "firstBuild": "文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。",
+    "currentAnswer": "最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。",
+    "type": "design-system",
+    "verbs": [
+      "考える",
+      "組み立てる",
+      "確かめる"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/designmd",
+    "githubId": "1298045706",
+    "liveUrl": "https://silovar-uk.github.io/designmd/",
+    "liveUrlStatus": "confirmed",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Markdown"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "content",
+      "x": 980,
+      "y": 684
+    },
+    "relatedProjects": [
+      {
+        "id": "diff",
+        "relation": "制作物の品質確認"
+      },
+      {
+        "id": "prompts",
+        "relation": "制作ルールを実行へ移す"
+      },
+      {
+        "id": "build-diary",
+        "relation": "制作判断を見せる"
+      },
+      {
+        "id": "patternlanguage",
+        "relation": "実践知をルール化"
+      }
+    ],
+    "updates": [],
+    "icon": "✦",
+    "updatedAt": "2026-08-16",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "デザインMD",
+      "design guide",
+      "design system",
+      "制作ガイド",
+      "AI制作",
+      "文章デザイン",
+      "スライド制作",
+      "デザイン指針",
+      "制作ルール"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "diff",
+    "title": "Text Review Studio",
+    "subtitle": "原稿の修正・差分確認・出力を一画面で行う",
+    "summary": "変更前と修正後の原稿を並べ、検索置換、表記整形、CMSタグ確認、差分移動、コピー、Excel出力までブラウザ内で完結する文章レビュー用ツール。",
+    "friction": "原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。",
+    "firstBuild": "二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。",
+    "currentAnswer": "右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。",
+    "type": "web-app",
+    "verbs": [
+      "比べる",
+      "直す",
+      "出力する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/diff",
+    "githubId": "1287340409",
+    "liveUrl": "https://silovar-uk.github.io/diff/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "SheetJS"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "work",
+      "x": 980,
+      "y": 182
+    },
+    "relatedProjects": [
+      {
+        "id": "commonpoint",
+        "relation": "文章を比べる"
+      },
+      {
+        "id": "designmd",
+        "relation": "制作物の品質確認"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-07-18",
+        "version": "0.4",
+        "change": "見えない文字を差分対象から除外する設計を追加した。",
+        "reason": "確認したい変更が、意味のない差分に埋もれていたため。"
+      }
+    ],
+    "aside": "空白を消したかった。空行ではなかった。",
+    "icon": "⇄",
+    "updatedAt": "2026-08-20",
+    "startedAt": "2026-07-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "差分",
+      "diff",
+      "text diff",
+      "文章比較",
+      "原稿比較",
+      "text review studio",
+      "review",
+      "校正",
+      "差分確認",
+      "文章レビュー"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
     "id": "englisharcade",
     "title": "English Arcade",
     "subtitle": "英語練習ゲーム",
@@ -563,6 +1030,128 @@
       "英語クイズ",
       "arcade",
       "語学学習"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "ennnichimock",
+    "title": "炎日 2026 特設ページ モック",
+    "subtitle": "秋開催のイベント体験を比較する5つのWeb案",
+    "summary": "2026年9月19日のイベントを題材に、参加型、物語型、探索型、編集型、共同体型の5案を、比較画面と発注仕様書まで含めて形にしたデザインモック。",
+    "friction": "企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。",
+    "firstBuild": "秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。",
+    "currentAnswer": "5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。",
+    "type": "design-system",
+    "verbs": [
+      "比べる",
+      "設計する",
+      "伝える"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-07-28",
+    "startedAt": "2026-07-27",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/ennnichimock",
+    "liveUrl": "https://silovar-uk.github.io/ennnichimock/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "icon": "🏮",
+    "searchAliases": [
+      "炎日",
+      "えんにち",
+      "ennichi",
+      "event mock",
+      "LP mock",
+      "特設ページ",
+      "イベントLP",
+      "炎日2026",
+      "イベントモック"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "flowmap",
+    "title": "Flowmap",
+    "subtitle": "文章で工程を作り、図で前後関係を確かめる",
+    "summary": "左側のアウトラインへ工程を書くだけで通常の矢印を自動生成し、分岐・合流・参照だけをGUIで補う、業務フロー向けホワイトボード。",
+    "friction": "フロー図は見やすい一方、最初からキャンバスへ図形を置くと入力が遅く、工程名や順序の修正にも手間がかかった。",
+    "firstBuild": "カードと矢印をキャンバスへ置き、業務工程を自由に結ぶボードから始めた。",
+    "currentAnswer": "アウトライン編集、自動・手動接続の分離、図への整列、囲み・折りたたみ、複数ボード、JSON・YAML入出力、PDF出力を備えた工程設計ツール。",
+    "type": "web-app",
+    "verbs": [
+      "書く",
+      "つなぐ",
+      "確かめる"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/flowmap",
+    "githubId": "1304491398",
+    "liveUrl": "https://silovar-uk.github.io/flowmap/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "IndexedDB"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "work",
+      "x": 840,
+      "y": 326
+    },
+    "relatedProjects": [
+      {
+        "id": "gantt",
+        "relation": "計画から業務構造へ"
+      },
+      {
+        "id": "mymindmap",
+        "relation": "ノードとつながり"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-07-18",
+        "version": "0.4",
+        "change": "ホワイトボードと付箋を基調にし、線と余白を再設計した。",
+        "reason": "かっこよさより更新しやすさを優先するため。"
+      }
+    ],
+    "icon": "🔀",
+    "updatedAt": "2026-08-20",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "フローマップ",
+      "flow map",
+      "フロー図",
+      "業務フロー",
+      "workflow",
+      "process map",
+      "工程図",
+      "業務整理",
+      "プロセス"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
@@ -627,6 +1216,1461 @@
     "makingPrinciples": []
   },
   {
+    "id": "fourier",
+    "title": "Fourier",
+    "subtitle": "フーリエ変換の可視化",
+    "summary": "複雑な波が単純な波の組み合わせとして表せる様子を可視化する。",
+    "friction": "数式だけでは、分解と再構成の感覚をつかみにくかった。",
+    "firstBuild": "複数の波と合成結果を動かして比べる画面から始めた。",
+    "currentAnswer": "理解するために、数式を動く形へ翻訳する学習実験。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "見る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/fourier",
+    "githubId": "1295423598",
+    "liveUrl": "https://silovar-uk.github.io/fourier/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "learning",
+      "x": 490,
+      "y": 254
+    },
+    "relatedProjects": [
+      {
+        "id": "sukan",
+        "relation": "数を感覚へ変える"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-07-13",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "フーリエ",
+      "Fourier transform",
+      "フーリエ変換",
+      "波",
+      "wave",
+      "周波数",
+      "frequency",
+      "数学可視化"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "gantt",
+    "title": "Gantt",
+    "subtitle": "工程・進行管理ツール",
+    "summary": "仕事の工程、期限、担当をガント形式で見渡す。",
+    "friction": "タスク一覧だけでは、前後関係と重なりが分かりにくかった。",
+    "firstBuild": "期間を横棒で表示する画面から始めた。",
+    "currentAnswer": "予定表ではなく、詰まりそうな場所を先に見つける道具。",
+    "type": "web-app",
+    "verbs": [
+      "計画する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/gantt",
+    "githubId": "1292302987",
+    "liveUrl": "https://silovar-uk.github.io/gantt/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "work",
+      "x": 840,
+      "y": 254
+    },
+    "relatedProjects": [
+      {
+        "id": "flowmap",
+        "relation": "計画から業務構造へ"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-07-10",
+    "startedAt": "2026-05",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "ガント",
+      "gantt chart",
+      "工程表",
+      "スケジュール",
+      "進行管理",
+      "project management",
+      "工程管理",
+      "タスク管理"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "hangul",
+    "title": "Hangul",
+    "subtitle": "ハングル学習アプリ",
+    "summary": "ハングルと読みを、選択問題と単語で反復する。",
+    "friction": "一覧を眺めるだけでは、文字を見てすぐ音へ変換できなかった。",
+    "firstBuild": "文字とカタカナ読みの選択問題から始めた。",
+    "currentAnswer": "知識の確認ではなく、見た瞬間に読む反射を作る教材。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "続ける"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/hangul",
+    "githubId": "1298221726",
+    "liveUrl": "https://silovar-uk.github.io/hangul/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 70,
+      "y": 326
+    },
+    "relatedProjects": [
+      {
+        "id": "englisharcade",
+        "relation": "言語学習"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-08-27",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "ハングル",
+      "韓国語",
+      "Korean",
+      "hangul",
+      "한글",
+      "韓国語学習",
+      "文字学習"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "imagetuning",
+    "title": "Image Tuning",
+    "subtitle": "画像への修正指示を視覚化して共有する",
+    "summary": "画像上へコメントや修正指示を置き、レイヤーを保ったJSONと確認用PNGで共有するブラウザアプリ。",
+    "friction": "画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。",
+    "firstBuild": "画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。",
+    "currentAnswer": "PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。",
+    "type": "web-app",
+    "verbs": [
+      "確認する",
+      "指示する",
+      "共有する"
+    ],
+    "status": "development",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07-21",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-07-22",
+    "startedAt": "2026-07-21",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/imagetuning",
+    "liveUrl": "https://silovar-uk.github.io/imagetuning/",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "icon": "🖼️",
+    "searchAliases": [
+      "画像修正",
+      "image tuning",
+      "画像レビュー",
+      "image annotation",
+      "コメント",
+      "修正指示",
+      "画像校正",
+      "画像コメント",
+      "レビュー"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "kakidas",
+    "title": "kakidas",
+    "subtitle": "単語・文・段落を置き、気持ちとタグで育てるメモ",
+    "summary": "頭にあるものを単語・文・段落の粒度で置き、タグ、気持ち、リンク、満足度、完了状態を後から足しながら整理する、ローカル優先のメモアプリ。",
+    "friction": "考えを最初から文章やタスクへ整えようとすると書き出せず、短い断片と長い段落を同じ方法で扱うのも難しかった。",
+    "firstBuild": "思いついた単語・文・段落を、それぞれの欄へすぐ置けるメモとして始めた。",
+    "currentAnswer": "任意タイトル、タグ別表示、気持ち・リンク、満足度、完了、派生メモ、バックアップ、IndexedDB、任意のSupabase同期まで備えた断片整理ツール。",
+    "type": "web-app",
+    "verbs": [
+      "書き出す",
+      "整理する",
+      "育てる"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/kakidas",
+    "githubId": "1276624673",
+    "liveUrl": "https://kakidas.vercel.app",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "IndexedDB",
+      "Supabase"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "archive",
+      "x": 675,
+      "y": 612
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "icon": "📝",
+    "updatedAt": "2026-08-21",
+    "startedAt": "2026-06-22",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "かきだす",
+      "書き出す",
+      "kakidasu",
+      "メモ",
+      "note",
+      "thought dump",
+      "brain dump",
+      "断片メモ",
+      "思考メモ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "karaoke-db",
+    "title": "MY DENMOKU",
+    "subtitle": "自分しか見れない、デンモク風カラオケ持ち歌データベース",
+    "summary": "Cloudflare Accessで本人だけに絞った、カラオケの持ち歌を検索・一覧しやすく管理するデータベース。AI機能はアプリ自体には組み込まず、外部のAIで曲情報を整形してから貼り付けて登録する運用にしている。",
+    "friction": "持ち歌やキー、ノリ、履歴をメモやアプリに散らして書いていたが、当日その場で「何を歌うか」を検索・絞り込みで素早く選べる場所がなかった。",
+    "firstBuild": "曲名・アーティスト・キー・年代・ノリ・ランクなどを登録できるCRUDと、テーブル/カード切り替え、検索・絞り込みを最初に作った。",
+    "currentAnswer": "Cloudflare Access(メール認証)で本人限定にし、Workers+D1でCRUDと一括インポートを提供。年代・ノリのチップ絞り込みとURL連携、当日歌う曲をためる予約リスト、ChatGPT等に整形してもらうための登録用プロンプトのコピー機能を備えたデンモク風レトロUIにした。",
+    "type": "learning-tool",
+    "verbs": [
+      "探す",
+      "選ぶ",
+      "歌う"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-20",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-20",
+    "startedAt": "2026-08-20",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual",
+    "repositoryUrl": "",
+    "liveUrl": "https://karaoke-db.silovar-uk.workers.dev",
+    "technologies": [
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "searchAliases": [
+      "MY DENMOKU",
+      "karaoke db",
+      "カラオケDB",
+      "持ち歌管理",
+      "デンモク",
+      "denmoku",
+      "karaoke",
+      "持ち歌リスト",
+      "予約リスト"
+    ],
+    "relatedProjects": [
+      {
+        "id": "private-memo",
+        "relation": "Cloudflare Accessで本人限定にする構成が共通"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-20",
+        "version": "0.1",
+        "change": "本人限定・検索と絞り込み重視のカラオケ持ち歌DBを公開",
+        "reason": "当日その場で歌う曲を素早く選べる、検索性と一覧性を優先した個人用データベースを作るため。"
+      }
+    ],
+    "aside": "選曲は自分で。AIは、メモを整えるときだけ手を貸す。",
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "keygrid",
+    "title": "KeyGrid",
+    "subtitle": "Chromeをマウスなしで操作する拡張機能",
+    "summary": "リンク、ボタン、入力欄へHintを割り当て、固定キー式ブックマーク、Grid、全画面リンク一覧、サイト別補助を組み合わせてChrome操作をキーボードだけで進める拡張機能。",
+    "friction": "クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まり、要素が多い画面ほどHint同士も重なっていた。",
+    "firstBuild": "画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。",
+    "currentAnswer": "対象要素の重なり回避、入力要素の常時表示、全画面リンク一覧、折り畳み状態からの復帰、LINE WORKSのチャット選択まで扱うキーボード操作基盤。",
+    "type": "chrome-extension",
+    "verbs": [
+      "操作する",
+      "探す",
+      "移動する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": true,
+    "createdAt": "2026-07-27",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1600,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "quicklinks",
+        "relation": "ブラウザ操作のキーボード化"
+      }
+    ],
+    "updates": [],
+    "aside": "クリック先を探すより、キーを押した方が速い。",
+    "startedAt": "2026-07-27",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "searchAliases": [
+      "キーグリッド",
+      "key grid",
+      "keyboard navigation",
+      "キーボード操作",
+      "chromeキーボード",
+      "hint",
+      "ヒント",
+      "マウスなし",
+      "ブラウザ操作"
+    ],
+    "portfolioFamilies": [
+      "Browser Productivity"
+    ],
+    "makingPrinciples": []
+  },
+  {
+    "id": "keygridexpansion",
+    "title": "keygridexpansion",
+    "subtitle": "GitHubリポジトリ",
+    "summary": "GitHub上で管理している制作物。",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
+    "type": "web-app",
+    "verbs": [
+      "作る"
+    ],
+    "status": "development",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-13",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-13",
+    "startedAt": "2026-08-13",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created-fallback",
+    "repositoryUrl": "https://github.com/silovar-uk/keygridexpansion",
+    "liveUrl": "",
+    "technologies": [],
+    "documentationState": "unreviewed",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "searchAliases": [
+      "keygrid expansion",
+      "キーグリッド拡張",
+      "keygrid",
+      "keyboard navigation",
+      "chrome操作",
+      "キーボード操作"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "likewhat",
+    "title": "LikeWhat",
+    "subtitle": "「この感じ」を言葉とモックで探すデザイン参照集",
+    "summary": "Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。",
+    "friction": "『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。",
+    "firstBuild": "既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。",
+    "currentAnswer": "ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。",
+    "type": "design-system",
+    "verbs": [
+      "探す",
+      "比べる",
+      "言語化する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-08-09",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-10",
+    "startedAt": "2026-08-09",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/likewhat",
+    "liveUrl": "https://silovar-uk.github.io/likewhat/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "designmd",
+        "relation": "デザイン判断を言葉にする"
+      },
+      {
+        "id": "vocabularies",
+        "relation": "曖昧な感覚から精密な言葉へ進む"
+      },
+      {
+        "id": "ennnichimock",
+        "relation": "言語化した方向性を実際のモックで比較する"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-10",
+        "version": "0.1",
+        "change": "ブランド・サービス由来のデザインパターンを言語化とモックで探索する参照集を追加",
+        "reason": "『〜っぽい』という曖昧な感覚を、再利用可能なデザイン要素へ分解して探せるようにするため。"
+      }
+    ],
+    "aside": "『それっぽい』を、そこで終わらせない。",
+    "searchAliases": [
+      "ライクワット",
+      "like what",
+      "デザイン参照",
+      "design reference",
+      "brand reference",
+      "デザインリファレンス",
+      "モック",
+      "ブランドデザイン",
+      "UI参考"
+    ],
+    "icon": "◫",
+    "portfolioFamilies": [
+      "Design & Communication"
+    ],
+    "makingPrinciples": [
+      "Turn repetition into systems"
+    ]
+  },
+  {
+    "id": "lineworks-logger",
+    "title": "LINE WORKS Logger",
+    "subtitle": "トーク・メールのローカル記録拡張",
+    "summary": "LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。",
+    "friction": "大量の連絡を画面上だけで追うと、あとから検索しにくかった。",
+    "firstBuild": "対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。",
+    "currentAnswer": "業務連絡を自分で扱える記録データへ変える入口。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "探す"
+    ],
+    "status": "prototype",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05",
+    "createdAtPrecision": "month",
+    "updatedAt": "2026-05",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1460,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "連絡は流れる。ログは流したくない。",
+    "startedAt": "2026-05",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "manual-record",
+    "searchAliases": [
+      "ラインワークス",
+      "LINE WORKS",
+      "logger",
+      "ロガー",
+      "トーク保存",
+      "メール保存",
+      "chat export",
+      "ログ保存",
+      "業務ログ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "lineworks-scroll-copy",
+    "title": "LINE WORKS Scroll & Copy",
+    "subtitle": "トーク履歴のさかのぼり・抽出拡張",
+    "summary": "LINE WORKSの長いトーク履歴をさかのぼり、複数形式で手元に保存するChrome拡張。",
+    "friction": "長いトークを手でスクロールし、あとから整理し直す作業が重かった。",
+    "firstBuild": "高速スクロール版から始め、途中停止後のコピーと構造化保存へ広げた。",
+    "currentAnswer": "スクロール、収集、形式変換を一つにまとめた道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-01",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-05-01",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1320,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "まず上へ行きたい日と、全部持って帰りたい日は、別の日だった。",
+    "searchAliases": [
+      "LINE WORKS Scroll Copy",
+      "スクロールコピー",
+      "トーク履歴",
+      "chat history",
+      "履歴抽出",
+      "lineworks",
+      "トーク保存"
+    ]
+  },
+  {
+    "id": "manontec",
+    "title": "マノン実戦ポテンシャル",
+    "subtitle": "スト6・マノン分析ページ",
+    "summary": "ストリートファイター6のマノンを、技や状況ごとに実戦視点で整理する。",
+    "friction": "攻略情報は多いのに、自分が試合中に使える判断へ変換しにくかった。",
+    "firstBuild": "技と状況をカード形式で並べるページから始めた。",
+    "currentAnswer": "知識量ではなく、対戦中に選べる形へ変える攻略ノート。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-03",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/manontec",
+    "githubId": "1189209834",
+    "liveUrl": "https://silovar-uk.github.io/manontec/",
+    "liveUrlStatus": "confirmed",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 490,
+      "y": 110
+    },
+    "relatedProjects": [
+      {
+        "id": "marisast6",
+        "relation": "スト6の攻略整理"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-04-20",
+    "startedAt": "2026-03-23",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "マノン",
+      "スト6マノン",
+      "manon",
+      "sf6 manon",
+      "street fighter 6 manon",
+      "格ゲー攻略"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "marisast6",
+    "title": "MODERN MARISA LAB",
+    "subtitle": "モダンマリーザの判断順を学ぶ実戦攻略サイト",
+    "summary": "技表ではなく、距離、画面位置、相手行動、ゲージから次の一手を選ぶ順番を、攻略・逆引き・ドリルで学ぶStreet Fighter 6向けサイト。",
+    "friction": "強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。",
+    "firstBuild": "技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。",
+    "currentAnswer": "技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "判断する",
+      "練習する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/marisast6",
+    "githubId": "1298884217",
+    "liveUrl": "https://silovar-uk.github.io/marisast6/",
+    "liveUrlStatus": "confirmed",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "GitHub Actions"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 210,
+      "y": 326
+    },
+    "relatedProjects": [
+      {
+        "id": "manontec",
+        "relation": "スト6の攻略整理"
+      },
+      {
+        "id": "st6training",
+        "relation": "知識から入力練習へ"
+      }
+    ],
+    "updates": [],
+    "icon": "🥊",
+    "updatedAt": "2026-08-15",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "マリーザ",
+      "modern marisa",
+      "sf6 marisa",
+      "スト6",
+      "ストリートファイター6",
+      "street fighter 6",
+      "格ゲー攻略",
+      "マリーザ攻略"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "memo",
+    "title": "Memo",
+    "subtitle": "初期メモアプリ",
+    "summary": "考えや文章をブラウザ上へ残す、初期のメモ制作。",
+    "friction": "保存場所を選んでいる間に、書きたいことを逃していた。",
+    "firstBuild": "入力欄と保存機能だけの小さなメモから始めた。",
+    "currentAnswer": "後のMemoToolや記録系アプリへ続く原型。",
+    "type": "web-app",
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
+    "status": "dormant",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2025-05",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/memo",
+    "githubId": "994786161",
+    "liveUrl": "https://silovar-uk.github.io/memo/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "archive",
+      "x": 550,
+      "y": 540
+    },
+    "relatedProjects": [
+      {
+        "id": "simplememotool",
+        "relation": "メモ機能の発展"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2025-06-05",
+    "startedAt": "2025-06-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "メモ",
+      "めも",
+      "memo app",
+      "note",
+      "notes",
+      "メモアプリ",
+      "ノート"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "memoexpansion",
+    "title": "MemoTool Expansion",
+    "subtitle": "Chromeサイドパネルで文章をため、並べ替え、育てるアウトライナー型メモ",
+    "summary": "ブラウザを開いたまま使えるChromeサイドパネルのメモ拡張。複数タブとアウトライナー型の項目を扱い、入力、複数選択、並べ替え、完了管理、Undo・Redo、ローカル保存を一つの場所で行う。",
+    "friction": "ブラウザ作業中のメモを別アプリへ取りに行くと集中が切れ、短い断片をあとから並べ替えたり、まとまりとして育てたりする操作も重くなりやすかった。",
+    "firstBuild": "既存のMemoToolをChromeサイドパネル中心の構成へ整理し、タブとアウトライナーを分けて扱える編集環境へ拡張した。",
+    "currentAnswer": "入力・タブ・描画・複数選択・保存などの責務を分割しつつ、赤太字行の改行時の書式継承、複数選択、ドラッグ移動、Undo・Redoを維持。不要だった三点メニューを撤去し、保存競合、キーボード操作、ARIA、タップ領域、reduced motionも改善した。",
+    "type": "chrome-extension",
+    "verbs": [
+      "書く",
+      "並べ替える",
+      "残す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-14",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-14",
+    "startedAt": "2026-08-14",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/memoexpansion",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "memo",
+        "relation": "元になったメモツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-14",
+        "version": "2.1.0",
+        "change": "赤太字の改行継承、三点メニュー撤去、Side Panelの責務分割、保存・アクセシビリティ改善を実施",
+        "reason": "既存機能を保ちながら、操作の迷いと内部の密結合を減らし、長く使える構成へ整理するため。"
+      }
+    ],
+    "aside": "メモは増えていい。操作は増やしすぎない。",
+    "searchAliases": [
+      "MemoTool",
+      "メモツール",
+      "サイドパネルメモ",
+      "memo expansion",
+      "メモ拡張",
+      "chrome memo",
+      "アウトライナー",
+      "outline memo",
+      "side panel memo"
+    ],
+    "portfolioFamilies": [
+      "Writing & Knowledge"
+    ],
+    "makingPrinciples": [
+      "Turn repetition into systems"
+    ]
+  },
+  {
+    "id": "mmmpocket",
+    "title": "MMM Pocket Lite",
+    "subtitle": "スマホ用アウトライン・メモ",
+    "summary": "スマートフォンで階層メモ、チェック、ノートを素早く扱う。",
+    "friction": "PC向けの整理ツールは、移動中に項目を足すには重かった。",
+    "firstBuild": "タイトルと項目をすぐ追加できる小型画面から始めた。",
+    "currentAnswer": "ポケットの中で使える、軽量なアウトライン作業台。",
+    "type": "web-app",
+    "verbs": [
+      "記録する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-05",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/mmmpocket",
+    "githubId": "1225401968",
+    "liveUrl": "https://silovar-uk.github.io/mmmpocket/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "archive",
+      "x": 550,
+      "y": 612
+    },
+    "relatedProjects": [
+      {
+        "id": "simplememotool",
+        "relation": "小さな記録画面"
+      },
+      {
+        "id": "mymindmap",
+        "relation": "階層で考える"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-04-30",
+    "startedAt": "2026-04-30",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "MMM Pocket",
+      "ポケットメモ",
+      "階層メモ",
+      "アウトラインメモ",
+      "outline memo",
+      "スマホメモ",
+      "pocket memo"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "multimemos",
+    "title": "MultiMemos",
+    "subtitle": "複数の文章を横に並べたまま、見比べながら書く軽量メモワークスペース",
+    "summary": "2〜4つの文章欄を同時に開き、資料・案・作業文・メモなどを並べたまま比較しながら書けるブラウザツール。欄名は自由に変更でき、固定、コピー、集中表示、幅調整、文字サイズ変更、自動保存に対応する。",
+    "friction": "元原稿、参考文、AI案、作業中の文章を別タブや別アプリに置くと、行き来するたびに比較の文脈が切れ、どこを見ながら書いていたかを見失いやすかった。",
+    "firstBuild": "用途を固定せず、2欄・3欄・4欄を横並びにして、それぞれへ自由に文章を置ける小さな比較メモとして作った。",
+    "currentAnswer": "各欄を薄い色で見分けながら、欄名変更、固定、全文コピー、集中表示、個別・全体の文字サイズ調整、欄幅変更、コンパクト表示、localStorage自動保存、スマホの横送り表示、Alt+1〜4移動を使える。Diffも別タブですぐ開ける。",
+    "type": "learning-tool",
+    "verbs": [
+      "書く",
+      "比べる",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-14",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-14",
+    "startedAt": "2026-08-14",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/multimemos",
+    "liveUrl": "https://silovar-uk.github.io/multimemos/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "localStorage"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "diff",
+        "relation": "並べて書いた文章の差分を確認する"
+      },
+      {
+        "id": "myspines",
+        "relation": "文章を組み立てながら書く"
+      },
+      {
+        "id": "kakidas",
+        "relation": "頭の中の断片を書き出す"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-14",
+        "version": "0.1",
+        "change": "2〜4欄、自由な欄名、固定・コピー・集中表示、欄ごとの識別色、Diff導線を備えた比較メモを公開",
+        "reason": "複数の文章を切り替えず、同じ視界に置いたまま考えて書けるようにするため。"
+      }
+    ],
+    "aside": "切り替えるより、並べたまま考える。",
+    "searchAliases": [
+      "マルチメモ",
+      "比較メモ",
+      "並列メモ",
+      "文章比較",
+      "multi memos",
+      "side by side",
+      "split editor",
+      "比較エディタ",
+      "parallel memo"
+    ],
+    "portfolioFamilies": [
+      "Writing & Knowledge"
+    ],
+    "makingPrinciples": [
+      "Reduce everyday friction"
+    ]
+  },
+  {
+    "id": "mydailylog",
+    "title": "日々の棚",
+    "subtitle": "今日の断片を、あとから使える記録へ育てる",
+    "summary": "形式を決めずに残した出来事を、食事・支出・運動・ゲームなどへ整理し、カレンダー・検索・月別集計・イベント単位で読み返すローカル完結型PWA。",
+    "friction": "その日に起きた細かなことは残したい一方、入力項目を先に決めると面倒になり、自由記述だけでは後から探しにくかった。",
+    "firstBuild": "日付ごとの自由なログと、気分・タイトル・持ち越しメモを一つの画面へ置いた。",
+    "currentAnswer": "自由入力、分類提案、詳細編集、前後3日をつなぐイベントビュー、全文検索、集計、JSONバックアップ、CSV出力、オフライン利用を備えた日常ログ。",
+    "type": "web-app",
+    "verbs": [
+      "記録する",
+      "見つける",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/mydailylog",
+    "githubId": "1291089091",
+    "liveUrl": "https://silovar-uk.github.io/mydailylog/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "TypeScript",
+      "PWA",
+      "IndexedDB",
+      "Vite"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "life",
+      "x": 1410,
+      "y": 612
+    },
+    "relatedProjects": [
+      {
+        "id": "myspines",
+        "relation": "日々から価値観を読む"
+      }
+    ],
+    "updates": [],
+    "icon": "📅",
+    "updatedAt": "2026-08-20",
+    "startedAt": "2026-06",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "日々の棚",
+      "daily log",
+      "diary",
+      "日記",
+      "ライフログ",
+      "life log",
+      "生活記録",
+      "日常ログ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "mydictionary",
+    "title": "私辞典",
+    "subtitle": "出会った言葉を拾い、育て、忘れたころに開く",
+    "summary": "気になった言葉・文章・概念を5秒で登録し、意味・出典・場面・使い方を後から追記しながら、自分だけの辞書として育てるローカルファーストアプリ。",
+    "friction": "言葉との出会いは一瞬なのに、最初から意味や出典をきれいに埋めようとすると記録できず、保存しても再び開く機会が少なかった。",
+    "firstBuild": "見出し語だけをすぐ登録し、詳細は後から足せる小さな辞書を作った。",
+    "currentAnswer": "全文検索、未閲覧・久しぶり・育て途中・ランダムの再会導線、JSONバックアップ、CSV・TXT入出力、PWAオフライン利用まで備えた私的辞書。",
+    "type": "learning-tool",
+    "verbs": [
+      "拾う",
+      "育てる",
+      "思い出す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/mydictionary",
+    "githubId": "1304149077",
+    "liveUrl": "https://silovar-uk.github.io/mydictionary/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Dexie",
+      "MiniSearch",
+      "PWA"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "archive",
+      "x": 550,
+      "y": 684
+    },
+    "relatedProjects": [
+      {
+        "id": "contentslibrary",
+        "relation": "個人の記憶を残す"
+      }
+    ],
+    "updates": [],
+    "icon": "🔤",
+    "updatedAt": "2026-08-16",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "私辞典",
+      "dictionary",
+      "辞書",
+      "単語帳",
+      "vocabulary notebook",
+      "word collection",
+      "言葉",
+      "言葉メモ",
+      "個人辞書"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "myessays",
+    "title": "My Essays",
+    "subtitle": "論文・エッセイ・レビューを育てる個人アーカイブ",
+    "summary": "Markdownで書いた論考を、全文検索・分類・お気に入り・読書ビューとともに蓄積し、あとから読み直しやすくする公開アーカイブ。",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
+    "type": "content-page",
+    "verbs": [
+      "書く",
+      "探す",
+      "読み返す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-07",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-31",
+    "startedAt": "2026-08-07",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/myessays",
+    "liveUrl": "https://silovar-uk.github.io/myessays/",
+    "technologies": [
+      "Markdown",
+      "HTML",
+      "JavaScript",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "searchAliases": [
+      "マイエッセイ",
+      "my essays",
+      "essays",
+      "エッセイ",
+      "コラム",
+      "記事",
+      "article library",
+      "読み物",
+      "論考"
+    ],
+    "icon": "📄",
+    "portfolioFamilies": [
+      "Writing & Knowledge"
+    ],
+    "makingPrinciples": [
+      "Make knowledge retrievable"
+    ]
+  },
+  {
+    "id": "myglossary",
+    "title": "My Glossary",
+    "subtitle": "学んだ言葉を、使える形で少しずつ残す個人用語集",
+    "summary": "学んだ言葉を「一言で・もう少し詳しく・具体例・なぜ覚えた？・関連語」の形で残し、検索や最近の学習履歴から引き直せる個人用の用語集。",
+    "friction": "言葉の意味をその場では理解しても、あとで自分の言葉として説明したり、具体的な場面で使ったりできないまま忘れやすかった。",
+    "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
+    "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "言語化する",
+      "引き直す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-17",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-17",
+    "startedAt": "2026-08-17",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-first-commit-jst",
+    "repositoryUrl": "https://github.com/silovar-uk/myglossary",
+    "liveUrl": "https://silovar-uk.github.io/myglossary/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "vocabularies",
+        "relation": "曖昧な感覚から言葉へたどる"
+      },
+      {
+        "id": "mydictionary",
+        "relation": "出会った言葉を蓄積して育てる"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-17",
+        "version": "0.1",
+        "change": "学んだ言葉を検索・タグ・関連語とともに残す個人用語集を公開",
+        "reason": "知った言葉を、その場の理解で終わらせず、自分の説明と具体例を伴う再利用できる知識へ変えるため。"
+      }
+    ],
+    "aside": "知った言葉を、使える言葉まで育てる。",
+    "searchAliases": [
+      "MyGlossary",
+      "マイグロッサリー",
+      "用語集",
+      "個人用語集",
+      "学習用語集",
+      "glossary",
+      "term list",
+      "terms",
+      "言葉メモ",
+      "学習辞書"
+    ],
+    "icon": "📚",
+    "portfolioFamilies": [
+      "Learning & Practice"
+    ],
+    "makingPrinciples": [
+      "Make knowledge retrievable"
+    ]
+  },
+  {
+    "id": "mymindmap",
+    "title": "My Mind Map",
+    "subtitle": "個人用マインドマップ",
+    "summary": "考えを枝分かれさせながら、関係ごと見える形にする。",
+    "friction": "メモが縦に増えると、考え同士のつながりが見えなくなった。",
+    "firstBuild": "ノード追加と接続を試せる画面から始めた。",
+    "currentAnswer": "考えを整理してから書くのではなく、広げながら考える道具。",
+    "type": "web-app",
+    "verbs": [
+      "整理する",
+      "考える"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-04",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/mymindmap",
+    "githubId": "1207565216",
+    "liveUrl": "https://silovar-uk.github.io/mymindmap/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "archive",
+      "x": 800,
+      "y": 540
+    },
+    "relatedProjects": [
+      {
+        "id": "flowmap",
+        "relation": "ノードとつながり"
+      },
+      {
+        "id": "mmmpocket",
+        "relation": "階層で考える"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-06-12",
+    "startedAt": "2026-04-11",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "マインドマップ",
+      "mind map",
+      "mindmap",
+      "思考整理",
+      "発想整理",
+      "ノード",
+      "アイデア整理"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "myspines",
+    "title": "myspines",
+    "subtitle": "段落を動かしながら長い文章を書くエディタ",
+    "summary": "本文、番号付きアウトライン、メモを一画面で扱い、段落の並べ替えや階層変更をしながら長文を組み立てるローカルファーストエディタ。",
+    "friction": "長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。",
+    "firstBuild": "アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。",
+    "currentAnswer": "本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。",
+    "type": "web-app",
+    "verbs": [
+      "書く",
+      "組み立てる",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/myspines",
+    "githubId": "1298193339",
+    "liveUrl": "https://silovar-uk.github.io/myspines/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "IndexedDB"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "life",
+      "x": 1530,
+      "y": 612
+    },
+    "relatedProjects": [
+      {
+        "id": "mydailylog",
+        "relation": "日々から価値観を読む"
+      }
+    ],
+    "updates": [],
+    "icon": "✍️",
+    "updatedAt": "2026-07-13",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "スパイン",
+      "longform editor",
+      "長文エディタ",
+      "アウトライナー",
+      "outline",
+      "執筆",
+      "writing",
+      "文章構成",
+      "長文執筆"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "newsquiz",
+    "title": "News Quiz",
+    "subtitle": "ニュース理解クイズ",
+    "summary": "ニュースを問いに変え、思い出しながら理解する。",
+    "friction": "記事を読んだ直後は分かっても、数日後には要点を説明できなかった。",
+    "firstBuild": "一問一答形式のニュース問題から始めた。",
+    "currentAnswer": "読む量ではなく、思い出す回数を増やす学習ツール。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/newsquiz",
+    "githubId": "1289217782",
+    "liveUrl": "https://silovar-uk.github.io/newsquiz/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "learning",
+      "x": 350,
+      "y": 254
+    },
+    "relatedProjects": [
+      {
+        "id": "sukan",
+        "relation": "短問反復"
+      }
+    ],
+    "updates": [],
+    "updatedAt": "2026-07-08",
+    "startedAt": "2026-07-04",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "ニュースクイズ",
+      "news quiz",
+      "時事クイズ",
+      "current affairs",
+      "ニュース学習",
+      "時事問題",
+      "ニュース理解"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "ooh",
+    "title": "OOH",
+    "subtitle": "屋外広告整理ページ",
+    "summary": "OOH施策の考え方や事例を整理する。",
+    "friction": "媒体名と掲出場所だけでは、狙いと役割を説明しづらかった。",
+    "firstBuild": "情報を一枚のレビュー画面にまとめた。",
+    "currentAnswer": "屋外広告を「出す場所」ではなく、街で起こす接点として考える資料。",
+    "type": "content-page",
+    "verbs": [
+      "伝える",
+      "考える"
+    ],
+    "status": "prototype",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-05",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/ooh",
+    "githubId": "1238408160",
+    "liveUrl": "https://silovar-uk.github.io/ooh/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "inferred",
+    "map": {
+      "group": "pr",
+      "x": 350,
+      "y": 684
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "updatedAt": "2026-05-14",
+    "startedAt": "2026-05-14",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "searchAliases": [
+      "屋外広告",
+      "OOH広告",
+      "out of home",
+      "outdoor advertising",
+      "広告",
+      "屋外メディア",
+      "媒体"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
     "id": "patternlanguage",
     "title": "Pattern Language",
     "subtitle": "パターン・ランゲージ整理ページ",
@@ -683,54 +2727,494 @@
     "makingPrinciples": []
   },
   {
-    "id": "akasma",
-    "title": "アカスマ",
-    "subtitle": "身内スマブラ大会プログラムLP",
-    "summary": "身内スマブラ大会の参加者、進行、プログラムを一枚にまとめたLP。",
-    "friction": "身内大会でも、当日の流れと期待感をちゃんと共有したかった。",
-    "firstBuild": "スマートフォン幅のプログラムLPとして作った。",
-    "currentAnswer": "小さな遊びでも、イベントとして本気で整える実験。",
-    "type": "content-page",
+    "id": "payment-case-manager",
+    "title": "支払案件管理アプリ",
+    "subtitle": "支払案件の進捗とfreee申請チェックをまとめるChrome拡張",
+    "summary": "支払月・支払先・案件名を登録し、発注・納品・請求書・支払の進捗を月別に管理。freeeの支払申請画面では入力内容を自動チェックし、経理関連のQuick Linksへすぐ移動できるChromeサイドパネル拡張。",
+    "friction": "支払案件の進捗、証憑、申請画面、関連シートやトークルームが複数の場所に分かれ、確認漏れと画面移動の手間が生まれていた。",
+    "firstBuild": "支払案件を月別に登録し、発注から支払までの工程をチェックできるサイドパネルとして作った。",
+    "currentAnswer": "案件の追加・編集・並べ替え、完了表示、Undo・Redo、JSON入出力、関連リンク、freee支払申請の入力チェックを一つにまとめた業務用Chrome拡張。",
+    "type": "learning-tool",
     "verbs": [
-      "参加する",
-      "伝える"
+      "管理する",
+      "確認する",
+      "申請する"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-05-08",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-06",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3",
+      "freee"
+    ],
+    "documentationState": "verified",
+    "extension": {
+      "version": "1.4",
+      "extensionId": "",
+      "serviceWorker": "active"
+    },
+    "map": {
+      "group": "extension",
+      "x": 1040,
+      "y": 398
+    },
+    "relatedProjects": [
+      {
+        "id": "accountinglearn",
+        "relation": "会計・経理を扱う"
+      },
+      {
+        "id": "quicklinks",
+        "relation": "業務リンクをすぐ開く"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-06",
+        "version": "1.4",
+        "change": "経理関連のQuick Linksを追加",
+        "reason": "支払シート、証憑、トークルーム、適格証明書の案内へすぐ移動できるようにするため。"
+      },
+      {
+        "date": "2026-05-08",
+        "version": "1.2",
+        "change": "freee支払申請の入力チェックを追加",
+        "reason": "支払先、メモタグ、勘定科目、支払期限などの確認漏れを減らすため。"
+      }
+    ],
+    "aside": "申請を始める前に、確認漏れを減らす場所を先に作った。",
+    "startedAt": "2026-05-08",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "searchAliases": [
+      "支払管理",
+      "payment manager",
+      "freee",
+      "支払申請",
+      "経理",
+      "請求書",
+      "案件管理",
+      "支払案件",
+      "会計業務"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "pdfclipper",
+    "title": "PDF Clipper",
+    "subtitle": "画像やPDFの必要な範囲だけを素早く切り抜く",
+    "summary": "画像・PDFをブラウザ内で開き、範囲指定、縦横比、整列、回転、余白削除を調整して、PNG・JPG・クリップボード・ZIPへ書き出す軽量ツール。",
+    "friction": "資料の一部分だけを使いたい時、PDFを画像化し、別ソフトで切り抜き、複数箇所を一件ずつ保存する工程が長かった。",
+    "firstBuild": "画像を読み込み、ドラッグした範囲をPNGとして保存する一画面ツールから始めた。",
+    "currentAnswer": "PDFページ一覧、150／300dpi描画、タッチ・ペン操作、数値指定、余白削除、複数候補、ZIP一括保存までブラウザ内で完結するクリッパー。",
+    "type": "utility",
+    "verbs": [
+      "切り抜く",
+      "整える",
+      "書き出す"
     ],
     "status": "active",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-05",
-    "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/akasma",
-    "githubId": "1233726681",
-    "liveUrl": "https://silovar-uk.github.io/akasma/",
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/pdfclipper",
+    "githubId": "1302198116",
+    "liveUrl": "https://silovar-uk.github.io/pdfclipper/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Canvas API",
+      "PDF.js",
+      "ZIP出力"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "work",
+      "x": 700,
+      "y": 326
+    },
+    "relatedProjects": [
+      {
+        "id": "pdflinks",
+        "relation": "PDFを扱う"
+      }
+    ],
+    "updates": [],
+    "icon": "✂️",
+    "updatedAt": "2026-07-16",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "PDF切り抜き",
+      "pdf crop",
+      "pdf clipper",
+      "cropper",
+      "画像切り抜き",
+      "トリミング",
+      "PDFトリミング",
+      "画像クロップ"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "pdflinks",
+    "title": "PDF Links",
+    "subtitle": "PDF内リンク整理ツール",
+    "summary": "PDFに含まれるリンクや参照先を取り出し、確認しやすくする。",
+    "friction": "PDF内のリンクを一つずつ開いて確認するのが面倒だった。",
+    "firstBuild": "PDFを読み込み、リンク一覧を出す処理から始めた。",
+    "currentAnswer": "文書を読む道具ではなく、文書の外へ出る導線を確認する道具。",
+    "type": "utility",
+    "verbs": [
+      "見つける",
+      "確認する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/pdflinks",
+    "githubId": "1255213092",
+    "liveUrl": "https://silovar-uk.github.io/pdflinks/",
     "liveUrlStatus": "candidate",
     "technologies": [
       "HTML",
       "CSS",
       "JavaScript"
     ],
-    "documentationState": "verified",
+    "documentationState": "inferred",
     "map": {
-      "group": "content",
-      "x": 1105,
-      "y": 612
+      "group": "work",
+      "x": 840,
+      "y": 182
     },
-    "relatedProjects": [],
+    "relatedProjects": [
+      {
+        "id": "pdfclipper",
+        "relation": "PDFを扱う"
+      }
+    ],
     "updates": [],
-    "updatedAt": "2026-05-09",
-    "startedAt": "2026-05-09",
+    "updatedAt": "2026-06-01",
+    "startedAt": "2026-05-31",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "アカスマ",
-      "スマブラ大会",
-      "smash bros",
-      "smash tournament",
-      "大会LP",
-      "イベントLP",
-      "大会ページ"
+      "PDFリンク",
+      "pdf links",
+      "PDF内リンク",
+      "リンク抽出",
+      "url extraction",
+      "PDF URL",
+      "参照リンク"
     ],
     "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "poco-a-poco",
+    "title": "Poco a Poco",
+    "subtitle": "日本語話者向け、5分ずつ進めるスペイン語学習アプリ",
+    "summary": "日本語話者の初心者が「5分で一つ話せる」状態を目指し、Can-do型レッスン、発話練習、ランダム復習、日本語支援レベルを組み合わせたスペイン語学習Webアプリ。",
+    "friction": "単語や文法を覚えても、実際の場面で短く話すところまでつながりにくかった。",
+    "firstBuild": "HOMEの「今日の5分」とCan-do型レッスンを軸に、短時間で意味理解から発話まで進める学習導線を作った。",
+    "currentAnswer": "PATH、PRACTICE、Smart Random、DISCOVERY、自作文、confidence、学習履歴保存をまとめ、9段階の学習フローで反復できるスマホ対応SPA。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "話す",
+      "復習する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-31",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-31",
+    "startedAt": "2026-08-31",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created",
+    "repositoryUrl": "https://github.com/silovar-uk/poco-a-poco",
+    "liveUrl": "https://silovar-uk.github.io/poco-a-poco/#home",
+    "technologies": [
+      "JavaScript",
+      "localStorage",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "icon": "🗣️",
+    "editorialState": "published",
+    "searchAliases": [],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "private-memo",
+    "title": "Private Memo",
+    "subtitle": "本人だけが開ける、ログイン必須・E2EEの個人用メモ",
+    "summary": "Cloudflare Accessで本人認証し、メモ本文はブラウザ側で暗号化してから保存する個人用の非公開メモ。D1には暗号文だけを置き、サーバー側で平文を読まない構成にしている。",
+    "friction": "思いつきや個人的な記録を複数端末からすぐ書きたい一方、公開URLやサーバー保存を前提にすると、誤公開やデータ流出時に平文が見える不安が残った。",
+    "firstBuild": "Kakidasのようにすぐ書ける感覚を残しつつ、Cloudflare AccessのメールOTPで入口を閉じ、ブラウザのWeb Cryptoでメモを暗号化してからD1へ保存する構成にした。",
+    "currentAnswer": "本人のメールだけを許可するCloudflare Access、パスフレーズで開くブラウザ内Vault、AES-256-GCMによるクライアント側暗号化、暗号文のみを保持するWorker/D1を組み合わせた。ロック時は鍵を破棄し、一定時間で自動ロックする。",
+    "type": "learning-tool",
+    "verbs": [
+      "書く",
+      "保存する",
+      "守る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-17",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-17",
+    "startedAt": "2026-08-17",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual",
+    "repositoryUrl": "",
+    "liveUrl": "https://private-memo.silovar-uk.workers.dev/",
+    "technologies": [
+      "Cloudflare Workers",
+      "Cloudflare Access",
+      "Cloudflare D1",
+      "Web Crypto API",
+      "AES-256-GCM"
+    ],
+    "documentationState": "verified",
+    "searchAliases": [
+      "Private Memo",
+      "private memo",
+      "プライベートメモ",
+      "非公開メモ",
+      "秘密メモ",
+      "個人用メモ",
+      "暗号化メモ",
+      "E2EE",
+      "encrypted memo",
+      "Cloudflare Access",
+      "D1"
+    ],
+    "relatedProjects": [
+      {
+        "id": "kakidas",
+        "relation": "思いつきをすぐ書き出す操作感"
+      },
+      {
+        "id": "memo",
+        "relation": "個人用メモという共通用途"
+      },
+      {
+        "id": "contentslibrary",
+        "relation": "個人データを保存して後から参照する"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-17",
+        "version": "0.1",
+        "change": "ログイン必須・クライアント側暗号化の個人用メモを公開",
+        "reason": "複数端末から使える便利さを保ちながら、サーバーやDBから平文が漏れにくいメモ環境を作るため。"
+      }
+    ],
+    "aside": "サーバーには、読める本文を置かない。",
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "prompts",
+    "title": "Prompts",
+    "subtitle": "人が選び、AIもURLから読める公開プロンプト・ライブラリ",
+    "summary": "用途を人向けの説明から選び、同じ内容を固定URL・Markdown・JSONでAIへ渡せる、文章・会議・企画・調査・広報・画像・学習のプロンプト集。",
+    "friction": "プロンプト本文だけを並べると、何に向くか、何を用意するか、何が返るかが人には分かりにくく、AIへ渡す版との不一致も起きやすかった。",
+    "firstBuild": "入力フォームから実行用テキストを組み立てるプロンプトランチャーとして始めた。",
+    "currentAnswer": "Schema v2の一つのデータから49件のHTML・Markdown・JSON・固定版を生成し、人向け説明、AI向け仕様、検索、検証、旧ランチャーを共存させた公開ライブラリ。",
+    "type": "design-system",
+    "verbs": [
+      "探す",
+      "選ぶ",
+      "実行する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/prompts",
+    "githubId": "1299286948",
+    "liveUrl": "https://silovar-uk.github.io/prompts/",
+    "liveUrlStatus": "confirmed",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Markdown",
+      "JSON",
+      "GitHub Actions"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "work",
+      "x": 980,
+      "y": 254
+    },
+    "relatedProjects": [
+      {
+        "id": "designmd",
+        "relation": "制作ルールを実行へ移す"
+      }
+    ],
+    "updates": [],
+    "icon": "💬",
+    "updatedAt": "2026-08-27",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "プロンプト",
+      "prompts",
+      "prompt library",
+      "AIプロンプト",
+      "prompt collection",
+      "プロンプト集",
+      "生成AI",
+      "テンプレート"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "quicklinks",
+    "title": "Quick Project Links",
+    "subtitle": "プロジェクト別リンク・POP拡張",
+    "summary": "プロジェクトごとにリンクを一時保管し、ショートカットから右下POPを直接操作する。",
+    "friction": "仕事ごとに開くページが違い、ブックマークの階層を毎回たどっていた。",
+    "firstBuild": "サイドパネルへリンクを保存する機能から始めた。",
+    "currentAnswer": "リンク集ではなく、作業文脈をChromeへ呼び戻すランチャー。",
+    "type": "chrome-extension",
+    "verbs": [
+      "見つける",
+      "切り替える"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/quicklinks",
+    "githubId": "1254925599",
+    "liveUrl": "https://silovar-uk.github.io/quicklinks/",
+    "liveUrlStatus": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Local Storage",
+      "HTML"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1460,
+      "y": 110
+    },
+    "relatedProjects": [
+      {
+        "id": "tabshelter",
+        "relation": "ブラウザ作業の文脈"
+      },
+      {
+        "id": "converter",
+        "relation": "サイドパネル工具箱"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-07-19",
+        "version": "1.9.0",
+        "change": "Chrome全体ショートカットから右下POPを直接操作できるようにした。",
+        "reason": "サイドパネルを開く操作そのものを減らすため。"
+      }
+    ],
+    "extension": {
+      "version": "1.9.0",
+      "extensionId": "nlooeckajnfamnlbcagbffgpmhibngda",
+      "serviceWorker": "disabled"
+    },
+    "updatedAt": "2026-08-31",
+    "startedAt": "2026-06",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "クイックリンク",
+      "quick links",
+      "quick project links",
+      "launcher",
+      "ランチャー",
+      "bookmark",
+      "ブックマーク",
+      "プロジェクトリンク",
+      "サイドパネルリンク"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "quicklinksexpansion",
+    "title": "quicklinksexpansion",
+    "subtitle": "GitHubリポジトリ",
+    "summary": "GitHub上で管理している制作物。",
+    "friction": "",
+    "firstBuild": "",
+    "currentAnswer": "",
+    "type": "chrome-extension",
+    "verbs": [
+      "作る"
+    ],
+    "status": "development",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-08-13",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-28",
+    "startedAt": "2026-08-13",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/quicklinksexpansion",
+    "liveUrl": "",
+    "technologies": [
+      "JavaScript"
+    ],
+    "documentationState": "unreviewed",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "",
+    "searchAliases": [
+      "quicklinks expansion",
+      "クイックリンク拡張",
+      "launcher",
+      "bookmarks",
+      "chrome extension",
+      "リンク管理"
+    ],
+    "portfolioFamilies": [
+      "Browser Productivity"
+    ],
     "makingPrinciples": []
   },
   {
@@ -840,26 +3324,26 @@
     "makingPrinciples": []
   },
   {
-    "id": "ooh",
-    "title": "OOH",
-    "subtitle": "屋外広告整理ページ",
-    "summary": "OOH施策の考え方や事例を整理する。",
-    "friction": "媒体名と掲出場所だけでは、狙いと役割を説明しづらかった。",
-    "firstBuild": "情報を一枚のレビュー画面にまとめた。",
-    "currentAnswer": "屋外広告を「出す場所」ではなく、街で起こす接点として考える資料。",
-    "type": "content-page",
+    "id": "shogibanmen",
+    "title": "将棋盤面",
+    "subtitle": "将棋の局面整理ツール",
+    "summary": "将棋の盤面や局面を、見返しやすい形で扱う。",
+    "friction": "対局後に、どの局面で迷ったかを盤面付きで残しにくかった。",
+    "firstBuild": "盤面をブラウザ上へ再現するところから始めた。",
+    "currentAnswer": "将棋学習を、記憶頼みから見える記録へ移す道具。",
+    "type": "learning-tool",
     "verbs": [
-      "伝える",
-      "考える"
+      "学ぶ",
+      "振り返る"
     ],
-    "status": "prototype",
+    "status": "dormant",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-05",
+    "createdAt": "2025-05",
     "createdAtPrecision": "estimated-month",
-    "repositoryUrl": "https://github.com/silovar-uk/ooh",
-    "githubId": "1238408160",
-    "liveUrl": "https://silovar-uk.github.io/ooh/",
+    "repositoryUrl": "https://github.com/silovar-uk/shogibanmen",
+    "githubId": "993324710",
+    "liveUrl": "https://silovar-uk.github.io/shogibanmen/",
     "liveUrlStatus": "candidate",
     "technologies": [
       "HTML",
@@ -868,240 +3352,48 @@
     ],
     "documentationState": "inferred",
     "map": {
-      "group": "pr",
+      "group": "learning",
       "x": 350,
-      "y": 684
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "updatedAt": "2026-05-14",
-    "startedAt": "2026-05-14",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "屋外広告",
-      "OOH広告",
-      "out of home",
-      "outdoor advertising",
-      "広告",
-      "屋外メディア",
-      "媒体"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "quicklinks",
-    "title": "Quick Project Links",
-    "subtitle": "プロジェクト別リンク・POP拡張",
-    "summary": "プロジェクトごとにリンクを一時保管し、ショートカットから右下POPを直接操作する。",
-    "friction": "仕事ごとに開くページが違い、ブックマークの階層を毎回たどっていた。",
-    "firstBuild": "サイドパネルへリンクを保存する機能から始めた。",
-    "currentAnswer": "リンク集ではなく、作業文脈をChromeへ呼び戻すランチャー。",
-    "type": "chrome-extension",
-    "verbs": [
-      "見つける",
-      "切り替える"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/quicklinks",
-    "githubId": "1254925599",
-    "liveUrl": "https://silovar-uk.github.io/quicklinks/",
-    "liveUrlStatus": "",
-    "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Local Storage",
-      "HTML"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "extension",
-      "x": 1460,
       "y": 110
     },
-    "relatedProjects": [
-      {
-        "id": "tabshelter",
-        "relation": "ブラウザ作業の文脈"
-      },
-      {
-        "id": "converter",
-        "relation": "サイドパネル工具箱"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07-19",
-        "version": "1.9.0",
-        "change": "Chrome全体ショートカットから右下POPを直接操作できるようにした。",
-        "reason": "サイドパネルを開く操作そのものを減らすため。"
-      }
-    ],
-    "extension": {
-      "version": "1.9.0",
-      "extensionId": "nlooeckajnfamnlbcagbffgpmhibngda",
-      "serviceWorker": "disabled"
-    },
-    "updatedAt": "2026-08-31",
-    "startedAt": "2026-06",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "クイックリンク",
-      "quick links",
-      "quick project links",
-      "launcher",
-      "ランチャー",
-      "bookmark",
-      "ブックマーク",
-      "プロジェクトリンク",
-      "サイドパネルリンク"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "pdflinks",
-    "title": "PDF Links",
-    "subtitle": "PDF内リンク整理ツール",
-    "summary": "PDFに含まれるリンクや参照先を取り出し、確認しやすくする。",
-    "friction": "PDF内のリンクを一つずつ開いて確認するのが面倒だった。",
-    "firstBuild": "PDFを読み込み、リンク一覧を出す処理から始めた。",
-    "currentAnswer": "文書を読む道具ではなく、文書の外へ出る導線を確認する道具。",
-    "type": "utility",
-    "verbs": [
-      "見つける",
-      "確認する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/pdflinks",
-    "githubId": "1255213092",
-    "liveUrl": "https://silovar-uk.github.io/pdflinks/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "work",
-      "x": 840,
-      "y": 182
-    },
-    "relatedProjects": [
-      {
-        "id": "pdfclipper",
-        "relation": "PDFを扱う"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-06-01",
-    "startedAt": "2026-05-31",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "PDFリンク",
-      "pdf links",
-      "PDF内リンク",
-      "リンク抽出",
-      "url extraction",
-      "PDF URL",
-      "参照リンク"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "kakidas",
-    "title": "kakidas",
-    "subtitle": "単語・文・段落を置き、気持ちとタグで育てるメモ",
-    "summary": "頭にあるものを単語・文・段落の粒度で置き、タグ、気持ち、リンク、満足度、完了状態を後から足しながら整理する、ローカル優先のメモアプリ。",
-    "friction": "考えを最初から文章やタスクへ整えようとすると書き出せず、短い断片と長い段落を同じ方法で扱うのも難しかった。",
-    "firstBuild": "思いついた単語・文・段落を、それぞれの欄へすぐ置けるメモとして始めた。",
-    "currentAnswer": "任意タイトル、タグ別表示、気持ち・リンク、満足度、完了、派生メモ、バックアップ、IndexedDB、任意のSupabase同期まで備えた断片整理ツール。",
-    "type": "web-app",
-    "verbs": [
-      "書き出す",
-      "整理する",
-      "育てる"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/kakidas",
-    "githubId": "1276624673",
-    "liveUrl": "https://kakidas.vercel.app",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Vite",
-      "IndexedDB",
-      "Supabase"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "archive",
-      "x": 675,
-      "y": 612
-    },
     "relatedProjects": [],
     "updates": [],
-    "icon": "📝",
-    "updatedAt": "2026-08-21",
-    "startedAt": "2026-06-22",
+    "updatedAt": "2025-07-24",
+    "startedAt": "2025-05-30",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "かきだす",
-      "書き出す",
-      "kakidasu",
-      "メモ",
-      "note",
-      "thought dump",
-      "brain dump",
-      "断片メモ",
-      "思考メモ"
+      "将棋盤",
+      "しょうぎばん",
+      "shogi board",
+      "将棋",
+      "局面",
+      "盤面"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
   },
   {
-    "id": "converter",
-    "title": "テキスト便利変換ツール",
-    "subtitle": "サイドパネル版ユーティリティ集",
-    "summary": "改行修正、検索、時間選択、条件カード編集などをまとめたChrome拡張。",
-    "friction": "小さな文字処理や日程調整のために、別々のページを開いていた。",
-    "firstBuild": "テキスト変換を一つ置くところから始まり、便利機能が増えた。",
-    "currentAnswer": "単機能ツールではなく、日々の細かな摩擦を置く工具箱。",
+    "id": "simplememotool",
+    "title": "MemoTool",
+    "subtitle": "タブ切り替え・装飾対応メモ",
+    "summary": "タブでメモを切り替え、文章を装飾しながら保存するChrome拡張。",
+    "friction": "簡単なメモは欲しいが、用途ごとに分けると別アプリを開く必要があった。",
+    "firstBuild": "ブラウザ内で一枚のメモを保存する機能から始めた。",
+    "currentAnswer": "ブラウザから離れず、用途別のメモを持てる作業机。",
     "type": "chrome-extension",
     "verbs": [
-      "変換する",
-      "確認する"
+      "記録する",
+      "整理する"
     ],
     "status": "active",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/converter",
-    "githubId": "1276860002",
-    "liveUrl": "https://silovar-uk.github.io/converter/",
+    "createdAt": "2026-04",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/simplememotool",
+    "githubId": "1210195390",
+    "liveUrl": "https://silovar-uk.github.io/simplememotool/",
     "liveUrlStatus": "",
     "technologies": [
       "Chrome Extension",
@@ -1113,1225 +3405,43 @@
     "map": {
       "group": "extension",
       "x": 1180,
-      "y": 182
+      "y": 110
     },
     "relatedProjects": [
       {
-        "id": "quicklinks",
-        "relation": "サイドパネル工具箱"
+        "id": "memo",
+        "relation": "メモ機能の発展"
+      },
+      {
+        "id": "mmmpocket",
+        "relation": "小さな記録画面"
       }
     ],
     "updates": [
       {
         "date": "2026-07",
-        "version": "2.0.0",
-        "change": "改行修正、検索、時間選択、条件カード編集をサイドパネルへ統合した。",
-        "reason": "小さな便利機能を別々に開く手間を減らすため。"
+        "version": "2.0",
+        "change": "タブ切り替えと文字装飾へ対応した。",
+        "reason": "用途ごとにメモを分けながら、一つの拡張内で完結させるため。"
       }
     ],
     "extension": {
-      "version": "2.0.0",
-      "extensionId": "effpkmnompcagibhbbdpdlbnpobfmema",
+      "version": "2.0",
+      "extensionId": "mlemlfglilljmfhpjiomkdfahimljgcd",
       "serviceWorker": "disabled"
     },
-    "updatedAt": "2026-06-22",
-    "startedAt": "2026-06-22",
+    "updatedAt": "2026-04-15",
+    "startedAt": "2026-04-14",
     "startedAtPrecision": "day",
     "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "テキスト変換",
-      "converter",
-      "変換ツール",
-      "text converter",
-      "文字変換",
-      "改行修正",
-      "便利変換"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "countvoice",
-    "title": "CountVoice",
-    "subtitle": "音声カウント・集中支援",
-    "summary": "一定間隔の音声カウントと環境音で、時間の経過を耳から把握する。",
-    "friction": "画面を見ずに、経過時間や区切りを知りたかった。",
-    "firstBuild": "毎秒または一定間隔で数字を読む機能から始めた。",
-    "currentAnswer": "タイマーではなく、時間を身体で感じるための音声道具。",
-    "type": "learning-tool",
-    "verbs": [
-      "集中する",
-      "続ける"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/countvoice",
-    "githubId": "1278117035",
-    "liveUrl": "https://silovar-uk.github.io/countvoice/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 490,
-      "y": 182
-    },
-    "relatedProjects": [
-      {
-        "id": "st6training",
-        "relation": "リズムと時間"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-08-13",
-    "startedAt": "2026-06",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "カウントボイス",
-      "voice counter",
-      "音声カウント",
-      "読み上げ",
-      "timer",
-      "タイマー",
-      "音声タイマー",
-      "集中"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "tabshelter",
-    "title": "Tab Shelter｜タブ退避箱",
-    "subtitle": "Chromeを閉じる前に、全ウィンドウを一つの退避セットへ",
-    "summary": "開いている通常Chromeウィンドウとタブをまとめて保存し、次回はタイトルとURLを見ながら必要なものだけ新しいウィンドウへ復元する拡張機能。",
-    "friction": "作業中のタブを失いたくなくてChromeを閉じられず、次回すべて復元すると不要なタブまで戻ってきた。",
-    "firstBuild": "開いているタブのURLを保存し、後からまとめて開く小さな退避機能を作った。",
-    "currentAnswer": "全通常ウィンドウの保存・終了、タブ単位／ウィンドウ単位の選択復元、重複抑制、名称変更、JSONバックアップを備えたv1.0.0。",
-    "type": "chrome-extension",
-    "verbs": [
-      "退避する",
-      "選ぶ",
-      "復元する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/tabshelter",
-    "githubId": "1284087416",
-    "liveUrl": "",
-    "liveUrlStatus": "",
-    "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Local Storage",
-      "Manifest V3"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "extension",
-      "x": 1320,
-      "y": 182
-    },
-    "relatedProjects": [
-      {
-        "id": "quicklinks",
-        "relation": "ブラウザ作業の文脈"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07",
-        "version": "1.0.3",
-        "change": "すべてのChromeウィンドウを保存し、必要なタブだけ復元できる形へ更新した。",
-        "reason": "復元時に全部を開き直す負担を減らすため。"
-      }
-    ],
-    "extension": {
-      "version": "1.0.3",
-      "extensionId": "dcebccfcgaoffnlefifopolpiljihggp",
-      "serviceWorker": "disabled"
-    },
-    "icon": "🗂️",
-    "updatedAt": "2026-06-29",
-    "startedAt": "2026-06",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "タブ退避",
-      "tab shelter",
-      "tab saver",
-      "session saver",
-      "タブ保存",
-      "chrome session",
-      "タブ復元",
-      "セッション保存"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "sukan",
-    "title": "数感",
-    "subtitle": "数字の勘を1分ずつ鍛えるミニゲーム",
-    "summary": "8問・最大60秒で、暗算だけでなく人口・地理・宇宙・人体など現実の数字の桁感まで練習できる数字ゲーム。",
-    "friction": "数字を正確に計算できても、妥当な規模感を素早くつかみにくかった。",
-    "firstBuild": "1分・4択の推定問題から始めた。",
-    "currentAnswer": "正解暗記ではなく、現実的な桁を選ぶ感覚のトレーニング。",
-    "type": "learning-tool",
-    "verbs": [
-      "計算する",
-      "見積もる",
-      "鍛える"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/sukan",
-    "githubId": "1287213529",
-    "liveUrl": "https://silovar-uk.github.io/sukan/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "localStorage"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 70,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "newsquiz",
-        "relation": "短問反復"
-      },
-      {
-        "id": "fourier",
-        "relation": "数を感覚へ変える"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-08-24",
-    "startedAt": "2026-07-02",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "数感",
-      "数量感覚",
-      "number sense",
-      "estimation",
-      "推定",
-      "フェルミ推定",
-      "見積もり",
-      "概算"
-    ],
-    "icon": "🔢",
-    "portfolioFamilies": [
-      "Learning & Practice"
-    ],
-    "makingPrinciples": [
-      "Keep practice small"
-    ]
-  },
-  {
-    "id": "diff",
-    "title": "Text Review Studio",
-    "subtitle": "原稿の修正・差分確認・出力を一画面で行う",
-    "summary": "変更前と修正後の原稿を並べ、検索置換、表記整形、CMSタグ確認、差分移動、コピー、Excel出力までブラウザ内で完結する文章レビュー用ツール。",
-    "friction": "原稿修正、表記統一、差分確認、Excel共有が別々の作業になり、確認漏れと手戻りが生まれていた。",
-    "firstBuild": "二つの文章を貼り付け、変更箇所を見比べる単純な差分ビューから始めた。",
-    "currentAnswer": "右側原稿を直接整え、変更した文字まで操作履歴で確認し、画面と同じ差分モデルをExcelへ出力できるレビュー環境。",
-    "type": "web-app",
-    "verbs": [
-      "比べる",
-      "直す",
-      "出力する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/diff",
-    "githubId": "1287340409",
-    "liveUrl": "https://silovar-uk.github.io/diff/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "SheetJS"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "work",
-      "x": 980,
-      "y": 182
-    },
-    "relatedProjects": [
-      {
-        "id": "commonpoint",
-        "relation": "文章を比べる"
-      },
-      {
-        "id": "designmd",
-        "relation": "制作物の品質確認"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07-18",
-        "version": "0.4",
-        "change": "見えない文字を差分対象から除外する設計を追加した。",
-        "reason": "確認したい変更が、意味のない差分に埋もれていたため。"
-      }
-    ],
-    "aside": "空白を消したかった。空行ではなかった。",
-    "icon": "⇄",
-    "updatedAt": "2026-08-20",
-    "startedAt": "2026-07-02",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "差分",
-      "diff",
-      "text diff",
-      "文章比較",
-      "原稿比較",
-      "text review studio",
-      "review",
-      "校正",
-      "差分確認",
-      "文章レビュー"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "consultingstudy",
-    "title": "Consulting Study",
-    "subtitle": "コンサルティング思考の学習ツール",
-    "summary": "ケース、論点、仮説を反復して学ぶ。",
-    "friction": "解説を読むだけでは、問いを立てる順番が身につかなかった。",
-    "firstBuild": "短いケースと回答欄を並べるところから始めた。",
-    "currentAnswer": "知識集より、考える手順を練習する教材。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "考える"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/consultingstudy",
-    "githubId": "1289211681",
-    "liveUrl": "https://silovar-uk.github.io/consultingstudy/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "learning",
-      "x": 210,
-      "y": 254
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "updatedAt": "2026-07-10",
-    "startedAt": "2026-07-04",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "コンサル学習",
-      "consulting study",
-      "ケース面接",
-      "case interview",
-      "論点",
-      "仮説",
-      "コンサル",
-      "ケース問題"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "newsquiz",
-    "title": "News Quiz",
-    "subtitle": "ニュース理解クイズ",
-    "summary": "ニュースを問いに変え、思い出しながら理解する。",
-    "friction": "記事を読んだ直後は分かっても、数日後には要点を説明できなかった。",
-    "firstBuild": "一問一答形式のニュース問題から始めた。",
-    "currentAnswer": "読む量ではなく、思い出す回数を増やす学習ツール。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "振り返る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/newsquiz",
-    "githubId": "1289217782",
-    "liveUrl": "https://silovar-uk.github.io/newsquiz/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "learning",
-      "x": 350,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "sukan",
-        "relation": "短問反復"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-07-08",
-    "startedAt": "2026-07-04",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "ニュースクイズ",
-      "news quiz",
-      "時事クイズ",
-      "current affairs",
-      "ニュース学習",
-      "時事問題",
-      "ニュース理解"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "mydailylog",
-    "title": "日々の棚",
-    "subtitle": "今日の断片を、あとから使える記録へ育てる",
-    "summary": "形式を決めずに残した出来事を、食事・支出・運動・ゲームなどへ整理し、カレンダー・検索・月別集計・イベント単位で読み返すローカル完結型PWA。",
-    "friction": "その日に起きた細かなことは残したい一方、入力項目を先に決めると面倒になり、自由記述だけでは後から探しにくかった。",
-    "firstBuild": "日付ごとの自由なログと、気分・タイトル・持ち越しメモを一つの画面へ置いた。",
-    "currentAnswer": "自由入力、分類提案、詳細編集、前後3日をつなぐイベントビュー、全文検索、集計、JSONバックアップ、CSV出力、オフライン利用を備えた日常ログ。",
-    "type": "web-app",
-    "verbs": [
-      "記録する",
-      "見つける",
-      "振り返る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/mydailylog",
-    "githubId": "1291089091",
-    "liveUrl": "https://silovar-uk.github.io/mydailylog/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "PWA",
-      "IndexedDB",
-      "Vite"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "life",
-      "x": 1410,
-      "y": 612
-    },
-    "relatedProjects": [
-      {
-        "id": "myspines",
-        "relation": "日々から価値観を読む"
-      }
-    ],
-    "updates": [],
-    "icon": "📅",
-    "updatedAt": "2026-08-20",
-    "startedAt": "2026-06",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "日々の棚",
-      "daily log",
-      "diary",
-      "日記",
-      "ライフログ",
-      "life log",
-      "生活記録",
-      "日常ログ"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "commonpoint",
-    "title": "Common Point",
-    "subtitle": "共通点抽出ツール",
-    "summary": "複数の文章や項目から、重なる論点を見つける。",
-    "friction": "似ている意見を読んでも、どこが共通かを頭の中だけで整理していた。",
-    "firstBuild": "項目を並べて共通語を比較するところから始めた。",
-    "currentAnswer": "一致を探すより、違う言葉の奥にある同じ問題を見つける道具。",
-    "type": "data-tool",
-    "verbs": [
-      "比べる",
-      "整理する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/commonpoint",
-    "githubId": "1292116568",
-    "liveUrl": "https://silovar-uk.github.io/commonpoint/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "work",
-      "x": 700,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "diff",
-        "relation": "文章を比べる"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-07-08",
-    "startedAt": "2026-07-07",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "searchAliases": [
-      "共通点",
-      "common point",
-      "共通項",
-      "overlap",
-      "類似点",
-      "共通部分",
-      "比較"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "gantt",
-    "title": "Gantt",
-    "subtitle": "工程・進行管理ツール",
-    "summary": "仕事の工程、期限、担当をガント形式で見渡す。",
-    "friction": "タスク一覧だけでは、前後関係と重なりが分かりにくかった。",
-    "firstBuild": "期間を横棒で表示する画面から始めた。",
-    "currentAnswer": "予定表ではなく、詰まりそうな場所を先に見つける道具。",
-    "type": "web-app",
-    "verbs": [
-      "計画する",
-      "整理する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-06",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/gantt",
-    "githubId": "1292302987",
-    "liveUrl": "https://silovar-uk.github.io/gantt/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "work",
-      "x": 840,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "flowmap",
-        "relation": "計画から業務構造へ"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-07-10",
-    "startedAt": "2026-05",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "ガント",
-      "gantt chart",
-      "工程表",
-      "スケジュール",
-      "進行管理",
-      "project management",
-      "工程管理",
-      "タスク管理"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "fourier",
-    "title": "Fourier",
-    "subtitle": "フーリエ変換の可視化",
-    "summary": "複雑な波が単純な波の組み合わせとして表せる様子を可視化する。",
-    "friction": "数式だけでは、分解と再構成の感覚をつかみにくかった。",
-    "firstBuild": "複数の波と合成結果を動かして比べる画面から始めた。",
-    "currentAnswer": "理解するために、数式を動く形へ翻訳する学習実験。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "見る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/fourier",
-    "githubId": "1295423598",
-    "liveUrl": "https://silovar-uk.github.io/fourier/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "inferred",
-    "map": {
-      "group": "learning",
-      "x": 490,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "sukan",
-        "relation": "数を感覚へ変える"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-07-13",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "フーリエ",
-      "Fourier transform",
-      "フーリエ変換",
-      "波",
-      "wave",
-      "周波数",
-      "frequency",
-      "数学可視化"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "designmd",
-    "title": "designmd",
-    "subtitle": "生成AI時代の文章・スライド・画像制作ガイド",
-    "summary": "整っているだけで誰も選んでいないように見える成果物を避けるため、問い、構成、表現、編集、検証の判断基準をまとめた実務ガイド。",
-    "friction": "生成AIで速く作れても、目的や選択理由が見えない成果物は、正しくても弱く見えた。",
-    "firstBuild": "文章・スライド・画像制作で繰り返し使う判断を、Markdownのガイドとして整理した。",
-    "currentAnswer": "最初の一問、五段階制作、問いの監査、WAO、日本語文章の四回編集、編集デザインと素材設計を横断できる公開ガイド。",
-    "type": "design-system",
-    "verbs": [
-      "考える",
-      "組み立てる",
-      "確かめる"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/designmd",
-    "githubId": "1298045706",
-    "liveUrl": "https://silovar-uk.github.io/designmd/",
-    "liveUrlStatus": "confirmed",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Markdown"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "content",
-      "x": 980,
-      "y": 684
-    },
-    "relatedProjects": [
-      {
-        "id": "diff",
-        "relation": "制作物の品質確認"
-      },
-      {
-        "id": "prompts",
-        "relation": "制作ルールを実行へ移す"
-      },
-      {
-        "id": "build-diary",
-        "relation": "制作判断を見せる"
-      },
-      {
-        "id": "patternlanguage",
-        "relation": "実践知をルール化"
-      }
-    ],
-    "updates": [],
-    "icon": "✦",
-    "updatedAt": "2026-08-16",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "デザインMD",
-      "design guide",
-      "design system",
-      "制作ガイド",
-      "AI制作",
-      "文章デザイン",
-      "スライド制作",
-      "デザイン指針",
-      "制作ルール"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "myspines",
-    "title": "myspines",
-    "subtitle": "段落を動かしながら長い文章を書くエディタ",
-    "summary": "本文、番号付きアウトライン、メモを一画面で扱い、段落の並べ替えや階層変更をしながら長文を組み立てるローカルファーストエディタ。",
-    "friction": "長い文章では、本文を書く場所と構成を考える場所が分かれ、段落を動かすたびに全体像を見失いやすかった。",
-    "firstBuild": "アウトラインと本文を並べ、段落単位で移動できる編集画面から始めた。",
-    "currentAnswer": "本文・構成・メモ、階層番号、集中表示、AI向けコピー、Markdown・JSON入出力、IndexedDB自動保存を備えた長文執筆環境。",
-    "type": "web-app",
-    "verbs": [
-      "書く",
-      "組み立てる",
-      "整理する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/myspines",
-    "githubId": "1298193339",
-    "liveUrl": "https://silovar-uk.github.io/myspines/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "IndexedDB"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "life",
-      "x": 1530,
-      "y": 612
-    },
-    "relatedProjects": [
-      {
-        "id": "mydailylog",
-        "relation": "日々から価値観を読む"
-      }
-    ],
-    "updates": [],
-    "icon": "✍️",
-    "updatedAt": "2026-07-13",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "スパイン",
-      "longform editor",
-      "長文エディタ",
-      "アウトライナー",
-      "outline",
-      "執筆",
-      "writing",
-      "文章構成",
-      "長文執筆"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "hangul",
-    "title": "Hangul",
-    "subtitle": "ハングル学習アプリ",
-    "summary": "ハングルと読みを、選択問題と単語で反復する。",
-    "friction": "一覧を眺めるだけでは、文字を見てすぐ音へ変換できなかった。",
-    "firstBuild": "文字とカタカナ読みの選択問題から始めた。",
-    "currentAnswer": "知識の確認ではなく、見た瞬間に読む反射を作る教材。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "続ける"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/hangul",
-    "githubId": "1298221726",
-    "liveUrl": "https://silovar-uk.github.io/hangul/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 70,
-      "y": 326
-    },
-    "relatedProjects": [
-      {
-        "id": "englisharcade",
-        "relation": "言語学習"
-      }
-    ],
-    "updates": [],
-    "updatedAt": "2026-08-27",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "ハングル",
-      "韓国語",
-      "Korean",
-      "hangul",
-      "한글",
-      "韓国語学習",
-      "文字学習"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "marisast6",
-    "title": "MODERN MARISA LAB",
-    "subtitle": "モダンマリーザの判断順を学ぶ実戦攻略サイト",
-    "summary": "技表ではなく、距離、画面位置、相手行動、ゲージから次の一手を選ぶ順番を、攻略・逆引き・ドリルで学ぶStreet Fighter 6向けサイト。",
-    "friction": "強い技やコンボを個別に覚えても、試合中にどれを選ぶか判断できず、知識が実戦へつながりにくかった。",
-    "firstBuild": "技の用途と状況別の選択肢を、静的ページへ整理するところから始めた。",
-    "currentAnswer": "技、状況逆引き、ガード後の攻防、試合設計、コンボ判断ドリルをつなぎ、現行調整と旧資料を分離して扱う攻略ラボ。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "判断する",
-      "練習する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/marisast6",
-    "githubId": "1298884217",
-    "liveUrl": "https://silovar-uk.github.io/marisast6/",
-    "liveUrlStatus": "confirmed",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "GitHub Actions"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 210,
-      "y": 326
-    },
-    "relatedProjects": [
-      {
-        "id": "manontec",
-        "relation": "スト6の攻略整理"
-      },
-      {
-        "id": "st6training",
-        "relation": "知識から入力練習へ"
-      }
-    ],
-    "updates": [],
-    "icon": "🥊",
-    "updatedAt": "2026-08-15",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "マリーザ",
-      "modern marisa",
-      "sf6 marisa",
-      "スト6",
-      "ストリートファイター6",
-      "street fighter 6",
-      "格ゲー攻略",
-      "マリーザ攻略"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "zeldasbsp",
-    "title": "ゼルダ実戦ノート",
-    "subtitle": "スマブラSP・ゼルダ学習",
-    "summary": "スマブラSPのゼルダについて、対戦結果と実戦課題を整理する。",
-    "friction": "勝敗だけ残しても、次の対戦で何を変えるかが曖昧だった。",
-    "firstBuild": "対戦記録と改善点を一緒に残した。",
-    "currentAnswer": "戦績表ではなく、負け方を練習内容へ変えるノート。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "振り返る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/zeldasbsp",
-    "githubId": "1298885556",
-    "liveUrl": "https://silovar-uk.github.io/zeldasbsp/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "learning",
-      "x": 350,
-      "y": 326
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "updatedAt": "2026-07-13",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "ゼルダ",
-      "スマブラゼルダ",
-      "smash zelda",
-      "smash ultimate",
-      "スマブラSP",
-      "対戦ノート",
-      "ゼルダ攻略"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "prompts",
-    "title": "Prompts",
-    "subtitle": "人が選び、AIもURLから読める公開プロンプト・ライブラリ",
-    "summary": "用途を人向けの説明から選び、同じ内容を固定URL・Markdown・JSONでAIへ渡せる、文章・会議・企画・調査・広報・画像・学習のプロンプト集。",
-    "friction": "プロンプト本文だけを並べると、何に向くか、何を用意するか、何が返るかが人には分かりにくく、AIへ渡す版との不一致も起きやすかった。",
-    "firstBuild": "入力フォームから実行用テキストを組み立てるプロンプトランチャーとして始めた。",
-    "currentAnswer": "Schema v2の一つのデータから49件のHTML・Markdown・JSON・固定版を生成し、人向け説明、AI向け仕様、検索、検証、旧ランチャーを共存させた公開ライブラリ。",
-    "type": "design-system",
-    "verbs": [
-      "探す",
-      "選ぶ",
-      "実行する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/prompts",
-    "githubId": "1299286948",
-    "liveUrl": "https://silovar-uk.github.io/prompts/",
-    "liveUrlStatus": "confirmed",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Vite",
-      "Markdown",
-      "JSON",
-      "GitHub Actions"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "work",
-      "x": 980,
-      "y": 254
-    },
-    "relatedProjects": [
-      {
-        "id": "designmd",
-        "relation": "制作ルールを実行へ移す"
-      }
-    ],
-    "updates": [],
-    "icon": "💬",
-    "updatedAt": "2026-08-27",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "プロンプト",
-      "prompts",
-      "prompt library",
-      "AIプロンプト",
-      "prompt collection",
-      "プロンプト集",
-      "生成AI",
-      "テンプレート"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "pdfclipper",
-    "title": "PDF Clipper",
-    "subtitle": "画像やPDFの必要な範囲だけを素早く切り抜く",
-    "summary": "画像・PDFをブラウザ内で開き、範囲指定、縦横比、整列、回転、余白削除を調整して、PNG・JPG・クリップボード・ZIPへ書き出す軽量ツール。",
-    "friction": "資料の一部分だけを使いたい時、PDFを画像化し、別ソフトで切り抜き、複数箇所を一件ずつ保存する工程が長かった。",
-    "firstBuild": "画像を読み込み、ドラッグした範囲をPNGとして保存する一画面ツールから始めた。",
-    "currentAnswer": "PDFページ一覧、150／300dpi描画、タッチ・ペン操作、数値指定、余白削除、複数候補、ZIP一括保存までブラウザ内で完結するクリッパー。",
-    "type": "utility",
-    "verbs": [
-      "切り抜く",
-      "整える",
-      "書き出す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/pdfclipper",
-    "githubId": "1302198116",
-    "liveUrl": "https://silovar-uk.github.io/pdfclipper/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Canvas API",
-      "PDF.js",
-      "ZIP出力"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "work",
-      "x": 700,
-      "y": 326
-    },
-    "relatedProjects": [
-      {
-        "id": "pdflinks",
-        "relation": "PDFを扱う"
-      }
-    ],
-    "updates": [],
-    "icon": "✂️",
-    "updatedAt": "2026-07-16",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "PDF切り抜き",
-      "pdf crop",
-      "pdf clipper",
-      "cropper",
-      "画像切り抜き",
-      "トリミング",
-      "PDFトリミング",
-      "画像クロップ"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "contentslibrary",
-    "title": "作品体験ログ",
-    "subtitle": "本・映画・漫画との関係を残す個人アーカイブ",
-    "summary": "読書を中心に、作品・体験履歴・メモ・分類・評価の変化を一つの場所へ残す、招待制のローカル志向Webアプリ。",
-    "friction": "作品数が増えるほど、読んだ事実だけが残り、何を感じてどう評価が変わったかを見失いやすかった。",
-    "firstBuild": "作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。",
-    "currentAnswer": "再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。",
-    "type": "content-page",
-    "verbs": [
-      "記録する",
-      "探す",
-      "振り返る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/contentslibrary",
-    "githubId": "1304125974",
-    "liveUrl": "https://contentslibrary.silovar-uk.workers.dev",
-    "liveUrlStatus": "confirmed",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "Cloudflare Workers",
-      "Cloudflare D1",
-      "Cloudflare Access"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "archive",
-      "x": 800,
-      "y": 612
-    },
-    "relatedProjects": [
-      {
-        "id": "mydictionary",
-        "relation": "個人の記憶を残す"
-      },
-      {
-        "id": "build-diary",
-        "relation": "人生の記録"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07-17",
-        "version": "0.2",
-        "change": "Cloudflare Accessで本人だけが開ける状態にした。",
-        "reason": "個人の記録を公開せず、オンラインで使うため。"
-      }
-    ],
-    "aside": "Worker名を間違えて作ったが、そのまま正式名称になった。",
-    "icon": "📚",
-    "updatedAt": "2026-08-25",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "作品体験ログ",
-      "コンテンツライブラリ",
-      "content library",
-      "読書記録",
-      "book log",
-      "映画記録",
-      "蔵書",
-      "作品記録",
-      "読書ログ"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "mydictionary",
-    "title": "私辞典",
-    "subtitle": "出会った言葉を拾い、育て、忘れたころに開く",
-    "summary": "気になった言葉・文章・概念を5秒で登録し、意味・出典・場面・使い方を後から追記しながら、自分だけの辞書として育てるローカルファーストアプリ。",
-    "friction": "言葉との出会いは一瞬なのに、最初から意味や出典をきれいに埋めようとすると記録できず、保存しても再び開く機会が少なかった。",
-    "firstBuild": "見出し語だけをすぐ登録し、詳細は後から足せる小さな辞書を作った。",
-    "currentAnswer": "全文検索、未閲覧・久しぶり・育て途中・ランダムの再会導線、JSONバックアップ、CSV・TXT入出力、PWAオフライン利用まで備えた私的辞書。",
-    "type": "learning-tool",
-    "verbs": [
-      "拾う",
-      "育てる",
-      "思い出す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/mydictionary",
-    "githubId": "1304149077",
-    "liveUrl": "https://silovar-uk.github.io/mydictionary/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Dexie",
-      "MiniSearch",
-      "PWA"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "archive",
-      "x": 550,
-      "y": 684
-    },
-    "relatedProjects": [
-      {
-        "id": "contentslibrary",
-        "relation": "個人の記憶を残す"
-      }
-    ],
-    "updates": [],
-    "icon": "🔤",
-    "updatedAt": "2026-08-16",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "私辞典",
-      "dictionary",
-      "辞書",
-      "単語帳",
-      "vocabulary notebook",
-      "word collection",
-      "言葉",
-      "言葉メモ",
-      "個人辞書"
+      "MemoTool",
+      "メモツール",
+      "chromeメモ",
+      "タブメモ",
+      "memo tool",
+      "メモ拡張",
+      "ブラウザメモ"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
@@ -2406,311 +3516,28 @@
     "makingPrinciples": []
   },
   {
-    "id": "flowmap",
-    "title": "Flowmap",
-    "subtitle": "文章で工程を作り、図で前後関係を確かめる",
-    "summary": "左側のアウトラインへ工程を書くだけで通常の矢印を自動生成し、分岐・合流・参照だけをGUIで補う、業務フロー向けホワイトボード。",
-    "friction": "フロー図は見やすい一方、最初からキャンバスへ図形を置くと入力が遅く、工程名や順序の修正にも手間がかかった。",
-    "firstBuild": "カードと矢印をキャンバスへ置き、業務工程を自由に結ぶボードから始めた。",
-    "currentAnswer": "アウトライン編集、自動・手動接続の分離、図への整列、囲み・折りたたみ、複数ボード、JSON・YAML入出力、PDF出力を備えた工程設計ツール。",
-    "type": "web-app",
-    "verbs": [
-      "書く",
-      "つなぐ",
-      "確かめる"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07",
-    "createdAtPrecision": "month",
-    "repositoryUrl": "https://github.com/silovar-uk/flowmap",
-    "githubId": "1304491398",
-    "liveUrl": "https://silovar-uk.github.io/flowmap/",
-    "liveUrlStatus": "candidate",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "IndexedDB"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "work",
-      "x": 840,
-      "y": 326
-    },
-    "relatedProjects": [
-      {
-        "id": "gantt",
-        "relation": "計画から業務構造へ"
-      },
-      {
-        "id": "mymindmap",
-        "relation": "ノードとつながり"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07-18",
-        "version": "0.4",
-        "change": "ホワイトボードと付箋を基調にし、線と余白を再設計した。",
-        "reason": "かっこよさより更新しやすさを優先するため。"
-      }
-    ],
-    "icon": "🔀",
-    "updatedAt": "2026-08-20",
-    "startedAt": "2026-07",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "フローマップ",
-      "flow map",
-      "フロー図",
-      "業務フロー",
-      "workflow",
-      "process map",
-      "工程図",
-      "業務整理",
-      "プロセス"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "build-diary",
-    "title": "つくって考えた",
-    "subtitle": "制作物を探し、使い直すための作品棚",
-    "summary": "GitHubと手元の制作物をまとめ、検索・整理・再発見できるポートフォリオ。",
-    "friction": "作ったものは増えたが、なぜ作ったかと当時の関心が別々の会話に散らばっていた。",
-    "firstBuild": "15件の仮台帳と三つの閲覧モードから始めた。",
-    "currentAnswer": "完成品の展示ではなく、日常の小さな不便へ反応してきた記録。",
-    "type": "web-app",
-    "verbs": [
-      "探す",
-      "整理する",
-      "振り返る"
-    ],
-    "status": "active",
-    "visibility": "local",
-    "featured": true,
-    "createdAt": "2026-07-19",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-31",
-    "repositoryUrl": "https://github.com/silovar-uk/worksportfolio",
-    "liveUrl": "https://silovar-uk.github.io/worksportfolio/",
-    "liveUrlStatus": "",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON",
-      "SVG"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "archive",
-      "x": 675,
-      "y": 684
-    },
-    "relatedProjects": [
-      {
-        "id": "contentslibrary",
-        "relation": "人生の記録"
-      },
-      {
-        "id": "designmd",
-        "relation": "制作判断を見せる"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-07-19",
-        "version": "0.2",
-        "change": "GitHubの61リポジトリと自作Chrome拡張を統合した。",
-        "reason": "完成作だけでなく、試作と興味の変化まで網羅するため。"
-      }
-    ],
-    "aside": "作ったものをまとめるために、また一つ作った。",
-    "icon": "🗃️",
-    "startedAt": "2026-07-19",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "conversation-log",
-    "searchAliases": [
-      "worksportfolio",
-      "works portfolio",
-      "ポートフォリオ",
-      "portfolio",
-      "作品棚",
-      "制作物一覧",
-      "つくって考えた",
-      "build diary",
-      "制作記録"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "keygridexpansion",
-    "title": "keygridexpansion",
-    "subtitle": "GitHubリポジトリ",
-    "summary": "GitHub上で管理している制作物。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
-    "type": "web-app",
-    "verbs": [
-      "作る"
-    ],
-    "status": "development",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-13",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-13",
-    "startedAt": "2026-08-13",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "repository-created-fallback",
-    "repositoryUrl": "https://github.com/silovar-uk/keygridexpansion",
-    "liveUrl": "",
-    "technologies": [],
-    "documentationState": "unreviewed",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "searchAliases": [
-      "keygrid expansion",
-      "キーグリッド拡張",
-      "keygrid",
-      "keyboard navigation",
-      "chrome操作",
-      "キーボード操作"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "myessays",
-    "title": "My Essays",
-    "subtitle": "論文・エッセイ・レビューを育てる個人アーカイブ",
-    "summary": "Markdownで書いた論考を、全文検索・分類・お気に入り・読書ビューとともに蓄積し、あとから読み直しやすくする公開アーカイブ。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
-    "type": "content-page",
-    "verbs": [
-      "書く",
-      "探す",
-      "読み返す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-07",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-31",
-    "startedAt": "2026-08-07",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/myessays",
-    "liveUrl": "https://silovar-uk.github.io/myessays/",
-    "technologies": [
-      "JavaScript",
-      "Markdown",
-      "HTML",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "searchAliases": [
-      "マイエッセイ",
-      "my essays",
-      "essays",
-      "エッセイ",
-      "コラム",
-      "記事",
-      "article library",
-      "読み物",
-      "論考"
-    ],
-    "icon": "📄",
-    "portfolioFamilies": [
-      "Writing & Knowledge"
-    ],
-    "makingPrinciples": [
-      "Make knowledge retrievable"
-    ]
-  },
-  {
-    "id": "quicklinksexpansion",
-    "title": "quicklinksexpansion",
-    "subtitle": "GitHubリポジトリ",
-    "summary": "GitHub上で管理している制作物。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
-    "type": "chrome-extension",
-    "verbs": [
-      "作る"
-    ],
-    "status": "development",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-13",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-28",
-    "startedAt": "2026-08-13",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/quicklinksexpansion",
-    "liveUrl": "",
-    "technologies": [
-      "JavaScript"
-    ],
-    "documentationState": "unreviewed",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "searchAliases": [
-      "quicklinks expansion",
-      "クイックリンク拡張",
-      "launcher",
-      "bookmarks",
-      "chrome extension",
-      "リンク管理"
-    ],
-    "portfolioFamilies": [
-      "Browser Productivity"
-    ],
-    "makingPrinciples": []
-  },
-  {
-    "id": "dailyenglishchunks",
-    "title": "Daily English Chunks",
-    "subtitle": "意味のまとまりで前から読む、毎日10分の英語練習",
-    "summary": "短い日常・仕事の場面を題材に、情景と感情を想像し、一度通して読み、自分でチャンクを切り、必要な時だけ意味を確認し、想起問題と音読まで進める毎日の英語チャンクリーディング練習サイト。",
-    "friction": "英語を一語ずつ日本語へ置き換える読み方では処理が遅くなり、最初から区切られた英文を見るだけでは、自分で意味のまとまりを見つける感覚も育ちにくかった。",
-    "firstBuild": "1日1つの短い場面を、Imagine → Read → Chunk → Understand → Check → Speak の順に進む小さな練習として作った。",
-    "currentAnswer": "場面と気持ちを先に置き、英文を前から読み、自分で区切り、必要な時だけ日本語を開き、3つの想起問題と3回の音読へつなぐ約10分のデイリープラクティス。進捗はlocalStorageへ保存する。",
+    "id": "sukan",
+    "title": "数感",
+    "subtitle": "数字の勘を1分ずつ鍛えるミニゲーム",
+    "summary": "8問・最大60秒で、暗算だけでなく人口・地理・宇宙・人体など現実の数字の桁感まで練習できる数字ゲーム。",
+    "friction": "数字を正確に計算できても、妥当な規模感を素早くつかみにくかった。",
+    "firstBuild": "1分・4択の推定問題から始めた。",
+    "currentAnswer": "正解暗記ではなく、現実的な桁を選ぶ感覚のトレーニング。",
     "type": "learning-tool",
     "verbs": [
-      "読む",
-      "区切る",
-      "声に出す"
+      "計算する",
+      "見積もる",
+      "鍛える"
     ],
     "status": "active",
     "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-08-07",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-10",
-    "startedAt": "2026-08-10",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks",
-    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/",
+    "featured": false,
+    "createdAt": "2026-06",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/sukan",
+    "githubId": "1287213529",
+    "liveUrl": "https://silovar-uk.github.io/sukan/",
+    "liveUrlStatus": "candidate",
     "technologies": [
       "HTML",
       "CSS",
@@ -2718,33 +3545,37 @@
       "localStorage"
     ],
     "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 70,
+      "y": 254
+    },
     "relatedProjects": [
       {
-        "id": "hangul",
-        "relation": "短い反復練習とローカル進捗保存"
-      }
-    ],
-    "updates": [
+        "id": "newsquiz",
+        "relation": "短問反復"
+      },
       {
-        "date": "2026-08-10",
-        "version": "0.1",
-        "change": "チャンクリーディングの毎日練習サイトをポートフォリオへ追加",
-        "reason": "英語を一語ずつ訳さず、意味のまとまりで前から受け取る練習を毎日の短いルーティンにするため。"
+        "id": "fourier",
+        "relation": "数を感覚へ変える"
       }
     ],
-    "aside": "訳す前に、場面を置く。",
+    "updates": [],
+    "updatedAt": "2026-08-24",
+    "startedAt": "2026-07-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "デイリー英語チャンク",
-      "英語チャンク",
-      "チャンクリーディング",
-      "chunk reading",
-      "english chunks",
-      "英語音読",
-      "音読",
-      "英語学習",
-      "reading practice"
+      "数感",
+      "数量感覚",
+      "number sense",
+      "estimation",
+      "推定",
+      "フェルミ推定",
+      "見積もり",
+      "概算"
     ],
-    "icon": "🗣️",
+    "icon": "🔢",
     "portfolioFamilies": [
       "Learning & Practice"
     ],
@@ -2753,951 +3584,73 @@
     ]
   },
   {
-    "id": "vocabularies",
-    "title": "Vocabularies",
-    "subtitle": "言葉にできない感覚から、より精密な概念へたどり着く語彙集",
-    "summary": "「ごちゃごちゃする」「文章が固い」のような感覚や違和感を入口に、専門語・概念・関連語へたどり着く発見型ボキャブラリーサイト。感覚・分野・用語の3方向から探せる。",
-    "friction": "名前を知らない概念ほど検索できず、辞書や用語集も「知りたい言葉をすでに知っている」ことを前提にしがちだった。",
-    "firstBuild": "言葉に困った瞬間を入口に、用語の定義だけでなく、選んだ背景、Before→After、関連概念、出典までつなぐ語彙カードから始めた。",
-    "currentAnswer": "感覚から探す・分野から探す・用語から探すの3入口を持ち、専門分野を横断して関連語をつなぎながら、曖昧な感覚をより精密な言葉へ変えていく個人用の語彙探索サイト。",
-    "type": "learning-tool",
-    "verbs": [
-      "探す",
-      "言語化する",
-      "学ぶ"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-08-09",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-09",
-    "startedAt": "2026-08-09",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/vocabularies",
-    "liveUrl": "https://silovar-uk.github.io/vocabularies/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "designmd",
-        "relation": "言葉と判断基準を精密にする"
-      },
-      {
-        "id": "myspines",
-        "relation": "文章を書くための言語化を支える"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-09",
-        "version": "0.1",
-        "change": "感覚・分野・用語の3入口を持つ語彙探索サイトを公開",
-        "reason": "専門語の名前を知らない状態からでも、より精密な概念へたどり着けるようにするため。"
-      }
-    ],
-    "aside": "言葉を知っている人だけが、言葉を探せるのはちょっと変だ。",
-    "searchAliases": [
-      "ボキャブラリーズ",
-      "vocabulary",
-      "vocab",
-      "語彙",
-      "用語",
-      "言語化",
-      "感覚語",
-      "言葉探し",
-      "概念"
-    ],
-    "map": {
-      "group": "learning",
-      "x": 760,
-      "y": 650
-    },
-    "portfolioFamilies": [
-      "Learning & Practice"
-    ],
-    "makingPrinciples": []
-  },
-  {
-    "id": "likewhat",
-    "title": "LikeWhat",
-    "subtitle": "「この感じ」を言葉とモックで探すデザイン参照集",
-    "summary": "Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。",
-    "friction": "『Appleっぽく』『雑誌っぽく』のような依頼だけでは、何を指しているのかが人によって違い、言語化しても実際の見た目との対応が分かりにくかった。",
-    "firstBuild": "既存ブランドの雰囲気を、特徴の言語化と小さな見本をセットにして並べるところから始めた。",
-    "currentAnswer": "ブランド・サービス・デザイン要素から検索し、各スタイルを構成要素へ分解しながら、一覧のミニモックと詳細ページで『どこがそれっぽいのか』まで確認できる参照ツール。",
-    "type": "design-system",
-    "verbs": [
-      "探す",
-      "比べる",
-      "言語化する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-08-09",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-10",
-    "startedAt": "2026-08-09",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/likewhat",
-    "liveUrl": "https://silovar-uk.github.io/likewhat/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "designmd",
-        "relation": "デザイン判断を言葉にする"
-      },
-      {
-        "id": "vocabularies",
-        "relation": "曖昧な感覚から精密な言葉へ進む"
-      },
-      {
-        "id": "ennnichimock",
-        "relation": "言語化した方向性を実際のモックで比較する"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-10",
-        "version": "0.1",
-        "change": "ブランド・サービス由来のデザインパターンを言語化とモックで探索する参照集を追加",
-        "reason": "『〜っぽい』という曖昧な感覚を、再利用可能なデザイン要素へ分解して探せるようにするため。"
-      }
-    ],
-    "aside": "『それっぽい』を、そこで終わらせない。",
-    "searchAliases": [
-      "ライクワット",
-      "like what",
-      "デザイン参照",
-      "design reference",
-      "brand reference",
-      "デザインリファレンス",
-      "モック",
-      "ブランドデザイン",
-      "UI参考"
-    ],
-    "icon": "◫",
-    "portfolioFamilies": [
-      "Design & Communication"
-    ],
-    "makingPrinciples": [
-      "Turn repetition into systems"
-    ]
-  },
-  {
-    "id": "accountinglearn",
-    "title": "Accounting Quest｜実践簿記",
-    "subtitle": "短い経営ケースで簿記と経営分析を学ぶ",
-    "summary": "黒字なのに現金がない、といった経営の出来事を読み、計算・仕訳・異常値発見・提案まで手を動かして学ぶスマホ優先の簿記学習アプリ。",
-    "friction": "勘定科目や仕訳を単独で覚えても、実際の経営で数字が何を意味し、次に何を判断すべきかへつながりにくかった。",
-    "firstBuild": "CASE 1「黒字なのに、口座にお金がない」を、8ページの物語と設問として実装した。",
-    "currentAnswer": "教材をJSONで追加でき、選択・計算・仕訳・提案へ即時フィードバックし、誤答復習と進捗書き出しまで行えるケース学習基盤。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "解く",
-      "考える"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-08-05",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-10",
-    "startedAt": "2026-08-05",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/accountinglearn",
-    "liveUrl": "https://silovar-uk.github.io/accountinglearn/",
-    "technologies": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "JSON"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "icon": "🧾",
-    "searchAliases": [
-      "会計学習",
-      "簿記",
-      "accounting",
-      "bookkeeping",
-      "accounting quest",
-      "仕訳",
-      "経営分析",
-      "会計クエスト",
-      "財務"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "ennnichimock",
-    "title": "炎日 2026 特設ページ モック",
-    "subtitle": "秋開催のイベント体験を比較する5つのWeb案",
-    "summary": "2026年9月19日のイベントを題材に、参加型、物語型、探索型、編集型、共同体型の5案を、比較画面と発注仕様書まで含めて形にしたデザインモック。",
-    "friction": "企画の方向性を言葉だけで比較すると、見た目、情報設計、参加体験、実装範囲の違いが共有しにくかった。",
-    "firstBuild": "秋、月、九、兎、櫓という材料から、方向性の異なるキービジュアルとページ案を作った。",
-    "currentAnswer": "5つの実装モック、デザイントークン、コンポーネント、原稿、権利区分、アクセシビリティ、検収条件を一式で比較できる発注用プロトタイプ。",
-    "type": "design-system",
-    "verbs": [
-      "比べる",
-      "設計する",
-      "伝える"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07-27",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-07-28",
-    "startedAt": "2026-07-27",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/ennnichimock",
-    "liveUrl": "https://silovar-uk.github.io/ennnichimock/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "icon": "🏮",
-    "searchAliases": [
-      "炎日",
-      "えんにち",
-      "ennichi",
-      "event mock",
-      "LP mock",
-      "特設ページ",
-      "イベントLP",
-      "炎日2026",
-      "イベントモック"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "cssanimationlists",
-    "title": "CSS MOTION",
-    "subtitle": "動くプレビューとコードで探すCSSアニメーション図鑑",
-    "summary": "CSSアニメーションを実際に動かしながら、用途、トリガー、難易度、タグで探し、同じソースのHTML・CSSをコピーできるライブラリ。",
-    "friction": "動きの名前や実装方法を知らないと、欲しいアニメーションへたどり着けず、参考例とコピーするコードも一致しにくかった。",
-    "firstBuild": "よく使うCSSアニメーションを、プレビューとコードのカードとして並べた。",
-    "currentAnswer": "固定ID、詳細リンク、検索・分類、速度・背景変更、ランダム表示、自動鑑賞、お気に入り、データ検証まで備えた図鑑。",
-    "type": "design-system",
-    "verbs": [
-      "探す",
-      "試す",
-      "使う"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07-24",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-07-26",
-    "startedAt": "2026-07-25",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/cssanimationlists",
-    "liveUrl": "https://silovar-uk.github.io/cssanimationlists/",
-    "technologies": [
-      "TypeScript",
-      "React",
-      "Vite",
-      "Shadow DOM"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "icon": "✨",
-    "searchAliases": [
-      "CSSアニメーション",
-      "css motion",
-      "motion library",
-      "animation library",
-      "動き",
-      "モーション",
-      "アニメーション図鑑",
-      "css animation"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "whatsthiswiki",
-    "title": "What's This Wiki?",
-    "subtitle": "Wikipediaの目次だけで記事名を当てるクイズ",
-    "summary": "記事本文ではなく目次を読み、Wikipediaの記事名を自由入力で当てるクイズ。ランダム探索、URLからの問題作成、同じ問題セットの共有に対応。",
-    "friction": "Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。",
-    "firstBuild": "確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。",
-    "currentAnswer": "Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。",
-    "type": "learning-tool",
-    "verbs": [
-      "推理する",
-      "遊ぶ",
-      "作る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": true,
-    "createdAt": "2026-07-24",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-07-26",
-    "startedAt": "2026-07-24",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/whatsthiswiki",
-    "liveUrl": "https://silovar-uk.github.io/whatsthiswiki/",
-    "technologies": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Wikipedia API"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "icon": "🧩",
-    "searchAliases": [
-      "Wikipediaクイズ",
-      "ウィキクイズ",
-      "wikipedia",
-      "目次クイズ",
-      "推理クイズ",
-      "wiki quiz",
-      "what's this wiki",
-      "ウィキペディア"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "imagetuning",
-    "title": "Image Tuning",
-    "subtitle": "画像への修正指示を視覚化して共有する",
-    "summary": "画像上へコメントや修正指示を置き、レイヤーを保ったJSONと確認用PNGで共有するブラウザアプリ。",
-    "friction": "画像修正のやり取りが文章だけになると、どの場所をどう直すかの認識がずれやすかった。",
-    "firstBuild": "画像を読み込み、クリックした位置へコメントを置く簡易ツールから始めた。",
-    "currentAnswer": "PNG・JPEG・WEBP・PSD読込、選択、移動、パン、ズーム、レイヤー、Undo・Redo、JSON保存、PNG出力をReactで再構築中。",
-    "type": "web-app",
-    "verbs": [
-      "確認する",
-      "指示する",
-      "共有する"
-    ],
-    "status": "development",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-07-21",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-07-22",
-    "startedAt": "2026-07-21",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/imagetuning",
-    "liveUrl": "https://silovar-uk.github.io/imagetuning/",
-    "technologies": [
-      "TypeScript",
-      "React",
-      "Vite"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "icon": "🖼️",
-    "searchAliases": [
-      "画像修正",
-      "image tuning",
-      "画像レビュー",
-      "image annotation",
-      "コメント",
-      "修正指示",
-      "画像校正",
-      "画像コメント",
-      "レビュー"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "keygrid",
-    "title": "KeyGrid",
-    "subtitle": "Chromeをマウスなしで操作する拡張機能",
-    "summary": "リンク、ボタン、入力欄へHintを割り当て、固定キー式ブックマーク、Grid、全画面リンク一覧、サイト別補助を組み合わせてChrome操作をキーボードだけで進める拡張機能。",
-    "friction": "クリック先を探してマウスへ手を移すたび、ブラウザ操作の流れが止まり、要素が多い画面ほどHint同士も重なっていた。",
-    "firstBuild": "画面を3×3に分けるGrid操作から始め、Hint、文字検索、安全確認、ブックマーク操作へ広げた。",
-    "currentAnswer": "対象要素の重なり回避、入力要素の常時表示、全画面リンク一覧、折り畳み状態からの復帰、LINE WORKSのチャット選択まで扱うキーボード操作基盤。",
+    "id": "tabshelter",
+    "title": "Tab Shelter｜タブ退避箱",
+    "subtitle": "Chromeを閉じる前に、全ウィンドウを一つの退避セットへ",
+    "summary": "開いている通常Chromeウィンドウとタブをまとめて保存し、次回はタイトルとURLを見ながら必要なものだけ新しいウィンドウへ復元する拡張機能。",
+    "friction": "作業中のタブを失いたくなくてChromeを閉じられず、次回すべて復元すると不要なタブまで戻ってきた。",
+    "firstBuild": "開いているタブのURLを保存し、後からまとめて開く小さな退避機能を作った。",
+    "currentAnswer": "全通常ウィンドウの保存・終了、タブ単位／ウィンドウ単位の選択復元、重複抑制、名称変更、JSONバックアップを備えたv1.0.0。",
     "type": "chrome-extension",
     "verbs": [
-      "操作する",
-      "探す",
-      "移動する"
+      "退避する",
+      "選ぶ",
+      "復元する"
     ],
     "status": "active",
-    "visibility": "local",
+    "visibility": "public",
     "featured": true,
-    "createdAt": "2026-07-27",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-05",
-    "repositoryUrl": "",
-    "liveUrl": "",
-    "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Manifest V3"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "extension",
-      "x": 1600,
-      "y": 398
-    },
-    "relatedProjects": [
-      {
-        "id": "quicklinks",
-        "relation": "ブラウザ操作のキーボード化"
-      }
-    ],
-    "updates": [],
-    "aside": "クリック先を探すより、キーを押した方が速い。",
-    "startedAt": "2026-07-27",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual-record",
-    "searchAliases": [
-      "キーグリッド",
-      "key grid",
-      "keyboard navigation",
-      "キーボード操作",
-      "chromeキーボード",
-      "hint",
-      "ヒント",
-      "マウスなし",
-      "ブラウザ操作"
-    ],
-    "portfolioFamilies": [
-      "Browser Productivity"
-    ],
-    "makingPrinciples": []
-  },
-  {
-    "id": "lineworks-logger",
-    "title": "LINE WORKS Logger",
-    "subtitle": "トーク・メールのローカル記録拡張",
-    "summary": "LINE WORKSのトークやメールを端末内に記録し、JSON・CSVとして持ち出すChrome拡張。",
-    "friction": "大量の連絡を画面上だけで追うと、あとから検索しにくかった。",
-    "firstBuild": "対象画面の情報を外部送信せず、ローカルへ蓄積する仕組みを作った。",
-    "currentAnswer": "業務連絡を自分で扱える記録データへ変える入口。",
-    "type": "chrome-extension",
-    "verbs": [
-      "記録する",
-      "探す"
-    ],
-    "status": "prototype",
-    "visibility": "local",
-    "featured": false,
-    "createdAt": "2026-05",
+    "createdAt": "2026-06",
     "createdAtPrecision": "month",
-    "updatedAt": "2026-05",
-    "repositoryUrl": "",
+    "repositoryUrl": "https://github.com/silovar-uk/tabshelter",
+    "githubId": "1284087416",
     "liveUrl": "",
-    "technologies": [
-      "Chrome Extension",
-      "JavaScript"
-    ],
-    "documentationState": "verified",
-    "map": {
-      "group": "extension",
-      "x": 1460,
-      "y": 398
-    },
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "連絡は流れる。ログは流したくない。",
-    "startedAt": "2026-05",
-    "startedAtPrecision": "month",
-    "startedAtBasis": "manual-record",
-    "searchAliases": [
-      "ラインワークス",
-      "LINE WORKS",
-      "logger",
-      "ロガー",
-      "トーク保存",
-      "メール保存",
-      "chat export",
-      "ログ保存",
-      "業務ログ"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "payment-case-manager",
-    "title": "支払案件管理アプリ",
-    "subtitle": "支払案件の進捗とfreee申請チェックをまとめるChrome拡張",
-    "summary": "支払月・支払先・案件名を登録し、発注・納品・請求書・支払の進捗を月別に管理。freeeの支払申請画面では入力内容を自動チェックし、経理関連のQuick Linksへすぐ移動できるChromeサイドパネル拡張。",
-    "friction": "支払案件の進捗、証憑、申請画面、関連シートやトークルームが複数の場所に分かれ、確認漏れと画面移動の手間が生まれていた。",
-    "firstBuild": "支払案件を月別に登録し、発注から支払までの工程をチェックできるサイドパネルとして作った。",
-    "currentAnswer": "案件の追加・編集・並べ替え、完了表示、Undo・Redo、JSON入出力、関連リンク、freee支払申請の入力チェックを一つにまとめた業務用Chrome拡張。",
-    "type": "learning-tool",
-    "verbs": [
-      "管理する",
-      "確認する",
-      "申請する"
-    ],
-    "status": "active",
-    "visibility": "local",
-    "featured": false,
-    "createdAt": "2026-05-08",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-06",
-    "repositoryUrl": "",
-    "liveUrl": "",
-    "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Manifest V3",
-      "freee"
-    ],
-    "documentationState": "verified",
-    "extension": {
-      "version": "1.4",
-      "extensionId": "",
-      "serviceWorker": "active"
-    },
-    "map": {
-      "group": "extension",
-      "x": 1040,
-      "y": 398
-    },
-    "relatedProjects": [
-      {
-        "id": "accountinglearn",
-        "relation": "会計・経理を扱う"
-      },
-      {
-        "id": "quicklinks",
-        "relation": "業務リンクをすぐ開く"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-06",
-        "version": "1.4",
-        "change": "経理関連のQuick Linksを追加",
-        "reason": "支払シート、証憑、トークルーム、適格証明書の案内へすぐ移動できるようにするため。"
-      },
-      {
-        "date": "2026-05-08",
-        "version": "1.2",
-        "change": "freee支払申請の入力チェックを追加",
-        "reason": "支払先、メモタグ、勘定科目、支払期限などの確認漏れを減らすため。"
-      }
-    ],
-    "aside": "申請を始める前に、確認漏れを減らす場所を先に作った。",
-    "startedAt": "2026-05-08",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual-record",
-    "searchAliases": [
-      "支払管理",
-      "payment manager",
-      "freee",
-      "支払申請",
-      "経理",
-      "請求書",
-      "案件管理",
-      "支払案件",
-      "会計業務"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "convinitools",
-    "title": "convinitools",
-    "subtitle": "GitHubリポジトリ",
-    "summary": "GitHub上で管理している制作物。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
-    "type": "web-app",
-    "verbs": [
-      "作る"
-    ],
-    "status": "development",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-13",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-13",
-    "startedAt": "2026-08-13",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/convinitools",
-    "liveUrl": "",
-    "technologies": [
-      "JavaScript"
-    ],
-    "documentationState": "unreviewed",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "searchAliases": [
-      "コンビニツール",
-      "convenience tools",
-      "便利ツール",
-      "utility",
-      "小道具",
-      "ツール集"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "memoexpansion",
-    "title": "MemoTool Expansion",
-    "subtitle": "Chromeサイドパネルで文章をため、並べ替え、育てるアウトライナー型メモ",
-    "summary": "ブラウザを開いたまま使えるChromeサイドパネルのメモ拡張。複数タブとアウトライナー型の項目を扱い、入力、複数選択、並べ替え、完了管理、Undo・Redo、ローカル保存を一つの場所で行う。",
-    "friction": "ブラウザ作業中のメモを別アプリへ取りに行くと集中が切れ、短い断片をあとから並べ替えたり、まとまりとして育てたりする操作も重くなりやすかった。",
-    "firstBuild": "既存のMemoToolをChromeサイドパネル中心の構成へ整理し、タブとアウトライナーを分けて扱える編集環境へ拡張した。",
-    "currentAnswer": "入力・タブ・描画・複数選択・保存などの責務を分割しつつ、赤太字行の改行時の書式継承、複数選択、ドラッグ移動、Undo・Redoを維持。不要だった三点メニューを撤去し、保存競合、キーボード操作、ARIA、タップ領域、reduced motionも改善した。",
-    "type": "chrome-extension",
-    "verbs": [
-      "書く",
-      "並べ替える",
-      "残す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-14",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-14",
-    "startedAt": "2026-08-14",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/memoexpansion",
-    "liveUrl": "",
+    "liveUrlStatus": "",
     "technologies": [
       "Chrome Extension",
       "JavaScript",
       "Manifest V3"
     ],
     "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1320,
+      "y": 182
+    },
     "relatedProjects": [
       {
-        "id": "memo",
-        "relation": "元になったメモツール"
+        "id": "quicklinks",
+        "relation": "ブラウザ作業の文脈"
       }
     ],
     "updates": [
       {
-        "date": "2026-08-14",
-        "version": "2.1.0",
-        "change": "赤太字の改行継承、三点メニュー撤去、Side Panelの責務分割、保存・アクセシビリティ改善を実施",
-        "reason": "既存機能を保ちながら、操作の迷いと内部の密結合を減らし、長く使える構成へ整理するため。"
+        "date": "2026-07",
+        "version": "1.0.3",
+        "change": "すべてのChromeウィンドウを保存し、必要なタブだけ復元できる形へ更新した。",
+        "reason": "復元時に全部を開き直す負担を減らすため。"
       }
     ],
-    "aside": "メモは増えていい。操作は増やしすぎない。",
+    "extension": {
+      "version": "1.0.3",
+      "extensionId": "dcebccfcgaoffnlefifopolpiljihggp",
+      "serviceWorker": "disabled"
+    },
+    "icon": "🗂️",
+    "updatedAt": "2026-06-29",
+    "startedAt": "2026-06",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
     "searchAliases": [
-      "MemoTool",
-      "メモツール",
-      "サイドパネルメモ",
-      "memo expansion",
-      "メモ拡張",
-      "chrome memo",
-      "アウトライナー",
-      "outline memo",
-      "side panel memo"
+      "タブ退避",
+      "tab shelter",
+      "tab saver",
+      "session saver",
+      "タブ保存",
+      "chrome session",
+      "タブ復元",
+      "セッション保存"
     ],
-    "portfolioFamilies": [
-      "Writing & Knowledge"
-    ],
-    "makingPrinciples": [
-      "Turn repetition into systems"
-    ]
-  },
-  {
-    "id": "multimemos",
-    "title": "MultiMemos",
-    "subtitle": "複数の文章を横に並べたまま、見比べながら書く軽量メモワークスペース",
-    "summary": "2〜4つの文章欄を同時に開き、資料・案・作業文・メモなどを並べたまま比較しながら書けるブラウザツール。欄名は自由に変更でき、固定、コピー、集中表示、幅調整、文字サイズ変更、自動保存に対応する。",
-    "friction": "元原稿、参考文、AI案、作業中の文章を別タブや別アプリに置くと、行き来するたびに比較の文脈が切れ、どこを見ながら書いていたかを見失いやすかった。",
-    "firstBuild": "用途を固定せず、2欄・3欄・4欄を横並びにして、それぞれへ自由に文章を置ける小さな比較メモとして作った。",
-    "currentAnswer": "各欄を薄い色で見分けながら、欄名変更、固定、全文コピー、集中表示、個別・全体の文字サイズ調整、欄幅変更、コンパクト表示、localStorage自動保存、スマホの横送り表示、Alt+1〜4移動を使える。Diffも別タブですぐ開ける。",
-    "type": "learning-tool",
-    "verbs": [
-      "書く",
-      "比べる",
-      "整理する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-14",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-14",
-    "startedAt": "2026-08-14",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/multimemos",
-    "liveUrl": "https://silovar-uk.github.io/multimemos/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "localStorage"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "diff",
-        "relation": "並べて書いた文章の差分を確認する"
-      },
-      {
-        "id": "myspines",
-        "relation": "文章を組み立てながら書く"
-      },
-      {
-        "id": "kakidas",
-        "relation": "頭の中の断片を書き出す"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-14",
-        "version": "0.1",
-        "change": "2〜4欄、自由な欄名、固定・コピー・集中表示、欄ごとの識別色、Diff導線を備えた比較メモを公開",
-        "reason": "複数の文章を切り替えず、同じ視界に置いたまま考えて書けるようにするため。"
-      }
-    ],
-    "aside": "切り替えるより、並べたまま考える。",
-    "searchAliases": [
-      "マルチメモ",
-      "比較メモ",
-      "並列メモ",
-      "文章比較",
-      "multi memos",
-      "side by side",
-      "split editor",
-      "比較エディタ",
-      "parallel memo"
-    ],
-    "portfolioFamilies": [
-      "Writing & Knowledge"
-    ],
-    "makingPrinciples": [
-      "Reduce everyday friction"
-    ]
-  },
-  {
-    "id": "baseballquiz",
-    "title": "baseballquiz",
-    "subtitle": "GitHubリポジトリ",
-    "summary": "GitHub上で管理している制作物。",
-    "friction": "",
-    "firstBuild": "",
-    "currentAnswer": "",
-    "type": "learning-tool",
-    "verbs": [
-      "作る"
-    ],
-    "status": "development",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-16",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-18",
-    "startedAt": "2026-08-16",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "first-repository-commit",
-    "repositoryUrl": "https://github.com/silovar-uk/baseballquiz",
-    "liveUrl": "https://silovar-uk.github.io/baseballquiz/",
-    "technologies": [
-      "JavaScript"
-    ],
-    "documentationState": "unreviewed",
-    "relatedProjects": [],
-    "updates": [],
-    "aside": "",
-    "searchAliases": [
-      "野球クイズ",
-      "baseball quiz",
-      "NPB",
-      "プロ野球",
-      "選手クイズ",
-      "baseball learning",
-      "野球学習",
-      "選手名鑑"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "myglossary",
-    "title": "My Glossary",
-    "subtitle": "学んだ言葉を、使える形で少しずつ残す個人用語集",
-    "summary": "学んだ言葉を「一言で・もう少し詳しく・具体例・なぜ覚えた？・関連語」の形で残し、検索や最近の学習履歴から引き直せる個人用の用語集。",
-    "friction": "言葉の意味をその場では理解しても、あとで自分の言葉として説明したり、具体的な場面で使ったりできないまま忘れやすかった。",
-    "firstBuild": "覚えた言葉を一言の説明、詳しい説明、具体例、覚えた背景、関連語と一緒にJSONへ残す小さな用語集として始めた。",
-    "currentAnswer": "検索を主役にしながら、最近学んだ言葉を学習ログとして見せ、タグで分野を横断し、関連語・類似語・対比語へ育てられる静的な個人用語集。",
-    "type": "learning-tool",
-    "verbs": [
-      "学ぶ",
-      "言語化する",
-      "引き直す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-17",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-17",
-    "startedAt": "2026-08-17",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "repository-first-commit-jst",
-    "repositoryUrl": "https://github.com/silovar-uk/myglossary",
-    "liveUrl": "https://silovar-uk.github.io/myglossary/",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "JSON"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "vocabularies",
-        "relation": "曖昧な感覚から言葉へたどる"
-      },
-      {
-        "id": "mydictionary",
-        "relation": "出会った言葉を蓄積して育てる"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-17",
-        "version": "0.1",
-        "change": "学んだ言葉を検索・タグ・関連語とともに残す個人用語集を公開",
-        "reason": "知った言葉を、その場の理解で終わらせず、自分の説明と具体例を伴う再利用できる知識へ変えるため。"
-      }
-    ],
-    "aside": "知った言葉を、使える言葉まで育てる。",
-    "searchAliases": [
-      "MyGlossary",
-      "マイグロッサリー",
-      "用語集",
-      "個人用語集",
-      "学習用語集",
-      "glossary",
-      "term list",
-      "terms",
-      "言葉メモ",
-      "学習辞書"
-    ],
-    "icon": "📚",
-    "portfolioFamilies": [
-      "Learning & Practice"
-    ],
-    "makingPrinciples": [
-      "Make knowledge retrievable"
-    ]
-  },
-  {
-    "id": "private-memo",
-    "title": "Private Memo",
-    "subtitle": "本人だけが開ける、ログイン必須・E2EEの個人用メモ",
-    "summary": "Cloudflare Accessで本人認証し、メモ本文はブラウザ側で暗号化してから保存する個人用の非公開メモ。D1には暗号文だけを置き、サーバー側で平文を読まない構成にしている。",
-    "friction": "思いつきや個人的な記録を複数端末からすぐ書きたい一方、公開URLやサーバー保存を前提にすると、誤公開やデータ流出時に平文が見える不安が残った。",
-    "firstBuild": "Kakidasのようにすぐ書ける感覚を残しつつ、Cloudflare AccessのメールOTPで入口を閉じ、ブラウザのWeb Cryptoでメモを暗号化してからD1へ保存する構成にした。",
-    "currentAnswer": "本人のメールだけを許可するCloudflare Access、パスフレーズで開くブラウザ内Vault、AES-256-GCMによるクライアント側暗号化、暗号文のみを保持するWorker/D1を組み合わせた。ロック時は鍵を破棄し、一定時間で自動ロックする。",
-    "type": "learning-tool",
-    "verbs": [
-      "書く",
-      "保存する",
-      "守る"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-17",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-17",
-    "startedAt": "2026-08-17",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual",
-    "repositoryUrl": "",
-    "liveUrl": "https://private-memo.silovar-uk.workers.dev/",
-    "technologies": [
-      "Cloudflare Workers",
-      "Cloudflare Access",
-      "Cloudflare D1",
-      "Web Crypto API",
-      "AES-256-GCM"
-    ],
-    "documentationState": "verified",
-    "searchAliases": [
-      "Private Memo",
-      "private memo",
-      "プライベートメモ",
-      "非公開メモ",
-      "秘密メモ",
-      "個人用メモ",
-      "暗号化メモ",
-      "E2EE",
-      "encrypted memo",
-      "Cloudflare Access",
-      "D1"
-    ],
-    "relatedProjects": [
-      {
-        "id": "kakidas",
-        "relation": "思いつきをすぐ書き出す操作感"
-      },
-      {
-        "id": "memo",
-        "relation": "個人用メモという共通用途"
-      },
-      {
-        "id": "contentslibrary",
-        "relation": "個人データを保存して後から参照する"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-17",
-        "version": "0.1",
-        "change": "ログイン必須・クライアント側暗号化の個人用メモを公開",
-        "reason": "複数端末から使える便利さを保ちながら、サーバーやDBから平文が漏れにくいメモ環境を作るため。"
-      }
-    ],
-    "aside": "サーバーには、読める本文を置かない。",
     "portfolioFamilies": [],
     "makingPrinciples": []
   },
@@ -3777,106 +3730,270 @@
     ]
   },
   {
-    "id": "karaoke-db",
-    "title": "MY DENMOKU",
-    "subtitle": "自分しか見れない、デンモク風カラオケ持ち歌データベース",
-    "summary": "Cloudflare Accessで本人だけに絞った、カラオケの持ち歌を検索・一覧しやすく管理するデータベース。AI機能はアプリ自体には組み込まず、外部のAIで曲情報を整形してから貼り付けて登録する運用にしている。",
-    "friction": "持ち歌やキー、ノリ、履歴をメモやアプリに散らして書いていたが、当日その場で「何を歌うか」を検索・絞り込みで素早く選べる場所がなかった。",
-    "firstBuild": "曲名・アーティスト・キー・年代・ノリ・ランクなどを登録できるCRUDと、テーブル/カード切り替え、検索・絞り込みを最初に作った。",
-    "currentAnswer": "Cloudflare Access(メール認証)で本人限定にし、Workers+D1でCRUDと一括インポートを提供。年代・ノリのチップ絞り込みとURL連携、当日歌う曲をためる予約リスト、ChatGPT等に整形してもらうための登録用プロンプトのコピー機能を備えたデンモク風レトロUIにした。",
-    "type": "learning-tool",
+    "id": "timeconverter",
+    "title": "Time Converter",
+    "subtitle": "時間変換ツール",
+    "summary": "異なる時間表現を、入力してすぐ変換する。",
+    "friction": "時刻や所要時間の換算を、そのたびに頭で計算していた。",
+    "firstBuild": "入力値を別の時間表現へ変換する一画面ツールから始めた。",
+    "currentAnswer": "計算の正確さより先に、迷わず入力できることを重視した道具。",
+    "type": "utility",
     "verbs": [
-      "探す",
-      "選ぶ",
-      "歌う"
+      "変換する",
+      "確認する"
     ],
-    "status": "active",
+    "status": "dormant",
     "visibility": "public",
     "featured": false,
-    "createdAt": "2026-08-20",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-20",
-    "startedAt": "2026-08-20",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual",
-    "repositoryUrl": "",
-    "liveUrl": "https://karaoke-db.silovar-uk.workers.dev",
+    "createdAt": "2025-06",
+    "createdAtPrecision": "estimated-month",
+    "repositoryUrl": "https://github.com/silovar-uk/timeconverter",
+    "githubId": "998680493",
+    "liveUrl": "https://silovar-uk.github.io/timeconverter/",
+    "liveUrlStatus": "candidate",
     "technologies": [
-      "Cloudflare Workers",
-      "Cloudflare D1",
-      "Cloudflare Access",
       "HTML",
       "CSS",
       "JavaScript"
     ],
-    "documentationState": "verified",
+    "documentationState": "inferred",
+    "map": {
+      "group": "work",
+      "x": 980,
+      "y": 110
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "updatedAt": "2025-06-09",
+    "startedAt": "2025-06-09",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
     "searchAliases": [
-      "MY DENMOKU",
-      "karaoke db",
-      "カラオケDB",
-      "持ち歌管理",
-      "デンモク",
-      "denmoku",
-      "karaoke",
-      "持ち歌リスト",
-      "予約リスト"
+      "時間変換",
+      "時刻変換",
+      "time converter",
+      "time conversion",
+      "時間換算",
+      "時差",
+      "timezone"
     ],
-    "relatedProjects": [
-      {
-        "id": "private-memo",
-        "relation": "Cloudflare Accessで本人限定にする構成が共通"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-08-20",
-        "version": "0.1",
-        "change": "本人限定・検索と絞り込み重視のカラオケ持ち歌DBを公開",
-        "reason": "当日その場で歌う曲を素早く選べる、検索性と一覧性を優先した個人用データベースを作るため。"
-      }
-    ],
-    "aside": "選曲は自分で。AIは、メモを整えるときだけ手を貸す。",
     "portfolioFamilies": [],
     "makingPrinciples": []
   },
   {
-    "id": "poco-a-poco",
-    "title": "Poco a Poco",
-    "subtitle": "日本語話者向け、5分ずつ進めるスペイン語学習アプリ",
-    "summary": "日本語話者の初心者が「5分で一つ話せる」状態を目指し、Can-do型レッスン、発話練習、ランダム復習、日本語支援レベルを組み合わせたスペイン語学習Webアプリ。",
-    "friction": "単語や文法を覚えても、実際の場面で短く話すところまでつながりにくかった。",
-    "firstBuild": "HOMEの「今日の5分」とCan-do型レッスンを軸に、短時間で意味理解から発話まで進める学習導線を作った。",
-    "currentAnswer": "PATH、PRACTICE、Smart Random、DISCOVERY、自作文、confidence、学習履歴保存をまとめ、9段階の学習フローで反復できるスマホ対応SPA。",
+    "id": "vocabularies",
+    "title": "Vocabularies",
+    "subtitle": "言葉にできない感覚から、より精密な概念へたどり着く語彙集",
+    "summary": "「ごちゃごちゃする」「文章が固い」のような感覚や違和感を入口に、専門語・概念・関連語へたどり着く発見型ボキャブラリーサイト。感覚・分野・用語の3方向から探せる。",
+    "friction": "名前を知らない概念ほど検索できず、辞書や用語集も「知りたい言葉をすでに知っている」ことを前提にしがちだった。",
+    "firstBuild": "言葉に困った瞬間を入口に、用語の定義だけでなく、選んだ背景、Before→After、関連概念、出典までつなぐ語彙カードから始めた。",
+    "currentAnswer": "感覚から探す・分野から探す・用語から探すの3入口を持ち、専門分野を横断して関連語をつなぎながら、曖昧な感覚をより精密な言葉へ変えていく個人用の語彙探索サイト。",
     "type": "learning-tool",
     "verbs": [
-      "学ぶ",
-      "話す",
-      "復習する"
+      "探す",
+      "言語化する",
+      "学ぶ"
     ],
     "status": "active",
     "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-08-31",
+    "featured": true,
+    "createdAt": "2026-08-09",
     "createdAtPrecision": "day",
-    "updatedAt": "2026-08-31",
-    "startedAt": "2026-08-31",
+    "updatedAt": "2026-08-09",
+    "startedAt": "2026-08-09",
     "startedAtPrecision": "day",
-    "startedAtBasis": "repository-created",
-    "repositoryUrl": "https://github.com/silovar-uk/poco-a-poco",
-    "liveUrl": "https://silovar-uk.github.io/poco-a-poco/#home",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/vocabularies",
+    "liveUrl": "https://silovar-uk.github.io/vocabularies/",
     "technologies": [
       "HTML",
+      "CSS",
       "JavaScript",
-      "localStorage",
-      "GitHub Pages"
+      "JSON"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "designmd",
+        "relation": "言葉と判断基準を精密にする"
+      },
+      {
+        "id": "myspines",
+        "relation": "文章を書くための言語化を支える"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-08-09",
+        "version": "0.1",
+        "change": "感覚・分野・用語の3入口を持つ語彙探索サイトを公開",
+        "reason": "専門語の名前を知らない状態からでも、より精密な概念へたどり着けるようにするため。"
+      }
+    ],
+    "aside": "言葉を知っている人だけが、言葉を探せるのはちょっと変だ。",
+    "searchAliases": [
+      "ボキャブラリーズ",
+      "vocabulary",
+      "vocab",
+      "語彙",
+      "用語",
+      "言語化",
+      "感覚語",
+      "言葉探し",
+      "概念"
+    ],
+    "map": {
+      "group": "learning",
+      "x": 760,
+      "y": 650
+    },
+    "portfolioFamilies": [
+      "Learning & Practice"
+    ],
+    "makingPrinciples": []
+  },
+  {
+    "id": "whatsthiswiki",
+    "title": "What's This Wiki?",
+    "subtitle": "Wikipediaの目次だけで記事名を当てるクイズ",
+    "summary": "記事本文ではなく目次を読み、Wikipediaの記事名を自由入力で当てるクイズ。ランダム探索、URLからの問題作成、同じ問題セットの共有に対応。",
+    "friction": "Wikipediaを読む面白さを、知識量だけを競うクイズではなく、見出しから全体を推理する遊びへ変えたかった。",
+    "firstBuild": "確認済みの記事データから、目次だけを表示して記事名を当てる一問形式を作った。",
+    "currentAnswer": "Wikipedia探索、1〜10件のオリジナル問題、二段階ヒント、スコア、共有URLまで備えたサーバーレスのクイズアプリ。",
+    "type": "learning-tool",
+    "verbs": [
+      "推理する",
+      "遊ぶ",
+      "作る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": true,
+    "createdAt": "2026-07-24",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-07-26",
+    "startedAt": "2026-07-24",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "first-repository-commit",
+    "repositoryUrl": "https://github.com/silovar-uk/whatsthiswiki",
+    "liveUrl": "https://silovar-uk.github.io/whatsthiswiki/",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Wikipedia API"
     ],
     "documentationState": "verified",
     "relatedProjects": [],
     "updates": [],
     "aside": "",
-    "icon": "🗣️",
-    "editorialState": "published",
-    "searchAliases": [],
+    "icon": "🧩",
+    "searchAliases": [
+      "Wikipediaクイズ",
+      "ウィキクイズ",
+      "wikipedia",
+      "目次クイズ",
+      "推理クイズ",
+      "wiki quiz",
+      "what's this wiki",
+      "ウィキペディア"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "x-auto-screenshot-scroll",
+    "title": "X 自動スクリーンショット＆スクロール",
+    "subtitle": "タイムライン連続撮影拡張",
+    "summary": "Xを自動スクロールしながら連続撮影し、長いタイムラインをまとめて保存するChrome拡張。",
+    "friction": "一画面ずつスクロールして撮影する作業が終わらなかった。",
+    "firstBuild": "スクロールと撮影を交互に実行する拡張を作った。",
+    "currentAnswer": "データだけでなく、見た目ごとタイムラインを記録する道具。",
+    "type": "chrome-extension",
+    "verbs": [
+      "記録する",
+      "集める"
+    ],
+    "status": "dormant",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2025-06-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2025-06-02",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "extension",
+      "x": 1180,
+      "y": 398
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "スクロールを自動化したら、撮る枚数まで自動で増えた。",
+    "searchAliases": [
+      "Xスクショ",
+      "Twitter screenshot",
+      "自動スクロール",
+      "screenshot",
+      "X保存",
+      "タイムライン保存",
+      "連続スクショ",
+      "twitter保存"
+    ]
+  },
+  {
+    "id": "zeldasbsp",
+    "title": "ゼルダ実戦ノート",
+    "subtitle": "スマブラSP・ゼルダ学習",
+    "summary": "スマブラSPのゼルダについて、対戦結果と実戦課題を整理する。",
+    "friction": "勝敗だけ残しても、次の対戦で何を変えるかが曖昧だった。",
+    "firstBuild": "対戦記録と改善点を一緒に残した。",
+    "currentAnswer": "戦績表ではなく、負け方を練習内容へ変えるノート。",
+    "type": "learning-tool",
+    "verbs": [
+      "学ぶ",
+      "振り返る"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-07",
+    "createdAtPrecision": "month",
+    "repositoryUrl": "https://github.com/silovar-uk/zeldasbsp",
+    "githubId": "1298885556",
+    "liveUrl": "https://silovar-uk.github.io/zeldasbsp/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "map": {
+      "group": "learning",
+      "x": 350,
+      "y": 326
+    },
+    "relatedProjects": [],
+    "updates": [],
+    "updatedAt": "2026-07-13",
+    "startedAt": "2026-07",
+    "startedAtPrecision": "month",
+    "startedAtBasis": "conversation-log",
+    "searchAliases": [
+      "ゼルダ",
+      "スマブラゼルダ",
+      "smash zelda",
+      "smash ultimate",
+      "スマブラSP",
+      "対戦ノート",
+      "ゼルダ攻略"
+    ],
     "portfolioFamilies": [],
     "makingPrinciples": []
   }
