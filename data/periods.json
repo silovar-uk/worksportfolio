@@ -1,0 +1,148 @@
+[
+  {
+    "id": "2026-07",
+    "label": "2026年7月",
+    "summary": "学習、業務、Chrome拡張、個人記録が一気につながり、作ったもの自体を残すページまで作り始めた。",
+    "interests": [
+      "制作記録",
+      "Chrome拡張",
+      "学習ツール"
+    ],
+    "projectIds": [
+      "fourier",
+      "designmd",
+      "myspines",
+      "hangul",
+      "marisast6",
+      "zeldasbsp",
+      "prompts",
+      "pdfclipper",
+      "contentslibrary",
+      "mydictionary",
+      "st6training",
+      "flowmap",
+      "build-diary"
+    ]
+  },
+  {
+    "id": "2026-06",
+    "label": "2026年6月ごろ",
+    "summary": "文章確認、工程管理、転職、ブラウザ作業など、日常の実務を直接ツールへ変えていた。",
+    "interests": [
+      "業務改善",
+      "自己整理",
+      "比較"
+    ],
+    "projectIds": [
+      "quicklinks",
+      "pdflinks",
+      "kakidas",
+      "converter",
+      "countvoice",
+      "tabshelter",
+      "sukan",
+      "diff",
+      "consultingstudy",
+      "newsquiz",
+      "mydailylog",
+      "commonpoint",
+      "gantt"
+    ]
+  },
+  {
+    "id": "2026-05",
+    "label": "2026年5月ごろ",
+    "summary": "イベント、広報、学習、身内大会まで、テーマごとに一枚のページを作る時期。",
+    "interests": [
+      "イベント",
+      "広報",
+      "コンテンツ"
+    ],
+    "projectIds": [
+      "mmmpocket",
+      "countupapp",
+      "englisharcade",
+      "footballisfun",
+      "patternlanguage",
+      "akasma",
+      "resultcalc",
+      "rockvsbra",
+      "ooh",
+      "lineworks-logger"
+    ]
+  },
+  {
+    "id": "2026-04",
+    "label": "2026年4月ごろ",
+    "summary": "メモ、マインドマップ、イベント地図など、情報を置く器を試していた。",
+    "interests": [
+      "情報整理",
+      "メモ",
+      "可視化"
+    ],
+    "projectIds": [
+      "mymindmap",
+      "simplememotool"
+    ]
+  },
+  {
+    "id": "2026-03",
+    "label": "2026年3月ごろ",
+    "summary": "記録、ゲーム分析、サッカー企画のページが増え始めた。",
+    "interests": [
+      "記録",
+      "ゲーム",
+      "サッカー"
+    ],
+    "projectIds": [
+      "manontec",
+      "100yearvision"
+    ]
+  },
+  {
+    "id": "2025-06",
+    "label": "2025年6月ごろ",
+    "summary": "小さな変換や確認を、ブラウザ上の単機能ツールへしていた。",
+    "interests": [
+      "小型ツール",
+      "変換"
+    ],
+    "projectIds": [
+      "timeconverter"
+    ]
+  },
+  {
+    "id": "2025-05",
+    "label": "2025年5月ごろ",
+    "summary": "将棋、タスク、メモなど、自分用の道具を作り始めた時期。",
+    "interests": [
+      "将棋",
+      "タスク",
+      "メモ"
+    ],
+    "projectIds": [
+      "shogibanmen",
+      "memo"
+    ]
+  },
+  {
+    "id": "2020-08",
+    "label": "2020年ごろ",
+    "summary": "スクレイピングや自動処理を試した、初期の実験。",
+    "interests": [
+      "Python",
+      "スクレイピング"
+    ],
+    "projectIds": []
+  },
+  {
+    "id": "2019-01",
+    "label": "2019年ごろ",
+    "summary": "GitHubに最初のコードを置いた。まだ棚はほぼ空。",
+    "interests": [
+      "Python",
+      "最初の記録"
+    ],
+    "projectIds": []
+  }
+]
