@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T07:50:50.200Z",
+  "generatedAt": "2026-08-31T12:24:31.048Z",
   "owner": "silovar-uk",
   "repositoryCount": 73,
   "hiddenIds": [
@@ -60,7 +60,7 @@
       "description": "",
       "repositoryUrl": "https://github.com/silovar-uk/poco-a-poco",
       "liveUrl": "https://silovar-uk.github.io/poco-a-poco/",
-      "language": "HTML",
+      "language": "JavaScript",
       "topics": [],
       "archived": false,
       "fork": false,
