@@ -4,61 +4,72 @@
 
 公開URL: https://silovar-uk.github.io/worksportfolio/
 
+## Architecture contract
+
+このRepositoryでは、**生成済みHTMLを入力へ戻さない**ことを最重要ルールにしています。
+
+```text
+Canonical source
+  ↓
+Validation / discovery / derived data
+  ↓
+Clean static build
+  ↓
+Publication transforms
+  ↓
+index.html
+  ↓
+GitHub Pages
+```
+
+`index.html` は成果物です。日常編集のSource of Truthではなく、Build時には一度削除して `src/index.template.html` から再生成します。
+
+### Project registry
+
+Project metadataの正本は2つだけです。
+
+- `data/projects.json` — Public / localなど、Private summaryではない制作物のCanonical Project Registry
+- `data/private-projects.json` — 公開可能な情報だけに限定したPrivate制作物のSafe Summary Registry
+
+旧 `manual-projects*.json`、`portfolio-config.overrides`、生成済み `index.html` をProject metadataの入力にはしません。
+
+GitHub repository名とPortfolio上のProject IDが異なる場合だけ、`data/portfolio-config.json` の `repositoryProjectIds` で **Source repository ID → Project ID** を明示します。
+
 ## Portfolioの3層
 
-このサイトは、単なるGitHubリポジトリ一覧ではなく、次の3層で運用します。
-
-1. **Showcase** — 初見の人が30〜60秒で「何を作る人か」を理解する
+1. **Showcase** — 初見の人が「何を作る人か」を理解する
 2. **Catalog** — 全制作物を検索・比較・再発見する
-3. **Editorial System** — GitHub上の制作活動を発見し、編集・安全確認して公開する
-
-Showcaseでは代表作、Making Principles、Project Families、最近育てた作品を表示します。Catalogでは従来の作品棚、ランダム3枚、比較、検索、絞り込みを維持します。
-
-初期表示は「本棚」、初期の並び順は**制作開始が新しい順**です。`Ctrl + K` または `/` で検索欄へ移動できます。
-
-## Showcase
+3. **Editorial System** — GitHub上の制作活動を発見し、安全確認して公開する
 
 Showcaseの編集データは `data/portfolio-taxonomy.json` に置きます。
 
 - `showcase.featuredProjectIds`: 代表作
-- `families`: Project Family（最大5〜7系統を目安）
+- `families`: Project Family
 - `principles`: 制作物から帰納したMaking Principles
 
 表示側は `showcase.js` / `showcase.css`、生成時の注入は `scripts/inject-showcase.mjs` が担当します。
 
-FamilyやPrincipleは公開用project dataへラベルとして注入されるため、GitHubのリポジトリ構造とは独立して整理できます。
-
 ## Catalog
 
-作品棚は「深く探す」ための層です。
+Catalogでは次を扱います。
 
 - 名前・困りごと・技術から検索
-- 最近更新、公開ページ、運用・開発中などのクイック絞り込み
-- 種類、状態、制作年、整理状態、公開状況による詳細絞り込み
-- 更新順、制作開始順、名前順などの並び替え
+- クイック絞り込み / 詳細絞り込み
+- 制作開始順、更新順、名前順などの並び替え
 - コンパクト、カード、表の表示切替
-- 制作年、種類、状態ごとのグループ分け
+- Project Familyによる絞り込み
 - 最近開いた作品
-- 複数作品の共有用テキスト / Markdown / TSV / JSONコピー
 - ランダム3枚
 - 比較
 - お気に入り
 
-ShowcaseのProject FamilyからCatalogを一時的に絞り込むこともできます。
+初期の時系列は `startedAt` を優先し、なければ `createdAt` を使います。
 
 ## Public GitHub discovery
 
-`scripts/build-catalog.mjs` がGitHub APIから**Public repositoryだけ**を取得し、`data/catalog.json` に保存します。
+`scripts/build-catalog.mjs` がGitHub APIから**Public repositoryだけ**を取得し、`data/catalog.json` を生成します。
 
-重要なのは、**発見と公開を分離する**ことです。
-
-### 既存作品
-
-2026-08-25までに存在していたPublic repositoryは移行時のbaselineとして、従来どおりPortfolioに掲載します。
-
-### 今後の新規Public repository
-
-新しく発見したrepositoryは、原則 `discovered` として扱い、即時公開しません。
+発見と公開は分離します。
 
 Editorial State:
 
@@ -68,147 +79,151 @@ Editorial State:
 - `published`: Portfolioへ掲載
 - `hidden`: 掲載しない
 
-新しいrepositoryを明示的に公開する場合は `data/portfolio-config.json` のoverrideへ `editorialState: "published"` を設定します。
-
 公開ゲートは `data/editorial-policy.json` と `scripts/apply-editorial-gate.mjs` が担当します。
 
-## Editorial review queue
-
-`scripts/build-editorial-review.mjs` が `data/editorial-review.json` を生成します。
-
-ここに含めるのは**Public repositoryのみ**です。Private repository名やPrivate GitHub metadataは絶対に入れません。
-
-レビュー理由の例:
-
-- `no-curation`
-- `generic-summary`
-- `no-family`
-- `no-live-url`
-- `technology-unknown`
-
-編集不足はWARNING、漏えい・schema破損・不正参照はFAILとして扱います。
+`scripts/build-editorial-review.mjs` が `data/editorial-review.json` を生成します。ここに含めるのはPublic repositoryだけです。
 
 ## Private-source projects
 
-Private repositoryはPublic catalogと完全に別経路で扱います。
+Private repositoryの検出情報はPublic catalogへ流しません。
 
-流れ:
-
-`Private repoを確認 → 公開可否判断 → 安全な概要を手動作成 → allowlistへ追加 → validation → publish`
-
-公開可能な概要だけを `data/manual-projects-private.json` に保存します。
-
-Private-source projectは必ず次を満たします。
+公開可能な概要だけを `data/private-projects.json` に手動で保存します。各recordは最低限、次を満たす必要があります。
 
 ```json
 {
+  "visibility": "private",
   "sourceVisibility": "private",
   "summaryOnly": true,
   "repositoryUrl": ""
 }
 ```
 
-UIでは実装事情を強く見せず、必要な箇所だけ `Source not public` と表示します。
+公開してはいけないもの:
 
-### 公開してはいけないもの
-
-- Private GitHub URL
-- Private repository名（安全確認なし）
-- README本文
-- source code
+- Private GitHub URL / repository metadata
+- source code / README本文
 - file path / branch / commit / issue / PR
 - secret / API key
 - 内部URL
 - account / database identifier
 - 個人・顧客・組織の内部情報
 
-`scripts/validate-private-summaries.mjs` と `scripts/validate-portfolio-model.mjs` が検査します。
+`scripts/validate-private-summaries.mjs` と `scripts/validate-portfolio-model.mjs` が検査し、`scripts/inject-private-summaries.mjs` が最終HTMLへSafe Summaryだけを注入します。
 
-## データの責務
+## Source of Truth
 
-### 手書き・編集データ
+### 人が編集するSource
 
-- `data/portfolio-config.json`: Public作品の上書き、hidden、editorial state
-- `data/portfolio-taxonomy.json`: Showcase / Family / Principle
-- `data/editorial-policy.json`: Editorial Stateと公開ゲート方針
-- `data/manual-projects.json`: GitHubにない制作物
-- `data/manual-projects-extra.json`: 追加の手動制作物
-- `data/manual-projects-daily-log.json`: Daily Logの公開用記録
-- `data/manual-projects-private.json`: 安全確認済みPrivate概要
+- `src/index.template.html` — HTML構造の正本
+- `data/projects.json` — Canonical Project Registry
+- `data/private-projects.json` — Private-safe Summary Registry
+- `data/periods.json` — 時系列区分
+- `data/settings.json` — サイト設定
+- `data/portfolio-config.json` — repository ID mapping、hidden等の運用設定
+- `data/portfolio-taxonomy.json` — Showcase / Family / Principle
+- `data/editorial-policy.json` — 公開ゲート方針
+- `data/project-start-dates.json` — 制作開始日の監査データ
+- `data/pattern-taxonomy.json` / `data/pattern-merge-rules.json` — Pattern生成ルール
 
-### 生成データ
+### 生成されるもの
 
-- `data/catalog.json`: Public GitHub repository catalog
-- `data/editorial-review.json`: Public repositoryの編集レビューキュー
-- `data/patterns.json` など: 制作パターン生成物
-- `index.html`: 公開用の完成版HTML
+- `data/catalog.json` — Public GitHub repository catalog
+- `data/editorial-review.json` — Public repository review queue
+- `data/pattern-audit.json` / `data/patterns.json` など — Pattern派生データ
+- `index.html` — 公開用完成HTML
 
-生成ファイルを日常的な編集のSource of Truthにしません。
+生成物を手編集してSourceへ戻さないでください。
 
-## ビルドパイプライン
+## Identifier integrity
 
-GitHub Actionsの主な流れ:
+`scripts/validate-global-ids.mjs` がProject IDを横断検証します。
+
+区別するもの:
+
+- Canonical Project ID
+- Private-safe Project ID
+- Source repository ID
+- `repositoryProjectIds` による明示mapping
+
+`hiddenIds` はSource repository IDまたはProject IDを取れます。一方、Showcase / Family / Principle / relationはProject IDを参照します。
+
+存在しないID、Public/Private衝突、重複Project IDはBuildを失敗させます。旧relationに残る移行上の欠損だけは現在WARNING扱いです。
+
+## Build pipeline
+
+HTMLを書き出すWorkflowは `.github/workflows/update-catalog.yml` に一本化しています。
 
 ```text
-Public GitHub discovery
+Source-of-truth boundary validation
   ↓
-Catalog build
+Private-safe validation
   ↓
-Sanitize
+Public GitHub catalog build
+  ↓
+Sanitize / curation / audit
+  ↓
+Global ID validation
   ↓
 Portfolio model validation
   ↓
-Editorial review queue
+Editorial review build
   ↓
 Pattern validation / build
   ↓
-Static portfolio build
+rm -f index.html
+  ↓
+Static build from src/index.template.html
+  ↓
+Copy cleanup
   ↓
 Editorial publication gate
   ↓
-Safe Private summaries injection
+Private-safe summaries injection
   ↓
 Showcase / Family / Principle injection
   ↓
-Generated-page security checks
+Generated-page integrity checks
   ↓
 Commit generated files
   ↓
 GitHub Pages
 ```
 
-Private repositoryの検出情報はこのPublic CIへ渡しません。
+Friction Atlas / Live Indexも通常BuildのAssetとして `scripts/build-static-site.mjs` から組み込まれます。後段の別Workflowで `index.html` をpatchしません。
 
-## 主なファイル
+`.github/workflows/audit-project-start-dates.yml` は制作開始日の監査専用で、HTML writerではありません。
+
+## 主な実装ファイル
 
 - `catalog.js` / `catalog.css`: Catalog
+- `friction-atlas.js` / `friction-atlas.css`: 「作った理由」ビュー
+- `live-index.js` / `live-index.css`: 検索・Index体験
 - `showcase.js` / `showcase.css`: Showcase / Project Family
 - `private-source.js` / `private-source.css`: Private-source表示制御
 - `random-three.js` / `random-three.css`: ランダム3枚
 - `comparison-view.js` / `comparison-view.css`: 比較
-- `shelf-priority.js` / `shelf-priority.css`: 本棚の初期導線
 - `scripts/build-catalog.mjs`: Public GitHub discovery
-- `scripts/build-static-site.mjs`: Static site build
-- `scripts/apply-editorial-gate.mjs`: 新規Public repoの公開ゲート
-- `scripts/build-editorial-review.mjs`: Public editorial review queue
+- `scripts/build-static-site.mjs`: Canonical static build
+- `scripts/validate-global-ids.mjs`: Global ID integrity
 - `scripts/validate-portfolio-model.mjs`: taxonomy / privacy / reference validation
-- `scripts/inject-private-summaries.mjs`: 安全なPrivate概要の注入
-- `scripts/inject-showcase.mjs`: Showcase taxonomyの注入
-- `.github/workflows/update-catalog.yml`: CI / generated build
+- `scripts/inject-private-summaries.mjs`: Safe Private summary injection
+- `.github/workflows/update-catalog.yml`: Main CI / HTML writer
 
 ## ローカル確認
 
-Public GitHub APIを利用できる環境では、概ね次の順で確認します。
+Public GitHub APIを利用できる環境では、概ね次の順です。
 
 ```bash
+node scripts/validate-private-summaries.mjs
 node scripts/build-catalog.mjs
 node scripts/sanitize-project-data.mjs
-node scripts/validate-private-summaries.mjs
+node scripts/validate-global-ids.mjs
 node scripts/validate-portfolio-model.mjs
 node scripts/build-editorial-review.mjs
 node scripts/validate-pattern-candidates.mjs
 node scripts/build-patterns.mjs
 node scripts/validate-patterns.mjs
+rm -f index.html
 node scripts/build-static-site.mjs
 node scripts/apply-copy-cleanup.mjs
 node scripts/apply-editorial-gate.mjs
@@ -216,4 +231,4 @@ node scripts/inject-private-summaries.mjs
 node scripts/inject-showcase.mjs
 ```
 
-最終的な完了条件は、CI成功だけではなくGitHub Pagesへproduction deployされたことです。
+最終完了条件は、Clean Buildが成功し、そのcommitがGitHub Pagesへproduction deployされることです。
