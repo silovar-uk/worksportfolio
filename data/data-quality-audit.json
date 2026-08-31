@@ -23,19 +23,18 @@
       "publicArtifact"
     ],
     "excludedFromQualityPopulation": [
-      "keygridexpansion",
-      "quicklinks"
+      "keygridexpansion"
     ]
   },
   "summary": {
-    "generatedAt": "2026-08-31T14:03:49.547Z",
+    "generatedAt": "2026-08-31T14:06:29.080Z",
     "canonicalProjects": 67,
-    "reviewableCanonicalProjects": 65,
-    "excludedHiddenCanonicalProjects": 2,
+    "reviewableCanonicalProjects": 66,
+    "excludedHiddenCanonicalProjects": 1,
     "privateSafeProjects": 11,
     "publicRepositories": 73,
     "visiblePublicRepositories": 59,
-    "verifiedDocumentation": 46,
+    "verifiedDocumentation": 47,
     "inferredDocumentation": 18,
     "unreviewedDocumentation": 1,
     "missingFriction": 0,
@@ -779,6 +778,19 @@
       "startedAtPrecision": "month"
     },
     {
+      "id": "quicklinks",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "conversation-log",
+      "startedAtPrecision": "month"
+    },
+    {
       "id": "simplememotool",
       "score": 10,
       "maxScore": 10,
@@ -914,6 +926,13 @@
         "converter",
         "convinitools"
       ]
+    },
+    {
+      "normalizedTitle": "quickprojectlinks",
+      "ids": [
+        "quicklinks",
+        "quicklinksexpansion"
+      ]
     }
   ],
   "canonicalWithoutPublicRepo": [
@@ -933,11 +952,11 @@
         "count": 23
       },
       {
-        "value": "web-app",
-        "count": 11
+        "value": "chrome-extension",
+        "count": 12
       },
       {
-        "value": "chrome-extension",
+        "value": "web-app",
         "count": 11
       },
       {
@@ -1003,6 +1022,10 @@
         "count": 4
       },
       {
+        "value": "見つける",
+        "count": 3
+      },
+      {
         "value": "言語化する",
         "count": 3
       },
@@ -1032,10 +1055,6 @@
       },
       {
         "value": "計算する",
-        "count": 2
-      },
-      {
-        "value": "見つける",
         "count": 2
       },
       {
@@ -1156,6 +1175,10 @@
       },
       {
         "value": "声に出す",
+        "count": 1
+      },
+      {
+        "value": "切り替える",
         "count": 1
       },
       {
