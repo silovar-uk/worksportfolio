@@ -204,6 +204,11 @@
     "source": "https://github.com/silovar-uk/kakidas/commit/a8ced0ab59ea3e9d347bcbd4004f50d2d18d9cb2",
     "commit": "a8ced0ab59ea3e9d347bcbd4004f50d2d18d9cb2"
   },
+  "karaoke-db": {
+    "date": "2026-08-20",
+    "precision": "day",
+    "basis": "manual"
+  },
   "keygrid": {
     "date": "2026-07-27",
     "precision": "day",
@@ -296,6 +301,14 @@
     "source": "https://github.com/silovar-uk/myessays/commit/a4efbef15f01e301dd9446280687f7c668c39047",
     "commit": "a4efbef15f01e301dd9446280687f7c668c39047"
   },
+  "myglossary": {
+    "date": "2026-08-16",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "myglossary",
+    "source": "https://github.com/silovar-uk/myglossary/commit/dcc8b667f1b1038a3ea2203e720550d09c142e74",
+    "commit": "dcc8b667f1b1038a3ea2203e720550d09c142e74"
+  },
   "mymindmap": {
     "date": "2026-04-11",
     "precision": "day",
@@ -351,6 +364,14 @@
     "source": "https://github.com/silovar-uk/pdflinks/commit/6c43ef44fd46260a746e5314ec9231ae244c0633",
     "commit": "6c43ef44fd46260a746e5314ec9231ae244c0633"
   },
+  "poco-a-poco": {
+    "date": "2026-08-31",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "poco-a-poco",
+    "source": "https://github.com/silovar-uk/poco-a-poco/commit/67f685079726ca2448f64b4b5570f71df140ede8",
+    "commit": "67f685079726ca2448f64b4b5570f71df140ede8"
+  },
   "pratchecker": {
     "date": "2025-06-02",
     "precision": "day",
@@ -366,6 +387,11 @@
     "repository": "predictattendance",
     "source": "https://github.com/silovar-uk/predictattendance/commit/36b59b5206445a53e2d1ced630ca8738287da013",
     "commit": "36b59b5206445a53e2d1ced630ca8738287da013"
+  },
+  "private-memo": {
+    "date": "2026-08-17",
+    "precision": "day",
+    "basis": "manual"
   },
   "prompts": {
     "date": "2026-07",
@@ -464,6 +490,14 @@
     "date": "2026-06",
     "precision": "month",
     "basis": "conversation-log"
+  },
+  "techniques": {
+    "date": "2026-08-18",
+    "precision": "day",
+    "basis": "first-repository-commit",
+    "repository": "techniques",
+    "source": "https://github.com/silovar-uk/techniques/commit/801d432a4a5c028da63b0a8c5a15f7a816f1fcaf",
+    "commit": "801d432a4a5c028da63b0a8c5a15f7a816f1fcaf"
   },
   "timeconverter": {
     "date": "2025-06-09",
