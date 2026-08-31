@@ -39,8 +39,6 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
   const reasons = [];
   if (!canonical.has(projectId)) reasons.push('no-curation');
   if (!repo.description && !project.summary) reasons.push('generic-summary');
-  if (!(familyByProject.get(projectId) || []).length) reasons.push('no-family');
-  if (!repo.liveUrl && !project.liveUrl) reasons.push('no-live-url');
   if (!repo.language && !(Array.isArray(project.technologies) && project.technologies.length)) reasons.push('technology-unknown');
 
   items.push({
@@ -52,6 +50,7 @@ for (const repo of Array.isArray(catalog.repositories) ? catalog.repositories : 
     createdAt: createdAt || null,
     updatedAt: String(repo.updatedAt || repo.pushedAt || '').slice(0, 10) || null,
     hasLiveUrl: Boolean(repo.liveUrl || project.liveUrl),
+    artifactReviewNeeded: !repo.liveUrl && !project.liveUrl,
     documentationState: project.documentationState || 'unreviewed'
   });
 }
@@ -63,13 +62,14 @@ const counts = items.reduce((result, item) => {
   return result;
 }, {});
 const warnings = items.filter((item) => item.state !== 'hidden' && item.reasons.length).length;
+const artifactReviewCount = items.filter((item) => item.state !== 'hidden' && item.artifactReviewNeeded).length;
 const payload = {
   generatedAt: catalog.generatedAt || new Date().toISOString(),
   policyVersion: policy.version || 1,
   publicRepositoriesOnly: true,
-  summary: { total: items.length, ...counts, withWarnings: warnings },
+  summary: { total: items.length, ...counts, withWarnings: warnings, artifactReviewNeeded: artifactReviewCount },
   items
 };
 
 await writeFile(new URL('data/editorial-review.json', root), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-console.log(`Editorial review: ${counts.discovered || 0} discovered, ${counts.candidate || 0} candidate, ${counts.published || 0} published; ${warnings} with warnings.`);
+console.log(`Editorial review: ${counts.discovered || 0} discovered, ${counts.candidate || 0} candidate, ${counts.published || 0} published; ${warnings} metadata warnings; ${artifactReviewCount} artifact checks.`);
