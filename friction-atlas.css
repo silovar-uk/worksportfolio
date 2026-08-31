@@ -1,0 +1,318 @@
+/* FRICTION ATLAS — the visual language is derived from project data, not decoration. */
+:root {
+  --atlas-red: #b51f2e;
+  --atlas-red-soft: #f3dddd;
+  --atlas-ink: #181b1c;
+  --atlas-paper: #fffdf7;
+  --atlas-bg: #f2efe6;
+  --atlas-line: #b8b3a6;
+  --atlas-line-dark: #555a58;
+  --atlas-muted: #626968;
+  --atlas-accent: #e4c85e;
+}
+
+.friction-atlas {
+  background:
+    linear-gradient(rgba(24,27,28,.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24,27,28,.026) 1px, transparent 1px),
+    var(--atlas-bg);
+  background-size: 28px 28px;
+}
+
+.friction-atlas .site-header {
+  border-bottom-color: rgba(24,27,28,.5);
+  background: rgba(242,239,230,.9);
+}
+
+.friction-atlas .header-inner { min-height: 72px; }
+.friction-atlas .site-brand { letter-spacing: -.02em; }
+.friction-atlas .global-nav { gap: .5rem; }
+.friction-atlas .nav-button {
+  min-width: 54px;
+  padding: .55rem .3rem .45rem;
+  border-bottom-width: 3px;
+  font-weight: 800;
+}
+.friction-atlas .nav-button[data-about-button] { margin-left: .8rem; font-weight: 500; }
+
+.friction-atlas .hero {
+  min-height: min(820px, 88vh);
+  grid-template-columns: minmax(0,1fr) 300px;
+  align-content: center;
+  overflow: clip;
+}
+.friction-atlas .hero::before {
+  inset: 58px 0 auto auto;
+  width: 58%;
+  background: var(--atlas-ink);
+  opacity: .35;
+}
+.friction-atlas .hero::after {
+  content: "WHY?";
+  position: absolute;
+  right: -0.04em;
+  bottom: 86px;
+  z-index: -1;
+  font: 900 clamp(7rem, 20vw, 17rem)/.75 "Roboto Mono", monospace;
+  letter-spacing: -.09em;
+  color: rgba(181,31,46,.075);
+  pointer-events: none;
+}
+.friction-atlas .hero-copy { position: relative; z-index: 1; }
+.friction-atlas .hero-copy h1 {
+  display: grid;
+  max-width: 930px;
+  font-size: clamp(3.4rem, 8vw, 7.7rem);
+  line-height: .94;
+  letter-spacing: -.075em;
+}
+.friction-atlas .hero-copy h1 span:last-child { color: var(--atlas-red); }
+.friction-atlas .hero-lead {
+  max-width: 580px;
+  margin-top: 2.1rem;
+  font-size: clamp(1.04rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+}
+.friction-atlas .hero .eyebrow { color: var(--atlas-red); }
+.friction-atlas .hero-actions { margin-top: 2.2rem; }
+.friction-atlas .primary-action {
+  border-color: var(--atlas-ink);
+  background: var(--atlas-ink);
+  box-shadow: 6px 6px 0 var(--atlas-red);
+  font-weight: 800;
+}
+.friction-atlas .primary-action:hover,
+.friction-atlas .primary-action:focus-visible { box-shadow: 9px 9px 0 var(--atlas-red); }
+
+.friction-atlas .hero-note {
+  width: min(100%, 286px);
+  padding: 2.4rem 1.5rem 1.4rem;
+  border: 1px solid var(--atlas-ink);
+  background: var(--atlas-paper);
+  box-shadow: 9px 9px 0 var(--atlas-accent);
+  transform: rotate(1.2deg);
+}
+.friction-atlas .hero-note::before {
+  content: "CASE NOTE";
+  position: absolute;
+  top: .7rem;
+  right: .8rem;
+  font: 700 .64rem "Roboto Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--atlas-red);
+}
+.friction-atlas .hero-note .note-pin { background: var(--atlas-red); }
+.friction-atlas .hero-note small { font-family: "Roboto Mono", monospace; letter-spacing: .08em; }
+
+.friction-atlas .hero-stats {
+  border-top-color: var(--atlas-ink);
+  align-items: end;
+}
+.friction-atlas .hero-stats dd { color: var(--atlas-ink); letter-spacing: -.06em; }
+.friction-atlas .hero-stats div:first-child dd { color: var(--atlas-red); }
+
+.friction-atlas .current-note {
+  position: relative;
+  grid-template-columns: 210px 1fr;
+  border: 0;
+  border-top: 5px solid var(--atlas-ink);
+  border-bottom: 1px solid var(--atlas-ink);
+  background: transparent;
+  box-shadow: none;
+  padding: 30px 0 34px;
+}
+.friction-atlas .current-note::after {
+  content: "WHY → WHEN → WHAT";
+  position: absolute;
+  right: 0;
+  top: -29px;
+  font: 700 .7rem "Roboto Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--atlas-red);
+}
+.friction-atlas .current-note > p { max-width: 850px; }
+
+.friction-atlas .explorer { padding-top: 130px; }
+.friction-atlas .explorer-heading { align-items: end; margin-bottom: 18px; }
+.friction-atlas .explorer-heading h2 { font-size: clamp(2rem, 4.5vw, 4.2rem); letter-spacing: -.05em; }
+.friction-atlas .atlas-lens-intro {
+  max-width: 760px;
+  margin: 0 0 34px auto;
+  padding-left: 22px;
+  border-left: 4px solid var(--atlas-red);
+  color: var(--atlas-muted);
+}
+.friction-atlas .atlas-lens-intro strong { color: var(--atlas-ink); }
+
+.friction-atlas .view-switcher {
+  min-width: min(720px, 64vw);
+  border: 1px solid var(--atlas-ink);
+  box-shadow: 6px 6px 0 rgba(24,27,28,.08);
+}
+.friction-atlas .view-chip {
+  position: relative;
+  min-height: 104px;
+  padding: 1rem 1.15rem .85rem 3.65rem;
+  border-color: var(--atlas-line-dark);
+  background: var(--atlas-paper);
+}
+.friction-atlas .view-chip::before {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font: 800 .72rem "Roboto Mono", monospace;
+  color: var(--atlas-red);
+}
+.friction-atlas .view-chip:nth-child(1)::before { content: "01"; }
+.friction-atlas .view-chip:nth-child(2)::before { content: "02"; }
+.friction-atlas .view-chip:nth-child(3)::before { content: "03"; }
+.friction-atlas .view-chip span { font-size: 1.42rem; line-height: 1.1; }
+.friction-atlas .view-chip small { margin-top: .45rem; font: 600 .68rem "Roboto Mono", monospace; letter-spacing: .04em; }
+.friction-atlas .view-chip:hover,
+.friction-atlas .view-chip:focus-visible,
+.friction-atlas .view-chip.is-active {
+  background: var(--atlas-ink);
+  color: var(--atlas-paper);
+}
+.friction-atlas .view-chip.is-active::before { color: var(--atlas-accent); }
+
+/* Existing cards: remove decorative randomness. Differences must now come from data. */
+.friction-atlas .project-card,
+.friction-atlas .project-card:nth-child(4n+2),
+.friction-atlas .project-card:nth-child(5n),
+.friction-atlas .project-card.is-prototype {
+  min-height: 300px;
+  transform: none;
+  border-style: solid;
+}
+.friction-atlas .project-card.is-featured { min-height: 340px; border-top: 6px solid var(--atlas-red); }
+.friction-atlas .project-card:hover,
+.friction-atlas .project-card:focus-within { transform: translateY(-5px); }
+.friction-atlas .project-card .friction { border-left: 3px solid var(--atlas-red); padding-left: .75rem; }
+.friction-atlas .project-card .friction strong { color: var(--atlas-red); }
+
+.friction-atlas .timeline-year-heading h3 { color: var(--atlas-red); letter-spacing: -.08em; }
+.friction-atlas .timeline-period { border-top-color: var(--atlas-ink); }
+.friction-atlas .timeline-card {
+  border-color: var(--atlas-line-dark);
+  box-shadow: 5px 5px 0 rgba(24,27,28,.07);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.friction-atlas .timeline-card:hover,
+.friction-atlas .timeline-card:focus-within { transform: translateY(-3px); box-shadow: 8px 8px 0 rgba(24,27,28,.1); }
+.friction-atlas .timeline-card::before { color: rgba(181,31,46,.16); }
+.friction-atlas .friction-line { padding-left: .8rem; border-left: 3px solid var(--atlas-red); }
+.friction-atlas .friction-line strong { color: var(--atlas-red); }
+
+/* WHY lens */
+.friction-atlas .friction-atlas-view { display: grid; gap: 38px; }
+.friction-atlas .atlas-header {
+  display: grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr);
+  gap: 40px;
+  padding: 36px 0 42px;
+  border-top: 6px solid var(--atlas-ink);
+  border-bottom: 1px solid var(--atlas-ink);
+}
+.friction-atlas .atlas-header h3 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5.6rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+.friction-atlas .atlas-header > p { max-width: 540px; margin: 0; align-self: end; font-size: 1.04rem; }
+.friction-atlas .atlas-header strong { color: var(--atlas-red); }
+
+.friction-atlas .atlas-clusters { display: grid; gap: 58px; }
+.friction-atlas .atlas-cluster { display: grid; grid-template-columns: minmax(250px, 330px) 1fr; gap: 30px; padding-top: 20px; border-top: 1px solid var(--atlas-line-dark); }
+.friction-atlas .atlas-cluster-head { display: grid; grid-template-columns: 42px 1fr auto; gap: 12px; align-content: start; position: sticky; top: 98px; align-self: start; }
+.friction-atlas .atlas-cluster-number { font: 800 .78rem "Roboto Mono", monospace; color: var(--atlas-red); }
+.friction-atlas .atlas-cluster-head p { margin: 0 0 .35rem; font: 700 .66rem "Roboto Mono", monospace; letter-spacing: .09em; color: var(--atlas-red); }
+.friction-atlas .atlas-cluster-head h3 { margin: 0; font-size: clamp(1.35rem, 2.5vw, 2.05rem); line-height: 1.2; letter-spacing: -.035em; }
+.friction-atlas .atlas-cluster-head small { display: block; margin-top: .6rem; color: var(--atlas-muted); line-height: 1.7; }
+.friction-atlas .atlas-cluster-head > strong { font: 800 1.9rem "Roboto Mono", monospace; color: rgba(24,27,28,.2); }
+
+.friction-atlas .atlas-projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.friction-atlas .atlas-project {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--atlas-line-dark);
+  background: var(--atlas-paper);
+  box-shadow: 4px 4px 0 rgba(24,27,28,.065);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.friction-atlas .atlas-project::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--atlas-red); }
+.friction-atlas .atlas-project:hover,
+.friction-atlas .atlas-project:focus-within { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(24,27,28,.1); border-color: var(--atlas-ink); }
+.friction-atlas .atlas-project-main { width: 100%; height: 100%; padding: 18px 18px 16px 22px; border: 0; background: transparent; text-align: left; cursor: pointer; color: inherit; }
+.friction-atlas .atlas-project-meta { display: flex; justify-content: space-between; gap: 10px; color: var(--atlas-muted); font: 700 .63rem "Roboto Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
+.friction-atlas .atlas-project h4 { margin: .75rem 0 1rem; font-size: 1.25rem; line-height: 1.25; letter-spacing: -.025em; }
+.friction-atlas .atlas-friction { margin: 0; color: var(--atlas-muted); font-size: .9rem; line-height: 1.65; }
+.friction-atlas .atlas-friction span { display: block; margin-bottom: .25rem; color: var(--atlas-red); font: 800 .6rem "Roboto Mono", monospace; letter-spacing: .1em; }
+.friction-atlas .atlas-open-label { display: block; margin-top: 1.15rem; font: 800 .64rem "Roboto Mono", monospace; letter-spacing: .08em; }
+.friction-atlas .atlas-empty { margin: 0; padding: 28px; border: 1px dashed var(--atlas-line); color: var(--atlas-muted); }
+
+/* Case file dialog */
+.friction-atlas .dialog-shell { border-top: 8px solid var(--atlas-red); }
+.friction-atlas .detail-title { letter-spacing: -.055em; }
+.friction-atlas .detail-friction { padding: 20px 22px; border-left: 5px solid var(--atlas-red); background: var(--atlas-red-soft); }
+.friction-atlas .detail-section { border-top-color: var(--atlas-ink); }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 260ms; }
+
+@media (max-width: 900px) {
+  .friction-atlas .hero { min-height: auto; grid-template-columns: 1fr; }
+  .friction-atlas .hero::after { bottom: 210px; font-size: 34vw; }
+  .friction-atlas .view-switcher { min-width: 0; width: 100%; }
+  .friction-atlas .atlas-cluster { grid-template-columns: 1fr; }
+  .friction-atlas .atlas-cluster-head { position: static; }
+  .friction-atlas .atlas-projects { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 640px) {
+  .friction-atlas { background-size: 22px 22px; }
+  .friction-atlas .header-inner { min-height: 60px; }
+  .friction-atlas .global-nav .nav-button:nth-child(-n+3) { display: inline-block; }
+  .friction-atlas .global-nav .nav-button[data-about-button] { display: none; }
+  .friction-atlas .nav-button { min-width: 42px; padding-inline: .25rem; font-size: .78rem; }
+  .friction-atlas .hero { padding-top: 72px; }
+  .friction-atlas .hero-copy h1 { font-size: clamp(3.25rem, 17vw, 5rem); line-height: .92; }
+  .friction-atlas .hero-lead { margin-top: 1.5rem; }
+  .friction-atlas .hero::after { right: -.08em; bottom: 265px; color: rgba(181,31,46,.055); }
+  .friction-atlas .hero-note { width: 91%; margin-left: 0; }
+  .friction-atlas .hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .friction-atlas .current-note { grid-template-columns: 1fr; gap: .8rem; }
+  .friction-atlas .current-note::after { display: none; }
+  .friction-atlas .explorer { padding-top: 92px; }
+  .friction-atlas .atlas-lens-intro { margin-left: 0; }
+  .friction-atlas .view-switcher { grid-template-columns: repeat(3,1fr); }
+  .friction-atlas .view-chip {
+    min-height: 92px;
+    padding: 2.2rem .5rem .65rem;
+    border-right: 1px solid var(--atlas-line-dark);
+    border-bottom: 0;
+    text-align: center;
+    display: block;
+  }
+  .friction-atlas .view-chip:last-child { border-right: 0; }
+  .friction-atlas .view-chip::before { left: 50%; top: .65rem; transform: translateX(-50%); }
+  .friction-atlas .view-chip span { font-size: 1.15rem; }
+  .friction-atlas .view-chip small { display: none; }
+  .friction-atlas .atlas-header { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
+  .friction-atlas .atlas-header h3 { font-size: clamp(2.55rem, 13vw, 4.5rem); }
+  .friction-atlas .atlas-clusters { gap: 46px; }
+  .friction-atlas .atlas-cluster { gap: 18px; }
+  .friction-atlas .atlas-cluster-head { grid-template-columns: 34px 1fr auto; }
+  .friction-atlas .atlas-projects { grid-template-columns: 1fr; }
+  .friction-atlas .atlas-project-main { min-height: 44px; padding: 17px 16px 15px 20px; }
+  .friction-atlas .timeline-period { grid-template-columns: 1fr; }
+  .friction-atlas .timeline-card { grid-template-columns: 52px minmax(0,1fr) auto; padding: 20px 16px; }
+  .friction-atlas .timeline-card::before { font-size: 1.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .friction-atlas .atlas-project,
+  .friction-atlas .timeline-card { transition: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
