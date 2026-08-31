@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-30T23:29:31.782Z",
+  "generatedAt": "2026-08-31T07:50:50.200Z",
   "policyVersion": 1,
   "publicRepositoriesOnly": true,
   "summary": {
-    "total": 72,
-    "published": 59,
+    "total": 73,
+    "published": 60,
     "hidden": 13,
-    "withWarnings": 53
+    "withWarnings": 54
   },
   "items": [
     {
@@ -385,7 +385,7 @@
       ],
       "families": [],
       "createdAt": "2026-05-31",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "unreviewed"
     },
@@ -567,7 +567,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-09",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "unreviewed"
     },
@@ -741,6 +741,19 @@
       "documentationState": "verified"
     },
     {
+      "id": "poco-a-poco",
+      "projectId": "poco-a-poco",
+      "state": "published",
+      "reasons": [
+        "no-family"
+      ],
+      "families": [],
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "hasLiveUrl": true,
+      "documentationState": "verified"
+    },
+    {
       "id": "prompts",
       "projectId": "prompts",
       "state": "published",
@@ -775,7 +788,7 @@
       ],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
@@ -788,7 +801,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
@@ -814,7 +827,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
@@ -853,7 +866,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-18",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-31",
       "hasLiveUrl": true,
       "documentationState": "verified"
     },
