@@ -3,7 +3,6 @@
 
   const STYLE_ID = 'catalog-layout-fix-style';
   let scheduled = false;
-  let pendingViewportRestore = 0;
 
   function installStyles() {
     if (document.getElementById(STYLE_ID)) return;
@@ -17,16 +16,6 @@
         justify-content:stretch !important;
       }
 
-      /* Search is filtering, not navigation: keep the viewport and result surface visually quiet. */
-      html.catalog-search-stable { scroll-behavior:auto !important; }
-      [data-view-panel] { overflow-anchor:none; }
-      .catalog-search-results,
-      .catalog-search-result,
-      [data-view-panel] > .empty-state {
-        animation:none !important;
-        transition:none !important;
-      }
-
       /* Let title/summary use the width that the row actually owns. */
       .catalog-main { width:100%; min-width:0; }
       .catalog-titleline { width:100%; min-width:0; }
@@ -37,48 +26,6 @@
       }
       .catalog-summaryline { max-width:100%; }
 
-      /* Hero: treat the title as a quiet editorial label, not the visual destination. */
-      @media (min-width:761px) {
-        .hero {
-          min-height:auto !important;
-          padding-block:68px 42px !important;
-          grid-template-columns:minmax(0,1fr) 240px !important;
-          gap:24px 56px !important;
-        }
-        .hero::before { top:24px !important; width:32% !important; }
-        .hero-copy h1 {
-          max-width:620px !important;
-          font-size:clamp(1.55rem,2.25vw,2.35rem) !important;
-          line-height:1.18 !important;
-          letter-spacing:-.025em !important;
-        }
-        .hero-lead {
-          max-width:620px !important;
-          margin-top:1rem !important;
-          font-size:1rem !important;
-          line-height:1.75 !important;
-        }
-        .hero-actions { margin-top:1.35rem !important; }
-        .hero-note {
-          width:min(100%,230px) !important;
-          padding:1.45rem 1.25rem 1.1rem !important;
-          transform:rotate(1deg) !important;
-        }
-        .hero-note p { font-size:.98rem !important; }
-        .hero-stats {
-          margin-top:12px !important;
-          padding-top:16px !important;
-        }
-        .hero-stats dd { font-size:clamp(1.35rem,2.4vw,2rem) !important; }
-
-        /* Keep a stable result stage so short searches do not collapse the page under the cursor. */
-        .catalog-search-results,
-        [data-view-panel] > .empty-state {
-          min-height:clamp(600px,68vh,820px);
-          align-content:start;
-        }
-      }
-
       @media (max-width:1100px) {
         [data-catalog-toolbar] .catalog-primary {
           grid-template-columns:1fr 1fr 1fr !important;
@@ -87,17 +34,6 @@
       }
 
       @media (max-width:760px) {
-        .hero {
-          min-height:auto !important;
-          padding-top:52px !important;
-          padding-bottom:34px !important;
-        }
-        .hero-copy h1 {
-          font-size:clamp(1.75rem,8vw,2.6rem) !important;
-          line-height:1.14 !important;
-        }
-        .hero-lead { margin-top:1rem !important; }
-
         [data-catalog-toolbar] .catalog-primary {
           grid-template-columns:1fr 1fr !important;
           padding:10px !important;
@@ -209,66 +145,6 @@
     return true;
   }
 
-  function restoreViewport(snapshot) {
-    if (!snapshot) return;
-    const input = snapshot.input;
-    document.documentElement.classList.add('catalog-search-stable');
-
-    const apply = () => {
-      window.scrollTo({ top:snapshot.scrollY, left:snapshot.scrollX, behavior:'auto' });
-      if (input?.isConnected && document.activeElement !== input) {
-        try { input.focus({ preventScroll:true }); } catch (_) { input.focus(); }
-      }
-      if (input?.isConnected && typeof snapshot.selectionStart === 'number') {
-        try { input.setSelectionRange(snapshot.selectionStart, snapshot.selectionEnd); } catch (_) {}
-      }
-    };
-
-    apply();
-    cancelAnimationFrame(pendingViewportRestore);
-    pendingViewportRestore = requestAnimationFrame(() => {
-      apply();
-      requestAnimationFrame(() => {
-        apply();
-        document.documentElement.classList.remove('catalog-search-stable');
-      });
-    });
-  }
-
-  function bindSearchStability() {
-    if (document.documentElement.dataset.catalogSearchStabilityBound) return;
-    document.documentElement.dataset.catalogSearchStabilityBound = 'true';
-
-    document.addEventListener('input', event => {
-      const input = event.target.closest?.('[data-cat-search], [data-search-input]');
-      if (!input || matchMedia('(max-width:760px)').matches) return;
-      const snapshot = {
-        input,
-        scrollX:window.scrollX,
-        scrollY:window.scrollY,
-        selectionStart:input.selectionStart,
-        selectionEnd:input.selectionEnd
-      };
-      restoreViewport(snapshot);
-      setTimeout(() => restoreViewport(snapshot), 0);
-    }, true);
-
-    document.addEventListener('change', event => {
-      const control = event.target.closest?.('[data-catalog-toolbar] select, [data-cat-sort], [data-cat-layout], [data-cat-group], [data-cat-verb], [data-cat-type], [data-cat-status], [data-cat-year], [data-cat-doc], [data-cat-link], [data-mark-filter]');
-      if (!control || matchMedia('(max-width:760px)').matches) return;
-      const input = document.querySelector('[data-cat-search]');
-      const snapshot = {
-        input:document.activeElement === input ? input : null,
-        scrollX:window.scrollX,
-        scrollY:window.scrollY,
-        selectionStart:input?.selectionStart ?? null,
-        selectionEnd:input?.selectionEnd ?? null
-      };
-      restoreViewport(snapshot);
-      setTimeout(() => restoreViewport(snapshot), 0);
-    }, true);
-  }
-
   function repair() {
     scheduled = false;
     installStyles();
@@ -283,7 +159,6 @@
 
   function start() {
     installStyles();
-    bindSearchStability();
     scheduleRepair();
     setTimeout(scheduleRepair, 180);
     setTimeout(scheduleRepair, 320);
