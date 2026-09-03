@@ -6,6 +6,7 @@
   const projectMap = () => new Map(projects().filter((project) => project?.id).map((project) => [project.id, project]));
   let activeFamily = '';
   let applyingFamily = false;
+  let pendingViewportRestore = 0;
 
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
@@ -196,6 +197,68 @@
     section.hidden = Boolean(active && active !== 'shelf');
   }
 
+  function snapshotViewport(input = null) {
+    return {
+      input,
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+      selectionStart: input?.selectionStart ?? null,
+      selectionEnd: input?.selectionEnd ?? null
+    };
+  }
+
+  function restoreViewport(snapshot) {
+    if (!snapshot) return;
+    const input = snapshot.input;
+    document.documentElement.classList.add('catalog-input-stable');
+
+    const apply = () => {
+      window.scrollTo({ top: snapshot.scrollY, left: snapshot.scrollX, behavior: 'auto' });
+      if (input?.isConnected && document.activeElement !== input) {
+        try { input.focus({ preventScroll: true }); } catch (_) { input.focus(); }
+      }
+      if (input?.isConnected && typeof snapshot.selectionStart === 'number') {
+        try { input.setSelectionRange(snapshot.selectionStart, snapshot.selectionEnd); } catch (_) {}
+      }
+    };
+
+    apply();
+    cancelAnimationFrame(pendingViewportRestore);
+    pendingViewportRestore = requestAnimationFrame(() => {
+      apply();
+      requestAnimationFrame(() => {
+        apply();
+        document.documentElement.classList.remove('catalog-input-stable');
+      });
+    });
+  }
+
+  function bindCatalogStability() {
+    if (document.documentElement.dataset.catalogInputStabilityBound) return;
+    document.documentElement.dataset.catalogInputStabilityBound = 'true';
+
+    document.addEventListener('input', (event) => {
+      if (matchMedia('(max-width:760px)').matches) return;
+      const input = event.target instanceof Element ? event.target.closest('[data-cat-search], [data-search-input]') : null;
+      if (!input) return;
+      const snapshot = snapshotViewport(input);
+      restoreViewport(snapshot);
+      setTimeout(() => restoreViewport(snapshot), 0);
+    }, true);
+
+    document.addEventListener('change', (event) => {
+      if (matchMedia('(max-width:760px)').matches) return;
+      const control = event.target instanceof Element
+        ? event.target.closest('[data-catalog-toolbar] select, [data-cat-sort], [data-cat-layout], [data-cat-group], [data-cat-verb], [data-cat-type], [data-cat-status], [data-cat-year], [data-cat-doc], [data-cat-link], [data-mark-filter]')
+        : null;
+      if (!control) return;
+      const search = document.querySelector('[data-cat-search]');
+      const snapshot = snapshotViewport(document.activeElement === search ? search : null);
+      restoreViewport(snapshot);
+      setTimeout(() => restoreViewport(snapshot), 0);
+    }, true);
+  }
+
   document.addEventListener('click', (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
@@ -237,6 +300,7 @@
   });
 
   function start() {
+    bindCatalogStability();
     render();
     observer.observe(document.body, { childList: true, subtree: true });
   }
