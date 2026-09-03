@@ -1,9 +1,9 @@
 .portfolio-showcase{display:grid;gap:34px;margin:0 0 34px;color:var(--ink)}
-.showcase-hero{padding:42px 0 28px;border-bottom:1px solid var(--line-dark)}
+.showcase-hero{padding:32px 0 24px;border-bottom:1px solid var(--line-dark)}
 .showcase-eyebrow,.showcase-block-head p{margin:0 0 8px;font:800 .68rem/1.2 "Roboto Mono",monospace;letter-spacing:.12em;color:var(--muted)}
-.showcase-hero h1{max-width:780px;margin:0;font-size:clamp(2rem,5vw,4.5rem);line-height:1.02;letter-spacing:-.055em;font-weight:850}
-.showcase-lead{max-width:760px;margin:18px 0 0;color:var(--muted);font-size:1rem;line-height:1.9}
-.showcase-hero-actions{display:flex;align-items:center;gap:14px;margin-top:22px;color:var(--muted);font:700 .72rem "Roboto Mono",monospace}
+.showcase-hero h1{max-width:780px;margin:0;font-size:clamp(1.45rem,2.4vw,2.25rem);line-height:1.14;letter-spacing:-.03em;font-weight:850}
+.showcase-lead{max-width:760px;margin:14px 0 0;color:var(--muted);font-size:1rem;line-height:1.85}
+.showcase-hero-actions{display:flex;align-items:center;gap:14px;margin-top:18px;color:var(--muted);font:700 .72rem "Roboto Mono",monospace}
 .showcase-primary,.showcase-action,.showcase-family-filter,.showcase-block-head button{appearance:none;border:1px solid var(--ink);background:var(--paper);color:var(--ink);padding:.62rem .82rem;font:750 .74rem/1.1 inherit;text-decoration:none;cursor:pointer}
 .showcase-primary{background:var(--ink);color:var(--paper)}
 .showcase-primary:hover,.showcase-action:hover,.showcase-family-filter:hover,.showcase-block-head button:hover{background:var(--yellow-soft);color:var(--ink)}
@@ -16,6 +16,22 @@
 .showcase-principles{display:grid;border-top:1px solid var(--line)}.showcase-principle{padding:14px 0;border-bottom:1px solid var(--line)}.showcase-principle h3{margin:0;font-size:.9rem}.showcase-principle p{margin:5px 0;color:var(--muted);font-size:.75rem;line-height:1.6}.showcase-principle small{display:block;color:var(--muted);font-size:.64rem}
 .showcase-families{display:grid;gap:8px}.showcase-family-card{padding:14px;border:1px solid var(--line);background:var(--paper)}.showcase-family-card.is-active{border-color:var(--ink);box-shadow:3px 3px 0 var(--yellow)}.showcase-family-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}.showcase-family-head h3{margin:0;font-size:.88rem}.showcase-family-head strong{font:800 .72rem "Roboto Mono",monospace}.showcase-family-card>p{margin:6px 0 10px;color:var(--muted);font-size:.72rem;line-height:1.55}.showcase-family-members{display:flex;flex-wrap:wrap;gap:4px}.showcase-family-members a,.showcase-family-members button,.showcase-family-members span{appearance:none;border:0;background:var(--bg);color:var(--ink);padding:.28rem .4rem;font-size:.63rem;text-decoration:none}.showcase-family-members a,.showcase-family-members button{cursor:pointer}.showcase-family-members a:hover,.showcase-family-members button:hover{text-decoration:underline}.showcase-family-filter{margin-top:10px;padding:.4rem .52rem;border-color:var(--line-dark);font-size:.64rem}
 .showcase-recent-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.showcase-recent-card{min-height:105px;padding:12px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:12px}.showcase-recent-card small{color:var(--muted);font:650 .6rem "Roboto Mono",monospace}.showcase-recent-card h3{margin:4px 0 0;font-size:.82rem;line-height:1.3}.showcase-recent-card .showcase-action{width:max-content;padding:.4rem .5rem;font-size:.62rem}
+
+/* Top hero is a label, not the destination. */
+.hero{min-height:auto!important;padding-block:68px 42px!important}
+.hero-copy h1{font-size:clamp(1.55rem,2.25vw,2.35rem)!important;line-height:1.18!important;letter-spacing:-.025em!important;max-width:620px!important}
+.hero-lead{margin-top:1rem!important;font-size:1rem!important;max-width:620px!important}
+.hero-actions{margin-top:1.35rem!important}
+.hero-stats{margin-top:12px!important;padding-top:16px!important}
+.hero-stats dd{font-size:clamp(1.35rem,2.4vw,2rem)!important}
+
+/* Search should narrow the current view, not feel like navigation. */
+html.catalog-input-stable{scroll-behavior:auto!important}
+[data-view-panel]{overflow-anchor:none}
+.catalog-groups,.catalog-list,.catalog-grid,.catalog-table-wrap,.catalog-row,.catalog-card,[data-view-panel]>.empty-state{animation:none!important;transition:none!important}
+@media(min-width:761px){[data-view-panel]{min-height:max(600px,68vh)}}
+
 @media(max-width:980px){.showcase-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.showcase-two-column{grid-template-columns:1fr}.showcase-recent-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){.portfolio-showcase{gap:26px;margin-bottom:28px}.showcase-hero{padding:26px 0 20px}.showcase-hero h1{font-size:clamp(2rem,11vw,3.2rem)}.showcase-lead{font-size:.9rem}.showcase-featured-grid{grid-template-columns:1fr}.showcase-featured-card{min-height:190px}.showcase-featured-card h3{margin-top:20px}.showcase-recent-grid{grid-template-columns:1fr 1fr}.showcase-block-head{align-items:flex-start}.showcase-block-head>span{display:none}}
+@media(max-width:760px){.hero{padding-top:52px!important;padding-bottom:34px!important}.hero-copy h1{font-size:clamp(1.75rem,8vw,2.6rem)!important}}
+@media(max-width:640px){.portfolio-showcase{gap:26px;margin-bottom:28px}.showcase-hero{padding:24px 0 18px}.showcase-hero h1{font-size:clamp(1.55rem,7vw,2.2rem)}.showcase-lead{font-size:.9rem}.showcase-featured-grid{grid-template-columns:1fr}.showcase-featured-card{min-height:190px}.showcase-featured-card h3{margin-top:20px}.showcase-recent-grid{grid-template-columns:1fr 1fr}.showcase-block-head{align-items:flex-start}.showcase-block-head>span{display:none}}
 @media(prefers-reduced-motion:reduce){.showcase-primary,.showcase-action,.showcase-family-filter{scroll-behavior:auto}}
