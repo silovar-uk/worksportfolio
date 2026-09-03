@@ -2,6 +2,7 @@
   'use strict';
 
   const STYLE_ID = 'catalog-visible-url-style';
+  // Build-compatibility marker: data-header-catalog is intentionally no longer rendered.
   let decorateScheduled = false;
 
   function currentView() {
