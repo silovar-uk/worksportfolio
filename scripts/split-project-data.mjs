@@ -2,7 +2,6 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const indexUrl = new URL('index.html', root);
-const summariesUrl = new URL('data/project-summaries.json', root);
 const detailsUrl = new URL('data/project-details/', root);
 
 const DETAIL_FIELDS = [
@@ -107,7 +106,6 @@ if (!html.includes('name="worksportfolio-data-mode"')) {
   html = html.replace('</head>', '<meta name="worksportfolio-data-mode" content="summary-inline-detail-on-demand"></head>');
 }
 
-await writeFile(summariesUrl, `${JSON.stringify(diary)}\n`, 'utf8');
 await writeFile(indexUrl, html, 'utf8');
 
 const finalIndexBytes = byteLength(html);
