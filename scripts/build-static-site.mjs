@@ -19,17 +19,21 @@ const projectStartDates = readJson('data/project-start-dates.json');
 const catalog = readJson('data/catalog.json');
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
 
-const cssAssets = [
-  'catalog.css', 'taxonomy.css', 'floating-random.css', 'wow.css', 'random-three.css',
-  'comparison-view.css', 'motion.css', 'marks.css', 'shelf-priority.css', 'favorites.css', 'copy-cleanup.css',
-  'friction-atlas.css', 'live-index.css', 'shell.css'
+// Initial page = catalog only. Secondary/experimental features are loaded after first paint.
+const coreCssAssets = ['catalog.css', 'shell.css'];
+const lazyCssAssets = [
+  'taxonomy.css', 'floating-random.css', 'wow.css', 'random-three.css', 'comparison-view.css',
+  'motion.css', 'marks.css', 'shelf-priority.css', 'favorites.css', 'copy-cleanup.css',
+  'friction-atlas.css', 'live-index.css'
 ];
-const jsAssets = [
-  'data-audit.js', 'catalog.js', 'catalog-visibility.js', 'catalog-search-redesign.js', 'catalog-list-first.js',
+const coreJsAssets = ['catalog.js', 'catalog-visibility.js', 'catalog-list-first.js'];
+const lazyJsAssets = [
   'taxonomy.js', 'floating-random.js', 'wow.js', 'random-three.js', 'comparison-view.js', 'wow-stage.js',
   'motion.js', 'marks.js', 'shelf-priority.js', 'favorites.js', 'favorite-catalog.js', 'copy-cleanup.js',
   'friction-atlas.js', 'live-index.js'
 ];
+const cssAssets = [...coreCssAssets, ...lazyCssAssets];
+const jsAssets = [...coreJsAssets, ...lazyJsAssets];
 
 function assertTopShellOwnership() {
   const shell = readText('shell.css');
@@ -275,6 +279,46 @@ function applyStaticShell(html) {
   return html;
 }
 
+function lazyAssetBootstrap() {
+  const styles = lazyCssAssets.map(assetUrl);
+  const scripts = lazyJsAssets.map(assetUrl);
+  return `<script data-worksportfolio-lazy-assets>
+window.WORKS_PORTFOLIO_LAZY_ASSETS=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};
+window.WORKS_PORTFOLIO_LAZY_ASSETS.styles.push(...${scriptJson(styles)});
+window.WORKS_PORTFOLIO_LAZY_ASSETS.scripts.push(...${scriptJson(scripts)});
+(()=>{
+  let started=false;
+  const unique=(items)=>[...new Set(items.filter(Boolean))];
+  const addStyle=(href)=>new Promise((resolve)=>{
+    if ([...document.styleSheets].some((sheet)=>sheet.href===new URL(href,location.href).href)) return resolve();
+    const link=document.createElement('link');
+    link.rel='stylesheet';link.href=href;link.onload=resolve;link.onerror=resolve;
+    document.head.appendChild(link);
+  });
+  const addScript=(src)=>new Promise((resolve)=>{
+    if ([...document.scripts].some((script)=>script.src===new URL(src,location.href).href)) return resolve();
+    const script=document.createElement('script');
+    script.src=src;script.async=false;script.onload=resolve;script.onerror=resolve;
+    document.body.appendChild(script);
+  });
+  const load=async()=>{
+    if(started)return;started=true;
+    const assets=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};
+    await Promise.all(unique(assets.styles).map(addStyle));
+    for(const src of unique(assets.scripts)) await addScript(src);
+    document.documentElement.dataset.portfolioEnhancements='ready';
+  };
+  const schedule=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if('requestIdleCallback' in window) requestIdleCallback(load,{timeout:1200});
+    else setTimeout(load,180);
+  }));
+  if(document.readyState==='complete') schedule();
+  else window.addEventListener('load',schedule,{once:true});
+  window.addEventListener('worksportfolio:load-features',load,{once:true});
+})();
+<\/script>`;
+}
+
 let html = readFileSync(join(root, 'src/index.template.html'), 'utf8');
 if (!html.includes('window.BUILD_DIARY_DATA = __BUILD_DIARY_DATA__;')) {
   throw new Error('src/index.template.html is missing BUILD_DIARY_DATA placeholder.');
@@ -290,15 +334,17 @@ if (dataScriptEnd < 0) throw new Error('Inline project data script was not close
 html = html.slice(0, dataScriptEnd + 9) + runtimeBlock + html.slice(dataScriptEnd + 9);
 
 const generatedAt = catalog.generatedAt || new Date().toISOString();
-const stylesheetTags = cssAssets.map((path) => `<link rel="stylesheet" href="${assetUrl(path)}">`).join('');
-const scriptTags = jsAssets.map((path) => `<script src="${assetUrl(path)}"><\/script>`).join('');
+const stylesheetTags = coreCssAssets.map((path) => `<link rel="stylesheet" href="${assetUrl(path)}">`).join('');
+const scriptTags = coreJsAssets.map((path) => `<script src="${assetUrl(path)}"><\/script>`).join('');
 html = html.replace('</head>', `<meta name="worksportfolio-generated-at" content="${generatedAt}"><meta name="worksportfolio-assets-version" content="${assetVersion}">${stylesheetTags}<style>.recent-updates{display:none!important}</style></head>`);
-html = html.replace('</body>', `${scriptTags}</body>`);
+html = html.replace('</body>', `${scriptTags}${lazyAssetBootstrap()}</body>`);
 
 if (/jszip|loader\.js/i.test(html)) throw new Error('The generated page still depends on the runtime bootstrap loader.');
-for (const asset of ['shell.css', 'catalog-search-redesign.js', 'catalog-list-first.js', 'shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
+for (const asset of ['shell.css', 'catalog.js', 'catalog-visibility.js', 'catalog-list-first.js', 'shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
   if (!html.includes(asset)) throw new Error(`The generated page is missing ${asset}.`);
 }
+if (html.includes('catalog-search-redesign.js')) throw new Error('Legacy search redesign must not be shipped.');
+if (html.includes('data-audit.js')) throw new Error('Production page must not ship the data-audit runtime.');
 if (!html.includes(`<h1 id="hero-title">${escapeHtml(String(settings.heroTitle).trim())}</h1>`)) {
   throw new Error('The generated page does not contain the canonical hero title.');
 }
@@ -308,4 +354,4 @@ if (!html.includes('startedAt')) throw new Error('The generated page lost projec
 if (html.includes('__BUILD_DIARY_DATA__')) throw new Error('Unresolved template placeholder remains.');
 
 writeFileSync(join(root, 'index.html'), html);
-console.log(`Generated static index.html from explicit sources (${Buffer.byteLength(html).toLocaleString('en-US')} bytes, ${repositories.length} repositories, ${diary.projects.length} visible pre-gate projects, assets ${assetVersion}).`);
+console.log(`Generated static index.html from explicit sources (${Buffer.byteLength(html).toLocaleString('en-US')} bytes, ${repositories.length} repositories, ${diary.projects.length} visible pre-gate projects, ${coreJsAssets.length} core JS + ${lazyJsAssets.length} deferred JS, assets ${assetVersion}).`);
