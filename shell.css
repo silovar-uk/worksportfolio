@@ -154,10 +154,10 @@
 .header-search-all:hover,.header-search-all:focus-visible{background:var(--yellow);outline:none}
 .header-search-empty{margin:0;padding:.65rem;color:var(--muted);font-size:.68rem}
 
-/* The hero is context, not the main interaction. */
+/* Context line, not a visual hero. Keep this deliberately close to body size. */
 .hero{
   min-height:auto;
-  padding-block:16px 8px;
+  padding-block:10px 5px;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   gap:0;
@@ -169,31 +169,31 @@
 .hero-copy h1{
   margin:0;
   max-width:none;
-  font-size:clamp(1.35rem,1.8vw,1.65rem);
-  line-height:1.35;
-  letter-spacing:-.01em;
+  font-size:1.05rem;
+  line-height:1.42;
+  letter-spacing:0;
   font-weight:800;
 }
 .hero-copy h1 br{display:none}
 .hero-lead{
   max-width:720px;
-  margin:.3rem 0 0;
+  margin:.22rem 0 0;
   color:var(--muted);
-  font-size:.82rem;
+  font-size:.75rem;
   line-height:1.5;
 }
 .hero-actions{
   display:flex;
   align-items:center;
   flex-wrap:wrap;
-  gap:.55rem;
-  margin-top:.5rem;
+  gap:.5rem;
+  margin-top:.4rem;
 }
 .hero-actions .primary-action{
   min-height:30px;
-  padding:.32rem .54rem;
+  padding:.3rem .5rem;
   box-shadow:none;
-  font-size:.7rem;
+  font-size:.68rem;
 }
 
 @media(max-width:1040px){
@@ -226,10 +226,10 @@
   .global-nav [data-about-button]{display:none}
   .header-search-input{min-height:40px;font-size:16px}
   .header-search-panel{left:0;right:0;max-height:min(58vh,420px)}
-  .hero{padding-block:12px 7px}
-  .hero-copy h1{font-size:1.22rem;line-height:1.4}
-  .hero-lead{margin-top:.24rem;font-size:.76rem}
-  .hero-actions{margin-top:.42rem}
+  .hero{padding-block:8px 5px}
+  .hero-copy h1{font-size:1rem;line-height:1.42}
+  .hero-lead{margin-top:.2rem;font-size:.72rem}
+  .hero-actions{margin-top:.38rem}
 }
 
 @media(max-width:430px){
