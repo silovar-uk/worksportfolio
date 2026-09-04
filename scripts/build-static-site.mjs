@@ -20,7 +20,7 @@ const cssAssets = [
   'friction-atlas.css', 'live-index.css'
 ];
 const jsAssets = [
-  'data-audit.js', 'catalog.js', 'catalog-visibility.js', 'taxonomy.js', 'floating-random.js',
+  'data-audit.js', 'catalog.js', 'catalog-visibility.js', 'catalog-search-redesign.js', 'taxonomy.js', 'floating-random.js',
   'wow.js', 'random-three.js', 'comparison-view.js', 'wow-stage.js', 'motion.js', 'marks.js',
   'shelf-priority.js', 'favorites.js', 'favorite-catalog.js', 'copy-cleanup.js', 'friction-atlas.js', 'live-index.js'
 ];
@@ -168,7 +168,7 @@ html = html.replace('</head>', `<meta name="worksportfolio-generated-at" content
 html = html.replace('</body>', `${scriptTags}</body>`);
 
 if (/jszip|loader\.js/i.test(html)) throw new Error('The generated page still depends on the runtime bootstrap loader.');
-for (const asset of ['shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
+for (const asset of ['catalog-search-redesign.js', 'shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
   if (!html.includes(asset)) throw new Error(`The generated page is missing ${asset}.`);
 }
 if (!html.includes('window.BUILD_DIARY_DATA')) throw new Error('The generated page lost its project data.');
