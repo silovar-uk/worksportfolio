@@ -158,7 +158,7 @@
 /* The hero is context, not the main interaction. */
 .hero{
   min-height:auto;
-  padding-block:18px 10px;
+  padding-block:12px 6px;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   gap:0;
@@ -170,31 +170,31 @@
 .hero-copy h1{
   margin:0;
   max-width:none;
-  font-size:clamp(1.12rem,1.35vw,1.35rem);
-  line-height:1.34;
-  letter-spacing:-.012em;
+  font-size:clamp(1.05rem,1.15vw,1.22rem);
+  line-height:1.38;
+  letter-spacing:-.008em;
   font-weight:800;
 }
 .hero-copy h1 br{display:none}
 .hero-lead{
   max-width:720px;
-  margin:.34rem 0 0;
+  margin:.26rem 0 0;
   color:var(--muted);
-  font-size:.8rem;
-  line-height:1.55;
+  font-size:.77rem;
+  line-height:1.5;
 }
 .hero-actions{
   display:flex;
   align-items:center;
   flex-wrap:wrap;
-  gap:.6rem;
-  margin-top:.58rem;
+  gap:.55rem;
+  margin-top:.45rem;
 }
 .hero-actions .primary-action{
-  min-height:32px;
-  padding:.36rem .58rem;
+  min-height:30px;
+  padding:.32rem .54rem;
   box-shadow:none;
-  font-size:.72rem;
+  font-size:.7rem;
 }
 
 @media(max-width:1040px){
@@ -227,10 +227,10 @@
   .global-nav [data-about-button]{display:none}
   .header-search-input{min-height:40px;font-size:16px}
   .header-search-panel{left:0;right:0;max-height:min(58vh,420px)}
-  .hero{padding-block:14px 8px}
-  .hero-copy h1{font-size:1.12rem;line-height:1.38}
-  .hero-lead{margin-top:.28rem;font-size:.76rem}
-  .hero-actions{margin-top:.48rem}
+  .hero{padding-block:10px 6px}
+  .hero-copy h1{font-size:1.05rem;line-height:1.4}
+  .hero-lead{margin-top:.24rem;font-size:.74rem}
+  .hero-actions{margin-top:.42rem}
 }
 
 @media(max-width:430px){
