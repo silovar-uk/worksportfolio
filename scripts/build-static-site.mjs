@@ -5,6 +5,9 @@ import { join } from 'node:path';
 const root = process.cwd();
 const readJson = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
+}[char]));
 
 const config = readJson('data/portfolio-config.json');
 const canonicalProjects = readJson('data/projects.json');
@@ -17,7 +20,7 @@ const repositories = Array.isArray(catalog.repositories) ? catalog.repositories 
 const cssAssets = [
   'catalog.css', 'taxonomy.css', 'floating-random.css', 'wow.css', 'random-three.css',
   'comparison-view.css', 'motion.css', 'marks.css', 'shelf-priority.css', 'favorites.css', 'copy-cleanup.css',
-  'friction-atlas.css', 'live-index.css'
+  'friction-atlas.css', 'live-index.css', 'shell.css'
 ];
 const jsAssets = [
   'data-audit.js', 'catalog.js', 'catalog-visibility.js', 'catalog-search-redesign.js', 'taxonomy.js', 'floating-random.js',
@@ -149,11 +152,45 @@ function buildDiaryData() {
   return { projects, periods: cleanPeriods, settings: cleanSettings };
 }
 
+function replaceRequired(html, pattern, replacement, label) {
+  if (!pattern.test(html)) throw new Error(`Static shell marker not found: ${label}.`);
+  return html.replace(pattern, replacement);
+}
+
+function applyStaticShell(html) {
+  const heroTitle = String(settings.heroTitle || '').trim();
+  const heroLead = String(settings.heroLead || '').trim();
+  if (!heroTitle || !heroLead) throw new Error('data/settings.json must define heroTitle and heroLead.');
+
+  html = replaceRequired(
+    html,
+    /<h1 id="hero-title">[\s\S]*?<\/h1>/,
+    `<h1 id="hero-title">${escapeHtml(heroTitle)}</h1>`,
+    'hero title'
+  );
+  html = replaceRequired(
+    html,
+    /<p class="hero-lead">[\s\S]*?<\/p>/,
+    `<p class="hero-lead">${escapeHtml(heroLead)}</p>`,
+    'hero lead'
+  );
+
+  if (!html.includes('data-header-search-input')) {
+    const navMarker = '      <nav class="global-nav" aria-label="主なメニュー">';
+    const searchMarkup = `      <div class="header-search" data-header-search>\n        <label class="header-search-label">\n          <span class="sr-only">制作物を検索</span>\n          <input class="header-search-input" type="search" autocomplete="off" enterkeyhint="search" placeholder="制作物を検索" data-header-search-input aria-autocomplete="list" aria-expanded="false" aria-controls="header-search-panel">\n          <span class="header-search-icon" aria-hidden="true">⌕</span>\n        </label>\n        <div class="header-search-panel" id="header-search-panel" data-header-search-panel role="listbox" aria-label="検索候補" hidden>\n          <div class="header-search-list" data-header-search-list></div>\n        </div>\n      </div>\n`;
+    if (!html.includes(navMarker)) throw new Error('Header navigation marker not found.');
+    html = html.replace(navMarker, `${searchMarkup}${navMarker}`);
+  }
+
+  return html;
+}
+
 let html = readFileSync(join(root, 'src/index.template.html'), 'utf8');
 if (!html.includes('window.BUILD_DIARY_DATA = __BUILD_DIARY_DATA__;')) {
   throw new Error('src/index.template.html is missing BUILD_DIARY_DATA placeholder.');
 }
 
+html = applyStaticShell(html);
 const diary = buildDiaryData();
 html = html.replace('__BUILD_DIARY_DATA__', scriptJson(diary));
 const runtimeBlock = `<script data-worksportfolio-runtime>window.WORKS_PORTFOLIO_CONFIG=${scriptJson(config)};window.WORKS_PORTFOLIO_REPOSITORIES=${scriptJson(repositories)};window.WORKS_PORTFOLIO_START_DATES=${scriptJson(projectStartDates)};<\/script>`;
@@ -168,9 +205,13 @@ html = html.replace('</head>', `<meta name="worksportfolio-generated-at" content
 html = html.replace('</body>', `${scriptTags}</body>`);
 
 if (/jszip|loader\.js/i.test(html)) throw new Error('The generated page still depends on the runtime bootstrap loader.');
-for (const asset of ['catalog-search-redesign.js', 'shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
+for (const asset of ['shell.css', 'catalog-search-redesign.js', 'shelf-priority.js', 'floating-random.js', 'random-three.js', 'comparison-view.js', 'favorites.js', 'favorite-catalog.js', 'friction-atlas.js', 'live-index.js']) {
   if (!html.includes(asset)) throw new Error(`The generated page is missing ${asset}.`);
 }
+if (!html.includes(`<h1 id="hero-title">${escapeHtml(String(settings.heroTitle).trim())}</h1>`)) {
+  throw new Error('The generated page does not contain the canonical hero title.');
+}
+if (!html.includes('data-header-search-input')) throw new Error('The generated page is missing static header search markup.');
 if (!html.includes('window.BUILD_DIARY_DATA')) throw new Error('The generated page lost its project data.');
 if (!html.includes('startedAt')) throw new Error('The generated page lost project start dates.');
 if (html.includes('__BUILD_DIARY_DATA__')) throw new Error('Unresolved template placeholder remains.');
