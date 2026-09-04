@@ -335,9 +335,12 @@
   }
 
   function prependInlineIcon(target, value, className) {
-    if (!target || target.querySelector(`:scope > .${className}`)) return;
+    const classes = String(className || '').trim().split(/\s+/).filter(Boolean);
+    if (!target || !classes.length) return;
+    const directSelector = `:scope > .${classes.join('.')}`;
+    if (target.querySelector(directSelector)) return;
     const icon = document.createElement('span');
-    icon.className = className;
+    icon.className = classes.join(' ');
     icon.textContent = value;
     icon.setAttribute('aria-hidden', 'true');
     target.prepend(icon);
