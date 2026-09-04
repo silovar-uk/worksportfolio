@@ -30,6 +30,9 @@
   let savedMarkFilter = null;
   let isComposing = false;
   let renderTimer = 0;
+  let headerComposing = false;
+  let headerTimer = 0;
+  let headerActiveIndex = -1;
 
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
@@ -48,6 +51,10 @@
   }
 
   const aliasGroups = GLOBAL_ALIAS_GROUPS.map((group) => group.map(norm));
+
+  function queryTerms(query) {
+    return String(query || '').normalize('NFKC').trim().split(/\s+/).map(norm).filter(Boolean);
+  }
 
   function termMatches(haystack, term) {
     if (haystack.includes(term)) return true;
@@ -75,10 +82,42 @@
   }
 
   function matches(project, query) {
-    const terms = String(query || '').normalize('NFKC').trim().split(/\s+/).map(norm).filter(Boolean);
+    const terms = queryTerms(query);
     if (!terms.length) return true;
     const haystack = searchable(project);
     return terms.every((term) => termMatches(haystack, term));
+  }
+
+  function fieldScore(value, term, exact, prefix, partial) {
+    const field = norm(value);
+    if (!field) return 0;
+    if (field === term) return exact;
+    if (field.startsWith(term)) return prefix;
+    if (field.includes(term)) return partial;
+    const group = aliasGroups.find((items) => items.includes(term));
+    if (!group) return 0;
+    if (group.some((alias) => field === alias)) return exact - 4;
+    if (group.some((alias) => field.startsWith(alias))) return prefix - 4;
+    if (group.some((alias) => field.includes(alias))) return partial - 4;
+    return 0;
+  }
+
+  function relevanceScore(project, query) {
+    const terms = queryTerms(query);
+    return terms.reduce((score, term) => {
+      let termScore = 0;
+      termScore = Math.max(termScore, fieldScore(project.title, term, 130, 105, 82));
+      termScore = Math.max(termScore, fieldScore(project.id, term, 112, 90, 72));
+      for (const alias of project.searchAliases || []) {
+        termScore = Math.max(termScore, fieldScore(alias, term, 118, 94, 76));
+      }
+      termScore = Math.max(termScore, fieldScore(project.subtitle, term, 74, 60, 46));
+      termScore = Math.max(termScore, fieldScore(project.summary, term, 42, 34, 26));
+      termScore = Math.max(termScore, fieldScore(project.friction, term, 30, 24, 18));
+      termScore = Math.max(termScore, fieldScore((project.verbs || []).join(' '), term, 34, 26, 20));
+      termScore = Math.max(termScore, fieldScore((project.technologies || []).join(' '), term, 28, 22, 16));
+      return score + termScore;
+    }, project.featured ? 3 : 0);
   }
 
   function dateKey(value) {
@@ -100,6 +139,28 @@
       (a, b) => dateKey(startDate(b)).localeCompare(dateKey(startDate(a)))
     );
   }
+
+  function searchProjects(query, options = {}) {
+    const order = options.order || 'relevance';
+    const limit = Number(options.limit) || 0;
+    let list = projects().filter((project) => matches(project, query));
+    if (order === 'catalog') {
+      list = sortResults(list);
+    } else {
+      list.sort((a, b) => {
+        const scoreDiff = relevanceScore(b, query) - relevanceScore(a, query);
+        if (scoreDiff) return scoreDiff;
+        return dateKey(b.updatedAt || startDate(b)).localeCompare(dateKey(a.updatedAt || startDate(a)));
+      });
+    }
+    return limit ? list.slice(0, limit) : list;
+  }
+
+  window.WORKS_PORTFOLIO_SEARCH = Object.freeze({
+    normalize: norm,
+    matches,
+    search: (query, options) => searchProjects(query, options)
+  });
 
   function installStyles() {
     if (document.getElementById('catalog-search-redesign-style')) return;
@@ -310,7 +371,7 @@ body.catalog-filter-pop-open{overflow:hidden}
 
     rememberAndNeutralizeMarkFilter();
     setSearchMode(true);
-    const list = sortResults(projects().filter((project) => matches(project, query)));
+    const list = searchProjects(query, { order: 'catalog' });
     const summary = `<div class="catalog-search-summary"><p><strong>「${esc(query)}」</strong> の検索結果 <strong>${list.length}件</strong></p><button type="button" class="catalog-search-clear" data-search-clear>検索を解除</button></div>`;
     surface.innerHTML = list.length
       ? `${summary}<div class="catalog-search-results">${list.map(resultHtml).join('')}</div>`
@@ -346,6 +407,16 @@ body.catalog-filter-pop-open{overflow:hidden}
     input.value = '';
     resumeNativeView();
     input.focus({ preventScroll: true });
+  }
+
+  function openFullSearch(query) {
+    const input = document.querySelector('[data-cat-search]');
+    const toolbar = document.querySelector('[data-catalog-toolbar]');
+    if (!input || !toolbar) return;
+    input.value = query;
+    renderSearch();
+    closeHeaderSuggestions();
+    requestAnimationFrame(() => toolbar.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
 
   function bindSearch() {
@@ -399,6 +470,168 @@ body.catalog-filter-pop-open{overflow:hidden}
     if (input.value.trim()) renderSearch();
   }
 
+  function truncate(value, max = 72) {
+    const text = String(value || '').trim();
+    return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+  }
+
+  function headerSuggestionHtml(project, index) {
+    const type = TYPE_LABELS[project.type] || project.type || '制作物';
+    return `<button type="button" class="header-search-option" role="option" aria-selected="false" data-header-search-option="${index}" data-header-search-open="${attr(project.id)}">
+      <strong>${esc(project.title || project.id)}</strong>
+      <small>${esc(truncate(project.summary || project.subtitle || project.friction || ''))}</small>
+      <span>${esc(type)}</span>
+    </button>`;
+  }
+
+  function headerElements() {
+    return {
+      shell: document.querySelector('[data-header-search]'),
+      input: document.querySelector('[data-header-search-input]'),
+      panel: document.querySelector('[data-header-search-panel]'),
+      list: document.querySelector('[data-header-search-list]')
+    };
+  }
+
+  function closeHeaderSuggestions() {
+    const { input, panel } = headerElements();
+    if (!panel) return;
+    panel.hidden = true;
+    headerActiveIndex = -1;
+    input?.setAttribute('aria-expanded', 'false');
+  }
+
+  function syncHeaderActiveOption() {
+    const { input, list } = headerElements();
+    const options = [...(list?.querySelectorAll('[data-header-search-option]') || [])];
+    options.forEach((option, index) => {
+      const active = index === headerActiveIndex;
+      option.classList.toggle('is-active', active);
+      option.setAttribute('aria-selected', String(active));
+    });
+    if (input) {
+      const active = options[headerActiveIndex];
+      if (active) {
+        if (!active.id) active.id = `header-search-option-${headerActiveIndex}`;
+        input.setAttribute('aria-activedescendant', active.id);
+      } else {
+        input.removeAttribute('aria-activedescendant');
+      }
+    }
+  }
+
+  function renderHeaderSuggestions() {
+    const { input, panel, list } = headerElements();
+    if (!input || !panel || !list || headerComposing) return;
+    const query = input.value.trim();
+    if (!query) {
+      closeHeaderSuggestions();
+      list.innerHTML = '';
+      return;
+    }
+
+    const matchesList = searchProjects(query, { order: 'relevance', limit: 5 });
+    headerActiveIndex = -1;
+    list.innerHTML = matchesList.length
+      ? matchesList.map(headerSuggestionHtml).join('')
+      : '<p class="header-search-empty">一致する制作物はありません。</p>';
+    const all = matchesList.length
+      ? `<button type="button" class="header-search-all" data-header-search-all>すべての検索結果を見る →</button>`
+      : '';
+    panel.querySelector('[data-header-search-all]')?.remove();
+    if (all) panel.insertAdjacentHTML('beforeend', all);
+    panel.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+
+  function scheduleHeaderSuggestions(delay = 45) {
+    clearTimeout(headerTimer);
+    headerTimer = window.setTimeout(() => {
+      if (!headerComposing) renderHeaderSuggestions();
+    }, delay);
+  }
+
+  function installHeaderSearch() {
+    const header = document.querySelector('.header-inner');
+    const nav = header?.querySelector('.global-nav');
+    if (!header || !nav || header.querySelector('[data-header-search]')) return;
+
+    const shell = document.createElement('div');
+    shell.className = 'header-search';
+    shell.dataset.headerSearch = '';
+    shell.innerHTML = `
+      <label class="header-search-label">
+        <span class="sr-only">制作物を検索</span>
+        <input class="header-search-input" type="search" autocomplete="off" enterkeyhint="search" placeholder="制作物を検索" data-header-search-input aria-autocomplete="list" aria-expanded="false" aria-controls="header-search-panel">
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </label>
+      <div class="header-search-panel" id="header-search-panel" data-header-search-panel role="listbox" aria-label="検索候補" hidden>
+        <div class="header-search-list" data-header-search-list></div>
+      </div>`;
+    header.insertBefore(shell, nav);
+  }
+
+  function bindHeaderSearch() {
+    const { shell, input } = headerElements();
+    if (!shell || !input || input.dataset.headerSearchBound) return;
+    input.dataset.headerSearchBound = 'true';
+
+    input.addEventListener('compositionstart', () => {
+      headerComposing = true;
+      clearTimeout(headerTimer);
+    }, true);
+    input.addEventListener('compositionend', () => {
+      headerComposing = false;
+      scheduleHeaderSuggestions(0);
+    }, true);
+    input.addEventListener('input', (event) => {
+      if (event.isComposing || headerComposing) return;
+      scheduleHeaderSuggestions();
+    }, true);
+    input.addEventListener('focus', () => {
+      if (input.value.trim()) renderHeaderSuggestions();
+    });
+    input.addEventListener('keydown', (event) => {
+      const options = [...document.querySelectorAll('[data-header-search-option]')];
+      if (event.key === 'ArrowDown' && options.length) {
+        event.preventDefault();
+        headerActiveIndex = Math.min(headerActiveIndex + 1, options.length - 1);
+        syncHeaderActiveOption();
+      } else if (event.key === 'ArrowUp' && options.length) {
+        event.preventDefault();
+        headerActiveIndex = headerActiveIndex <= 0 ? options.length - 1 : headerActiveIndex - 1;
+        syncHeaderActiveOption();
+      } else if (event.key === 'Enter' && input.value.trim()) {
+        event.preventDefault();
+        const active = options[headerActiveIndex];
+        if (active?.dataset.headerSearchOpen) openProject(active.dataset.headerSearchOpen);
+        else openFullSearch(input.value.trim());
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        closeHeaderSuggestions();
+      }
+    });
+
+    shell.addEventListener('click', (event) => {
+      const option = event.target.closest('[data-header-search-open]');
+      if (option) {
+        event.preventDefault();
+        openProject(option.dataset.headerSearchOpen);
+        return;
+      }
+      const all = event.target.closest('[data-header-search-all]');
+      if (all) {
+        event.preventDefault();
+        openFullSearch(input.value.trim());
+      }
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!shell.contains(event.target)) closeHeaderSuggestions();
+    }, true);
+  }
+
   function bindGlobal() {
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
@@ -413,14 +646,16 @@ body.catalog-filter-pop-open{overflow:hidden}
   function start() {
     if (ready) return;
     const wait = () => {
-      if (!window.BUILD_DIARY_DATA || !document.querySelector('[data-catalog-toolbar]')) {
+      if (!window.BUILD_DIARY_DATA || !document.querySelector('[data-catalog-toolbar]') || !document.querySelector('.header-inner')) {
         setTimeout(wait, 80);
         return;
       }
       ready = true;
       installStyles();
+      installHeaderSearch();
       restructureToolbar();
       bindSearch();
+      bindHeaderSearch();
       bindGlobal();
       setTimeout(updateFilterBadge, 120);
     };
