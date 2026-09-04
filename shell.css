@@ -9,8 +9,7 @@
   top:0;
   z-index:70;
   border-bottom:1px solid rgba(119,122,115,.45);
-  background:rgba(244,241,232,.94);
-  backdrop-filter:blur(12px);
+  background:var(--bg);
 }
 .header-inner{
   width:min(calc(100% - 40px),var(--max));
@@ -158,7 +157,7 @@
 /* The hero is context, not the main interaction. */
 .hero{
   min-height:auto;
-  padding-block:12px 6px;
+  padding-block:16px 8px;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   gap:0;
@@ -170,17 +169,17 @@
 .hero-copy h1{
   margin:0;
   max-width:none;
-  font-size:clamp(1.05rem,1.15vw,1.22rem);
-  line-height:1.38;
-  letter-spacing:-.008em;
+  font-size:clamp(1.35rem,1.8vw,1.65rem);
+  line-height:1.35;
+  letter-spacing:-.01em;
   font-weight:800;
 }
 .hero-copy h1 br{display:none}
 .hero-lead{
   max-width:720px;
-  margin:.26rem 0 0;
+  margin:.3rem 0 0;
   color:var(--muted);
-  font-size:.77rem;
+  font-size:.82rem;
   line-height:1.5;
 }
 .hero-actions{
@@ -188,7 +187,7 @@
   align-items:center;
   flex-wrap:wrap;
   gap:.55rem;
-  margin-top:.45rem;
+  margin-top:.5rem;
 }
 .hero-actions .primary-action{
   min-height:30px;
@@ -227,9 +226,9 @@
   .global-nav [data-about-button]{display:none}
   .header-search-input{min-height:40px;font-size:16px}
   .header-search-panel{left:0;right:0;max-height:min(58vh,420px)}
-  .hero{padding-block:10px 6px}
-  .hero-copy h1{font-size:1.05rem;line-height:1.4}
-  .hero-lead{margin-top:.24rem;font-size:.74rem}
+  .hero{padding-block:12px 7px}
+  .hero-copy h1{font-size:1.22rem;line-height:1.4}
+  .hero-lead{margin-top:.24rem;font-size:.76rem}
   .hero-actions{margin-top:.42rem}
 }
 
