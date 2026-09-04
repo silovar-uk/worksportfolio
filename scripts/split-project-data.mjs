@@ -39,6 +39,31 @@ function splitProject(project) {
   return { summary, detail };
 }
 
+function stripRedundantRuntimeData(html) {
+  const runtimePattern = /<script data-worksportfolio-runtime>([\s\S]*?)<\/script>/;
+  const match = html.match(runtimePattern);
+  if (!match) throw new Error('worksportfolio runtime block was not found.');
+
+  let runtime = match[1];
+  const before = byteLength(runtime);
+  runtime = runtime
+    .replace(/window\.WORKS_PORTFOLIO_REPOSITORIES=\[[\s\S]*?\];(?=window\.|$)/, '')
+    .replace(/window\.WORKS_PORTFOLIO_START_DATES=\{[\s\S]*?\};(?=window\.|$)/, '');
+
+  if (runtime.includes('WORKS_PORTFOLIO_REPOSITORIES') || runtime.includes('WORKS_PORTFOLIO_START_DATES')) {
+    throw new Error('Redundant repository/start-date runtime payload survived cleanup.');
+  }
+  if (!runtime.includes('WORKS_PORTFOLIO_CONFIG')) {
+    throw new Error('Minimal WORKS_PORTFOLIO_CONFIG runtime payload was lost.');
+  }
+
+  const after = byteLength(runtime);
+  return {
+    html: html.replace(runtimePattern, `<script data-worksportfolio-runtime>${runtime}</script>`),
+    savedBytes: before - after
+  };
+}
+
 function patchDetailLoader(html) {
   const original = `  function openProject(id, push = true) {\n    const project = state.projects.find(item => item.id === id);\n    if (!project) return;\n    state.selectedProjectId = id;\n    els.projectDetail.innerHTML = renderProjectDetail(project);\n    if (!els.projectDialog.open) els.projectDialog.showModal();\n    bindProjectButtons();\n    if (push) updateUrl();\n  }`;
 
@@ -76,6 +101,8 @@ diary.projects = summaries;
 const compactDiary = scriptJson(diary);
 html = html.slice(0, jsonStart) + ` ${compactDiary};\n` + html.slice(scriptEnd);
 html = patchDetailLoader(html);
+const runtimeCleanup = stripRedundantRuntimeData(html);
+html = runtimeCleanup.html;
 if (!html.includes('name="worksportfolio-data-mode"')) {
   html = html.replace('</head>', '<meta name="worksportfolio-data-mode" content="summary-inline-detail-on-demand"></head>');
 }
@@ -90,6 +117,7 @@ const percent = initialDiaryBytes ? Math.round((saved / initialDiaryBytes) * 100
 console.log(
   `Split project payload: ${projects.length} summaries inline; ${projects.length} on-demand detail files. ` +
   `Inline diary ${initialDiaryBytes.toLocaleString('en-US')} -> ${finalDiaryBytes.toLocaleString('en-US')} bytes ` +
-  `(-${saved.toLocaleString('en-US')}, ${percent}%); index ${initialIndexBytes.toLocaleString('en-US')} -> ${finalIndexBytes.toLocaleString('en-US')} bytes; ` +
+  `(-${saved.toLocaleString('en-US')}, ${percent}%); redundant runtime -${runtimeCleanup.savedBytes.toLocaleString('en-US')} bytes; ` +
+  `index ${initialIndexBytes.toLocaleString('en-US')} -> ${finalIndexBytes.toLocaleString('en-US')} bytes; ` +
   `detail payload ${detailBytes.toLocaleString('en-US')} bytes fetched only when opened.`
 );
