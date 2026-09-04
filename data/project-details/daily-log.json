@@ -1,0 +1,1 @@
+{"id":"daily-log","firstBuild":"「今日これをやった」をすぐ記録できることを起点に、日・週・月で振り返れる形へ広げた。","currentAnswer":"ReactとCloudflare Workers/D1で、記録・保存・振り返りを同じWorker上にまとめ、Cloudflare Accessで個人利用を保護する構成。","updates":[],"aside":"予定ではなく、やったことを残す。"}

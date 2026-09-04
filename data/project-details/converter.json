@@ -1,0 +1,1 @@
+{"id":"converter","firstBuild":"テキスト変換を一つ置くところから始まり、便利機能が増えた。","currentAnswer":"単機能ツールではなく、日々の細かな摩擦を置く工具箱。","updates":[{"date":"2026-07","version":"2.0.0","change":"改行修正、検索、時間選択、条件カード編集をサイドパネルへ統合した。","reason":"小さな便利機能を別々に開く手間を減らすため。"}],"aside":"","extension":{"version":"2.0.0","extensionId":"effpkmnompcagibhbbdpdlbnpobfmema","serviceWorker":"disabled"}}

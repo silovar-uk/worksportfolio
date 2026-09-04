@@ -1,0 +1,1 @@
+{"id":"quicklinks","firstBuild":"サイドパネルへリンクを保存する機能から始めた。","currentAnswer":"リンク集ではなく、作業文脈をChromeへ呼び戻すランチャー。","updates":[{"date":"2026-07-19","version":"1.9.0","change":"Chrome全体ショートカットから右下POPを直接操作できるようにした。","reason":"サイドパネルを開く操作そのものを減らすため。"}],"aside":"","extension":{"version":"1.9.0","extensionId":"nlooeckajnfamnlbcagbffgpmhibngda","serviceWorker":"disabled"}}

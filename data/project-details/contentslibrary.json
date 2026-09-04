@@ -1,0 +1,1 @@
+{"id":"contentslibrary","firstBuild":"作品、状態、評価、一言メモを記録する小さな蔵書管理から始めた。","currentAnswer":"再読・再視聴の履歴、横断検索、保存ビュー、JSON・CSV・Markdown出力、Cloudflare Access認証まで備えた作品体験の個人アーカイブ。","updates":[{"date":"2026-07-17","version":"0.2","change":"Cloudflare Accessで本人だけが開ける状態にした。","reason":"個人の記録を公開せず、オンラインで使うため。"}],"aside":"Worker名を間違えて作ったが、そのまま正式名称になった。"}

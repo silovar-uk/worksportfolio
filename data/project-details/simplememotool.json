@@ -1,0 +1,1 @@
+{"id":"simplememotool","firstBuild":"ブラウザ内で一枚のメモを保存する機能から始めた。","currentAnswer":"ブラウザから離れず、用途別のメモを持てる作業机。","updates":[{"date":"2026-07","version":"2.0","change":"タブ切り替えと文字装飾へ対応した。","reason":"用途ごとにメモを分けながら、一つの拡張内で完結させるため。"}],"aside":"","extension":{"version":"2.0","extensionId":"mlemlfglilljmfhpjiomkdfahimljgcd","serviceWorker":"disabled"}}
