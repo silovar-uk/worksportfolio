@@ -25,50 +25,6 @@
     if (target && target.textContent !== value) target.textContent = value;
   }
 
-  function setHtml(target, value) {
-    if (target && target.innerHTML !== value) target.innerHTML = value;
-  }
-
-  function setMeta(name, value, property = false) {
-    const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
-    const element = document.querySelector(selector);
-    if (element && element.getAttribute('content') !== value) element.setAttribute('content', value);
-  }
-
-  function applyStaticCopy() {
-    if (document.title !== '制作物一覧｜つくって考えた') document.title = '制作物一覧｜つくって考えた';
-    setMeta('description', '作ったWebアプリやChrome拡張と、その更新記録をまとめています。');
-    setMeta('og:description', '作ったWebアプリやChrome拡張と、その更新記録。', true);
-
-    setHtml(document.querySelector('#hero-title'), '小さな不便から、<br>小さな道具を作る');
-    setText(document.querySelector('.hero-lead'), '普段の作業で気になったことを、WebアプリやChrome拡張にしています。');
-
-    const heroAction = document.querySelector('.hero-actions [data-view-button]');
-    if (heroAction) {
-      heroAction.dataset.viewButton = 'shelf';
-      setText(heroAction, '制作物を見る');
-    }
-    document.querySelector('.hero-actions [data-random-button]')?.remove();
-
-    setText(document.querySelector('.global-nav [data-view-button="timeline"]'), '年代順');
-    setText(document.querySelector('.global-nav [data-view-button="shelf"]'), '一覧');
-    setText(document.querySelector('.global-nav [data-view-button="map"]'), '関連');
-    setText(document.querySelector('.global-nav [data-about-button]'), 'このページについて');
-    setText(document.querySelector('.view-chip[data-view-button="timeline"] span'), '年代順');
-    setText(document.querySelector('.view-chip[data-view-button="shelf"] span'), '一覧');
-    setText(document.querySelector('.view-chip[data-view-button="map"] span'), '関連');
-
-    setText(document.querySelector('#current-note-title'), 'この一覧について');
-    setText(document.querySelector('[data-current-note]'), 'GitHubの公開リポジトリと、自作したChrome拡張を対象にしています。説明の確認状態は各制作物に表示しています。');
-    setText(document.querySelector('#explorer-title'), '制作物一覧');
-    setText(document.querySelector('.site-footer p:first-child'), '制作物と更新記録。');
-    setText(document.querySelector('#about-title'), 'このページについて');
-
-    const aboutParagraphs = document.querySelectorAll('.about-shell > p:not(.eyebrow)');
-    setText(aboutParagraphs[0], '作ったものを、時期や種類ごとにまとめています。詳しい内容とGitHub、公開ページへのリンクを確認できます。');
-    setText(aboutParagraphs[1], '「確認済み」は説明と主なリンクを確認したもの、「内容を確認中」はGitHubの情報から整理したもの、「未確認」は基本情報のみのものです。');
-  }
-
   function ensureListDefault() {
     const params = new URLSearchParams(location.search);
     if (params.has('view')) return;
@@ -312,7 +268,6 @@
 
   function apply() {
     scheduled = false;
-    applyStaticCopy();
     applyDynamicCopy();
   }
 
