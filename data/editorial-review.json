@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-03T16:44:10.176Z",
+  "generatedAt": "2026-09-04T05:33:58.124Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 73,
-    "published": 59,
-    "hidden": 14,
+    "published": 58,
+    "hidden": 15,
     "withWarnings": 0,
     "artifactReviewNeeded": 0
   },
@@ -175,7 +175,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-09-03",
+      "updatedAt": "2026-09-04",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -456,7 +456,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-09-03",
+      "updatedAt": "2026-09-04",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -511,19 +511,6 @@
       "families": [],
       "createdAt": "2026-07-04",
       "updatedAt": "2026-07-08",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "inferred"
-    },
-    {
-      "id": "ooh",
-      "projectId": "ooh",
-      "state": "published",
-      "reasons": [],
-      "families": [],
-      "createdAt": "2026-05-14",
-      "updatedAt": "2026-05-14",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -752,7 +739,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-09",
-      "updatedAt": "2026-09-03",
+      "updatedAt": "2026-09-04",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -778,7 +765,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-09-03",
+      "updatedAt": "2026-09-04",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -1002,6 +989,19 @@
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "unreviewed"
+    },
+    {
+      "id": "ooh",
+      "projectId": "ooh",
+      "state": "hidden",
+      "reasons": [],
+      "families": [],
+      "createdAt": "2026-05-14",
+      "updatedAt": "2026-05-14",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "inferred"
     },
     {
       "id": "quickliks",
