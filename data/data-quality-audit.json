@@ -23,25 +23,26 @@
       "publicArtifact"
     ],
     "excludedFromQualityPopulation": [
-      "keygridexpansion"
+      "keygridexpansion",
+      "ooh"
     ]
   },
   "summary": {
-    "generatedAt": "2026-08-31T14:14:51.015Z",
+    "generatedAt": "2026-09-04T05:34:03.084Z",
     "canonicalProjects": 67,
-    "reviewableCanonicalProjects": 66,
-    "excludedHiddenCanonicalProjects": 1,
+    "reviewableCanonicalProjects": 65,
+    "excludedHiddenCanonicalProjects": 2,
     "privateSafeProjects": 11,
     "publicRepositories": 73,
-    "visiblePublicRepositories": 59,
+    "visiblePublicRepositories": 58,
     "verifiedDocumentation": 47,
-    "inferredDocumentation": 19,
+    "inferredDocumentation": 18,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 21,
+    "withoutRelations": 20,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
     "unresolvedDuplicateCandidates": 0,
@@ -188,19 +189,6 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 1,
-      "artifactStatus": "public-url-recorded",
-      "startedAtBasis": "first-repository-commit",
-      "startedAtPrecision": "day"
-    },
-    {
-      "id": "ooh",
-      "score": 9.5,
-      "maxScore": 10,
-      "quality": "verified-shape",
-      "documentationState": "inferred",
-      "missingCore": [],
-      "hasFamily": false,
-      "relationCount": 0,
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
@@ -961,7 +949,7 @@
       },
       {
         "value": "content-page",
-        "count": 7
+        "count": 6
       },
       {
         "value": "utility",
@@ -998,10 +986,6 @@
         "count": 7
       },
       {
-        "value": "考える",
-        "count": 6
-      },
-      {
         "value": "書く",
         "count": 6
       },
@@ -1010,15 +994,15 @@
         "count": 6
       },
       {
+        "value": "考える",
+        "count": 5
+      },
+      {
         "value": "比べる",
         "count": 5
       },
       {
         "value": "続ける",
-        "count": 4
-      },
-      {
-        "value": "伝える",
         "count": 4
       },
       {
@@ -1031,6 +1015,10 @@
       },
       {
         "value": "選ぶ",
+        "count": 3
+      },
+      {
+        "value": "伝える",
         "count": 3
       },
       {
