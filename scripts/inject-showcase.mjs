@@ -47,12 +47,15 @@ html = html.slice(0, jsonStart) + ` ${scriptJson(diary)};\n` + html.slice(script
 
 html = html
   .replace(/<link rel="stylesheet" href="showcase\.css\?v=[^"]+">/g, '')
-  .replace(/<script data-worksportfolio-showcase>.*?<\/script>/gs, '')
-  .replace(/<script src="showcase\.js\?v=[^"]+"><\/script>/g, '');
+  .replace(/<script data-worksportfolio-showcase>[\s\S]*?<\/script>/g, '')
+  .replace(/<script src="showcase\.js\?v=[^"]+"><\/script>/g, '')
+  .replace(/<script data-worksportfolio-showcase-assets>[\s\S]*?<\/script>/g, '');
 
 const hash = createHash('sha256').update(css).update('\0').update(js).update('\0').update(JSON.stringify(taxonomy)).digest('hex').slice(0, 12);
-html = html.replace('</head>', `<link rel="stylesheet" href="showcase.css?v=${hash}"></head>`);
-html = html.replace('</body>', `<script data-worksportfolio-showcase>window.WORKS_PORTFOLIO_SHOWCASE=${scriptJson(taxonomy)};<\/script><script src="showcase.js?v=${hash}"><\/script></body>`);
+const styleUrl = `showcase.css?v=${hash}`;
+const scriptUrl = `showcase.js?v=${hash}`;
+const registration = `<script data-worksportfolio-showcase>window.WORKS_PORTFOLIO_SHOWCASE=${scriptJson(taxonomy)};<\/script><script data-worksportfolio-showcase-assets>window.WORKS_PORTFOLIO_LAZY_ASSETS=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};window.WORKS_PORTFOLIO_LAZY_ASSETS.styles.push(${JSON.stringify(styleUrl)});window.WORKS_PORTFOLIO_LAZY_ASSETS.scripts.push(${JSON.stringify(scriptUrl)});<\/script>`;
+html = html.replace('</body>', `${registration}</body>`);
 
 await writeFile(indexUrl, html, 'utf8');
-console.log(`Injected Showcase / Project Family taxonomy (assets ${hash}).`);
+console.log(`Injected Showcase / Project Family taxonomy; presentation assets deferred (${hash}).`);
