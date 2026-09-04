@@ -126,8 +126,9 @@
         <div class="showcase-recent-grid">${recent.map(recentCard).join('')}</div>
       </section>`;
 
-    const random = toolbar.parentNode?.querySelector('[data-random-three]');
-    toolbar.parentNode?.insertBefore(section, random || toolbar);
+    const explorer = toolbar.closest('.explorer');
+    if (explorer?.parentNode) explorer.insertAdjacentElement('afterend', section);
+    else toolbar.parentNode?.appendChild(section);
     syncVisibility();
     applyFamilyFilter();
   }
@@ -302,7 +303,8 @@
   function start() {
     bindCatalogStability();
     render();
-    observer.observe(document.body, { childList: true, subtree: true });
+    const explorer = document.querySelector('.explorer');
+    if (explorer) observer.observe(explorer, { childList: true, subtree: true });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
