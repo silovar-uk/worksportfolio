@@ -89,6 +89,7 @@ jobs:
           node --check scripts/apply-editorial-gate.mjs
           node --check scripts/build-editorial-review.mjs
           node --check scripts/inject-showcase.mjs
+          node --check scripts/split-project-data.mjs
           node --check scripts/validate-portfolio-model.mjs
           node --check scripts/validate-global-ids.mjs
           node --check scripts/curate-recent-projects.mjs
@@ -170,17 +171,29 @@ jobs:
       - name: Inject Showcase and Project Families
         run: node scripts/inject-showcase.mjs
 
+      - name: Split summaries and on-demand details
+        run: node scripts/split-project-data.mjs
+
       - name: Verify generated page
         run: |
           test -s index.html
           test -s data/patterns.json
           test -s data/editorial-review.json
+          test -s data/project-summaries.json
+          test -d data/project-details
+          test "$(find data/project-details -type f -name '*.json' | wc -l)" -gt 0
           ! grep -qi 'jszip' index.html
           ! grep -qi 'loader.js' index.html
           ! grep -q '__BUILD_DIARY_DATA__' index.html
           grep -q 'window.BUILD_DIARY_DATA' index.html
           grep -q 'window.WORKS_PORTFOLIO_SHOWCASE' index.html
           grep -q 'worksportfolio-assets-version' index.html
+          grep -q 'worksportfolio-data-mode' index.html
+          grep -q 'projectDetailCache' index.html
+          grep -q 'data/project-details/' index.html
+          ! grep -q '"firstBuild"' data/project-summaries.json
+          ! grep -q '"currentAnswer"' data/project-summaries.json
+          grep -Rq '"firstBuild"' data/project-details
           grep -q 'shelf-priority.js' index.html
           grep -q 'showcase.js' index.html
           grep -q 'showcase.css' index.html
@@ -241,12 +254,12 @@ jobs:
           ! grep -qi 'uicleaner' data/editorial-review.json
 
       - name: Show generated changes
-        run: git diff --stat -- data/projects.json data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html
+        run: git diff --stat -- data/projects.json data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json data/project-summaries.json data/project-details index.html
 
       - name: Commit generated files when changed
         if: github.event_name != 'pull_request'
         run: |
-          FILES="data/projects.json data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json index.html"
+          FILES="data/projects.json data/portfolio-config.json data/catalog.json data/editorial-review.json data/project-start-dates.json data/pattern-audit.json data/pattern-candidates-01.json data/pattern-candidates-02.json data/pattern-candidates-03.json data/pattern-merge-rules.json data/patterns.json data/project-summaries.json data/project-details index.html"
           if [ -z "$(git status --porcelain -- $FILES)" ]; then
             echo "Portfolio and derived data are already current."
             exit 0
