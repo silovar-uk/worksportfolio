@@ -45,10 +45,14 @@ html = html.slice(0, jsonStart) + ` ${scriptJson(diary)};\n` + html.slice(script
 
 html = html
   .replace(/<link rel="stylesheet" href="private-source\.css\?v=[^"]+">/g, '')
-  .replace(/<script src="private-source\.js\?v=[^"]+"><\/script>/g, '');
+  .replace(/<script src="private-source\.js\?v=[^"]+"><\/script>/g, '')
+  .replace(/<script data-worksportfolio-private-assets>[\s\S]*?<\/script>/g, '');
+
 const hash = createHash('sha256').update(css).update('\0').update(js).digest('hex').slice(0, 12);
-html = html.replace('</head>', `<link rel="stylesheet" href="private-source.css?v=${hash}"></head>`);
-html = html.replace('</body>', `<script src="private-source.js?v=${hash}"></script></body>`);
+const styleUrl = `private-source.css?v=${hash}`;
+const scriptUrl = `private-source.js?v=${hash}`;
+const registration = `<script data-worksportfolio-private-assets>window.WORKS_PORTFOLIO_LAZY_ASSETS=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};window.WORKS_PORTFOLIO_LAZY_ASSETS.styles.push(${JSON.stringify(styleUrl)});window.WORKS_PORTFOLIO_LAZY_ASSETS.scripts.push(${JSON.stringify(scriptUrl)});<\/script>`;
+html = html.replace('</body>', `${registration}</body>`);
 
 await writeFile(indexUrl, html, 'utf8');
-console.log(`Injected ${privateProjects.length} safe Private-project summaries (assets ${hash}).`);
+console.log(`Injected ${privateProjects.length} safe Private-project summaries; presentation assets deferred (${hash}).`);
