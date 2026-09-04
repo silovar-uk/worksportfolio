@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T05:35:24.968Z",
+  "generatedAt": "2026-09-04T06:09:08.435Z",
   "owner": "silovar-uk",
   "repositoryCount": 73,
   "hiddenIds": [
@@ -60,7 +60,7 @@
       "description": "",
       "repositoryUrl": "https://github.com/silovar-uk/quicklinks",
       "liveUrl": "https://silovar-uk.github.io/quicklinks/",
-      "language": "HTML",
+      "language": "JavaScript",
       "topics": [],
       "archived": false,
       "fork": false,
