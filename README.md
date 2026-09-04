@@ -6,7 +6,7 @@
 
 ## Architecture contract
 
-このRepositoryでは、**生成済みHTMLを入力へ戻さない**ことを最重要ルールにしています。
+このRepositoryでは、**生成済みHTMLを入力へ戻さないこと**を最重要ルールにしています。
 
 ```text
 Canonical source
@@ -23,6 +23,47 @@ GitHub Pages
 ```
 
 `index.html` は成果物です。日常編集のSource of Truthではなく、Build時には一度削除して `src/index.template.html` から再生成します。
+
+### Static shell contract
+
+Header / Header Search / 最上部のHeroは、後付けのfeature scriptで修復しません。
+
+責務は次の3つに限定します。
+
+```text
+data/settings.json
+  └─ siteTitle / heroTitle / heroLead などの表示データ
+
+scripts/build-static-site.mjs
+  └─ Header SearchとHeroを静的HTMLとして確定
+
+shell.css
+  └─ Header / Header Search / Heroの最終レイアウト
+```
+
+禁止事項:
+
+- `copy-cleanup.js` などのruntime scriptからHero文言を書き換える
+- `showcase.css` やfeature CSSから `.site-header` / `.header-search` / `.hero` を再定義する
+- 生成後の `index.html` を文字列置換して上部UIを修復する
+- 強制 `<br>` をHero文言へ埋め込み、viewportごとに不自然な改行を固定する
+- `Element.prototype` などWeb標準APIを差し替えて局所的なselector bugを吸収する
+
+`scripts/build-static-site.mjs` と `scripts/apply-copy-cleanup.mjs` はこれらの境界を検査し、違反が戻った場合はBuildを失敗させます。
+
+### Runtime augmentation policy
+
+CatalogやFavoriteなど、動的に生成されるUIへ追加機能を載せる場合も、**後から何でも直すpatch layer**を増やさないことを原則とします。
+
+- 局所バグは局所のrenderer / helperで直す
+- DOM decoratorは冪等にする
+- MutationObserverは自分が所有するrootへ限定する
+- document全体の監視は原則追加しない
+- feature CSSは自分のfeature namespaceだけを持つ
+- 別featureのDOM順序やlayoutを修復するscriptを追加しない
+- 使われなくなったrepair scriptは残さない
+
+現在は既存機能の一部にDOM decoration / MutationObserver方式が残っています。これは互換性を維持しながら、renderer側へ順次統合する移行対象です。
 
 ### Project registry
 
@@ -49,6 +90,8 @@ Showcaseの編集データは `data/portfolio-taxonomy.json` に置きます。
 
 表示側は `showcase.js` / `showcase.css`、生成時の注入は `scripts/inject-showcase.mjs` が担当します。
 
+ShowcaseはTop Shellを所有しません。`.site-header` / `.header-search` / `.hero` は `shell.css` の責務です。
+
 ## Catalog
 
 Catalogでは次を扱います。
@@ -64,6 +107,8 @@ Catalogでは次を扱います。
 - お気に入り
 
 初期の時系列は `startedAt` を優先し、なければ `createdAt` を使います。
+
+Header SearchとCatalog Searchは検索の意味を分岐させず、共通の検索ロジックを利用します。Headerは数件のQuick Suggestions、CatalogはFull Searchを担当します。
 
 ## Public GitHub discovery
 
@@ -114,11 +159,12 @@ Private repositoryの検出情報はPublic catalogへ流しません。
 
 ### 人が編集するSource
 
-- `src/index.template.html` — HTML構造の正本
+- `src/index.template.html` — HTML構造のベース
+- `shell.css` — Header / Header Search / Heroの最終presentation
 - `data/projects.json` — Canonical Project Registry
 - `data/private-projects.json` — Private-safe Summary Registry
 - `data/periods.json` — 時系列区分
-- `data/settings.json` — サイト設定
+- `data/settings.json` — サイト設定・Top Shell copy
 - `data/portfolio-config.json` — repository ID mapping、hidden等の運用設定
 - `data/portfolio-taxonomy.json` — Showcase / Family / Principle
 - `data/editorial-policy.json` — 公開ゲート方針
@@ -172,9 +218,9 @@ Pattern validation / build
   ↓
 rm -f index.html
   ↓
-Static build from src/index.template.html
+Static build from src/index.template.html + settings + shell.css
   ↓
-Copy cleanup
+Static-output / runtime-boundary validation
   ↓
 Editorial publication gate
   ↓
@@ -189,21 +235,27 @@ Commit generated files
 GitHub Pages
 ```
 
+`scripts/apply-copy-cleanup.mjs` は名前を残していますが、現在は**生成HTMLを書き換えず検証だけを行います**。Top Shellを含むcopyのSource of Truthをpost-build transformへ戻さないためです。
+
 Friction Atlas / Live Indexも通常BuildのAssetとして `scripts/build-static-site.mjs` から組み込まれます。後段の別Workflowで `index.html` をpatchしません。
 
 `.github/workflows/audit-project-start-dates.yml` は制作開始日の監査専用で、HTML writerではありません。
 
 ## 主な実装ファイル
 
+- `shell.css`: Header / Header Search / Heroのcanonical presentation
 - `catalog.js` / `catalog.css`: Catalog
+- `catalog-search-redesign.js`: Search engine / Full Search / Header Quick Search
 - `friction-atlas.js` / `friction-atlas.css`: 「作った理由」ビュー
 - `live-index.js` / `live-index.css`: 検索・Index体験
 - `showcase.js` / `showcase.css`: Showcase / Project Family
 - `private-source.js` / `private-source.css`: Private-source表示制御
 - `random-three.js` / `random-three.css`: ランダム3枚
 - `comparison-view.js` / `comparison-view.css`: 比較
+- `favorites.js` / `favorites.css`: お気に入り度・visual signal
 - `scripts/build-catalog.mjs`: Public GitHub discovery
 - `scripts/build-static-site.mjs`: Canonical static build
+- `scripts/apply-copy-cleanup.mjs`: Static-output / runtime-boundary validation
 - `scripts/validate-global-ids.mjs`: Global ID integrity
 - `scripts/validate-portfolio-model.mjs`: taxonomy / privacy / reference validation
 - `scripts/inject-private-summaries.mjs`: Safe Private summary injection
