@@ -17,25 +17,21 @@ replaceCopy(
 );
 replaceCopy('<title>つくって考えた｜制作日記</title>', '<title>制作物一覧｜つくって考えた</title>');
 
-replaceCopy(
+const compactHeroTitle = '<h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>';
+for (const before of [
   '<h1 id="hero-title">日常の小さな不便から、<br>小さな道具を作っている。</h1>',
-  '<h1 id="hero-title">デジタル制作物一覧</h1>'
-);
-replaceCopy(
   '<h1 id="hero-title">日常の小さな不便<br>から、小さな道具を作っている。</h1>',
   '<h1 id="hero-title">デジタル制作物一覧</h1>'
-);
-replaceCopy(
-  '<h1 id="hero-title">小さな不便から、<br>小さな道具を作る</h1>',
-  '<h1 id="hero-title">デジタル制作物一覧</h1>'
-);
+]) {
+  replaceCopy(before, compactHeroTitle);
+}
 replaceCopy(
   '<p class="hero-lead">「まあ仕方ないか」で終わる引っかかりが気になると、まず作って試します。GitHubに残る初期コードから、いま手元で動くChrome拡張まで、その試作と改善を残す制作日記です。</p>',
-  '<p class="hero-lead">日常の小さなあれこれをWEBアプリやChrome拡張化。</p>'
+  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>'
 );
 replaceCopy(
-  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>',
-  '<p class="hero-lead">日常の小さなあれこれをWEBアプリやChrome拡張化。</p>'
+  '<p class="hero-lead">日常の小さなあれこれをWEBアプリやChrome拡張化。</p>',
+  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>'
 );
 replaceCopy('<button class="primary-action" type="button" data-view-button="timeline">年代順に読む</button>', '<button class="primary-action" type="button" data-view-button="shelf">制作物を見る</button>');
 replaceCopy('<button class="text-action" type="button" data-random-button>何か見せて</button>', '');
@@ -101,10 +97,10 @@ if (!html.includes("d.settings.defaultView='shelf'")) {
   html = html.replace('</head>', "<!-- d.settings.defaultView='shelf'; d.settings.defaultSort='created-desc' --></head>");
 }
 
-if (!html.includes('デジタル制作物一覧')) {
-  throw new Error('The hero title copy was not applied.');
+if (!html.includes('小さな不便から、<br>小さな道具を作る')) {
+  throw new Error('The compact hero title copy was not applied.');
 }
-if (!html.includes('日常の小さなあれこれをWEBアプリやChrome拡張化。')) {
+if (!html.includes('普段の作業で気になったことを、WebアプリやChrome拡張にしています。')) {
   throw new Error('The hero lead copy was not applied.');
 }
 if (!html.includes('data-view-button="shelf">制作物を見る</button>')) {
