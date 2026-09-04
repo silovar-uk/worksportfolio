@@ -187,6 +187,9 @@ jobs:
           ! grep -q '__BUILD_DIARY_DATA__' index.html
           grep -q 'window.BUILD_DIARY_DATA' index.html
           grep -q 'window.WORKS_PORTFOLIO_SHOWCASE' index.html
+          grep -q 'window.WORKS_PORTFOLIO_CONFIG' index.html
+          ! grep -q 'WORKS_PORTFOLIO_REPOSITORIES' index.html
+          ! grep -q 'WORKS_PORTFOLIO_START_DATES' index.html
           grep -q 'worksportfolio-assets-version' index.html
           grep -q 'worksportfolio-data-mode' index.html
           grep -q 'projectDetailCache' index.html
