@@ -1,17 +1,6 @@
 (() => {
   'use strict';
 
-  if (!window.__worksportfolioDetailIconSelectorPatch) {
-    window.__worksportfolioDetailIconSelectorPatch = true;
-    const nativeQuerySelector = Element.prototype.querySelector;
-    Element.prototype.querySelector = function patchedQuerySelector(selector) {
-      const normalized = selector === ':scope > .project-title-inline-icon is-detail'
-        ? ':scope > .project-title-inline-icon.is-detail'
-        : selector;
-      return nativeQuerySelector.call(this, normalized);
-    };
-  }
-
   const LIST_MIGRATION_KEY = 'worksportfolio-default-list-v1';
   const FAVORITES_KEY = 'worksPortfolioFavoriteRatingsV1';
   const mobile = window.matchMedia('(max-width: 760px)');
@@ -235,13 +224,6 @@
     });
   }
 
-  function dedupeDetailIcons() {
-    const heading = document.querySelector('[data-project-dialog] .detail-title');
-    if (!heading) return;
-    const icons = [...heading.querySelectorAll(':scope > .project-title-inline-icon.is-detail')];
-    icons.slice(1).forEach((icon) => icon.remove());
-  }
-
   function applyDynamicCopy() {
     document.querySelectorAll('.loading').forEach((element) => setText(element, '制作物を読み込んでいます。'));
     document.querySelectorAll('.empty-state').forEach((element) => {
@@ -259,7 +241,6 @@
 
     replaceExactLabels();
     enhanceProjectDetail();
-    dedupeDetailIcons();
     syncMobileFilterShell();
     syncRandomThreeCollapse();
     syncRandomThreeUrls();
