@@ -9,6 +9,7 @@ const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
 }[char]));
+const escapeRegExp = (value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const config = readJson('data/portfolio-config.json');
 const canonicalProjects = readJson('data/projects.json');
@@ -199,6 +200,53 @@ function replaceRequired(html, pattern, replacement, label) {
   return html.replace(pattern, replacement);
 }
 
+function stripLegacyTopShellCss(html) {
+  const open = html.indexOf('<style>');
+  const close = html.indexOf('</style>', open);
+  if (open < 0 || close < 0) throw new Error('Primary inline style block was not found.');
+
+  let css = html.slice(open + 7, close);
+  css = css.replace(
+    /^[ \t]*\.section-shell,\s*\.header-inner\s*\{([^}]*)\}[ \t]*$/gm,
+    '.section-shell {$1}'
+  );
+
+  const selectors = [
+    '.site-header',
+    '.header-inner',
+    '.site-brand',
+    '.brand-mark',
+    '.global-nav',
+    '.nav-button',
+    '.nav-button:hover, .nav-button:focus-visible, .nav-button.is-active',
+    '.hero',
+    '.hero::before',
+    '.hero-copy h1',
+    '.hero-lead',
+    '.hero-actions',
+    '.hero-note',
+    '.hero-note p',
+    '.hero-note small',
+    '.note-pin',
+    '.hero-stats',
+    '.hero-stats div',
+    '.hero-stats dt',
+    '.hero-stats dd'
+  ];
+
+  for (const selector of selectors) {
+    const pattern = new RegExp(`^[ \\t]*${escapeRegExp(selector)}\\s*\\{[^}]*\\}[ \\t]*\\n?`, 'gm');
+    css = css.replace(pattern, '');
+  }
+
+  for (const selector of ['.site-header', '.header-inner', '.hero', '.hero-copy h1', '.hero-lead']) {
+    const pattern = new RegExp(`${escapeRegExp(selector)}\\s*\\{`);
+    if (pattern.test(css)) throw new Error(`Legacy inline Top Shell CSS survived for ${selector}.`);
+  }
+
+  return html.slice(0, open + 7) + css + html.slice(close);
+}
+
 function applyStaticShell(html) {
   const heroTitle = String(settings.heroTitle || '').trim();
   const heroLead = String(settings.heroLead || '').trim();
@@ -232,6 +280,7 @@ if (!html.includes('window.BUILD_DIARY_DATA = __BUILD_DIARY_DATA__;')) {
   throw new Error('src/index.template.html is missing BUILD_DIARY_DATA placeholder.');
 }
 
+html = stripLegacyTopShellCss(html);
 html = applyStaticShell(html);
 const diary = buildDiaryData();
 html = html.replace('__BUILD_DIARY_DATA__', scriptJson(diary));
