@@ -1,5 +1,7 @@
 {
   "siteTitle": "つくって考えた",
+  "heroTitle": "小さな不便から、小さな道具を作る",
+  "heroLead": "普段の作業で気になったことを、WebアプリやChrome拡張にしています。",
   "currentNote": "GitHubの公開リポジトリ、手元の制作物、概要のみ公開しているPrivate制作物を整理しています。Private制作物のソースや内部情報は公開していません。",
   "defaultView": "shelf",
   "featuredProjectIds": [
