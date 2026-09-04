@@ -4,6 +4,7 @@ import { join } from 'node:path';
 
 const root = process.cwd();
 const readJson = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
+const readText = (path) => readFileSync(join(root, path), 'utf8');
 const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
@@ -27,6 +28,33 @@ const jsAssets = [
   'wow.js', 'random-three.js', 'comparison-view.js', 'wow-stage.js', 'motion.js', 'marks.js',
   'shelf-priority.js', 'favorites.js', 'favorite-catalog.js', 'copy-cleanup.js', 'friction-atlas.js', 'live-index.js'
 ];
+
+function assertTopShellOwnership() {
+  const shell = readText('shell.css');
+  for (const marker of ['.site-header{', '.header-inner{', '.header-search{', '.hero{', '.hero-copy h1{']) {
+    if (!shell.includes(marker)) throw new Error(`shell.css lost canonical selector ${marker}`);
+  }
+
+  const forbiddenSelectors = ['.site-header{', '.header-inner{', '.header-search{', '.brand-mark{', '.nav-button{', '.hero{', '.hero-copy h1{', '.hero-lead{'];
+  for (const path of ['copy-cleanup.css', 'showcase.css']) {
+    const source = readText(path);
+    for (const selector of forbiddenSelectors) {
+      if (source.includes(selector)) throw new Error(`${path} must not redefine top-shell selector ${selector}`);
+    }
+  }
+
+  const cleanupRuntime = readText('copy-cleanup.js');
+  if (cleanupRuntime.includes("document.querySelector('#hero-title')") || cleanupRuntime.includes("document.querySelector('.hero-lead')")) {
+    throw new Error('copy-cleanup.js must not mutate static hero copy at runtime.');
+  }
+
+  const postBuild = readText('scripts/apply-copy-cleanup.mjs');
+  if (postBuild.includes('writeFileSync')) {
+    throw new Error('apply-copy-cleanup.mjs must validate output, not rewrite the generated page.');
+  }
+}
+
+assertTopShellOwnership();
 
 function createAssetVersion(paths) {
   const hash = createHash('sha256');
