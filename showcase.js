@@ -12,11 +12,6 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
   }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
-  const timeValue = (value) => {
-    const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
-    if (!match) return 0;
-    return Date.UTC(Number(match[1]), Number(match[2] || 1) - 1, Number(match[3] || 1));
-  };
   const typeLabels = {
     'web-app': 'Webアプリ', 'chrome-extension': 'Chrome拡張', 'learning-tool': '学習ツール',
     'design-system': '設計・デザイン', 'content-page': 'コンテンツ', 'data-tool': '分析・データ',
@@ -56,24 +51,7 @@
       <div class="showcase-family-head"><h3>${esc(family.label)}</h3><strong>${members.length}</strong></div>
       <p>${esc(family.description || '')}</p>
       <div class="showcase-family-members">${members.slice(0, 6).map(memberLink).join('')}</div>
-      <button class="showcase-family-filter" type="button" data-showcase-family="${attr(family.id)}">${activeFamily === family.id ? '絞り込みを解除' : '作品棚で絞る'}</button>
-    </article>`;
-  }
-
-  function principleCard(principle, map) {
-    const examples = (principle.projectIds || []).map((id) => map.get(id)).filter(Boolean).slice(0, 3);
-    return `<article class="showcase-principle">
-      <h3>${esc(principle.label)}</h3>
-      <p>${esc(principle.description || '')}</p>
-      <small>${examples.map((project) => esc(project.title)).join(' / ')}</small>
-    </article>`;
-  }
-
-  function recentCard(project) {
-    const date = project.updatedAt || project.createdAt || '';
-    return `<article class="showcase-recent-card">
-      <div><small>${esc(date)}</small><h3>${esc(project.title || project.id)}</h3></div>
-      ${projectAction(project, project.liveUrl ? '開く' : '見る')}
+      <button class="showcase-family-filter" type="button" data-showcase-family="${attr(family.id)}">${activeFamily === family.id ? '絞り込みを解除' : 'この系統を見る'}</button>
     </article>`;
   }
 
@@ -84,51 +62,42 @@
 
     const map = projectMap();
     const showcase = taxonomy.showcase || {};
-    const featured = (showcase.featuredProjectIds || []).map((id) => map.get(id)).filter(Boolean).slice(0, 6);
-    const recent = projects()
-      .filter((project) => project?.documentationState === 'verified' && project?.id !== 'worksportfolio')
-      .sort((a, b) => timeValue(b.updatedAt || b.createdAt) - timeValue(a.updatedAt || a.createdAt))
-      .slice(0, Math.max(1, Number(showcase.recentLimit) || 4));
+    const featured = (showcase.featuredProjectIds || []).map((id) => map.get(id)).filter(Boolean).slice(0, 5);
+    const families = Array.isArray(taxonomy.families) ? taxonomy.families : [];
 
     const section = document.createElement('section');
     section.className = 'portfolio-showcase';
     section.dataset.portfolioShowcase = '';
     section.innerHTML = `
-      <header class="showcase-hero">
-        <p class="showcase-eyebrow">${esc(showcase.eyebrow || 'WORKS PORTFOLIO')}</p>
-        <h1>${esc(showcase.title || 'つくって考えた')}</h1>
-        <p class="showcase-lead">${esc(showcase.summary || '')}</p>
-        <div class="showcase-hero-actions">
-          <button type="button" class="showcase-primary" data-showcase-browse>全作品を見る</button>
-          <span>${projects().length} works</span>
+      <section class="showcase-block showcase-entry" aria-labelledby="showcase-featured-title">
+        <div class="showcase-block-head">
+          <div><p>START HERE</p><h2 id="showcase-featured-title">まず見る${featured.length}作品</h2></div>
+          <span>制作の系統が一周できる入口</span>
         </div>
-      </header>
-
-      <section class="showcase-block" aria-labelledby="showcase-featured-title">
-        <div class="showcase-block-head"><div><p>SELECTED WORKS</p><h2 id="showcase-featured-title">代表作</h2></div><span>幅が見える6作品</span></div>
+        <p class="showcase-intro">全部を見る前に、まずは方向の違う制作物をひとつずつ。気になった入口から、そのまま近い作品へ辿れます。</p>
         <div class="showcase-featured-grid">${featured.map(featuredCard).join('')}</div>
       </section>
 
-      <div class="showcase-two-column">
-        <section class="showcase-block" aria-labelledby="showcase-principles-title">
-          <div class="showcase-block-head"><div><p>MAKING PRINCIPLES</p><h2 id="showcase-principles-title">繰り返し現れる考え方</h2></div></div>
-          <div class="showcase-principles">${(taxonomy.principles || []).map((principle) => principleCard(principle, map)).join('')}</div>
-        </section>
+      <section class="showcase-block showcase-families-block" aria-labelledby="showcase-families-title">
+        <div class="showcase-block-head">
+          <div><p>PROJECT FAMILIES</p><h2 id="showcase-families-title">${families.length}つの制作系統</h2></div>
+          ${activeFamily ? '<button type="button" data-showcase-family-clear>絞り込み解除</button>' : '<span>興味の入口から全作品を絞る</span>'}
+        </div>
+        <div class="showcase-families">${families.map((family) => familyCard(family, map)).join('')}</div>
+      </section>
 
-        <section class="showcase-block" aria-labelledby="showcase-families-title">
-          <div class="showcase-block-head"><div><p>PROJECT FAMILIES</p><h2 id="showcase-families-title">制作の系統</h2></div>${activeFamily ? '<button type="button" data-showcase-family-clear>絞り込み解除</button>' : ''}</div>
-          <div class="showcase-families">${(taxonomy.families || []).map((family) => familyCard(family, map)).join('')}</div>
-        </section>
-      </div>
-
-      <section class="showcase-block showcase-recent" aria-labelledby="showcase-recent-title">
-        <div class="showcase-block-head"><div><p>RECENTLY BUILT</p><h2 id="showcase-recent-title">最近育てたもの</h2></div></div>
-        <div class="showcase-recent-grid">${recent.map(recentCard).join('')}</div>
-      </section>`;
+      <footer class="showcase-catalog-bridge">
+        <div>
+          <p>ALL WORKS</p>
+          <h2>ここから全作品へ</h2>
+          <span>名前で探す、目的で絞る、年代で辿る。必要になったところで一覧を使えます。</span>
+        </div>
+        <button type="button" class="showcase-primary" data-showcase-browse>全作品を見る</button>
+      </footer>`;
 
     const explorer = toolbar.closest('.explorer');
-    if (explorer?.parentNode) explorer.insertAdjacentElement('afterend', section);
-    else toolbar.parentNode?.appendChild(section);
+    if (explorer?.parentNode) explorer.insertAdjacentElement('beforebegin', section);
+    else toolbar.parentNode?.prepend(section);
     syncVisibility();
     applyFamilyFilter();
   }
