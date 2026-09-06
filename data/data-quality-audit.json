@@ -28,11 +28,11 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-04T05:34:03.084Z",
+    "generatedAt": "2026-09-06T17:29:04.938Z",
     "canonicalProjects": 67,
     "reviewableCanonicalProjects": 65,
     "excludedHiddenCanonicalProjects": 2,
-    "privateSafeProjects": 11,
+    "privateSafeProjects": 13,
     "publicRepositories": 73,
     "visiblePublicRepositories": 58,
     "verifiedDocumentation": 47,
