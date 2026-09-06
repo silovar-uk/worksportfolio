@@ -9,9 +9,121 @@
   const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects)
     ? window.BUILD_DIARY_DATA.projects
     : [];
+  const settings = () => window.BUILD_DIARY_DATA?.settings || {};
+  const typeLabels = {
+    'web-app': 'Webアプリ', 'chrome-extension': 'Chrome拡張', 'learning-tool': '学習ツール',
+    'design-system': '設計・デザイン', 'content-page': 'コンテンツ', 'data-tool': '分析・データ',
+    utility: '便利ツール', experiment: '実験'
+  };
 
   function setText(target, value) {
     if (target && target.textContent !== value) target.textContent = value;
+  }
+
+  function dateValue(value) {
+    const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+    if (!match) return 0;
+    return Date.UTC(Number(match[1]), Number(match[2] || 1) - 1, Number(match[3] || 1));
+  }
+
+  function formatCompactDate(value) {
+    const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+    if (!match) return String(value || '');
+    const [, year, month, day] = match;
+    if (day) return `${year}.${month}.${day}`;
+    if (month) return `${year}.${month}`;
+    return year;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>\"]/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
+    }[char]));
+  }
+
+  function recentCreatedProjects() {
+    return [...projects()]
+      .filter((project) => project?.id && project.id !== 'build-diary' && project.documentationState === 'verified')
+      .sort((a, b) => {
+        const created = dateValue(b.startedAt || b.createdAt) - dateValue(a.startedAt || a.createdAt);
+        if (created) return created;
+        return dateValue(b.updatedAt || b.createdAt) - dateValue(a.updatedAt || a.createdAt);
+      })
+      .slice(0, 3);
+  }
+
+  function syncHeroFreshness() {
+    const config = settings();
+    setText(document.querySelector('#hero-title'), config.heroTitle || '小さな引っかかりを、使える道具に変える');
+    setText(document.querySelector('.hero-lead'), config.heroLead || '日常の小さな摩擦を、使える道具へ変えています。');
+
+    const note = document.querySelector('.hero-note');
+    if (!note) return;
+    const latest = [...projects()]
+      .filter((project) => project?.id && project.id !== 'build-diary')
+      .sort((a, b) => dateValue(b.updatedAt || b.createdAt) - dateValue(a.updatedAt || a.createdAt))[0];
+    const signature = `${projects().length}|${latest?.id || ''}|${latest?.updatedAt || latest?.createdAt || ''}`;
+    if (note.dataset.freshnessSignature === signature) return;
+
+    const paragraph = note.querySelector('p');
+    if (paragraph) {
+      paragraph.textContent = '';
+      const strong = document.createElement('strong');
+      strong.textContent = '「なんで作ったん？」';
+      paragraph.append(
+        document.createTextNode(`${projects().length}の制作物を、`),
+        document.createElement('br'),
+        strong,
+        document.createElement('br'),
+        document.createTextNode('から読み直しています。')
+      );
+    }
+    const small = note.querySelector('small');
+    if (small) {
+      setText(small, latest
+        ? `最近動いたもの：${latest.title} / ${formatCompactDate(latest.updatedAt || latest.createdAt)}`
+        : '制作物データから自動集計');
+    }
+    note.dataset.freshnessSignature = signature;
+  }
+
+  function syncRecentWorks() {
+    const hero = document.querySelector('.hero');
+    if (!hero?.parentNode) return;
+    const items = recentCreatedProjects();
+    if (!items.length) return;
+
+    let section = document.querySelector('[data-fresh-works]');
+    if (!section) {
+      section = document.createElement('section');
+      section.className = 'fresh-works';
+      section.dataset.freshWorks = '';
+      hero.insertAdjacentElement('afterend', section);
+    }
+
+    const signature = items.map((project) => `${project.id}:${project.startedAt || project.createdAt}:${project.updatedAt || ''}`).join('|');
+    if (section.dataset.signature === signature) return;
+    section.dataset.signature = signature;
+    section.innerHTML = `
+      <div class="fresh-works-head">
+        <div>
+          <p class="fresh-works-kicker">RECENTLY BUILT</p>
+          <h2>最近つくったもの</h2>
+        </div>
+        <p>更新履歴ではなく、新しく増えた入口を3つ。</p>
+      </div>
+      <div class="fresh-works-track">
+        ${items.map((project) => `
+          <article class="fresh-work-card">
+            <div class="fresh-work-meta">
+              <span>${escapeHtml(typeLabels[project.type] || project.type || '制作物')}</span>
+              <time>${escapeHtml(formatCompactDate(project.startedAt || project.createdAt))}</time>
+            </div>
+            <h3>${escapeHtml(project.title || project.id)}</h3>
+            <p>${escapeHtml(project.summary || project.subtitle || '')}</p>
+            <a class="fresh-work-action" href="?project=${encodeURIComponent(project.id)}">中を見る →</a>
+          </article>`).join('')}
+      </div>`;
   }
 
   function ensureListDefault() {
@@ -225,6 +337,8 @@
   }
 
   function applyDynamicCopy() {
+    syncHeroFreshness();
+    syncRecentWorks();
     document.querySelectorAll('.loading').forEach((element) => setText(element, '制作物を読み込んでいます。'));
     document.querySelectorAll('.empty-state').forEach((element) => {
       setText(element.querySelector('h3'), '条件に合う制作物がありません。');
