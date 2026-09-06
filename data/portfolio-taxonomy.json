@@ -7,12 +7,10 @@
     "featuredProjectIds": [
       "dailyenglishchunks",
       "myessays",
-      "sukan",
-      "likewhat",
       "ui-cleaner",
-      "daily-log"
-    ],
-    "recentLimit": 4
+      "daily-log",
+      "likewhat"
+    ]
   },
   "families": [
     {
