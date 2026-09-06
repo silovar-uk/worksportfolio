@@ -9,7 +9,6 @@
   const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects)
     ? window.BUILD_DIARY_DATA.projects
     : [];
-  const settings = () => window.BUILD_DIARY_DATA?.settings || {};
   const typeLabels = {
     'web-app': 'Webアプリ', 'chrome-extension': 'Chrome拡張', 'learning-tool': '学習ツール',
     'design-system': '設計・デザイン', 'content-page': 'コンテンツ', 'data-tool': '分析・データ',
@@ -53,10 +52,6 @@
   }
 
   function syncHeroFreshness() {
-    const config = settings();
-    setText(document.querySelector('#hero-title'), config.heroTitle || '小さな引っかかりを、使える道具に変える');
-    setText(document.querySelector('.hero-lead'), config.heroLead || '日常の小さな摩擦を、使える道具へ変えています。');
-
     const note = document.querySelector('.hero-note');
     if (!note) return;
     const latest = [...projects()]
