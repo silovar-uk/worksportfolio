@@ -246,6 +246,57 @@
     "updates": []
   },
   {
+    "id": "prompt-lab",
+    "title": "Prompt Lab",
+    "subtitle": "プロンプトを保存し、構造を読み解き、比較する個人用ラボ",
+    "summary": "ためたプロンプトを保存し、分析結果と並べながら構造・変数・差分を読み解き、再利用できる知見へ変えるための個人用Webアプリ。",
+    "friction": "プロンプトをためるだけでは、何が結果を左右したのか、別のプロンプトとどこが違うのかを後から比較しにくかった。",
+    "firstBuild": "保存したプロンプトと分析結果を同じ画面で扱い、構造を分解して比較できるSPAとして組み直した。",
+    "currentAnswer": "Vite + React + Cloudflare Workers + D1で構成し、GitHub上のpromptsを正としてD1へ同期する。認証はCloudflare Accessに任せ、アプリ側には持たせない。",
+    "type": "web-app",
+    "verbs": [
+      "保存する",
+      "分析する",
+      "比較する"
+    ],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-09-05",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-09-06",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Access"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [
+      {
+        "date": "2026-09-06",
+        "version": "0.2",
+        "change": "GitHub上のプロンプトをD1へ同期する仕組みを追加",
+        "reason": "保存場所を二重管理せず、GitHub側を正として分析用データへ取り込めるようにするため。"
+      }
+    ],
+    "aside": "プロンプトそのものより、効いている構造を残す。",
+    "searchAliases": [
+      "prompt lab",
+      "プロンプト集",
+      "プロンプト分析",
+      "リバースエンジニアリング",
+      "Cloudflare D1"
+    ]
+  },
+  {
     "id": "secure-private-memo",
     "title": "Private Memo",
     "subtitle": "内容を外へ出さずに使う個人向けセキュアメモ",
@@ -324,5 +375,61 @@
     "documentationState": "verified",
     "relatedProjects": [],
     "updates": []
+  },
+  {
+    "id": "work-logs",
+    "title": "Work Logs",
+    "subtitle": "作ったものより、どう直したかを残す個人用作業ログ",
+    "summary": "複数の制作・改修について、日付、プロジェクト、タグとともにMarkdownで記録し、何を変え、なぜ変えたかを後から辿るための個人用アーカイブ。",
+    "friction": "短い周期で複数の制作物を直していると、完成物は残っても、判断理由や試行錯誤が会話やコミットの中に散らばってしまった。",
+    "firstBuild": "作業ログをMarkdownとして1件ずつ残し、一覧から本文を読み返せる最小の静的ビューにまとめた。",
+    "currentAnswer": "Cloudflare Workers Assetsで静的配信し、index.jsonからログ一覧を読み込み、Markdown本文をmarkedでレンダリングする軽量アーカイブ。",
+    "type": "content-page",
+    "verbs": [
+      "記録する",
+      "振り返る",
+      "辿る"
+    ],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-09",
+    "createdAtPrecision": "month",
+    "updatedAt": "2026-09-07",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Markdown",
+      "Cloudflare Workers",
+      "marked"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "worksportfolio",
+        "relation": "制作物の結果に対して、改修判断の履歴を補完"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-09-07",
+        "version": "0.2",
+        "change": "複数プロジェクトの改修ログを追加し、制作判断の履歴として育て始めた",
+        "reason": "完成物だけでなく、どの違和感から何を直したかを横断して振り返れるようにするため。"
+      }
+    ],
+    "aside": "完成品ではなく、判断の履歴を残す。",
+    "searchAliases": [
+      "work logs",
+      "作業ログ",
+      "制作ログ",
+      "改修履歴",
+      "判断履歴"
+    ]
   }
 ]
