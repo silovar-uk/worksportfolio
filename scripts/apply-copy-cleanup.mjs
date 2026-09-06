@@ -6,14 +6,24 @@ const cleanupRuntime = readFileSync('copy-cleanup.js', 'utf8');
 const favoritesRuntime = readFileSync('favorites.js', 'utf8');
 const catalogShellRuntime = readFileSync('catalog-list-first.js', 'utf8');
 const floatingRandomRuntime = readFileSync('floating-random.js', 'utf8');
+const settings = JSON.parse(readFileSync('data/settings.json', 'utf8'));
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
+}[char]));
 
 for (const path of ['catalog-list-first.js', 'floating-random.js', 'favorites.js', 'copy-cleanup.js']) {
   new Script(readFileSync(path, 'utf8'), { filename: path });
 }
 
+const heroTitle = String(settings.heroTitle || '').trim();
+const heroLead = String(settings.heroLead || '').trim();
+if (!heroTitle || !heroLead) {
+  throw new Error('data/settings.json must define heroTitle and heroLead.');
+}
+
 const required = [
-  '<h1 id="hero-title">小さな不便から、小さな道具を作る</h1>',
-  '<p class="hero-lead">普段の作業で気になったことを、WebアプリやChrome拡張にしています。</p>',
+  `<h1 id="hero-title">${escapeHtml(heroTitle)}</h1>`,
+  `<p class="hero-lead">${escapeHtml(heroLead)}</p>`,
   'data-header-search-input',
   'data-view-button="shelf">制作物を見る</button>',
   'shell.css',
