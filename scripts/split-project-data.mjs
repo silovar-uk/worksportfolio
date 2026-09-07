@@ -71,19 +71,23 @@ function stripLegacyRenderer(html) {
   const end = html.indexOf('</script>', start);
   if (end < 0) throw new Error('Legacy inline renderer script was not closed.');
   const removedBytes = byteLength(html.slice(start, end + 9));
-  const marker = '  <!-- Legacy timeline/shelf/map renderer removed from production; projectDetailCache is owned by project-detail.js. -->';
+  const marker = '  <!-- Legacy timeline/shelf/map renderer removed from production; detail rendering is owned by the stable core. -->';
   return {
     html: html.slice(0, start) + marker + html.slice(end + 9),
     removedBytes
   };
 }
 
+function hasProjectDetailScript(html) {
+  return /<script\s+[^>]*src="project-detail\.js\?v=[^"]+"[^>]*><\/script>/.test(html);
+}
+
 async function installProjectDetailRuntime(html) {
   const source = await readFile(new URL('project-detail.js', root), 'utf8');
   const hash = createHash('sha256').update(source).digest('hex').slice(0, 12);
   const tag = `<script src="project-detail.js?v=${hash}"></script>`;
-  if (!html.includes('project-detail.js')) html = html.replace('</body>', `${tag}</body>`);
-  if (!html.includes('project-detail.js')) throw new Error('project-detail.js was not installed in generated output.');
+  if (!hasProjectDetailScript(html)) html = html.replace('</body>', `${tag}</body>`);
+  if (!hasProjectDetailScript(html)) throw new Error('project-detail.js script tag was not installed in generated output.');
   return { html, hash };
 }
 
@@ -123,7 +127,7 @@ if (!html.includes('name="worksportfolio-data-mode"')) {
 if (html.includes("document.addEventListener('DOMContentLoaded', init);")) {
   throw new Error('Legacy inline renderer still binds DOMContentLoaded.');
 }
-if (!html.includes('project-detail.js')) throw new Error('Stable project detail runtime missing.');
+if (!hasProjectDetailScript(html)) throw new Error('Stable project detail runtime missing.');
 
 await writeFile(indexUrl, html, 'utf8');
 
