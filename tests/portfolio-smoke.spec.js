@@ -5,13 +5,9 @@ const BASE_URL = process.env.PORTFOLIO_BASE_URL || 'http://127.0.0.1:4173/';
 function installRuntimeGuards(page) {
   const issues = [];
   page.on('pageerror', (error) => issues.push(`pageerror: ${error.message}`));
-  page.on('console', (message) => {
-    if (message.type() === 'error') issues.push(`console.error: ${message.text()}`);
-  });
+  page.on('console', (message) => { if (message.type() === 'error') issues.push(`console.error: ${message.text()}`); });
   page.on('requestfailed', (request) => {
-    if (request.url().startsWith(BASE_URL)) {
-      issues.push(`requestfailed: ${request.method()} ${request.url()} ${request.failure()?.errorText || ''}`);
-    }
+    if (request.url().startsWith(BASE_URL)) issues.push(`requestfailed: ${request.method()} ${request.url()} ${request.failure()?.errorText || ''}`);
   });
   return issues;
 }
@@ -21,16 +17,12 @@ async function installPerformanceObservers(page) {
     window.__portfolioLongTasks = [];
     window.__portfolioShifts = [];
     try {
-      const longTaskObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) window.__portfolioLongTasks.push(entry.duration);
-      });
-      longTaskObserver.observe({ entryTypes: ['longtask'] });
+      const observer = new PerformanceObserver((list) => { for (const entry of list.getEntries()) window.__portfolioLongTasks.push(entry.duration); });
+      observer.observe({ entryTypes: ['longtask'] });
     } catch (_) {}
     try {
-      const shiftObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__portfolioShifts.push(entry.value);
-      });
-      shiftObserver.observe({ type: 'layout-shift', buffered: true });
+      const observer = new PerformanceObserver((list) => { for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__portfolioShifts.push(entry.value); });
+      observer.observe({ type: 'layout-shift', buffered: true });
     } catch (_) {}
   });
 }
@@ -72,7 +64,7 @@ async function staticLayoutSnapshot(page) {
 }
 
 async function findSearchableProject(page) {
-  return page.evaluate(() => window.WORKS_PORTFOLIO_SEARCH_INDEX?.find((item) => item?.title && !item.summaryOnly) || null);
+  return page.evaluate(() => window.WORKS_PORTFOLIO_SEARCH?.search('')?.find((item) => item?.title && !item.summaryOnly) || null);
 }
 
 async function exerciseSearch(page) {
@@ -91,7 +83,7 @@ async function exerciseSearch(page) {
 
   await header.press('ArrowDown');
   await header.press('Enter');
-  const openedId = await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('project') || '')).not.toBe('');
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('project') || '')).not.toBe('');
   await expect(page.locator('[data-project-dialog]')).toHaveAttribute('open', '');
 
   await page.goBack();
@@ -108,7 +100,6 @@ async function exerciseSearch(page) {
   await page.locator('[data-home-search-all]').click();
   await expect(page.locator('[data-cat-search]')).toHaveValue(query);
   await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(0);
-
   await header.focus();
   await header.press('Escape');
 }
@@ -119,15 +110,12 @@ async function exerciseCatalog(page) {
   expect((await catalogSearch.inputValue()).length).toBeGreaterThan(0);
   await catalogSearch.fill('');
   await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(5);
-
   await page.locator('[data-cat-quick-value="recent"]').click();
   await expect(page.locator('[data-cat-quick-value="recent"]')).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(0);
-
   await page.locator('[data-cat-quick-value="all"]').click();
   await expect(page.locator('[data-cat-quick-value="all"]')).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(5);
-
   const sort = page.locator('[data-cat-sort]');
   await sort.selectOption('title-asc');
   await expect(sort).toHaveValue('title-asc');
@@ -140,7 +128,6 @@ for (const profile of [
   test(`${profile.name}: progressive search, catalog, and detail`, async ({ page }) => {
     const issues = installRuntimeGuards(page);
     await boot(page, profile.viewport, issues);
-
     const architecture = await page.evaluate(() => ({
       hasSearchIndex: Array.isArray(window.WORKS_PORTFOLIO_SEARCH_INDEX),
       searchCount: window.WORKS_PORTFOLIO_SEARCH_INDEX?.length || 0,
@@ -163,14 +150,9 @@ for (const profile of [
 
     await exerciseSearch(page);
     await exerciseCatalog(page);
-
     const legacyAssets = await page.evaluate(() => performance.getEntriesByType('resource').map((entry) => entry.name).filter((url) => /live-index|friction-atlas|random-three|catalog-list-first|catalog-visibility|showcase\.js|private-source\.js/.test(url)));
     expect(legacyAssets).toEqual([]);
-
-    const metrics = await page.evaluate(() => ({
-      worstLongTask: Math.max(0, ...(window.__portfolioLongTasks || [])),
-      cls: (window.__portfolioShifts || []).reduce((sum, value) => sum + value, 0)
-    }));
+    const metrics = await page.evaluate(() => ({ worstLongTask: Math.max(0, ...(window.__portfolioLongTasks || [])), cls: (window.__portfolioShifts || []).reduce((sum, value) => sum + value, 0) }));
     expect(metrics.worstLongTask, `worst long task ${metrics.worstLongTask.toFixed(1)}ms`).toBeLessThan(150);
     expect(metrics.cls, `CLS ${metrics.cls}`).toBeLessThan(0.03);
     expect(issues, issues.join('\n')).toEqual([]);
