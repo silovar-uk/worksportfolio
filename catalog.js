@@ -1,326 +1,210 @@
 (() => {
   'use strict';
 
-  const typeLabels = {
+  const TYPE_LABELS = {
     'web-app': 'Webアプリ',
     'chrome-extension': 'Chrome拡張',
     'learning-tool': '学習ツール',
-    'design-system': '設計ガイド',
-    'content-page': 'コンテンツページ',
+    'design-system': '設計・デザイン',
+    'content-page': '文章・知識',
     'data-tool': '分析・データ',
     utility: '便利ツール',
-    experiment: '実験'
+    experiment: '実験',
+    other: 'その他'
   };
-  const statusLabels = {
+  const STATUS_LABELS = {
     development: '開発中',
     active: '運用中',
     prototype: '試作中',
     dormant: '休止中',
     legacy: '初期記録'
   };
-  const docLabels = {
-    verified: '内容確認済み',
-    inferred: '概要を仮整理',
-    unreviewed: '思い出し待ち'
-  };
-  const quickLabels = {
-    all: 'すべて',
-    recent: '最近更新',
-    published: '公開ページ',
-    active: '運用・開発',
-    extension: 'Chrome拡張',
-    web: 'Webアプリ'
-  };
-  const STORAGE_KEY = 'worksportfolio-catalog-v3';
-  const LEGACY_STORAGE_KEY = 'worksportfolio-catalog-v2';
-  const selected = new Set();
-  let ready = false;
-  let quickFilter = 'all';
+  const QUICK_FILTERS = [
+    ['all', 'すべて'],
+    ['recent', '最近更新'],
+    ['published', '公開ページあり'],
+    ['active', '運用・開発'],
+    ['extension', 'Chrome拡張'],
+    ['learning', '学習']
+  ];
+  const STORAGE_KEY = 'worksportfolio-catalog-v4';
 
+  const state = {
+    q: '',
+    quick: 'all',
+    type: '',
+    status: '',
+    year: '',
+    link: '',
+    sort: 'created-desc'
+  };
+
+  const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
   }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
   const norm = (value) => String(value || '').toLowerCase().normalize('NFKC').replace(/\s+/g, '');
-  const projects = () => window.BUILD_DIARY_DATA?.projects || [];
-  const currentView = () => document.querySelector('[data-view-button].is-active')?.getAttribute('data-view-button') || '';
   const dateNumber = (value) => String(value || '').replace(/[^0-9]/g, '').padEnd(8, '0');
-  const timestamp = (value) => {
+  const chronologyDate = (project) => project?.startedAt || project?.createdAt || '';
+  const yearOf = (project) => String(chronologyDate(project)).slice(0, 4) || '';
+
+  function timestamp(value) {
     const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
     if (!match) return 0;
     return Date.UTC(Number(match[1]), Number(match[2] || 1) - 1, Number(match[3] || 1));
-  };
-  const isRecent = (project, days = 150) => {
+  }
+
+  function isRecent(project, days = 120) {
     const value = timestamp(project.updatedAt || project.createdAt);
     return value > 0 && Date.now() - value <= days * 86400000;
-  };
-  const formatDate = (value) => {
-    if (!value) return '要確認';
+  }
+
+  function formatDate(value) {
+    if (!value) return '—';
     const match = String(value).match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
     if (!match) return String(value);
     if (match[3]) return `${Number(match[1])}.${Number(match[2])}.${Number(match[3])}`;
     if (match[2]) return `${Number(match[1])}.${Number(match[2])}`;
     return match[1];
-  };
-  const chronologyDate = (project) => project?.startedAt || project?.createdAt || '';
-  const yearOf = (project) => String(chronologyDate(project)).slice(0, 4) || '時期不明';
-  const controls = () => ({
-    search: document.querySelector('[data-cat-search]'),
-    verb: document.querySelector('[data-cat-verb]'),
-    type: document.querySelector('[data-cat-type]'),
-    status: document.querySelector('[data-cat-status]'),
-    year: document.querySelector('[data-cat-year]'),
-    doc: document.querySelector('[data-cat-doc]'),
-    link: document.querySelector('[data-cat-link]'),
-    sort: document.querySelector('[data-cat-sort]'),
-    layout: document.querySelector('[data-cat-layout]'),
-    group: document.querySelector('[data-cat-group]')
-  });
-
-  function toolbarHtml() {
-    return `
-      <section class="catalog-overview" data-catalog-toolbar>
-        <div class="catalog-quick" data-cat-quick></div>
-        <div class="catalog-primary">
-          <label class="catalog-search">
-            <span class="sr-only">制作物を検索</span>
-            <input type="search" data-cat-search placeholder="名前・困りごと・技術から探す">
-          </label>
-          <select data-cat-sort aria-label="並び順">
-            <option value="updated-desc">更新が新しい順</option>
-            <option value="created-desc">制作開始が新しい順</option>
-            <option value="created-asc">制作開始が古い順</option>
-            <option value="title-asc">名前順</option>
-            <option value="type-asc">種類順</option>
-            <option value="status-asc">状態順</option>
-          </select>
-          <select data-cat-layout aria-label="表示形式">
-            <option value="compact">ざっと見る</option>
-            <option value="cards">カード</option>
-            <option value="table">表</option>
-          </select>
-          <select data-cat-group aria-label="グループ分け">
-            <option value="none">まとめず表示</option>
-            <option value="year">制作開始年でまとめる</option>
-            <option value="type">種類でまとめる</option>
-            <option value="status">状態でまとめる</option>
-          </select>
-        </div>
-        <details class="catalog-more" data-cat-more>
-          <summary>条件を細かく指定 <span data-cat-filter-count></span></summary>
-          <div class="catalog-filters">
-            <select data-cat-verb><option value="">すべての目的</option></select>
-            <select data-cat-type><option value="">すべての種類</option></select>
-            <select data-cat-status><option value="">すべての状態</option></select>
-            <select data-cat-year><option value="">すべての制作開始年</option></select>
-            <select data-cat-doc><option value="">すべての整理状態</option></select>
-            <select data-cat-link>
-              <option value="">すべての公開状況</option>
-              <option value="live">公開ページあり</option>
-              <option value="github">GitHubあり</option>
-              <option value="both">公開ページ＋GitHub</option>
-              <option value="local">手元のみ</option>
-            </select>
-            <button class="subtle-button" type="button" data-cat-reset>条件をすべて戻す</button>
-          </div>
-        </details>
-        <div class="catalog-resultbar">
-          <p class="catalog-result" data-cat-count></p>
-          <div class="catalog-active" data-cat-active></div>
-          <label class="catalog-select-visible"><input type="checkbox" data-cat-all> 表示中を選択</label>
-        </div>
-      </section>
-      <div class="catalog-bulk" data-cat-bulk hidden>
-        <strong data-cat-selected>0件選択</strong>
-        <select data-cat-format aria-label="コピー形式">
-          <option value="share">共有用テキスト</option>
-          <option value="markdown">Markdown</option>
-          <option value="tsv">TSV</option>
-          <option value="json">JSON</option>
-        </select>
-        <button class="primary-action" type="button" data-cat-copy disabled>選択分をコピー</button>
-        <button class="text-action" type="button" data-cat-clear disabled>選択解除</button>
-        <span class="catalog-feedback" data-cat-feedback aria-live="polite"></span>
-      </div>`;
   }
 
-  function quickCounts() {
-    const list = projects();
-    return {
-      all: list.length,
-      recent: list.filter((project) => isRecent(project)).length,
-      published: list.filter((project) => project.liveUrl).length,
-      active: list.filter((project) => ['active', 'development'].includes(project.status)).length,
-      extension: list.filter((project) => project.type === 'chrome-extension').length,
-      web: list.filter((project) => project.type === 'web-app').length
-    };
+  function fallbackMatches(project, query) {
+    const q = norm(query);
+    if (!q) return true;
+    const text = norm([
+      project.title,
+      project.subtitle,
+      project.summary,
+      project.friction,
+      project.id,
+      ...(project.verbs || []),
+      ...(project.technologies || []),
+      ...(project.searchAliases || []),
+      ...(project.portfolioFamilies || []),
+      ...(project.makingPrinciples || [])
+    ].filter(Boolean).join(' '));
+    return text.includes(q);
   }
 
-  function renderQuickButtons() {
-    const counts = quickCounts();
-    document.querySelector('[data-cat-quick]').innerHTML = Object.keys(quickLabels).map((key) => `
-      <button type="button" class="catalog-quick-button${quickFilter === key ? ' is-active' : ''}" data-cat-quick-value="${key}" aria-pressed="${quickFilter === key}">
-        <span>${quickLabels[key]}</span><strong>${counts[key]}</strong>
-      </button>`).join('');
-  }
-
-  function populate() {
-    const c = controls();
-    const list = projects();
-    const verbs = [...new Set(list.flatMap((project) => project.verbs || []))].sort((a, b) => a.localeCompare(b, 'ja'));
-    c.verb.innerHTML = '<option value="">すべての目的</option>' + verbs.map((value) => `<option>${esc(value)}</option>`).join('');
-    const types = [...new Set(list.map((project) => project.type))].sort();
-    c.type.innerHTML = '<option value="">すべての種類</option>' + types.map((value) => `<option value="${attr(value)}">${esc(typeLabels[value] || value)}</option>`).join('');
-    const statuses = [...new Set(list.map((project) => project.status))].sort();
-    c.status.innerHTML = '<option value="">すべての状態</option>' + statuses.map((value) => `<option value="${attr(value)}">${esc(statusLabels[value] || value)}</option>`).join('');
-    const years = [...new Set(list.map(yearOf).filter((value) => /^\d{4}$/.test(value)))].sort().reverse();
-    c.year.innerHTML = '<option value="">すべての制作開始年</option>' + years.map((value) => `<option value="${value}">${value}年</option>`).join('');
-    c.doc.innerHTML = '<option value="">すべての整理状態</option>' + Object.keys(docLabels).map((value) => `<option value="${value}">${docLabels[value]}</option>`).join('');
-    renderQuickButtons();
-  }
-
-  function readState() {
-    const c = controls();
-    const params = new URLSearchParams(location.search);
-    let saved = {};
-    try {
-      const current = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-      if (current && typeof current === 'object') {
-        saved = current;
-      } else {
-        const legacy = JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY) || '{}');
-        saved = legacy && typeof legacy === 'object' ? { ...legacy } : {};
-        if (!saved.sort || saved.sort === 'updated-desc') saved.sort = 'created-desc';
-      }
-    } catch (_) { saved = {}; }
-    const get = (name, fallback = '') => params.has(`cat_${name}`) ? params.get(`cat_${name}`) : (saved[name] ?? fallback);
-    c.search.value = get('q');
-    c.verb.value = get('verb');
-    c.type.value = get('type');
-    c.status.value = get('status');
-    c.year.value = get('year');
-    c.doc.value = get('doc');
-    c.link.value = get('link');
-    c.sort.value = get('sort', 'created-desc');
-    c.layout.value = get('layout', 'compact');
-    c.group.value = get('group', 'none');
-    quickFilter = get('quick', 'all');
-    if (!quickLabels[quickFilter]) quickFilter = 'all';
-  }
-
-  function saveState() {
-    const c = controls();
-    const state = {
-      q: c.search.value,
-      verb: c.verb.value,
-      type: c.type.value,
-      status: c.status.value,
-      year: c.year.value,
-      doc: c.doc.value,
-      link: c.link.value,
-      sort: c.sort.value,
-      layout: c.layout.value,
-      group: c.group.value,
-      quick: quickFilter
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    const params = new URLSearchParams(location.search);
-    Object.entries(state).forEach(([key, value]) => {
-      if (value && !(['sort', 'layout', 'group', 'quick'].includes(key) && value === ({ sort: 'created-desc', layout: 'compact', group: 'none', quick: 'all' }[key]))) {
-        params.set(`cat_${key}`, value);
-      } else {
-        params.delete(`cat_${key}`);
-      }
-    });
-    history.replaceState({}, '', `${location.pathname}${params.toString() ? `?${params}` : ''}${location.hash}`);
+  function matchesSearch(project, query) {
+    const api = window.WORKS_PORTFOLIO_SEARCH;
+    return api?.matches ? api.matches(project, query) : fallbackMatches(project, query);
   }
 
   function passesQuick(project) {
-    if (quickFilter === 'recent') return isRecent(project);
-    if (quickFilter === 'published') return Boolean(project.liveUrl);
-    if (quickFilter === 'active') return ['active', 'development'].includes(project.status);
-    if (quickFilter === 'extension') return project.type === 'chrome-extension';
-    if (quickFilter === 'web') return project.type === 'web-app';
+    if (state.quick === 'recent') return isRecent(project);
+    if (state.quick === 'published') return Boolean(project.liveUrl);
+    if (state.quick === 'active') return ['active', 'development'].includes(project.status);
+    if (state.quick === 'extension') return project.type === 'chrome-extension';
+    if (state.quick === 'learning') return project.type === 'learning-tool';
     return true;
   }
 
   function filtered() {
-    const c = controls();
-    const query = norm(c.search.value);
     const list = projects().filter((project) => {
-      const searchable = norm([
-        project.title, project.subtitle, project.summary, project.friction, project.id,
-        (project.verbs || []).join(' '), (project.technologies || []).join(' ')
-      ].join(' '));
       const live = Boolean(project.liveUrl);
       const github = Boolean(project.repositoryUrl);
-      return passesQuick(project)
-        && (!query || searchable.includes(query))
-        && (!c.verb.value || (project.verbs || []).includes(c.verb.value))
-        && (!c.type.value || project.type === c.type.value)
-        && (!c.status.value || project.status === c.status.value)
-        && (!c.year.value || yearOf(project) === c.year.value)
-        && (!c.doc.value || project.documentationState === c.doc.value)
-        && (!c.link.value
-          || (c.link.value === 'live' && live)
-          || (c.link.value === 'github' && github)
-          || (c.link.value === 'both' && live && github)
-          || (c.link.value === 'local' && !live && !github));
+      return matchesSearch(project, state.q)
+        && passesQuick(project)
+        && (!state.type || project.type === state.type)
+        && (!state.status || project.status === state.status)
+        && (!state.year || yearOf(project) === state.year)
+        && (!state.link
+          || (state.link === 'live' && live)
+          || (state.link === 'github' && github)
+          || (state.link === 'both' && live && github)
+          || (state.link === 'local' && !live && !github));
     });
-    const sort = c.sort.value;
+
     list.sort(
-      sort === 'created-asc' ? (a, b) => dateNumber(chronologyDate(a)).localeCompare(dateNumber(chronologyDate(b)))
-        : sort === 'created-desc' ? (a, b) => dateNumber(chronologyDate(b)).localeCompare(dateNumber(chronologyDate(a)))
-          : sort === 'title-asc' ? (a, b) => a.title.localeCompare(b.title, 'ja')
-            : sort === 'type-asc' ? (a, b) => (typeLabels[a.type] || a.type).localeCompare(typeLabels[b.type] || b.type, 'ja')
-              : sort === 'status-asc' ? (a, b) => (statusLabels[a.status] || a.status).localeCompare(statusLabels[b.status] || b.status, 'ja')
-                : (a, b) => dateNumber(b.updatedAt || b.createdAt).localeCompare(dateNumber(a.updatedAt || a.createdAt))
+      state.sort === 'updated-desc'
+        ? (a, b) => dateNumber(b.updatedAt || b.createdAt).localeCompare(dateNumber(a.updatedAt || a.createdAt))
+        : state.sort === 'created-asc'
+          ? (a, b) => dateNumber(chronologyDate(a)).localeCompare(dateNumber(chronologyDate(b)))
+          : state.sort === 'title-asc'
+            ? (a, b) => String(a.title).localeCompare(String(b.title), 'ja')
+            : (a, b) => dateNumber(chronologyDate(b)).localeCompare(dateNumber(chronologyDate(a)))
     );
     return list;
   }
 
-  function filterDefinitions() {
-    const c = controls();
-    return [
-      ['q', c.search.value, `検索「${c.search.value}」`],
-      ['verb', c.verb.value, c.verb.value],
-      ['type', c.type.value, typeLabels[c.type.value] || c.type.value],
-      ['status', c.status.value, statusLabels[c.status.value] || c.status.value],
-      ['year', c.year.value, c.year.value ? `${c.year.value}年` : ''],
-      ['doc', c.doc.value, docLabels[c.doc.value] || c.doc.value],
-      ['link', c.link.value, c.link.selectedOptions[0]?.textContent || ''],
-      ['quick', quickFilter !== 'all' ? quickFilter : '', quickFilter !== 'all' ? quickLabels[quickFilter] : '']
-    ].filter(([, value]) => value);
+  function quickCount(key) {
+    return projects().filter((project) => {
+      if (key === 'recent') return isRecent(project);
+      if (key === 'published') return Boolean(project.liveUrl);
+      if (key === 'active') return ['active', 'development'].includes(project.status);
+      if (key === 'extension') return project.type === 'chrome-extension';
+      if (key === 'learning') return project.type === 'learning-tool';
+      return true;
+    }).length;
   }
 
-  function renderActiveFilters() {
-    const active = filterDefinitions();
-    document.querySelector('[data-cat-filter-count]').textContent = active.length ? `（${active.length}件）` : '';
-    document.querySelector('[data-cat-active]').innerHTML = active.map(([key, , label]) => `<button type="button" data-cat-clear-one="${key}">${esc(label)} <span aria-hidden="true">×</span></button>`).join('');
-  }
-
-  function check(project) {
-    return `<label class="catalog-check"><input type="checkbox" data-cat-check="${attr(project.id)}"${selected.has(project.id) ? ' checked' : ''}><span class="sr-only">${esc(project.title)}を選択</span></label>`;
+  function toolbarMarkup() {
+    const types = [...new Set(projects().map((project) => project.type).filter(Boolean))].sort();
+    const statuses = [...new Set(projects().map((project) => project.status).filter(Boolean))].sort();
+    const years = [...new Set(projects().map(yearOf).filter((year) => /^\d{4}$/.test(year)))].sort().reverse();
+    return `<section class="catalog-overview" data-catalog-toolbar>
+      <div class="catalog-quick" data-cat-quick>
+        ${QUICK_FILTERS.map(([key, label]) => `<button type="button" class="catalog-quick-button${state.quick === key ? ' is-active' : ''}" data-cat-quick-value="${key}" aria-pressed="${state.quick === key}"><span>${esc(label)}</span><strong>${quickCount(key)}</strong></button>`).join('')}
+      </div>
+      <div class="catalog-primary">
+        <label class="catalog-search">
+          <span class="sr-only">制作物を検索</span>
+          <input type="search" data-cat-search autocomplete="off" placeholder="名前・困りごと・技術から探す" value="${attr(state.q)}">
+        </label>
+        <select data-cat-sort aria-label="並び順">
+          <option value="created-desc"${state.sort === 'created-desc' ? ' selected' : ''}>制作開始が新しい順</option>
+          <option value="updated-desc"${state.sort === 'updated-desc' ? ' selected' : ''}>更新が新しい順</option>
+          <option value="created-asc"${state.sort === 'created-asc' ? ' selected' : ''}>制作開始が古い順</option>
+          <option value="title-asc"${state.sort === 'title-asc' ? ' selected' : ''}>名前順</option>
+        </select>
+      </div>
+      <details class="catalog-more" data-cat-more>
+        <summary>絞り込み <span data-cat-filter-count></span></summary>
+        <div class="catalog-filters">
+          <select data-cat-type aria-label="種類で絞り込む"><option value="">すべての種類</option>${types.map((value) => `<option value="${attr(value)}"${state.type === value ? ' selected' : ''}>${esc(TYPE_LABELS[value] || value)}</option>`).join('')}</select>
+          <select data-cat-status aria-label="状態で絞り込む"><option value="">すべての状態</option>${statuses.map((value) => `<option value="${attr(value)}"${state.status === value ? ' selected' : ''}>${esc(STATUS_LABELS[value] || value)}</option>`).join('')}</select>
+          <select data-cat-year aria-label="制作開始年で絞り込む"><option value="">すべての制作開始年</option>${years.map((value) => `<option value="${value}"${state.year === value ? ' selected' : ''}>${value}年</option>`).join('')}</select>
+          <select data-cat-link aria-label="公開状況で絞り込む">
+            <option value=""${!state.link ? ' selected' : ''}>すべての公開状況</option>
+            <option value="live"${state.link === 'live' ? ' selected' : ''}>公開ページあり</option>
+            <option value="github"${state.link === 'github' ? ' selected' : ''}>GitHubあり</option>
+            <option value="both"${state.link === 'both' ? ' selected' : ''}>公開ページ＋GitHub</option>
+            <option value="local"${state.link === 'local' ? ' selected' : ''}>手元・概要のみ</option>
+          </select>
+          <button class="subtle-button" type="button" data-cat-reset>条件をすべて戻す</button>
+        </div>
+      </details>
+      <div class="catalog-resultbar">
+        <p class="catalog-result" data-cat-count></p>
+        <div class="catalog-active" data-cat-active></div>
+      </div>
+    </section>`;
   }
 
   function linkButtons(project) {
     const links = [];
     if (project.liveUrl) links.push(`<a href="${attr(project.liveUrl)}" target="_blank" rel="noopener" title="公開ページ">公開</a>`);
     if (project.repositoryUrl) links.push(`<a href="${attr(project.repositoryUrl)}" target="_blank" rel="noopener" title="GitHub">GitHub</a>`);
+    if (project.sourceVisibility === 'private') links.push('<span class="catalog-private-source">Source not public</span>');
     return links.length ? links.join('') : '<span class="catalog-local">手元のみ</span>';
   }
 
   function row(project) {
     const recent = isRecent(project, 90);
-    return `<article class="catalog-row${selected.has(project.id) ? ' selected' : ''}" data-cat-item="${attr(project.id)}">
-      ${check(project)}
-      <button class="catalog-main" type="button" data-project-open="${attr(project.id)}">
-        <span class="catalog-titleline"><strong>${esc(project.title)}</strong>${recent ? '<em>NEW</em>' : ''}</span>
-        <span class="catalog-summaryline">${esc(project.summary || project.friction || '')}</span>
-      </button>
+    const privateBadge = project.sourceVisibility === 'private' ? '<span class="catalog-private-source">Source not public</span>' : '';
+    const title = `<span class="catalog-titleline"><strong>${esc(project.title || project.id)}</strong>${recent ? '<em>NEW</em>' : ''}${privateBadge}</span>
+      <span class="catalog-summaryline">${esc(project.summary || project.friction || '制作物の説明を整理中。')}</span>`;
+    const main = project.summaryOnly
+      ? `<div class="catalog-main catalog-main-static">${title}</div>`
+      : `<button class="catalog-main" type="button" data-project-open="${attr(project.id)}">${title}</button>`;
+
+    return `<article class="catalog-row" data-cat-item="${attr(project.id)}">
+      ${main}
       <div class="catalog-facts">
-        <span>${esc(typeLabels[project.type] || project.type)}</span>
-        <span class="status status-${attr(project.status)}">${esc(statusLabels[project.status] || project.status)}</span>
+        <span>${esc(TYPE_LABELS[project.type] || project.type || '制作物')}</span>
+        <span class="status status-${attr(project.status || 'legacy')}">${esc(STATUS_LABELS[project.status] || project.status || '記録')}</span>
         <span>開始 ${esc(formatDate(chronologyDate(project)))}</span>
         <span>更新 ${esc(formatDate(project.updatedAt || project.createdAt))}</span>
       </div>
@@ -328,228 +212,204 @@
     </article>`;
   }
 
-  function card(project) {
-    return `<article class="catalog-card${project.featured ? ' featured' : ''}${selected.has(project.id) ? ' selected' : ''}" data-cat-item="${attr(project.id)}">
-      ${check(project)}
-      <div class="catalog-card-top"><span>${esc(typeLabels[project.type] || project.type)}</span><span>${esc(formatDate(project.updatedAt || project.createdAt))}</span></div>
-      <h3>${esc(project.title)}</h3>
-      <p>${esc(project.summary || '')}</p>
-      <div class="catalog-card-bottom"><span class="status status-${attr(project.status)}">${esc(statusLabels[project.status] || project.status)}</span><div class="catalog-links">${linkButtons(project)}</div></div>
-      <button class="catalog-open" type="button" data-project-open="${attr(project.id)}">詳しく見る</button>
-    </article>`;
+  function activeFiltersMarkup() {
+    const items = [];
+    if (state.q) items.push(['q', `検索「${state.q}」`]);
+    if (state.quick !== 'all') items.push(['quick', QUICK_FILTERS.find(([key]) => key === state.quick)?.[1] || state.quick]);
+    if (state.type) items.push(['type', TYPE_LABELS[state.type] || state.type]);
+    if (state.status) items.push(['status', STATUS_LABELS[state.status] || state.status]);
+    if (state.year) items.push(['year', `${state.year}年`]);
+    if (state.link) items.push(['link', { live: '公開ページあり', github: 'GitHubあり', both: '公開＋GitHub', local: '手元・概要のみ' }[state.link] || state.link]);
+    return items;
   }
 
-  function tableRow(project) {
-    return `<tr class="${selected.has(project.id) ? 'selected' : ''}" data-cat-item="${attr(project.id)}">
-      <td class="check-cell">${check(project)}</td>
-      <td><button class="catalog-title" type="button" data-project-open="${attr(project.id)}"><strong>${esc(project.title)}</strong><small>${esc((project.summary || '').slice(0, 90))}</small></button></td>
-      <td>${esc(typeLabels[project.type] || project.type)}</td>
-      <td><span class="status status-${attr(project.status)}">${esc(statusLabels[project.status] || project.status)}</span></td>
-      <td>${esc(formatDate(chronologyDate(project)))}</td>
-      <td>${esc(formatDate(project.updatedAt || project.createdAt))}</td>
-      <td><div class="catalog-links">${linkButtons(project)}</div></td>
-    </tr>`;
-  }
-
-  function grouped(list) {
-    const groupBy = controls().group.value;
-    if (groupBy === 'none') return [{ key: '', label: '', items: list }];
-    const map = new Map();
-    list.forEach((project) => {
-      const key = groupBy === 'year' ? yearOf(project)
-        : groupBy === 'type' ? project.type
-          : project.status;
-      if (!map.has(key)) map.set(key, []);
-      map.get(key).push(project);
-    });
-    const label = (key) => groupBy === 'year' ? (/^\d{4}$/.test(key) ? `${key}年` : key)
-      : groupBy === 'type' ? (typeLabels[key] || key)
-        : (statusLabels[key] || key);
-    const entries = [...map.entries()];
-    if (groupBy === 'year') {
-      const direction = controls().sort.value === 'created-asc' ? 1 : -1;
-      entries.sort(([a], [b]) => {
-        if (a === '時期不明') return 1;
-        if (b === '時期不明') return -1;
-        return direction * String(a).localeCompare(String(b));
-      });
-    }
-    return entries.map(([key, items]) => ({ key, label: label(key), items }));
-  }
-
-  function groupSection(group, layout) {
-    const heading = group.label ? `<header class="catalog-group-head"><h3>${esc(group.label)}</h3><span>${group.items.length}件</span></header>` : '';
-    if (layout === 'table') {
-      return `<section class="catalog-group">${heading}<div class="catalog-table-wrap"><table class="catalog-table"><thead><tr><th class="check-cell">選択</th><th>制作物</th><th>種類</th><th>状態</th><th>制作開始</th><th>更新</th><th>リンク</th></tr></thead><tbody>${group.items.map(tableRow).join('')}</tbody></table></div></section>`;
-    }
-    if (layout === 'cards') return `<section class="catalog-group">${heading}<div class="catalog-grid">${group.items.map(card).join('')}</div></section>`;
-    return `<section class="catalog-group">${heading}<div class="catalog-list">${group.items.map(row).join('')}</div></section>`;
-  }
-
-  function render() {
-    if (currentView() !== 'shelf') return;
+  function renderList() {
     const panel = document.querySelector('[data-view-panel]');
+    const count = document.querySelector('[data-cat-count]');
+    const active = document.querySelector('[data-cat-active]');
+    if (!panel || !count || !active) return;
+
     const list = filtered();
-    const c = controls();
-    document.querySelector('[data-cat-count]').innerHTML = `<strong>${list.length}</strong> / ${projects().length}件`;
-    renderQuickButtons();
-    renderActiveFilters();
-    if (!list.length) {
-      panel.innerHTML = '<div class="empty-state"><h3>その棚、今は空です。</h3><p>上の条件を少し戻してください。</p></div>';
-      syncSelection(list);
-      saveState();
-      return;
-    }
-    panel.innerHTML = `<div class="catalog-groups">${grouped(list).map((group) => groupSection(group, c.layout.value)).join('')}</div>`;
-    bindRows();
-    syncSelection(list);
+    count.innerHTML = `<strong>${list.length}</strong> / ${projects().length}件`;
+    const filters = activeFiltersMarkup();
+    active.innerHTML = filters.map(([key, label]) => `<button type="button" data-cat-clear-one="${key}">${esc(label)} <span aria-hidden="true">×</span></button>`).join('');
+    const badge = document.querySelector('[data-cat-filter-count]');
+    if (badge) badge.textContent = filters.filter(([key]) => !['q', 'quick'].includes(key)).length ? `（${filters.filter(([key]) => !['q', 'quick'].includes(key)).length}）` : '';
+
+    panel.innerHTML = list.length
+      ? `<div class="catalog-list" data-catalog-list>${list.map(row).join('')}</div>`
+      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>名前だけでなく、困りごと・技術・用途からも検索できます。</p></div>';
+
+    document.documentElement.classList.add('catalog-core-ready');
     saveState();
   }
 
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+    const params = new URLSearchParams(location.search);
+    for (const key of ['q', 'quick', 'type', 'status', 'year', 'link', 'sort']) params.delete(key);
+    if (state.q) params.set('q', state.q);
+    if (state.quick !== 'all') params.set('quick', state.quick);
+    if (state.type) params.set('type', state.type);
+    if (state.status) params.set('status', state.status);
+    if (state.year) params.set('year', state.year);
+    if (state.link) params.set('link', state.link);
+    if (state.sort !== 'created-desc') params.set('sort', state.sort);
+    history.replaceState({}, '', `${location.pathname}${params.toString() ? `?${params}` : ''}${location.hash}`);
+  }
+
+  function readState() {
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {}; } catch (_) {}
+    const params = new URLSearchParams(location.search);
+    const get = (key, fallback = '') => params.has(key) ? params.get(key) : (saved[key] ?? fallback);
+    state.q = get('q');
+    state.quick = get('quick', 'all');
+    state.type = get('type');
+    state.status = get('status');
+    state.year = get('year');
+    state.link = get('link');
+    state.sort = get('sort', 'created-desc');
+    if (!QUICK_FILTERS.some(([key]) => key === state.quick)) state.quick = 'all';
+  }
+
+  function syncControlsFromState() {
+    const search = document.querySelector('[data-cat-search]');
+    const sort = document.querySelector('[data-cat-sort]');
+    const type = document.querySelector('[data-cat-type]');
+    const status = document.querySelector('[data-cat-status]');
+    const year = document.querySelector('[data-cat-year]');
+    const link = document.querySelector('[data-cat-link]');
+    if (search) search.value = state.q;
+    if (sort) sort.value = state.sort;
+    if (type) type.value = state.type;
+    if (status) status.value = state.status;
+    if (year) year.value = state.year;
+    if (link) link.value = state.link;
+    document.querySelectorAll('[data-cat-quick-value]').forEach((button) => {
+      const selected = button.dataset.catQuickValue === state.quick;
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+  }
+
+  function renderToolbar() {
+    const oldToolbar = document.querySelector('[data-toolbar], [data-catalog-toolbar]');
+    if (!oldToolbar) return false;
+    const holder = document.createElement('div');
+    holder.innerHTML = toolbarMarkup();
+    oldToolbar.replaceWith(holder.firstElementChild);
+    bindToolbarEvents();
+    return true;
+  }
+
   function openProject(id) {
+    const project = projects().find((item) => item.id === id);
+    if (!project || project.summaryOnly) return;
     const params = new URLSearchParams(location.search);
     params.set('project', id);
     history.pushState({}, '', `${location.pathname}?${params}${location.hash}`);
-    location.reload();
-  }
-
-  function bindRows() {
-    document.querySelectorAll('[data-cat-check]').forEach((input) => input.addEventListener('change', () => {
-      if (input.checked) selected.add(input.dataset.catCheck);
-      else selected.delete(input.dataset.catCheck);
-      render();
-    }));
-    document.querySelectorAll('[data-project-open]').forEach((button) => button.addEventListener('click', () => openProject(button.getAttribute('data-project-open'))));
-  }
-
-  function syncSelection(list) {
-    const count = selected.size;
-    const all = document.querySelector('[data-cat-all]');
-    const visibleSelected = list.filter((project) => selected.has(project.id)).length;
-    const bulk = document.querySelector('[data-cat-bulk]');
-    document.querySelector('[data-cat-selected]').textContent = `${count}件選択`;
-    document.querySelector('[data-cat-copy]').disabled = !count;
-    document.querySelector('[data-cat-clear]').disabled = !count;
-    bulk.hidden = !count || currentView() !== 'shelf';
-    all.checked = Boolean(list.length) && visibleSelected === list.length;
-    all.indeterminate = visibleSelected > 0 && visibleSelected < list.length;
-  }
-
-  function copyFormat(list, format) {
-    const primaryUrl = (project) => project.liveUrl || project.repositoryUrl || '';
-    if (format === 'markdown') return list.map((project) => primaryUrl(project) ? `- [${project.title}](${primaryUrl(project)}) — ${project.summary}` : `- **${project.title}** — ${project.summary}`).join('\n');
-    if (format === 'tsv') {
-      const rows = [['タイトル', '概要', '種類', '状態', '制作開始日', '更新日', '公開ページ', 'GitHub']];
-      list.forEach((project) => rows.push([project.title, project.summary, typeLabels[project.type] || project.type, statusLabels[project.status] || project.status, formatDate(chronologyDate(project)), formatDate(project.updatedAt || project.createdAt), project.liveUrl || '', project.repositoryUrl || '']));
-      return rows.map((rowData) => rowData.map((value) => String(value).replace(/\t/g, ' ').replace(/\r?\n/g, ' ')).join('\t')).join('\n');
-    }
-    if (format === 'json') return JSON.stringify(list.map((project) => ({
-      title: project.title,
-      summary: project.summary,
-      type: typeLabels[project.type] || project.type,
-      status: statusLabels[project.status] || project.status,
-      startedAt: chronologyDate(project),
-      repositoryCreatedAt: project.createdAt || null,
-      updatedAt: project.updatedAt || project.createdAt,
-      liveUrl: project.liveUrl || null,
-      repositoryUrl: project.repositoryUrl || null
-    })), null, 2);
-    return list.map((project) => `${project.title}\n${project.summary}${primaryUrl(project) ? `\n${primaryUrl(project)}` : ''}`).join('\n\n');
-  }
-
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    const copied = document.execCommand('copy');
-    textarea.remove();
-    return copied ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    window.dispatchEvent(new PopStateEvent('popstate'));
   }
 
   function clearOne(key) {
-    const c = controls();
-    if (key === 'q') c.search.value = '';
-    else if (key === 'quick') quickFilter = 'all';
-    else if (c[key]) c[key].value = '';
-    render();
+    if (key === 'q') state.q = '';
+    else if (key === 'quick') state.quick = 'all';
+    else if (key in state) state[key] = '';
+    syncControlsFromState();
+    renderList();
   }
 
-  function enhance() {
-    if (ready) return;
-    const toolbar = document.querySelector('[data-toolbar]');
-    if (!toolbar || !window.BUILD_DIARY_DATA) {
-      setTimeout(enhance, 80);
+  function resetAll() {
+    state.q = '';
+    state.quick = 'all';
+    state.type = '';
+    state.status = '';
+    state.year = '';
+    state.link = '';
+    state.sort = 'created-desc';
+    syncControlsFromState();
+    renderList();
+  }
+
+  function bindToolbarEvents() {
+    const toolbar = document.querySelector('[data-catalog-toolbar]');
+    if (!toolbar || toolbar.dataset.bound) return;
+    toolbar.dataset.bound = 'true';
+
+    toolbar.addEventListener('input', (event) => {
+      if (!event.target.matches('[data-cat-search]')) return;
+      state.q = event.target.value.trim();
+      state.quick = 'all';
+      syncControlsFromState();
+      renderList();
+    });
+    toolbar.addEventListener('change', (event) => {
+      if (event.target.matches('[data-cat-sort]')) state.sort = event.target.value;
+      if (event.target.matches('[data-cat-type]')) state.type = event.target.value;
+      if (event.target.matches('[data-cat-status]')) state.status = event.target.value;
+      if (event.target.matches('[data-cat-year]')) state.year = event.target.value;
+      if (event.target.matches('[data-cat-link]')) state.link = event.target.value;
+      renderList();
+    });
+    toolbar.addEventListener('click', (event) => {
+      const quick = event.target.closest('[data-cat-quick-value]');
+      if (quick) {
+        state.quick = quick.dataset.catQuickValue;
+        state.q = '';
+        syncControlsFromState();
+        renderList();
+        return;
+      }
+      const clear = event.target.closest('[data-cat-clear-one]');
+      if (clear) {
+        clearOne(clear.dataset.catClearOne);
+        return;
+      }
+      if (event.target.closest('[data-cat-reset]')) resetAll();
+    });
+  }
+
+  function bindListEvents() {
+    const panel = document.querySelector('[data-view-panel]');
+    if (!panel || panel.dataset.catalogCoreBound) return;
+    panel.dataset.catalogCoreBound = 'true';
+    panel.addEventListener('click', (event) => {
+      const open = event.target.closest('[data-project-open]');
+      if (open) openProject(open.dataset.projectOpen);
+    });
+  }
+
+  function setQuery(query) {
+    state.q = String(query || '').trim();
+    state.quick = 'all';
+    syncControlsFromState();
+    renderList();
+  }
+
+  function init() {
+    if (!window.BUILD_DIARY_DATA || !document.querySelector('[data-view-panel]')) {
+      setTimeout(init, 40);
       return;
     }
-    ready = true;
-    toolbar.outerHTML = toolbarHtml();
-    populate();
     readState();
-    renderQuickButtons();
-
-    const c = controls();
-    Object.values(c).forEach((element) => element.addEventListener(element.tagName === 'INPUT' ? 'input' : 'change', render));
-    document.querySelector('[data-cat-reset]').addEventListener('click', () => {
-      c.search.value = '';
-      c.verb.value = '';
-      c.type.value = '';
-      c.status.value = '';
-      c.year.value = '';
-      c.doc.value = '';
-      c.link.value = '';
-      c.sort.value = 'created-desc';
-      c.layout.value = 'compact';
-      c.group.value = 'none';
-      quickFilter = 'all';
-      render();
-    });
-    document.querySelector('[data-cat-quick]').addEventListener('click', (event) => {
-      const button = event.target.closest('[data-cat-quick-value]');
-      if (!button) return;
-      quickFilter = button.dataset.catQuickValue;
-      render();
-    });
-    document.querySelector('[data-cat-active]').addEventListener('click', (event) => {
-      const button = event.target.closest('[data-cat-clear-one]');
-      if (button) clearOne(button.dataset.catClearOne);
-    });
-    document.querySelector('[data-cat-all]').addEventListener('change', (event) => {
-      filtered().forEach((project) => {
-        if (event.target.checked) selected.add(project.id);
-        else selected.delete(project.id);
-      });
-      render();
-    });
-    document.querySelector('[data-cat-clear]').addEventListener('click', () => {
-      selected.clear();
-      render();
-    });
-    document.querySelector('[data-cat-copy]').addEventListener('click', () => {
-      const list = projects().filter((project) => selected.has(project.id));
-      const format = document.querySelector('[data-cat-format]').value;
-      const feedback = document.querySelector('[data-cat-feedback]');
-      copyText(copyFormat(list, format)).then(() => {
-        feedback.textContent = `${list.length}件コピーしました`;
-        setTimeout(() => { feedback.textContent = ''; }, 2400);
-      }).catch(() => { feedback.textContent = 'コピーできませんでした'; });
-    });
-    document.querySelectorAll('[data-view-button]').forEach((button) => button.addEventListener('click', () => setTimeout(() => {
-      const shelf = currentView() === 'shelf';
-      const toolbarElement = document.querySelector('[data-catalog-toolbar]');
-      const bulk = document.querySelector('[data-cat-bulk]');
-      if (toolbarElement) toolbarElement.hidden = !shelf;
-      if (shelf) render();
-      else bulk.hidden = true;
-    }, 0)));
-    window.addEventListener('popstate', () => setTimeout(render, 0));
-    setTimeout(() => {
-      if (currentView() === 'shelf') render();
-    }, 0);
+    if (!renderToolbar()) {
+      setTimeout(init, 40);
+      return;
+    }
+    bindListEvents();
+    renderList();
+    window.WORKS_PORTFOLIO_CATALOG = Object.freeze({ setQuery, render: renderList });
+    window.dispatchEvent(new CustomEvent('worksportfolio:catalog-ready'));
   }
 
-  document.addEventListener('DOMContentLoaded', () => setTimeout(enhance, 80));
+  window.addEventListener('worksportfolio:set-query', (event) => setQuery(event.detail?.query || ''));
+  window.addEventListener('popstate', () => setTimeout(() => {
+    readState();
+    if (!document.querySelector('[data-catalog-toolbar]')) renderToolbar();
+    syncControlsFromState();
+    renderList();
+  }, 0));
+
+  document.addEventListener('DOMContentLoaded', () => setTimeout(init, 24), { once: true });
 })();
