@@ -54,8 +54,11 @@ html = html
 const hash = createHash('sha256').update(css).update('\0').update(js).update('\0').update(JSON.stringify(taxonomy)).digest('hex').slice(0, 12);
 const styleUrl = `showcase.css?v=${hash}`;
 const scriptUrl = `showcase.js?v=${hash}`;
-const registration = `<script data-worksportfolio-showcase>window.WORKS_PORTFOLIO_SHOWCASE=${scriptJson(taxonomy)};<\/script><script data-worksportfolio-showcase-assets>window.WORKS_PORTFOLIO_LAZY_ASSETS=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};window.WORKS_PORTFOLIO_LAZY_ASSETS.styles.push(${JSON.stringify(styleUrl)});window.WORKS_PORTFOLIO_LAZY_ASSETS.scripts.push(${JSON.stringify(scriptUrl)});<\/script>`;
-html = html.replace('</body>', `${registration}</body>`);
+const configScript = `<script data-worksportfolio-showcase>window.WORKS_PORTFOLIO_SHOWCASE=${scriptJson(taxonomy)};<\/script>`;
+const runtimeScript = `<script src="${scriptUrl}"><\/script>`;
+
+html = html.replace('</head>', `<link rel="stylesheet" href="${styleUrl}"></head>`);
+html = html.replace('</body>', `${configScript}${runtimeScript}</body>`);
 
 await writeFile(indexUrl, html, 'utf8');
-console.log(`Injected Showcase / Project Family taxonomy; presentation assets deferred (${hash}).`);
+console.log(`Injected Showcase / Project Family taxonomy; core presentation assets loaded directly (${hash}).`);

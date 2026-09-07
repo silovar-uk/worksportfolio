@@ -5,8 +5,8 @@
   const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
   const projectMap = () => new Map(projects().filter((project) => project?.id).map((project) => [project.id, project]));
   let activeFamily = '';
-  let applyingFamily = false;
-  let pendingViewportRestore = 0;
+  let filterFrame = 0;
+  let panelObserver = null;
 
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
@@ -47,18 +47,18 @@
 
   function familyCard(family, map) {
     const members = (family.projectIds || []).map((id) => map.get(id)).filter(Boolean);
-    return `<article class="showcase-family-card${activeFamily === family.id ? ' is-active' : ''}">
+    return `<article class="showcase-family-card" data-showcase-family-card="${attr(family.id)}">
       <div class="showcase-family-head"><h3>${esc(family.label)}</h3><strong>${members.length}</strong></div>
       <p>${esc(family.description || '')}</p>
       <div class="showcase-family-members">${members.slice(0, 6).map(memberLink).join('')}</div>
-      <button class="showcase-family-filter" type="button" data-showcase-family="${attr(family.id)}">${activeFamily === family.id ? '絞り込みを解除' : 'この系統を見る'}</button>
+      <button class="showcase-family-filter" type="button" data-showcase-family="${attr(family.id)}" aria-pressed="false">この系統を見る</button>
     </article>`;
   }
 
   function render() {
     const taxonomy = config();
     const toolbar = document.querySelector('[data-catalog-toolbar]');
-    if (!taxonomy || !toolbar || document.querySelector('[data-portfolio-showcase]')) return;
+    if (!taxonomy || !toolbar || document.querySelector('[data-portfolio-showcase]')) return false;
 
     const map = projectMap();
     const showcase = taxonomy.showcase || {};
@@ -81,7 +81,8 @@
       <section class="showcase-block showcase-families-block" aria-labelledby="showcase-families-title">
         <div class="showcase-block-head">
           <div><p>PROJECT FAMILIES</p><h2 id="showcase-families-title">${families.length}つの制作系統</h2></div>
-          ${activeFamily ? '<button type="button" data-showcase-family-clear>絞り込み解除</button>' : '<span>興味の入口から全作品を絞る</span>'}
+          <span data-showcase-family-hint>興味の入口から全作品を絞る</span>
+          <button type="button" data-showcase-family-clear hidden>絞り込み解除</button>
         </div>
         <div class="showcase-families">${families.map((family) => familyCard(family, map)).join('')}</div>
       </section>
@@ -98,8 +99,10 @@
     const explorer = toolbar.closest('.explorer');
     if (explorer?.parentNode) explorer.insertAdjacentElement('beforebegin', section);
     else toolbar.parentNode?.prepend(section);
+    syncFamilyUi();
     syncVisibility();
-    applyFamilyFilter();
+    scheduleFamilyFilter();
+    return true;
   }
 
   function openProject(id) {
@@ -115,49 +118,76 @@
     document.querySelector('[data-catalog-toolbar]')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function familyIds() {
-    const family = (config()?.families || []).find((item) => item.id === activeFamily);
-    return new Set(family?.projectIds || []);
+  function activeFamilyConfig() {
+    if (!activeFamily) return null;
+    return (config()?.families || []).find((item) => item.id === activeFamily) || null;
+  }
+
+  function syncFamilyUi() {
+    const active = activeFamilyConfig();
+    document.querySelectorAll('[data-showcase-family-card]').forEach((card) => {
+      card.classList.toggle('is-active', Boolean(active && card.getAttribute('data-showcase-family-card') === active.id));
+    });
+    document.querySelectorAll('[data-showcase-family]').forEach((button) => {
+      const selected = Boolean(active && button.getAttribute('data-showcase-family') === active.id);
+      button.textContent = selected ? '絞り込みを解除' : 'この系統を見る';
+      button.setAttribute('aria-pressed', String(selected));
+    });
+    const clear = document.querySelector('[data-showcase-family-clear]');
+    const hint = document.querySelector('[data-showcase-family-hint]');
+    if (clear) clear.hidden = !active;
+    if (hint) hint.hidden = Boolean(active);
   }
 
   function applyFamilyFilter() {
-    if (applyingFamily) return;
-    applyingFamily = true;
-    const ids = familyIds();
-    const enabled = Boolean(activeFamily);
+    filterFrame = 0;
+    if (document.querySelector('[data-view-button].is-active')?.getAttribute('data-view-button') !== 'shelf') return;
+
+    const active = activeFamilyConfig();
+    const ids = new Set(active?.projectIds || []);
+    const enabled = Boolean(active);
     const items = [...document.querySelectorAll('[data-cat-item]')];
+    let visibleCount = 0;
+
     items.forEach((item) => {
       const id = item.getAttribute('data-cat-item');
-      item.dataset.showcaseFamilyHidden = String(enabled && !ids.has(id));
-      item.style.display = enabled && !ids.has(id) ? 'none' : '';
+      const hiddenByFamily = enabled && !ids.has(id);
+      item.dataset.showcaseFamilyHidden = hiddenByFamily ? 'true' : 'false';
+      item.style.display = hiddenByFamily ? 'none' : '';
+      if (!hiddenByFamily && !item.hidden) visibleCount += 1;
     });
+
     document.querySelectorAll('.catalog-group').forEach((group) => {
-      const visible = [...group.querySelectorAll('[data-cat-item]')].some((item) => item.style.display !== 'none' && !item.hidden);
+      const visible = [...group.querySelectorAll('[data-cat-item]')]
+        .some((item) => item.style.display !== 'none' && !item.hidden);
       group.style.display = enabled && !visible ? 'none' : '';
     });
-    if (enabled) {
-      const count = document.querySelector('[data-cat-count]');
-      const visibleCount = items.filter((item) => item.style.display !== 'none' && !item.hidden).length;
-      if (count) count.innerHTML = `<strong>${visibleCount}</strong>件（Project Family）`;
+
+    const count = document.querySelector('[data-cat-count]');
+    if (count && items.length) {
+      count.innerHTML = enabled
+        ? `<strong>${visibleCount}</strong>件（${esc(active.label)}）`
+        : `<strong>${visibleCount}</strong> / ${projects().length}件`;
     }
-    applyingFamily = false;
+  }
+
+  function scheduleFamilyFilter() {
+    cancelAnimationFrame(filterFrame);
+    filterFrame = requestAnimationFrame(applyFamilyFilter);
   }
 
   function setFamily(id) {
     activeFamily = activeFamily === id ? '' : id;
-    document.querySelector('[data-portfolio-showcase]')?.remove();
-    render();
-    requestAnimationFrame(() => {
-      applyFamilyFilter();
-      scrollToCatalog();
-    });
+    syncFamilyUi();
+    scheduleFamilyFilter();
+    if (activeFamily) requestAnimationFrame(scrollToCatalog);
   }
 
   function clearFamily() {
+    if (!activeFamily) return;
     activeFamily = '';
-    document.querySelector('[data-portfolio-showcase]')?.remove();
-    render();
-    requestAnimationFrame(applyFamilyFilter);
+    syncFamilyUi();
+    scheduleFamilyFilter();
   }
 
   function syncVisibility() {
@@ -167,113 +197,73 @@
     section.hidden = Boolean(active && active !== 'shelf');
   }
 
-  function snapshotViewport(input = null) {
-    return {
-      input,
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-      selectionStart: input?.selectionStart ?? null,
-      selectionEnd: input?.selectionEnd ?? null
-    };
+  function bindPanelObserver() {
+    if (panelObserver) return;
+    const panel = document.querySelector('[data-view-panel]');
+    if (!panel) return;
+    panelObserver = new MutationObserver(() => scheduleFamilyFilter());
+    panelObserver.observe(panel, { childList: true });
   }
 
-  function restoreViewport(snapshot) {
-    if (!snapshot) return;
-    const input = snapshot.input;
-    document.documentElement.classList.add('catalog-input-stable');
+  function bindEvents() {
+    if (document.documentElement.dataset.showcaseEventsBound) return;
+    document.documentElement.dataset.showcaseEventsBound = 'true';
 
-    const apply = () => {
-      window.scrollTo({ top: snapshot.scrollY, left: snapshot.scrollX, behavior: 'auto' });
-      if (input?.isConnected && document.activeElement !== input) {
-        try { input.focus({ preventScroll: true }); } catch (_) { input.focus(); }
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target) return;
+      const open = target.closest('[data-showcase-open]');
+      if (open) {
+        event.preventDefault();
+        openProject(open.getAttribute('data-showcase-open'));
+        return;
       }
-      if (input?.isConnected && typeof snapshot.selectionStart === 'number') {
-        try { input.setSelectionRange(snapshot.selectionStart, snapshot.selectionEnd); } catch (_) {}
+      if (target.closest('[data-showcase-browse]')) {
+        event.preventDefault();
+        scrollToCatalog();
+        return;
       }
-    };
-
-    apply();
-    cancelAnimationFrame(pendingViewportRestore);
-    pendingViewportRestore = requestAnimationFrame(() => {
-      apply();
-      requestAnimationFrame(() => {
-        apply();
-        document.documentElement.classList.remove('catalog-input-stable');
-      });
+      const family = target.closest('[data-showcase-family]');
+      if (family) {
+        event.preventDefault();
+        setFamily(family.getAttribute('data-showcase-family'));
+        return;
+      }
+      if (target.closest('[data-showcase-family-clear]')) {
+        event.preventDefault();
+        clearFamily();
+        return;
+      }
+      if (target.closest('[data-view-button]')) {
+        setTimeout(() => {
+          syncVisibility();
+          scheduleFamilyFilter();
+        }, 0);
+      }
     });
-  }
 
-  function bindCatalogStability() {
-    if (document.documentElement.dataset.catalogInputStabilityBound) return;
-    document.documentElement.dataset.catalogInputStabilityBound = 'true';
-
-    document.addEventListener('input', (event) => {
-      if (matchMedia('(max-width:760px)').matches) return;
-      const input = event.target instanceof Element ? event.target.closest('[data-cat-search], [data-search-input]') : null;
-      if (!input) return;
-      const snapshot = snapshotViewport(input);
-      restoreViewport(snapshot);
-      setTimeout(() => restoreViewport(snapshot), 0);
-    }, true);
-
-    document.addEventListener('change', (event) => {
-      if (matchMedia('(max-width:760px)').matches) return;
-      const control = event.target instanceof Element
-        ? event.target.closest('[data-catalog-toolbar] select, [data-cat-sort], [data-cat-layout], [data-cat-group], [data-cat-verb], [data-cat-type], [data-cat-status], [data-cat-year], [data-cat-doc], [data-cat-link], [data-mark-filter]')
-        : null;
-      if (!control) return;
-      const search = document.querySelector('[data-cat-search]');
-      const snapshot = snapshotViewport(document.activeElement === search ? search : null);
-      restoreViewport(snapshot);
-      setTimeout(() => restoreViewport(snapshot), 0);
-    }, true);
-  }
-
-  document.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target : null;
-    if (!target) return;
-    const open = target.closest('[data-showcase-open]');
-    if (open) {
-      event.preventDefault();
-      openProject(open.getAttribute('data-showcase-open'));
-      return;
-    }
-    if (target.closest('[data-showcase-browse]')) {
-      event.preventDefault();
-      scrollToCatalog();
-      return;
-    }
-    const family = target.closest('[data-showcase-family]');
-    if (family) {
-      event.preventDefault();
-      setFamily(family.getAttribute('data-showcase-family'));
-      return;
-    }
-    if (target.closest('[data-showcase-family-clear]')) {
-      event.preventDefault();
-      clearFamily();
-      return;
-    }
-    if (target.closest('[data-view-button]')) setTimeout(syncVisibility, 0);
-  });
-
-  let queued = false;
-  const observer = new MutationObserver(() => {
-    if (queued) return;
-    queued = true;
-    queueMicrotask(() => {
-      queued = false;
-      render();
-      applyFamilyFilter();
+    window.addEventListener('popstate', () => setTimeout(() => {
       syncVisibility();
-    });
-  });
+      scheduleFamilyFilter();
+    }, 0));
+  }
 
   function start() {
-    bindCatalogStability();
-    render();
-    const explorer = document.querySelector('.explorer');
-    if (explorer) observer.observe(explorer, { childList: true, subtree: true });
+    bindEvents();
+    let attempts = 0;
+    const waitForCatalog = () => {
+      attempts += 1;
+      const toolbar = document.querySelector('[data-catalog-toolbar]');
+      if (!config() || !toolbar) {
+        if (attempts < 75) setTimeout(waitForCatalog, 80);
+        return;
+      }
+      render();
+      bindPanelObserver();
+      syncVisibility();
+      scheduleFamilyFilter();
+    };
+    waitForCatalog();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
