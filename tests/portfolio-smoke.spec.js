@@ -38,6 +38,7 @@ async function boot(page) {
   await page.locator('[data-catalog-toolbar]').waitFor({ state: 'attached' });
   await page.locator('[data-portfolio-showcase]').waitFor({ state: 'attached' });
   await page.waitForFunction(() => document.documentElement.dataset.portfolioEnhancements === 'ready', null, { timeout: 15000 });
+  await page.waitForTimeout(100);
   await page.evaluate(() => { window.__portfolioLongTasks = []; });
 }
 
@@ -58,15 +59,17 @@ async function exerciseCoreInteractions(page) {
     await expect(page.locator(`[data-showcase-family-card="${familyId}"]`)).toHaveClass(/is-active/, { timeout: 2500 });
     await expect(button).toHaveAttribute('aria-pressed', 'true');
 
+    await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 })
+      .toBeLessThan(totalItems);
     const visibleItems = await page.locator('[data-cat-item]:visible').count();
     expect(visibleItems).toBeGreaterThan(0);
-    expect(visibleItems).toBeLessThan(totalItems);
   }
 
   const activeFamily = page.locator('[data-showcase-family][aria-pressed="true"]');
   await expect(activeFamily).toHaveCount(1);
   await activeFamily.click({ timeout: 2500 });
   await expect(page.locator('[data-showcase-family-card].is-active')).toHaveCount(0);
+  await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 }).toBe(totalItems);
 
   const search = page.locator('[data-cat-search]');
   const firstProjectId = await page.evaluate(() => window.BUILD_DIARY_DATA?.projects?.find((project) => project?.id)?.id || '');
@@ -76,9 +79,10 @@ async function exerciseCoreInteractions(page) {
   await search.fill('');
   await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 }).toBe(totalItems);
 
-  await page.locator('[data-view-button="timeline"]').click({ timeout: 2500 });
+  const viewSwitcher = page.locator('.view-switcher');
+  await viewSwitcher.locator('[data-view-button="timeline"]').click({ timeout: 2500 });
   await expect(page.locator('[data-portfolio-showcase]')).toBeHidden();
-  await page.locator('[data-view-button="shelf"]').click({ timeout: 2500 });
+  await viewSwitcher.locator('[data-view-button="shelf"]').click({ timeout: 2500 });
   await expect(page.locator('[data-portfolio-showcase]')).toBeVisible();
   await expect(page.locator('[data-cat-item]')).toHaveCount(totalItems, { timeout: 2500 });
 
