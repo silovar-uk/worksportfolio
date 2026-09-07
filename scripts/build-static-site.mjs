@@ -166,7 +166,7 @@ function searchIndexProject(project) {
   const normalizedHint = normalizeSearch(hint);
   let hiddenSearch = normalizeSearch([project.subtitle, project.summary, project.friction, ...(project.makingPrinciples || [])].filter(Boolean).join(' '));
   if (normalizedHint) hiddenSearch = hiddenSearch.replace(normalizedHint, '');
-  const record = { i: project.id, t: project.title || project.id, h: hint, y: typeCodes[project.type] || 'o', u: project.updatedAt || project.createdAt || '' };
+  const record = { i: project.id, t: project.title || project.id, h: hint, y: typeCodes[project.type] || 'o' };
   if (project.friction) record.r = 1;
   if (project.summaryOnly && project.liveUrl) record.l = project.liveUrl;
   if (project.summaryOnly) record.s = 1;
@@ -191,7 +191,7 @@ function detailProject(project) {
     relatedProjects: Array.isArray(project.relatedProjects) ? project.relatedProjects : [], updates: Array.isArray(project.updates) ? project.updates : [], aside: project.aside || '', extension: project.extension || null };
 }
 function writeRuntimeData(projects, generatedAt) {
-  const searchIndex = projects.map(searchIndexProject);
+  const searchIndex = projects.slice().sort((a, b) => String(b.updatedAt || b.createdAt || '').localeCompare(String(a.updatedAt || a.createdAt || ''))).map(searchIndexProject);
   const catalogPayload = { version: 1, generatedAt, projects: projects.map(catalogProject) };
   writeFileSync(join(root, 'data/catalog-projects.json'), `${JSON.stringify(catalogPayload)}\n`);
   const detailDir = join(root, 'data/project-details'); rmSync(detailDir, { recursive: true, force: true }); mkdirSync(detailDir, { recursive: true });
