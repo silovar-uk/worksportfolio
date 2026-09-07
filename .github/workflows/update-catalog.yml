@@ -101,6 +101,11 @@ jobs:
           test ! -e data/manual-projects-daily-log.json
           test ! -e data/manual-projects-private.json
           test ! -e loader.js
+          ! grep -q "document.addEventListener('DOMContentLoaded', init);" src/index.template.html
+          ! grep -q 'data-view-button=' src/index.template.html
+          ! grep -q 'class="timeline' src/index.template.html
+          ! grep -q 'class="shelves' src/index.template.html
+          ! grep -q 'class="map-layout' src/index.template.html
           node - <<'NODE'
           const fs = require('fs');
           const projects = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
@@ -111,7 +116,7 @@ jobs:
               throw new Error(`Private summary leaked into canonical public registry: ${project?.id || '(missing)'}`);
             }
           }
-          console.log(`Canonical public boundary valid: ${projects.length} project records.`);
+          console.log(`Canonical public boundary valid: ${projects.length} project records; source template is core-only.`);
           NODE
 
       - name: Validate Private summaries
@@ -254,7 +259,7 @@ jobs:
           if (start < marker.length || end < 0) throw new Error('Cannot measure BUILD_DIARY_DATA.');
           const diaryBytes = Buffer.byteLength(html.slice(start, end).trim().replace(/;\s*$/, ''));
           const indexBytes = Buffer.byteLength(html);
-          const INDEX_BUDGET = 150000;
+          const INDEX_BUDGET = 125000;
           const DIARY_BUDGET = 100000;
           if (indexBytes > INDEX_BUDGET) throw new Error(`index.html performance budget exceeded: ${indexBytes} > ${INDEX_BUDGET}`);
           if (diaryBytes > DIARY_BUDGET) throw new Error(`inline diary performance budget exceeded: ${diaryBytes} > ${DIARY_BUDGET}`);
