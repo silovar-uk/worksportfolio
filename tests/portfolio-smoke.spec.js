@@ -43,6 +43,7 @@ async function boot(page, viewport) {
   await expect(page.locator('#home-start-title')).toBeVisible();
   await expect(page.locator('#home-frictions-title')).toBeVisible();
   await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'), null, { timeout: 5000 });
+  await page.waitForFunction(() => document.documentElement.classList.contains('project-detail-core-ready'), null, { timeout: 5000 });
 }
 
 async function staticLayoutSnapshot(page) {
@@ -69,8 +70,10 @@ async function exerciseSearch(page) {
 
   await header.press('ArrowDown');
   await header.press('Enter');
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('project') || '')).not.toBe('');
   await expect(page.locator('[data-project-dialog]')).toHaveAttribute('open', '');
   await page.locator('[data-dialog-close]').click();
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('project') || '')).toBe('');
 
   await header.fill(query);
   await page.locator('[data-home-search-all]').click();
@@ -81,8 +84,6 @@ async function exerciseSearch(page) {
 async function exerciseCatalog(page) {
   await expect(page.locator('[data-catalog-toolbar]')).toBeVisible();
 
-  // Search handoff intentionally leaves the catalog filtered. Prove that state first,
-  // then clear it and verify the full catalog before testing quick filters.
   const catalogSearch = page.locator('[data-cat-search]');
   expect((await catalogSearch.inputValue()).length).toBeGreaterThan(0);
   await catalogSearch.fill('');
