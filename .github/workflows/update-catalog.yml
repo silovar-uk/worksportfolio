@@ -8,6 +8,7 @@ on:
     branches:
       - main
     paths:
+      - 'README.md'
       - 'data/projects.json'
       - 'data/private-projects.json'
       - 'data/periods.json'
@@ -30,6 +31,7 @@ on:
     branches:
       - main
     paths:
+      - 'README.md'
       - 'data/projects.json'
       - 'data/private-projects.json'
       - 'data/periods.json'
@@ -216,11 +218,12 @@ jobs:
           const catalog = JSON.parse(fs.readFileSync('data/catalog-projects.json', 'utf8'));
           if (!Array.isArray(search) || !Array.isArray(catalog.projects)) throw new Error('Runtime data payload shape invalid.');
           if (search.length !== catalog.projects.length) throw new Error(`Search/Catalog count mismatch: ${search.length} vs ${catalog.projects.length}`);
-          const privateSummaryIds = search.filter((item) => item.summaryOnly).map((item) => item.id);
+          const privateSummaryIds = search.filter((item) => item.s === 1).map((item) => item.i);
           for (const id of privateSummaryIds) {
             const path = `data/project-details/${encodeURIComponent(id)}.json`;
             if (fs.existsSync(path)) throw new Error(`Summary-only project must not expose a detail file: ${id}`);
           }
+          if (privateSummaryIds.length === 0) throw new Error('Expected Private-safe summary-only records in the packed Search Index.');
           console.log(`Runtime boundary OK: ${search.length} search records, ${catalog.projects.length} catalog records, ${privateSummaryIds.length} summary-only projects without detail files.`);
           NODE
 
