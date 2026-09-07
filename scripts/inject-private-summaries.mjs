@@ -1,16 +1,11 @@
-import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const readText = (path) => readFile(new URL(path, root), 'utf8');
 const readJson = async (path) => JSON.parse(await readText(path));
+const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 
-const [privateProjects, js, css] = await Promise.all([
-  readJson('data/private-projects.json'),
-  readText('private-source.js'),
-  readText('private-source.css')
-]);
-
+const privateProjects = await readJson('data/private-projects.json');
 const indexUrl = new URL('index.html', root);
 let html = await readFile(indexUrl, 'utf8');
 const marker = 'window.BUILD_DIARY_DATA =';
@@ -26,33 +21,24 @@ const map = new Map(projects.filter((project) => project?.id).map((project) => [
 
 for (const source of privateProjects) {
   if (!source?.id) continue;
-  const project = {
+  map.set(source.id, {
     ...source,
     visibility: 'private',
     sourceVisibility: 'private',
     summaryOnly: true,
     repositoryUrl: ''
-  };
-  map.set(project.id, project);
+  });
 }
 
 diary.projects = [...map.values()];
 if (!diary.settings || typeof diary.settings !== 'object') diary.settings = {};
 diary.settings.currentNote = 'GitHubの公開リポジトリ、手元の制作物、概要のみ公開しているPrivate制作物を整理しています。Private制作物のソースや内部情報は公開していません。';
 
-const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 html = html.slice(0, jsonStart) + ` ${scriptJson(diary)};\n` + html.slice(scriptEnd);
-
 html = html
   .replace(/<link rel="stylesheet" href="private-source\.css\?v=[^"]+">/g, '')
   .replace(/<script src="private-source\.js\?v=[^"]+"><\/script>/g, '')
   .replace(/<script data-worksportfolio-private-assets>[\s\S]*?<\/script>/g, '');
 
-const hash = createHash('sha256').update(css).update('\0').update(js).digest('hex').slice(0, 12);
-const styleUrl = `private-source.css?v=${hash}`;
-const scriptUrl = `private-source.js?v=${hash}`;
-const registration = `<script data-worksportfolio-private-assets>window.WORKS_PORTFOLIO_LAZY_ASSETS=window.WORKS_PORTFOLIO_LAZY_ASSETS||{styles:[],scripts:[]};window.WORKS_PORTFOLIO_LAZY_ASSETS.styles.push(${JSON.stringify(styleUrl)});window.WORKS_PORTFOLIO_LAZY_ASSETS.scripts.push(${JSON.stringify(scriptUrl)});<\/script>`;
-html = html.replace('</body>', `${registration}</body>`);
-
 await writeFile(indexUrl, html, 'utf8');
-console.log(`Injected ${privateProjects.length} safe Private-project summaries; presentation assets deferred (${hash}).`);
+console.log(`Injected ${privateProjects.length} safe Private-project summaries as data only; no document-wide observer shipped.`);
