@@ -8,117 +8,201 @@
 
 このPortfolioの主役は「作品をたくさん見せること」ではなく、**過去の「困った → 作った」を必要な瞬間に取り出せること**です。
 
-UIの優先順位は次の順です。
+優先順位:
 
 1. **Find** — 名前・困りごと・技術・用途からすぐ探せる
 2. **Understand** — なぜ作ったか、いま何になっているかが分かる
 3. **Browse** — 目的が決まっていなくても探索できる
 4. **Delight** — 便利さを壊さない範囲で意外な再発見がある
 
-「年代順 / カード / 地図」などの表示方法を最初に選ばせるのではなく、1つの検索と1つのCatalogを入口にします。
+Productionは **One shell / One search / One catalog / One detail** を基本とします。
+
+---
 
 ## Architecture contract
 
-このRepositoryでは、**生成済みHTMLを入力へ戻さないこと**と、**初期表示後にページ構造を組み替えないこと**を最重要ルールにしています。
+`index.html` は成果物であり、Source of Truthではありません。
 
 ```text
 Canonical source
   ↓
-Validation / discovery / derived data
+Validation / GitHub discovery / editorial review
   ↓
-Clean static build
-  ↓
-Publication gates / safe-data annotation
-  ↓
-Detail payload split
-  ↓
-index.html
+One direct production build
+  ├─ index.html + inline Search Index
+  ├─ data/catalog-projects.json
+  └─ data/project-details/<id>.json
   ↓
 GitHub Pages
 ```
 
-`index.html` は成果物です。日常編集のSource of Truthではありません。Build時には削除し、`src/index.template.html` から再生成します。
+重要なのは、**大きなRuntimeデータを一度HTMLへ埋めてから後段Scriptで削る方式を使わないこと**です。
 
-## One shell / One search / One catalog
+Source / Build / Productionのデータ境界を一致させます。
 
-ProductionのCore UIは次の3つに限定します。
+---
 
-### 1. Shell
+## Progressive data architecture
+
+ユーザーが必要とするタイミングに合わせて、Project dataを3層に分けます。
+
+### Layer 1 — Inline Search Index
+
+`index.html` に `window.WORKS_PORTFOLIO_SEARCH_INDEX` として埋め込みます。
+
+目的:
+
+- DOMContentLoaded直後からHeader Searchを使える
+- Searchのために外部JSONを待たない
+- Catalog障害時でも作品検索を維持する
+
+含めるのは検索に必要な最小情報だけです。
+
+- Project ID
+- title
+- 検索候補に表示する短いhint
+- type
+- updated date
+- alias / verb / technology / familyの検索情報
+- summary / friction等から作った検索専用corpus
+- summary-only判定
+- summary-only Projectが直接開ける公開URLがある場合のみ、そのURL
+
+Production byte数を抑えるため、このpayloadは短いkeyでpackし、`home-shell.js` がRuntimeで意味のあるrecordへdecodeします。
+
+**検索対象を減らすための圧縮ではありません。**
+表示しない検索専用情報の表現だけを圧縮します。
+
+### Layer 2 — Catalog payload
+
+`data/catalog-projects.json`
+
+Catalogを表示するときに1回だけ取得します。
+
+主な内容:
+
+- title
+- summary
+- type / status
+- started / created / updated date
+- public page URL
+- GitHub URL
+- Private-safe source表示
+
+Catalogが取得できない場合でもHeader Searchは利用可能なままにします。
+
+### Layer 3 — Project Detail
+
+`data/project-details/<id>.json`
+
+Projectを実際に開いたときだけ取得します。
+
+主な内容:
+
+- subtitle / summary
+- 作ったきっかけ
+- firstBuild
+- currentAnswer
+- update history
+- technologies
+- relatedProjects
+- extension information
+
+`summaryOnly: true` のPrivate-safe ProjectにはDetail JSONを生成しません。
+
+---
+
+## Core UI ownership
+
+### Shell
 
 担当:
 
 - Header
-- Header Searchの静的Markup
-- Hero / Intro
-- `START HERE`
-- `WHY I MADE THEM`
-- Catalogの配置
-
-主なSource:
-
-- `src/index.template.html`
-- `data/settings.json`
-- `scripts/build-static-site.mjs`
-- `shell.css`
-- `home-shell.css`
-
-上部UIはRuntime featureから作り直しません。
-
-### 2. Search
-
-担当:
-
-- Header Quick Search
-- Catalog Searchと同じ検索意味
-- 日本語IME
-- Arrow Up / Down、Enter、Esc
-- `/` で検索へフォーカス
-- 名前だけでなく、困りごと・技術・用途・aliasから検索
-- 検索候補に `MATCH: 困りごと` など一致理由を表示
+- Header Search markup
+- Hero
+- START HERE
+- WHY I MADE THEM
+- Catalog mount point
+- Dialog shell
 
 Source:
 
-- `home-shell.js`
+- `src/index.template.html`
+- `shell.css`
+- `home-shell.css`
+- `data/settings.json`
+- `scripts/build-static-site.mjs`
 
-`window.WORKS_PORTFOLIO_SEARCH` が唯一の検索意味を提供します。Header SearchとCatalog Searchで別々の検索実装を持ちません。
+初期表示後にHeroや主要Sectionを別Runtimeが作り直すことは禁止します。
 
-### 3. Catalog
+### Search
 
-担当:
+Source: `home-shell.js`
 
-- 1つの高密度List
-- Quick Filter
-- Search
-- Sort
-- Advanced Filter
-- 公開ページ / GitHubへの直接導線
-- Project Detailを開く
-- URL state
+`window.WORKS_PORTFOLIO_SEARCH` が唯一の検索意味を提供します。
+
+扱うもの:
+
+- 日本語NFKC normalization
+- カタカナ / ひらがな吸収
+- alias
+- weighted match
+- Search resultの一致理由
+- IME composition
+- Arrow Up / Down
+- Enter / Escape
+- `/` shortcut
+- friction discovery
+- Surprise me
+
+Header SearchとCatalog Searchで別々の検索意味を実装しません。
+CatalogはProject IDを通してShared Searchへ問い合わせます。
+
+### Catalog
 
 Source:
 
 - `catalog.js`
 - `catalog.css`
+- `data/catalog-projects.json`（generated）
 
-ProductionのDefault UIでは、Compact / Card / Tableのレイアウト選択をユーザーへ要求しません。表示形式は設計側が決め、ユーザーは「探すこと」に集中します。
+Productionのdefault UIは1つのdense listです。
 
-## Static discovery sections
+- Search
+- Quick Filter
+- Sort
+- Advanced Filter
+- Public / GitHub link
+- Project Detail entry
+- URL state
+
+Card / Table / Mapなどの表示方式を最初に選ばせません。
+
+### Project Detail
+
+Source:
+
+- `project-detail.js`
+- `data/project-details/*.json`（generated）
+
+`?project=<id>` で直接参照できます。
+
+Detail fetchに失敗してもSearch / Catalogは利用可能なままにします。
+
+---
+
+## Static discovery
 
 ### START HERE
 
-最初に全件一覧を読ませず、方向の違う代表作を最大4件だけ出します。
+最大4作品をBuild時に静的生成します。
 
-- Desktop: 4列
-- Tablet: 2列
-- Mobile: 横スクロール
-
-代表作は `data/settings.json` の `featuredProjectIds` を優先します。
+`data/settings.json` の `featuredProjectIds` を優先します。
 
 ### WHY I MADE THEM
 
-制作物を技術ではなく、作る前の摩擦から探す入口です。
-
-現在のレンズ:
+技術ではなく「作る前の摩擦」から探す入口です。
 
 - 手間を減らす
 - 覚えて戻る
@@ -127,113 +211,50 @@ ProductionのDefault UIでは、Compact / Card / Tableのレイアウト選択�
 - 伝わり方を整える
 - 情報を守る
 
-ここは別ページや別Viewではなく、Header SearchへつながるDiscovery Navigationです。
+別Viewを生成するのではなく、Inline Search Indexを利用したDiscovery Navigationです。
 
 ### Surprise me
 
-目的が決まっていないときの再発見用に「おまかせで1つ」を置きます。
+目的が決まっていないときだけ、Projectを1つ引きます。
 
-ランダム機能は複数実装をProductionへ同時に載せません。
+ランダムUIを複数実装しません。
 
-## Project detail
+---
 
-Project Detailでは次を扱います。
+## Project registries
 
-- 概要
-- 公開ページ
-- GitHub
-- 作ったきっかけ
-- 最初の版
-- 現在の状態
-- 更新履歴
-- 技術
-- 関連する制作物
+人が編集するProject metadataの正本:
 
-一覧用Summaryはinlineに持ち、重いDetail fieldsは `data/project-details/<id>.json` に分割して、開いたときだけ取得します。
+- `data/projects.json` — Canonical public/local Project Registry
+- `data/private-projects.json` — 公開可能な情報だけに限定したPrivate-safe Summary Registry
 
-`?project=<id>` で直接参照でき、Core navigationからDetailを開くために `location.reload()` は使いません。
+`data/portfolio-config.json` はrepository ID mappingやhidden IDなど、Project metadataそのものではない設定だけを持ちます。
 
-## Runtime ownership rules
+### Public GitHub discovery
 
-Production Coreでは以下を禁止します。
+`scripts/build-catalog.mjs` がPublic repositoryだけを取得し、`data/catalog.json` を生成します。
 
-- Heroの`innerHTML`を後から交換する
-- 別featureのDOM順序を修復する
-- 別featureのCSSを`!important`で押さえ込む
-- Core UIにMutationObserverを使う
-- document全体をMutationObserverで監視する
-- RuntimeでCore layout用`<style>`を追加する
-- `requestIdleCallback`で「あとから完成するページ」を作る
-- Header SearchとCatalog Searchに別々の検索ロジックを持つ
-- Detailを開くためにページ全体をreloadする
+発見と公開は別です。
 
-初期表示時点の主要レイアウトを完成形とします。
+Editorial state:
 
-## Experimental assets
+- `discovered`
+- `candidate`
+- `curated`
+- `published`
+- `hidden`
 
-過去の実験コードは、検証材料としてRepositoryに残っている場合があります。
+公開判定は `data/editorial-policy.json` をSourceとして、**`scripts/build-static-site.mjs` がProduction data生成時に直接適用**します。
 
-例:
+`scripts/build-editorial-review.mjs` はReview queueを作りますが、Production HTMLを後処理しません。
 
-- `friction-atlas.*`
-- `live-index.*`
-- `random-three.*`
-- `floating-random.*`
-- `comparison-view.*`
-- `favorites.*`
-- `showcase.*`
-- `catalog-list-first.js`
-- `catalog-visibility.js`
+### Private-safe projects
 
-これらは**存在することとProductionで読み込むことを分けて扱います**。
+Private repository metadataそのものはPublic catalogへ流しません。
 
-現行Coreで必要性が証明されない限り、`index.html` の初期ロード経路には戻しません。再採用する場合も、Core DOMを修復する方式ではなく、独立したon-demand機能として実装します。
+`data/private-projects.json` には公開可能な概要だけを置きます。
 
-## Project taxonomy
-
-`data/portfolio-taxonomy.json` は引き続きProject FamilyとMaking PrincipleのSourceです。
-
-- `families`: 制作系統
-- `principles`: 制作物から帰納したMaking Principles
-
-`scripts/inject-showcase.mjs` は現在、Showcase UIをRuntime挿入しません。各Projectへtaxonomy情報を**データとして注釈するだけ**です。
-
-検索や将来の探索機能はこのデータを利用できます。
-
-## Project registry
-
-Project metadataの正本は2つだけです。
-
-- `data/projects.json` — Public / localなど、Private summaryではない制作物のCanonical Project Registry
-- `data/private-projects.json` — 公開可能な情報だけに限定したPrivate制作物のSafe Summary Registry
-
-旧 `manual-projects*.json`、`portfolio-config.overrides`、生成済み `index.html` をProject metadataの入力にはしません。
-
-GitHub repository名とPortfolio上のProject IDが異なる場合だけ、`data/portfolio-config.json` の `repositoryProjectIds` で **Source repository ID → Project ID** を明示します。
-
-## Public GitHub discovery
-
-`scripts/build-catalog.mjs` がGitHub APIから**Public repositoryだけ**を取得し、`data/catalog.json` を生成します。
-
-発見と公開は分離します。
-
-Editorial State:
-
-- `discovered`: GitHubで発見、編集前
-- `candidate`: 公開候補として確認中
-- `curated`: タイトル・概要・分類を編集済み
-- `published`: Portfolioへ掲載
-- `hidden`: 掲載しない
-
-公開ゲートは `data/editorial-policy.json` と `scripts/apply-editorial-gate.mjs` が担当します。
-
-`scripts/build-editorial-review.mjs` が `data/editorial-review.json` を生成します。ここに含めるのはPublic repositoryだけです。
-
-## Private-source projects
-
-Private repositoryの検出情報はPublic catalogへ流しません。
-
-公開可能な概要だけを `data/private-projects.json` に手動で保存します。各recordは最低限、次を満たします。
+必須条件:
 
 ```json
 {
@@ -244,74 +265,97 @@ Private repositoryの検出情報はPublic catalogへ流しません。
 }
 ```
 
-公開してはいけないもの:
+公開禁止:
 
 - Private GitHub URL / repository metadata
 - source code / README本文
-- file path / branch / commit / issue / PR
+- branch / commit / issue / PR
 - secret / API key
-- 内部URL
+- internal URL
 - account / database identifier
 - 個人・顧客・組織の内部情報
 
-`scripts/validate-private-summaries.mjs` と `scripts/validate-portfolio-model.mjs` が検査します。
+BuildではPrivate-safe Summaryを直接最終Project集合へmergeします。
 
-`scripts/inject-private-summaries.mjs` はSafe SummaryをProject dataへ追加するだけで、Productionへdocument-wide ObserverやPrivate専用repair runtimeを追加しません。
+`summaryOnly` Projectには `data/project-details/<id>.json` を作りません。
+
+---
+
+## Taxonomy
+
+`data/portfolio-taxonomy.json` がSourceです。
+
+- `families`
+- `principles`
+
+Family / Principle annotationも `scripts/build-static-site.mjs` がProduction data生成時に直接適用します。
+
+Runtime Showcase injectionは行いません。
+
+---
 
 ## Source of Truth
 
-### 人が編集するSource
+### Human-edited
 
-- `src/index.template.html` — HTML構造のベース
-- `shell.css` — Header / Header Search / Hero
-- `home-shell.css` — Home discovery / stable layout
-- `home-shell.js` — Shared Search / Header Search / Home discovery interaction
-- `catalog.js` / `catalog.css` — Canonical Catalog
-- `data/projects.json` — Canonical Project Registry
-- `data/private-projects.json` — Private-safe Summary Registry
-- `data/periods.json` — 時系列データ
-- `data/settings.json` — サイト設定 / Top copy / Featured IDs
-- `data/portfolio-config.json` — repository ID mapping / hidden等
-- `data/portfolio-taxonomy.json` — Family / Principle
-- `data/editorial-policy.json` — 公開ゲート方針
-- `data/project-start-dates.json` — 制作開始日の監査データ
-- `data/pattern-taxonomy.json` / `data/pattern-merge-rules.json` — Pattern生成ルール
+- `src/index.template.html`
+- `shell.css`
+- `home-shell.css`
+- `home-shell.js`
+- `catalog.css`
+- `catalog.js`
+- `project-detail.js`
+- `data/projects.json`
+- `data/private-projects.json`
+- `data/settings.json`
+- `data/portfolio-config.json`
+- `data/portfolio-taxonomy.json`
+- `data/editorial-policy.json`
+- `data/project-start-dates.json`
+- `data/pattern-taxonomy.json`
+- `data/pattern-merge-rules.json`
 
-### 生成されるもの
+### Generated
 
-- `data/catalog.json` — Public GitHub repository catalog
-- `data/editorial-review.json` — Public repository review queue
-- `data/pattern-audit.json` / `data/patterns.json` など — Pattern派生データ
-- `data/project-details/*.json` — on-demand Detail payload
-- `index.html` — 公開用完成HTML
+- `data/catalog.json` — Public GitHub discovery
+- `data/editorial-review.json` — Review queue
+- `data/pattern-audit.json`
+- `data/patterns.json`
+- `data/catalog-projects.json` — Catalog Runtime payload
+- `data/project-details/*.json` — Detail Runtime payload
+- `index.html` — Production HTML + packed inline Search Index
 
-## Identifier integrity
+---
 
-`scripts/validate-global-ids.mjs` がProject IDを横断検証します。
+## Runtime rules
 
-区別するもの:
+Production Coreでは以下を禁止します。
 
-- Canonical Project ID
-- Private-safe Project ID
-- Source repository ID
-- `repositoryProjectIds` による明示mapping
+- Heroの`innerHTML` replacement
+- feature間のDOM repair
+- Core UIへのMutationObserver
+- document-wide MutationObserver
+- Runtime style injectionによるCore layout repair
+- `requestIdleCallback`で後からページを完成させる
+- Core navigationの`location.reload()`
+- Header SearchとCatalog Searchの意味を分岐させる
+- 巨大Project Diaryをinlineに戻す
+- Catalog / Detail障害を理由にSearchを使えなくする
 
-`hiddenIds` はSource repository IDまたはProject IDを取れます。一方、Family / Principle / relationはProject IDを参照します。
-
-存在しないID、Public/Private衝突、重複Project IDはBuildを失敗させます。
+---
 
 ## Build pipeline
 
-HTMLを書き出すWorkflowは `.github/workflows/update-catalog.yml` に一本化しています。
+`.github/workflows/update-catalog.yml`
 
 ```text
-Source-of-truth boundary validation
+Source boundary validation
   ↓
 Private-safe validation
   ↓
-Public GitHub catalog build
+Public GitHub discovery
   ↓
-Sanitize / curation / audit
+Sanitize / audit
   ↓
 Global ID validation
   ↓
@@ -321,92 +365,102 @@ Editorial review build
   ↓
 Pattern validation / build
   ↓
-rm -f index.html
+Clean direct production build
+    ├─ editorial publication filtering
+    ├─ Private-safe merge
+    ├─ taxonomy annotation
+    ├─ packed inline Search Index
+    ├─ Catalog JSON
+    └─ per-project Detail JSON
   ↓
-Stable static build
+Architecture / privacy / byte-budget validation
   ↓
-Core architecture validation
-  ↓
-Editorial publication gate
-  ↓
-Private-safe summary injection
-  ↓
-Family / Principle data annotation
-  ↓
-Summary / on-demand detail split
-  ↓
-Generated-page / privacy / performance checks
+Generated files commit
   ↓
 GitHub Pages
 ```
 
+Production dataを加工するための後段HTML mutation stageは置きません。
+
+---
+
 ## Quality gates
 
-Buildは「機能ファイルがたくさん存在すること」ではなく、Core UXを検査します。
+### Data boundary
 
-Productionで確認すること:
+CIで確認すること:
 
-- Header Searchは1つだけ
-- `home-shell.js` / `catalog.js` がCore runtime
-- `requestIdleCallback`による後段組み立てなし
-- Core runtimeにMutationObserverなし
-- Core navigationに`location.reload()`なし
-- Legacy repair / experimental runtimeをProductionへ配信しない
-- Private repository URLを公開しない
-- Project detailsはon-demand
-- index / inline dataはPerformance Budget内
+- Search IndexとCatalogのProject件数が一致
+- packed Search IndexにPrivate-safe summaryが存在
+- summary-only ProjectにDetail JSONが存在しない
+- Private repository URLがProduction HTMLへ出ない
+- obsolete runtime globalsが存在しない
 
-Browser smoke testではDesktop / Mobileの両方で次を確認します。
+### Performance budgets
 
-- DOMContentLoaded直後からHeader Searchが使える
-- Header → Detailが動く
-- Header → Catalogへ検索Queryを引き継げる
-- Catalogの検索解除 / Quick Filterが動く
-- 初期表示後に主要Sectionの位置・高さが変わらない
-- Legacy runtime assetへのNetwork Requestがない
-- Console / page / local request errorがない
-- Long Task / CLSが内部Budgetを超えない
+現在の上限:
 
-## 主な実装ファイル
+- `index.html`: 90 KB
+- inline Search Index: 50 KB
+- `data/catalog-projects.json`: 70 KB
+- Core JS合計: 60 KB
 
-### Production Core
+Budgetを超えた場合、基準を上げる前にデータ重複や責務境界を見直します。
 
+### Browser smoke
+
+Desktop / Mobileで確認します。
+
+- Header Search
+- Japanese IME path
+- Arrow / Enter / Escape
+- `/` shortcut
+- Search → Detail
+- Back / Forward
+- Search → Catalog query handoff
+- Catalog Search / Quick Filter / Sort
+- Catalog JSONが失敗してもHeader Searchが使える
+- legacy runtime request 0
+- Long Task < 150 ms
+- CLS < 0.03
+- console / page error 0
+
+---
+
+## Production Core files
+
+- `src/index.template.html`
 - `shell.css`
 - `home-shell.css`
 - `home-shell.js`
 - `catalog.css`
 - `catalog.js`
+- `project-detail.js`
 - `scripts/build-static-site.mjs`
 - `scripts/apply-copy-cleanup.mjs`
-- `scripts/split-project-data.mjs`
-- `scripts/inject-private-summaries.mjs`
-- `scripts/inject-showcase.mjs`
 - `.github/workflows/update-catalog.yml`
 - `.github/workflows/browser-smoke.yml`
 - `tests/portfolio-smoke.spec.js`
 
-### Data / Editorial
+旧post-build mutation scriptsはGit履歴に残し、現役コードとしては保持しません。
 
-- `scripts/build-catalog.mjs`
-- `scripts/validate-global-ids.mjs`
-- `scripts/validate-portfolio-model.mjs`
-- `scripts/apply-editorial-gate.mjs`
-- `scripts/build-editorial-review.mjs`
-- `scripts/validate-private-summaries.mjs`
+---
 
 ## Definition of Done
 
-Portfolioの改修は、見た目が変わった時点では完了としません。
+Portfolio改修はPR作成時点では完了しません。
 
-完了条件:
+1. Clean Build成功
+2. Source / Privacy / ID validation成功
+3. Runtime data-boundary validation成功
+4. Performance Budget成功
+5. Desktop Browser Smoke成功
+6. Mobile Browser Smoke成功
+7. PR merge
+8. main Build成功
+9. generated filesのmain commit確認
+10. main Browser Smoke成功
+11. final main SHAのGitHub Pages deploy成功
+12. Production URLで最終構造確認
 
-1. Clean Buildが成功する
-2. Privacy / Editorial Gateが成功する
-3. Core Architecture validationが成功する
-4. Browser interaction smokeがDesktop / Mobileで成功する
-5. Performance Budgetを超えない
-6. mainへmergeされる
-7. main上の生成Buildが成功する
-8. GitHub Pagesの公開URLでCore UIが確認できる
-
-この順番を省略しません。
+この12項目が揃って初めて完了です。

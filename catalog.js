@@ -13,11 +13,7 @@
     other: 'その他'
   };
   const STATUS_LABELS = {
-    development: '開発中',
-    active: '運用中',
-    prototype: '試作中',
-    dormant: '休止中',
-    legacy: '初期記録'
+    development: '開発中', active: '運用中', prototype: '試作中', dormant: '休止中', legacy: '初期記録'
   };
   const QUICK_FILTERS = [
     ['all', 'すべて'],
@@ -27,22 +23,14 @@
     ['extension', 'Chrome拡張'],
     ['learning', '学習']
   ];
-  const STORAGE_KEY = 'worksportfolio-catalog-v4';
+  const STORAGE_KEY = 'worksportfolio-catalog-v5';
 
-  const state = {
-    q: '',
-    quick: 'all',
-    type: '',
-    status: '',
-    year: '',
-    link: '',
-    sort: 'created-desc'
-  };
+  const state = { q: '', quick: 'all', type: '', status: '', year: '', link: '', sort: 'created-desc' };
+  let catalogProjects = [];
+  let catalogReady = false;
 
-  const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
-  const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;'
-  }[char]));
+  const projects = () => catalogProjects;
+  const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
   const norm = (value) => String(value || '').toLowerCase().normalize('NFKC').replace(/\s+/g, '');
   const dateNumber = (value) => String(value || '').replace(/[^0-9]/g, '').padEnd(8, '0');
@@ -69,27 +57,24 @@
     return match[1];
   }
 
+  async function loadCatalogProjects() {
+    const response = await fetch('data/catalog-projects.json', { cache: 'force-cache' });
+    if (!response.ok) throw new Error(`catalog-projects.json: ${response.status}`);
+    const payload = await response.json();
+    if (!Array.isArray(payload?.projects)) throw new Error('catalog-projects.json: invalid payload');
+    catalogProjects = payload.projects;
+    return catalogProjects;
+  }
+
   function fallbackMatches(project, query) {
     const q = norm(query);
     if (!q) return true;
-    const text = norm([
-      project.title,
-      project.subtitle,
-      project.summary,
-      project.friction,
-      project.id,
-      ...(project.verbs || []),
-      ...(project.technologies || []),
-      ...(project.searchAliases || []),
-      ...(project.portfolioFamilies || []),
-      ...(project.makingPrinciples || [])
-    ].filter(Boolean).join(' '));
-    return text.includes(q);
+    return norm([project.title, project.summary, project.id, project.type, project.status].filter(Boolean).join(' ')).includes(q);
   }
 
   function matchesSearch(project, query) {
     const api = window.WORKS_PORTFOLIO_SEARCH;
-    return api?.matches ? api.matches(project, query) : fallbackMatches(project, query);
+    return api?.matchesId ? api.matchesId(project.id, query) : fallbackMatches(project, query);
   }
 
   function passesQuick(project) {
@@ -149,10 +134,7 @@
         ${QUICK_FILTERS.map(([key, label]) => `<button type="button" class="catalog-quick-button${state.quick === key ? ' is-active' : ''}" data-cat-quick-value="${key}" aria-pressed="${state.quick === key}"><span>${esc(label)}</span><strong>${quickCount(key)}</strong></button>`).join('')}
       </div>
       <div class="catalog-primary">
-        <label class="catalog-search">
-          <span class="sr-only">制作物を検索</span>
-          <input type="search" data-cat-search autocomplete="off" placeholder="名前・困りごと・技術から探す" value="${attr(state.q)}">
-        </label>
+        <label class="catalog-search"><span class="sr-only">制作物を検索</span><input type="search" data-cat-search autocomplete="off" placeholder="名前・困りごと・技術から探す" value="${attr(state.q)}"></label>
         <select data-cat-sort aria-label="並び順">
           <option value="created-desc"${state.sort === 'created-desc' ? ' selected' : ''}>制作開始が新しい順</option>
           <option value="updated-desc"${state.sort === 'updated-desc' ? ' selected' : ''}>更新が新しい順</option>
@@ -176,10 +158,7 @@
           <button class="subtle-button" type="button" data-cat-reset>条件をすべて戻す</button>
         </div>
       </details>
-      <div class="catalog-resultbar">
-        <p class="catalog-result" data-cat-count></p>
-        <div class="catalog-active" data-cat-active></div>
-      </div>
+      <div class="catalog-resultbar"><p class="catalog-result" data-cat-count></p><div class="catalog-active" data-cat-active></div></div>
     </section>`;
   }
 
@@ -194,12 +173,10 @@
   function row(project) {
     const recent = isRecent(project, 90);
     const privateBadge = project.sourceVisibility === 'private' ? '<span class="catalog-private-source">Source not public</span>' : '';
-    const title = `<span class="catalog-titleline"><strong>${esc(project.title || project.id)}</strong>${recent ? '<em>NEW</em>' : ''}${privateBadge}</span>
-      <span class="catalog-summaryline">${esc(project.summary || project.friction || '制作物の説明を整理中。')}</span>`;
+    const title = `<span class="catalog-titleline"><strong>${esc(project.title || project.id)}</strong>${recent ? '<em>NEW</em>' : ''}${privateBadge}</span><span class="catalog-summaryline">${esc(project.summary || '制作物の説明を整理中。')}</span>`;
     const main = project.summaryOnly
       ? `<div class="catalog-main catalog-main-static">${title}</div>`
       : `<button class="catalog-main" type="button" data-project-open="${attr(project.id)}">${title}</button>`;
-
     return `<article class="catalog-row" data-cat-item="${attr(project.id)}">
       ${main}
       <div class="catalog-facts">
@@ -221,27 +198,6 @@
     if (state.year) items.push(['year', `${state.year}年`]);
     if (state.link) items.push(['link', { live: '公開ページあり', github: 'GitHubあり', both: '公開＋GitHub', local: '手元・概要のみ' }[state.link] || state.link]);
     return items;
-  }
-
-  function renderList() {
-    const panel = document.querySelector('[data-view-panel]');
-    const count = document.querySelector('[data-cat-count]');
-    const active = document.querySelector('[data-cat-active]');
-    if (!panel || !count || !active) return;
-
-    const list = filtered();
-    count.innerHTML = `<strong>${list.length}</strong> / ${projects().length}件`;
-    const filters = activeFiltersMarkup();
-    active.innerHTML = filters.map(([key, label]) => `<button type="button" data-cat-clear-one="${key}">${esc(label)} <span aria-hidden="true">×</span></button>`).join('');
-    const badge = document.querySelector('[data-cat-filter-count]');
-    if (badge) badge.textContent = filters.filter(([key]) => !['q', 'quick'].includes(key)).length ? `（${filters.filter(([key]) => !['q', 'quick'].includes(key)).length}）` : '';
-
-    panel.innerHTML = list.length
-      ? `<div class="catalog-list" data-catalog-list>${list.map(row).join('')}</div>`
-      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>名前だけでなく、困りごと・技術・用途からも検索できます。</p></div>';
-
-    document.documentElement.classList.add('catalog-core-ready');
-    saveState();
   }
 
   function saveState() {
@@ -274,18 +230,20 @@
   }
 
   function syncControlsFromState() {
-    const search = document.querySelector('[data-cat-search]');
-    const sort = document.querySelector('[data-cat-sort]');
-    const type = document.querySelector('[data-cat-type]');
-    const status = document.querySelector('[data-cat-status]');
-    const year = document.querySelector('[data-cat-year]');
-    const link = document.querySelector('[data-cat-link]');
-    if (search) search.value = state.q;
-    if (sort) sort.value = state.sort;
-    if (type) type.value = state.type;
-    if (status) status.value = state.status;
-    if (year) year.value = state.year;
-    if (link) link.value = state.link;
+    const controls = {
+      search: document.querySelector('[data-cat-search]'),
+      sort: document.querySelector('[data-cat-sort]'),
+      type: document.querySelector('[data-cat-type]'),
+      status: document.querySelector('[data-cat-status]'),
+      year: document.querySelector('[data-cat-year]'),
+      link: document.querySelector('[data-cat-link]')
+    };
+    if (controls.search) controls.search.value = state.q;
+    if (controls.sort) controls.sort.value = state.sort;
+    if (controls.type) controls.type.value = state.type;
+    if (controls.status) controls.status.value = state.status;
+    if (controls.year) controls.year.value = state.year;
+    if (controls.link) controls.link.value = state.link;
     document.querySelectorAll('[data-cat-quick-value]').forEach((button) => {
       const selected = button.dataset.catQuickValue === state.quick;
       button.classList.toggle('is-active', selected);
@@ -301,6 +259,26 @@
     oldToolbar.replaceWith(holder.firstElementChild);
     bindToolbarEvents();
     return true;
+  }
+
+  function renderList() {
+    if (!catalogReady) return;
+    const panel = document.querySelector('[data-view-panel]');
+    const count = document.querySelector('[data-cat-count]');
+    const active = document.querySelector('[data-cat-active]');
+    if (!panel || !count || !active) return;
+    const list = filtered();
+    count.innerHTML = `<strong>${list.length}</strong> / ${projects().length}件`;
+    const filters = activeFiltersMarkup();
+    active.innerHTML = filters.map(([key, label]) => `<button type="button" data-cat-clear-one="${key}">${esc(label)} <span aria-hidden="true">×</span></button>`).join('');
+    const advancedCount = filters.filter(([key]) => !['q', 'quick'].includes(key)).length;
+    const badge = document.querySelector('[data-cat-filter-count]');
+    if (badge) badge.textContent = advancedCount ? `（${advancedCount}）` : '';
+    panel.innerHTML = list.length
+      ? `<div class="catalog-list" data-catalog-list>${list.map(row).join('')}</div>`
+      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>名前だけでなく、困りごと・技術・用途からも検索できます。</p></div>';
+    document.documentElement.classList.add('catalog-core-ready');
+    saveState();
   }
 
   function openProject(id) {
@@ -321,13 +299,7 @@
   }
 
   function resetAll() {
-    state.q = '';
-    state.quick = 'all';
-    state.type = '';
-    state.status = '';
-    state.year = '';
-    state.link = '';
-    state.sort = 'created-desc';
+    Object.assign(state, { q: '', quick: 'all', type: '', status: '', year: '', link: '', sort: 'created-desc' });
     syncControlsFromState();
     renderList();
   }
@@ -336,7 +308,6 @@
     const toolbar = document.querySelector('[data-catalog-toolbar]');
     if (!toolbar || toolbar.dataset.bound) return;
     toolbar.dataset.bound = 'true';
-
     toolbar.addEventListener('input', (event) => {
       if (!event.target.matches('[data-cat-search]')) return;
       state.q = event.target.value.trim();
@@ -362,10 +333,7 @@
         return;
       }
       const clear = event.target.closest('[data-cat-clear-one]');
-      if (clear) {
-        clearOne(clear.dataset.catClearOne);
-        return;
-      }
+      if (clear) return clearOne(clear.dataset.catClearOne);
       if (event.target.closest('[data-cat-reset]')) resetAll();
     });
   }
@@ -383,33 +351,41 @@
   function setQuery(query) {
     state.q = String(query || '').trim();
     state.quick = 'all';
-    syncControlsFromState();
-    renderList();
+    if (catalogReady) {
+      syncControlsFromState();
+      renderList();
+    }
   }
 
-  function init() {
-    if (!window.BUILD_DIARY_DATA || !document.querySelector('[data-view-panel]')) {
-      setTimeout(init, 40);
-      return;
-    }
+  async function init() {
+    const panel = document.querySelector('[data-view-panel]');
+    if (!panel) return;
     readState();
-    if (!renderToolbar()) {
-      setTimeout(init, 40);
-      return;
+    panel.innerHTML = '<div class="loading">制作物一覧を読み込んでいます。</div>';
+    try {
+      await loadCatalogProjects();
+      catalogReady = true;
+      if (!renderToolbar()) throw new Error('Catalog toolbar mount point missing');
+      bindListEvents();
+      renderList();
+      window.WORKS_PORTFOLIO_CATALOG = Object.freeze({ setQuery, render: renderList, count: () => projects().length });
+      window.dispatchEvent(new CustomEvent('worksportfolio:catalog-ready'));
+    } catch (error) {
+      console.warn('Catalog data could not be loaded.', error);
+      panel.innerHTML = '<div class="empty-state"><h3>制作物一覧を読み込めませんでした。</h3><p>上の検索はそのまま利用できます。通信状態を確認して再度アクセスしてください。</p></div>';
+      document.documentElement.classList.add('catalog-core-failed');
+      window.WORKS_PORTFOLIO_CATALOG = Object.freeze({ setQuery, render: () => {}, count: () => 0 });
     }
-    bindListEvents();
-    renderList();
-    window.WORKS_PORTFOLIO_CATALOG = Object.freeze({ setQuery, render: renderList });
-    window.dispatchEvent(new CustomEvent('worksportfolio:catalog-ready'));
   }
 
   window.addEventListener('worksportfolio:set-query', (event) => setQuery(event.detail?.query || ''));
-  window.addEventListener('popstate', () => setTimeout(() => {
+  window.addEventListener('popstate', () => {
+    if (!catalogReady) return;
     readState();
-    if (!document.querySelector('[data-catalog-toolbar]')) renderToolbar();
     syncControlsFromState();
     renderList();
-  }, 0));
+  });
 
-  document.addEventListener('DOMContentLoaded', () => setTimeout(init, 24), { once: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
 })();
