@@ -20,6 +20,9 @@
   let requestId = 0;
 
   const indexProjects = () => Array.isArray(window.WORKS_PORTFOLIO_SEARCH_INDEX) ? window.WORKS_PORTFOLIO_SEARCH_INDEX : [];
+  const indexProjectId = (item) => item?.i || '';
+  const indexProjectTitle = (item) => item?.t || item?.i || '';
+  const isSummaryOnly = (item) => item?.s === 1;
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
 
@@ -42,13 +45,13 @@
   }
 
   function relatedMarkup(project) {
-    const map = new Map(indexProjects().map((item) => [item.id, item]));
+    const map = new Map(indexProjects().map((item) => [indexProjectId(item), item]));
     const related = (project.relatedProjects || [])
       .map((relation) => ({ relation, project: map.get(relation.id || relation.target) }))
-      .filter((item) => item.project && !item.project.summaryOnly);
+      .filter((item) => item.project && !isSummaryOnly(item.project));
     if (!related.length) return '';
     return `<section class="detail-section"><h3>関連する制作物</h3><div class="detail-related">${related.map(({ relation, project: item }) =>
-      `<button type="button" data-core-related-project="${attr(item.id)}"><strong>${esc(item.title)}</strong><br><small>${esc(relation.relation || '関連する制作物')}</small></button>`
+      `<button type="button" data-core-related-project="${attr(indexProjectId(item))}"><strong>${esc(indexProjectTitle(item))}</strong><br><small>${esc(relation.relation || '関連する制作物')}</small></button>`
     ).join('')}</div></section>`;
   }
 
@@ -101,8 +104,8 @@
       if (dialog.open) dialog.close();
       return;
     }
-    const indexProject = indexProjects().find((item) => item.id === id);
-    if (!indexProject || indexProject.summaryOnly) {
+    const indexProject = indexProjects().find((item) => indexProjectId(item) === id);
+    if (!indexProject || isSummaryOnly(indexProject)) {
       requestId += 1;
       if (dialog.open) dialog.close();
       return;
