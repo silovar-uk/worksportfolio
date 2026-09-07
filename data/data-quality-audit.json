@@ -23,15 +23,16 @@
       "publicArtifact"
     ],
     "excludedFromQualityPopulation": [
+      "ennnichimock",
       "keygridexpansion",
       "ooh"
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-06T17:48:03.044Z",
-    "canonicalProjects": 67,
+    "generatedAt": "2026-09-07T04:39:39.493Z",
+    "canonicalProjects": 68,
     "reviewableCanonicalProjects": 65,
-    "excludedHiddenCanonicalProjects": 2,
+    "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 73,
     "visiblePublicRepositories": 58,
@@ -423,19 +424,6 @@
       "missingCore": [],
       "hasFamily": false,
       "relationCount": 2,
-      "artifactStatus": "public-url-recorded",
-      "startedAtBasis": "first-repository-commit",
-      "startedAtPrecision": "day"
-    },
-    {
-      "id": "ennnichimock",
-      "score": 10,
-      "maxScore": 10,
-      "quality": "verified-shape",
-      "documentationState": "verified",
-      "missingCore": [],
-      "hasFamily": false,
-      "relationCount": 0,
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
@@ -844,6 +832,19 @@
       "startedAtPrecision": "day"
     },
     {
+      "id": "ui-collabo",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 0,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "repository-created",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "vocabularies",
       "score": 10,
       "maxScore": 10,
@@ -937,7 +938,7 @@
     "types": [
       {
         "value": "learning-tool",
-        "count": 24
+        "count": 25
       },
       {
         "value": "chrome-extension",
@@ -957,7 +958,7 @@
       },
       {
         "value": "design-system",
-        "count": 5
+        "count": 4
       },
       {
         "value": "data-tool",
@@ -967,7 +968,7 @@
     "verbs": [
       {
         "value": "学ぶ",
-        "count": 18
+        "count": 19
       },
       {
         "value": "整理する",
@@ -998,11 +999,15 @@
         "count": 5
       },
       {
-        "value": "比べる",
-        "count": 5
+        "value": "言語化する",
+        "count": 4
       },
       {
         "value": "続ける",
+        "count": 4
+      },
+      {
+        "value": "比べる",
         "count": 4
       },
       {
@@ -1010,15 +1015,7 @@
         "count": 3
       },
       {
-        "value": "言語化する",
-        "count": 3
-      },
-      {
         "value": "選ぶ",
-        "count": 3
-      },
-      {
-        "value": "伝える",
         "count": 3
       },
       {
@@ -1071,6 +1068,10 @@
       },
       {
         "value": "組み立てる",
+        "count": 2
+      },
+      {
+        "value": "伝える",
         "count": 2
       },
       {
@@ -1138,6 +1139,10 @@
         "count": 1
       },
       {
+        "value": "指摘する",
+        "count": 1
+      },
+      {
         "value": "実行する",
         "count": 1
       },
@@ -1175,10 +1180,6 @@
       },
       {
         "value": "切り抜く",
-        "count": 1
-      },
-      {
-        "value": "設計する",
         "count": 1
       },
       {
