@@ -80,13 +80,21 @@ async function exerciseSearch(page) {
 
 async function exerciseCatalog(page) {
   await expect(page.locator('[data-catalog-toolbar]')).toBeVisible();
-  await expect(page.locator('[data-cat-item]')).toHaveCount(await page.locator('[data-cat-item]').count());
-  expect(await page.locator('[data-cat-item]').count()).toBeGreaterThan(5);
+
+  // Search handoff intentionally leaves the catalog filtered. Prove that state first,
+  // then clear it and verify the full catalog before testing quick filters.
+  const catalogSearch = page.locator('[data-cat-search]');
+  expect((await catalogSearch.inputValue()).length).toBeGreaterThan(0);
+  await catalogSearch.fill('');
+  await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(5);
 
   await page.locator('[data-cat-quick-value="recent"]').click();
   await expect(page.locator('[data-cat-quick-value="recent"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(0);
+
   await page.locator('[data-cat-quick-value="all"]').click();
   await expect(page.locator('[data-cat-quick-value="all"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(async () => page.locator('[data-cat-item]').count(), { timeout: 2500 }).toBeGreaterThan(5);
 }
 
 for (const profile of [
