@@ -66,22 +66,11 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Check interface and build scripts
+      - name: Check core interface and build scripts
         run: |
+          node --check home-shell.js
           node --check catalog.js
-          node --check catalog-visibility.js
-          node --check private-source.js
-          node --check showcase.js
-          node --check taxonomy.js
-          node --check floating-random.js
-          node --check random-three.js
-          node --check comparison-view.js
-          node --check motion.js
-          node --check favorites.js
-          node --check favorite-catalog.js
-          node --check copy-cleanup.js
-          node --check friction-atlas.js
-          node --check live-index.js
+          node --check project-detail.js
           node --check scripts/build-catalog.mjs
           node --check scripts/sanitize-project-data.mjs
           node --check scripts/build-static-site.mjs
@@ -159,16 +148,16 @@ jobs:
           rm -f index.html
           node scripts/build-static-site.mjs
 
-      - name: Apply natural copy
+      - name: Validate stable core output
         run: node scripts/apply-copy-cleanup.mjs
 
       - name: Apply editorial publication gate
         run: node scripts/apply-editorial-gate.mjs
 
-      - name: Inject Private summaries
+      - name: Inject Private-safe summaries
         run: node scripts/inject-private-summaries.mjs
 
-      - name: Inject Showcase and Project Families
+      - name: Annotate Project Families and Making Principles
         run: node scripts/inject-showcase.mjs
 
       - name: Split summaries and on-demand details
@@ -192,61 +181,44 @@ jobs:
           ! grep -q 'WORKS_PORTFOLIO_START_DATES' index.html
           grep -q 'worksportfolio-assets-version' index.html
           grep -q 'worksportfolio-data-mode' index.html
-          grep -q 'projectDetailCache' index.html
-          grep -q 'data/project-details/' index.html
+          grep -q 'project-detail.js' index.html
+          grep -q 'data/project-details/' project-detail.js
           ! grep -q '"firstBuild":' index.html
           ! grep -q '"currentAnswer":' index.html
           grep -Rq '"firstBuild"' data/project-details
-          grep -q 'shelf-priority.js' index.html
-          grep -q 'showcase.js' index.html
-          grep -q 'showcase.css' index.html
-          grep -q 'random-three.js' index.html
-          grep -q 'random-three.css' index.html
-          grep -q 'floating-random.js' index.html
-          grep -q 'floating-random.css' index.html
-          grep -q 'comparison-view.js' index.html
-          grep -q 'comparison-view.css' index.html
-          grep -q 'favorites.js' index.html
-          grep -q 'favorites.css' index.html
-          grep -q 'favorite-catalog.js' index.html
-          grep -q 'copy-cleanup.js' index.html
-          grep -q 'copy-cleanup.css' index.html
-          grep -q 'catalog-visibility.js' index.html
-          grep -q 'private-source.js' index.html
-          grep -q 'private-source.css' index.html
-          grep -q 'friction-atlas.js' index.html
-          grep -q 'friction-atlas.css' index.html
-          grep -q 'live-index.js' index.html
-          grep -q 'live-index.css' index.html
-          grep -q 'data-header-catalog' catalog-visibility.js
-          grep -q '制作開始が新しい順' catalog.js
-          grep -Fq "project?.startedAt || project?.createdAt" catalog.js
-          grep -q 'worksportfolio-catalog-v3' catalog.js
-          grep -q 'ランダム3枚' random-three.js
-          grep -q '3枚引き直す' random-three.js
-          ! grep -q '残り2枚を引く' random-three.js
-          ! grep -q 'data-random-three-keep' random-three.js
-          grep -q 'data-compare-toggle' random-three.js
-          grep -q 'data-card-mark' random-three.js
-          grep -q '3枚引き直す' floating-random.js
-          ! grep -q 'ランダムで1本' floating-random.js
-          grep -q 'worksPortfolioFavoriteRatingsV1' favorites.js
-          grep -q 'お気に入り度が高い順' favorite-catalog.js
-          grep -q '制作開始が新しい順' favorite-catalog.js
+          grep -q 'home-shell.js' index.html
+          grep -q 'home-shell.css' index.html
+          grep -q 'catalog.js' index.html
+          grep -q 'catalog.css' index.html
+          grep -q 'data-header-search-input' index.html
+          grep -q 'data-home-friction="reduce"' index.html
+          grep -q 'data-home-surprise' index.html
+          grep -q 'すべての制作物' index.html
           grep -q 'startedAt' index.html
           grep -q 'portfolioFamilies' index.html
           grep -q 'makingPrinciples' index.html
+          ! grep -q 'live-index.js' index.html
+          ! grep -q 'friction-atlas.js' index.html
+          ! grep -q 'random-three.js' index.html
+          ! grep -q 'catalog-list-first.js' index.html
+          ! grep -q 'catalog-visibility.js' index.html
+          ! grep -q 'showcase.js' index.html
+          ! grep -q 'private-source.js' index.html
+          ! grep -q 'WORKS_PORTFOLIO_LAZY_ASSETS' index.html
+          ! grep -q 'requestIdleCallback' index.html
+          ! grep -q "document.addEventListener('DOMContentLoaded', init);" index.html
           grep -q 'data/projects.json' scripts/build-static-site.mjs
           grep -q 'src/index.template.html' scripts/build-static-site.mjs
           ! grep -q "readFileSync(join(root, 'index.html')" scripts/build-static-site.mjs
-          grep -q '確認状況' copy-cleanup.js
-          grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card');" motion.js
-          ! grep -Fq "return event.target.closest('.portfolio-pick-card,.catalog-card,[data-project-surface]');" motion.js
-          grep -Fq '[data-project-surface],[data-project-surface]:hover{transform:none!important' motion.css
+          grep -q 'Source not public' catalog.js
+          ! grep -q 'location.reload' home-shell.js
+          ! grep -q 'location.reload' catalog.js
+          ! grep -q 'location.reload' project-detail.js
+          ! grep -q 'MutationObserver' home-shell.js
+          ! grep -q 'MutationObserver' catalog.js
+          ! grep -q 'MutationObserver' project-detail.js
           grep -q 'UI Cleaner' index.html
           grep -q 'Prompt Launcher' index.html
-          grep -q 'Source not public' private-source.js
-          ! grep -q 'Source private' private-source.js
           ! grep -q 'github.com/silovar-uk/uicleaner' index.html
           ! grep -q 'github.com/silovar-uk/private-memo' index.html
           ! grep -q 'github.com/silovar-uk/prompt-caller' index.html
@@ -255,6 +227,21 @@ jobs:
           ! grep -qi 'karaoke-db' data/editorial-review.json
           ! grep -qi 'prompt-caller' data/editorial-review.json
           ! grep -qi 'uicleaner' data/editorial-review.json
+
+      - name: Enforce core UX contract
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const headerSearchCount = (html.match(/data-header-search-input/g) || []).length;
+          if (headerSearchCount !== 1) throw new Error(`Expected one Header Search, got ${headerSearchCount}`);
+          if (!html.includes('<html lang="ja" class="home-redesign">')) throw new Error('Stable home class missing');
+          if (!html.includes('id="home-start-title"') || !html.includes('id="home-frictions-title"')) throw new Error('Static discovery sections missing');
+          if (!html.includes('project-detail.js')) throw new Error('Stable project detail runtime missing');
+          const forbidden = ['WORKS_PORTFOLIO_LAZY_ASSETS', 'requestIdleCallback', 'live-index.js', 'friction-atlas.js', 'catalog-list-first.js', "document.addEventListener('DOMContentLoaded', init);"];
+          for (const marker of forbidden) if (html.includes(marker)) throw new Error(`Deferred or legacy assembly returned: ${marker}`);
+          console.log('Core UX contract OK: static shell + unified search + canonical catalog + stable detail runtime.');
+          NODE
 
       - name: Enforce performance budget
         run: |
@@ -267,7 +254,7 @@ jobs:
           if (start < marker.length || end < 0) throw new Error('Cannot measure BUILD_DIARY_DATA.');
           const diaryBytes = Buffer.byteLength(html.slice(start, end).trim().replace(/;\s*$/, ''));
           const indexBytes = Buffer.byteLength(html);
-          const INDEX_BUDGET = 170000;
+          const INDEX_BUDGET = 150000;
           const DIARY_BUDGET = 100000;
           if (indexBytes > INDEX_BUDGET) throw new Error(`index.html performance budget exceeded: ${indexBytes} > ${INDEX_BUDGET}`);
           if (diaryBytes > DIARY_BUDGET) throw new Error(`inline diary performance budget exceeded: ${diaryBytes} > ${DIARY_BUDGET}`);
@@ -286,7 +273,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+silovar-uk@users.noreply.github.com"
           git add $FILES
           git commit -m "Build canonical static portfolio"
           git pull --rebase origin main

@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
@@ -6,12 +5,7 @@ const readText = (path) => readFile(new URL(path, root), 'utf8');
 const readJson = async (path) => JSON.parse(await readText(path));
 const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 
-const [taxonomy, js, css] = await Promise.all([
-  readJson('data/portfolio-taxonomy.json'),
-  readText('showcase.js'),
-  readText('showcase.css')
-]);
-
+const taxonomy = await readJson('data/portfolio-taxonomy.json');
 const indexUrl = new URL('index.html', root);
 let html = await readFile(indexUrl, 'utf8');
 const marker = 'window.BUILD_DIARY_DATA =';
@@ -51,14 +45,8 @@ html = html
   .replace(/<script src="showcase\.js\?v=[^"]+"><\/script>/g, '')
   .replace(/<script data-worksportfolio-showcase-assets>[\s\S]*?<\/script>/g, '');
 
-const hash = createHash('sha256').update(css).update('\0').update(js).update('\0').update(JSON.stringify(taxonomy)).digest('hex').slice(0, 12);
-const styleUrl = `showcase.css?v=${hash}`;
-const scriptUrl = `showcase.js?v=${hash}`;
 const configScript = `<script data-worksportfolio-showcase>window.WORKS_PORTFOLIO_SHOWCASE=${scriptJson(taxonomy)};<\/script>`;
-const runtimeScript = `<script src="${scriptUrl}"><\/script>`;
-
-html = html.replace('</head>', `<link rel="stylesheet" href="${styleUrl}"></head>`);
-html = html.replace('</body>', `${configScript}${runtimeScript}</body>`);
+html = html.replace('</body>', `${configScript}</body>`);
 
 await writeFile(indexUrl, html, 'utf8');
-console.log(`Injected Showcase / Project Family taxonomy; core presentation assets loaded directly (${hash}).`);
+console.log('Injected Project Family / Making Principle taxonomy as data only; no Showcase runtime shipped.');
