@@ -18,6 +18,7 @@
   const DOC_LABELS = { verified: '確認済み', inferred: '内容を確認中', unreviewed: '未確認' };
   const detailCache = new Map();
   let requestId = 0;
+  let routeSyncScheduled = false;
 
   const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
@@ -93,6 +94,7 @@
   }
 
   async function syncProjectFromUrl() {
+    routeSyncScheduled = false;
     const { dialog, detail } = elements();
     if (!dialog || !detail) return;
     const id = new URLSearchParams(location.search).get('project');
@@ -117,6 +119,12 @@
       if (current !== requestId) return;
       detail.innerHTML = '<div class="empty-state"><h3>詳細を読み込めませんでした。</h3><p>一覧はそのまま利用できます。</p></div>';
     }
+  }
+
+  function scheduleRouteSync() {
+    if (routeSyncScheduled) return;
+    routeSyncScheduled = true;
+    queueMicrotask(syncProjectFromUrl);
   }
 
   function closeProject() {
@@ -147,11 +155,26 @@
     dialog?.addEventListener('cancel', (event) => { event.preventDefault(); closeProject(); });
     dialog?.addEventListener('click', (event) => { if (isBackdropClick(event)) closeProject(); });
     about?.addEventListener('click', (event) => { if (isBackdropClick(event)) about.close(); });
+
     document.addEventListener('click', (event) => {
-      const related = event.target.closest('[data-core-related-project]');
-      if (related) openRelated(related.dataset.coreRelatedProject);
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target) return;
+      const related = target.closest('[data-core-related-project]');
+      if (related) {
+        openRelated(related.dataset.coreRelatedProject);
+        return;
+      }
+      if (target.closest('[data-home-search-project],[data-home-open],[data-project-open],[data-home-surprise]')) {
+        scheduleRouteSync();
+      }
     });
+    document.addEventListener('keydown', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (event.key === 'Enter' && target?.matches('[data-header-search-input]')) scheduleRouteSync();
+    });
+
     window.addEventListener('popstate', syncProjectFromUrl);
+    window.WORKS_PORTFOLIO_PROJECT_DETAIL = Object.freeze({ sync: syncProjectFromUrl });
     syncProjectFromUrl();
     document.documentElement.classList.add('project-detail-core-ready');
   }
