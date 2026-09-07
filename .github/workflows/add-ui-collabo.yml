@@ -31,46 +31,48 @@ jobs:
           const path = 'data/projects.json';
           const projects = JSON.parse(fs.readFileSync(path, 'utf8'));
           const id = 'ui-collabo';
-          if (!projects.some((project) => project && project.id === id)) {
-            projects.push({
-              id,
-              title: 'UI ColLabo',
-              subtitle: '「なんか違う」を、AIに伝わるUI改善指示へ変える',
-              summary: 'スクリーンショット上で気になる箇所を指し、意図を選ぶだけで、曖昧なデザインフィードバックをAIが読める具体的な指示文へ整える下ごしらえアプリ。',
-              friction: 'UIを見て「なんか違う」と感じても、変更箇所と意図を具体的な言葉にし、AIや実装担当へ伝えるのが難しかった。',
-              firstBuild: 'スクリーンショットへ指摘を置き、改善意図を選んで、実装に渡せる指示文へ変換する流れを作った。',
-              currentAnswer: '画面を見ながら「どこを・どうしたいか」を選び、デザインレビューを構造化されたAI向け指示へ変換するUIコラボレーションツール。',
-              type: 'learning-tool',
-              verbs: ['学ぶ', '指摘する', '言語化する'],
-              status: 'active',
-              visibility: 'public',
-              featured: false,
-              createdAt: '2026-09-07',
-              createdAtPrecision: 'day',
-              updatedAt: '2026-09-07',
-              startedAt: '2026-09-07',
-              startedAtPrecision: 'day',
-              startedAtBasis: 'repository-created',
-              repositoryUrl: 'https://github.com/silovar-uk/ui-collabo',
-              githubId: '1359734457',
-              liveUrl: 'https://silovar-uk.github.io/ui-collabo/',
-              liveUrlStatus: 'confirmed',
-              technologies: ['Preact', 'TypeScript', 'Vite', 'Signals', 'Vitest'],
-              documentationState: 'verified',
-              relatedProjects: [],
-              updates: [{
-                date: '2026-09-07',
-                version: '0.1',
-                change: 'UIレビューの下ごしらえアプリをポートフォリオへ追加',
-                reason: '曖昧な見た目の違和感を、AIや実装担当へ渡せる具体的な指示へ変える流れを整理するため。'
-              }],
-              aside: '「なんか違う」を、そのままにしない。',
-              searchAliases: ['UI ColLabo', 'ui collabo', 'UIレビュー', 'デザインレビュー', 'デザインフィードバック', 'AI指示', 'スクリーンショット', 'UI改善', 'フィードバック'],
-              portfolioFamilies: [],
-              makingPrinciples: []
-            });
-            fs.writeFileSync(path, `${JSON.stringify(projects, null, 2)}\n`, 'utf8');
-          }
+          const record = {
+            id,
+            title: 'UI ColLabo',
+            subtitle: '「なんか違う」を、AIに伝わるUI改善指示へ変える',
+            summary: 'スクリーンショット上で気になる箇所を指し、意図を選ぶだけで、曖昧なデザインフィードバックをAIが読める具体的な指示文へ整える下ごしらえアプリ。',
+            friction: 'UIを見て「なんか違う」と感じても、変更箇所と意図を具体的な言葉にし、AIや実装担当へ伝えるのが難しかった。',
+            firstBuild: 'スクリーンショットへ指摘を置き、改善意図を選んで、実装に渡せる指示文へ変換する流れを作った。',
+            currentAnswer: '画面を見ながら「どこを・どうしたいか」を選び、デザインレビューを構造化されたAI向け指示へ変換するUIコラボレーションツール。',
+            type: 'learning-tool',
+            verbs: ['学ぶ', '指摘する', '言語化する'],
+            status: 'active',
+            visibility: 'public',
+            editorialState: 'published',
+            featured: false,
+            createdAt: '2026-09-07',
+            createdAtPrecision: 'day',
+            updatedAt: '2026-09-07',
+            startedAt: '2026-09-07',
+            startedAtPrecision: 'day',
+            startedAtBasis: 'repository-created',
+            repositoryUrl: 'https://github.com/silovar-uk/ui-collabo',
+            githubId: '1359734457',
+            liveUrl: 'https://silovar-uk.github.io/ui-collabo/',
+            liveUrlStatus: 'confirmed',
+            technologies: ['Preact', 'TypeScript', 'Vite', 'Signals', 'Vitest'],
+            documentationState: 'verified',
+            relatedProjects: [],
+            updates: [{
+              date: '2026-09-07',
+              version: '0.1',
+              change: 'UIレビューの下ごしらえアプリをポートフォリオへ追加',
+              reason: '曖昧な見た目の違和感を、AIや実装担当へ渡せる具体的な指示へ変える流れを整理するため。'
+            }],
+            aside: '「なんか違う」を、そのままにしない。',
+            searchAliases: ['UI ColLabo', 'ui collabo', 'UIレビュー', 'デザインレビュー', 'デザインフィードバック', 'AI指示', 'スクリーンショット', 'UI改善', 'フィードバック'],
+            portfolioFamilies: [],
+            makingPrinciples: []
+          };
+          const index = projects.findIndex((project) => project && project.id === id);
+          if (index >= 0) projects[index] = { ...projects[index], ...record };
+          else projects.push(record);
+          fs.writeFileSync(path, `${JSON.stringify(projects, null, 2)}\n`, 'utf8');
           NODE
 
       - name: Build canonical portfolio outputs
@@ -99,9 +101,11 @@ jobs:
           const project = projects.find((item) => item && item.id === 'ui-collabo');
           if (!project) throw new Error('ui-collabo record missing');
           if (project.type !== 'learning-tool') throw new Error(`Unexpected type: ${project.type}`);
+          if (project.editorialState !== 'published') throw new Error(`Unexpected editorial state: ${project.editorialState}`);
           if (project.liveUrl !== 'https://silovar-uk.github.io/ui-collabo/') throw new Error(`Unexpected liveUrl: ${project.liveUrl}`);
           const html = fs.readFileSync('index.html', 'utf8');
           if (!html.includes('UI ColLabo')) throw new Error('Generated index does not include UI ColLabo');
+          if (!html.includes('learning-tool')) throw new Error('Generated index does not include learning-tool records');
           NODE
 
       - name: Remove migration workflow and commit
