@@ -8,6 +8,9 @@
 .showcase-families{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.showcase-family-card{min-height:186px;padding:13px;border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column}.showcase-family-card.is-active{border-color:var(--ink);box-shadow:3px 3px 0 var(--yellow)}.showcase-family-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}.showcase-family-head h3{margin:0;font-size:.82rem;line-height:1.25}.showcase-family-head strong{font:800 .7rem "Roboto Mono",monospace}.showcase-family-card>p{margin:7px 0 10px;color:var(--muted);font-size:.68rem;line-height:1.55}.showcase-family-members{display:flex;flex-wrap:wrap;gap:4px}.showcase-family-members a,.showcase-family-members button,.showcase-family-members span{appearance:none;border:0;background:var(--bg);color:var(--ink);padding:.26rem .36rem;font-size:.6rem;text-decoration:none}.showcase-family-members a,.showcase-family-members button{cursor:pointer}.showcase-family-members a:hover,.showcase-family-members button:hover{text-decoration:underline}.showcase-family-filter{margin-top:auto;align-self:flex-start;padding:.38rem .5rem;border-color:var(--line-dark);font-size:.62rem}
 .showcase-catalog-bridge{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:22px 0 4px;border-top:1px solid var(--line-dark)}.showcase-catalog-bridge span{display:block;max-width:650px;margin-top:7px;color:var(--muted);font-size:.76rem;line-height:1.6}.showcase-catalog-bridge .showcase-primary{flex:0 0 auto}
 
+/* Family filtering must beat mobile catalog layout rules that use display:...!important. */
+[data-showcase-family-hidden="true"]{display:none!important}
+
 /* Search result motion is disabled here because Showcase re-renders near the catalog. */
 html.catalog-input-stable{scroll-behavior:auto!important}
 [data-view-panel]{overflow-anchor:none}
