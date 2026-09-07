@@ -67,7 +67,7 @@ function stripRedundantRuntimeData(html) {
 function stripLegacyRenderer(html) {
   const startMarker = "  <script>\n(() => {\n  'use strict';\n\n  const state = {";
   const start = html.indexOf(startMarker);
-  if (start < 0) throw new Error('Legacy inline renderer start marker was not found.');
+  if (start < 0) return { html, removedBytes: 0 };
   const end = html.indexOf('</script>', start);
   if (end < 0) throw new Error('Legacy inline renderer script was not closed.');
   const removedBytes = byteLength(html.slice(start, end + 9));
