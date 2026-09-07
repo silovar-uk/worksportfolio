@@ -9,7 +9,7 @@
 .showcase-catalog-bridge{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:22px 0 4px;border-top:1px solid var(--line-dark)}.showcase-catalog-bridge span{display:block;max-width:650px;margin-top:7px;color:var(--muted);font-size:.76rem;line-height:1.6}.showcase-catalog-bridge .showcase-primary{flex:0 0 auto}
 
 /* Family filtering must beat mobile catalog layout rules that use display:...!important. */
-[data-showcase-family-hidden="true"]{display:none!important}
+[data-cat-item][data-showcase-family-hidden="true"],.catalog-row[data-cat-item][data-showcase-family-hidden="true"],.catalog-card[data-cat-item][data-showcase-family-hidden="true"]{display:none!important}
 
 /* Search result motion is disabled here because Showcase re-renders near the catalog. */
 html.catalog-input-stable{scroll-behavior:auto!important}
