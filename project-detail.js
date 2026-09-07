@@ -18,9 +18,8 @@
   const DOC_LABELS = { verified: '確認済み', inferred: '内容を確認中', unreviewed: '未確認' };
   const detailCache = new Map();
   let requestId = 0;
-  let routeSyncScheduled = false;
 
-  const projects = () => Array.isArray(window.BUILD_DIARY_DATA?.projects) ? window.BUILD_DIARY_DATA.projects : [];
+  const indexProjects = () => Array.isArray(window.WORKS_PORTFOLIO_SEARCH_INDEX) ? window.WORKS_PORTFOLIO_SEARCH_INDEX : [];
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
 
@@ -43,7 +42,7 @@
   }
 
   function relatedMarkup(project) {
-    const map = new Map(projects().map((item) => [item.id, item]));
+    const map = new Map(indexProjects().map((item) => [item.id, item]));
     const related = (project.relatedProjects || [])
       .map((relation) => ({ relation, project: map.get(relation.id || relation.target) }))
       .filter((item) => item.project && !item.project.summaryOnly);
@@ -94,16 +93,17 @@
   }
 
   async function syncProjectFromUrl() {
-    routeSyncScheduled = false;
     const { dialog, detail } = elements();
     if (!dialog || !detail) return;
     const id = new URLSearchParams(location.search).get('project');
     if (!id) {
+      requestId += 1;
       if (dialog.open) dialog.close();
       return;
     }
-    const summary = projects().find((item) => item.id === id);
-    if (!summary || summary.summaryOnly) {
+    const indexProject = indexProjects().find((item) => item.id === id);
+    if (!indexProject || indexProject.summaryOnly) {
+      requestId += 1;
       if (dialog.open) dialog.close();
       return;
     }
@@ -111,20 +111,14 @@
     detail.innerHTML = '<div class="loading">詳細を読み込んでいます。</div>';
     if (!dialog.open) dialog.showModal();
     try {
-      const extra = await loadDetail(id);
+      const project = await loadDetail(id);
       if (current !== requestId || new URLSearchParams(location.search).get('project') !== id) return;
-      detail.innerHTML = markup({ ...summary, ...extra, id: summary.id });
+      detail.innerHTML = markup(project);
     } catch (error) {
-      console.error(error);
+      console.warn('Project detail could not be loaded.', error);
       if (current !== requestId) return;
-      detail.innerHTML = '<div class="empty-state"><h3>詳細を読み込めませんでした。</h3><p>一覧はそのまま利用できます。</p></div>';
+      detail.innerHTML = '<div class="empty-state"><h3>詳細を読み込めませんでした。</h3><p>検索と一覧はそのまま利用できます。</p></div>';
     }
-  }
-
-  function scheduleRouteSync() {
-    if (routeSyncScheduled) return;
-    routeSyncScheduled = true;
-    queueMicrotask(syncProjectFromUrl);
   }
 
   function closeProject() {
@@ -155,24 +149,11 @@
     dialog?.addEventListener('cancel', (event) => { event.preventDefault(); closeProject(); });
     dialog?.addEventListener('click', (event) => { if (isBackdropClick(event)) closeProject(); });
     about?.addEventListener('click', (event) => { if (isBackdropClick(event)) about.close(); });
-
     document.addEventListener('click', (event) => {
       const target = event.target instanceof Element ? event.target : null;
-      if (!target) return;
-      const related = target.closest('[data-core-related-project]');
-      if (related) {
-        openRelated(related.dataset.coreRelatedProject);
-        return;
-      }
-      if (target.closest('[data-home-search-project],[data-home-open],[data-project-open],[data-home-surprise]')) {
-        scheduleRouteSync();
-      }
+      const related = target?.closest('[data-core-related-project]');
+      if (related) openRelated(related.dataset.coreRelatedProject);
     });
-    document.addEventListener('keydown', (event) => {
-      const target = event.target instanceof Element ? event.target : null;
-      if (event.key === 'Enter' && target?.matches('[data-header-search-input]')) scheduleRouteSync();
-    });
-
     window.addEventListener('popstate', syncProjectFromUrl);
     window.WORKS_PORTFOLIO_PROJECT_DETAIL = Object.freeze({ sync: syncProjectFromUrl });
     syncProjectFromUrl();
