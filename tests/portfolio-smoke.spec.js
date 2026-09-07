@@ -4,21 +4,15 @@ const BASE_URL = process.env.PORTFOLIO_BASE_URL || 'http://127.0.0.1:4173/';
 
 function installRuntimeGuards(page) {
   const issues = [];
-
-  page.on('pageerror', (error) => {
-    issues.push(`pageerror: ${error.message}`);
-  });
-
+  page.on('pageerror', (error) => issues.push(`pageerror: ${error.message}`));
   page.on('console', (message) => {
     if (message.type() === 'error') issues.push(`console.error: ${message.text()}`);
   });
-
   page.on('requestfailed', (request) => {
     if (request.url().startsWith(BASE_URL)) {
       issues.push(`requestfailed: ${request.method()} ${request.url()} ${request.failure()?.errorText || ''}`);
     }
   });
-
   return issues;
 }
 
@@ -42,6 +36,12 @@ async function boot(page) {
   await page.evaluate(() => { window.__portfolioLongTasks = []; });
 }
 
+async function clickVisibleView(page, view) {
+  const control = page.locator(`[data-view-button="${view}"]:visible`).first();
+  await expect(control).toBeVisible({ timeout: 2500 });
+  await control.click({ timeout: 2500 });
+}
+
 async function exerciseCoreInteractions(page) {
   const familyButtons = page.locator('[data-showcase-family]');
   const familyCount = await familyButtons.count();
@@ -59,10 +59,8 @@ async function exerciseCoreInteractions(page) {
     await expect(page.locator(`[data-showcase-family-card="${familyId}"]`)).toHaveClass(/is-active/, { timeout: 2500 });
     await expect(button).toHaveAttribute('aria-pressed', 'true');
 
-    await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 })
-      .toBeLessThan(totalItems);
-    const visibleItems = await page.locator('[data-cat-item]:visible').count();
-    expect(visibleItems).toBeGreaterThan(0);
+    await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 }).toBeLessThan(totalItems);
+    expect(await page.locator('[data-cat-item]:visible').count()).toBeGreaterThan(0);
   }
 
   const activeFamily = page.locator('[data-showcase-family][aria-pressed="true"]');
@@ -79,10 +77,9 @@ async function exerciseCoreInteractions(page) {
   await search.fill('');
   await expect.poll(async () => page.locator('[data-cat-item]:visible').count(), { timeout: 2500 }).toBe(totalItems);
 
-  const viewSwitcher = page.locator('.view-switcher');
-  await viewSwitcher.locator('[data-view-button="timeline"]').click({ timeout: 2500 });
+  await clickVisibleView(page, 'timeline');
   await expect(page.locator('[data-portfolio-showcase]')).toBeHidden();
-  await viewSwitcher.locator('[data-view-button="shelf"]').click({ timeout: 2500 });
+  await clickVisibleView(page, 'shelf');
   await expect(page.locator('[data-portfolio-showcase]')).toBeVisible();
   await expect(page.locator('[data-cat-item]')).toHaveCount(totalItems, { timeout: 2500 });
 
