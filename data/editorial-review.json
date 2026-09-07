@@ -1,15 +1,32 @@
 {
-  "generatedAt": "2026-09-07T04:39:40.133Z",
+  "generatedAt": "2026-09-07T14:02:41.185Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
-    "total": 73,
+    "total": 74,
+    "discovered": 1,
     "published": 58,
     "hidden": 15,
-    "withWarnings": 0,
+    "withWarnings": 1,
     "artifactReviewNeeded": 0
   },
   "items": [
+    {
+      "id": "urawa-history-quiz",
+      "projectId": "urawa-history-quiz",
+      "state": "discovered",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [],
+      "createdAt": "2026-09-07",
+      "updatedAt": "2026-09-07",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "unreviewed"
+    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -95,7 +112,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-17",
-      "updatedAt": "2026-09-03",
+      "updatedAt": "2026-09-07",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -175,7 +192,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-09-06",
+      "updatedAt": "2026-09-07",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
