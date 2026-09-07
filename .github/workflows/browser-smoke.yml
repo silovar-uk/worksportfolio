@@ -1,0 +1,88 @@
+name: Browser interaction smoke
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '*.js'
+      - '*.css'
+      - 'src/index.template.html'
+      - 'scripts/*.mjs'
+      - 'data/*.json'
+      - 'tests/**'
+      - '.github/workflows/browser-smoke.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '*.js'
+      - '*.css'
+      - 'src/index.template.html'
+      - 'scripts/*.mjs'
+      - 'data/*.json'
+      - 'tests/**'
+      - '.github/workflows/browser-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worksportfolio-browser-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build fresh static site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/validate-private-summaries.mjs
+          node scripts/build-catalog.mjs
+          node scripts/sanitize-project-data.mjs
+          node scripts/validate-global-ids.mjs
+          node scripts/validate-portfolio-model.mjs
+          node scripts/build-editorial-review.mjs
+          node scripts/validate-pattern-candidates.mjs
+          node scripts/build-patterns.mjs
+          node scripts/validate-patterns.mjs
+          rm -f index.html
+          node scripts/build-static-site.mjs
+          node scripts/apply-copy-cleanup.mjs
+          node scripts/apply-editorial-gate.mjs
+          node scripts/inject-private-summaries.mjs
+          node scripts/inject-showcase.mjs
+          node scripts/split-project-data.mjs
+
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run interaction smoke tests
+        env:
+          PORTFOLIO_BASE_URL: http://127.0.0.1:4173/
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/worksportfolio-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 0.25
+          done
+          curl -fsS http://127.0.0.1:4173/ > /dev/null
+          npx playwright test tests/portfolio-smoke.spec.js --reporter=line --workers=1
