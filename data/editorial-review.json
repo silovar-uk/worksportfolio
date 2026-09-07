@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T00:29:58.853Z",
+  "generatedAt": "2026-09-07T04:21:28.972Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -219,19 +219,6 @@
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
-    },
-    {
-      "id": "ennnichimock",
-      "projectId": "ennnichimock",
-      "state": "published",
-      "reasons": [],
-      "families": [],
-      "createdAt": "2026-07-27",
-      "updatedAt": "2026-07-28",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "verified"
     },
     {
       "id": "flowmap",
@@ -729,6 +716,19 @@
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
+    },
+    {
+      "id": "ui-collabo",
+      "projectId": "ui-collabo",
+      "state": "published",
+      "reasons": [],
+      "families": [],
+      "createdAt": "2026-09-07",
+      "updatedAt": "2026-09-07",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "verified"
     },
     {
       "id": "vocabularies",
