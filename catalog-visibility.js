@@ -193,10 +193,11 @@
 
     window.addEventListener('popstate', () => setTimeout(sync, 0));
 
-    const observer = new MutationObserver(() => {
-      scheduleDecorateUrls();
-    });
-    observer.observe(document.body, { childList:true, subtree:true });
+    const panel = document.querySelector('[data-view-panel]');
+    if (panel) {
+      const observer = new MutationObserver(scheduleDecorateUrls);
+      observer.observe(panel, { childList: true });
+    }
     scheduleDecorateUrls();
   }, 160));
 })();
