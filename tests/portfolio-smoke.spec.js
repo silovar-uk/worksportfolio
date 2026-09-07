@@ -16,7 +16,7 @@ function installRuntimeGuards(page) {
   return issues;
 }
 
-async function boot(page, viewport) {
+async function boot(page, viewport, issues) {
   await page.setViewportSize(viewport);
   await page.addInitScript(() => {
     window.__portfolioLongTasks = [];
@@ -43,7 +43,18 @@ async function boot(page, viewport) {
   await expect(page.locator('#home-start-title')).toBeVisible();
   await expect(page.locator('#home-frictions-title')).toBeVisible();
   await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'), null, { timeout: 5000 });
-  await page.waitForFunction(() => document.documentElement.classList.contains('project-detail-core-ready'), null, { timeout: 5000 });
+  try {
+    await page.waitForFunction(() => document.documentElement.classList.contains('project-detail-core-ready'), null, { timeout: 1500 });
+  } catch (_) {
+    const debug = await page.evaluate(() => ({
+      readyState: document.readyState,
+      hasCoreClass: document.documentElement.classList.contains('project-detail-core-ready'),
+      hasApi: Boolean(window.WORKS_PORTFOLIO_PROJECT_DETAIL),
+      scriptTags: [...document.scripts].map((script) => script.src).filter((src) => src.includes('project-detail')),
+      resources: performance.getEntriesByType('resource').map((entry) => entry.name).filter((name) => name.includes('project-detail'))
+    }));
+    throw new Error(`project detail core did not start: ${JSON.stringify(debug)}; runtime issues: ${issues.join(' | ') || 'none'}`);
+  }
 }
 
 async function staticLayoutSnapshot(page) {
@@ -104,7 +115,7 @@ for (const profile of [
 ]) {
   test(`${profile.name}: stable shell, unified search, canonical catalog`, async ({ page }) => {
     const issues = installRuntimeGuards(page);
-    await boot(page, profile.viewport);
+    await boot(page, profile.viewport, issues);
 
     const before = await staticLayoutSnapshot(page);
     await page.waitForTimeout(900);
