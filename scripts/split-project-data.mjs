@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
@@ -63,17 +64,27 @@ function stripRedundantRuntimeData(html) {
   };
 }
 
-function patchDetailLoader(html) {
-  const original = `  function openProject(id, push = true) {\n    const project = state.projects.find(item => item.id === id);\n    if (!project) return;\n    state.selectedProjectId = id;\n    els.projectDetail.innerHTML = renderProjectDetail(project);\n    if (!els.projectDialog.open) els.projectDialog.showModal();\n    bindProjectButtons();\n    if (push) updateUrl();\n  }`;
+function stripLegacyRenderer(html) {
+  const startMarker = "  <script>\n(() => {\n  'use strict';\n\n  const state = {";
+  const start = html.indexOf(startMarker);
+  if (start < 0) throw new Error('Legacy inline renderer start marker was not found.');
+  const end = html.indexOf('</script>', start);
+  if (end < 0) throw new Error('Legacy inline renderer script was not closed.');
+  const removedBytes = byteLength(html.slice(start, end + 9));
+  const marker = '  <!-- Legacy timeline/shelf/map renderer removed from production; projectDetailCache is owned by project-detail.js. -->';
+  return {
+    html: html.slice(0, start) + marker + html.slice(end + 9),
+    removedBytes
+  };
+}
 
-  if (!html.includes(original)) {
-    if (html.includes('const projectDetailCache = new Map();')) return html;
-    throw new Error('Canonical openProject function was not found for lazy-detail patching.');
-  }
-
-  const replacement = `  const projectDetailCache = new Map();\n  let projectDetailRequest = 0;\n\n  async function loadProjectDetail(id) {\n    if (projectDetailCache.has(id)) return projectDetailCache.get(id);\n    const path = \`data/project-details/\${encodeURIComponent(id)}.json\`;\n    const response = await fetch(path, { cache: 'force-cache' });\n    if (!response.ok) throw new Error(\`\${path}: \${response.status}\`);\n    const detail = await response.json();\n    projectDetailCache.set(id, detail);\n    return detail;\n  }\n\n  async function openProject(id, push = true) {\n    const summary = state.projects.find(item => item.id === id);\n    if (!summary) return;\n    state.selectedProjectId = id;\n    const requestId = ++projectDetailRequest;\n    els.projectDetail.innerHTML = '<div class="loading">詳細を読み込んでいます。</div>';\n    if (!els.projectDialog.open) els.projectDialog.showModal();\n    if (push) updateUrl();\n    try {\n      const detail = await loadProjectDetail(id);\n      if (state.selectedProjectId !== id || requestId !== projectDetailRequest) return;\n      const project = { ...summary, ...detail, id: summary.id };\n      els.projectDetail.innerHTML = renderProjectDetail(project);\n      bindProjectButtons();\n    } catch (error) {\n      console.error(error);\n      if (state.selectedProjectId !== id || requestId !== projectDetailRequest) return;\n      els.projectDetail.innerHTML = '<div class="empty-state"><h3>詳細を読み込めませんでした。</h3><p>一覧はそのまま利用できます。時間をおいてもう一度開いてください。</p></div>';\n    }\n  }`;
-
-  return html.replace(original, replacement);
+async function installProjectDetailRuntime(html) {
+  const source = await readFile(new URL('project-detail.js', root), 'utf8');
+  const hash = createHash('sha256').update(source).digest('hex').slice(0, 12);
+  const tag = `<script src="project-detail.js?v=${hash}"></script>`;
+  if (!html.includes('project-detail.js')) html = html.replace('</body>', `${tag}</body>`);
+  if (!html.includes('project-detail.js')) throw new Error('project-detail.js was not installed in generated output.');
+  return { html, hash };
 }
 
 let html = await readFile(indexUrl, 'utf8');
@@ -99,12 +110,20 @@ for (const project of projects) {
 diary.projects = summaries;
 const compactDiary = scriptJson(diary);
 html = html.slice(0, jsonStart) + ` ${compactDiary};\n` + html.slice(scriptEnd);
-html = patchDetailLoader(html);
 const runtimeCleanup = stripRedundantRuntimeData(html);
 html = runtimeCleanup.html;
+const legacyCleanup = stripLegacyRenderer(html);
+html = legacyCleanup.html;
+const projectDetailRuntime = await installProjectDetailRuntime(html);
+html = projectDetailRuntime.html;
 if (!html.includes('name="worksportfolio-data-mode"')) {
   html = html.replace('</head>', '<meta name="worksportfolio-data-mode" content="summary-inline-detail-on-demand"></head>');
 }
+
+if (html.includes("document.addEventListener('DOMContentLoaded', init);")) {
+  throw new Error('Legacy inline renderer still binds DOMContentLoaded.');
+}
+if (!html.includes('project-detail.js')) throw new Error('Stable project detail runtime missing.');
 
 await writeFile(indexUrl, html, 'utf8');
 
@@ -116,6 +135,7 @@ console.log(
   `Split project payload: ${projects.length} summaries inline; ${projects.length} on-demand detail files. ` +
   `Inline diary ${initialDiaryBytes.toLocaleString('en-US')} -> ${finalDiaryBytes.toLocaleString('en-US')} bytes ` +
   `(-${saved.toLocaleString('en-US')}, ${percent}%); redundant runtime -${runtimeCleanup.savedBytes.toLocaleString('en-US')} bytes; ` +
+  `legacy renderer -${legacyCleanup.removedBytes.toLocaleString('en-US')} bytes; ` +
   `index ${initialIndexBytes.toLocaleString('en-US')} -> ${finalIndexBytes.toLocaleString('en-US')} bytes; ` +
-  `detail payload ${detailBytes.toLocaleString('en-US')} bytes fetched only when opened.`
+  `detail payload ${detailBytes.toLocaleString('en-US')} bytes fetched only when opened; project detail ${projectDetailRuntime.hash}.`
 );
