@@ -544,12 +544,7 @@
       "Manifest V3"
     ],
     "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "converter",
-        "relation": "文字変換・整形をすぐ使う"
-      }
-    ],
+    "relatedProjects": [],
     "updates": [],
     "aside": "",
     "searchAliases": [
