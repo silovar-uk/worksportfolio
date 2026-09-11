@@ -4,9 +4,6 @@ const root = new URL('../', import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const writeJson = async (path, value) => writeFile(new URL(path, root), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 
-await import('./add-urawa-history-quiz.mjs');
-await import('./optimize-search-index-source.mjs');
-
 const config = await readJson('data/portfolio-config.json');
 const catalog = await readJson('data/catalog.json');
 const projects = await readJson('data/projects.json');
