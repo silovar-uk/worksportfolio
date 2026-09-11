@@ -13,6 +13,9 @@ on:
       - 'data/project-start-dates.json'
       - 'scripts/audit-data-quality.mjs'
       - '.github/workflows/audit-data-quality.yml'
+  workflow_run:
+    workflows: ['Build portfolio site']
+    types: [completed]
 
 permissions:
   contents: write
@@ -23,6 +26,7 @@ concurrency:
 
 jobs:
   audit:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
