@@ -17,6 +17,8 @@ const privateSafe = Array.isArray(privateProjects) ? privateProjects : [];
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
 const hidden = new Set(Array.isArray(config.hiddenIds) ? config.hiddenIds : []);
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object' ? config.repositoryProjectIds : {};
+const legacyRepositoryIds = config.legacyRepositoryIds && typeof config.legacyRepositoryIds === 'object' ? config.legacyRepositoryIds : {};
+const canonicalIds = new Set(canonical.map((project) => project?.id).filter(Boolean));
 const normalize = (value) => String(value || '').normalize('NFKC').toLowerCase().replace(/[\s_.\-–—｜|/\\]+/g, '');
 const present = (value) => Array.isArray(value) ? value.length > 0 : Boolean(String(value || '').trim());
 
@@ -39,8 +41,6 @@ function distance(a, b) {
 const familyIds = new Set();
 for (const family of taxonomy.families || []) for (const id of family.projectIds || []) familyIds.add(id);
 
-// hiddenIds may refer to either a source repository or a Project ID. A hidden source
-// alias must not hide its canonical target when another visible source still represents it.
 const reviewableCanonical = canonical.filter((project) => project?.id && !hidden.has(project.id));
 const excludedCanonical = canonical.filter((project) => !reviewableCanonical.includes(project)).map((project) => project.id);
 
@@ -48,6 +48,12 @@ const verbCounts = new Map();
 const typeCounts = new Map();
 const records = [];
 const consistencyIssues = [];
+
+for (const [sourceId, targetId] of Object.entries(legacyRepositoryIds)) {
+  if (!canonicalIds.has(targetId)) consistencyIssues.push({ id: sourceId, issue: 'legacy-target-missing', targetId });
+  if (repositoryProjectIds[sourceId]) consistencyIssues.push({ id: sourceId, issue: 'legacy-source-also-canonical-mapped', targetId });
+  if (!hidden.has(sourceId)) consistencyIssues.push({ id: sourceId, issue: 'legacy-source-not-hidden', targetId });
+}
 
 const documentationScore = (state) => state === 'verified' ? 1 : state === 'inferred' ? 0.5 : 0;
 const artifactStatus = (project) => {
@@ -114,11 +120,14 @@ for (let i = 0; i < repositories.length; i += 1) {
     if (editDistance < 1 || editDistance > 2) continue;
     const aProject = repositoryProjectIds[a] || a;
     const bProject = repositoryProjectIds[b] || b;
-    const resolution = aProject === bProject
-      ? 'same-project-mapped'
-      : hidden.has(a) || hidden.has(b) || hidden.has(aProject) || hidden.has(bProject)
-        ? 'hidden-source-review'
-        : 'unresolved';
+    const legacyPair = legacyRepositoryIds[a] === bProject || legacyRepositoryIds[a] === b || legacyRepositoryIds[b] === aProject || legacyRepositoryIds[b] === a;
+    const resolution = legacyPair
+      ? 'legacy-source'
+      : aProject === bProject
+        ? 'same-project-mapped'
+        : hidden.has(a) || hidden.has(b) || hidden.has(aProject) || hidden.has(bProject)
+          ? 'hidden-source-review'
+          : 'unresolved';
     duplicateCandidates.push({ a, b, distance: editDistance, aProject, bProject, resolution });
   }
 }
@@ -132,15 +141,15 @@ for (const project of reviewableCanonical) {
   exactTitleGroups.set(key, ids);
 }
 const duplicateTitles = [...exactTitleGroups.entries()].filter(([, ids]) => ids.length > 1).map(([normalizedTitle, ids]) => ({ normalizedTitle, ids }));
+for (const group of duplicateTitles) consistencyIssues.push({ id: group.ids.join(','), issue: 'duplicate-visible-title', normalizedTitle: group.normalizedTitle, ids: group.ids });
 
 const visibleRepos = repositories.filter((repo) => {
   const repoId = repo?.name || repo?.id;
   const projectId = repositoryProjectIds[repoId] || repoId;
-  return repoId && !hidden.has(repoId) && !hidden.has(projectId);
+  return repoId && !legacyRepositoryIds[repoId] && !hidden.has(repoId) && !hidden.has(projectId);
 });
 const mappedVisibleIds = new Set(visibleRepos.map((repo) => repositoryProjectIds[repo.name || repo.id] || repo.name || repo.id));
 const canonicalWithoutPublicRepo = reviewableCanonical.filter((project) => !mappedVisibleIds.has(project.id)).map((project) => project.id);
-const canonicalIds = new Set(canonical.map((project) => project.id));
 const sourceWithoutCanonical = visibleRepos
   .map((repo) => ({ repoId: repo.name || repo.id, projectId: repositoryProjectIds[repo.name || repo.id] || repo.name || repo.id }))
   .filter(({ projectId }) => !canonicalIds.has(projectId));
@@ -154,6 +163,7 @@ const summary = {
   privateSafeProjects: privateSafe.length,
   publicRepositories: repositories.length,
   visiblePublicRepositories: visibleRepos.length,
+  legacyRepositories: Object.keys(legacyRepositoryIds).length,
   verifiedDocumentation: reviewableCanonical.filter((project) => project.documentationState === 'verified').length,
   inferredDocumentation: reviewableCanonical.filter((project) => project.documentationState === 'inferred').length,
   unreviewedDocumentation: reviewableCanonical.filter((project) => !project.documentationState || project.documentationState === 'unreviewed').length,
@@ -164,6 +174,7 @@ const summary = {
   withoutRelations: reviewableCanonical.filter((project) => !present(project.relatedProjects)).length,
   artifactReviewNeeded: reviewableCanonical.filter((project) => artifactStatus(project) === 'review-needed').length,
   consistencyIssues: consistencyIssues.length,
+  duplicateTitleGroups: duplicateTitles.length,
   unresolvedDuplicateCandidates: duplicateCandidates.filter((item) => item.resolution === 'unresolved').length,
   canonicalWithoutPublicRepo: canonicalWithoutPublicRepo.length,
   sourceWithoutCanonical: sourceWithoutCanonical.length
@@ -181,6 +192,7 @@ const payload = {
   consistencyIssues,
   duplicateCandidates,
   duplicateTitles,
+  legacyRepositoryIds,
   canonicalWithoutPublicRepo,
   sourceWithoutCanonical,
   vocabulary: {
@@ -190,7 +202,7 @@ const payload = {
 };
 
 await writeFile(new URL('data/data-quality-audit.json', root), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-console.log(`Data quality audit: ${summary.reviewableCanonicalProjects} reviewable canonical / ${summary.privateSafeProjects} private-safe / ${summary.publicRepositories} repos; ${summary.consistencyIssues} consistency issues; ${summary.unresolvedDuplicateCandidates} unresolved duplicate candidates.`);
-console.log(`Core completeness: friction ${summary.missingFriction}; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}. Informational: no relations ${summary.withoutRelations}; artifact reviews ${summary.artifactReviewNeeded}.`);
+console.log(`Data quality audit: ${summary.reviewableCanonicalProjects} reviewable canonical / ${summary.privateSafeProjects} private-safe / ${summary.publicRepositories} repos; ${summary.legacyRepositories} legacy repos; ${summary.consistencyIssues} consistency issues; ${summary.unresolvedDuplicateCandidates} unresolved duplicate candidates.`);
+console.log(`Core completeness: friction ${summary.missingFriction}; firstBuild ${summary.missingFirstBuild}; currentAnswer ${summary.missingCurrentAnswer}; startedAt ${summary.missingStartedAt}. Informational: duplicate titles ${summary.duplicateTitleGroups}; no relations ${summary.withoutRelations}; artifact reviews ${summary.artifactReviewNeeded}.`);
 if (consistencyIssues.length) console.log(`Consistency issues: ${consistencyIssues.map((item) => `${item.id}[${item.issue}]`).join(' | ')}`);
 if (duplicateCandidates.length) console.log(`Duplicate candidates: ${duplicateCandidates.map((item) => `${item.a}↔${item.b}[${item.resolution}]`).join(' | ')}`);
