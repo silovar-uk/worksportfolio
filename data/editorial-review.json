@@ -7,7 +7,7 @@
     "discovered": 1,
     "published": 58,
     "hidden": 15,
-    "withWarnings": 1,
+    "withWarnings": 0,
     "artifactReviewNeeded": 0
   },
   "items": [
@@ -15,17 +15,14 @@
       "id": "urawa-history-quiz",
       "projectId": "urawa-history-quiz",
       "state": "discovered",
-      "reasons": [
-        "no-curation",
-        "generic-summary"
-      ],
+      "reasons": [],
       "families": [],
       "createdAt": "2026-09-07",
       "updatedAt": "2026-09-07",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
-      "documentationState": "unreviewed"
+      "documentationState": "verified"
     },
     {
       "id": "100yearvision",
