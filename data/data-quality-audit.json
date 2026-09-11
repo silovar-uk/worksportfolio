@@ -29,23 +29,25 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-11T05:47:25.857Z",
+    "generatedAt": "2026-09-11T05:50:24.010Z",
     "canonicalProjects": 68,
     "reviewableCanonicalProjects": 65,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 74,
     "visiblePublicRepositories": 59,
-    "verifiedDocumentation": 47,
-    "inferredDocumentation": 18,
+    "legacyRepositories": 1,
+    "verifiedDocumentation": 49,
+    "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 20,
+    "withoutRelations": 21,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
+    "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
     "sourceWithoutCanonical": 1
@@ -87,19 +89,6 @@
       "hasFamily": false,
       "relationCount": 0,
       "artifactStatus": "public-url-recorded",
-      "startedAtBasis": "first-repository-commit",
-      "startedAtPrecision": "day"
-    },
-    {
-      "id": "convinitools",
-      "score": 9.5,
-      "maxScore": 10,
-      "quality": "verified-shape",
-      "documentationState": "inferred",
-      "missingCore": [],
-      "hasFamily": false,
-      "relationCount": 1,
-      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
@@ -217,19 +206,6 @@
       "hasFamily": false,
       "relationCount": 1,
       "artifactStatus": "public-url-recorded",
-      "startedAtBasis": "first-repository-commit",
-      "startedAtPrecision": "day"
-    },
-    {
-      "id": "quicklinksexpansion",
-      "score": 9.5,
-      "maxScore": 10,
-      "quality": "verified-shape",
-      "documentationState": "inferred",
-      "missingCore": [],
-      "hasFamily": true,
-      "relationCount": 1,
-      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
@@ -358,8 +334,21 @@
       "documentationState": "verified",
       "missingCore": [],
       "hasFamily": false,
-      "relationCount": 1,
+      "relationCount": 0,
       "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
+      "id": "convinitools",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
     },
@@ -767,6 +756,19 @@
       "startedAtPrecision": "month"
     },
     {
+      "id": "quicklinksexpansion",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": true,
+      "relationCount": 1,
+      "artifactStatus": "extension-no-public-url-expected",
+      "startedAtBasis": "first-repository-commit",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "simplememotool",
       "score": 10,
       "maxScore": 10,
@@ -905,25 +907,13 @@
       "distance": 1,
       "aProject": "quicklinks",
       "bProject": "quickliks",
-      "resolution": "hidden-source-review"
+      "resolution": "legacy-source"
     }
   ],
-  "duplicateTitles": [
-    {
-      "normalizedTitle": "テキスト便利変換ツール",
-      "ids": [
-        "converter",
-        "convinitools"
-      ]
-    },
-    {
-      "normalizedTitle": "quickprojectlinks",
-      "ids": [
-        "quicklinks",
-        "quicklinksexpansion"
-      ]
-    }
-  ],
+  "duplicateTitles": [],
+  "legacyRepositoryIds": {
+    "quickliks": "quicklinks"
+  },
   "canonicalWithoutPublicRepo": [
     "karaoke-db",
     "keygrid",
@@ -946,19 +936,19 @@
         "count": 25
       },
       {
-        "value": "chrome-extension",
-        "count": 12
-      },
-      {
         "value": "web-app",
         "count": 11
       },
       {
-        "value": "content-page",
-        "count": 6
+        "value": "chrome-extension",
+        "count": 10
       },
       {
         "value": "utility",
+        "count": 8
+      },
+      {
+        "value": "content-page",
         "count": 6
       },
       {
@@ -981,7 +971,7 @@
       },
       {
         "value": "探す",
-        "count": 12
+        "count": 13
       },
       {
         "value": "記録する",
@@ -989,7 +979,7 @@
       },
       {
         "value": "確認する",
-        "count": 7
+        "count": 6
       },
       {
         "value": "書く",
@@ -1016,7 +1006,7 @@
         "count": 4
       },
       {
-        "value": "見つける",
+        "value": "整える",
         "count": 3
       },
       {
@@ -1036,6 +1026,10 @@
         "count": 2
       },
       {
+        "value": "開く",
+        "count": 2
+      },
+      {
         "value": "確かめる",
         "count": 2
       },
@@ -1045,6 +1039,10 @@
       },
       {
         "value": "計算する",
+        "count": 2
+      },
+      {
+        "value": "見つける",
         "count": 2
       },
       {
@@ -1068,10 +1066,6 @@
         "count": 2
       },
       {
-        "value": "整える",
-        "count": 2
-      },
-      {
         "value": "組み立てる",
         "count": 2
       },
@@ -1081,6 +1075,10 @@
       },
       {
         "value": "復習する",
+        "count": 2
+      },
+      {
+        "value": "保存する",
         "count": 2
       },
       {
@@ -1101,10 +1099,6 @@
       },
       {
         "value": "歌う",
-        "count": 1
-      },
-      {
-        "value": "開く",
         "count": 1
       },
       {
@@ -1176,11 +1170,11 @@
         "count": 1
       },
       {
-        "value": "声に出す",
+        "value": "生成する",
         "count": 1
       },
       {
-        "value": "切り替える",
+        "value": "声に出す",
         "count": 1
       },
       {
@@ -1221,10 +1215,6 @@
       },
       {
         "value": "並べ替える",
-        "count": 1
-      },
-      {
-        "value": "保存する",
         "count": 1
       },
       {
