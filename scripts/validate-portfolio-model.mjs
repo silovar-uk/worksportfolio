@@ -87,9 +87,14 @@ for (const repo of rawRepositories) {
   const projectId = repositoryProjectIds[repoId] || repoId;
   const project = (projects || []).find((item) => item?.id === projectId);
   if (!project || !repo.hasPages || !String(project.liveUrl || '').startsWith(`https://${owner}.github.io/`)) continue;
-  const expected = `https://${owner}.github.io/${repoId}/`;
-  const actual = String(project.liveUrl).replace(/\/?$/, '/');
-  if (actual !== expected) errors.push(`projects.json:${projectId}: GitHub Pages URL ${actual} does not match source repository ${expected}`);
+  const expected = new URL(`https://${owner}.github.io/${repoId}/`);
+  let actual;
+  try { actual = new URL(String(project.liveUrl)); }
+  catch { errors.push(`projects.json:${projectId}: liveUrl is not a valid URL: ${project.liveUrl}`); continue; }
+  const normalizePath = (path) => path.endsWith('/') ? path : `${path}/`;
+  if (actual.origin !== expected.origin || normalizePath(actual.pathname) !== normalizePath(expected.pathname)) {
+    errors.push(`projects.json:${projectId}: GitHub Pages path ${actual.origin}${actual.pathname} does not match source repository ${expected.origin}${expected.pathname}`);
+  }
 }
 
 const forbidden = /(api\.github\.com\/repos\/|github\.com\/silovar-uk\/(?:private-memo|karaoke-db|uicleaner|prompt-caller|daily-log)(?:\/|"|$))/i;
