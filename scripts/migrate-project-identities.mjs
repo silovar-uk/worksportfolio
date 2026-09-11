@@ -64,6 +64,7 @@ const patches = {
     status: 'active',
     technologies: ['Chrome Extension', 'JavaScript', 'Manifest V3'],
     documentationState: 'verified',
+    relatedProjects: [],
     searchAliases: ['テキスト便利変換ツール', 'convinitools', 'text converter', '調整カレンダー', '文字整形', 'Chrome Extension']
   }
 };
