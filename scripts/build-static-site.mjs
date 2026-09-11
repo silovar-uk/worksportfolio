@@ -164,7 +164,7 @@ function searchIndexProject(project) {
   const hintRaw = project.friction || project.summary || project.subtitle || '';
   const hint = truncate(hintRaw, 120);
   const normalizedHint = normalizeSearch(hint);
-  let hiddenSearch = normalizeSearch([project.subtitle, project.summary, project.friction, ...(project.makingPrinciples || [])].filter(Boolean).join(' '));
+  let hiddenSearch = normalizeSearch([project.summary, project.friction, ...(project.makingPrinciples || [])].filter(Boolean).join(' '));
   if (normalizedHint) hiddenSearch = hiddenSearch.replace(normalizedHint, '');
   const record = { i: project.id, t: project.title || project.id, h: hint, y: typeCodes[project.type] || 'o' };
   if (project.friction) record.r = 1;

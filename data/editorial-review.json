@@ -4,26 +4,12 @@
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 74,
-    "discovered": 1,
-    "published": 58,
+    "published": 59,
     "hidden": 15,
     "withWarnings": 0,
     "artifactReviewNeeded": 0
   },
   "items": [
-    {
-      "id": "urawa-history-quiz",
-      "projectId": "urawa-history-quiz",
-      "state": "discovered",
-      "reasons": [],
-      "families": [],
-      "createdAt": "2026-09-07",
-      "updatedAt": "2026-09-07",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "verified"
-    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -734,6 +720,19 @@
     {
       "id": "ui-collabo",
       "projectId": "ui-collabo",
+      "state": "published",
+      "reasons": [],
+      "families": [],
+      "createdAt": "2026-09-07",
+      "updatedAt": "2026-09-07",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "verified"
+    },
+    {
+      "id": "urawa-history-quiz",
+      "projectId": "urawa-history-quiz",
       "state": "published",
       "reasons": [],
       "families": [],
