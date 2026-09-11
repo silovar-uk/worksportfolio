@@ -29,13 +29,13 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-07T04:39:39.493Z",
+    "generatedAt": "2026-09-11T05:39:39.989Z",
     "canonicalProjects": 68,
     "reviewableCanonicalProjects": 65,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
-    "publicRepositories": 73,
-    "visiblePublicRepositories": 58,
+    "publicRepositories": 74,
+    "visiblePublicRepositories": 60,
     "verifiedDocumentation": 47,
     "inferredDocumentation": 18,
     "unreviewedDocumentation": 0,
@@ -46,9 +46,9 @@
     "withoutRelations": 20,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
-    "unresolvedDuplicateCandidates": 0,
+    "unresolvedDuplicateCandidates": 1,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 0
+    "sourceWithoutCanonical": 2
   },
   "records": [
     {
@@ -904,8 +904,8 @@
       "b": "quickliks",
       "distance": 1,
       "aProject": "quicklinks",
-      "bProject": "quicklinks",
-      "resolution": "same-project-mapped"
+      "bProject": "quickliks",
+      "resolution": "unresolved"
     }
   ],
   "duplicateTitles": [
@@ -933,7 +933,16 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [],
+  "sourceWithoutCanonical": [
+    {
+      "repoId": "urawa-history-quiz",
+      "projectId": "urawa-history-quiz"
+    },
+    {
+      "repoId": "quickliks",
+      "projectId": "quickliks"
+    }
+  ],
   "vocabulary": {
     "types": [
       {
