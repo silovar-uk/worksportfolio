@@ -15,14 +15,12 @@
     "vsmcintro",
     "2026eventlist",
     "predictattendance",
-    "quickliks",
     "todomanager",
     "keygridexpansion",
     "ooh",
     "ennnichimock"
   ],
   "repositoryProjectIds": {
-    "worksportfolio": "build-diary",
-    "quickliks": "quicklinks"
+    "worksportfolio": "build-diary"
   }
 }
