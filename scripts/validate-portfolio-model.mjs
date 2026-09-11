@@ -15,9 +15,14 @@ const [taxonomy, policy, config, catalog, projects, privateProjects] = await Pro
 const errors = [];
 const warnings = [];
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object' ? config.repositoryProjectIds : {};
-const publicIds = new Set((catalog.repositories || []).map((repo) => {
+const legacyRepositoryIds = config.legacyRepositoryIds && typeof config.legacyRepositoryIds === 'object' ? config.legacyRepositoryIds : {};
+const hiddenIds = new Set(Array.isArray(config.hiddenIds) ? config.hiddenIds : []);
+const rawRepositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
+const rawRepositoryIds = new Set(rawRepositories.map((repo) => repo?.name || repo?.id || '').filter(Boolean));
+const publicIds = new Set(rawRepositories.map((repo) => {
   const id = repo?.name || repo?.id || '';
-  return id ? (repositoryProjectIds[id] || id) : '';
+  if (!id || legacyRepositoryIds[id]) return '';
+  return repositoryProjectIds[id] || id;
 }).filter(Boolean));
 const canonicalIds = new Set((Array.isArray(projects) ? projects : []).map((project) => project?.id).filter(Boolean));
 const privateIds = new Set((Array.isArray(privateProjects) ? privateProjects : []).map((project) => project?.id).filter(Boolean));
@@ -28,6 +33,26 @@ if (!Array.isArray(taxonomy.families) || !taxonomy.families.length) errors.push(
 if (!Array.isArray(taxonomy.principles) || !taxonomy.principles.length) errors.push('portfolio-taxonomy: principles are required');
 if ((taxonomy.families || []).length > 7) warnings.push(`portfolio-taxonomy: ${taxonomy.families.length} families may be too many`);
 if ((taxonomy.principles || []).length > 5) warnings.push(`portfolio-taxonomy: ${taxonomy.principles.length} principles may be too many`);
+
+for (const [sourceId, targetId] of Object.entries(legacyRepositoryIds)) {
+  if (!targetId || !canonicalIds.has(targetId)) errors.push(`legacyRepositoryIds:${sourceId}: canonical target ${targetId || '(missing)'} does not exist`);
+  if (repositoryProjectIds[sourceId]) errors.push(`legacyRepositoryIds:${sourceId}: legacy source must not also appear in repositoryProjectIds`);
+  if (!hiddenIds.has(sourceId)) errors.push(`legacyRepositoryIds:${sourceId}: legacy source must also be hidden`);
+  if (!rawRepositoryIds.has(sourceId)) warnings.push(`legacyRepositoryIds:${sourceId}: source repository is no longer public; historical mapping retained`);
+}
+
+const titleGroups = new Map();
+for (const project of projects || []) {
+  if (!project?.id || !project?.title) continue;
+  const key = String(project.title).normalize('NFKC').toLowerCase().replace(/[\s_.\-–—｜|/\\]+/g, '');
+  if (!key) continue;
+  const ids = titleGroups.get(key) || [];
+  ids.push(project.id);
+  titleGroups.set(key, ids);
+}
+for (const [titleKey, ids] of titleGroups) {
+  if (ids.length > 1) errors.push(`projects.json: duplicate visible title ${titleKey} -> ${ids.join(', ')}`);
+}
 
 const checkRefs = (label, values) => {
   const seen = new Set();
@@ -55,6 +80,18 @@ for (const project of projects || []) {
   checkRefs(`project:${project?.id || '(missing)'}:relations`, (project?.relatedProjects || []).map((relation) => relation?.id || relation?.target));
 }
 
+const owner = config.owner || 'silovar-uk';
+for (const repo of rawRepositories) {
+  const repoId = repo?.name || repo?.id || '';
+  if (!repoId || legacyRepositoryIds[repoId]) continue;
+  const projectId = repositoryProjectIds[repoId] || repoId;
+  const project = (projects || []).find((item) => item?.id === projectId);
+  if (!project || !repo.hasPages || !String(project.liveUrl || '').startsWith(`https://${owner}.github.io/`)) continue;
+  const expected = `https://${owner}.github.io/${repoId}/`;
+  const actual = String(project.liveUrl).replace(/\/?$/, '/');
+  if (actual !== expected) errors.push(`projects.json:${projectId}: GitHub Pages URL ${actual} does not match source repository ${expected}`);
+}
+
 const forbidden = /(api\.github\.com\/repos\/|github\.com\/silovar-uk\/(?:private-memo|karaoke-db|uicleaner|prompt-caller|daily-log)(?:\/|"|$))/i;
 for (const project of privateProjects || []) {
   if (project?.sourceVisibility !== 'private') errors.push(`private:${project?.id}: sourceVisibility must be private`);
@@ -68,4 +105,4 @@ if (errors.length) {
   errors.forEach((error) => console.error(`ERROR ${error}`));
   process.exit(1);
 }
-console.log(`Portfolio model valid: ${canonicalIds.size} canonical projects, ${privateIds.size} private summaries, ${(taxonomy.families || []).length} families, ${(taxonomy.principles || []).length} principles.`);
+console.log(`Portfolio model valid: ${canonicalIds.size} canonical projects, ${privateIds.size} private summaries, ${Object.keys(legacyRepositoryIds).length} legacy repositories, ${(taxonomy.families || []).length} families, ${(taxonomy.principles || []).length} principles.`);
