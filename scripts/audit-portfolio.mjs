@@ -9,6 +9,7 @@ const projects = await readJson('data/projects.json');
 const repositories = Array.isArray(catalog.repositories) ? catalog.repositories : [];
 const hidden = new Set(Array.isArray(config.hiddenIds) ? config.hiddenIds : []);
 const repositoryProjectIds = config.repositoryProjectIds && typeof config.repositoryProjectIds === 'object' ? config.repositoryProjectIds : {};
+const legacyRepositoryIds = config.legacyRepositoryIds && typeof config.legacyRepositoryIds === 'object' ? config.legacyRepositoryIds : {};
 const canonical = new Map((Array.isArray(projects) ? projects : []).filter((project) => project?.id).map((project) => [String(project.id), project]));
 const normalize = (value) => String(value || '').normalize('NFKC').toLowerCase().replace(/[\s_.\-–—｜|/\\]+/g, '');
 
@@ -31,7 +32,7 @@ function distance(a, b) {
 const visible = repositories.filter((repo) => {
   const repoId = repo.name || repo.id;
   const projectId = repositoryProjectIds[repoId] || repoId;
-  return repoId && !hidden.has(repoId) && !hidden.has(projectId);
+  return repoId && !legacyRepositoryIds[repoId] && !hidden.has(repoId) && !hidden.has(projectId);
 });
 
 const artifactStatus = (repo, project) => {
@@ -69,11 +70,14 @@ for (let i = 0; i < repositories.length; i += 1) {
     if (editDistance <= 0 || editDistance > 2) continue;
     const aProject = repositoryProjectIds[a] || a;
     const bProject = repositoryProjectIds[b] || b;
-    const resolution = aProject === bProject
-      ? 'same-project-mapped'
-      : hidden.has(a) || hidden.has(b) || hidden.has(aProject) || hidden.has(bProject)
-        ? 'hidden-source-review'
-        : 'unresolved';
+    const legacyPair = legacyRepositoryIds[a] === bProject || legacyRepositoryIds[a] === b || legacyRepositoryIds[b] === aProject || legacyRepositoryIds[b] === a;
+    const resolution = legacyPair
+      ? 'legacy-source'
+      : aProject === bProject
+        ? 'same-project-mapped'
+        : hidden.has(a) || hidden.has(b) || hidden.has(aProject) || hidden.has(bProject)
+          ? 'hidden-source-review'
+          : 'unresolved';
     duplicateCandidates.push({ a, b, distance: editDistance, aProject, bProject, resolution });
   }
 }
@@ -84,6 +88,7 @@ const summary = {
   repositoryCount: repositories.length,
   visibleCount: visible.length,
   hiddenCount: repositories.length - visible.length,
+  legacyRepositoryCount: Object.keys(legacyRepositoryIds).length,
   canonicalProjectCount: canonical.size,
   verifiedProjectCount: [...canonical.values()].filter((item) => item?.documentationState === 'verified').length,
   inferredProjectCount: [...canonical.values()].filter((item) => item?.documentationState === 'inferred').length,
@@ -93,9 +98,9 @@ const summary = {
   unresolvedDuplicateCount: unresolvedDuplicates.length
 };
 
-console.log(`Portfolio audit: ${summary.visibleCount} visible / ${summary.repositoryCount} public repositories; ${summary.metadataReviewCount} metadata issues; ${summary.confidenceReviewCount} unreviewed confidence records; ${summary.artifactReviewCount} artifact checks; ${summary.unresolvedDuplicateCount} unresolved duplicates.`);
+console.log(`Portfolio audit: ${summary.visibleCount} visible / ${summary.repositoryCount} public repositories; ${summary.legacyRepositoryCount} legacy; ${summary.metadataReviewCount} metadata issues; ${summary.confidenceReviewCount} unreviewed confidence records; ${summary.artifactReviewCount} artifact checks; ${summary.unresolvedDuplicateCount} unresolved duplicates.`);
 if (metadataReview.length) console.log(`Metadata review: ${metadataReview.slice(0, 25).map((item) => `${item.id}[${item.reasons.join(',')}]`).join(' | ')}${metadataReview.length > 25 ? ` | +${metadataReview.length - 25} more` : ''}`);
 if (confidenceReview.length) console.log(`Confidence review: ${confidenceReview.slice(0, 25).map((item) => `${item.id}[${item.state}]`).join(' | ')}`);
 if (artifactReview.length) console.log(`Artifact check: ${artifactReview.slice(0, 25).map((item) => item.id).join(' | ')}${artifactReview.length > 25 ? ` | +${artifactReview.length - 25} more` : ''}`);
 if (duplicateCandidates.length) console.log(`Duplicate candidates: ${duplicateCandidates.map((item) => `${item.a}↔${item.b}[${item.resolution}]`).join(' | ')}`);
-console.log(`PORTFOLIO_AUDIT_JSON=${JSON.stringify({ summary, metadataReview, confidenceReview, artifactReview, duplicateCandidates })}`);
+console.log(`PORTFOLIO_AUDIT_JSON=${JSON.stringify({ summary, metadataReview, confidenceReview, artifactReview, duplicateCandidates, legacyRepositoryIds })}`);
