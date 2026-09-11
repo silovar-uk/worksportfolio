@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-11T05:39:47.046Z",
+  "generatedAt": "2026-09-11T05:40:50.864Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 74,
     "discovered": 1,
-    "published": 59,
-    "hidden": 14,
-    "withWarnings": 2,
+    "published": 58,
+    "hidden": 15,
+    "withWarnings": 1,
     "artifactReviewNeeded": 0
   },
   "items": [
@@ -22,22 +22,6 @@
       "families": [],
       "createdAt": "2026-09-07",
       "updatedAt": "2026-09-07",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "unreviewed"
-    },
-    {
-      "id": "quickliks",
-      "projectId": "quickliks",
-      "state": "published",
-      "reasons": [
-        "no-curation",
-        "generic-summary"
-      ],
-      "families": [],
-      "createdAt": "2026-05-31",
-      "updatedAt": "2026-05-31",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -925,6 +909,22 @@
       "families": [],
       "createdAt": "2026-05-14",
       "updatedAt": "2026-05-14",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "quickliks",
+      "projectId": "quickliks",
+      "state": "hidden",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [],
+      "createdAt": "2026-05-31",
+      "updatedAt": "2026-05-31",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
