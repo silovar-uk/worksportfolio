@@ -4,12 +4,7 @@ const projectsUrl = new URL('../data/projects.json', import.meta.url);
 const projects = JSON.parse(await readFile(projectsUrl, 'utf8'));
 const id = 'urawa-history-quiz';
 
-if (projects.some((project) => project?.id === id)) {
-  console.log('URAWA HISTORY QUIZ is already registered.');
-  process.exit(0);
-}
-
-projects.push({
+const canonical = {
   id,
   title: 'URAWA HISTORY QUIZ',
   subtitle: '浦和レッズの歴史を、クイズから「流れ」で覚える学習アプリ',
@@ -20,6 +15,7 @@ projects.push({
   type: 'learning-tool',
   verbs: ['解く', '学ぶ', 'たどる'],
   status: 'development',
+  editorialState: 'published',
   startedAt: '2026-09-07',
   createdAt: '2026-09-07',
   updatedAt: '2026-09-07',
@@ -34,8 +30,12 @@ projects.push({
   aside: '',
   extension: null,
   searchAliases: ['URAWA HISTORY QUIZ', 'urawa-history-quiz', '浦和レッズ', '浦和歴史クイズ', 'レッズ歴史', '歴史クイズ']
-});
+};
+
+const existing = projects.find((project) => project?.id === id);
+if (existing) Object.assign(existing, canonical);
+else projects.push(canonical);
 
 projects.sort((a, b) => String(a.id).localeCompare(String(b.id)));
 await writeFile(projectsUrl, `${JSON.stringify(projects, null, 2)}\n`, 'utf8');
-console.log('Registered URAWA HISTORY QUIZ as a canonical project.');
+console.log('Registered and published URAWA HISTORY QUIZ as a canonical project.');
