@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-10T23:10:31.563Z",
+  "generatedAt": "2026-09-11T05:39:47.046Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 74,
     "discovered": 1,
-    "published": 58,
-    "hidden": 15,
-    "withWarnings": 1,
+    "published": 59,
+    "hidden": 14,
+    "withWarnings": 2,
     "artifactReviewNeeded": 0
   },
   "items": [
@@ -22,6 +22,22 @@
       "families": [],
       "createdAt": "2026-09-07",
       "updatedAt": "2026-09-07",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "unreviewed"
+    },
+    {
+      "id": "quickliks",
+      "projectId": "quickliks",
+      "state": "published",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [],
+      "createdAt": "2026-05-31",
+      "updatedAt": "2026-05-31",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -192,7 +208,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -460,7 +476,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -592,7 +608,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-05-31",
-      "updatedAt": "2026-09-04",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -756,7 +772,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-09",
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -782,7 +798,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-09-07",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -1019,19 +1035,6 @@
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
       "documentationState": "inferred"
-    },
-    {
-      "id": "quickliks",
-      "projectId": "quicklinks",
-      "state": "hidden",
-      "reasons": [],
-      "families": [],
-      "createdAt": "2026-05-31",
-      "updatedAt": "2026-05-31",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "verified"
     }
   ]
 }
