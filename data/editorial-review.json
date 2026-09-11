@@ -142,7 +142,7 @@
       "hasLiveUrl": false,
       "artifactStatus": "extension-no-public-url-expected",
       "artifactReviewNeeded": false,
-      "documentationState": "inferred"
+      "documentationState": "verified"
     },
     {
       "id": "countupapp",
@@ -611,7 +611,7 @@
       "hasLiveUrl": false,
       "artifactStatus": "extension-no-public-url-expected",
       "artifactReviewNeeded": false,
-      "documentationState": "inferred"
+      "documentationState": "verified"
     },
     {
       "id": "resultcalc",
