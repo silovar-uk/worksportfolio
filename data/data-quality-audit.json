@@ -29,28 +29,28 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-11T05:50:24.010Z",
-    "canonicalProjects": 68,
-    "reviewableCanonicalProjects": 65,
+    "generatedAt": "2026-09-11T06:11:39.465Z",
+    "canonicalProjects": 69,
+    "reviewableCanonicalProjects": 66,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 74,
     "visiblePublicRepositories": 59,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 49,
+    "verifiedDocumentation": 50,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 21,
+    "withoutRelations": 22,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 1
+    "sourceWithoutCanonical": 0
   },
   "records": [
     {
@@ -347,7 +347,7 @@
       "documentationState": "verified",
       "missingCore": [],
       "hasFamily": false,
-      "relationCount": 1,
+      "relationCount": 0,
       "artifactStatus": "extension-no-public-url-expected",
       "startedAtBasis": "first-repository-commit",
       "startedAtPrecision": "day"
@@ -847,6 +847,19 @@
       "startedAtPrecision": "day"
     },
     {
+      "id": "urawa-history-quiz",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": null,
+      "startedAtPrecision": null
+    },
+    {
       "id": "vocabularies",
       "score": 10,
       "maxScore": 10,
@@ -923,17 +936,12 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [
-    {
-      "repoId": "urawa-history-quiz",
-      "projectId": "urawa-history-quiz"
-    }
-  ],
+  "sourceWithoutCanonical": [],
   "vocabulary": {
     "types": [
       {
         "value": "learning-tool",
-        "count": 25
+        "count": 26
       },
       {
         "value": "web-app",
@@ -963,7 +971,7 @@
     "verbs": [
       {
         "value": "学ぶ",
-        "count": 19
+        "count": 20
       },
       {
         "value": "整理する",
@@ -1006,6 +1014,10 @@
         "count": 4
       },
       {
+        "value": "解く",
+        "count": 3
+      },
+      {
         "value": "整える",
         "count": 3
       },
@@ -1019,10 +1031,6 @@
       },
       {
         "value": "育てる",
-        "count": 2
-      },
-      {
-        "value": "解く",
         "count": 2
       },
       {
@@ -1084,6 +1092,10 @@
       {
         "value": "練習する",
         "count": 2
+      },
+      {
+        "value": "たどる",
+        "count": 1
       },
       {
         "value": "つなぐ",
