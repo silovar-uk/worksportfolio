@@ -29,13 +29,13 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-11T05:39:39.989Z",
+    "generatedAt": "2026-09-11T05:41:24.504Z",
     "canonicalProjects": 68,
     "reviewableCanonicalProjects": 65,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 74,
-    "visiblePublicRepositories": 60,
+    "visiblePublicRepositories": 59,
     "verifiedDocumentation": 47,
     "inferredDocumentation": 18,
     "unreviewedDocumentation": 0,
@@ -46,9 +46,9 @@
     "withoutRelations": 20,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
-    "unresolvedDuplicateCandidates": 1,
+    "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 2
+    "sourceWithoutCanonical": 1
   },
   "records": [
     {
@@ -905,7 +905,7 @@
       "distance": 1,
       "aProject": "quicklinks",
       "bProject": "quickliks",
-      "resolution": "unresolved"
+      "resolution": "hidden-source-review"
     }
   ],
   "duplicateTitles": [
@@ -937,10 +937,6 @@
     {
       "repoId": "urawa-history-quiz",
       "projectId": "urawa-history-quiz"
-    },
-    {
-      "repoId": "quickliks",
-      "projectId": "quickliks"
     }
   ],
   "vocabulary": {
