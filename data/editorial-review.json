@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T05:40:50.864Z",
+  "generatedAt": "2026-09-11T23:15:26.563Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -724,7 +724,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-09-07",
-      "updatedAt": "2026-09-07",
+      "updatedAt": "2026-09-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
