@@ -29,13 +29,13 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-12T23:03:11.799Z",
+    "generatedAt": "2026-09-13T23:10:07.414Z",
     "canonicalProjects": 69,
     "reviewableCanonicalProjects": 66,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
-    "publicRepositories": 74,
-    "visiblePublicRepositories": 59,
+    "publicRepositories": 75,
+    "visiblePublicRepositories": 60,
     "legacyRepositories": 1,
     "verifiedDocumentation": 50,
     "inferredDocumentation": 16,
@@ -50,7 +50,7 @@
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 0
+    "sourceWithoutCanonical": 1
   },
   "records": [
     {
@@ -936,7 +936,12 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [],
+  "sourceWithoutCanonical": [
+    {
+      "repoId": "l1l5analysis",
+      "projectId": "l1l5analysis"
+    }
+  ],
   "vocabulary": {
     "types": [
       {
