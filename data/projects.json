@@ -1620,6 +1620,7 @@
     "status": "active",
     "visibility": "public",
     "featured": false,
+    "editorialState": "published",
     "createdAt": "2026-09-13",
     "createdAtPrecision": "day",
     "updatedAt": "2026-09-13",
@@ -3858,6 +3859,7 @@
     "status": "development",
     "visibility": "public",
     "featured": false,
+    "editorialState": "published",
     "createdAt": "2026-09-07",
     "createdAtPrecision": "day",
     "updatedAt": "2026-09-07",
@@ -3895,8 +3897,7 @@
     "makingPrinciples": [],
     "id": "urawa-history-quiz",
     "aside": "",
-    "extension": null,
-    "editorialState": "published"
+    "extension": null
   },
   {
     "id": "vocabularies",

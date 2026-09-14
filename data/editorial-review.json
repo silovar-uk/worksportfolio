@@ -4,26 +4,12 @@
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 75,
-    "discovered": 1,
-    "published": 59,
+    "published": 60,
     "hidden": 15,
     "withWarnings": 0,
     "artifactReviewNeeded": 0
   },
   "items": [
-    {
-      "id": "l1l5analysis",
-      "projectId": "l1l5analysis",
-      "state": "discovered",
-      "reasons": [],
-      "families": [],
-      "createdAt": "2026-09-13",
-      "updatedAt": "2026-09-13",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "verified"
-    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -320,6 +306,19 @@
       "families": [],
       "createdAt": "2026-06-22",
       "updatedAt": "2026-08-21",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "verified"
+    },
+    {
+      "id": "l1l5analysis",
+      "projectId": "l1l5analysis",
+      "state": "published",
+      "reasons": [],
+      "families": [],
+      "createdAt": "2026-09-13",
+      "updatedAt": "2026-09-13",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
