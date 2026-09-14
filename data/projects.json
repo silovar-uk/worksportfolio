@@ -1604,6 +1604,58 @@
     "makingPrinciples": []
   },
   {
+    "title": "Argument Altitude",
+    "subtitle": "段落の抽象度から論証構造を読む分析ライブラリ",
+    "summary": "Eric HayotのUneven U / Five Levels of Abstractionを参考に、論考を段落単位の抽象度と役割へ分解し、読むだけでなく書くときに構造を再利用するための学習・分析ツール。",
+    "friction": "文章の内容は理解できても、段落がどの抽象度で何の役割を果たしているかを、あとで使い直せる形では残せていなかった。",
+    "firstBuild": "論考をL5〜L1とCore Roleへ分解し、Library → Article → Section → Paragraphの構造で保存する静的Webツールとして作った。",
+    "currentAnswer": "本文そのものではなく、Section × L5〜L1のStructure MapとReverse Outlineで論証の骨格を見渡し、書くときに構造を取り出せる分析ライブラリ。",
+    "icon": "↕️",
+    "type": "learning-tool",
+    "verbs": [
+      "読む",
+      "分析する",
+      "書く"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-09-13",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-09-13",
+    "startedAt": "2026-09-13",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created-at",
+    "repositoryUrl": "https://github.com/silovar-uk/l1l5analysis",
+    "githubId": "1368066000",
+    "liveUrl": "https://silovar-uk.github.io/l1l5analysis/",
+    "documentationState": "verified",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON",
+      "GitHub Pages"
+    ],
+    "relatedProjects": [],
+    "updates": [],
+    "searchAliases": [
+      "Argument Altitude",
+      "L1 L5",
+      "L1〜L5",
+      "Uneven U",
+      "Five Levels of Abstraction",
+      "文章構造",
+      "論証構造",
+      "段落分析",
+      "抽象度",
+      "Eric Hayot"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "id": "l1l5analysis"
+  },
+  {
     "title": "LikeWhat",
     "subtitle": "「この感じ」を言葉とモックで探すデザイン参照集",
     "summary": "Apple、任天堂、集英社、オモコロなど既存ブランドやサービスのデザインを、見た目の印象だけでなく、構成・余白・文字・色・動き・UIパターンへ分解し、簡易モックと一緒に比較・探索できるデザインリファレンス。",
@@ -3790,13 +3842,13 @@
     "makingPrinciples": []
   },
   {
-    "id": "urawa-history-quiz",
     "title": "URAWA HISTORY QUIZ",
     "subtitle": "浦和レッズの歴史を、クイズから「流れ」で覚える学習アプリ",
     "summary": "浦和レッズの1992〜2025年の歴史を、年・選手・監督・ユニフォーム・出来事を結びつけるクイズとHistory導線で学ぶ、DB駆動の静的Webアプリ。",
     "friction": "浦和レッズの歴史を年表や単発の知識として覚えても、選手・監督・ユニフォーム・出来事のつながりまで思い出せず、知識が点のまま残りやすかった。",
     "firstBuild": "1992〜2025の34シーズン、players / managers / uniforms / sourcesの履歴データとDB-driven Quiz Engineを持つ初期MVPから始めた。",
     "currentAnswer": "Question → Answer → Memory Hook → History → Next Questionの学習ループで、TODAY / QUIZ / HISTORY / SEASON / PLAYER / YOUを行き来しながら、浦和の歴史を点ではなく流れとして覚える。",
+    "icon": "♦️",
     "type": "learning-tool",
     "verbs": [
       "解く",
@@ -3804,11 +3856,18 @@
       "たどる"
     ],
     "status": "development",
-    "startedAt": "2026-09-07",
+    "visibility": "public",
+    "featured": false,
     "createdAt": "2026-09-07",
+    "createdAtPrecision": "day",
     "updatedAt": "2026-09-07",
-    "liveUrl": "https://silovar-uk.github.io/urawa-history-quiz/",
+    "startedAt": "2026-09-07",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created-at",
     "repositoryUrl": "https://github.com/silovar-uk/urawa-history-quiz",
+    "githubId": "1359999028",
+    "liveUrl": "https://silovar-uk.github.io/urawa-history-quiz/",
+    "documentationState": "verified",
     "technologies": [
       "HTML",
       "CSS",
@@ -3817,7 +3876,6 @@
       "localStorage",
       "GitHub Pages"
     ],
-    "documentationState": "verified",
     "relatedProjects": [
       {
         "id": "footballisfun",
@@ -3825,8 +3883,6 @@
       }
     ],
     "updates": [],
-    "aside": "",
-    "extension": null,
     "searchAliases": [
       "URAWA HISTORY QUIZ",
       "urawa-history-quiz",
@@ -3835,6 +3891,11 @@
       "レッズ歴史",
       "歴史クイズ"
     ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "id": "urawa-history-quiz",
+    "aside": "",
+    "extension": null,
     "editorialState": "published"
   },
   {
