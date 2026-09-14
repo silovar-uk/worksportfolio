@@ -29,28 +29,28 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-13T23:10:07.414Z",
-    "canonicalProjects": 69,
-    "reviewableCanonicalProjects": 66,
+    "generatedAt": "2026-09-14T06:28:02.190Z",
+    "canonicalProjects": 70,
+    "reviewableCanonicalProjects": 67,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 75,
     "visiblePublicRepositories": 60,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 50,
+    "verifiedDocumentation": 51,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 22,
+    "withoutRelations": 23,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 1
+    "sourceWithoutCanonical": 0
   },
   "records": [
     {
@@ -509,6 +509,19 @@
       "startedAtPrecision": "day"
     },
     {
+      "id": "l1l5analysis",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 0,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "repository-created-at",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "likewhat",
       "score": 10,
       "maxScore": 10,
@@ -856,8 +869,8 @@
       "hasFamily": false,
       "relationCount": 1,
       "artifactStatus": "public-url-recorded",
-      "startedAtBasis": null,
-      "startedAtPrecision": null
+      "startedAtBasis": "repository-created-at",
+      "startedAtPrecision": "day"
     },
     {
       "id": "vocabularies",
@@ -936,17 +949,12 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [
-    {
-      "repoId": "l1l5analysis",
-      "projectId": "l1l5analysis"
-    }
-  ],
+  "sourceWithoutCanonical": [],
   "vocabulary": {
     "types": [
       {
         "value": "learning-tool",
-        "count": 26
+        "count": 27
       },
       {
         "value": "web-app",
@@ -991,11 +999,11 @@
         "count": 10
       },
       {
-        "value": "確認する",
-        "count": 6
+        "value": "書く",
+        "count": 7
       },
       {
-        "value": "書く",
+        "value": "確認する",
         "count": 6
       },
       {
@@ -1084,6 +1092,10 @@
       },
       {
         "value": "伝える",
+        "count": 2
+      },
+      {
+        "value": "読む",
         "count": 2
       },
       {
@@ -1219,15 +1231,15 @@
         "count": 1
       },
       {
-        "value": "読む",
-        "count": 1
-      },
-      {
         "value": "判断する",
         "count": 1
       },
       {
         "value": "復元する",
+        "count": 1
+      },
+      {
+        "value": "分析する",
         "count": 1
       },
       {
