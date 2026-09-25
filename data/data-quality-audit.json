@@ -29,13 +29,13 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-09-24T23:52:59.866Z",
+    "generatedAt": "2026-09-25T23:56:58.189Z",
     "canonicalProjects": 70,
     "reviewableCanonicalProjects": 67,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
-    "publicRepositories": 75,
-    "visiblePublicRepositories": 60,
+    "publicRepositories": 76,
+    "visiblePublicRepositories": 61,
     "legacyRepositories": 1,
     "verifiedDocumentation": 51,
     "inferredDocumentation": 16,
@@ -50,7 +50,7 @@
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 0
+    "sourceWithoutCanonical": 1
   },
   "records": [
     {
@@ -949,7 +949,12 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [],
+  "sourceWithoutCanonical": [
+    {
+      "repoId": "ichirinzashi",
+      "projectId": "ichirinzashi"
+    }
+  ],
   "vocabulary": {
     "types": [
       {
