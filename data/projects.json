@@ -4182,5 +4182,78 @@
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
+  },
+  {
+    "id": "context-lens",
+    "title": "Context Lens",
+    "subtitle": "iPhone Safariの「いまのページ」をAIへ渡す開発者ツール",
+    "summary": "JavaScript実行後のDOM、現在の入力値、ARIA、open Shadow DOM、構造化データ、選択要素、画面操作前後の差分などを、秘密情報をマスクしながらMarkdownのContext Packにまとめ、ChatGPTなどへ渡しやすくするiPhone-firstのブックマークレット。",
+    "friction": "Webページの不具合やUIをAIへ相談するとき、HTMLソースだけでは実行後のDOM、入力値、開閉状態、埋め込みデータなど「いま何が起きているか」の文脈が抜けていた。",
+    "firstBuild": "Safariのブックマークから起動し、現在のDOM・フォーム値・ARIAをMarkdownへ変換してコピーする最小構成から始めた。",
+    "currentAnswer": "標準・詳細・要素・差分の4つの取得方法を用意し、秘密情報のマスク、Storage値の個別同意、件数・文字量の上限、コピー失敗時の手動復旧まで含めて、ページ状態をAI向けのContext Packとして渡せる。",
+    "type": "utility",
+    "verbs": [
+      "取得する",
+      "比較する",
+      "渡す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-02",
+    "startedAt": "2026-10-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/context-lens",
+    "liveUrl": "https://silovar-uk.github.io/myessays/tools/context-lens/",
+    "technologies": [
+      "JavaScript",
+      "Bookmarklet",
+      "Safari",
+      "Shadow DOM",
+      "Markdown",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "myessays",
+        "relation": "同じGitHub Pages配下で配信するツール"
+      },
+      {
+        "id": "keygrid",
+        "relation": "ブラウザ操作の摩擦を小さくする開発者・生産性ツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-10-02",
+        "version": "1.0",
+        "change": "iPhone Safari向けのContext Pack生成、要素選択、差分取得、秘密情報マスクを備えた初版を公開",
+        "reason": "AIへWebページの現在状態を渡すとき、HTMLソースだけでは欠ける実行後の文脈を一つのテキストへまとめるため。"
+      }
+    ],
+    "aside": "HTMLではなく、いま動いているページを渡す。",
+    "searchAliases": [
+      "Context Lens",
+      "コンテキストレンズ",
+      "context pack",
+      "Context Pack",
+      "page snapshot",
+      "ページスナップショット",
+      "AI context",
+      "AIコンテキスト",
+      "bookmarklet",
+      "ブックマークレット",
+      "Safari",
+      "DOM",
+      "developer tool",
+      "開発者ツール"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
   }
 ]
