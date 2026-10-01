@@ -1,32 +1,15 @@
 {
-  "generatedAt": "2026-10-01T11:23:01.561Z",
+  "generatedAt": "2026-10-01T12:05:31.284Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
     "total": 76,
-    "discovered": 1,
-    "published": 60,
+    "published": 61,
     "hidden": 15,
-    "withWarnings": 1,
+    "withWarnings": 0,
     "artifactReviewNeeded": 0
   },
   "items": [
-    {
-      "id": "ichirinzashi",
-      "projectId": "ichirinzashi",
-      "state": "discovered",
-      "reasons": [
-        "no-curation",
-        "generic-summary"
-      ],
-      "families": [],
-      "createdAt": "2026-09-25",
-      "updatedAt": "2026-09-30",
-      "hasLiveUrl": true,
-      "artifactStatus": "live-url-recorded",
-      "artifactReviewNeeded": false,
-      "documentationState": "unreviewed"
-    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -297,6 +280,21 @@
       "families": [],
       "createdAt": "2026-07-12",
       "updatedAt": "2026-08-27",
+      "hasLiveUrl": true,
+      "artifactStatus": "live-url-recorded",
+      "artifactReviewNeeded": false,
+      "documentationState": "verified"
+    },
+    {
+      "id": "ichirinzashi",
+      "projectId": "ichirinzashi",
+      "state": "published",
+      "reasons": [],
+      "families": [
+        "learning-practice"
+      ],
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-30",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -620,7 +618,7 @@
         "browser-productivity"
       ],
       "createdAt": "2026-08-13",
-      "updatedAt": "2026-08-28",
+      "updatedAt": "2026-10-01",
       "hasLiveUrl": false,
       "artifactStatus": "extension-no-public-url-expected",
       "artifactReviewNeeded": false,
