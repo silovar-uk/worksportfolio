@@ -29,7 +29,7 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-01T00:33:24.104Z",
+    "generatedAt": "2026-10-01T11:22:58.724Z",
     "canonicalProjects": 70,
     "reviewableCanonicalProjects": 67,
     "excludedHiddenCanonicalProjects": 3,
@@ -504,7 +504,7 @@
       "missingCore": [],
       "hasFamily": true,
       "relationCount": 1,
-      "artifactStatus": "extension-no-public-url-expected",
+      "artifactStatus": "public-url-recorded",
       "startedAtBasis": "manual-record",
       "startedAtPrecision": "day"
     },
