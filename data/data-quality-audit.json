@@ -29,15 +29,15 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-01T11:23:29.072Z",
-    "canonicalProjects": 70,
-    "reviewableCanonicalProjects": 67,
+    "generatedAt": "2026-10-01T12:05:35.585Z",
+    "canonicalProjects": 71,
+    "reviewableCanonicalProjects": 68,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 76,
     "visiblePublicRepositories": 61,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 51,
+    "verifiedDocumentation": 52,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
@@ -50,7 +50,7 @@
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 7,
-    "sourceWithoutCanonical": 1
+    "sourceWithoutCanonical": 0
   },
   "records": [
     {
@@ -455,6 +455,19 @@
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "conversation-log",
       "startedAtPrecision": "month"
+    },
+    {
+      "id": "ichirinzashi",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": true,
+      "relationCount": 1,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "repository-created",
+      "startedAtPrecision": "day"
     },
     {
       "id": "imagetuning",
@@ -949,17 +962,12 @@
     "private-memo",
     "x-auto-screenshot-scroll"
   ],
-  "sourceWithoutCanonical": [
-    {
-      "repoId": "ichirinzashi",
-      "projectId": "ichirinzashi"
-    }
-  ],
+  "sourceWithoutCanonical": [],
   "vocabulary": {
     "types": [
       {
         "value": "learning-tool",
-        "count": 27
+        "count": 28
       },
       {
         "value": "web-app",
@@ -1036,11 +1044,19 @@
         "count": 3
       },
       {
+        "value": "試す",
+        "count": 3
+      },
+      {
         "value": "整える",
         "count": 3
       },
       {
         "value": "選ぶ",
+        "count": 3
+      },
+      {
+        "value": "読む",
         "count": 3
       },
       {
@@ -1080,10 +1096,6 @@
         "count": 2
       },
       {
-        "value": "試す",
-        "count": 2
-      },
-      {
         "value": "集中する",
         "count": 2
       },
@@ -1097,10 +1109,6 @@
       },
       {
         "value": "伝える",
-        "count": 2
-      },
-      {
-        "value": "読む",
         "count": 2
       },
       {
@@ -1225,6 +1233,10 @@
       },
       {
         "value": "鍛える",
+        "count": 1
+      },
+      {
+        "value": "蓄積する",
         "count": 1
       },
       {
