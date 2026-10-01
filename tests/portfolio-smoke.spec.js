@@ -173,3 +173,16 @@ test('Header Search remains usable when catalog data fails', async ({ page }) =>
   await expect(page.locator('[data-home-search-project]').first()).toBeVisible();
   await expect(page.locator('[data-view-panel]')).toContainText('上の検索はそのまま利用できます');
 });
+
+
+test('legacy cat_type learning filter includes secondary learning projects', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 900 });
+  const url = new URL(BASE_URL);
+  url.searchParams.set('cat_type', 'learning-tool');
+  await page.goto(url.toString(), { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'), null, { timeout: 5000 });
+  await expect(page.locator('[data-cat-item="keygrid"]')).toBeVisible();
+  await expect(page.locator('[data-cat-item="ichirinzashi"]')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('type'))).toBe('learning-tool');
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).has('cat_type'))).toBe(false);
+});

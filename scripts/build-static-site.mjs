@@ -182,12 +182,12 @@ function searchIndexProject(project) {
 function catalogProject(project) {
   return { id: project.id, title: project.title || project.id, summary: project.summary || project.friction || '制作物の説明を整理中。', type: project.type || 'other', status: project.status || 'legacy',
     startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '', liveUrl: project.liveUrl || '', repositoryUrl: project.repositoryUrl || '',
-    sourceVisibility: project.sourceVisibility || '', summaryOnly: Boolean(project.summaryOnly) };
+    categories: unique(project.categories || []), sourceVisibility: project.sourceVisibility || '', summaryOnly: Boolean(project.summaryOnly) };
 }
 function detailProject(project) {
   return { id: project.id, title: project.title || project.id, subtitle: project.subtitle || '', summary: project.summary || '', friction: project.friction || '', firstBuild: project.firstBuild || '', currentAnswer: project.currentAnswer || '',
     type: project.type || 'other', verbs: unique(project.verbs || []), status: project.status || 'legacy', startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '',
-    liveUrl: project.liveUrl || '', repositoryUrl: project.repositoryUrl || '', technologies: unique(project.technologies || []), documentationState: project.documentationState || 'unreviewed',
+    liveUrl: project.liveUrl || '', repositoryUrl: project.repositoryUrl || '', categories: unique(project.categories || []), technologies: unique(project.technologies || []), documentationState: project.documentationState || 'unreviewed',
     relatedProjects: Array.isArray(project.relatedProjects) ? project.relatedProjects : [], updates: Array.isArray(project.updates) ? project.updates : [], aside: project.aside || '', extension: project.extension || null };
 }
 function writeRuntimeData(projects, generatedAt) {

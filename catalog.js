@@ -36,6 +36,10 @@
   const dateNumber = (value) => String(value || '').replace(/[^0-9]/g, '').padEnd(8, '0');
   const chronologyDate = (project) => project?.startedAt || project?.createdAt || '';
   const yearOf = (project) => String(chronologyDate(project)).slice(0, 4) || '';
+  const projectTypes = (project) => uniqueProjectTypes(project);
+  function uniqueProjectTypes(project) {
+    return [...new Set([project?.type, ...(Array.isArray(project?.categories) ? project.categories : [])].filter(Boolean))];
+  }
 
   function timestamp(value) {
     const match = String(value || '').match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
@@ -82,7 +86,7 @@
     if (state.quick === 'published') return Boolean(project.liveUrl);
     if (state.quick === 'active') return ['active', 'development'].includes(project.status);
     if (state.quick === 'extension') return project.type === 'chrome-extension';
-    if (state.quick === 'learning') return project.type === 'learning-tool';
+    if (state.quick === 'learning') return projectTypes(project).includes('learning-tool');
     return true;
   }
 
@@ -92,7 +96,7 @@
       const github = Boolean(project.repositoryUrl);
       return matchesSearch(project, state.q)
         && passesQuick(project)
-        && (!state.type || project.type === state.type)
+        && (!state.type || projectTypes(project).includes(state.type))
         && (!state.status || project.status === state.status)
         && (!state.year || yearOf(project) === state.year)
         && (!state.link
@@ -120,13 +124,13 @@
       if (key === 'published') return Boolean(project.liveUrl);
       if (key === 'active') return ['active', 'development'].includes(project.status);
       if (key === 'extension') return project.type === 'chrome-extension';
-      if (key === 'learning') return project.type === 'learning-tool';
+      if (key === 'learning') return projectTypes(project).includes('learning-tool');
       return true;
     }).length;
   }
 
   function toolbarMarkup() {
-    const types = [...new Set(projects().map((project) => project.type).filter(Boolean))].sort();
+    const types = [...new Set(projects().flatMap(projectTypes))].sort();
     const statuses = [...new Set(projects().map((project) => project.status).filter(Boolean))].sort();
     const years = [...new Set(projects().map(yearOf).filter((year) => /^\d{4}$/.test(year)))].sort().reverse();
     return `<section class="catalog-overview" data-catalog-toolbar>
@@ -203,7 +207,7 @@
   function saveState() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
     const params = new URLSearchParams(location.search);
-    for (const key of ['q', 'quick', 'type', 'status', 'year', 'link', 'sort']) params.delete(key);
+    for (const key of ['q', 'quick', 'type', 'cat_type', 'status', 'year', 'link', 'sort']) params.delete(key);
     if (state.q) params.set('q', state.q);
     if (state.quick !== 'all') params.set('quick', state.quick);
     if (state.type) params.set('type', state.type);
@@ -221,7 +225,7 @@
     const get = (key, fallback = '') => params.has(key) ? params.get(key) : (saved[key] ?? fallback);
     state.q = get('q');
     state.quick = get('quick', 'all');
-    state.type = get('type');
+    state.type = params.has('type') ? params.get('type') : (params.has('cat_type') ? params.get('cat_type') : (saved.type ?? ''));
     state.status = get('status');
     state.year = get('year');
     state.link = get('link');
