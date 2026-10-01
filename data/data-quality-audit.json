@@ -29,15 +29,15 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-01T14:46:24.453Z",
-    "canonicalProjects": 71,
-    "reviewableCanonicalProjects": 68,
+    "generatedAt": "2026-10-01T22:18:04.288Z",
+    "canonicalProjects": 72,
+    "reviewableCanonicalProjects": 69,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 76,
     "visiblePublicRepositories": 61,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 52,
+    "verifiedDocumentation": 53,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
@@ -49,7 +49,7 @@
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
-    "canonicalWithoutPublicRepo": 7,
+    "canonicalWithoutPublicRepo": 8,
     "sourceWithoutCanonical": 0
   },
   "records": [
@@ -325,6 +325,19 @@
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "conversation-log",
       "startedAtPrecision": "month"
+    },
+    {
+      "id": "context-lens",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
     },
     {
       "id": "converter",
@@ -960,7 +973,8 @@
     "lineworks-scroll-copy",
     "payment-case-manager",
     "private-memo",
-    "x-auto-screenshot-scroll"
+    "x-auto-screenshot-scroll",
+    "context-lens"
   ],
   "sourceWithoutCanonical": [],
   "vocabulary": {
@@ -979,7 +993,7 @@
       },
       {
         "value": "utility",
-        "count": 8
+        "count": 9
       },
       {
         "value": "content-page",
@@ -1188,6 +1202,10 @@
         "count": 1
       },
       {
+        "value": "取得する",
+        "count": 1
+      },
+      {
         "value": "守る",
         "count": 1
       },
@@ -1244,11 +1262,19 @@
         "count": 1
       },
       {
+        "value": "渡す",
+        "count": 1
+      },
+      {
         "value": "読み返す",
         "count": 1
       },
       {
         "value": "判断する",
+        "count": 1
+      },
+      {
+        "value": "比較する",
         "count": 1
       },
       {
