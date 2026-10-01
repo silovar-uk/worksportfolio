@@ -214,3 +214,25 @@ test('KeyGrid uses case-study link semantics', async ({ page }) => {
   await expect(page.locator('[data-project-detail]')).toContainText('事例を読む');
   await expect(page.locator('[data-project-detail]')).not.toContainText('公開ページを開く');
 });
+
+
+test('natural-language problem finder recommends explainable answers', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 900 });
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('search-core-ready'), null, { timeout: 3000 });
+
+  const input = page.locator('[data-home-problem-input]');
+  await expect(input).toBeVisible();
+  await input.fill('タブが増えすぎて、あとで戻れない');
+  await input.press('Enter');
+
+  const results = page.locator('[data-home-problem-results]');
+  await expect(results).toBeVisible();
+  await expect(page.locator('[data-home-problem-open]')).toHaveCount(3);
+  await expect(results).toContainText('Tab Shelter');
+  await expect(results).toContainText('WHY MATCHED');
+
+  await page.locator('[data-home-problem-open="tabshelter"]').click();
+  await expect(page.locator('[data-project-dialog]')).toHaveAttribute('open', '');
+  await expect(page.locator('[data-project-detail]')).toContainText('Tab Shelter');
+});

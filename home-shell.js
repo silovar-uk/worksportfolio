@@ -14,6 +14,14 @@
     reduce: { label: '手間を減らす' }, remember: { label: '覚えて戻る' }, practice: { label: '小さく学ぶ' },
     compare: { label: '比べて整理する' }, communicate: { label: '伝わり方を整える' }, protect: { label: '情報を守る' }
   };
+  const PROBLEM_SIGNALS = {
+    reduce: ['面倒', 'めんど', '手間', 'クリック', '移動', '入力', '切り替', 'タブ', '操作', '毎回', '時間', '遅', '探す', '何度', 'click', 'tab'],
+    remember: ['忘', '戻', '記録', '保存', '履歴', '思い出', '覚', '見つから', '探せない', 'メモ', 'remember', 'save'],
+    practice: ['学', '練習', '復習', '勉強', '身につ', '覚えたい', '英語', '語彙', '問題', 'クイズ', 'practice', 'study'],
+    compare: ['比べ', '比較', '違い', '差分', '整理', '構造', '分析', '可視化', '見える', 'compare', 'diff'],
+    communicate: ['伝わ', '伝え', '文章', '共有', '説明', 'デザイン', '画像', 'レビュー', '告知', 'communication'],
+    protect: ['秘密', '非公開', '守', '認証', '個人情報', '機密', '限定', 'private', 'security']
+  };
 
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
   const attr = (value) => esc(value).replace(/'/g, '&#39;');
@@ -111,6 +119,102 @@
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score || dateNumber(b.project.updatedAt).localeCompare(dateNumber(a.project.updatedAt)))
       .map((item) => item.project);
+  }
+
+  function splitList(value) { return String(value || '').split(SEARCH_SEP).filter(Boolean); }
+  function problemSignalHits(query) {
+    const text = normalize(query);
+    return Object.entries(PROBLEM_SIGNALS)
+      .map(([id, words]) => ({ id, words: words.filter((word) => text.includes(normalize(word))) }))
+      .filter((item) => item.words.length)
+      .sort((a, b) => b.words.length - a.words.length);
+  }
+  function problemText(project) {
+    return normalize([project.title, project.hint, project.aliases, project.verbs, project.technologies, project.families, project.searchText].filter(Boolean).join(' '));
+  }
+  function problemRecommendations(query) {
+    const q = String(query || '').trim();
+    if (!q) return { hits: [], results: [] };
+    const normalizedQuery = normalize(q);
+    const hits = problemSignalHits(q);
+    const ranked = projects().map((project) => {
+      const text = problemText(project);
+      let score = 0;
+      const reasons = [];
+      const matchedWords = [];
+      for (const hit of hits) {
+        if (!project.frictionIds.includes(hit.id)) continue;
+        score += 100;
+        reasons.push(FRICTIONS[hit.id]?.label || hit.id);
+        for (const word of hit.words) {
+          if (text.includes(normalize(word))) { score += 36; matchedWords.push(word); }
+        }
+      }
+      const title = normalize(project.title);
+      if (title && normalizedQuery.includes(title)) score += 180;
+      for (const alias of splitList(project.aliases)) {
+        const token = normalize(alias);
+        if (token.length >= 2 && normalizedQuery.includes(token)) score += 90;
+      }
+      return { project, score, reasons: [...new Set(reasons)], matchedWords: [...new Set(matchedWords)] };
+    }).filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score || dateNumber(b.project.updatedAt).localeCompare(dateNumber(a.project.updatedAt)));
+
+    if (!ranked.length) {
+      return {
+        hits,
+        results: search(q).slice(0, 3).map((project) => ({ project, score: scoreProject(project, q), reasons: [matchReason(project, q)], matchedWords: [] }))
+      };
+    }
+    return { hits, results: ranked.slice(0, 3) };
+  }
+  function problemReason(item) {
+    if (item.matchedWords.length && item.reasons.length) return `「${item.matchedWords.slice(0, 2).join('・')}」＋ ${item.reasons.slice(0, 2).join(' / ')}`;
+    if (item.reasons.length) return item.reasons.slice(0, 2).join(' / ');
+    return item.reasons[0] || '入力内容と近い';
+  }
+  function problemResultCard(item) {
+    const project = item.project;
+    return `<article class="home-problem-result"><p class="home-problem-reason"><span>WHY MATCHED</span>${esc(problemReason(item))}</p><button type="button" data-home-problem-open="${attr(project.id)}"><strong>${esc(project.title || project.id)}</strong><small>${esc(project.hint || '制作物の説明を整理中。')}</small></button></article>`;
+  }
+  function renderProblemRecommendations(query) {
+    const holder = document.querySelector('[data-home-problem-results]');
+    if (!holder) return;
+    const { hits, results } = problemRecommendations(query);
+    if (!results.length) {
+      holder.innerHTML = '<p class="home-problem-empty"><strong>まだ近い答えを絞れませんでした。</strong><br>「タブ」「忘れる」「比較」など、気になる動作を短く足してみてください。</p>';
+      holder.hidden = false;
+      return;
+    }
+    const primary = hits[0]?.id || '';
+    holder.innerHTML = `<div class="home-problem-result-head"><div><span>NEARBY ANSWERS</span><strong>近い答えを3つ</strong></div>${primary ? `<button type="button" data-home-problem-all="${attr(primary)}">近い困りごとを一覧で見る ↓</button>` : ''}</div><div class="home-problem-result-grid">${results.map(problemResultCard).join('')}</div>`;
+    holder.hidden = false;
+    holder.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+  }
+  function bindProblemFinder() {
+    const form = document.querySelector('[data-home-problem-form]');
+    const input = document.querySelector('[data-home-problem-input]');
+    const holder = document.querySelector('[data-home-problem-results]');
+    if (!form || !input || !holder) return;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      renderProblemRecommendations(input.value);
+    });
+    document.addEventListener('click', (event) => {
+      const example = event.target.closest('[data-home-problem-example]');
+      if (example) {
+        input.value = example.dataset.homeProblemExample || '';
+        renderProblemRecommendations(input.value);
+        return;
+      }
+      const open = event.target.closest('[data-home-problem-open]');
+      if (open) {
+        openProject(projects().find((item) => item.id === open.dataset.homeProblemOpen));
+        return;
+      }
+      const all = event.target.closest('[data-home-problem-all]');
+      if (all) sendFrictionToCatalog(all.dataset.homeProblemAll);
+    });
   }
 
   function projectsForTheme(id) {
@@ -250,6 +354,6 @@
     });
   }
 
-  function init() { document.documentElement.classList.add('home-redesign'); bindHeaderSearch(); bindHomeSections(); document.documentElement.classList.add('search-core-ready'); }
+  function init() { document.documentElement.classList.add('home-redesign'); bindHeaderSearch(); bindProblemFinder(); bindHomeSections(); document.documentElement.classList.add('search-core-ready'); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
 })();

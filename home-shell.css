@@ -31,6 +31,41 @@
   line-height:1.75;
 }
 
+.home-problem{padding-top:24px}
+.home-problem-panel{padding:20px;border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+.home-problem-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,430px);gap:14px 28px;align-items:end}
+.home-problem-copy .eyebrow{grid-column:1/-1;margin:0;color:var(--yellow)}
+.home-problem-copy h2{margin:0;font-size:clamp(1.35rem,3vw,2.15rem);line-height:1.12;letter-spacing:-.025em}
+.home-problem-copy>p{margin:0;color:#d9d7cf;font-size:.78rem;line-height:1.65}
+.home-problem-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:16px}
+.home-problem-form label{min-width:0}
+.home-problem-form input{width:100%;min-height:52px;padding:.7rem .82rem;border:1px solid var(--paper);border-radius:0;background:var(--paper);color:var(--ink);font-size:.9rem}
+.home-problem-form input:focus{outline:3px solid var(--yellow);outline-offset:2px}
+.home-problem-form button{min-height:52px;padding:.7rem 1rem;border:1px solid var(--yellow);background:var(--yellow);color:var(--ink);font-weight:900;cursor:pointer}
+.home-problem-form button:hover,.home-problem-form button:focus-visible{background:var(--paper);border-color:var(--paper)}
+.home-problem-examples{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}
+.home-problem-examples>span{margin-right:2px;color:#aaa79f;font-size:.64rem}
+.home-problem-examples button{min-height:34px;padding:.3rem .5rem;border:1px solid #777a73;background:transparent;color:var(--paper);font-size:.65rem;cursor:pointer}
+.home-problem-examples button:hover,.home-problem-examples button:focus-visible{border-color:var(--yellow);color:var(--yellow)}
+.home-problem-results{margin-top:14px;border:1px solid #777a73;background:var(--paper);color:var(--ink)}
+.home-problem-results[hidden]{display:none}
+.home-problem-result-head{display:flex;align-items:end;justify-content:space-between;gap:16px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.home-problem-result-head div{display:grid;gap:2px}
+.home-problem-result-head span{color:var(--red);font:800 .58rem "Roboto Mono",monospace;letter-spacing:.08em}
+.home-problem-result-head strong{font-size:1rem}
+.home-problem-result-head button{min-height:40px;padding:.4rem .6rem;border:1px solid var(--ink);background:transparent;font-size:.68rem;font-weight:800;cursor:pointer}
+.home-problem-result-head button:hover,.home-problem-result-head button:focus-visible{background:var(--ink);color:var(--paper)}
+.home-problem-result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-problem-result{min-width:0;padding:14px;border-right:1px solid var(--line)}
+.home-problem-result:last-child{border-right:0}
+.home-problem-reason{margin:0 0 9px;color:var(--muted);font-size:.66rem}
+.home-problem-reason span{display:block;margin-bottom:2px;color:var(--red);font:800 .55rem "Roboto Mono",monospace;letter-spacing:.08em}
+.home-problem-result button{width:100%;min-height:86px;padding:0;border:0;background:transparent;text-align:left;cursor:pointer}
+.home-problem-result strong{display:block;font-size:.95rem}
+.home-problem-result small{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.5}
+.home-problem-result button:hover strong,.home-problem-result button:focus-visible strong{color:var(--red);text-decoration:underline}
+.home-problem-empty{margin:0;padding:14px;color:var(--muted);font-size:.72rem}
+
 .home-start,
 .home-frictions{padding-top:58px}
 .home-section-head{
@@ -277,6 +312,17 @@
   .home-redesign .header-search{grid-column:1/-1}
   .home-redesign .hero{width:min(calc(100% - 24px),var(--max));padding-top:22px}
   .home-redesign .hero-copy h1{font-size:clamp(1.55rem,8vw,2.35rem)}
+  .home-problem{padding-top:18px}
+  .home-problem-panel{padding:14px}
+  .home-problem-copy{grid-template-columns:1fr;gap:8px}
+  .home-problem-copy .eyebrow{grid-column:1}
+  .home-problem-form{grid-template-columns:1fr}
+  .home-problem-form input{font-size:16px}
+  .home-problem-form button{width:100%}
+  .home-problem-result-grid{grid-template-columns:1fr}
+  .home-problem-result{border-right:0;border-bottom:1px solid var(--line)}
+  .home-problem-result:last-child{border-bottom:0}
+  .home-problem-result-head{align-items:flex-start}
   .home-start,.home-frictions{padding-top:44px}
   .home-section-head{align-items:start;margin-bottom:14px}
   .home-section-head>p{display:none}
