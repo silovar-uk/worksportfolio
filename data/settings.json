@@ -8,10 +8,16 @@
     "diff",
     "flowmap",
     "quicklinks",
-    "contentslibrary",
+    "ichirinzashi",
     "designmd",
     "tabshelter",
     "st6training"
   ],
-  "defaultSort": "created-desc"
+  "defaultSort": "created-desc",
+  "featuredProjectRoles": {
+    "diff": "仕事を短くする",
+    "flowmap": "考えを構造にする",
+    "quicklinks": "ブラウザを自分化する",
+    "ichirinzashi": "学びを続ける"
+  }
 }

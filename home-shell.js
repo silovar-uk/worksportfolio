@@ -11,12 +11,8 @@
     ['design', 'デザイン', '設計']
   ];
   const FRICTIONS = {
-    reduce: { label: '手間を減らす', words: ['面倒', '手間', '操作', 'クリック', '移動', '入力', '切り替', '効率', 'すぐ', '減ら', '便利', 'utility'] },
-    remember: { label: '覚えて戻る', words: ['忘れ', '記録', '保存', '履歴', 'ログ', '辞書', 'メモ', 'アーカイブ', '思い出', '戻る', 'archive', 'memory'] },
-    practice: { label: '小さく学ぶ', words: ['学ぶ', '練習', '復習', '反復', '問題', 'クイズ', '英語', '語彙', '音読', 'study', 'training', 'practice'] },
-    compare: { label: '比べて整理する', words: ['比べ', '比較', '差分', '構造', '整理', '関係', '可視化', '分析', 'map', 'diff', 'フロー'] },
-    communicate: { label: '伝わり方を整える', words: ['伝える', '共有', 'デザイン', '広報', '告知', '文章', '画像', 'レビュー', '見せる', '説明', 'communication', 'editorial'] },
-    protect: { label: '情報を守る', words: ['守る', '暗号', '非公開', '認証', 'private', 'security', '秘密', '限定', 'access'] }
+    reduce: { label: '手間を減らす' }, remember: { label: '覚えて戻る' }, practice: { label: '小さく学ぶ' },
+    compare: { label: '比べて整理する' }, communicate: { label: '伝わり方を整える' }, protect: { label: '情報を守る' }
   };
 
   const esc = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
@@ -41,6 +37,9 @@
     verbs: raw.v || '',
     technologies: raw.k || '',
     families: raw.f || '',
+    familyIds: raw.j ? String(raw.j).split(SEARCH_SEP).filter(Boolean) : [],
+    frictionIds: raw.g ? String(raw.g).split(SEARCH_SEP).filter(Boolean) : [],
+    answer: raw.m || '',
     searchText: raw.x || ''
   }));
   const projects = () => projectRecords;
@@ -115,24 +114,10 @@
       .map((item) => item.project);
   }
 
-  function themeScore(project, theme) {
-    const text = normalize([project.title, project.hint, project.searchText, project.verbs, project.technologies, project.families].filter(Boolean).join(' '));
-    let score = theme.words.reduce((sum, word) => sum + (text.includes(normalize(word)) ? 1 : 0), 0);
-    if (project.type === 'learning-tool' && theme === FRICTIONS.practice) score += 2;
-    if (project.type === 'data-tool' && theme === FRICTIONS.compare) score += 1;
-    if (project.type === 'chrome-extension' && theme === FRICTIONS.reduce) score += 1;
-    if (project.summaryOnly && theme === FRICTIONS.protect) score += 2;
-    return score;
-  }
-
   function projectsForTheme(id) {
-    const theme = FRICTIONS[id];
-    if (!theme) return [];
-    return projects()
-      .map((project) => ({ project, score: themeScore(project, theme) }))
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || dateNumber(b.project.updatedAt).localeCompare(dateNumber(a.project.updatedAt)))
-      .map((item) => item.project);
+    if (!FRICTIONS[id]) return [];
+    return projects().filter((project) => project.frictionIds.includes(id))
+      .sort((a, b) => dateNumber(b.updatedAt).localeCompare(dateNumber(a.updatedAt)));
   }
 
   window.WORKS_PORTFOLIO_SEARCH = Object.freeze({ normalize, score: scoreProject, search, matchesId, matches: (project, query) => Boolean(project?.id) && matchesId(project.id, query) });
@@ -214,17 +199,45 @@
     });
   }
 
+  let activeFrictionId = '';
+  function setFrictionButtons(id) {
+    document.querySelectorAll('[data-home-friction]').forEach((button) => {
+      const active = button.dataset.homeFriction === id;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-expanded', String(active));
+    });
+  }
+  function frictionCard(project) {
+    return `<article class="home-friction-result-card"><p><span>困った</span>${esc(project.hint || '作る前の引っかかりを整理中。')}</p><button type="button" data-home-friction-open="${attr(project.id)}"><strong>${esc(project.title || project.id)}</strong><small>${esc(project.answer || '現在の答えを整理中。')}</small></button></article>`;
+  }
+  function renderFrictionResults(id) {
+    const holder = document.querySelector('[data-home-friction-results]');
+    const theme = FRICTIONS[id];
+    if (!holder || !theme) return;
+    if (activeFrictionId === id && !holder.hidden) {
+      activeFrictionId = ''; holder.hidden = true; holder.innerHTML = ''; setFrictionButtons(''); return;
+    }
+    const all = projectsForTheme(id);
+    activeFrictionId = id; setFrictionButtons(id);
+    holder.innerHTML = `<div class="home-friction-result-head"><div><span>SELECTED FRICTION</span><strong>${esc(theme.label)}</strong><small>${all.length}件のうち、まず3件</small></div><button type="button" data-home-friction-all="${attr(id)}">すべて見る ↓</button></div><div class="home-friction-result-grid">${all.slice(0,3).map(frictionCard).join('')}</div>`;
+    holder.hidden = false;
+    holder.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+  }
+  function sendFrictionToCatalog(id) {
+    window.dispatchEvent(new CustomEvent('worksportfolio:set-friction', { detail: { friction: id } }));
+    document.querySelector('.explorer')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
   function bindHomeSections() {
     document.addEventListener('click', (event) => {
-      const open = event.target.closest('[data-home-open]');
-      if (open) { openProject(projects().find((item) => item.id === open.dataset.homeOpen)); return; }
-      const friction = event.target.closest('[data-home-friction]');
-      if (friction) {
-        const theme = FRICTIONS[friction.dataset.homeFriction]; const input = headerElements().input;
-        if (!theme || !input) return;
-        window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-        input.value = ''; input.focus({ preventScroll: true }); activeIndex = -1; renderHeaderResults('', projectsForTheme(friction.dataset.homeFriction), theme.label); return;
+      const open = event.target.closest('[data-home-open],[data-home-friction-open]');
+      if (open) {
+        const id = open.dataset.homeOpen || open.dataset.homeFrictionOpen;
+        openProject(projects().find((item) => item.id === id)); return;
       }
+      const friction = event.target.closest('[data-home-friction]');
+      if (friction) { renderFrictionResults(friction.dataset.homeFriction); return; }
+      const all = event.target.closest('[data-home-friction-all]');
+      if (all) { sendFrictionToCatalog(all.dataset.homeFrictionAll); return; }
       if (event.target.closest('[data-home-surprise]')) {
         const candidates = projects().filter((project) => !project.summaryOnly || project.liveUrl);
         openProject(candidates[Math.floor(Math.random() * candidates.length)]);

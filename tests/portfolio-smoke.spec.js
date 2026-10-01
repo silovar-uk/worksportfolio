@@ -183,6 +183,34 @@ test('legacy cat_type learning filter includes secondary learning projects', asy
   await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'), null, { timeout: 5000 });
   await expect(page.locator('[data-cat-item="keygrid"]')).toBeVisible();
   await expect(page.locator('[data-cat-item="ichirinzashi"]')).toBeVisible();
+  await expect(page.locator('[data-cat-item="convinitools"]')).toBeVisible();
   await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('type'))).toBe('learning-tool');
   await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).has('cat_type'))).toBe(false);
+});
+
+
+test('friction discovery expands inline and hands off to the catalog', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 900 });
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'), null, { timeout: 5000 });
+  await expect(page.locator('[data-home-open="ichirinzashi"]')).toBeVisible();
+  await expect(page.locator('[data-home-open="contentslibrary"]')).toHaveCount(0);
+  const button = page.locator('[data-home-friction="reduce"]');
+  await button.scrollIntoViewIfNeeded();
+  await button.click();
+  await expect(button).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('[data-home-friction-results]')).toBeVisible();
+  await expect(page.locator('[data-home-friction-open]')).toHaveCount(3);
+  await page.locator('[data-home-friction-all="reduce"]').click();
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get('friction'))).toBe('reduce');
+  await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(0);
+});
+
+test('KeyGrid uses case-study link semantics', async ({ page }) => {
+  const url = new URL(BASE_URL); url.searchParams.set('project', 'keygrid');
+  await page.goto(url.toString(), { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('project-detail-core-ready'), null, { timeout: 3000 });
+  await expect(page.locator('[data-project-dialog]')).toHaveAttribute('open', '');
+  await expect(page.locator('[data-project-detail]')).toContainText('事例を読む');
+  await expect(page.locator('[data-project-detail]')).not.toContainText('公開ページを開く');
 });

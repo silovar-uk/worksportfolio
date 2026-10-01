@@ -456,7 +456,8 @@
       "読書ログ"
     ],
     "portfolioFamilies": [],
-    "makingPrinciples": []
+    "makingPrinciples": [],
+    "access": "gated"
   },
   {
     "id": "converter",
@@ -1505,7 +1506,8 @@
     ],
     "aside": "選曲は自分で。AIは、メモを整えるときだけ手を貸す。",
     "portfolioFamilies": [],
-    "makingPrinciples": []
+    "makingPrinciples": [],
+    "access": "gated"
   },
   {
     "id": "keygrid",
@@ -1528,7 +1530,7 @@
     "createdAtPrecision": "day",
     "updatedAt": "2026-08-05",
     "repositoryUrl": "",
-    "liveUrl": "https://silovar-uk.github.io/designmd/cases/keygrid/",
+    "liveUrl": "",
     "technologies": [
       "Chrome Extension",
       "JavaScript",
@@ -1568,7 +1570,9 @@
     "makingPrinciples": [],
     "categories": [
       "learning-tool"
-    ]
+    ],
+    "caseStudyUrl": "https://silovar-uk.github.io/designmd/cases/keygrid/",
+    "access": "public"
   },
   {
     "id": "keygridexpansion",

@@ -55,34 +55,29 @@
     ).join('')}</div></section>`;
   }
 
+  function detailLinks(project) {
+    const links=[];
+    if(project.liveUrl){const label=project.access==='gated'?'限定ページを開く ↗':project.type==='content-page'?'読む ↗':project.type==='design-system'?'見る ↗':'使う ↗';links.push(`<a href="${attr(project.liveUrl)}" target="_blank" rel="noreferrer">${label}</a>`);}
+    if(project.caseStudyUrl) links.push(`<a href="${attr(project.caseStudyUrl)}" target="_blank" rel="noreferrer">事例を読む ↗</a>`);
+    if(project.repositoryUrl) links.push(`<a href="${attr(project.repositoryUrl)}" target="_blank" rel="noreferrer">GitHub ↗</a>`);
+    if(!links.length) links.push('<span class="meta-pill">外部リンク：手元のみ</span>');
+    return links.join('');
+  }
   function markup(project) {
-    const extension = project.extension || null;
+    const extension=project.extension||null;
     return `<article>
-      <p class="eyebrow">${esc(TYPE_LABELS[project.type] || project.type || '制作物')} / ${esc(formatDate(project.startedAt || project.createdAt))}</p>
-      <h2 class="detail-title" id="dialog-title">${esc(project.title || project.id)}</h2>
-      <p class="detail-subtitle">${esc(project.subtitle || project.summary || '')}</p>
-      <div class="detail-status">
-        <span class="meta-pill">${esc(STATUS_LABELS[project.status] || project.status || '記録')}</span>
-        <span class="meta-pill">制作 ${esc(formatDate(project.startedAt || project.createdAt))}</span>
-        <span class="meta-pill">最終更新 ${esc(formatDate(project.updatedAt || project.createdAt))}</span>
-        <span class="meta-pill">${esc(DOC_LABELS[project.documentationState] || '内容を確認中')}</span>
-        ${(project.verbs || []).map((verb) => `<span class="meta-pill">${esc(verb)}</span>`).join('')}
-      </div>
-      <div class="detail-links">
-        ${project.liveUrl ? `<a href="${attr(project.liveUrl)}" target="_blank" rel="noreferrer">公開ページを開く ↗</a>` : '<span class="meta-pill">公開ページ：未登録</span>'}
-        ${project.repositoryUrl ? `<a href="${attr(project.repositoryUrl)}" target="_blank" rel="noreferrer">GitHub ↗</a>` : '<span class="meta-pill">GitHub：手元のみ</span>'}
-      </div>
-      ${extension ? `<section class="detail-section extension-spec"><h3>Chrome拡張情報</h3><dl>
-        <div><dt>バージョン</dt><dd>${esc(extension.version || '要確認')}</dd></div>
-        <div><dt>拡張ID</dt><dd><code>${esc(extension.extensionId || '要確認')}</code></dd></div>
-      </dl></section>` : ''}
-      <section class="detail-section"><h3>作ったきっかけ</h3><p class="detail-friction">${esc(project.friction || '作ったきっかけを整理中です。')}</p></section>
-      <section class="detail-section"><h3>最初の版</h3><p>${esc(project.firstBuild || '初期版の記録は未確認です。')}</p></section>
-      <section class="detail-section"><h3>現在の状態</h3><p>${esc(project.currentAnswer || project.summary || '')}</p>${project.aside ? `<p class="detail-aside">${esc(project.aside)}</p>` : ''}</section>
-      <section class="detail-section"><h3>更新履歴</h3><div class="detail-updates">${(project.updates || []).map((update) =>
-        `<div class="detail-update"><time>${esc(formatDate(update.date))}${update.version ? ` / ${esc(update.version)}` : ''}</time><div><strong>${esc(update.change || '')}</strong><br><span class="update-reason">${esc(update.reason || '')}</span></div></div>`
-      ).join('') || '<p>更新履歴は未確認です。</p>'}</div></section>
-      <section class="detail-section"><h3>技術</h3><div class="card-meta">${(project.technologies || []).map((item) => `<span class="meta-pill">${esc(item)}</span>`).join('')}</div></section>
+      <p class="eyebrow">${esc(TYPE_LABELS[project.type]||project.type||'制作物')} / ${esc(formatDate(project.startedAt||project.createdAt))}</p>
+      <h2 class="detail-title" id="dialog-title">${esc(project.title||project.id)}</h2>
+      <p class="detail-subtitle">${esc(project.subtitle||project.summary||'')}</p>
+      <div class="detail-journey" aria-label="困りごとから現在まで"><div><span>困った</span><p>${esc(project.friction||'作る前の引っかかりを整理中です。')}</p></div><div><span>作った</span><p>${esc(project.summary||project.firstBuild||'最初の答えを整理中です。')}</p></div><div><span>いま</span><p>${esc(project.currentAnswer||project.summary||'現在の状態を整理中です。')}</p></div></div>
+      <div class="detail-status"><span class="meta-pill">${esc(STATUS_LABELS[project.status]||project.status||'記録')}</span><span class="meta-pill">制作 ${esc(formatDate(project.startedAt||project.createdAt))}</span><span class="meta-pill">最終更新 ${esc(formatDate(project.updatedAt||project.createdAt))}</span><span class="meta-pill">${esc(DOC_LABELS[project.documentationState]||'内容を確認中')}</span>${(project.families||[]).map(f=>`<span class="meta-pill">${esc(f)}</span>`).join('')}</div>
+      <div class="detail-links">${detailLinks(project)}</div>
+      ${extension?`<section class="detail-section extension-spec"><h3>Chrome拡張情報</h3><dl><div><dt>バージョン</dt><dd>${esc(extension.version||'要確認')}</dd></div><div><dt>拡張ID</dt><dd><code>${esc(extension.extensionId||'要確認')}</code></dd></div></dl></section>`:''}
+      <section class="detail-section"><h3>作ったきっかけ</h3><p class="detail-friction">${esc(project.friction||'作ったきっかけを整理中です。')}</p></section>
+      <section class="detail-section"><h3>最初の版</h3><p>${esc(project.firstBuild||'初期版の記録は未確認です。')}</p></section>
+      <section class="detail-section"><h3>現在の状態</h3><p>${esc(project.currentAnswer||project.summary||'')}</p>${project.aside?`<p class="detail-aside">${esc(project.aside)}</p>`:''}</section>
+      <section class="detail-section"><h3>更新履歴</h3><div class="detail-updates">${(project.updates||[]).map(update=>`<div class="detail-update"><time>${esc(formatDate(update.date))}${update.version?` / ${esc(update.version)}`:''}</time><div><strong>${esc(update.change||'')}</strong><br><span class="update-reason">${esc(update.reason||'')}</span></div></div>`).join('')||'<p>更新履歴は未確認です。</p>'}</div></section>
+      <section class="detail-section"><h3>技術</h3><div class="card-meta">${(project.technologies||[]).map(item=>`<span class="meta-pill">${esc(item)}</span>`).join('')}</div></section>
       ${relatedMarkup(project)}
     </article>`;
   }

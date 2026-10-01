@@ -31,6 +31,7 @@ const knownIds = new Set([...publicIds, ...canonicalIds, ...privateIds]);
 if (!policy?.publicationGate?.baselineCreatedDateMax) errors.push('editorial-policy: publicationGate.baselineCreatedDateMax is required');
 if (!Array.isArray(taxonomy.families) || !taxonomy.families.length) errors.push('portfolio-taxonomy: families are required');
 if (!Array.isArray(taxonomy.principles) || !taxonomy.principles.length) errors.push('portfolio-taxonomy: principles are required');
+if (!Array.isArray(taxonomy.frictions) || !taxonomy.frictions.length) errors.push('portfolio-taxonomy: frictions are required');
 if ((taxonomy.families || []).length > 7) warnings.push(`portfolio-taxonomy: ${taxonomy.families.length} families may be too many`);
 if ((taxonomy.principles || []).length > 5) warnings.push(`portfolio-taxonomy: ${taxonomy.principles.length} principles may be too many`);
 
@@ -74,6 +75,10 @@ for (const principle of taxonomy.principles || []) {
   if (!principle?.id || !principle?.label) errors.push('principle: id and label are required');
   checkRefs(`principle:${principle?.id || '(missing)'}`, principle?.projectIds || []);
 }
+for (const friction of taxonomy.frictions || []) {
+  if (!friction?.id || !friction?.label) errors.push('friction: id and label are required');
+  checkRefs(`friction:${friction?.id || '(missing)'}`, friction?.projectIds || []);
+}
 for (const project of projects || []) {
   if (!project?.id) errors.push('projects.json: project without id');
   if (!project?.title || !project?.summary) warnings.push(`projects.json:${project?.id || '(missing)'}: title/summary incomplete`);
@@ -110,4 +115,4 @@ if (errors.length) {
   errors.forEach((error) => console.error(`ERROR ${error}`));
   process.exit(1);
 }
-console.log(`Portfolio model valid: ${canonicalIds.size} canonical projects, ${privateIds.size} private summaries, ${Object.keys(legacyRepositoryIds).length} legacy repositories, ${(taxonomy.families || []).length} families, ${(taxonomy.principles || []).length} principles.`);
+console.log(`Portfolio model valid: ${canonicalIds.size} canonical projects, ${privateIds.size} private summaries, ${Object.keys(legacyRepositoryIds).length} legacy repositories, ${(taxonomy.families || []).length} families, ${(taxonomy.principles || []).length} principles, ${(taxonomy.frictions || []).length} frictions.`);

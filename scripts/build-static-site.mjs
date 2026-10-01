@@ -26,12 +26,12 @@ const coreJsAssets = ['home-shell.js', 'catalog.js', 'project-detail.js'];
 const assetFiles = [...coreCssAssets, ...coreJsAssets];
 
 const HOME_FRICTIONS = [
-  { id: 'reduce', code: '01', label: '手間を減らす', words: ['面倒', '手間', '操作', 'クリック', '移動', '入力', '切り替', '効率', '減ら', '便利', 'utility'] },
-  { id: 'remember', code: '02', label: '覚えて戻る', words: ['忘れ', '記録', '保存', '履歴', 'ログ', '辞書', 'メモ', 'アーカイブ', '思い出', '戻る', 'archive', 'memory'] },
-  { id: 'practice', code: '03', label: '小さく学ぶ', words: ['学ぶ', '練習', '復習', '反復', '問題', 'クイズ', '英語', '語彙', '音読', 'study', 'training', 'practice'] },
-  { id: 'compare', code: '04', label: '比べて整理する', words: ['比べ', '比較', '差分', '構造', '整理', '関係', '可視化', '分析', 'map', 'diff', 'フロー'] },
-  { id: 'communicate', code: '05', label: '伝わり方を整える', words: ['伝える', '共有', 'デザイン', '広報', '告知', '文章', '画像', 'レビュー', '見せる', '説明', 'communication', 'editorial'] },
-  { id: 'protect', code: '06', label: '情報を守る', words: ['守る', '暗号', '非公開', '認証', 'private', 'security', '秘密', '限定', 'access'] }
+  { id: 'reduce', code: '01', label: '手間を減らす' },
+  { id: 'remember', code: '02', label: '覚えて戻る' },
+  { id: 'practice', code: '03', label: '小さく学ぶ' },
+  { id: 'compare', code: '04', label: '比べて整理する' },
+  { id: 'communicate', code: '05', label: '伝わり方を整える' },
+  { id: 'protect', code: '06', label: '情報を守る' }
 ];
 
 const typeByName = [
@@ -144,11 +144,35 @@ function mergePrivateSafeSummaries(publicProjects) {
 }
 function annotateTaxonomy(projects) {
   const map = new Map(projects.map((project) => [project.id, project]));
-  for (const project of projects) { project.portfolioFamilies = []; project.makingPrinciples = []; }
-  for (const family of taxonomy.families || []) for (const id of family.projectIds || []) { const project = map.get(id); if (project && !project.portfolioFamilies.includes(family.label)) project.portfolioFamilies.push(family.label); }
-  for (const principle of taxonomy.principles || []) for (const id of principle.projectIds || []) { const project = map.get(id); if (project && !project.makingPrinciples.includes(principle.label)) project.makingPrinciples.push(principle.label); }
+  for (const project of projects) {
+    project.portfolioFamilies = [];
+    project.portfolioFamilyIds = [];
+    project.makingPrinciples = [];
+    project.frictionIds = [];
+  }
+  for (const family of taxonomy.families || []) for (const id of family.projectIds || []) {
+    const project = map.get(id);
+    if (!project) continue;
+    if (!project.portfolioFamilies.includes(family.label)) project.portfolioFamilies.push(family.label);
+    if (!project.portfolioFamilyIds.includes(family.id)) project.portfolioFamilyIds.push(family.id);
+  }
+  for (const principle of taxonomy.principles || []) for (const id of principle.projectIds || []) {
+    const project = map.get(id);
+    if (project && !project.makingPrinciples.includes(principle.label)) project.makingPrinciples.push(principle.label);
+  }
+  for (const friction of taxonomy.frictions || []) for (const id of friction.projectIds || []) {
+    const project = map.get(id);
+    if (project && !project.frictionIds.includes(friction.id)) project.frictionIds.push(friction.id);
+  }
   return projects;
 }
+function projectAccess(project) {
+  if (project?.access) return project.access;
+  if (project?.sourceVisibility === 'private' || project?.summaryOnly) return project?.liveUrl ? 'gated' : 'local';
+  if (project?.liveUrl || project?.caseStudyUrl) return 'public';
+  return 'local';
+}
+
 function pruneRelations(projects) {
   const valid = new Set(projects.map((project) => project.id));
   return projects.map((project) => ({ ...project, relatedProjects: Array.isArray(project.relatedProjects) ? project.relatedProjects.filter((relation) => relation && valid.has(relation.id || relation.target)) : [] }));
@@ -171,25 +195,42 @@ function searchIndexProject(project) {
   if (project.summaryOnly && project.liveUrl) record.l = project.liveUrl;
   if (project.summaryOnly) record.s = 1;
   const aliases = normalizedList(project.searchAliases || []), verbs = normalizedList(project.verbs || []), technologies = normalizedList(project.technologies || []), families = normalizedList(project.portfolioFamilies || []);
+  const frictionIds = unique(project.frictionIds || []).join(SEARCH_SEP);
+  const familyIds = unique(project.portfolioFamilyIds || []).join(SEARCH_SEP);
+  const answer = truncate(project.currentAnswer || project.summary || '', 110);
   if (aliases) record.a = aliases;
   if (verbs) record.v = verbs;
   if (technologies) record.k = technologies;
   if (families) record.f = families;
+  if (frictionIds) record.g = frictionIds;
+  if (familyIds) record.j = familyIds;
+  if (answer) record.m = answer;
   if (hiddenSearch) record.x = hiddenSearch;
   return record;
 }
-
 function catalogProject(project) {
-  return { id: project.id, title: project.title || project.id, summary: project.summary || project.friction || '制作物の説明を整理中。', type: project.type || 'other', status: project.status || 'legacy',
-    startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '', liveUrl: project.liveUrl || '', repositoryUrl: project.repositoryUrl || '',
-    categories: unique(project.categories || []), sourceVisibility: project.sourceVisibility || '', summaryOnly: Boolean(project.summaryOnly) };
+  return {
+    id: project.id, title: project.title || project.id, summary: project.summary || project.friction || '制作物の説明を整理中。',
+    type: project.type || 'other', status: project.status || 'legacy',
+    startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '',
+    liveUrl: project.liveUrl || '', caseStudyUrl: project.caseStudyUrl || '', repositoryUrl: project.repositoryUrl || '',
+    categories: unique(project.categories || []), familyIds: unique(project.portfolioFamilyIds || []), frictionIds: unique(project.frictionIds || []),
+    access: projectAccess(project), sourceVisibility: project.sourceVisibility || '', summaryOnly: Boolean(project.summaryOnly)
+  };
 }
 function detailProject(project) {
-  return { id: project.id, title: project.title || project.id, subtitle: project.subtitle || '', summary: project.summary || '', friction: project.friction || '', firstBuild: project.firstBuild || '', currentAnswer: project.currentAnswer || '',
-    type: project.type || 'other', verbs: unique(project.verbs || []), status: project.status || 'legacy', startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '',
-    liveUrl: project.liveUrl || '', repositoryUrl: project.repositoryUrl || '', categories: unique(project.categories || []), technologies: unique(project.technologies || []), documentationState: project.documentationState || 'unreviewed',
-    relatedProjects: Array.isArray(project.relatedProjects) ? project.relatedProjects : [], updates: Array.isArray(project.updates) ? project.updates : [], aside: project.aside || '', extension: project.extension || null };
+  return {
+    id: project.id, title: project.title || project.id, subtitle: project.subtitle || '', summary: project.summary || '', friction: project.friction || '',
+    firstBuild: project.firstBuild || '', currentAnswer: project.currentAnswer || '', type: project.type || 'other', verbs: unique(project.verbs || []),
+    status: project.status || 'legacy', startedAt: project.startedAt || project.createdAt || '', createdAt: project.createdAt || '', updatedAt: project.updatedAt || project.createdAt || '',
+    liveUrl: project.liveUrl || '', caseStudyUrl: project.caseStudyUrl || '', repositoryUrl: project.repositoryUrl || '', access: projectAccess(project),
+    categories: unique(project.categories || []), familyIds: unique(project.portfolioFamilyIds || []), families: unique(project.portfolioFamilies || []), frictionIds: unique(project.frictionIds || []),
+    technologies: unique(project.technologies || []), documentationState: project.documentationState || 'unreviewed',
+    relatedProjects: Array.isArray(project.relatedProjects) ? project.relatedProjects : [], updates: Array.isArray(project.updates) ? project.updates : [],
+    aside: project.aside || '', extension: project.extension || null
+  };
 }
+
 function writeRuntimeData(projects, generatedAt) {
   const searchIndex = projects.slice().sort((a, b) => String(b.updatedAt || b.createdAt || '').localeCompare(String(a.updatedAt || a.createdAt || ''))).map(searchIndexProject);
   const catalogPayload = { version: 1, generatedAt, projects: projects.map(catalogProject) };
@@ -219,26 +260,33 @@ function applyStaticShell(html) {
   else if (!/class="[^"]*home-redesign/.test(html)) throw new Error('Unable to install home-redesign class on html.');
   return html;
 }
-function themeScore(project, theme) {
-  const text = normalizeSearch([project.title, project.subtitle, project.summary, project.friction, ...(project.verbs || []), ...(project.technologies || []), ...(project.portfolioFamilies || []), ...(project.makingPrinciples || [])].filter(Boolean).join(' '));
-  let score = theme.words.reduce((sum, word) => sum + (text.includes(normalizeSearch(word)) ? 1 : 0), 0);
-  if (project.type === 'learning-tool' && theme.id === 'practice') score += 2;
-  if (project.type === 'data-tool' && theme.id === 'compare') score += 1;
-  if (project.type === 'chrome-extension' && theme.id === 'reduce') score += 1;
-  if (project.sourceVisibility === 'private' && theme.id === 'protect') score += 2;
-  return score;
-}
 function featuredProjects(projects) {
   const map = new Map(projects.map((project) => [project.id, project]));
-  const configured = (settings.featuredProjectIds || []).map((id) => map.get(id)).filter(Boolean);
-  const fallback = projects.filter((project) => project.liveUrl || project.featured).sort((a, b) => String(b.updatedAt || b.createdAt).localeCompare(String(a.updatedAt || a.createdAt)));
+  const eligible = (project) => project && projectAccess(project) === 'public' && Boolean(project.liveUrl || project.caseStudyUrl);
+  const configured = (settings.featuredProjectIds || []).map((id) => map.get(id)).filter(eligible);
+  const fallback = projects.filter(eligible).sort((a, b) => String(b.updatedAt || b.createdAt).localeCompare(String(a.updatedAt || a.createdAt)));
   return unique([...configured.map((project) => project.id), ...fallback.map((project) => project.id)]).map((id) => map.get(id)).filter(Boolean).slice(0, 4);
 }
-function homeSectionsMarkup(projects) {
-  const featuredMarkup = featuredProjects(projects).map((project) => `<article class="home-featured-card"><p class="home-featured-card-meta">${escapeHtml(typeLabels[project.type] || project.type || '制作物')} / ${escapeHtml(String(project.updatedAt || project.createdAt || '').replace(/-/g, '.'))}</p><h3>${escapeHtml(project.title || project.id)}</h3><p>${escapeHtml(project.summary || project.friction || '制作物の説明を整理中。')}</p><div class="home-featured-actions"><button type="button" data-home-open="${escapeAttr(project.id)}">制作記録を見る</button>${project.liveUrl ? `<a href="${escapeAttr(project.liveUrl)}" target="_blank" rel="noopener">公開ページ ↗</a>` : ''}</div></article>`).join('');
-  const frictionMarkup = HOME_FRICTIONS.map((theme) => { const count = projects.filter((project) => themeScore(project, theme) > 0).length; return `<button type="button" class="home-friction-button" data-home-friction="${theme.id}" aria-label="${escapeAttr(theme.label)}に関係する制作物 ${count}件を見る"><span>${theme.code}</span><strong>${escapeHtml(theme.label)}</strong><b>${count}</b></button>`; }).join('');
-  return `<section class="home-start section-shell" aria-labelledby="home-start-title"><div class="home-section-head"><div><p class="eyebrow">START HERE</p><h2 id="home-start-title">いま見るなら</h2></div><p>全部を見る前に、方向の違う制作物を4つだけ。公開ページへ直接行くことも、制作記録を読むこともできます。</p></div><div class="home-featured-grid">${featuredMarkup}</div></section><section class="home-frictions section-shell" aria-labelledby="home-frictions-title"><div class="home-section-head"><div><p class="eyebrow">WHY I MADE THEM</p><h2 id="home-frictions-title">何に困って作った？</h2></div><p>技術名ではなく、作る前にあった小さな引っかかりから制作物を探します。</p></div><div class="home-friction-grid">${frictionMarkup}</div><div class="home-surprise-row"><p>目的が決まっていないときは、過去の問題解決をひとつ引く。</p><button type="button" class="home-surprise" data-home-surprise>おまかせで1つ</button></div></section>`;
+function homeDirectLinks(project) {
+  const links = [];
+  const access = projectAccess(project);
+  if (project.liveUrl) {
+    const label = access === 'gated' ? '限定ページ ↗' : project.type === 'content-page' ? '読む ↗' : project.type === 'design-system' ? '見る ↗' : '使う ↗';
+    links.push(`<a href="${escapeAttr(project.liveUrl)}" target="_blank" rel="noopener">${label}</a>`);
+  }
+  if (project.caseStudyUrl) links.push(`<a href="${escapeAttr(project.caseStudyUrl)}" target="_blank" rel="noopener">事例を読む ↗</a>`);
+  return links.join('');
 }
+function homeSectionsMarkup(projects) {
+  const roles = settings.featuredProjectRoles && typeof settings.featuredProjectRoles === 'object' ? settings.featuredProjectRoles : {};
+  const featuredMarkup = featuredProjects(projects).map((project) => `<article class="home-featured-card"><p class="home-featured-role">${escapeHtml(roles[project.id] || 'ひとつの答え')}</p><p class="home-featured-card-meta">${escapeHtml(typeLabels[project.type] || project.type || '制作物')} / ${escapeHtml(String(project.updatedAt || project.createdAt || '').replace(/-/g, '.'))}</p><h3>${escapeHtml(project.title || project.id)}</h3><p>${escapeHtml(project.summary || project.friction || '制作物の説明を整理中。')}</p><div class="home-featured-actions"><button type="button" data-home-open="${escapeAttr(project.id)}">制作記録</button>${homeDirectLinks(project)}</div></article>`).join('');
+  const frictionMarkup = HOME_FRICTIONS.map((theme) => {
+    const count = projects.filter((project) => (project.frictionIds || []).includes(theme.id)).length;
+    return `<button type="button" class="home-friction-button" data-home-friction="${theme.id}" aria-expanded="false" aria-controls="home-friction-results" aria-label="${escapeAttr(theme.label)}に関係する制作物 ${count}件を見る"><span>${theme.code}</span><strong>${escapeHtml(theme.label)}</strong><b>${count}</b></button>`;
+  }).join('');
+  return `<section class="home-start section-shell" aria-labelledby="home-start-title"><div class="home-section-head"><div><p class="eyebrow">START HERE</p><h2 id="home-start-title">いま見るなら</h2></div><p>作品ではなく、違う種類の問題解決を4つ。まず「何を変えた道具か」から見られます。</p></div><div class="home-featured-grid">${featuredMarkup}</div></section><section class="home-frictions section-shell" aria-labelledby="home-frictions-title"><div class="home-section-head"><div><p class="eyebrow">WHY I MADE THEM</p><h2 id="home-frictions-title">何に困って作った？</h2></div><p>技術名ではなく、作る前にあった小さな引っかかりから制作物を探します。</p></div><div class="home-friction-grid">${frictionMarkup}</div><div class="home-friction-results" id="home-friction-results" data-home-friction-results hidden aria-live="polite"></div><div class="home-surprise-row"><p>目的が決まっていないときは、過去の問題解決をひとつ引く。</p><button type="button" class="home-surprise" data-home-surprise>おまかせで1つ</button></div></section>`;
+}
+
 function applyHomeSections(html, projects) {
   const marker = '    <section class="explorer section-shell"';
   if (!html.includes(marker)) throw new Error('Explorer marker not found for home discovery sections.');
@@ -257,7 +305,7 @@ const stylesheetTags = coreCssAssets.map((path) => `<link rel="stylesheet" href=
 const scriptTags = coreJsAssets.map((path) => `<script src="${assetUrl(path)}"><\/script>`).join('');
 html = html.replace('</head>', `<meta name="worksportfolio-generated-at" content="${escapeAttr(generatedAt)}"><meta name="worksportfolio-assets-version" content="${assetVersion}"><meta name="worksportfolio-data-mode" content="search-inline-catalog-fetch-detail-on-demand">${stylesheetTags}</head>`);
 html = html.replace('</body>', `${scriptTags}</body>`);
-for (const required of ['WORKS_PORTFOLIO_SEARCH_INDEX', 'data-header-search-input', 'data-home-friction="reduce"', 'data-home-surprise', 'home-shell.js', 'catalog.js', 'project-detail.js']) if (!html.includes(required)) throw new Error(`Generated page is missing ${required}.`);
+for (const required of ['WORKS_PORTFOLIO_SEARCH_INDEX', 'data-header-search-input', 'data-home-friction="reduce"', 'data-home-friction-results', 'data-home-surprise', 'home-shell.js', 'catalog.js', 'project-detail.js']) if (!html.includes(required)) throw new Error(`Generated page is missing ${required}.`);
 for (const forbidden of ['BUILD_DIARY_DATA', 'WORKS_PORTFOLIO_REPOSITORIES', 'WORKS_PORTFOLIO_START_DATES', 'WORKS_PORTFOLIO_SHOWCASE', 'WORKS_PORTFOLIO_CONFIG', 'requestIdleCallback', 'MutationObserver', 'live-index.js', 'friction-atlas.js', 'catalog-list-first.js']) if (html.includes(forbidden)) throw new Error(`Generated page leaked obsolete runtime architecture: ${forbidden}.`);
 writeFileSync(join(root, 'index.html'), html);
 console.log(`Generated progressive portfolio: ${projects.length} projects (${withheldCount} public withheld); index ${byteLength(html).toLocaleString('en-US')} bytes; inline search ${runtimeData.searchBytes.toLocaleString('en-US')} bytes; catalog ${runtimeData.catalogBytes.toLocaleString('en-US')} bytes; ${runtimeData.detailCount} on-demand details / ${runtimeData.detailBytes.toLocaleString('en-US')} bytes; assets ${assetVersion}.`);
