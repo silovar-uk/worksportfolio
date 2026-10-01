@@ -556,7 +556,10 @@
       "Chrome Extension"
     ],
     "portfolioFamilies": [],
-    "makingPrinciples": []
+    "makingPrinciples": [],
+    "categories": [
+      "learning-tool"
+    ]
   },
   {
     "id": "countupapp",
