@@ -196,13 +196,11 @@ function searchIndexProject(project) {
   if (project.summaryOnly) record.s = 1;
   const aliases = normalizedList(project.searchAliases || []), verbs = normalizedList(project.verbs || []), technologies = normalizedList(project.technologies || []), families = normalizedList(project.portfolioFamilies || []);
   const frictionIds = unique(project.frictionIds || []).join(SEARCH_SEP);
-  const answer = truncate(project.currentAnswer || project.summary || '', 36);
   if (aliases) record.a = aliases;
   if (verbs) record.v = verbs;
   if (technologies) record.k = technologies;
   if (families) record.f = families;
   if (frictionIds) record.g = frictionIds;
-  if (answer) record.m = answer;
   if (hiddenSearch) record.x = hiddenSearch;
   return record;
 }

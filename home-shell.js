@@ -39,7 +39,6 @@
     families: raw.f || '',
     familyIds: raw.j ? String(raw.j).split(SEARCH_SEP).filter(Boolean) : [],
     frictionIds: raw.g ? String(raw.g).split(SEARCH_SEP).filter(Boolean) : [],
-    answer: raw.m || '',
     searchText: raw.x || ''
   }));
   const projects = () => projectRecords;
@@ -208,7 +207,13 @@
     });
   }
   function frictionCard(project) {
-    return `<article class="home-friction-result-card"><p><span>困った</span>${esc(project.hint || '作る前の引っかかりを整理中。')}</p><button type="button" data-home-friction-open="${attr(project.id)}"><strong>${esc(project.title || project.id)}</strong><small>${esc(project.answer || '現在の答えを整理中。')}</small></button></article>`;
+    const answerByType = {
+      'web-app': 'Webアプリとして答えを作った。', 'chrome-extension': 'Chrome拡張として答えを作った。',
+      'learning-tool': '学習ツールとして答えを作った。', 'design-system': '設計・デザインの仕組みにした。',
+      'content-page': '読める知識の形にした。', 'data-tool': '分析・データの道具にした。',
+      utility: '小さな便利ツールにした。', experiment: 'まず試作品にした。', other: '使える形にした。'
+    };
+    return `<article class="home-friction-result-card"><p><span>困った</span>${esc(project.hint || '作る前の引っかかりを整理中。')}</p><button type="button" data-home-friction-open="${attr(project.id)}"><strong>${esc(project.title || project.id)}</strong><small>${esc(answerByType[project.type] || answerByType.other)}</small></button></article>`;
   }
   function renderFrictionResults(id) {
     const holder = document.querySelector('[data-home-friction-results]');
