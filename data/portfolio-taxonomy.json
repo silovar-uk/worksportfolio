@@ -44,7 +44,8 @@
         "keygrid",
         "quicklinksexpansion",
         "ui-cleaner",
-        "prompt-launcher"
+        "prompt-launcher",
+        "context-lens"
       ]
     },
     {
@@ -79,7 +80,8 @@
       "projectIds": [
         "ui-cleaner",
         "prompt-launcher",
-        "multimemos"
+        "multimemos",
+        "context-lens"
       ]
     },
     {
@@ -111,7 +113,8 @@
       "projectIds": [
         "prompt-launcher",
         "secure-private-memo",
-        "ui-cleaner"
+        "ui-cleaner",
+        "context-lens"
       ]
     },
     {
@@ -165,7 +168,8 @@
         "private-myessays",
         "prompt-launcher",
         "secure-private-memo",
-        "ui-cleaner"
+        "ui-cleaner",
+        "context-lens"
       ]
     },
     {
@@ -277,7 +281,8 @@
         "karaoke-library",
         "landing-page-prototype",
         "prompt-lab",
-        "social-operations-benchmark"
+        "social-operations-benchmark",
+        "context-lens"
       ]
     },
     {
@@ -316,7 +321,8 @@
         "communication-design-vision",
         "event-communication-review",
         "landing-page-prototype",
-        "social-operations-benchmark"
+        "social-operations-benchmark",
+        "context-lens"
       ]
     },
     {
@@ -339,7 +345,8 @@
         "secure-private-memo",
         "social-operations-benchmark",
         "ui-cleaner",
-        "work-logs"
+        "work-logs",
+        "context-lens"
       ]
     }
   ]
