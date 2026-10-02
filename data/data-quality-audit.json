@@ -29,7 +29,7 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-02T00:19:01.819Z",
+    "generatedAt": "2026-10-02T00:21:26.773Z",
     "canonicalProjects": 73,
     "reviewableCanonicalProjects": 70,
     "excludedHiddenCanonicalProjects": 3,
@@ -905,7 +905,7 @@
       "quality": "verified-shape",
       "documentationState": "verified",
       "missingCore": [],
-      "hasFamily": false,
+      "hasFamily": true,
       "relationCount": 2,
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "manual-record",
