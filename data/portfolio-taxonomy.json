@@ -45,7 +45,8 @@
         "quicklinksexpansion",
         "ui-cleaner",
         "prompt-launcher",
-        "context-lens"
+        "context-lens",
+        "video-navigator"
       ]
     },
     {
@@ -81,7 +82,8 @@
         "ui-cleaner",
         "prompt-launcher",
         "multimemos",
-        "context-lens"
+        "context-lens",
+        "video-navigator"
       ]
     },
     {
@@ -114,7 +116,8 @@
         "prompt-launcher",
         "secure-private-memo",
         "ui-cleaner",
-        "context-lens"
+        "context-lens",
+        "video-navigator"
       ]
     },
     {
@@ -169,7 +172,8 @@
         "prompt-launcher",
         "secure-private-memo",
         "ui-cleaner",
-        "context-lens"
+        "context-lens",
+        "video-navigator"
       ]
     },
     {
@@ -210,7 +214,8 @@
         "private-myessays",
         "prompt-lab",
         "secure-private-memo",
-        "work-logs"
+        "work-logs",
+        "video-navigator"
       ]
     },
     {
