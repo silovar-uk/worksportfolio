@@ -190,6 +190,8 @@ function searchIndexProject(project) {
   const normalizedHint = normalizeSearch(hint);
   let hiddenSearch = normalizeSearch([project.summary, project.friction, ...(project.makingPrinciples || [])].filter(Boolean).join(' '));
   if (normalizedHint) hiddenSearch = hiddenSearch.replace(normalizedHint, '');
+  // Keep the inline index focused on discovery terms; full copy lives in Catalog/Detail payloads.
+  hiddenSearch = hiddenSearch.slice(0, 60);
   const record = { i: project.id, t: project.title || project.id, h: hint, y: typeCodes[project.type] || 'o' };
   if (project.friction) record.r = 1;
   if (project.summaryOnly && project.liveUrl) record.l = project.liveUrl;
