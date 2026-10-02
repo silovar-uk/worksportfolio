@@ -4255,5 +4255,84 @@
     "portfolioFamilies": [],
     "makingPrinciples": [],
     "access": "public"
+  },
+  {
+    "id": "video-navigator",
+    "title": "Video Navigator",
+    "subtitle": "既存動画を壊さず、見たい瞬間へすぐ移動するiPhone向け操作レイヤー",
+    "summary": "Webページ上の既存HTML動画へ、左ダブルタップで10秒戻る・右で30秒進む、直前位置へ戻るJump Back、時間指定、精密シーク、MARK、A–B LOOPなどの移動操作だけを追加するiPhone-firstのブックマークレット。",
+    "friction": "動画そのものは再生できても、少し聞き逃して戻る、既知部分を大きく飛ばす、さっき見ていた位置へ戻る、といった「動画内を行き来する」操作に手数がかかっていた。",
+    "firstBuild": "既存のVideo.jsやHTMLVideoElementを置き換えず、ページ上のvideo要素へ操作パネルだけを重ねるブックマークレットとして始めた。",
+    "currentAnswer": "戻る操作は10秒、進む操作は30秒という非対称な操作文法を中心に、Compactモード、Jump Back、移動履歴、MARK即保存を備え、元プレーヤーの弱点だけを薄い操作レイヤーで補う。",
+    "type": "utility",
+    "verbs": [
+      "移動する",
+      "戻る",
+      "見返す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-02",
+    "startedAt": "2026-10-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/redlife-video-navigator",
+    "liveUrl": "https://silovar-uk.github.io/myessays/tools/redlife-video-navigator/",
+    "technologies": [
+      "JavaScript",
+      "Bookmarklet",
+      "Safari",
+      "HTMLMediaElement",
+      "Shadow DOM",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "editorialState": "published",
+    "relatedProjects": [
+      {
+        "id": "context-lens",
+        "relation": "同じiPhone Safariブックマークレット基盤で、既存Webページへ薄い機能レイヤーを足す"
+      },
+      {
+        "id": "myessays",
+        "relation": "同じGitHub Pages配下で配信するツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-10-02",
+        "version": "0.1.1",
+        "change": "既存video要素を操作する初版を公開",
+        "reason": "動画URLや認証を持ち出さず、時間指定・精密シーク・MARK・A–B LOOPを追加するため。"
+      },
+      {
+        "date": "2026-10-02",
+        "version": "0.2.0",
+        "change": "左ダブルタップ−10秒、右＋30秒、Jump Back、Compactモード、移動履歴、MARK即保存を追加",
+        "reason": "再生機能を増やすのではなく、見たい瞬間へ移動する手数を減らすため。"
+      }
+    ],
+    "aside": "再生プレーヤーを作り直さず、移動能力だけを足す。",
+    "searchAliases": [
+      "Video Navigator",
+      "ビデオナビゲーター",
+      "動画ナビゲーター",
+      "動画シーク",
+      "動画ジャンプ",
+      "video seek",
+      "jump back",
+      "double tap",
+      "ダブルタップ",
+      "ブックマークレット",
+      "Safari",
+      "HTMLVideoElement",
+      "Video.js"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
   }
 ]
