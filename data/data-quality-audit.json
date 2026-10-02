@@ -29,15 +29,15 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-01T22:18:04.288Z",
-    "canonicalProjects": 72,
-    "reviewableCanonicalProjects": 69,
+    "generatedAt": "2026-10-02T00:16:03.831Z",
+    "canonicalProjects": 73,
+    "reviewableCanonicalProjects": 70,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 76,
     "visiblePublicRepositories": 61,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 53,
+    "verifiedDocumentation": 54,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
@@ -49,7 +49,7 @@
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
-    "canonicalWithoutPublicRepo": 8,
+    "canonicalWithoutPublicRepo": 9,
     "sourceWithoutCanonical": 0
   },
   "records": [
@@ -333,7 +333,7 @@
       "quality": "verified-shape",
       "documentationState": "verified",
       "missingCore": [],
-      "hasFamily": false,
+      "hasFamily": true,
       "relationCount": 2,
       "artifactStatus": "public-url-recorded",
       "startedAtBasis": "manual-record",
@@ -899,6 +899,19 @@
       "startedAtPrecision": "day"
     },
     {
+      "id": "video-navigator",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 2,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "manual-record",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "vocabularies",
       "score": 10,
       "maxScore": 10,
@@ -974,7 +987,8 @@
     "payment-case-manager",
     "private-memo",
     "x-auto-screenshot-scroll",
-    "context-lens"
+    "context-lens",
+    "video-navigator"
   ],
   "sourceWithoutCanonical": [],
   "vocabulary": {
@@ -988,12 +1002,12 @@
         "count": 11
       },
       {
-        "value": "chrome-extension",
+        "value": "utility",
         "count": 10
       },
       {
-        "value": "utility",
-        "count": 9
+        "value": "chrome-extension",
+        "count": 10
       },
       {
         "value": "content-page",
@@ -1078,6 +1092,10 @@
         "count": 3
       },
       {
+        "value": "移動する",
+        "count": 2
+      },
+      {
         "value": "育てる",
         "count": 2
       },
@@ -1146,10 +1164,6 @@
         "count": 1
       },
       {
-        "value": "移動する",
-        "count": 1
-      },
-      {
         "value": "引き直す",
         "count": 1
       },
@@ -1175,6 +1189,10 @@
       },
       {
         "value": "見積もる",
+        "count": 1
+      },
+      {
+        "value": "見返す",
         "count": 1
       },
       {
@@ -1287,6 +1305,10 @@
       },
       {
         "value": "並べ替える",
+        "count": 1
+      },
+      {
+        "value": "戻る",
         "count": 1
       },
       {
