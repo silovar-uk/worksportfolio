@@ -1,0 +1,695 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//redscalender//Urawa fixtures//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:浦和レッズ
+X-WR-TIMEZONE:Asia/Tokyo
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:15019771b5dccef1ac087db5@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260801T090400Z
+DTEND:20260801T110400Z
+SUMMARY:[HOME] 浦和レッズ vs RB大宮アルディージャ
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:Juiceスペシャルマッチ\n終了時刻はキックオフ
+ から2時間後の目安です。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:64b8d5e43912ac242535abb2@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260807T103300Z
+DTEND:20260807T123300Z
+SUMMARY:[AWAY] 浦和レッズ vs ガンバ大阪
+LOCATION:パナソニック スタジアム 吹田
+DESCRIPTION:2026/27明治安田J1リーグ 第1節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:47edb85cba5784309c08cb76@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260815T100300Z
+DTEND:20260815T120300Z
+SUMMARY:[HOME] 浦和レッズ vs サンフレッチェ広島
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第2節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2f6b93664cdc083182472ad0@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260823T103500Z
+DTEND:20260823T123500Z
+SUMMARY:[AWAY] 浦和レッズ vs FC町田ゼルビア
+LOCATION:MUFGスタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第3節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:652931d0d92ede3772e9fe87@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260826T100300Z
+DTEND:20260826T120300Z
+SUMMARY:[NEUTRAL] 浦和レッズ vs 山梨学院大学
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 2
+ 回戦\n終了時刻はキックオフから2時間後の目安です。\n
+ 非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:58439f964ea09810a32e54c8@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260829T100300Z
+DTEND:20260829T120300Z
+SUMMARY:[HOME] 浦和レッズ vs 横浜F・マリノス
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第4節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:6dfbebd99a02c29ec1e12425@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260902T100300Z
+DTEND:20260902T120300Z
+SUMMARY:[AWAY] 浦和レッズ vs アビスパ福岡
+LOCATION:ベスト電器スタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第5節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3972b7b4995f95e4ddab3eb0@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260906T090300Z
+DTEND:20260906T110300Z
+SUMMARY:[AWAY] 浦和レッズ vs 鹿島アントラーズ
+LOCATION:メルカリスタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第6節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4e00dc1e62a24b8541eadb58@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260913T093300Z
+DTEND:20260913T113300Z
+SUMMARY:[HOME] 浦和レッズ vs ファジアーノ岡山
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第7節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ee237c2b593e46312f92e7d6@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260919T093300Z
+DTEND:20260919T113300Z
+SUMMARY:[HOME] 浦和レッズ vs 東京ヴェルディ
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第8節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:256b4fe785fc01e8d68ce3ba@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260929T100300Z
+DTEND:20260929T120300Z
+SUMMARY:[AWAY] 浦和レッズ vs カターレ富山
+LOCATION:富山県総合運動公園陸上競技場
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ 1stラウンド 2回戦\n終了時刻はキックオフから2時
+ 間後の目安です。\n非公式カレンダー。来場前に公式情
+ 報をご確認ください。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2ab9a2fceb7b12d275c74e97@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261007T090000Z
+DTEND:20261007T110000Z
+SUMMARY:[NEUTRAL] 浦和レッズ vs RB大宮アルディージャ
+LOCATION:NACK5スタジアム大宮
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 3
+ 回戦\n終了時刻はキックオフから2時間後の目安です。\n
+ 非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0ca1e75451ee81e4a45e8da6@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261010T060000Z
+DTEND:20261010T080000Z
+SUMMARY:[AWAY] 浦和レッズ vs FC東京
+LOCATION:味の素スタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第9節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4f0a2dc6c556d6b3bcf4c39a@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261014T093000Z
+DTEND:20261014T113000Z
+SUMMARY:[AWAY] 浦和レッズ vs 横浜FC
+LOCATION:ニッパツ三ツ沢球技場
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ 1stラウンド 3回戦\n終了時刻はキックオフから2時
+ 間後の目安です。\n非公式カレンダー。来場前に公式情
+ 報をご確認ください。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b937b558abd587309548b49f@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261017T070000Z
+DTEND:20261017T090000Z
+SUMMARY:[AWAY] 浦和レッズ vs 水戸ホーリーホック
+LOCATION:水戸信用金庫スタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第10節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0b917f03d30907c2f12a18e7@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261021T103000Z
+DTEND:20261021T123000Z
+SUMMARY:[HOME] 浦和レッズ vs ジェフユナイテッド市原・千
+ 葉
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第11節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0465fc548212b7ff80d442ba@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261025T060000Z
+DTEND:20261025T080000Z
+SUMMARY:[HOME] 浦和レッズ vs V・ファーレン長崎
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第12節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:23832940edfcf624aaaa14bf@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ 1stラウンド 4回戦\n開始時刻未定のため終日表示し
+ ています。\n非公式カレンダー。来場前に公式情報をご
+ 確認ください。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:283211b59ecbedb51804aca1@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261031T070000Z
+DTEND:20261031T090000Z
+SUMMARY:[AWAY] 浦和レッズ vs 柏レイソル
+LOCATION:三協フロンテア柏スタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第13節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:aae9c4e2b9e91a997e39af9a@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261108T050000Z
+DTEND:20261108T070000Z
+SUMMARY:[AWAY] 浦和レッズ vs ヴィッセル神戸
+LOCATION:MUFGスタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第14節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fa5520526d1031907ca34133@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ プライムラウンド 準々決勝 第1戦\n開始時刻未定
+ のため終日表示しています。\n非公式カレンダー。来場
+ 前に公式情報をご確認ください。\nhttps://www.urawa-reds.co.j
+ p/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d406345827036a89ef3f6233@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ プライムラウンド 準々決勝 第2戦\n開始時刻未定
+ のため終日表示しています。\n非公式カレンダー。来場
+ 前に公式情報をご確認ください。\nhttps://www.urawa-reds.co.j
+ p/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d74e85df7cd27eaf271c4f31@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261121T050000Z
+DTEND:20261121T070000Z
+SUMMARY:[AWAY] 浦和レッズ vs 京都サンガF.C.
+LOCATION:サンガスタジアム by KYOCERA
+DESCRIPTION:2026/27明治安田J1リーグ 第15節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3a239a73d64edfc032b9061b@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261125T103000Z
+DTEND:20261125T123000Z
+SUMMARY:[HOME] 浦和レッズ vs セレッソ大阪
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第16節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3dba21e0b24dc44c96cff4e1@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261128T050000Z
+DTEND:20261128T070000Z
+SUMMARY:[AWAY] 浦和レッズ vs 清水エスパルス
+LOCATION:IAIスタジアム日本平
+DESCRIPTION:2026/27明治安田J1リーグ 第17節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:40b21fee07d564bb4f3f8f72@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261205T050000Z
+DTEND:20261205T070000Z
+SUMMARY:[HOME] 浦和レッズ vs 名古屋グランパス
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第18節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b0909c855ba845fe093b5afa@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261209
+DTEND;VALUE=DATE:20261210
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 ラ
+ ウンド16(4回戦)\n開始時刻未定のため終日表示していま
+ す。\n非公式カレンダー。来場前に公式情報をご確認く
+ ださい。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e2915eaa284dc758efaf693c@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261213T060000Z
+DTEND:20261213T080000Z
+SUMMARY:[HOME] 浦和レッズ vs 川崎フロンターレ
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第19節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4a5a139b6f419060a16afe59@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261219T053000Z
+DTEND:20261219T073000Z
+SUMMARY:[AWAY] 浦和レッズ vs V・ファーレン長崎
+LOCATION:PEACE STADIUM Connected by SoftBank
+DESCRIPTION:2026/27明治安田J1リーグ 第20節\n終了時刻はキッ
+ クオフから2時間後の目安です。\n非公式カレンダー。
+ 来場前に公式情報をご確認ください。\nhttps://www.urawa-red
+ s.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e093e2befe95d5afb72c535a@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 準
+ 々決勝\n開始時刻未定のため終日表示しています。\n非
+ 公式カレンダー。来場前に公式情報をご確認ください
+ 。\nhttps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:daf8f56cae501f6dc3d860b8@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261227
+DTEND;VALUE=DATE:20261228
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 準
+ 決勝\n開始時刻未定のため終日表示しています。\n非公
+ 式カレンダー。来場前に公式情報をご確認ください。\n
+ https://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:903057bec41693105875f3bd@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270102
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:MUFGスタジアム
+DESCRIPTION:天皇杯 JFA 第106回全日本サッカー選手権大会 決
+ 勝\n開始時刻未定のため終日表示しています。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:92bba00577feee3fa777fab2@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270214
+DTEND;VALUE=DATE:20270215
+SUMMARY:【時刻未定】[AWAY] 浦和レッズ vs 東京ヴェルディ
+LOCATION:MUFGスタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第21節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:6b5bd3c33d04e6a15846d281@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270310
+DTEND;VALUE=DATE:20270311
+SUMMARY:【時刻未定】[HOME] 浦和レッズ vs FC東京
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第25節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2bee06c0d2282581691c20ef@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270314
+DTEND;VALUE=DATE:20270315
+SUMMARY:【時刻未定】[AWAY] 浦和レッズ vs ジェフユナイテ
+ ッド市原・千葉
+LOCATION:MUFGスタジアム
+DESCRIPTION:2026/27明治安田J1リーグ 第26節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e60f3f5bafbee1f71dcf2a8f@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270324
+DTEND;VALUE=DATE:20270325
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ プライムラウンド 準決勝 第1戦\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:de96ccf9880f1395e992ae02@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270328
+DTEND;VALUE=DATE:20270329
+SUMMARY:【時刻未定】[NEUTRAL] 浦和レッズ vs 対戦相手未定
+LOCATION:会場未定
+DESCRIPTION:2026/27Jリーグ ヤマザキビスケット ルヴァンカ
+ ップ プライムラウンド 準決勝 第2戦\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:624d096686a9fdc4b6b8a777@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270429
+DTEND;VALUE=DATE:20270430
+SUMMARY:【時刻未定】[HOME] 浦和レッズ vs FC町田ゼルビア
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第32節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e53b71895132e7526466481a@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270509
+DTEND;VALUE=DATE:20270510
+SUMMARY:【時刻未定】[HOME] 浦和レッズ vs ヴィッセル神戸
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第34節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:793e14308914e0ae4c95d9fa@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270606
+DTEND;VALUE=DATE:20270607
+SUMMARY:【時刻未定】[HOME] 浦和レッズ vs ガンバ大阪
+LOCATION:埼玉スタジアム2002
+DESCRIPTION:2026/27明治安田J1リーグ 第38節\n開始時刻未定の
+ ため終日表示しています。\n非公式カレンダー。来場前
+ に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
+ ame/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

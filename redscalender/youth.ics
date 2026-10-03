@@ -1,0 +1,335 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//redscalender//Urawa fixtures//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:浦和レッズユース
+X-WR-TIMEZONE:Asia/Tokyo
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:16945f71249384847c16f6d5@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260404T050000Z
+DTEND:20260404T070000Z
+SUMMARY:浦和レッズユース vs ヴァンフォーレ甲府U-18
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第1節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0dba76cd3986255ed2e0bb36@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260411T060000Z
+DTEND:20260411T080000Z
+SUMMARY:浦和レッズユース vs 山梨学院高校
+LOCATION:山梨学院和戸サッカー場
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第2節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ee56bcef5e54a03fe015c4b0@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260418T050000Z
+DTEND:20260418T070000Z
+SUMMARY:浦和レッズユース vs 桐蔭学園高校
+LOCATION:埼玉スタジアム2002 第3グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第3節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:702684b2a91273a210b73182@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260425T050000Z
+DTEND:20260425T070000Z
+SUMMARY:浦和レッズユース vs ジェフユナイテッド市原・千
+ 葉U-18
+LOCATION:ユナイテッドパーク
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第4節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e3b9be89397d3535ac30f19b@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260502T020000Z
+DTEND:20260502T040000Z
+SUMMARY:浦和レッズユース vs 桐生第一高校
+LOCATION:太田市運動公園サッカー場
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第5節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ebefef12d4fdb6738ca9fbe4@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260509T050000Z
+DTEND:20260509T070000Z
+SUMMARY:浦和レッズユース vs RB大宮アルディージャU18
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第6節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:90941ae1020d421d7334df3f@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260516T050000Z
+DTEND:20260516T070000Z
+SUMMARY:浦和レッズユース vs 帝京高校
+LOCATION:帝京科学大学千住総合グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第7節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:394a7a8ae37aab04ae5d0b81@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260620T090000Z
+DTEND:20260620T110000Z
+SUMMARY:浦和レッズユース vs 流通経済大学付属柏B
+LOCATION:埼玉スタジアム2002 第4グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第8節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cae55d3ad2df6cd1853df5bf@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260628T020000Z
+DTEND:20260628T040000Z
+SUMMARY:浦和レッズユース vs 市立船橋高校
+LOCATION:グラスポ法典公園球技場
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第9節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cf2023d251fdeecebf783bef@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260905T020000Z
+DTEND:20260905T040000Z
+SUMMARY:浦和レッズユース vs ヴァンフォーレ甲府U-18
+LOCATION:明野いこいの杜グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第10節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a5fccc3939141c65ca1b0722@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260912T090000Z
+DTEND:20260912T110000Z
+SUMMARY:浦和レッズユース vs 山梨学院高校
+LOCATION:埼玉スタジアム2002 第4グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第11節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:372a9eddb97beef726397b61@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260920T073000Z
+DTEND:20260920T093000Z
+SUMMARY:浦和レッズユース vs 桐蔭学園高校
+LOCATION:桐蔭学園多目的グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第12節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:350070dbd7f4ee80668a0e45@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20260926T060000Z
+DTEND:20260926T080000Z
+SUMMARY:浦和レッズユース vs ジェフユナイテッド市原・千
+ 葉U-18
+LOCATION:埼玉スタジアム2002 第3グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第13節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d4d87830d2ed9ca630a5ee48@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261003T050000Z
+DTEND:20261003T070000Z
+SUMMARY:浦和レッズユース vs 桐生第一高校
+LOCATION:レッズランド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第14節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:55f2538d8b77a4452aa6b288@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261010T020000Z
+DTEND:20261010T040000Z
+SUMMARY:浦和レッズユース vs RB大宮アルディージャU18
+LOCATION:埼玉スタジアム2002 第2グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第15節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f7d08d16e1f03550b1b9b9ef@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261123T050000Z
+DTEND:20261123T070000Z
+SUMMARY:浦和レッズユース vs 帝京高校
+LOCATION:埼玉スタジアム2002 第3グラウンド
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第16節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0aef788b7953e6328ca16e9d@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261129T020000Z
+DTEND:20261129T040000Z
+SUMMARY:浦和レッズユース vs 流通経済大学付属柏B
+LOCATION:流通経済大学付属柏高等学校
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第17節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:961e81660df2f5f04c9bf7f2@redscalender
+DTSTAMP:20261003T112809Z
+LAST-MODIFIED:20261003T112809Z
+SEQUENCE:0
+DTSTART:20261205T043000Z
+DTEND:20261205T063000Z
+SUMMARY:浦和レッズユース vs 市立船橋高校
+LOCATION:会場未定
+DESCRIPTION:高円宮杯 JFA U-18サッカープリンスリーグ 2026関
+ 東1部 第18節\n終了時刻はキックオフから2時間後の目安
+ です。\n非公式カレンダー。来場前に公式情報をご確認
+ ください。\nhttps://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026
+ .html
+URL:https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
