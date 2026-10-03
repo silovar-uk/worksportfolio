@@ -228,7 +228,7 @@ def parse_youth(doc):
         chunk = section[round_match.end() : chunk_end]
 
         date_match = re.search(
-            r"(2026)/(\\d{1,2})/(\\d{1,2})\\([^)]*\\)\\s*(\\d{1,2}:\\d{2})\\s*キックオフ",
+            r"(2026)\\s*/\\s*(\\d{1,2})\\s*/\\s*(\\d{1,2})\\s*\\([^)]*\\)\\s*(\\d{1,2}:\\d{2})\\s*キックオフ",
             chunk,
         )
         if not date_match:
@@ -265,6 +265,8 @@ def parse_youth(doc):
                 False,
             )
         )
+    if not rows:
+        raise ValueError(f"youth: parsed 0 fixtures; section sample={section[:1400]!r}")
     return rows
 
 def parse(team, doc):
