@@ -1,0 +1,60 @@
+name: Update REDS CALENDAR
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 21 * * *' # 06:17 JST daily
+  push:
+    paths:
+      - 'redscalender/build.py'
+      - 'redscalender/template.html'
+      - '.github/workflows/update-redscalendar.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-redscalendar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install parser dependency
+        run: python -m pip install --disable-pip-version-check lxml
+      - name: Fetch official schedules and build feeds
+        run: python redscalender/build.py
+      - name: Validate generated output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('redscalender')
+          data = json.loads((root / 'schedule.json').read_text())
+          expected = {'men', 'ladies', 'u21', 'youth'}
+          assert set(data['teams']) == expected, data['teams'].keys()
+          assert len(data['teams']['men']) >= 20
+          assert len(data['teams']['ladies']) >= 20
+          assert len(data['teams']['u21']) >= 10
+          assert len(data['teams']['youth']) == 18
+          for name in ['men.ics','ladies.ics','u21.ics','youth.ics','all.ics','index.html']:
+              assert (root / name).exists(), name
+          print({team: len(rows) for team, rows in data['teams'].items()})
+          PY
+          git diff --check
+      - name: Commit changed schedule files
+        run: |
+          if git diff --quiet -- redscalender; then
+            echo 'No schedule changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add redscalender
+          git commit -m 'Update REDS CALENDAR schedules'
+          git push
