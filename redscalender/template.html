@@ -1,5 +1,392 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#c8102e"><meta name="description" content="浦和レッズレディースと男子U-21の試合日程をiPhone・Googleカレンダーに。非公式iCal配布ページ。"><title>REDS CALENDAR｜レディース・U-21</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f6f7f9;color:#202126;font:16px/1.75 system-ui,-apple-system,sans-serif;border-top:6px solid #c8102e}main{max-width:780px;margin:auto;padding:36px 20px 48px}h1{font-size:clamp(28px,6vw,40px);line-height:1.2;letter-spacing:-.03em;margin:6px 0 12px}h2{font-size:23px;line-height:1.5;margin:0 0 8px}p{margin:8px 0}.eyebrow{color:#ac102c;font-size:14px;font-weight:800;letter-spacing:.1em}.meta,footer,li span{font-size:14px;color:#555b65}.team{background:white;border:1px solid #dfe1e6;border-top:3px solid #c8102e;border-radius:8px;padding:24px;margin:24px 0}.actions{display:grid;gap:10px;margin:20px 0}.actions a,button{border:1px solid #cbd0d8;border-radius:5px;padding:10px 15px;min-height:46px;text-align:center;color:#202126;background:white;font:inherit;text-decoration:none;cursor:pointer}.actions .primary{background:#bb1230;color:white;border-color:#bb1230;font-weight:700}a{color:#a70b27}a:hover,button:hover{filter:brightness(.92)}label{font-size:14px;display:block}input{display:block;width:100%;margin:5px 0 10px;padding:12px;border:1px solid #cbd0d8;border-radius:4px;font:14px/1.5 monospace;background:#f8f9fb;color:#4b5058}button{font-size:14px}details{border-top:1px solid #e5e7eb;margin-top:20px;padding-top:14px}summary{cursor:pointer;min-height:36px}li{padding:10px 0;overflow-wrap:anywhere}ul{padding-left:21px}.source{display:inline-block;margin-top:15px;font-size:14px}.help{padding:6px 2px}footer{border-top:1px solid #ddd;margin-top:24px;padding-top:18px}footer a{overflow-wrap:anywhere}:focus-visible{outline:3px solid #155cca;outline-offset:4px}#notice{min-height:26px;font-size:14px}@media(max-width:480px){main{padding:26px 16px}.team{padding:19px}h2{font-size:21px}}
-</style></head><body><main><header><p class="eyebrow">2026/27 · UNOFFICIAL</p><h1>REDS CALENDAR</h1><p>レッズレディース・男子U-21の試合を、いつものカレンダーに。</p><p class="meta">データ確認：{{UPDATED}}</p></header>{{CARDS}}<p id="notice" role="status" aria-live="polite"></p><section class="help"><h2>登録について</h2><ul><li><strong>iPhone：</strong>「iPhone・Appleに追加（自動更新）」から登録。開けない場合は、自動更新用URLをコピーしてカレンダーアプリの照会カレンダー追加に貼り付けてください。</li><li><strong>Google：</strong>追加ボタンが使えない場合は、パソコン版の「他のカレンダー」の「＋」→「URLで追加」に自動更新用URLを貼り付けてください。</li><li><strong>追加（自動更新）とダウンロード：</strong>追加（自動更新）は、このページのデータが更新されるとカレンダー側のタイミングで反映されます。ダウンロードは取得時点のコピーです。</li></ul><p class="meta">現在、公式日程の自動取得は設定していません。日程データは手動更新です。開催日が複数候補の試合・対戦相手未定の試合は未収録。時刻未定は終日、終了時刻は開始から2時間後の目安で登録しています。過去の試合もシーズン分として含みます。練習日程は対象外です。</p></section><footer><p>浦和レッズの公式サービスではありません。日程変更や追加発表があるため、来場前に公式情報をご確認ください。</p><p>インスパイア元：<a href="http://soccer.phew.homeip.net/download/schedule/">さっかりん｜試合日程ダウンロード</a></p></footer></main><script>
-document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const input=button.previousElementSibling.querySelector('input');try{await navigator.clipboard.writeText(input.value);document.getElementById('notice').textContent='自動更新用URLをコピーしました。'}catch{input.focus();input.select();document.getElementById('notice').textContent='URLを選択しました。長押し、またはコピー操作でコピーしてください。'}}));
-</script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f4f1">
+<meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の日程を横断表示。直近60日の同日開催・時間重複を確認し、iPhone・Googleカレンダーに追加できる非公式カレンダー。">
+<title>REDS CALENDAR｜浦和の次の60日</title>
+<style>
+:root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--shadow:0 8px 30px rgba(0,0,0,.055)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;-webkit-text-size-adjust:100%}
+a{color:inherit;text-underline-offset:3px}
+button,input,summary{font:inherit}
+button,a{touch-action:manipulation}
+button{color:inherit}
+.shell{max-width:920px;margin:0 auto;padding:22px 16px 64px}
+.masthead{padding:18px 0 8px;border-top:5px solid var(--red)}
+.kicker{margin:0 0 5px;font-size:11px;font-weight:800;letter-spacing:.13em;color:var(--red)}
+h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055em;font-weight:900}
+.lede{max-width:620px;margin:15px 0 0;font-size:15px;color:#353531}
+.statusline{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;color:var(--muted);font-size:12px}
+.quick-nav{position:sticky;z-index:20;top:0;margin:14px -16px 0;padding:9px 16px;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);border-block:1px solid rgba(0,0,0,.06);display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.quick-nav::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid #c9c9c3;border-radius:999px;background:#fff;padding:8px 12px;min-height:38px;font-size:12px;font-weight:750;letter-spacing:.01em;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.overlap[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
+.section{margin-top:26px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
+.section-head h2{margin:0;font-size:19px;letter-spacing:-.025em}
+.section-head p{margin:0;color:var(--muted);font-size:12px}
+.hero-grid{display:grid;gap:10px;margin-top:20px}
+.next-card,.stat-card,.overlap-panel,.calendar-panel,.source-panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.next-card{padding:17px 17px 16px;border-top:3px solid var(--red)}
+.next-label{font-size:11px;font-weight:850;letter-spacing:.12em;color:var(--red)}
+.next-date{margin-top:5px;font-size:13px;font-weight:800}
+.next-main{display:grid;grid-template-columns:auto 1fr;gap:12px;margin-top:10px;align-items:start}
+.next-time{font-size:28px;line-height:1;font-weight:900;letter-spacing:-.04em;min-width:72px}
+.next-team{font-size:10px;font-weight:850;letter-spacing:.11em;color:var(--muted)}
+.next-opponent{margin-top:1px;font-size:18px;line-height:1.3;font-weight:850;letter-spacing:-.02em}
+.next-venue{margin-top:5px;font-size:12px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stat-card{padding:12px 10px;min-width:0}
+.stat-value{font-size:22px;font-weight:900;line-height:1;letter-spacing:-.04em}
+.stat-label{margin-top:5px;font-size:10px;color:var(--muted);line-height:1.35}
+.pulse-wrap{border-block:1px solid var(--line);background:#fff;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity}
+.pulse{display:flex;width:max-content;min-width:100%;padding:9px 8px 10px}
+.pulse-day{width:38px;flex:0 0 38px;padding:4px 2px;border:0;background:transparent;border-radius:7px;cursor:pointer;scroll-snap-align:start;min-height:64px;position:relative}
+.pulse-day:hover,.pulse-day:focus-visible{background:var(--soft)}
+.pulse-day[disabled]{cursor:default;opacity:.42}
+.pulse-month{height:15px;font-size:9px;font-weight:850;color:var(--red);line-height:1}
+.pulse-num{font-size:11px;font-weight:800;line-height:1.2}
+.pulse-dots{height:23px;display:flex;align-items:end;justify-content:center;gap:2px;margin-top:4px}
+.pulse-dot{width:4px;height:9px;border-radius:3px;background:#343431}
+.pulse-day.has-overlap .pulse-dot{background:var(--red)}
+.pulse-day.same-day{box-shadow:inset 0 -2px 0 var(--red)}
+.pulse-day.today .pulse-num{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:var(--ink);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:8px;color:var(--muted);font-size:11px}
+.legend b{color:var(--ink)}
+.overlap-panel{padding:8px 14px}
+.overlap-list{display:grid}
+.overlap-link{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--soft);text-decoration:none}
+.overlap-link:last-child{border-bottom:0}
+.overlap-date{font-weight:900;font-size:13px}
+.overlap-desc{min-width:0;font-size:12px;color:#343431}
+.overlap-time{font-size:10px;font-weight:850;color:var(--red);white-space:nowrap}
+.empty{padding:16px 0;color:var(--muted);font-size:13px}
+.timeline{display:grid;gap:10px}
+.day{scroll-margin-top:84px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.day.collision{border-top:3px solid var(--red)}
+.day-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid var(--soft)}
+.day-date{font-weight:900;letter-spacing:-.01em}
+.day-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
+.badge{display:inline-flex;align-items:center;min-height:22px;padding:2px 7px;border-radius:999px;background:var(--soft);font-size:9px;font-weight:850;letter-spacing:.03em;white-space:nowrap}
+.badge.red{background:var(--red);color:#fff}
+.event{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:14px;border-bottom:1px solid var(--soft)}
+.event:last-child{border-bottom:0}
+.event-time{font-size:16px;line-height:1.2;font-weight:900;letter-spacing:-.02em}
+.event-side{margin-top:4px;font-size:9px;color:var(--muted);font-weight:800}
+.event-team{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--red)}
+.event-vs{margin-top:2px;font-size:16px;line-height:1.35;font-weight:850;letter-spacing:-.015em}
+.event-meta{margin-top:5px;font-size:11px;color:var(--muted);line-height:1.5}
+.event-comp{margin-top:3px;font-size:10px;color:#8a8a83}
+.event-source{display:inline-block;margin-top:7px;font-size:10px;color:#555;text-decoration-thickness:1px}
+.calendar-panel{padding:4px 14px}
+.calendar-panel>summary,.source-panel>summary{list-style:none;cursor:pointer;padding:14px 0;font-weight:900;font-size:15px}
+.calendar-panel>summary::-webkit-details-marker,.source-panel>summary::-webkit-details-marker{display:none}
+.calendar-panel>summary::after,.source-panel>summary::after{content:"＋";float:right;color:var(--muted)}
+.calendar-panel[open]>summary::after,.source-panel[open]>summary::after{content:"−"}
+.calendar-list{border-top:1px solid var(--soft)}
+.calendar-row{padding:13px 0;border-bottom:1px solid var(--soft)}
+.calendar-row:last-child{border-bottom:0}
+.calendar-name{font-size:12px;font-weight:900}
+.calendar-note{font-size:10px;color:var(--muted);margin-top:2px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
+.actions a,.copy-button{display:grid;place-items:center;min-height:42px;border:1px solid #c9c9c3;background:#fff;text-decoration:none;border-radius:6px;font-size:11px;font-weight:800;padding:7px 9px;cursor:pointer}
+.actions .primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.copy-button{width:100%;margin-top:7px}
+.copy-button:active,.actions a:active,.chip:active{transform:translateY(1px)}
+.notice{min-height:24px;margin:8px 0 0;color:var(--red);font-size:11px;font-weight:700}
+.notes{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:11px}
+.notes li{margin:5px 0}
+.source-panel{padding:3px 14px}
+.sources{display:grid;gap:9px;padding:2px 0 14px}
+.source-item{font-size:11px;color:#4b4b46}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:10px}
+.loading{padding:20px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.error{padding:16px;background:#fff;border:1px solid var(--red);color:#6d0b1c}
+:focus-visible{outline:3px solid #1b67d9;outline-offset:3px}
+@media(min-width:700px){.shell{padding-inline:24px}.hero-grid{grid-template-columns:1.45fr .9fr}.stats{grid-template-columns:1fr}.next-card{min-height:162px}.timeline{gap:12px}.event{grid-template-columns:76px 1fr;padding:15px 18px}.day-head{padding-inline:18px}.pulse-day{width:42px;flex-basis:42px}.actions{grid-template-columns:repeat(3,1fr)}.copy-button{grid-column:span 3}.calendar-row{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center}.calendar-row .actions{margin-top:0}.calendar-row .copy-button{grid-column:auto;margin-top:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="masthead">
+<p class="kicker">2026/27 · UNOFFICIAL</p>
+<h1>REDS<br>CALENDAR</h1>
+<p class="lede">トップ、レディース、U-21、ユース。浦和の次の60日を、ひとつの時間軸で見る。</p>
+<div class="statusline"><span id="updated">データ確認中</span><span>ユースはプリンスリーグのみ</span><span>時刻重複は1試合2時間の目安で判定</span></div>
+</header>
+
+<nav class="quick-nav" aria-label="表示する予定">
+<button class="chip" type="button" data-filter="all" aria-pressed="true">ALL</button>
+<button class="chip" type="button" data-filter="men" aria-pressed="false">MEN</button>
+<button class="chip" type="button" data-filter="ladies" aria-pressed="false">LADIES</button>
+<button class="chip" type="button" data-filter="u21" aria-pressed="false">U-21</button>
+<button class="chip" type="button" data-filter="youth" aria-pressed="false">YOUTH</button>
+<button class="chip overlap" type="button" data-filter="overlap" aria-pressed="false">重複日だけ</button>
+</nav>
+
+<div id="app"><p class="loading">日程を読み込んでいます。</p></div>
+
+<section class="section" id="calendar-add">
+<div class="section-head"><div><p class="kicker">ADD</p><h2>カレンダーに追加</h2></div><p>自動更新</p></div>
+<details class="calendar-panel" open>
+<summary>追加するカレンダーを選ぶ</summary>
+<div id="calendar-list" class="calendar-list"></div>
+<p id="notice" class="notice" role="status" aria-live="polite"></p>
+<ul class="notes">
+<li>「4カテゴリーまとめて」と個別カレンダーを両方追加すると、同じ試合が重複表示されます。</li>
+<li>時刻未定の試合は終日予定として登録します。終了時刻はキックオフから2時間後の目安です。</li>
+<li>日付が複数候補の試合は、日付確定までiCalに入れません。日付確定・時刻未定・対戦相手未定の試合は入れます。</li>
+</ul>
+</details>
+</section>
+
+<section class="section">
+<details class="source-panel">
+<summary>データ元・判定ルール</summary>
+<div class="sources">
+<div class="source-item">MEN / U-21：<a href="https://www.urawa-reds.co.jp/game/">浦和レッズ公式 試合日程</a></div>
+<div class="source-item">LADIES：<a href="https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html">三菱重工浦和レッズレディース公式 日程・結果</a></div>
+<div class="source-item">YOUTH：<a href="https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html">浦和レッズ育成公式 ユース試合日程</a>のうち、プリンスリーグ関東1部のみ</div>
+<div class="source-item">同日開催：同じ日付に2試合以上。時間重複：開始時刻が判明している試合を各2時間として計算し、その時間帯が重なる場合。</div>
+</div>
+</details>
+</section>
+
+<footer>
+<p>浦和レッズの公式サービスではありません。日程は変更されることがあります。来場前に公式情報をご確認ください。</p>
+<p>インスパイア元：<a href="http://soccer.phew.homeip.net/download/schedule/">さっかりん｜試合日程ダウンロード</a></p>
+</footer>
+</main>
+<script>
+(() => {
+  const BASE = 'https://silovar-uk.github.io/worksportfolio/redscalender/';
+  const TEAM_ORDER = ['men','ladies','u21','youth'];
+  const FALLBACK_LABELS = {men:'MEN',ladies:'LADIES',u21:'U-21',youth:'YOUTH'};
+  const FALLBACK_NAMES = {men:'浦和レッズ',ladies:'三菱重工浦和レッズレディース',u21:'浦和レッズ U-21',youth:'浦和レッズユース'};
+  const app = document.getElementById('app');
+  let data = null;
+  let activeFilter = 'all';
+
+  const esc = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+  const pad = n => String(n).padStart(2,'0');
+  const dateKeyJst = date => {
+    const parts = new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date);
+    const get = type => parts.find(p=>p.type===type)?.value;
+    return `${get('year')}-${get('month')}-${get('day')}`;
+  };
+  const jstDate = key => new Date(`${key}T00:00:00+09:00`);
+  const addDays = (key, days) => dateKeyJst(new Date(jstDate(key).getTime() + days * 86400000));
+  const eventEnd = event => event.time ? new Date(`${event.date}T${event.time}:00+09:00`).getTime() + (data.matchDurationMinutes || 120) * 60000 : null;
+  const eventStart = event => event.time ? new Date(`${event.date}T${event.time}:00+09:00`).getTime() : null;
+  const isStillUpcoming = (event, now) => {
+    if (!event.date) return false;
+    const today = dateKeyJst(now);
+    if (event.date > today) return true;
+    if (event.date < today) return false;
+    if (!event.time) return true;
+    return eventEnd(event) > now.getTime();
+  };
+  const displayOpponent = event => event.team === 'u21' ? event.opponent.replace(/^U-21\s+/,'') : event.opponent;
+  const labels = () => ({...FALLBACK_LABELS,...(data?.meta?.labels || {})});
+  const names = () => ({...FALLBACK_NAMES,...(data?.meta?.names || {})});
+  const allEvents = () => TEAM_ORDER.flatMap(team => (data.teams[team] || []).map(event => ({...event,team})));
+
+  function overlapInfo(events) {
+    const timed = events.filter(event => event.time).sort((a,b) => eventStart(a)-eventStart(b));
+    const pairs = [];
+    for (let i=0;i<timed.length;i++) {
+      for (let j=i+1;j<timed.length;j++) {
+        const start = Math.max(eventStart(timed[i]), eventStart(timed[j]));
+        const end = Math.min(eventEnd(timed[i]), eventEnd(timed[j]));
+        if (start < end) pairs.push({a:timed[i],b:timed[j],start,end});
+      }
+    }
+    return pairs;
+  }
+
+  function formatOverlap(pair) {
+    const fmt = ms => new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ms));
+    return `${fmt(pair.start)}–${fmt(pair.end)}`;
+  }
+
+  function formatDay(key, long=false) {
+    const d = jstDate(key);
+    const weekday = new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',weekday:'short'}).format(d);
+    const [,m,day] = key.split('-').map(Number);
+    return long ? `${m}.${pad(day)} ${weekday.toUpperCase()}` : `${m}/${day} ${weekday}`;
+  }
+
+  function currentWindow() {
+    const now = new Date();
+    const today = dateKeyJst(now);
+    const end = addDays(today, (data.windowDays || 60) - 1);
+    return {now,today,end};
+  }
+
+  function windowEvents() {
+    const {now,today,end} = currentWindow();
+    return allEvents().filter(event => event.date && event.date >= today && event.date <= end && isStillUpcoming(event, now));
+  }
+
+  function grouped(events) {
+    const map = new Map();
+    events.forEach(event => {
+      if (!map.has(event.date)) map.set(event.date, []);
+      map.get(event.date).push(event);
+    });
+    for (const list of map.values()) list.sort((a,b) => (a.time || '99:99').localeCompare(b.time || '99:99') || TEAM_ORDER.indexOf(a.team)-TEAM_ORDER.indexOf(b.team));
+    return map;
+  }
+
+  function filteredEvents(base) {
+    if (activeFilter === 'all') return base;
+    const groups = grouped(base);
+    if (activeFilter === 'overlap') return base.filter(event => (groups.get(event.date)?.length || 0) >= 2);
+    return base.filter(event => event.team === activeFilter);
+  }
+
+  function renderNext(events) {
+    const event = events[0];
+    if (!event) return '<div class="next-card"><span class="next-label">NEXT</span><div class="empty">直近60日に予定はありません。</div></div>';
+    return `<article class="next-card">
+      <div class="next-label">NEXT</div>
+      <div class="next-date">${esc(formatDay(event.date,true))}</div>
+      <div class="next-main"><div class="next-time">${esc(event.time || '未定')}</div><div><div class="next-team">${esc(labels()[event.team])}</div><div class="next-opponent">vs ${esc(displayOpponent(event))}</div><div class="next-venue">${esc(event.venue)}</div></div></div>
+    </article>`;
+  }
+
+  function renderStats(base) {
+    const groups = grouped(base);
+    const collisionDays = [...groups.values()].filter(list => list.length >= 2);
+    const overlapDays = collisionDays.filter(list => overlapInfo(list).length > 0);
+    return `<div class="stats">
+      <div class="stat-card"><div class="stat-value">${base.length}</div><div class="stat-label">60日間の試合</div></div>
+      <div class="stat-card"><div class="stat-value">${collisionDays.length}</div><div class="stat-label">同日開催の日</div></div>
+      <div class="stat-card"><div class="stat-value">${overlapDays.length}</div><div class="stat-label">時間も重なる日</div></div>
+    </div>`;
+  }
+
+  function renderPulse(base, visible) {
+    const {today} = currentWindow();
+    const baseGroups = grouped(base);
+    const visibleDates = new Set(visible.map(event => event.date));
+    let cells = '';
+    for (let i=0;i<(data.windowDays || 60);i++) {
+      const key = addDays(today,i);
+      const list = baseGroups.get(key) || [];
+      const pairs = overlapInfo(list);
+      const [,m,d] = key.split('-').map(Number);
+      const prevKey = i ? addDays(today,i-1) : null;
+      const prevMonth = prevKey ? Number(prevKey.slice(5,7)) : null;
+      const monthText = i===0 || prevMonth!==m ? `${m}月` : '';
+      const isRelevant = activeFilter === 'all' ? list.length>0 : visibleDates.has(key);
+      const dots = isRelevant ? list.slice(0,4).map(()=>'<span class="pulse-dot"></span>').join('') : '';
+      const classes = ['pulse-day'];
+      if (list.length>=2) classes.push('same-day');
+      if (pairs.length) classes.push('has-overlap');
+      if (i===0) classes.push('today');
+      const label = `${m}月${d}日 ${list.length ? list.length+'試合' : '試合なし'}${pairs.length ? '、時間重複あり' : ''}`;
+      cells += `<button class="${classes.join(' ')}" type="button" data-date-jump="${key}" ${isRelevant?'':'disabled'} aria-label="${esc(label)}"><div class="pulse-month">${monthText}</div><div class="pulse-num">${d}</div><div class="pulse-dots">${dots}</div></button>`;
+    }
+    return `<section class="section" aria-labelledby="pulse-title"><div class="section-head"><div><p class="kicker">60 DAYS</p><h2 id="pulse-title">浦和の密度</h2></div><p>横にスワイプ</p></div><div class="pulse-wrap"><div class="pulse">${cells}</div></div><div class="legend"><span><b>棒</b>＝試合数</span><span><b>赤線</b>＝同日開催</span><span><b>赤い棒</b>＝時間重複あり</span></div></section>`;
+  }
+
+  function renderOverlap(base) {
+    const groups = grouped(base);
+    const rows = [...groups.entries()].filter(([,list]) => list.length>=2).sort(([a],[b])=>a.localeCompare(b));
+    const items = rows.map(([date,list]) => {
+      const pairs = overlapInfo(list);
+      const teams = list.map(event=>labels()[event.team]).join(' / ');
+      const time = pairs.length ? `時間重複 ${[...new Set(pairs.map(formatOverlap))].join('・')}` : '時間重複なし';
+      return `<a class="overlap-link" href="#day-${date}"><span class="overlap-date">${esc(formatDay(date))}</span><span class="overlap-desc">${list.length}試合 · ${esc(teams)}</span><span class="overlap-time">${esc(time)}</span></a>`;
+    }).join('');
+    return `<section class="section" aria-labelledby="overlap-title"><div class="section-head"><div><p class="kicker">OVERLAP</p><h2 id="overlap-title">重なる日</h2></div><p>同日 / 時間</p></div><div class="overlap-panel"><div class="overlap-list">${items || '<div class="empty">直近60日に同日開催はありません。</div>'}</div></div></section>`;
+  }
+
+  function renderTimeline(base, visible) {
+    const groups = grouped(visible);
+    const baseGroups = grouped(base);
+    const rows = [...groups.entries()].sort(([a],[b])=>a.localeCompare(b));
+    const htmlRows = rows.map(([date,list]) => {
+      const allDay = baseGroups.get(date) || [];
+      const pairs = overlapInfo(allDay);
+      const collision = allDay.length>=2;
+      const badges = [collision ? `<span class="badge ${pairs.length?'red':''}">同日 ${allDay.length}</span>` : '', pairs.length ? `<span class="badge red">時間重複 ${esc([...new Set(pairs.map(formatOverlap))].join('・'))}</span>` : ''].join('');
+      const events = list.map(event => `<article class="event">
+        <div><div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div></div>
+        <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}</div><div class="event-comp">${esc(event.competition)}</div><a class="event-source" href="${esc(event.source)}">公式日程で確認</a></div>
+      </article>`).join('');
+      return `<section class="day ${collision?'collision':''}" id="day-${date}"><div class="day-head"><span class="day-date">${esc(formatDay(date,true))}</span><span class="day-badges">${badges}</span></div>${events}</section>`;
+    }).join('');
+    return `<section class="section" aria-labelledby="timeline-title"><div class="section-head"><div><p class="kicker">TIMELINE</p><h2 id="timeline-title">次の60日</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の予定はありません。</div>'}</div></section>`;
+  }
+
+  function renderCalendarList() {
+    const rows = [
+      {key:'all',label:'ALL',name:'4カテゴリーまとめて',note:'トップ / レディース / U-21 / ユース'},
+      ...TEAM_ORDER.map(key=>({key,label:labels()[key],name:names()[key],note:key==='youth'?'プリンスリーグのみ':''}))
+    ];
+    document.getElementById('calendar-list').innerHTML = rows.map(row => {
+      const url = `${BASE}${row.key}.ics`;
+      const webcal = url.replace(/^https:/,'webcal:');
+      const google = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(url)}`;
+      return `<div class="calendar-row"><div><div class="calendar-name">${esc(row.label)} · ${esc(row.name)}</div>${row.note?`<div class="calendar-note">${esc(row.note)}</div>`:''}</div><div class="actions"><a class="primary" href="${webcal}">Appleに追加</a><a href="${google}">Googleに追加</a><a href="${row.key}.ics" download>iCal</a><button type="button" class="copy-button" data-copy-url="${esc(url)}">URLをコピー</button></div></div>`;
+    }).join('');
+  }
+
+  function render() {
+    const base = windowEvents().sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
+    const visible = filteredEvents(base);
+    app.innerHTML = `<div class="hero-grid">${renderNext(visible)}${renderStats(base)}</div>${renderPulse(base,visible)}${renderOverlap(base)}${renderTimeline(base,visible)}`;
+    renderCalendarList();
+    document.querySelectorAll('[data-date-jump]').forEach(button => button.addEventListener('click',()=>{
+      document.getElementById(`day-${button.dataset.dateJump}`)?.scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+  }
+
+  document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click',()=>{
+    activeFilter = button.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    render();
+  }));
+
+  document.addEventListener('click', async event => {
+    const button = event.target.closest('[data-copy-url]');
+    if (!button) return;
+    const notice = document.getElementById('notice');
+    try {
+      await navigator.clipboard.writeText(button.dataset.copyUrl);
+      notice.textContent = '自動更新用URLをコピーしました。';
+    } catch {
+      const temp = document.createElement('input');
+      temp.value = button.dataset.copyUrl;
+      document.body.appendChild(temp);
+      temp.select();
+      try { document.execCommand('copy'); notice.textContent='自動更新用URLをコピーしました。'; }
+      catch { notice.textContent='コピーできませんでした。URLを長押ししてコピーしてください。'; }
+      temp.remove();
+    }
+  });
+
+  fetch(`schedule.json?v=${Date.now()}`,{cache:'no-store'})
+    .then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
+    .then(json => {
+      data = json;
+      const updated = new Date(data.updated);
+      const stamp = new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(updated);
+      document.getElementById('updated').textContent = `データ更新 ${stamp} JST`;
+      render();
+    })
+    .catch(error => {
+      app.innerHTML = `<p class="error">日程データを読み込めませんでした。ページを再読み込みしてください。<br><small>${esc(error.message)}</small></p>`;
+    });
+})();
+</script>
+</body>
+</html>
