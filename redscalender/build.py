@@ -209,56 +209,63 @@ def parse_game_page(team, doc):
 
 
 def parse_youth(doc):
-    tokens = [norm(t) for t in doc.xpath("//text()") if norm(t)]
-    starts = [i for i, token in enumerate(tokens) if token == PRINCE_NAME]
+    # The youth page repeats competition names in its navigation and body, and its
+    # HTML text-node boundaries are not stable. Parse the normalized competition
+    # section as text rather than depending on presentation markup.
+    page = txt(doc)
+    starts = [match.start() for match in re.finditer(re.escape(PRINCE_NAME), page)]
     if not starts:
         raise ValueError("youth: Prince League heading not found")
 
-    start = starts[-1]
-    end = next(
-        (i for i in range(start + 1, len(tokens)) if tokens[i].startswith("2026Jユースカップ")),
-        len(tokens),
-    )
-    section = tokens[start:end]
+    start = starts[-1] + len(PRINCE_NAME)
+    end = page.find("2026Jユースカップ", start)
+    section = page[start : end if end >= 0 else len(page)]
 
+    round_matches = list(re.finditer(r"第(\\d+)節", section))
     rows = []
-    for i, token in enumerate(section):
-        if not re.fullmatch(r"第\d+節", token):
-            continue
-        window = section[i + 1 : i + 10]
-        date_index = next(
-            (j for j, value in enumerate(window) if re.search(r"2026/\d{1,2}/\d{1,2}", value)),
-            None,
+    for index, round_match in enumerate(round_matches):
+        chunk_end = round_matches[index + 1].start() if index + 1 < len(round_matches) else len(section)
+        chunk = section[round_match.end() : chunk_end]
+
+        date_match = re.search(
+            r"(2026)/(\\d{1,2})/(\\d{1,2})\\([^)]*\\)\\s*(\\d{1,2}:\\d{2})\\s*キックオフ",
+            chunk,
         )
-        if date_index is None:
-            continue
-        raw = window[date_index]
-        d = re.search(r"(2026)/(\d{1,2})/(\d{1,2})", raw)
-        t = re.search(r"(\d{1,2}:\d{2})\s*キックオフ", raw)
-        if not d:
+        if not date_match:
             continue
 
-        after = window[date_index + 1 :]
-        opponent_index = next((j for j, value in enumerate(after) if value.startswith("vs ")), None)
-        if opponent_index is None:
+        tail = chunk[date_match.end() :]
+        fixture_match = re.search(
+            r"(.+?)\\s+vs\\s+(.+?)(?=\\s+[△○●■]\\s*\\d|\\s+[△○●■]\\d|$)",
+            tail,
+        )
+        if not fixture_match:
             continue
-        venue = after[0] if opponent_index > 0 else "会場未定"
-        opponent = after[opponent_index][3:].strip()
+
+        venue = norm(fixture_match.group(1))
+        opponent = norm(fixture_match.group(2))
+        # Defensive cleanup for optional links/labels that may sit immediately
+        # after an opponent in the official page.
+        opponent = re.sub(r"\\s+(公式記録|大会公式サイト).*$", "", opponent).strip()
+        round_label = f"第{round_match.group(1)}節"
+        raw_date = (
+            f"{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)} "
+            f"{date_match.group(4)}"
+        )
         rows.append(
             make(
                 "youth",
-                f"{PRINCE_NAME} {token}",
+                f"{PRINCE_NAME} {round_label}",
                 opponent,
                 "UNSPECIFIED",
-                d.groups(),
-                t.group(1) if t else None,
+                date_match.groups()[:3],
+                date_match.group(4),
                 venue,
-                raw,
+                raw_date,
                 False,
             )
         )
     return rows
-
 
 def parse(team, doc):
     if team == "ladies":
