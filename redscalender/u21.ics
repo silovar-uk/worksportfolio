@@ -1,0 +1,179 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//redscalender//Urawa fixtures//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:浦和レッズ U-21
+X-WR-TIMEZONE:Asia/Tokyo
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:4c0960091461d3571d137bc4@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260823T093000Z
+DTEND:20260823T113000Z
+SUMMARY:[AWAY] 浦和レッズ U-21 vs U-21 清水エスパルス
+LOCATION:IAIスタジアム日本平
+DESCRIPTION:2026/27U-21Jリーグ 東西リーグラウンド 第1節\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3d3bb09c9a6a553d62983a25@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260912T090000Z
+DTEND:20260912T110000Z
+SUMMARY:[HOME] 浦和レッズ U-21 vs U-21 東京ヴェルディ
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27U-21Jリーグ 東西リーグラウンド 第2節\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:c37f0633aa40189744705e71@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260920T080000Z
+DTEND:20260920T100000Z
+SUMMARY:[AWAY] 浦和レッズ U-21 vs U-21 ジュビロ磐田
+LOCATION:ヤマハスタジアム(磐田)
+DESCRIPTION:2026/27U-21Jリーグ 東西リーグラウンド 第3節\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3ba71eb477494a07c51e56a2@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261004T050000Z
+DTEND:20261004T070000Z
+SUMMARY:[HOME] 浦和レッズ U-21 vs U-21 FC東京
+LOCATION:埼玉スタジアム2002 第2グラウンド
+DESCRIPTION:2026/27U-21Jリーグ 東西リーグラウンド 第4節\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f759cc1bb0cd20ccf1a98621@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261017T020000Z
+DTEND:20261017T040000Z
+SUMMARY:[AWAY] 浦和レッズ U-21 vs U-21 川崎フロンターレ
+LOCATION:川崎フロンターレ麻生グラウンド
+DESCRIPTION:2026/27U-21Jリーグ 東西リーグラウンド 第5節\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:6da69dfdd2a26fd3a485e734@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261121T050000Z
+DTEND:20261121T070000Z
+SUMMARY:[AWAY] 浦和レッズ U-21 vs U-21 名古屋グランパス
+LOCATION:トヨタスポーツセンター第1グラウンド
+DESCRIPTION:2026/27U-21Jリーグ 交流戦ラウンド 第2節\n終了時
+ 刻はキックオフから2時間後の目安です。\n非公式カレ
+ ンダー。来場前に公式情報をご確認ください。\nhttps://w
+ ww.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d6c7abf8182fe0ab5fdc730f@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261129T050000Z
+DTEND:20261129T070000Z
+SUMMARY:[HOME] 浦和レッズ U-21 vs U-21 ガンバ大阪
+LOCATION:ラクロフィールド鴻巣
+DESCRIPTION:2026/27U-21Jリーグ 交流戦ラウンド 第3節\n終了時
+ 刻はキックオフから2時間後の目安です。\n非公式カレ
+ ンダー。来場前に公式情報をご確認ください。\nhttps://w
+ ww.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a318f6e2e4a01fc6ef654302@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261206T050000Z
+DTEND:20261206T070000Z
+SUMMARY:[AWAY] 浦和レッズ U-21 vs U-21 ヴィッセル神戸
+LOCATION:いぶきの森球技場
+DESCRIPTION:2026/27U-21Jリーグ 交流戦ラウンド 第4節\n終了時
+ 刻はキックオフから2時間後の目安です。\n非公式カレ
+ ンダー。来場前に公式情報をご確認ください。\nhttps://w
+ ww.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4b05a3587d30080cf6d85fbf@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261213T003000Z
+DTEND:20261213T023000Z
+SUMMARY:[HOME] 浦和レッズ U-21 vs U-21 V・ファーレン長崎
+LOCATION:埼玉スタジアム2002 第2グラウンド
+DESCRIPTION:2026/27U-21Jリーグ 交流戦ラウンド 第5節\n終了時
+ 刻はキックオフから2時間後の目安です。\n非公式カレ
+ ンダー。来場前に公式情報をご確認ください。\nhttps://w
+ ww.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7e49c92d8e5f3eb8ce21a41c@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261219T030000Z
+DTEND:20261219T050000Z
+SUMMARY:[HOME] 浦和レッズ U-21 vs U-21 ファジアーノ岡山
+LOCATION:埼玉スタジアム2002 第2グラウンド
+DESCRIPTION:2026/27U-21Jリーグ 交流戦ラウンド 第6節\n終了時
+ 刻はキックオフから2時間後の目安です。\n非公式カレ
+ ンダー。来場前に公式情報をご確認ください。\nhttps://w
+ ww.urawa-reds.co.jp/game/
+URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,369 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//redscalender//Urawa fixtures//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:三菱重工浦和レッズレディース
+X-WR-TIMEZONE:Asia/Tokyo
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:95d63eb43c640053e36b6db3@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260822T103000Z
+DTEND:20260822T123000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs RB大宮アル
+ ディージャWOMEN
+LOCATION:NACK5スタジアム大宮
+DESCRIPTION:2026/27 WEリーグ 第1節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cb93760d72feabf9ffcb9699@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260830T090000Z
+DTEND:20260830T110000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs ノジマス
+ テラ神奈川相模原
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグ 第2節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0db02a7fcc647d082bd838a0@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260905T090000Z
+DTEND:20260905T110000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs 日テレ・
+ 東京ヴェルディベレーザ
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグ 第3節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:39f3e59fdbc9675426327846@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260912T080000Z
+DTEND:20260912T100000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs ジェフユ
+ ナイテッド市原・千葉レディース
+LOCATION:ゼットエーオリプリスタジアム
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第1節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:906da367acdd71c724232c88@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260920T070000Z
+DTEND:20260920T090000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs RB大宮アル
+ ディージャWOMEN
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第2節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:401c4e377c373185c31358c8@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260923T070000Z
+DTEND:20260923T090000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs AC長野パル
+ セイロ・レディース
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第3節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:77fb955640bf14a4c7ad856a@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20260927T040000Z
+DTEND:20260927T060000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs アルビレ
+ ックス新潟レディース
+LOCATION:新潟市陸上競技場
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第4節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:47fff56ff08f4d04ac786253@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261003T050000Z
+DTEND:20261003T070000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs 日テレ・
+ 東京ヴェルディベレーザ
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第5節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:aae8b0086ce2d7d3ba970327@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261010T050000Z
+DTEND:20261010T070000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs マイナビ
+ 仙台
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第6節\n終了時刻はキックオフから2時間後の目安です。\
+ n非公式カレンダー。来場前に公式情報をご確認くださ
+ い。\nhttps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:16c688a89fc6b047e48ee9f7@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261018T040000Z
+DTEND:20261018T060000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs ジェフユ
+ ナイテッド市原・千葉レディース
+LOCATION:フクダ電子アリーナ
+DESCRIPTION:2026/27 WEリーグ 第4節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cfa8285e1d1fb515af3cfc49@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261028T100000Z
+DTEND:20261028T120000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs サンフレ
+ ッチェ広島レジーナ
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグ 第5節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a6474ddebef988d9efab2359@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261024T050000Z
+DTEND:20261024T070000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs INAC神戸レ
+ オネッサ
+LOCATION:浦和駒場スタジアム
+DESCRIPTION:2026/27 WEリーグ 第6節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:79e224d28563d89e52e30ab9@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261101T040000Z
+DTEND:20261101T060000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs アルビレ
+ ックス新潟レディース
+LOCATION:デンカビッグスワンスタジアム
+DESCRIPTION:2026/27 WEリーグ 第7節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3e89b7807c29d3488285485e@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261107T050000Z
+DTEND:20261107T070000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs マイナビ
+ 仙台
+LOCATION:ユアテックスタジアム仙台
+DESCRIPTION:2026/27 WEリーグ 第8節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8418cea03c894b028054ac60@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261114T060000Z
+DTEND:20261114T080000Z
+SUMMARY:[HOME] 三菱重工浦和レッズレディース vs ちふれASエ
+ ルフェン埼玉
+LOCATION:埼玉スタジアム2〇〇2
+DESCRIPTION:2026/27 WEリーグ 第9節埼スタ25周年記念試合\n終
+ 了時刻はキックオフから2時間後の目安です。\n非公式
+ カレンダー。来場前に公式情報をご確認ください。\nhtt
+ ps://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7d7b23ac206a51ed833eae9b@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261118T093000Z
+DTEND:20261118T113000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs セレッソ
+ 大阪ヤンマーレディース
+LOCATION:YANMAR HANASAKA STADIUM
+DESCRIPTION:2026/27 WEリーグ 第10節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:9da4c730ed4859397cf22b59@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART:20261123T050000Z
+DTEND:20261123T070000Z
+SUMMARY:[AWAY] 三菱重工浦和レッズレディース vs AC長野パル
+ セイロ・レディース
+LOCATION:長野Uスタジアム
+DESCRIPTION:2026/27 WEリーグ 第11節\n終了時刻はキックオフか
+ ら2時間後の目安です。\n非公式カレンダー。来場前に
+ 公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/reds
+ ladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8dad073e84dbf8893e2d2b0d@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270307
+DTEND;VALUE=DATE:20270308
+SUMMARY:【時刻未定】[AWAY] 三菱重工浦和レッズレディース
+  vs ちふれASエルフェン埼玉
+LOCATION:未定
+DESCRIPTION:2026/27 WEリーグクラシエカップ リーグステージ 
+ 第8節\n開始時刻未定のため終日表示しています。\n非公
+ 式カレンダー。来場前に公式情報をご確認ください。\n
+ https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a6fbffd5b5bae241bbe4ab95@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270509
+DTEND;VALUE=DATE:20270510
+SUMMARY:【時刻未定】[AWAY] 三菱重工浦和レッズレディース
+  vs INAC神戸レオネッサ
+LOCATION:未定
+DESCRIPTION:2026/27 WEリーグ 第21節\n開始時刻未定のため終日
+ 表示しています。\n非公式カレンダー。来場前に公式情
+ 報をご確認ください。\nhttps://www.urawa-reds.co.jp/redsladies/ga
+ meresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0811d9e47b2ac7fa8af24624@redscalender
+DTSTAMP:20261003T085608Z
+LAST-MODIFIED:20261003T085608Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270515
+DTEND;VALUE=DATE:20270516
+SUMMARY:【時刻未定】[HOME] 三菱重工浦和レッズレディース
+  vs RB大宮アルディージャWOMEN
+LOCATION:未定
+DESCRIPTION:2026/27 WEリーグ 第22節\n開始時刻未定のため終日
+ 表示しています。\n非公式カレンダー。来場前に公式情
+ 報をご確認ください。\nhttps://www.urawa-reds.co.jp/redsladies/ga
+ meresults/2026.html
+URL:https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
