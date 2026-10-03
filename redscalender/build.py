@@ -217,9 +217,16 @@ def parse_youth(doc):
     if not starts:
         raise ValueError("youth: Prince League heading not found")
 
-    start = starts[-1] + len(PRINCE_NAME)
-    end = page.find("2026Jユースカップ", start)
-    section = page[start : end if end >= 0 else len(page)]
+    section = None
+    for heading_start in starts:
+        start = heading_start + len(PRINCE_NAME)
+        end = page.find("2026Jユースカップ", start)
+        candidate = page[start : end if end >= 0 else len(page)]
+        if "第1節" in candidate:
+            section = candidate
+            break
+    if section is None:
+        raise ValueError("youth: Prince League body section not found")
 
     round_matches = list(re.finditer(r"第(\\d+)節", section))
     rows = []
