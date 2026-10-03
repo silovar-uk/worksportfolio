@@ -4341,5 +4341,66 @@
     "portfolioFamilies": [],
     "makingPrinciples": [],
     "access": "public"
+  },
+  {
+    "id": "redscalender",
+    "title": "REDS CALENDAR",
+    "subtitle": "レッズレディース・男子U-21の日程を、いつものカレンダーへ",
+    "summary": "三菱重工浦和レッズレディースと浦和レッズU-21の試合日程を、iPhone・AppleカレンダーやGoogleカレンダーへ追加し、日程更新を自動反映できる非公式iCal配布ページ。",
+    "friction": "レディースとU-21の日程を別々に確認し、試合ごとに自分のカレンダーへ入れ直すのが手間だった。",
+    "firstBuild": "公式日程を整理してiCalendar形式へ変換し、チーム別の追加（自動更新）URLとダウンロード用iCalを1ページにまとめた。",
+    "currentAnswer": "レディースと男子U-21を分けて、iPhone・Apple／Googleカレンダーへの追加（自動更新）、URLコピー、iCalダウンロード、今後の試合確認まで一画面で完結する。",
+    "type": "utility",
+    "verbs": [
+      "確認する",
+      "追加する",
+      "追いかける"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-03",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-03",
+    "startedAt": "2026-10-03",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/worksportfolio/tree/main/redscalender",
+    "liveUrl": "https://silovar-uk.github.io/worksportfolio/redscalender/",
+    "technologies": [
+      "Python",
+      "HTML",
+      "CSS",
+      "iCalendar",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "editorialState": "published",
+    "relatedProjects": [],
+    "updates": [
+      {
+        "date": "2026-10-03",
+        "version": "1.0",
+        "change": "レッズレディースと男子U-21の試合日程をiCal化し、カレンダーへの追加（自動更新）導線を公開",
+        "reason": "複数カテゴリーの日程確認とカレンダー登録を一か所にまとめ、日程変更後の追従を楽にするため。"
+      }
+    ],
+    "aside": "試合日程を見に行くのではなく、いつものカレンダーへ連れてくる。",
+    "searchAliases": [
+      "REDS CALENDAR",
+      "レッズカレンダー",
+      "redscalender",
+      "浦和レッズ",
+      "レッズレディース",
+      "浦和レッズU-21",
+      "U-21",
+      "iCal",
+      "iCalendar",
+      "試合日程",
+      "カレンダー"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
   }
 ]
