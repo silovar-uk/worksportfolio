@@ -4263,7 +4263,7 @@
     "summary": "Webページ上の既存HTML動画へ、左ダブルタップで10秒戻る・右で30秒進む、直前位置へ戻るJump Back、時間指定、精密シーク、MARK、A–B LOOPなどの移動操作だけを追加するiPhone-firstのブックマークレット。",
     "friction": "動画そのものは再生できても、少し聞き逃して戻る、既知部分を大きく飛ばす、さっき見ていた位置へ戻る、といった「動画内を行き来する」操作に手数がかかっていた。",
     "firstBuild": "既存のVideo.jsやHTMLVideoElementを置き換えず、ページ上のvideo要素へ操作パネルだけを重ねるブックマークレットとして始めた。",
-    "currentAnswer": "戻る操作は10秒、進む操作は30秒という非対称な操作文法を中心に、Compactモード、Jump Back、移動履歴、MARK即保存を備え、ページごとに状態を分離しながら元プレーヤーの弱点だけを薄い操作レイヤーで補う。",
+    "currentAnswer": "戻る10秒・進む30秒という非対称な操作文法は維持しつつ、v0.3では起動ボタンと別パネルを廃止。Collapsed / Compact / Expandedの3段階で同じSurfaceが伸縮し、開閉・詳細化・ドラッグの意味が見た目と一致するUIへ再設計した。",
     "type": "utility",
     "verbs": [
       "移動する",
@@ -4275,7 +4275,7 @@
     "featured": false,
     "createdAt": "2026-10-02",
     "createdAtPrecision": "day",
-    "updatedAt": "2026-10-02",
+    "updatedAt": "2026-10-03",
     "startedAt": "2026-10-02",
     "startedAtPrecision": "day",
     "startedAtBasis": "manual-record",
@@ -4313,6 +4313,12 @@
         "version": "0.2.1",
         "change": "左ダブルタップ−10秒、右＋30秒、Jump Back、Compactモード、移動履歴、MARK即保存、ページ単位の状態分離を追加",
         "reason": "再生機能を増やすのではなく、見たい瞬間へ移動する手数を減らし、別動画ページの状態が混ざらないようにするため。"
+      },
+      {
+        "date": "2026-10-03",
+        "version": "0.3.0",
+        "change": "NAVボタンと別パネルを廃止し、Collapsed / Compact / Expandedの3段階Surface、明示的な開閉表示、実動するgrabber、Progress Rail、目的別の詳細画面を追加",
+        "reason": "機能を増やすのではなく、Navigatorがどこにあり、どう開き、どう閉じるかを初見でも迷わない構造にするため。"
       }
     ],
     "aside": "再生プレーヤーを作り直さず、移動能力だけを足す。",
