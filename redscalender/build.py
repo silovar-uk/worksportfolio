@@ -1,105 +1,440 @@
-"""Refresh official 2026/27 schedules and build static iCalendar feeds.
-Run: python -m pip install lxml; python redscalender/build.py
-No automatic schedule is configured. Failed fetch/parse leaves published files intact.
+"""Build REDS CALENDAR from official schedules.
+
+Targets
+- men: Urawa Reds top team
+- ladies: Mitsubishi Heavy Industries Urawa Reds Ladies
+- u21: Urawa Reds U-21
+- youth: Urawa Reds Youth, Prince League only
+
+Run:
+    python -m pip install lxml
+    python redscalender/build.py
+
+The script writes files only after every source has fetched and parsed successfully.
+A failed fetch/parse therefore leaves the currently published calendar intact.
 """
+
 import datetime as dt
 import hashlib
-import html
 import json
 from pathlib import Path
 import re
 import urllib.request
 import unicodedata
+
 from lxml import html as dom
+
 ROOT = Path(__file__).resolve().parent
-SOURCES = {'ladies': 'https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html', 'u21':'https://www.urawa-reds.co.jp/game/'}
-NAMES = {'ladies':'三菱重工浦和レッズレディース', 'u21':'浦和レッズ U-21'}
-BASE = 'https://silovar-uk.github.io/worksportfolio/redscalender/'
 JST = dt.timezone(dt.timedelta(hours=9))
-def norm(s): return ' '.join(unicodedata.normalize('NFKC', s).split())
-def txt(el): return norm(el.text_content())
-def cls(el, name): return el.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," '+name+' ")]')
+MATCH_DURATION = dt.timedelta(hours=2)
+
+SOURCES = {
+    "men": "https://www.urawa-reds.co.jp/game/",
+    "ladies": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+    "u21": "https://www.urawa-reds.co.jp/game/",
+    "youth": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+}
+NAMES = {
+    "men": "浦和レッズ",
+    "ladies": "三菱重工浦和レッズレディース",
+    "u21": "浦和レッズ U-21",
+    "youth": "浦和レッズユース",
+}
+LABELS = {
+    "men": "MEN",
+    "ladies": "LADIES",
+    "u21": "U-21",
+    "youth": "YOUTH",
+}
+TEAM_ORDER = ("men", "ladies", "u21", "youth")
+PRINCE_NAME = "高円宮杯 JFA U-18サッカープリンスリーグ 2026関東1部"
+
+
+def norm(value):
+    return " ".join(unicodedata.normalize("NFKC", str(value or "")).split())
+
+
+def txt(el):
+    return norm(el.text_content())
+
+
+def cls(el, name):
+    return el.xpath(
+        './/*[contains(concat(" ", normalize-space(@class), " "), " ' + name + ' ")]'
+    )
+
+
 def fetch(url):
-    req=urllib.request.Request(url,headers={'User-Agent':'RedsCalendar/1.0 (public fixture calendar)'})
-    with urllib.request.urlopen(req,timeout=40) as r: return dom.fromstring(r.read())
-def parse(team, doc):
-    rows=[]
-    if team=='ladies':
-        for block in cls(doc,'gameresult_list'):
-            heading=cls(block,'gameresult_h5')[0]; comp=txt(heading)
-            opponent=txt(cls(block,'gameresult_team-name')[0]); raw=txt(cls(block,'gameresult_date')[0])
-            datepart,venue=raw.rsplit('・',1)
-            d=re.search(r'(\d{4})/(\d{1,2})/(\d{1,2})',datepart)
-            t=re.search(r'\b(\d{1,2}:\d{2})\b',datepart)
-            side='HOME' if 'home' in heading.get('class','').split() else 'AWAY'
-            rows.append(make(team,comp,opponent,side,d.groups() if d else None,t.group(1) if t else None,venue,raw,'or' in datepart))
-    else:
-        for block in doc.xpath('//*[@data-category="u-21"]'):
-            comp=txt(block.xpath('./p')[0])
-            dates=cls(block,'bs-text-35'); datepart=' '.join(txt(x) for x in dates)
-            d=re.search(r'(\d{1,2})/(\d{1,2})',datepart)
-            d=(2026 if int(d[1])>=7 else 2027, d[1],d[2]) if d else None
-            full=txt(block);t=re.search(r'KICK OFF\s*(\d{1,2}:\d{2})',full)
-            venue=txt(cls(block,'bs-text-md-16')[0])
-            opponents=block.xpath('.//p[contains(@class,"bs-mx-10")]')
-            opponent=txt(opponents[0]) if opponents else '対戦相手未定'
-            side='HOME' if re.search(r'\bHOME\b',full) else 'AWAY' if re.search(r'\bAWAY\b',full) else 'NEUTRAL'
-            rows.append(make(team,comp,opponent,side,d,t[1] if t else None,venue,datepart,' or ' in full))
-    if len(rows)<10: raise ValueError(f'{team}: unexpected fixture count {len(rows)}')
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "RedsCalendar/2.0 (+https://silovar-uk.github.io/worksportfolio/redscalender/)"
+        },
+    )
+    with urllib.request.urlopen(req, timeout=40) as response:
+        return dom.fromstring(response.read())
+
+
+def infer_season_year(month):
+    return 2026 if int(month) >= 7 else 2027
+
+
+def make(team, comp, opp, side, date_parts, time, venue, raw_date, ambiguous=False):
+    date = None
+    if date_parts and not ambiguous:
+        date = dt.date(*map(int, date_parts)).isoformat()
+
+    comp = re.sub(r"【.*?】", "", norm(comp)).strip()
+    opp = norm(opp) or "対戦相手未定"
+    side = norm(side) or "UNSPECIFIED"
+    venue = norm(venue) or "会場未定"
+    time = time.zfill(5) if time else None
+
+    key = f"{team}|{comp}|{opp}|{side}"
+    return {
+        "uid": hashlib.sha256(key.encode()).hexdigest()[:24] + "@redscalender",
+        "team": team,
+        "competition": comp,
+        "opponent": opp,
+        "side": side,
+        "date": date,
+        "time": time,
+        "venue": venue,
+        "raw_date": norm(raw_date),
+        "source": SOURCES[team],
+    }
+
+
+def parse_ladies(doc):
+    rows = []
+    for block in cls(doc, "gameresult_list"):
+        headings = cls(block, "gameresult_h5")
+        opponents = cls(block, "gameresult_team-name")
+        dates = cls(block, "gameresult_date")
+        if not headings or not opponents or not dates:
+            continue
+        heading = headings[0]
+        comp = txt(heading)
+        opponent = txt(opponents[0])
+        raw = txt(dates[0])
+        if "・" in raw:
+            datepart, venue = raw.rsplit("・", 1)
+        else:
+            datepart, venue = raw, "会場未定"
+        d = re.search(r"(\d{4})/(\d{1,2})/(\d{1,2})", datepart)
+        t = re.search(r"\b(\d{1,2}:\d{2})\b", datepart)
+        side = "HOME" if "home" in heading.get("class", "").split() else "AWAY"
+        ambiguous = bool(re.search(r"\bor\b", datepart, re.I))
+        rows.append(
+            make(
+                "ladies",
+                comp,
+                opponent,
+                side,
+                d.groups() if d else None,
+                t.group(1) if t else None,
+                venue,
+                raw,
+                ambiguous,
+            )
+        )
     return rows
 
-def make(team,comp,opp,side,date,time,venue,raw,ambiguous):
-    date=dt.date(*map(int,date)).isoformat() if date and not ambiguous and '対戦相手未定' not in opp else None
-    # Identity does not depend on date/time/venue, so rescheduling preserves UID.
-    comp=re.sub(r'【.*?】', '', comp).strip()
-    key=f'{team}|{comp}|{opp}|{side}'
-    time=time.zfill(5) if time else None
-    return dict(uid=hashlib.sha256(key.encode()).hexdigest()[:24]+'@redscalender',team=team,competition=comp,opponent=opp,side=side,date=date,time=time,venue=venue,raw_date=raw,source=SOURCES[team])
-def escape(s): return str(s).replace('\\','\\\\').replace('\n','\\n').replace(';','\\;').replace(',','\\,')
-def fold(s):
-    result=[]; line=''
-    for ch in s:
-        if len((line+ch).encode())>75: result.append(line); line=' '
-        line+=ch
-    return '\r\n'.join(result+[line])
-def ics(team,rows,stamp):
-    lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//redscalender//Urawa fixtures//JA','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+escape(NAMES[team]),'X-WR-TIMEZONE:Asia/Tokyo','X-PUBLISHED-TTL:PT12H']
-    for r in rows:
-        if not r['date']:continue
-        title=f"[{r['side']}] {NAMES[team]} vs {r['opponent']}"
-        lines+=['BEGIN:VEVENT','UID:'+r['uid'],'DTSTAMP:'+stamp,'LAST-MODIFIED:'+stamp,'SEQUENCE:'+str(r['sequence'])]
-        if r['time']:
-            start=dt.datetime.fromisoformat(r['date']+'T'+r['time']).replace(tzinfo=JST).astimezone(dt.timezone.utc)
-            lines+=['DTSTART:'+start.strftime('%Y%m%dT%H%M%SZ'),'DTEND:'+(start+dt.timedelta(hours=2)).strftime('%Y%m%dT%H%M%SZ')]
-            note='終了時刻はキックオフから2時間後の目安です。'
+
+def parse_game_block(team, block):
+    paragraphs = block.xpath("./p")
+    date_nodes = cls(block, "bs-text-35")
+    venue_nodes = cls(block, "bs-text-md-16")
+    if not paragraphs or not date_nodes or not venue_nodes:
+        return None
+
+    full = txt(block)
+    if "KICK OFF" not in full:
+        return None
+
+    comp = txt(paragraphs[0])
+    if team == "men" and "U-21Jリーグ" in comp:
+        return None
+    if team == "u21" and "U-21Jリーグ" not in comp:
+        return None
+
+    datepart = " ".join(txt(node) for node in date_nodes)
+    d = re.search(r"(\d{1,2})/(\d{1,2})", datepart)
+    date_parts = None
+    if d:
+        year = infer_season_year(d.group(1))
+        date_parts = (year, d.group(1), d.group(2))
+
+    t = re.search(r"KICK OFF\s*(\d{1,2}:\d{2})", full)
+    venue = txt(venue_nodes[0])
+    opponents = block.xpath('.//p[contains(@class,"bs-mx-10")]')
+    opponent = txt(opponents[0]) if opponents else "対戦相手未定"
+    side = (
+        "HOME"
+        if re.search(r"\bHOME\b", full)
+        else "AWAY"
+        if re.search(r"\bAWAY\b", full)
+        else "NEUTRAL"
+    )
+    ambiguous = bool(re.search(r"\bor\b", datepart, re.I)) or datepart == "未定"
+    return make(
+        team,
+        comp,
+        opponent,
+        side,
+        date_parts,
+        t.group(1) if t else None,
+        venue,
+        datepart,
+        ambiguous,
+    )
+
+
+def parse_game_page(team, doc):
+    rows = []
+    for block in doc.xpath('//*[@data-category]'):
+        category = norm(block.get("data-category", "")).lower()
+        if team == "u21" and category != "u-21":
+            continue
+        if team == "men" and category == "u-21":
+            continue
+        row = parse_game_block(team, block)
+        if row:
+            rows.append(row)
+
+    deduped = {}
+    for row in rows:
+        deduped[row["uid"]] = row
+    return list(deduped.values())
+
+
+def parse_youth(doc):
+    tokens = [norm(t) for t in doc.xpath("//text()") if norm(t)]
+    starts = [i for i, token in enumerate(tokens) if token == PRINCE_NAME]
+    if not starts:
+        raise ValueError("youth: Prince League heading not found")
+
+    start = starts[-1]
+    end = next(
+        (i for i in range(start + 1, len(tokens)) if tokens[i].startswith("2026Jユースカップ")),
+        len(tokens),
+    )
+    section = tokens[start:end]
+
+    rows = []
+    for i, token in enumerate(section):
+        if not re.fullmatch(r"第\d+節", token):
+            continue
+        window = section[i + 1 : i + 10]
+        date_index = next(
+            (j for j, value in enumerate(window) if re.search(r"2026/\d{1,2}/\d{1,2}", value)),
+            None,
+        )
+        if date_index is None:
+            continue
+        raw = window[date_index]
+        d = re.search(r"(2026)/(\d{1,2})/(\d{1,2})", raw)
+        t = re.search(r"(\d{1,2}:\d{2})\s*キックオフ", raw)
+        if not d:
+            continue
+
+        after = window[date_index + 1 :]
+        opponent_index = next((j for j, value in enumerate(after) if value.startswith("vs ")), None)
+        if opponent_index is None:
+            continue
+        venue = after[0] if opponent_index > 0 else "会場未定"
+        opponent = after[opponent_index][3:].strip()
+        rows.append(
+            make(
+                "youth",
+                f"{PRINCE_NAME} {token}",
+                opponent,
+                "UNSPECIFIED",
+                d.groups(),
+                t.group(1) if t else None,
+                venue,
+                raw,
+                False,
+            )
+        )
+    return rows
+
+
+def parse(team, doc):
+    if team == "ladies":
+        rows = parse_ladies(doc)
+    elif team in {"men", "u21"}:
+        rows = parse_game_page(team, doc)
+    elif team == "youth":
+        rows = parse_youth(doc)
+    else:
+        raise ValueError(team)
+
+    minimum = {"men": 20, "ladies": 20, "u21": 10, "youth": 18}[team]
+    if len(rows) < minimum:
+        raise ValueError(f"{team}: unexpected fixture count {len(rows)} < {minimum}")
+    if len({row["uid"] for row in rows}) != len(rows):
+        raise ValueError(f"{team}: duplicate UID")
+    return rows
+
+
+def escape(value):
+    return (
+        str(value)
+        .replace("\\", "\\\\")
+        .replace("\n", "\\n")
+        .replace(";", "\\;")
+        .replace(",", "\\,")
+    )
+
+
+def fold(line):
+    result = []
+    current = ""
+    for ch in line:
+        if len((current + ch).encode()) > 75:
+            result.append(current)
+            current = " "
+        current += ch
+    return "\r\n".join(result + [current])
+
+
+def display_opponent(row):
+    if row["team"] == "u21":
+        return re.sub(r"^U-21\s+", "", row["opponent"])
+    return row["opponent"]
+
+
+def event_title(row):
+    side = "" if row["side"] == "UNSPECIFIED" else f"[{row['side']}] "
+    return f"{side}{NAMES[row['team']]} vs {display_opponent(row)}"
+
+
+def ics(calendar_name, rows, stamp):
+    lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//redscalender//Urawa fixtures//JA",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "X-WR-CALNAME:" + escape(calendar_name),
+        "X-WR-TIMEZONE:Asia/Tokyo",
+        "X-PUBLISHED-TTL:PT12H",
+    ]
+    for row in sorted(rows, key=lambda r: (r["date"] or "9999", r["time"] or "99:99", r["team"])):
+        if not row["date"]:
+            continue
+        title = event_title(row)
+        lines += [
+            "BEGIN:VEVENT",
+            "UID:" + row["uid"],
+            "DTSTAMP:" + stamp,
+            "LAST-MODIFIED:" + stamp,
+            "SEQUENCE:" + str(row["sequence"]),
+        ]
+        if row["time"]:
+            start = dt.datetime.fromisoformat(row["date"] + "T" + row["time"]).replace(tzinfo=JST)
+            start_utc = start.astimezone(dt.timezone.utc)
+            end_utc = (start + MATCH_DURATION).astimezone(dt.timezone.utc)
+            lines += [
+                "DTSTART:" + start_utc.strftime("%Y%m%dT%H%M%SZ"),
+                "DTEND:" + end_utc.strftime("%Y%m%dT%H%M%SZ"),
+            ]
+            note = "終了時刻はキックオフから2時間後の目安です。"
         else:
-            date=dt.date.fromisoformat(r['date']);title='【時刻未定】'+title
-            lines+=['DTSTART;VALUE=DATE:'+date.strftime('%Y%m%d'),'DTEND;VALUE=DATE:'+(date+dt.timedelta(days=1)).strftime('%Y%m%d')]
-            note='開始時刻未定のため終日表示しています。'
-        lines+=['SUMMARY:'+escape(title),'LOCATION:'+escape(r['venue']),'DESCRIPTION:'+escape(r['competition']+'\n'+note+'\n非公式カレンダー。来場前に公式情報をご確認ください。\n'+r['source']),'URL:'+r['source'],'STATUS:CONFIRMED','TRANSP:TRANSPARENT','END:VEVENT']
-    return '\r\n'.join(fold(x) for x in lines+['END:VCALENDAR'])+'\r\n'
+            date = dt.date.fromisoformat(row["date"])
+            title = "【時刻未定】" + title
+            lines += [
+                "DTSTART;VALUE=DATE:" + date.strftime("%Y%m%d"),
+                "DTEND;VALUE=DATE:" + (date + dt.timedelta(days=1)).strftime("%Y%m%d"),
+            ]
+            note = "開始時刻未定のため終日表示しています。"
+        lines += [
+            "SUMMARY:" + escape(title),
+            "LOCATION:" + escape(row["venue"]),
+            "DESCRIPTION:"
+            + escape(
+                row["competition"]
+                + "\n"
+                + note
+                + "\n非公式カレンダー。来場前に公式情報をご確認ください。\n"
+                + row["source"]
+            ),
+            "URL:" + row["source"],
+            "STATUS:CONFIRMED",
+            "TRANSP:TRANSPARENT",
+            "END:VEVENT",
+        ]
+    return "\r\n".join(fold(line) for line in lines + ["END:VCALENDAR"]) + "\r\n"
+
+
+def apply_sequences(all_rows, old):
+    previous_rows = {}
+    for rows in old.get("teams", {}).values():
+        for row in rows:
+            previous_rows[row.get("uid")] = row
+
+    tracked = ("date", "time", "venue", "opponent", "side", "competition")
+    for rows in all_rows.values():
+        for row in rows:
+            previous = previous_rows.get(row["uid"])
+            if not previous:
+                row["sequence"] = 0
+                continue
+            changed = any(previous.get(key) != row.get(key) for key in tracked)
+            row["sequence"] = previous.get("sequence", 0) + (1 if changed else 0)
+
+
 def main():
-    now=dt.datetime.now(JST); stamp=now.astimezone(dt.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-    allrows={team:parse(team,fetch(url)) for team,url in SOURCES.items()}
-    old=json.loads((ROOT/'schedule.json').read_text()) if (ROOT/'schedule.json').exists() else {'teams':{}}
-    for team,rows in allrows.items():
-        previous={r['uid']:r for r in old['teams'].get(team,[])}
-        if len({r['uid'] for r in rows})!=len(rows):raise ValueError('Duplicate UID')
-        for r in rows:
-            p=previous.get(r['uid']);r['sequence']=(p.get('sequence',0)+(any(p.get(k)!=v for k,v in r.items()))) if p else 0
-    outputs={team+'.ics':ics(team,rows,stamp) for team,rows in allrows.items()}
-    data={'updated':now.isoformat(timespec='seconds'),'season':'2026/27','teams':allrows}
-    outputs['schedule.json']=json.dumps(data,ensure_ascii=False,indent=2)+'\n'
-    template=(ROOT/'template.html').read_text()
-    cards=[]
-    for team,rows in allrows.items():
-        confirmed=[r for r in rows if r['date']];pending=[r for r in rows if not r['date']]
-        url=BASE+team+'.ics'
-        from urllib.parse import quote
-        items=''.join('<li><strong>'+html.escape((r['date'] or '開催日未定')+' '+(r['time'] or '時刻未定'))+'</strong><br>'+html.escape(r['side']+' · '+r['opponent'])+'<br><span>'+html.escape(r['venue']+' / '+r['competition'])+'</span></li>' for r in sorted(confirmed,key=lambda r:r['date']) if r['date']>=now.date().isoformat())
-        pendingitems=''.join('<li>'+html.escape(r['opponent']+' / '+r['raw_date']+' / '+r['competition'])+'</li>' for r in pending)
-        cards.append(f'''<section class="team"><p class="eyebrow">{'LADIES' if team=='ladies' else 'MEN’S U-21'}</p><h2>{NAMES[team]}</h2><p class="meta">日付確定 {len(confirmed)}試合 · 開催日未定 {len(pending)}件</p><div class="actions"><a class="primary" href="{url.replace('https:','webcal:')}">iPhone・Appleに追加（自動更新）</a><a href="https://calendar.google.com/calendar/render?cid={quote(url,safe='')}">Googleカレンダーに追加（自動更新）</a><a href="{team}.ics" download>iCalをダウンロード</a></div><label>自動更新用URL<input readonly value="{url}" aria-label="{NAMES[team]}の自動更新用URL"></label><button type="button" data-copy="{team}">URLをコピー</button><details><summary>収録した今後の試合</summary><ul>{items or '<li>日付確定の今後の試合はありません。</li>'}</ul></details><details><summary>開催日未定（iCalには未収録）</summary><ul>{pendingitems or '<li>なし</li>'}</ul></details><a class="source" href="{SOURCES[team]}">公式試合日程</a></section>''')
-    outputs['index.html']=template.replace('{{CARDS}}','\n'.join(cards)).replace('{{UPDATED}}',now.strftime('%Y-%m-%d %H:%M JST'))
-    for name,content in outputs.items(): (ROOT/name).write_bytes(content.encode())
-    print({t:{'included':sum(bool(r['date']) for r in rows),'pending':sum(not r['date'] for r in rows)} for t,rows in allrows.items()})
-if __name__=='__main__':main()
+    now = dt.datetime.now(JST)
+    stamp = now.astimezone(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    docs = {}
+    for url in sorted(set(SOURCES.values())):
+        docs[url] = fetch(url)
+
+    all_rows = {team: parse(team, docs[url]) for team, url in SOURCES.items()}
+
+    old_path = ROOT / "schedule.json"
+    old = json.loads(old_path.read_text()) if old_path.exists() else {"teams": {}}
+    apply_sequences(all_rows, old)
+
+    data = {
+        "updated": now.isoformat(timespec="seconds"),
+        "season": "2026/27",
+        "windowDays": 60,
+        "matchDurationMinutes": int(MATCH_DURATION.total_seconds() // 60),
+        "teams": all_rows,
+        "meta": {
+            "teamOrder": list(TEAM_ORDER),
+            "names": NAMES,
+            "labels": LABELS,
+            "youthScope": "prince-league-only",
+            "youthCompetition": PRINCE_NAME,
+        },
+    }
+
+    outputs = {
+        "schedule.json": json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+        "index.html": (ROOT / "template.html").read_text(),
+    }
+    for team in TEAM_ORDER:
+        outputs[team + ".ics"] = ics(NAMES[team], all_rows[team], stamp)
+    merged = [row for team in TEAM_ORDER for row in all_rows[team]]
+    outputs["all.ics"] = ics("REDS CALENDAR｜4カテゴリー", merged, stamp)
+
+    for name, content in outputs.items():
+        (ROOT / name).write_bytes(content.encode())
+
+    summary = {
+        team: {
+            "dated": sum(bool(row["date"]) for row in rows),
+            "pending": sum(not row["date"] for row in rows),
+        }
+        for team, rows in all_rows.items()
+    }
+    print(json.dumps(summary, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
