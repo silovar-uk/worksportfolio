@@ -46,7 +46,7 @@ jobs:
               assert (root / name).exists(), name
           print({team: len(rows) for team, rows in data['teams'].items()})
           PY
-          git diff --check
+          git diff --check -- redscalender/build.py redscalender/template.html redscalender/index.html redscalender/schedule.json .github/workflows/update-redscalendar.yml
       - name: Commit changed schedule files
         run: |
           if git diff --quiet -- redscalender; then
