@@ -228,14 +228,14 @@ def parse_youth(doc):
     if section is None:
         raise ValueError("youth: Prince League body section not found")
 
-    round_matches = list(re.finditer(r"第(\\d+)節", section))
+    round_matches = list(re.finditer(r"第(\d+)節", section))
     rows = []
     for index, round_match in enumerate(round_matches):
         chunk_end = round_matches[index + 1].start() if index + 1 < len(round_matches) else len(section)
         chunk = section[round_match.end() : chunk_end]
 
         date_match = re.search(
-            r"(2026)\\s*/\\s*(\\d{1,2})\\s*/\\s*(\\d{1,2})\\s*\\([^)]*\\)\\s*(\\d{1,2}:\\d{2})\\s*キックオフ",
+            r"(2026)\s*/\s*(\d{1,2})\s*/\s*(\d{1,2})\s*\([^)]*\)\s*(\d{1,2}:\d{2})\s*キックオフ",
             chunk,
         )
         if not date_match:
@@ -243,7 +243,7 @@ def parse_youth(doc):
 
         tail = chunk[date_match.end() :]
         fixture_match = re.search(
-            r"(.+?)\\s+vs\\s+(.+?)(?=\\s+[△○●■]\\s*\\d|\\s+[△○●■]\\d|$)",
+            r"(.+?)\s+vs\s+(.+?)(?=\s+[△○●■]\s*\d|\s+[△○●■]\d|$)",
             tail,
         )
         if not fixture_match:
@@ -253,7 +253,7 @@ def parse_youth(doc):
         opponent = norm(fixture_match.group(2))
         # Defensive cleanup for optional links/labels that may sit immediately
         # after an opponent in the official page.
-        opponent = re.sub(r"\\s+(公式記録|大会公式サイト).*$", "", opponent).strip()
+        opponent = re.sub(r"\s+(公式記録|大会公式サイト).*$", "", opponent).strip()
         round_label = f"第{round_match.group(1)}節"
         raw_date = (
             f"{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)} "
