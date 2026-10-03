@@ -341,7 +341,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function render() {
-    const base = windowEvents().sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
+    const base = windowEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
     const visible = filteredEvents(base);
     app.innerHTML = `<div class="hero-grid">${renderNext(visible)}${renderStats(base)}</div>${renderPulse(base,visible)}${renderOverlap(base)}${renderTimeline(base,visible)}`;
     renderCalendarList();
