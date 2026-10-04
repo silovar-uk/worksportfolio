@@ -460,6 +460,79 @@
     "access": "gated"
   },
   {
+    "id": "context-lens",
+    "title": "Context Lens",
+    "subtitle": "iPhone Safariの「いまのページ」をAIへ渡す開発者ツール",
+    "summary": "JavaScript実行後のDOM、現在の入力値、ARIA、open Shadow DOM、構造化データ、選択要素、画面操作前後の差分などを、秘密情報をマスクしながらMarkdownのContext Packにまとめ、ChatGPTなどへ渡しやすくするiPhone-firstのブックマークレット。",
+    "friction": "Webページの不具合やUIをAIへ相談するとき、HTMLソースだけでは実行後のDOM、入力値、開閉状態、埋め込みデータなど「いま何が起きているか」の文脈が抜けていた。",
+    "firstBuild": "Safariのブックマークから起動し、現在のDOM・フォーム値・ARIAをMarkdownへ変換してコピーする最小構成から始めた。",
+    "currentAnswer": "標準・詳細・要素・差分の4つの取得方法を用意し、秘密情報のマスク、Storage値の個別同意、件数・文字量の上限、コピー失敗時の手動復旧まで含めて、ページ状態をAI向けのContext Packとして渡せる。",
+    "type": "utility",
+    "verbs": [
+      "取得する",
+      "比較する",
+      "渡す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-02",
+    "startedAt": "2026-10-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/context-lens",
+    "liveUrl": "https://silovar-uk.github.io/myessays/tools/context-lens/",
+    "technologies": [
+      "JavaScript",
+      "Bookmarklet",
+      "Safari",
+      "Shadow DOM",
+      "Markdown",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "myessays",
+        "relation": "同じGitHub Pages配下で配信するツール"
+      },
+      {
+        "id": "keygrid",
+        "relation": "ブラウザ操作の摩擦を小さくする開発者・生産性ツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-10-02",
+        "version": "1.0",
+        "change": "iPhone Safari向けのContext Pack生成、要素選択、差分取得、秘密情報マスクを備えた初版を公開",
+        "reason": "AIへWebページの現在状態を渡すとき、HTMLソースだけでは欠ける実行後の文脈を一つのテキストへまとめるため。"
+      }
+    ],
+    "aside": "HTMLではなく、いま動いているページを渡す。",
+    "searchAliases": [
+      "Context Lens",
+      "コンテキストレンズ",
+      "context pack",
+      "Context Pack",
+      "page snapshot",
+      "ページスナップショット",
+      "AI context",
+      "AIコンテキスト",
+      "bookmarklet",
+      "ブックマークレット",
+      "Safari",
+      "DOM",
+      "developer tool",
+      "開発者ツール"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
+  },
+  {
     "id": "converter",
     "title": "IMAGE FORGE",
     "subtitle": "16:9画像変換とfavicon一括生成をブラウザ内で完結",
@@ -1335,6 +1408,60 @@
       "한글",
       "韓国語学習",
       "文字学習"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": []
+  },
+  {
+    "id": "ichirinzashi",
+    "title": "一輪挿し",
+    "subtitle": "近代文章語を、現代文へ一輪ずつ挿して試す",
+    "summary": "明治〜昭和前期の文章表現を、単なる古語集ではなく「思考の操作」として学び、現代文への使い方を試す静的学習サイト。",
+    "friction": "現代文だけでは留保・推論・総括・距離感の細かなニュアンスを出しにくく、古い表現も辞書的に集めるだけでは実際の文章へ戻しにくかった。",
+    "firstBuild": "近代の文章表現を1表現1JSONで蓄積し、原文照合と索引生成を組み合わせた静的サイトとして始めた。",
+    "currentAnswer": "単語・慣用句・構文を偏りなく追加し、青空文庫の原文照合や再会タイミングも組み合わせて、現代文へ戻すところまで含めて学ぶ。",
+    "type": "learning-tool",
+    "verbs": [
+      "読む",
+      "試す",
+      "蓄積する"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-09-25",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-09-30",
+    "repositoryUrl": "https://github.com/silovar-uk/ichirinzashi",
+    "liveUrl": "https://silovar-uk.github.io/ichirinzashi/",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "editorialState": "published",
+    "relatedProjects": [
+      {
+        "id": "myglossary",
+        "relation": "言葉を蓄積して再利用する学習導線"
+      }
+    ],
+    "updates": [],
+    "aside": "古い言葉を飾るのではなく、思考の道具として一本ずつ試す。",
+    "startedAt": "2026-09-25",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created",
+    "searchAliases": [
+      "一輪挿し",
+      "いちりんざし",
+      "近代文章語",
+      "文語",
+      "文章表現",
+      "語彙",
+      "慣用句",
+      "構文"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
@@ -3232,6 +3359,60 @@
     "makingPrinciples": []
   },
   {
+    "id": "redscalender",
+    "title": "REDS CALENDAR",
+    "subtitle": "トップ・レディース・U-21・ユースを、ひとつの60日へ",
+    "summary": "浦和4カテゴリーの試合を横断し、直近60日の同日開催・時間重複とiCal追加を確認できる非公式カレンダー。",
+    "friction": "カテゴリーをまたぐ同日開催・時間重複を把握しづらい。",
+    "firstBuild": "公式日程を整理してiCalendar形式へ変換し、チーム別の追加（自動更新）URLとダウンロード用iCalを1ページにまとめた。",
+    "currentAnswer": "4カテゴリーを共通データに正規化し、60日密度ストリップ、重なる日の一覧、縦型タイムライン、カテゴリー絞り込みを一画面に統合。同日開催と2時間枠による時間重複を分けて表示し、個別／4カテゴリーまとめての自動更新iCalも提供する。公式日程はGitHub Actionsで毎日取得し、取得・解析に失敗した回は公開済みデータを保持する。",
+    "type": "utility",
+    "verbs": [
+      "確認する",
+      "追加する",
+      "追いかける"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-03",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-03",
+    "startedAt": "2026-10-03",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/worksportfolio/tree/main/redscalender",
+    "liveUrl": "https://silovar-uk.github.io/worksportfolio/redscalender/",
+    "technologies": [
+      "Python",
+      "JavaScript",
+      "iCalendar",
+      "GitHub Actions"
+    ],
+    "documentationState": "verified",
+    "editorialState": "published",
+    "relatedProjects": [],
+    "updates": [
+      {
+        "date": "2026-10-03",
+        "version": "2.0",
+        "change": "トップ・レディース・U-21・ユース（プリンスリーグ）の4カテゴリーを統合し、60日密度表示、同日開催／時間重複判定、ALL iCal、公式日程の毎日自動更新を追加",
+        "reason": "カレンダー配布だけでなく、カテゴリーをまたいだ予定の衝突を一目で判断できる実用ツールにするため。"
+      },
+      {
+        "date": "2026-10-03",
+        "version": "1.0",
+        "change": "レッズレディースと男子U-21の試合日程をiCal化し、カレンダーへの追加（自動更新）導線を公開",
+        "reason": "複数カテゴリーの日程確認とカレンダー登録を一か所にまとめ、日程変更後の追従を楽にするため。"
+      }
+    ],
+    "aside": "日程を見に行くのではなく、浦和の時間の重なりごと、いつものカレンダーへ。",
+    "searchAliases": [],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
+  },
+  {
     "id": "resultcalc",
     "title": "Result Calc",
     "subtitle": "結果計算ツール",
@@ -3910,6 +4091,92 @@
     "extension": null
   },
   {
+    "id": "video-navigator",
+    "title": "Video Navigator",
+    "subtitle": "既存動画を壊さず、見たい瞬間へすぐ移動するiPhone向け操作レイヤー",
+    "summary": "Webページ上の既存HTML動画へ、左ダブルタップで10秒戻る・右で30秒進む、直前位置へ戻るJump Back、時間指定、精密シーク、MARK、A–B LOOPなどの移動操作だけを追加するiPhone-firstのブックマークレット。",
+    "friction": "動画そのものは再生できても、少し聞き逃して戻る、既知部分を大きく飛ばす、さっき見ていた位置へ戻る、といった「動画内を行き来する」操作に手数がかかっていた。",
+    "firstBuild": "既存のVideo.jsやHTMLVideoElementを置き換えず、ページ上のvideo要素へ操作パネルだけを重ねるブックマークレットとして始めた。",
+    "currentAnswer": "戻る10秒・進む30秒という非対称な操作文法は維持しつつ、v0.3では起動ボタンと別パネルを廃止。Collapsed / Compact / Expandedの3段階で同じSurfaceが伸縮し、開閉・詳細化・ドラッグの意味が見た目と一致するUIへ再設計した。",
+    "type": "utility",
+    "verbs": [
+      "移動する",
+      "戻る",
+      "見返す"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-10-02",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-03",
+    "startedAt": "2026-10-02",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "manual-record",
+    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/redlife-video-navigator",
+    "liveUrl": "https://silovar-uk.github.io/myessays/tools/redlife-video-navigator/",
+    "technologies": [
+      "JavaScript",
+      "Bookmarklet",
+      "Safari",
+      "HTMLMediaElement",
+      "Shadow DOM",
+      "GitHub Pages"
+    ],
+    "documentationState": "verified",
+    "editorialState": "published",
+    "relatedProjects": [
+      {
+        "id": "context-lens",
+        "relation": "同じiPhone Safariブックマークレット基盤で、既存Webページへ薄い機能レイヤーを足す"
+      },
+      {
+        "id": "myessays",
+        "relation": "同じGitHub Pages配下で配信するツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-10-02",
+        "version": "0.1.1",
+        "change": "既存video要素を操作する初版を公開",
+        "reason": "動画URLや認証を持ち出さず、時間指定・精密シーク・MARK・A–B LOOPを追加するため。"
+      },
+      {
+        "date": "2026-10-02",
+        "version": "0.2.1",
+        "change": "左ダブルタップ−10秒、右＋30秒、Jump Back、Compactモード、移動履歴、MARK即保存、ページ単位の状態分離を追加",
+        "reason": "再生機能を増やすのではなく、見たい瞬間へ移動する手数を減らし、別動画ページの状態が混ざらないようにするため。"
+      },
+      {
+        "date": "2026-10-03",
+        "version": "0.3.0",
+        "change": "NAVボタンと別パネルを廃止し、Collapsed / Compact / Expandedの3段階Surface、明示的な開閉表示、実動するgrabber、Progress Rail、目的別の詳細画面を追加",
+        "reason": "機能を増やすのではなく、Navigatorがどこにあり、どう開き、どう閉じるかを初見でも迷わない構造にするため。"
+      }
+    ],
+    "aside": "再生プレーヤーを作り直さず、移動能力だけを足す。",
+    "searchAliases": [
+      "Video Navigator",
+      "ビデオナビゲーター",
+      "動画ナビゲーター",
+      "動画シーク",
+      "動画ジャンプ",
+      "video seek",
+      "jump back",
+      "double tap",
+      "ダブルタップ",
+      "ブックマークレット",
+      "Safari",
+      "HTMLVideoElement",
+      "Video.js",
+      "動画操作"
+    ],
+    "portfolioFamilies": [],
+    "makingPrinciples": [],
+    "access": "public"
+  },
+  {
     "id": "vocabularies",
     "title": "Vocabularies",
     "subtitle": "言葉にできない感覚から、より精密な概念へたどり着く語彙集",
@@ -4079,6 +4346,60 @@
     "startedAtBasis": "manual-record"
   },
   {
+    "id": "xexporter",
+    "title": "X Local Post Exporter",
+    "subtitle": "Xで表示済み投稿を端末内に記録し、CSV / TSV / JSONへ書き出すChrome拡張",
+    "summary": "Xで画面に読み込まれた投稿だけを端末内へ記録し、CSV / TSV / JSONで書き出せるChrome拡張。Side Panelで収集状況や表示数取得率、確認が必要な投稿を確認でき、外部サーバー通信やX APIを使わずローカルに保存する。",
+    "friction": "Xの投稿をあとで分析・保存したくても、本文や反応数、表示数を手作業で転記すると時間がかかり、取りこぼしや整形の手間も大きかった。",
+    "firstBuild": "画面に読み込まれた投稿要素をContent Scriptで解析し、IndexedDBへ保存してCSV / TSV / JSONへ出力するChrome拡張として実装した。",
+    "currentAnswer": "READY / CAPTURING / REVIEWの状態駆動Side Panelで収集を開始・停止し、取得件数や表示数取得率を確認してCSV保存できる。投稿データは端末内に保存し、X API / GraphQLやCookie取得を使わない。",
+    "type": "chrome-extension",
+    "verbs": [
+      "収集する",
+      "保存する",
+      "書き出す"
+    ],
+    "status": "active",
+    "visibility": "local",
+    "featured": false,
+    "createdAt": "2026-10-04",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-10-04",
+    "startedAt": "2026-10-04",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "repository-created-at",
+    "repositoryUrl": "https://github.com/silovar-uk/xexporter",
+    "githubId": "1404072760",
+    "liveUrl": "",
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Manifest V3",
+      "Chrome Side Panel",
+      "IndexedDB"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "aside": "APIで取りに行かず、いま画面に見えているものだけを端末内へ残す。",
+    "searchAliases": [
+      "X Local Post Exporter",
+      "xexporter",
+      "X投稿保存",
+      "X投稿収集",
+      "Twitter export",
+      "CSV export",
+      "Chrome Extension"
+    ],
+    "portfolioFamilies": [
+      "Browser Productivity"
+    ],
+    "makingPrinciples": [],
+    "categories": [
+      "learning-tool"
+    ]
+  },
+  {
     "id": "zeldasbsp",
     "title": "ゼルダ実戦ノート",
     "subtitle": "スマブラSP・ゼルダ学習",
@@ -4128,272 +4449,5 @@
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
-  },
-  {
-    "id": "ichirinzashi",
-    "title": "一輪挿し",
-    "subtitle": "近代文章語を、現代文へ一輪ずつ挿して試す",
-    "summary": "明治〜昭和前期の文章表現を、単なる古語集ではなく「思考の操作」として学び、現代文への使い方を試す静的学習サイト。",
-    "friction": "現代文だけでは留保・推論・総括・距離感の細かなニュアンスを出しにくく、古い表現も辞書的に集めるだけでは実際の文章へ戻しにくかった。",
-    "firstBuild": "近代の文章表現を1表現1JSONで蓄積し、原文照合と索引生成を組み合わせた静的サイトとして始めた。",
-    "currentAnswer": "単語・慣用句・構文を偏りなく追加し、青空文庫の原文照合や再会タイミングも組み合わせて、現代文へ戻すところまで含めて学ぶ。",
-    "type": "learning-tool",
-    "verbs": [
-      "読む",
-      "試す",
-      "蓄積する"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-09-25",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-09-30",
-    "repositoryUrl": "https://github.com/silovar-uk/ichirinzashi",
-    "liveUrl": "https://silovar-uk.github.io/ichirinzashi/",
-    "technologies": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
-    "editorialState": "published",
-    "relatedProjects": [
-      {
-        "id": "myglossary",
-        "relation": "言葉を蓄積して再利用する学習導線"
-      }
-    ],
-    "updates": [],
-    "aside": "古い言葉を飾るのではなく、思考の道具として一本ずつ試す。",
-    "startedAt": "2026-09-25",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "repository-created",
-    "searchAliases": [
-      "一輪挿し",
-      "いちりんざし",
-      "近代文章語",
-      "文語",
-      "文章表現",
-      "語彙",
-      "慣用句",
-      "構文"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": []
-  },
-  {
-    "id": "context-lens",
-    "title": "Context Lens",
-    "subtitle": "iPhone Safariの「いまのページ」をAIへ渡す開発者ツール",
-    "summary": "JavaScript実行後のDOM、現在の入力値、ARIA、open Shadow DOM、構造化データ、選択要素、画面操作前後の差分などを、秘密情報をマスクしながらMarkdownのContext Packにまとめ、ChatGPTなどへ渡しやすくするiPhone-firstのブックマークレット。",
-    "friction": "Webページの不具合やUIをAIへ相談するとき、HTMLソースだけでは実行後のDOM、入力値、開閉状態、埋め込みデータなど「いま何が起きているか」の文脈が抜けていた。",
-    "firstBuild": "Safariのブックマークから起動し、現在のDOM・フォーム値・ARIAをMarkdownへ変換してコピーする最小構成から始めた。",
-    "currentAnswer": "標準・詳細・要素・差分の4つの取得方法を用意し、秘密情報のマスク、Storage値の個別同意、件数・文字量の上限、コピー失敗時の手動復旧まで含めて、ページ状態をAI向けのContext Packとして渡せる。",
-    "type": "utility",
-    "verbs": [
-      "取得する",
-      "比較する",
-      "渡す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-10-02",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-10-02",
-    "startedAt": "2026-10-02",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual-record",
-    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/context-lens",
-    "liveUrl": "https://silovar-uk.github.io/myessays/tools/context-lens/",
-    "technologies": [
-      "JavaScript",
-      "Bookmarklet",
-      "Safari",
-      "Shadow DOM",
-      "Markdown",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [
-      {
-        "id": "myessays",
-        "relation": "同じGitHub Pages配下で配信するツール"
-      },
-      {
-        "id": "keygrid",
-        "relation": "ブラウザ操作の摩擦を小さくする開発者・生産性ツール"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-10-02",
-        "version": "1.0",
-        "change": "iPhone Safari向けのContext Pack生成、要素選択、差分取得、秘密情報マスクを備えた初版を公開",
-        "reason": "AIへWebページの現在状態を渡すとき、HTMLソースだけでは欠ける実行後の文脈を一つのテキストへまとめるため。"
-      }
-    ],
-    "aside": "HTMLではなく、いま動いているページを渡す。",
-    "searchAliases": [
-      "Context Lens",
-      "コンテキストレンズ",
-      "context pack",
-      "Context Pack",
-      "page snapshot",
-      "ページスナップショット",
-      "AI context",
-      "AIコンテキスト",
-      "bookmarklet",
-      "ブックマークレット",
-      "Safari",
-      "DOM",
-      "developer tool",
-      "開発者ツール"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": [],
-    "access": "public"
-  },
-  {
-    "id": "video-navigator",
-    "title": "Video Navigator",
-    "subtitle": "既存動画を壊さず、見たい瞬間へすぐ移動するiPhone向け操作レイヤー",
-    "summary": "Webページ上の既存HTML動画へ、左ダブルタップで10秒戻る・右で30秒進む、直前位置へ戻るJump Back、時間指定、精密シーク、MARK、A–B LOOPなどの移動操作だけを追加するiPhone-firstのブックマークレット。",
-    "friction": "動画そのものは再生できても、少し聞き逃して戻る、既知部分を大きく飛ばす、さっき見ていた位置へ戻る、といった「動画内を行き来する」操作に手数がかかっていた。",
-    "firstBuild": "既存のVideo.jsやHTMLVideoElementを置き換えず、ページ上のvideo要素へ操作パネルだけを重ねるブックマークレットとして始めた。",
-    "currentAnswer": "戻る10秒・進む30秒という非対称な操作文法は維持しつつ、v0.3では起動ボタンと別パネルを廃止。Collapsed / Compact / Expandedの3段階で同じSurfaceが伸縮し、開閉・詳細化・ドラッグの意味が見た目と一致するUIへ再設計した。",
-    "type": "utility",
-    "verbs": [
-      "移動する",
-      "戻る",
-      "見返す"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-10-02",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-10-03",
-    "startedAt": "2026-10-02",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual-record",
-    "repositoryUrl": "https://github.com/silovar-uk/myessays/tree/main/tools/redlife-video-navigator",
-    "liveUrl": "https://silovar-uk.github.io/myessays/tools/redlife-video-navigator/",
-    "technologies": [
-      "JavaScript",
-      "Bookmarklet",
-      "Safari",
-      "HTMLMediaElement",
-      "Shadow DOM",
-      "GitHub Pages"
-    ],
-    "documentationState": "verified",
-    "editorialState": "published",
-    "relatedProjects": [
-      {
-        "id": "context-lens",
-        "relation": "同じiPhone Safariブックマークレット基盤で、既存Webページへ薄い機能レイヤーを足す"
-      },
-      {
-        "id": "myessays",
-        "relation": "同じGitHub Pages配下で配信するツール"
-      }
-    ],
-    "updates": [
-      {
-        "date": "2026-10-02",
-        "version": "0.1.1",
-        "change": "既存video要素を操作する初版を公開",
-        "reason": "動画URLや認証を持ち出さず、時間指定・精密シーク・MARK・A–B LOOPを追加するため。"
-      },
-      {
-        "date": "2026-10-02",
-        "version": "0.2.1",
-        "change": "左ダブルタップ−10秒、右＋30秒、Jump Back、Compactモード、移動履歴、MARK即保存、ページ単位の状態分離を追加",
-        "reason": "再生機能を増やすのではなく、見たい瞬間へ移動する手数を減らし、別動画ページの状態が混ざらないようにするため。"
-      },
-      {
-        "date": "2026-10-03",
-        "version": "0.3.0",
-        "change": "NAVボタンと別パネルを廃止し、Collapsed / Compact / Expandedの3段階Surface、明示的な開閉表示、実動するgrabber、Progress Rail、目的別の詳細画面を追加",
-        "reason": "機能を増やすのではなく、Navigatorがどこにあり、どう開き、どう閉じるかを初見でも迷わない構造にするため。"
-      }
-    ],
-    "aside": "再生プレーヤーを作り直さず、移動能力だけを足す。",
-    "searchAliases": [
-      "Video Navigator",
-      "ビデオナビゲーター",
-      "動画ナビゲーター",
-      "動画シーク",
-      "動画ジャンプ",
-      "video seek",
-      "jump back",
-      "double tap",
-      "ダブルタップ",
-      "ブックマークレット",
-      "Safari",
-      "HTMLVideoElement",
-      "Video.js",
-      "動画操作"
-    ],
-    "portfolioFamilies": [],
-    "makingPrinciples": [],
-    "access": "public"
-  },
-  {
-    "id": "redscalender",
-    "title": "REDS CALENDAR",
-    "subtitle": "トップ・レディース・U-21・ユースを、ひとつの60日へ",
-    "summary": "浦和4カテゴリーの試合を横断し、直近60日の同日開催・時間重複とiCal追加を確認できる非公式カレンダー。",
-    "friction": "カテゴリーをまたぐ同日開催・時間重複を把握しづらい。",
-    "firstBuild": "公式日程を整理してiCalendar形式へ変換し、チーム別の追加（自動更新）URLとダウンロード用iCalを1ページにまとめた。",
-    "currentAnswer": "4カテゴリーを共通データに正規化し、60日密度ストリップ、重なる日の一覧、縦型タイムライン、カテゴリー絞り込みを一画面に統合。同日開催と2時間枠による時間重複を分けて表示し、個別／4カテゴリーまとめての自動更新iCalも提供する。公式日程はGitHub Actionsで毎日取得し、取得・解析に失敗した回は公開済みデータを保持する。",
-    "type": "utility",
-    "verbs": [
-      "確認する",
-      "追加する",
-      "追いかける"
-    ],
-    "status": "active",
-    "visibility": "public",
-    "featured": false,
-    "createdAt": "2026-10-03",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-10-03",
-    "startedAt": "2026-10-03",
-    "startedAtPrecision": "day",
-    "startedAtBasis": "manual-record",
-    "repositoryUrl": "https://github.com/silovar-uk/worksportfolio/tree/main/redscalender",
-    "liveUrl": "https://silovar-uk.github.io/worksportfolio/redscalender/",
-    "technologies": [
-      "Python",
-      "JavaScript",
-      "iCalendar",
-      "GitHub Actions"
-    ],
-    "documentationState": "verified",
-    "editorialState": "published",
-    "relatedProjects": [],
-    "updates": [
-      {
-        "date": "2026-10-03",
-        "version": "2.0",
-        "change": "トップ・レディース・U-21・ユース（プリンスリーグ）の4カテゴリーを統合し、60日密度表示、同日開催／時間重複判定、ALL iCal、公式日程の毎日自動更新を追加",
-        "reason": "カレンダー配布だけでなく、カテゴリーをまたいだ予定の衝突を一目で判断できる実用ツールにするため。"
-      },
-      {
-        "date": "2026-10-03",
-        "version": "1.0",
-        "change": "レッズレディースと男子U-21の試合日程をiCal化し、カレンダーへの追加（自動更新）導線を公開",
-        "reason": "複数カテゴリーの日程確認とカレンダー登録を一か所にまとめ、日程変更後の追従を楽にするため。"
-      }
-    ],
-    "aside": "日程を見に行くのではなく、浦和の時間の重なりごと、いつものカレンダーへ。",
-    "searchAliases": [],
-    "portfolioFamilies": [],
-    "makingPrinciples": [],
-    "access": "public"
   }
 ]
