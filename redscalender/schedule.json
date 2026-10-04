@@ -1,7 +1,8 @@
 {
-  "updated": "2026-10-04T16:50:20+09:00",
+  "updated": "2026-10-04T17:47:18+09:00",
   "season": "2026/27",
   "windowDays": 60,
+  "pastWindowDays": 14,
   "matchDurationMinutes": 120,
   "teams": {
     "men": [
@@ -16,7 +17,23 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "8/1",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "△",
+          "scoreFor": 2,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "64b8d5e43912ac242535abb2@redscalender",
@@ -29,7 +46,23 @@
         "venue": "パナソニック スタジアム 吹田",
         "raw_date": "8/7",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 3,
+          "scoreAgainst": 4
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "47edb85cba5784309c08cb76@redscalender",
@@ -42,7 +75,23 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "8/15",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 4
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "2f6b93664cdc083182472ad0@redscalender",
@@ -55,7 +104,23 @@
         "venue": "MUFGスタジアム",
         "raw_date": "8/23",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 3
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "652931d0d92ede3772e9fe87@redscalender",
@@ -68,7 +133,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "8/26",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "58439f964ea09810a32e54c8@redscalender",
@@ -81,7 +162,23 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "8/29",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "6dfbebd99a02c29ec1e12425@redscalender",
@@ -94,7 +191,23 @@
         "venue": "ベスト電器スタジアム",
         "raw_date": "9/2",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "3972b7b4995f95e4ddab3eb0@redscalender",
@@ -107,7 +220,23 @@
         "venue": "メルカリスタジアム",
         "raw_date": "9/6",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 1,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "4e00dc1e62a24b8541eadb58@redscalender",
@@ -120,7 +249,23 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "9/13",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "ee237c2b593e46312f92e7d6@redscalender",
@@ -133,7 +278,23 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "9/19",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 1
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "256b4fe785fc01e8d68ce3ba@redscalender",
@@ -146,7 +307,23 @@
         "venue": "富山県総合運動公園陸上競技場",
         "raw_date": "9/29",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "2ab9a2fceb7b12d275c74e97@redscalender",
@@ -159,6 +336,7 @@
         "venue": "NACK5スタジアム大宮",
         "raw_date": "10/7",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -172,6 +350,7 @@
         "venue": "味の素スタジアム",
         "raw_date": "10/10",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -185,6 +364,7 @@
         "venue": "ニッパツ三ツ沢球技場",
         "raw_date": "10/14",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -198,6 +378,7 @@
         "venue": "水戸信用金庫スタジアム",
         "raw_date": "10/17",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -211,6 +392,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "10/21",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -224,6 +406,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "10/25",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -237,6 +420,7 @@
         "venue": "会場未定",
         "raw_date": "10/28",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -250,6 +434,7 @@
         "venue": "三協フロンテア柏スタジアム",
         "raw_date": "10/31",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -263,6 +448,7 @@
         "venue": "MUFGスタジアム",
         "raw_date": "11/8",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -276,6 +462,7 @@
         "venue": "会場未定",
         "raw_date": "11/11",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -289,6 +476,7 @@
         "venue": "会場未定",
         "raw_date": "11/15",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -302,6 +490,7 @@
         "venue": "サンガスタジアム by KYOCERA",
         "raw_date": "11/21",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -315,6 +504,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "11/25",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -328,6 +518,7 @@
         "venue": "IAIスタジアム日本平",
         "raw_date": "11/28",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -341,6 +532,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "12/5",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -354,6 +546,7 @@
         "venue": "会場未定",
         "raw_date": "12/9",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -367,6 +560,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "12/13",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -380,6 +574,7 @@
         "venue": "PEACE STADIUM Connected by SoftBank",
         "raw_date": "12/19",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -393,6 +588,7 @@
         "venue": "会場未定",
         "raw_date": "12/23",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -406,6 +602,7 @@
         "venue": "会場未定",
         "raw_date": "12/27",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -419,6 +616,7 @@
         "venue": "MUFGスタジアム",
         "raw_date": "1/1",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -432,6 +630,7 @@
         "venue": "MUFGスタジアム",
         "raw_date": "2/14",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -445,6 +644,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "3/10",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -458,6 +658,7 @@
         "venue": "MUFGスタジアム",
         "raw_date": "3/14",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -471,6 +672,7 @@
         "venue": "会場未定",
         "raw_date": "3/24",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -484,6 +686,7 @@
         "venue": "会場未定",
         "raw_date": "3/28",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -497,6 +700,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "4/29",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -510,6 +714,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "5/9",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -523,6 +728,7 @@
         "venue": "埼玉スタジアム2002",
         "raw_date": "6/6",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -536,6 +742,7 @@
         "venue": "会場未定",
         "raw_date": "未定",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       }
     ],
@@ -551,7 +758,23 @@
         "venue": "NACK5スタジアム大宮",
         "raw_date": "2026/08/22 (土) 19:30・NACK5スタジアム大宮",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 1,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k_7_jkULahpL/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "cb93760d72feabf9ffcb9699@redscalender",
@@ -564,7 +787,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/08/30 (日) 18:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 5,
+          "scoreAgainst": 1
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k2PuUFMFfuwc/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "0db02a7fcc647d082bd838a0@redscalender",
@@ -577,7 +816,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/09/05 (土) 18:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 1
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Ze3Q7gckiGyw/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "39f3e59fdbc9675426327846@redscalender",
@@ -590,7 +845,23 @@
         "venue": "ゼットエーオリプリスタジアム",
         "raw_date": "2026/09/12 (土) 17:00・ゼットエーオリプリスタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 2,
+          "scoreAgainst": 3
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/0R3HuXWG3JUT/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "906da367acdd71c724232c88@redscalender",
@@ -603,7 +874,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/09/20 (日) 16:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Cem9c66l7C3g/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "401c4e377c373185c31358c8@redscalender",
@@ -616,7 +903,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/09/23 (水・祝) 16:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 2,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/CARO5Vf5OjIf/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "77fb955640bf14a4c7ad856a@redscalender",
@@ -629,7 +932,25 @@
         "venue": "新潟市陸上競技場",
         "raw_date": "2026/09/27 (日) 13:00・新潟市陸上競技場",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "■",
+          "scoreFor": 1,
+          "scoreAgainst": 1,
+          "penaltyFor": 3,
+          "penaltyAgainst": 4
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/2Uxplr8yTpBL/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "47fff56ff08f4d04ac786253@redscalender",
@@ -642,7 +963,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/10/03 (土) 14:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 4,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/nrIGLdzYaEMN/file",
+          "label": "公式詳細",
+          "source": "urawa-ladies"
+        },
+        "sequence": 1
       },
       {
         "uid": "aae8b0086ce2d7d3ba970327@redscalender",
@@ -655,6 +992,7 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/10/10 (土) 14:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -668,6 +1006,7 @@
         "venue": "フクダ電子アリーナ",
         "raw_date": "2026/10/18 (日) 13:00・フクダ電子アリーナ",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -681,6 +1020,7 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/10/28 (水) 19:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -694,6 +1034,7 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/10/24 (土) 14:00・浦和駒場スタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -707,6 +1048,7 @@
         "venue": "デンカビッグスワンスタジアム",
         "raw_date": "2026/11/01 (日) 13:00・デンカビッグスワンスタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -720,6 +1062,7 @@
         "venue": "ユアテックスタジアム仙台",
         "raw_date": "2026/11/07 (土) 14:00・ユアテックスタジアム仙台",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -733,6 +1076,7 @@
         "venue": "埼玉スタジアム2〇〇2",
         "raw_date": "2026/11/14 (土) 15:00・埼玉スタジアム2〇〇2",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -746,6 +1090,7 @@
         "venue": "YANMAR HANASAKA STADIUM",
         "raw_date": "2026/11/18 (水) 18:30・YANMAR HANASAKA STADIUM",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -759,6 +1104,7 @@
         "venue": "長野Uスタジアム",
         "raw_date": "2026/11/23 (月・祝) 14:00・長野Uスタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -772,6 +1118,7 @@
         "venue": "未定",
         "raw_date": "2027/2/6(土)or7(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -785,6 +1132,7 @@
         "venue": "未定",
         "raw_date": "2027/2/13(土)or14(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -798,6 +1146,7 @@
         "venue": "未定",
         "raw_date": "2027/2/20(土)or21(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -811,6 +1160,7 @@
         "venue": "未定",
         "raw_date": "2027/2/27(土)or28(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -824,6 +1174,7 @@
         "venue": "未定",
         "raw_date": "2027/03/07 (日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -837,6 +1188,7 @@
         "venue": "未定",
         "raw_date": "2027/3/13(土)or14(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -850,6 +1202,7 @@
         "venue": "未定",
         "raw_date": "2027/3/20(土)or21(日・祝)or22(月・休) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -863,6 +1216,7 @@
         "venue": "未定",
         "raw_date": "2027/3/27(土)or28(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -876,6 +1230,7 @@
         "venue": "未定",
         "raw_date": "2027/4/3(土)or4(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -889,6 +1244,7 @@
         "venue": "未定",
         "raw_date": "2027/4/10(土)or11(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -902,6 +1258,7 @@
         "venue": "未定",
         "raw_date": "2027/4/17(土)or18(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -915,6 +1272,7 @@
         "venue": "未定",
         "raw_date": "2027/4/24(土)or25(日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -928,6 +1286,7 @@
         "venue": "未定",
         "raw_date": "2027/4/29(木・祝)or30(金)or5/1(土) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -941,6 +1300,7 @@
         "venue": "未定",
         "raw_date": "2027/05/05 (水・祝) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 1
       },
       {
@@ -954,6 +1314,7 @@
         "venue": "未定",
         "raw_date": "2027/05/09 (日) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -967,6 +1328,7 @@
         "venue": "未定",
         "raw_date": "2027/05/15 (土) 未定・未定",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
         "sequence": 0
       }
     ],
@@ -982,7 +1344,23 @@
         "venue": "IAIスタジアム日本平",
         "raw_date": "8/23",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "3d3bb09c9a6a553d62983a25@redscalender",
@@ -995,7 +1373,23 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "9/12",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "c37f0633aa40189744705e71@redscalender",
@@ -1008,7 +1402,23 @@
         "venue": "ヤマハスタジアム(磐田)",
         "raw_date": "9/20",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "●",
+          "scoreFor": 0,
+          "scoreAgainst": 4
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "3ba71eb477494a07c51e56a2@redscalender",
@@ -1021,7 +1431,23 @@
         "venue": "埼玉スタジアム2002 第2グラウンド",
         "raw_date": "10/4",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
+        },
+        "sequence": 1
       },
       {
         "uid": "f759cc1bb0cd20ccf1a98621@redscalender",
@@ -1034,6 +1460,7 @@
         "venue": "川崎フロンターレ麻生グラウンド",
         "raw_date": "10/17",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1047,6 +1474,7 @@
         "venue": "トヨタスポーツセンター第1グラウンド",
         "raw_date": "11/21",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1060,6 +1488,7 @@
         "venue": "ラクロフィールド鴻巣",
         "raw_date": "11/29",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1073,6 +1502,7 @@
         "venue": "いぶきの森球技場",
         "raw_date": "12/6",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1086,6 +1516,7 @@
         "venue": "埼玉スタジアム2002 第2グラウンド",
         "raw_date": "12/13",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1099,6 +1530,7 @@
         "venue": "埼玉スタジアム2002 第2グラウンド",
         "raw_date": "12/19",
         "source": "https://www.urawa-reds.co.jp/game/",
+        "status": "scheduled",
         "sequence": 0
       }
     ],
@@ -1114,7 +1546,24 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/4/4 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 1,
+        "result": {
+          "mark": "△",
+          "scoreFor": 0,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "0dba76cd3986255ed2e0bb36@redscalender",
@@ -1127,7 +1576,24 @@
         "venue": "山梨学院和戸サッカー場",
         "raw_date": "2026/4/11 15:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 2,
+        "result": {
+          "mark": "○",
+          "scoreFor": 1,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "ee56bcef5e54a03fe015c4b0@redscalender",
@@ -1140,7 +1606,24 @@
         "venue": "埼玉スタジアム2002 第3グラウンド",
         "raw_date": "2026/4/18 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 3,
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "702684b2a91273a210b73182@redscalender",
@@ -1153,7 +1636,24 @@
         "venue": "ユナイテッドパーク",
         "raw_date": "2026/4/25 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 4,
+        "result": {
+          "mark": "○",
+          "scoreFor": 2,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "e3b9be89397d3535ac30f19b@redscalender",
@@ -1166,7 +1666,24 @@
         "venue": "太田市運動公園サッカー場",
         "raw_date": "2026/5/2 11:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 5,
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 1
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "ebefef12d4fdb6738ca9fbe4@redscalender",
@@ -1179,7 +1696,24 @@
         "venue": "浦和駒場スタジアム",
         "raw_date": "2026/5/9 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 6,
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "90941ae1020d421d7334df3f@redscalender",
@@ -1192,7 +1726,24 @@
         "venue": "帝京科学大学千住総合グラウンド",
         "raw_date": "2026/5/16 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 7,
+        "result": {
+          "mark": "○",
+          "scoreFor": 1,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "394a7a8ae37aab04ae5d0b81@redscalender",
@@ -1205,7 +1756,24 @@
         "venue": "埼玉スタジアム2002 第4グラウンド",
         "raw_date": "2026/6/20 18:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 8,
+        "result": {
+          "mark": "○",
+          "scoreFor": 2,
+          "scoreAgainst": 0
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "cae55d3ad2df6cd1853df5bf@redscalender",
@@ -1218,7 +1786,24 @@
         "venue": "グラスポ法典公園球技場",
         "raw_date": "2026/6/28 11:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 9,
+        "result": {
+          "mark": "△",
+          "scoreFor": 1,
+          "scoreAgainst": 1
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "cf2023d251fdeecebf783bef@redscalender",
@@ -1231,7 +1816,24 @@
         "venue": "明野いこいの杜グラウンド",
         "raw_date": "2026/9/5 11:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 10,
+        "result": {
+          "mark": "△",
+          "scoreFor": 2,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "a5fccc3939141c65ca1b0722@redscalender",
@@ -1244,7 +1846,24 @@
         "venue": "埼玉スタジアム2002 第4グラウンド",
         "raw_date": "2026/9/12 18:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 11,
+        "result": {
+          "mark": "●",
+          "scoreFor": 0,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+          "label": "公式日程",
+          "source": "urawa-youth"
+        },
+        "sequence": 1
       },
       {
         "uid": "372a9eddb97beef726397b61@redscalender",
@@ -1257,7 +1876,24 @@
         "venue": "桐蔭学園多目的グラウンド",
         "raw_date": "2026/9/20 16:30",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 12,
+        "result": {
+          "mark": "●",
+          "scoreFor": 0,
+          "scoreAgainst": 4
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14932.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14932.html",
+          "label": "公式詳細",
+          "source": "urawa-youth-news"
+        },
+        "sequence": 1
       },
       {
         "uid": "350070dbd7f4ee80668a0e45@redscalender",
@@ -1270,7 +1906,24 @@
         "venue": "埼玉スタジアム2002 第3グラウンド",
         "raw_date": "2026/9/26 15:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 13,
+        "result": {
+          "mark": "●",
+          "scoreFor": 1,
+          "scoreAgainst": 3
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
+          "label": "公式詳細",
+          "source": "urawa-youth-news"
+        },
+        "sequence": 1
       },
       {
         "uid": "d4d87830d2ed9ca630a5ee48@redscalender",
@@ -1283,7 +1936,24 @@
         "venue": "レッズランド",
         "raw_date": "2026/10/3 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-        "sequence": 0
+        "round": 14,
+        "result": {
+          "mark": "●",
+          "scoreFor": 0,
+          "scoreAgainst": 3
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
+          "checkedAt": "2026-10-04T17:47:18+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
+          "label": "公式詳細",
+          "source": "urawa-youth-news"
+        },
+        "sequence": 1
       },
       {
         "uid": "55f2538d8b77a4452aa6b288@redscalender",
@@ -1296,6 +1966,8 @@
         "venue": "埼玉スタジアム2002 第2グラウンド",
         "raw_date": "2026/10/10 11:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+        "round": 15,
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1309,6 +1981,8 @@
         "venue": "埼玉スタジアム2002 第3グラウンド",
         "raw_date": "2026/11/23 14:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+        "round": 16,
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1322,6 +1996,8 @@
         "venue": "流通経済大学付属柏高等学校",
         "raw_date": "2026/11/29 11:00",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+        "round": 17,
+        "status": "scheduled",
         "sequence": 0
       },
       {
@@ -1335,6 +2011,8 @@
         "venue": "会場未定",
         "raw_date": "2026/12/5 13:30",
         "source": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
+        "round": 18,
+        "status": "scheduled",
         "sequence": 0
       }
     ]
