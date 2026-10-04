@@ -417,9 +417,10 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 
   function render() {
     const resultsBase = recentResults();
-    const futureBase = futureEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
-    const visibleUpcoming = filteredUpcoming(futureBase);
-    app.innerHTML = `${renderNextByTeam(futureBase)}${renderResults(resultsBase)}${renderPulse(futureBase,visibleUpcoming)}${renderTimeline(futureBase,visibleUpcoming)}`;
+    const nextBase = futureEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
+    const upcomingBase = nextBase.filter(event => !event.resultConfirmed);
+    const visibleUpcoming = filteredUpcoming(upcomingBase);
+    app.innerHTML = `${renderNextByTeam(nextBase)}${renderResults(resultsBase)}${renderPulse(upcomingBase,visibleUpcoming)}${renderTimeline(upcomingBase,visibleUpcoming)}`;
     renderCalendarList();
     document.querySelectorAll('[data-date-jump]').forEach(button => button.addEventListener('click',()=>{
       document.getElementById(`day-${button.dataset.dateJump}`)?.scrollIntoView({behavior:'smooth',block:'start'});
