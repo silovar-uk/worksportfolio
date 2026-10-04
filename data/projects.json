@@ -4348,15 +4348,14 @@
   {
     "id": "xexporter",
     "title": "X Local Post Exporter",
-    "subtitle": "Xで表示済み投稿を端末内に記録し、CSV / TSV / JSONへ書き出すChrome拡張",
-    "summary": "Xで画面に読み込まれた投稿だけを端末内へ記録し、CSV / TSV / JSONで書き出せるChrome拡張。Side Panelで収集状況や表示数取得率、確認が必要な投稿を確認でき、外部サーバー通信やX APIを使わずローカルに保存する。",
-    "friction": "Xの投稿をあとで分析・保存したくても、本文や反応数、表示数を手作業で転記すると時間がかかり、取りこぼしや整形の手間も大きかった。",
-    "firstBuild": "画面に読み込まれた投稿要素をContent Scriptで解析し、IndexedDBへ保存してCSV / TSV / JSONへ出力するChrome拡張として実装した。",
-    "currentAnswer": "READY / CAPTURING / REVIEWの状態駆動Side Panelで収集を開始・停止し、取得件数や表示数取得率を確認してCSV保存できる。投稿データは端末内に保存し、X API / GraphQLやCookie取得を使わない。",
+    "subtitle": "Xの表示済み投稿を端末内へ保存・書き出しするChrome拡張",
+    "summary": "Xの画面に読み込まれた投稿だけを端末内へ記録し、CSV / TSV / JSONへ書き出すChrome拡張。表示数も取得でき、X APIや外部サーバーを使わない。",
+    "friction": "Xの投稿を保存・分析用に残す際、本文や反応数を手作業で転記する手間が大きかった。",
+    "firstBuild": "画面上の投稿をContent Scriptで解析し、IndexedDBへ保存してCSV / TSV / JSONへ出力する形から始めた。",
+    "currentAnswer": "Side Panelで収集を開始・停止し、取得件数と表示数取得率を確認して書き出せる。データは端末内だけに保存する。",
     "type": "chrome-extension",
     "verbs": [
       "収集する",
-      "保存する",
       "書き出す"
     ],
     "status": "active",
@@ -4374,26 +4373,18 @@
     "technologies": [
       "Chrome Extension",
       "JavaScript",
-      "Manifest V3",
-      "Chrome Side Panel",
-      "IndexedDB"
+      "Manifest V3"
     ],
     "documentationState": "verified",
     "relatedProjects": [],
     "updates": [],
     "aside": "APIで取りに行かず、いま画面に見えているものだけを端末内へ残す。",
     "searchAliases": [
-      "X Local Post Exporter",
       "xexporter",
       "X投稿保存",
-      "X投稿収集",
-      "Twitter export",
-      "CSV export",
-      "Chrome Extension"
+      "X投稿収集"
     ],
-    "portfolioFamilies": [
-      "Browser Productivity"
-    ],
+    "portfolioFamilies": [],
     "makingPrinciples": [],
     "categories": [
       "learning-tool"
