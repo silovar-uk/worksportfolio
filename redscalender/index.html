@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f4f1">
-<meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の直近結果と今後の日程を、NOW中心の一本の時間軸で横断表示する非公式カレンダー。">
+<meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の直近14日の結果と今後60日の予定を、分けて素早く確認できる非公式カレンダー。">
 <title>REDS CALENDAR｜浦和のいまと、その次</title>
 <style>
-:root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--shadow:0 8px 30px rgba(0,0,0,.055)}
+:root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--signal:#8a5200;--c-men:#c8102e;--c-ladies:#8a3561;--c-u21:#24527a;--c-youth:#1f6b57;--shadow:0 8px 30px rgba(0,0,0,.055)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:86px}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;-webkit-text-size-adjust:100%}
@@ -23,20 +23,30 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .statusline{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;color:var(--muted);font-size:12px}
 .quick-nav{position:sticky;z-index:20;top:0;margin:14px -16px 0;padding:9px 16px;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);border-block:1px solid rgba(0,0,0,.06);display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
 .quick-nav::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;border:1px solid #c9c9c3;border-radius:999px;background:#fff;padding:8px 12px;min-height:38px;font-size:12px;font-weight:750;letter-spacing:.01em;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.chip.overlap[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
+.chip{--category-color:var(--ink);flex:0 0 auto;border:1px solid #c9c9c3;border-radius:999px;background:#fff;padding:8px 12px;min-height:38px;font-size:12px;font-weight:800;letter-spacing:.01em;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--category-color);flex:0 0 auto}
+.chip[data-filter="men"]{--category-color:var(--c-men)}
+.chip[data-filter="ladies"]{--category-color:var(--c-ladies)}
+.chip[data-filter="u21"]{--category-color:var(--c-u21)}
+.chip[data-filter="youth"]{--category-color:var(--c-youth)}
+.chip[data-filter="overlap"]{--category-color:var(--signal)}
+.chip[aria-pressed="true"]{background:var(--category-color);border-color:var(--category-color);color:#fff}
+.chip[aria-pressed="true"]::before{background:#fff}
 .section{margin-top:26px}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
 .section-head h2{margin:0;font-size:19px;letter-spacing:-.025em}
 .section-head p{margin:0;color:var(--muted);font-size:12px}
-.hero-grid{display:grid;gap:10px;margin-top:20px}
 .next-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-.next-card,.stat-card,.calendar-panel,.source-panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
-.next-card{min-width:0;padding:13px 12px 12px;border-top:3px solid var(--ink)}
-.next-card.today{border-top-color:var(--red)}
-.next-label{font-size:10px;font-weight:900;letter-spacing:.11em;color:var(--muted)}
-.next-card.today .next-label{color:var(--red)}
+.next-card,.calendar-panel,.source-panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.team-men{--category-color:var(--c-men)}
+.team-ladies{--category-color:var(--c-ladies)}
+.team-u21{--category-color:var(--c-u21)}
+.team-youth{--category-color:var(--c-youth)}
+.next-card{min-width:0;padding:13px 12px 12px;border-top:4px solid var(--category-color,var(--ink))}
+.next-label{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:.09em;color:var(--ink)}
+.next-label::before,.team-tag::before{content:"";width:4px;height:14px;border-radius:3px;background:var(--category-color,var(--ink));flex:0 0 auto}
+.next-state{margin-left:auto;color:var(--muted);font-size:9px;letter-spacing:.1em}
+.next-card.today .next-state{background:var(--ink);color:#fff;border-radius:999px;padding:2px 6px}
 .next-date{margin-top:5px;font-size:11px;font-weight:800}
 .next-main{margin-top:7px}
 .next-match+.next-match{margin-top:10px;padding-top:10px;border-top:1px solid var(--soft)}
@@ -46,16 +56,17 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .next-venue{margin-top:5px;font-size:10px;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
 .next-result{font-size:22px;line-height:1;font-weight:950;letter-spacing:-.04em}
 .next-final-meta{margin-top:5px;font-size:9px;font-weight:850;letter-spacing:.08em;color:var(--muted)}
-.last-row{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--soft);text-decoration:none}
-.last-row:hover .last-opponent{text-decoration:underline}
-.last-top{display:flex;align-items:baseline;justify-content:space-between;gap:7px}
-.last-label{font-size:9px;font-weight:900;letter-spacing:.09em;color:var(--muted)}
-.last-score{font-size:13px;font-weight:950;white-space:nowrap}
-.last-opponent{margin-top:3px;font-size:10px;line-height:1.35;color:#494945;overflow-wrap:anywhere}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.stat-card{padding:12px 10px;min-width:0}
-.stat-value{font-size:22px;font-weight:900;line-height:1;letter-spacing:-.04em}
-.stat-label{margin-top:5px;font-size:10px;color:var(--muted);line-height:1.35}
+.results-board{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.result-row{--category-color:var(--ink);display:grid;grid-template-columns:48px 72px 58px minmax(0,1fr) 18px;gap:7px;align-items:center;min-height:48px;padding:8px 10px;border-bottom:1px solid var(--soft);text-decoration:none}
+.result-row:last-child{border-bottom:0}
+.result-row:hover{background:#fafaf7}
+.result-date{font-size:11px;font-weight:850;color:var(--muted);font-variant-numeric:tabular-nums}
+.team-tag{display:inline-flex;align-items:center;gap:6px;min-width:0;font-size:9px;font-weight:950;letter-spacing:.07em;white-space:nowrap}
+.result-score{font-size:15px;font-weight:950;letter-spacing:-.025em;white-space:nowrap}
+.result-opponent{min-width:0;font-size:12px;font-weight:800;line-height:1.25;overflow-wrap:anywhere}
+.result-pk{display:block;margin-top:1px;font-size:9px;color:var(--muted);font-weight:750}
+.result-arrow{font-size:14px;color:var(--muted);text-align:right}
+.section-divider{margin-top:30px;padding-top:22px;border-top:2px solid var(--ink)}
 .pulse-wrap{border-block:1px solid var(--line);background:#fff;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity}
 .pulse{display:flex;width:max-content;min-width:100%;padding:9px 8px 10px}
 .pulse-day{width:38px;flex:0 0 38px;padding:4px 2px;border:0;background:transparent;border-radius:7px;cursor:pointer;scroll-snap-align:start;min-height:64px;position:relative}
@@ -64,10 +75,9 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .pulse-month{height:15px;font-size:9px;font-weight:850;color:var(--red);line-height:1}
 .pulse-num{font-size:11px;font-weight:800;line-height:1.2}
 .pulse-dots{height:23px;display:flex;align-items:end;justify-content:center;gap:2px;margin-top:4px}
-.pulse-dot{width:4px;height:9px;border-radius:3px;background:#343431}
-.pulse-day.has-overlap .pulse-dot{background:var(--red)}
-.pulse-day.same-day{box-shadow:inset 0 -2px 0 var(--red)}
-.pulse-day.past .pulse-dot{opacity:.55}
+.pulse-dot{--category-color:#343431;width:4px;height:9px;border-radius:3px;background:var(--category-color)}
+.pulse-day.has-overlap{outline:1px solid color-mix(in srgb,var(--signal) 55%,transparent);outline-offset:-2px}
+.pulse-day.same-day{box-shadow:inset 0 -2px 0 var(--signal)}
 .pulse-day.today{box-shadow:inset 0 -3px 0 var(--ink)}
 .pulse-day.today .pulse-num{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:var(--ink);color:#fff}
 .legend{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:8px;color:var(--muted);font-size:11px}
@@ -75,14 +85,14 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .empty{padding:16px 0;color:var(--muted);font-size:13px}
 .timeline{display:grid;gap:10px}
 .day{scroll-margin-top:84px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
-.day.collision{border-top:3px solid var(--red)}
+.day.collision{border-top:3px solid var(--signal)}
 .day.today-day{border-top:3px solid var(--ink)}
 .day-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid var(--soft)}
 .day-date{font-weight:900;letter-spacing:-.01em}
 .day-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
 .badge{display:inline-flex;align-items:center;min-height:22px;padding:2px 7px;border-radius:999px;background:var(--soft);font-size:9px;font-weight:850;letter-spacing:.03em;white-space:nowrap}
-.badge.red{background:var(--red);color:#fff}
-.event{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:14px;border-bottom:1px solid var(--soft)}
+.badge.red{background:var(--signal);color:#fff}
+.event{--category-color:var(--ink);display:grid;grid-template-columns:58px 1fr;gap:12px;padding:14px 14px 14px 12px;border-bottom:1px solid var(--soft);border-left:4px solid var(--category-color)}
 .event:last-child{border-bottom:0}
 .event-time{font-size:16px;line-height:1.2;font-weight:900;letter-spacing:-.02em}
 .event-state{font-size:9px;font-weight:950;letter-spacing:.1em;color:var(--muted)}
@@ -90,7 +100,8 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .event-pk{margin-top:3px;font-size:9px;font-weight:800;color:var(--muted)}
 .event.final .event-team{color:var(--ink)}
 .event-side{margin-top:4px;font-size:9px;color:var(--muted);font-weight:800}
-.event-team{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--red)}
+.event-team{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--ink)}
+.event-team::before{content:"";width:4px;height:13px;border-radius:3px;background:var(--category-color)}
 .event-vs{margin-top:2px;font-size:16px;line-height:1.35;font-weight:850;letter-spacing:-.015em}
 .event-meta{margin-top:5px;font-size:11px;color:var(--muted);line-height:1.5}
 .event-comp{margin-top:3px;font-size:10px;color:#8a8a83}
@@ -120,7 +131,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 .loading{padding:20px;background:#fff;border:1px solid var(--line);color:var(--muted)}
 .error{padding:16px;background:#fff;border:1px solid var(--red);color:#6d0b1c}
 :focus-visible{outline:3px solid #1b67d9;outline-offset:3px}
-@media(min-width:700px){.shell{padding-inline:24px}.next-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.next-card{min-height:150px}.timeline{gap:12px}.event{grid-template-columns:76px 1fr;padding:15px 18px}.day-head{padding-inline:18px}.pulse-day{width:42px;flex-basis:42px}.actions{grid-template-columns:repeat(3,1fr)}.copy-button{grid-column:span 3}.calendar-row{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center}.calendar-row .actions{margin-top:0}.calendar-row .copy-button{grid-column:auto;margin-top:0}}
+@media(min-width:700px){.shell{padding-inline:24px}.next-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.next-card{min-height:142px}.timeline{gap:12px}.event{grid-template-columns:76px 1fr;padding:15px 18px 15px 14px}.day-head{padding-inline:18px}.pulse-day{width:42px;flex-basis:42px}.result-row{grid-template-columns:62px 88px 72px minmax(0,1fr) 22px;padding-inline:14px}.result-opponent{font-size:13px}.actions{grid-template-columns:repeat(3,1fr)}.copy-button{grid-column:span 3}.calendar-row{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center}.calendar-row .actions{margin-top:0}.calendar-row .copy-button{grid-column:auto;margin-top:0}}
+@media(max-width:390px){.result-row{grid-template-columns:42px 64px 52px minmax(0,1fr) 14px;gap:5px;padding-inline:8px}.result-opponent{font-size:11px}.team-tag{font-size:8px;gap:4px}.result-score{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -129,8 +141,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <header class="masthead">
 <p class="kicker">2026/27 · UNOFFICIAL</p>
 <h1>REDS<br>CALENDAR</h1>
-<p class="lede">トップ、レディース、U-21、ユース。直近の結果から次戦まで、浦和の「いま」をひとつの時間軸で見る。</p>
-<div class="statusline"><span id="updated">データ確認中</span><span>過去14日＋未来60日</span><span>ユースはプリンスリーグのみ</span><span>結果は公式情報の反映後に更新</span></div>
+<p class="lede">トップ、レディース、U-21、ユース。最近の結果と、これからの予定を分けて見る。</p>
+<div class="statusline"><span id="updated">データ確認中</span><span>結果14日 / 予定60日</span><span>ユースはプリンスリーグのみ</span></div>
 </header>
 
 <nav class="quick-nav" aria-label="表示する予定">
@@ -139,7 +151,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <button class="chip" type="button" data-filter="ladies" aria-pressed="false">LADIES</button>
 <button class="chip" type="button" data-filter="u21" aria-pressed="false">U-21</button>
 <button class="chip" type="button" data-filter="youth" aria-pressed="false">YOUTH</button>
-<button class="chip overlap" type="button" data-filter="overlap" aria-pressed="false">重複日だけ</button>
+<button class="chip overlap" type="button" data-filter="overlap" aria-pressed="false">同日開催</button>
 </nav>
 
 <div id="app"><p class="loading">日程を読み込んでいます。</p></div>
@@ -237,9 +249,12 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     return {today,start,end,pastDays};
   }
 
-  function timelineEvents() {
-    const {start,end} = currentWindow();
-    return allEvents().filter(event => event.date && event.date >= start && event.date <= end);
+  function recentResults() {
+    const {today,pastDays} = currentWindow();
+    const start = addDays(today, -(pastDays - 1));
+    return allEvents()
+      .filter(event => event.date && event.date >= start && event.date <= today && event.resultConfirmed)
+      .sort((a,b) => ((b.date || '') + (b.time || '00:00')).localeCompare((a.date || '') + (a.time || '00:00')));
   }
 
   function futureEvents() {
@@ -257,34 +272,37 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     return map;
   }
 
-  function filteredEvents(base) {
+  function filteredUpcoming(base) {
     if (activeFilter === 'all') return base;
     const groups = grouped(base);
     if (activeFilter === 'overlap') return base.filter(event => (groups.get(event.date)?.length || 0) >= 2);
     return base.filter(event => event.team === activeFilter);
   }
 
+  function filteredResults(base) {
+    if (TEAM_ORDER.includes(activeFilter)) return base.filter(event => event.team === activeFilter);
+    return base;
+  }
+
+  function resultOutcome(event) {
+    if (!event?.result) return '結果';
+    if (event.result.mark === '○') return '勝利';
+    if (event.result.mark === '●') return '敗戦';
+    if (event.result.mark === '△') return '引き分け';
+    return '結果';
+  }
+
   function renderNextByTeam(base) {
     const {today} = currentWindow();
     const hasToday = base.some(event => event.date === today);
-    const history = allEvents()
-      .filter(event => event.date && event.date < today && event.resultConfirmed)
-      .sort((a,b) => ((b.date || '') + (b.time || '99:99')).localeCompare((a.date || '') + (a.time || '99:99')));
-
     const cards = TEAM_ORDER.map(team => {
       const teamEvents = base.filter(item => item.team === team);
       const todayEvents = teamEvents.filter(item => item.date === today);
       const shown = todayEvents.length ? todayEvents : teamEvents.slice(0,1);
       const mode = todayEvents.length ? 'TODAY' : 'NEXT';
-      const last = history.find(item => item.team === team);
-
-      const lastHtml = last ? `<a class="last-row" href="${esc(detailUrl(last))}" aria-label="${esc(labels()[team])} 前戦 ${formatDay(last.date)} ${resultText(last)} ${displayOpponent(last)} 公式詳細">
-        <div class="last-top"><span class="last-label">LAST · ${esc(formatDay(last.date))}</span><span class="last-score">${esc(resultText(last))}</span></div>
-        <div class="last-opponent">vs ${esc(displayOpponent(last))} ↗</div>
-      </a>` : '';
 
       if (!shown.length) {
-        return `<article class="next-card"><div class="next-label">NEXT · ${esc(labels()[team])}</div><div class="empty">直近60日に予定なし</div>${lastHtml}</article>`;
+        return `<article class="next-card team-${team}"><div class="next-label"><span>${esc(labels()[team])}</span><span class="next-state">NEXT</span></div><div class="empty">60日以内に予定なし</div></article>`;
       }
 
       const matches = shown.map(event => {
@@ -298,62 +316,64 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
         </div>`;
       }).join('');
 
-      return `<article class="next-card ${mode === 'TODAY' ? 'today' : ''}">
-        <div class="next-label">${mode} · ${esc(labels()[team])}</div>
+      return `<article class="next-card team-${team} ${mode === 'TODAY' ? 'today' : ''}">
+        <div class="next-label"><span>${esc(labels()[team])}</span><span class="next-state">${mode}</span></div>
         <div class="next-date">${esc(formatDay(shown[0].date,true))}</div>
-        <div class="next-team">${esc(names()[team])}</div>
         <div class="next-main">${matches}</div>
-        ${lastHtml}
       </article>`;
     }).join('');
 
     const title = hasToday ? '今日と、その次。' : '各カテゴリーの次戦';
-    const kicker = hasToday ? 'TODAY / NEXT' : 'NEXT';
-    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">${kicker}</p><h2 id="next-title">${title}</h2></div><p>前戦もひと目で</p></div><div class="next-grid">${cards}</div></section>`;
+    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">TODAY / NEXT</p><h2 id="next-title">${title}</h2></div><p>4カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
   }
 
-  function renderStats(base) {
-    const groups = grouped(base);
-    const collisionDays = [...groups.values()].filter(list => list.length >= 2);
-    const overlapDays = collisionDays.filter(list => overlapInfo(list).length > 0);
-    return `<div class="stats">
-      <div class="stat-card"><div class="stat-value">${base.length}</div><div class="stat-label">60日間の試合</div></div>
-      <div class="stat-card"><div class="stat-value">${collisionDays.length}</div><div class="stat-label">同日開催の日</div></div>
-      <div class="stat-card"><div class="stat-value">${overlapDays.length}</div><div class="stat-label">時間も重なる日</div></div>
-    </div>`;
+  function renderResults(base) {
+    const visible = filteredResults(base);
+    const rows = visible.map(event => {
+      const url = detailUrl(event);
+      const aria = `${labels()[event.team]}、${formatDay(event.date)}、${displayOpponent(event)}戦、${event.result.scoreFor}対${event.result.scoreAgainst}で${resultOutcome(event)}、公式詳細`;
+      const pk = penaltyText(event);
+      return `<a class="result-row team-${event.team}" href="${esc(url)}" aria-label="${esc(aria)}">
+        <span class="result-date">${esc(formatDay(event.date))}</span>
+        <span class="team-tag">${esc(labels()[event.team])}</span>
+        <span class="result-score">${esc(resultText(event))}${pk ? `<span class="result-pk">${esc(pk)}</span>` : ''}</span>
+        <span class="result-opponent">${esc(displayOpponent(event))}</span>
+        <span class="result-arrow" aria-hidden="true">↗</span>
+      </a>`;
+    }).join('');
+    return `<section class="section section-divider" aria-labelledby="results-title"><div class="section-head"><div><p class="kicker">RECENT RESULTS</p><h2 id="results-title">直近14日の結果</h2></div><p>新しい順</p></div><div class="results-board">${rows || '<div class="empty" style="padding-inline:12px">該当する結果はありません。</div>'}</div></section>`;
   }
+
+
 
   function renderPulse(base, visible) {
-    const {today,pastDays} = currentWindow();
+    const {today} = currentWindow();
     const baseGroups = grouped(base);
     const visibleDates = new Set(visible.map(event => event.date));
     const futureDays = data.windowDays || 60;
     let cells = '';
-    for (let i=-pastDays;i<futureDays;i++) {
+    for (let i=0;i<futureDays;i++) {
       const key = addDays(today,i);
       const list = baseGroups.get(key) || [];
       const pairs = overlapInfo(list);
       const [,m,d] = key.split('-').map(Number);
-      const prevKey = i>-pastDays ? addDays(today,i-1) : null;
+      const prevKey = i ? addDays(today,i-1) : null;
       const prevMonth = prevKey ? Number(prevKey.slice(5,7)) : null;
-      const monthText = i===-pastDays || prevMonth!==m ? `${m}月` : '';
+      const monthText = i===0 || prevMonth!==m ? `${m}月` : '';
       const isRelevant = activeFilter === 'all' ? list.length>0 : visibleDates.has(key);
-      const dots = isRelevant ? list.slice(0,4).map(()=>'<span class="pulse-dot"></span>').join('') : '';
+      const dots = isRelevant ? list.slice(0,4).map(event=>`<span class="pulse-dot team-${event.team}"></span>`).join('') : '';
       const classes = ['pulse-day'];
-      if (key < today) classes.push('past');
       if (list.length>=2) classes.push('same-day');
       if (pairs.length) classes.push('has-overlap');
-      if (key===today) classes.push('today');
-      const finals = list.filter(event=>event.resultConfirmed).length;
-      const stateText = key < today ? (finals ? `、結果${finals}試合` : '') : '';
-      const label = `${m}月${d}日 ${list.length ? list.length+'試合' : '試合なし'}${stateText}${pairs.length ? '、時間重複あり' : ''}`;
+      if (i===0) classes.push('today');
+      const label = `${m}月${d}日 ${list.length ? list.length+'試合' : '試合なし'}${pairs.length ? '、時間重複あり' : ''}`;
       cells += `<button class="${classes.join(' ')}" type="button" data-date-jump="${key}" ${isRelevant?'':'disabled'} aria-label="${esc(label)}"><div class="pulse-month">${monthText}</div><div class="pulse-num">${d}</div><div class="pulse-dots">${dots}</div></button>`;
     }
-    return `<section class="section" aria-labelledby="pulse-title"><div class="section-head"><div><p class="kicker">PAST ${pastDays} / NEXT ${futureDays}</p><h2 id="pulse-title">浦和の密度</h2></div><p>過去 ← NOW → 未来</p></div><div class="pulse-wrap"><div class="pulse">${cells}</div></div><div class="legend"><span><b>左側</b>＝最近の結果</span><span><b>黒丸</b>＝今日</span><span><b>赤線</b>＝同日開催</span><span><b>赤い棒</b>＝時間重複</span></div></section>`;
+    return `<section class="section section-divider" aria-labelledby="upcoming-title"><div class="section-head"><div><p class="kicker">UPCOMING</p><h2 id="upcoming-title">これから60日</h2></div><p>横にスワイプ</p></div><div class="pulse-wrap"><div class="pulse">${cells}</div></div><div class="legend"><span><b>色</b>＝カテゴリー</span><span><b>下線</b>＝同日開催</span><span><b>枠</b>＝時間重複</span></div></section>`;
   }
 
   function renderTimeline(base, visible) {
-    const {today,pastDays} = currentWindow();
+    const {today} = currentWindow();
     const groups = grouped(visible);
     const baseGroups = grouped(base);
     const rows = [...groups.entries()].sort(([a],[b])=>a.localeCompare(b));
@@ -363,28 +383,23 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
       const collision = allDay.length>=2;
       const isToday = date === today;
       const badges = [
-        isToday ? '<span class="badge now">NOW</span>' : '',
+        isToday ? '<span class="badge">TODAY</span>' : '',
         collision ? `<span class="badge ${pairs.length?'red':''}">同日 ${allDay.length}</span>` : '',
-        pairs.length ? `<span class="badge red">時間重複 ${esc([...new Set(pairs.map(formatOverlap))].join('・'))}</span>` : ''
+        pairs.length ? `<span class="badge red">重複 ${esc([...new Set(pairs.map(formatOverlap))].join('・'))}</span>` : ''
       ].join('');
 
       const events = list.map(event => {
-        const final = !!event.resultConfirmed;
-        const left = final
-          ? `<div class="event-state">FINAL</div><div class="event-score">${esc(resultText(event))}</div>${penaltyText(event)?`<div class="event-pk">${esc(penaltyText(event))}</div>`:''}`
-          : `<div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div>`;
-        const url = detailUrl(event);
-        const linkLabel = final ? (event.detail?.label || '公式日程') : '公式日程で確認';
-        return `<article class="event ${final?'final':''}">
-          <div>${left}</div>
-          <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}${final && event.time ? ' · '+esc(event.time) : ''}</div><div class="event-comp">${esc(event.competition)}</div>${url?`<a class="event-source" href="${esc(url)}">${esc(linkLabel)} ↗</a>`:''}</div>
+        const url = event.source || '';
+        return `<article class="event team-${event.team}">
+          <div><div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div></div>
+          <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}</div><div class="event-comp">${esc(event.competition)}</div>${url?`<a class="event-source" href="${esc(url)}">公式日程 ↗</a>`:''}</div>
         </article>`;
       }).join('');
 
       return `<section class="day ${collision?'collision ':''}${isToday?'today-day':''}" id="day-${date}"><div class="day-head"><span class="day-date">${esc(formatDay(date,true))}</span><span class="day-badges">${badges}</span></div>${events}</section>`;
     }).join('');
 
-    return `<section class="section" aria-labelledby="timeline-title"><div class="section-head"><div><p class="kicker">NOW LINE</p><h2 id="timeline-title">過去${pastDays}日と次の${data.windowDays || 60}日</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の試合はありません。</div>'}</div></section>`;
+    return `<section class="section" aria-labelledby="schedule-title"><div class="section-head"><div><p class="kicker">SCHEDULE</p><h2 id="schedule-title">試合予定</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の予定はありません。</div>'}</div></section>`;
   }
 
   function renderCalendarList() {
@@ -401,10 +416,10 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function render() {
-    const timelineBase = timelineEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
+    const resultsBase = recentResults();
     const futureBase = futureEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
-    const visible = filteredEvents(timelineBase);
-    app.innerHTML = `${renderNextByTeam(futureBase)}<div class="hero-grid">${renderStats(futureBase)}</div>${renderPulse(timelineBase,visible)}${renderTimeline(timelineBase,visible)}`;
+    const visibleUpcoming = filteredUpcoming(futureBase);
+    app.innerHTML = `${renderNextByTeam(futureBase)}${renderResults(resultsBase)}${renderPulse(futureBase,visibleUpcoming)}${renderTimeline(futureBase,visibleUpcoming)}`;
     renderCalendarList();
     document.querySelectorAll('[data-date-jump]').forEach(button => button.addEventListener('click',()=>{
       document.getElementById(`day-${button.dataset.dateJump}`)?.scrollIntoView({behavior:'smooth',block:'start'});
