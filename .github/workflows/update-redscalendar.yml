@@ -3,7 +3,7 @@ name: Update REDS CALENDAR
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 21 * * *' # 06:17 JST daily
+    - cron: '17 */2 * * *' # every 2 hours
   push:
     paths:
       - 'redscalender/build.py'
@@ -42,6 +42,13 @@ jobs:
           assert len(data['teams']['ladies']) >= 20
           assert len(data['teams']['u21']) >= 10
           assert len(data['teams']['youth']) == 18
+          assert data.get('pastWindowDays') == 14
+          for rows in data['teams'].values():
+              for row in rows:
+                  if row.get('resultConfirmed'):
+                      assert row.get('result')
+                      assert isinstance(row['result'].get('scoreFor'), int)
+                      assert isinstance(row['result'].get('scoreAgainst'), int)
           for name in ['men.ics','ladies.ics','u21.ics','youth.ics','all.ics','index.html']:
               assert (root / name).exists(), name
           print({team: len(rows) for team, rows in data['teams'].items()})
