@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f4f1">
-<meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の日程を横断表示。直近60日の同日開催・時間重複を確認し、iPhone・Googleカレンダーに追加できる非公式カレンダー。">
-<title>REDS CALENDAR｜浦和の次の60日</title>
+<meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の直近結果と今後の日程を、NOW中心の一本の時間軸で横断表示する非公式カレンダー。">
+<title>REDS CALENDAR｜浦和のいまと、その次</title>
 <style>
 :root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--shadow:0 8px 30px rgba(0,0,0,.055)}
 *{box-sizing:border-box}
@@ -44,6 +44,14 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .next-team{margin-top:7px;font-size:9px;font-weight:850;letter-spacing:.1em;color:var(--muted)}
 .next-opponent{margin-top:2px;font-size:14px;line-height:1.32;font-weight:850;letter-spacing:-.015em;overflow-wrap:anywhere}
 .next-venue{margin-top:5px;font-size:10px;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
+.next-result{font-size:22px;line-height:1;font-weight:950;letter-spacing:-.04em}
+.next-final-meta{margin-top:5px;font-size:9px;font-weight:850;letter-spacing:.08em;color:var(--muted)}
+.last-row{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--soft);text-decoration:none}
+.last-row:hover .last-opponent{text-decoration:underline}
+.last-top{display:flex;align-items:baseline;justify-content:space-between;gap:7px}
+.last-label{font-size:9px;font-weight:900;letter-spacing:.09em;color:var(--muted)}
+.last-score{font-size:13px;font-weight:950;white-space:nowrap}
+.last-opponent{margin-top:3px;font-size:10px;line-height:1.35;color:#494945;overflow-wrap:anywhere}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
 .stat-card{padding:12px 10px;min-width:0}
 .stat-value{font-size:22px;font-weight:900;line-height:1;letter-spacing:-.04em}
@@ -59,6 +67,8 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .pulse-dot{width:4px;height:9px;border-radius:3px;background:#343431}
 .pulse-day.has-overlap .pulse-dot{background:var(--red)}
 .pulse-day.same-day{box-shadow:inset 0 -2px 0 var(--red)}
+.pulse-day.past .pulse-dot{opacity:.55}
+.pulse-day.today{box-shadow:inset 0 -3px 0 var(--ink)}
 .pulse-day.today .pulse-num{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:var(--ink);color:#fff}
 .legend{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:8px;color:var(--muted);font-size:11px}
 .legend b{color:var(--ink)}
@@ -66,6 +76,7 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .timeline{display:grid;gap:10px}
 .day{scroll-margin-top:84px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
 .day.collision{border-top:3px solid var(--red)}
+.day.today-day{border-top:3px solid var(--ink)}
 .day-head{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid var(--soft)}
 .day-date{font-weight:900;letter-spacing:-.01em}
 .day-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
@@ -74,6 +85,10 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .event{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:14px;border-bottom:1px solid var(--soft)}
 .event:last-child{border-bottom:0}
 .event-time{font-size:16px;line-height:1.2;font-weight:900;letter-spacing:-.02em}
+.event-state{font-size:9px;font-weight:950;letter-spacing:.1em;color:var(--muted)}
+.event-score{margin-top:2px;font-size:18px;line-height:1.1;font-weight:950;letter-spacing:-.03em}
+.event-pk{margin-top:3px;font-size:9px;font-weight:800;color:var(--muted)}
+.event.final .event-team{color:var(--ink)}
 .event-side{margin-top:4px;font-size:9px;color:var(--muted);font-weight:800}
 .event-team{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--red)}
 .event-vs{margin-top:2px;font-size:16px;line-height:1.35;font-weight:850;letter-spacing:-.015em}
@@ -114,8 +129,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <header class="masthead">
 <p class="kicker">2026/27 · UNOFFICIAL</p>
 <h1>REDS<br>CALENDAR</h1>
-<p class="lede">トップ、レディース、U-21、ユース。浦和の次の60日を、ひとつの時間軸で見る。</p>
-<div class="statusline"><span id="updated">データ確認中</span><span>ユースはプリンスリーグのみ</span><span>時刻重複は1試合2時間の目安で判定</span></div>
+<p class="lede">トップ、レディース、U-21、ユース。直近の結果から次戦まで、浦和の「いま」をひとつの時間軸で見る。</p>
+<div class="statusline"><span id="updated">データ確認中</span><span>過去14日＋未来60日</span><span>ユースはプリンスリーグのみ</span><span>結果は公式情報の反映後に更新</span></div>
 </header>
 
 <nav class="quick-nav" aria-label="表示する予定">
@@ -147,9 +162,9 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <details class="source-panel">
 <summary>データ元・判定ルール</summary>
 <div class="sources">
-<div class="source-item">MEN / U-21：<a href="https://www.urawa-reds.co.jp/game/">浦和レッズ公式 試合日程</a></div>
-<div class="source-item">LADIES：<a href="https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html">三菱重工浦和レッズレディース公式 日程・結果</a></div>
-<div class="source-item">YOUTH：<a href="https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html">浦和レッズ育成公式 ユース試合日程</a>のうち、プリンスリーグ関東1部のみ</div>
+<div class="source-item">MEN / U-21：<a href="https://www.urawa-reds.co.jp/game/">浦和レッズ公式 試合日程・結果</a>。直近の公式試合結果記事が見つかる場合は詳細リンクとして使用。</div>
+<div class="source-item">LADIES：<a href="https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html">三菱重工浦和レッズレディース公式 日程・結果</a>。「公式記録」がある試合はそのリンクを使用。</div>
+<div class="source-item">YOUTH：<a href="https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html">浦和レッズ育成公式 ユース試合日程</a>のプリンスリーグ関東1部のみ。直近結果は<a href="https://www.urawa-reds.co.jp/reds_ikusei/news/">育成NEWS</a>でも補完。</div>
 <div class="source-item">同日開催：同じ日付に2試合以上。時間重複：開始時刻が判明している試合を各2時間として計算し、その時間帯が重なる場合。</div>
 </div>
 </details>
@@ -185,6 +200,9 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   const labels = () => ({...FALLBACK_LABELS,...(data?.meta?.labels || {})});
   const names = () => ({...FALLBACK_NAMES,...(data?.meta?.names || {})});
   const allEvents = () => TEAM_ORDER.flatMap(team => (data.teams[team] || []).map(event => ({...event,team})));
+  const resultText = event => event?.result ? `${event.result.mark || ''} ${event.result.scoreFor}–${event.result.scoreAgainst}`.trim() : '';
+  const penaltyText = event => event?.result && Number.isFinite(event.result.penaltyFor) && Number.isFinite(event.result.penaltyAgainst) ? `PK ${event.result.penaltyFor}–${event.result.penaltyAgainst}` : '';
+  const detailUrl = event => event?.detail?.url || event?.source || '';
 
   function overlapInfo(events) {
     const timed = events.filter(event => event.time).sort((a,b) => eventStart(a)-eventStart(b));
@@ -213,11 +231,18 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 
   function currentWindow() {
     const today = dateKeyJst(new Date());
+    const pastDays = data.pastWindowDays || 14;
+    const start = addDays(today, -pastDays);
     const end = addDays(today, (data.windowDays || 60) - 1);
-    return {today,end};
+    return {today,start,end,pastDays};
   }
 
-  function windowEvents() {
+  function timelineEvents() {
+    const {start,end} = currentWindow();
+    return allEvents().filter(event => event.date && event.date >= start && event.date <= end);
+  }
+
+  function futureEvents() {
     const {today,end} = currentWindow();
     return allEvents().filter(event => event.date && event.date >= today && event.date <= end);
   }
@@ -242,29 +267,49 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   function renderNextByTeam(base) {
     const {today} = currentWindow();
     const hasToday = base.some(event => event.date === today);
+    const history = allEvents()
+      .filter(event => event.date && event.date < today && event.resultConfirmed)
+      .sort((a,b) => ((b.date || '') + (b.time || '99:99')).localeCompare((a.date || '') + (a.time || '99:99')));
+
     const cards = TEAM_ORDER.map(team => {
       const teamEvents = base.filter(item => item.team === team);
       const todayEvents = teamEvents.filter(item => item.date === today);
       const shown = todayEvents.length ? todayEvents : teamEvents.slice(0,1);
       const mode = todayEvents.length ? 'TODAY' : 'NEXT';
+      const last = history.find(item => item.team === team);
+
+      const lastHtml = last ? `<a class="last-row" href="${esc(detailUrl(last))}" aria-label="${esc(labels()[team])} 前戦 ${formatDay(last.date)} ${resultText(last)} ${displayOpponent(last)} 公式詳細">
+        <div class="last-top"><span class="last-label">LAST · ${esc(formatDay(last.date))}</span><span class="last-score">${esc(resultText(last))}</span></div>
+        <div class="last-opponent">vs ${esc(displayOpponent(last))} ↗</div>
+      </a>` : '';
+
       if (!shown.length) {
-        return `<article class="next-card"><div class="next-label">NEXT · ${esc(labels()[team])}</div><div class="empty">直近60日に予定なし</div></article>`;
+        return `<article class="next-card"><div class="next-label">NEXT · ${esc(labels()[team])}</div><div class="empty">直近60日に予定なし</div>${lastHtml}</article>`;
       }
-      const matches = shown.map(event => `<div class="next-match">
-        <div class="next-time">${esc(event.time || '未定')}</div>
-        <div class="next-opponent">vs ${esc(displayOpponent(event))}</div>
-        <div class="next-venue">${esc(event.venue)}</div>
-      </div>`).join('');
+
+      const matches = shown.map(event => {
+        const primary = event.resultConfirmed
+          ? `<div class="next-result">${esc(resultText(event))}</div><div class="next-final-meta">FINAL${event.time ? ' · '+esc(event.time) : ''}${penaltyText(event) ? ' · '+esc(penaltyText(event)) : ''}</div>`
+          : `<div class="next-time">${esc(event.time || '未定')}</div>`;
+        return `<div class="next-match">
+          ${primary}
+          <div class="next-opponent">vs ${esc(displayOpponent(event))}</div>
+          <div class="next-venue">${esc(event.venue)}</div>
+        </div>`;
+      }).join('');
+
       return `<article class="next-card ${mode === 'TODAY' ? 'today' : ''}">
         <div class="next-label">${mode} · ${esc(labels()[team])}</div>
         <div class="next-date">${esc(formatDay(shown[0].date,true))}</div>
         <div class="next-team">${esc(names()[team])}</div>
         <div class="next-main">${matches}</div>
+        ${lastHtml}
       </article>`;
     }).join('');
+
     const title = hasToday ? '今日と、その次。' : '各カテゴリーの次戦';
     const kicker = hasToday ? 'TODAY / NEXT' : 'NEXT';
-    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">${kicker}</p><h2 id="next-title">${title}</h2></div><p>4カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
+    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">${kicker}</p><h2 id="next-title">${title}</h2></div><p>前戦もひと目で</p></div><div class="next-grid">${cards}</div></section>`;
   }
 
   function renderStats(base) {
@@ -279,31 +324,36 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function renderPulse(base, visible) {
-    const {today} = currentWindow();
+    const {today,pastDays} = currentWindow();
     const baseGroups = grouped(base);
     const visibleDates = new Set(visible.map(event => event.date));
+    const futureDays = data.windowDays || 60;
     let cells = '';
-    for (let i=0;i<(data.windowDays || 60);i++) {
+    for (let i=-pastDays;i<futureDays;i++) {
       const key = addDays(today,i);
       const list = baseGroups.get(key) || [];
       const pairs = overlapInfo(list);
       const [,m,d] = key.split('-').map(Number);
-      const prevKey = i ? addDays(today,i-1) : null;
+      const prevKey = i>-pastDays ? addDays(today,i-1) : null;
       const prevMonth = prevKey ? Number(prevKey.slice(5,7)) : null;
-      const monthText = i===0 || prevMonth!==m ? `${m}月` : '';
+      const monthText = i===-pastDays || prevMonth!==m ? `${m}月` : '';
       const isRelevant = activeFilter === 'all' ? list.length>0 : visibleDates.has(key);
       const dots = isRelevant ? list.slice(0,4).map(()=>'<span class="pulse-dot"></span>').join('') : '';
       const classes = ['pulse-day'];
+      if (key < today) classes.push('past');
       if (list.length>=2) classes.push('same-day');
       if (pairs.length) classes.push('has-overlap');
-      if (i===0) classes.push('today');
-      const label = `${m}月${d}日 ${list.length ? list.length+'試合' : '試合なし'}${pairs.length ? '、時間重複あり' : ''}`;
+      if (key===today) classes.push('today');
+      const finals = list.filter(event=>event.resultConfirmed).length;
+      const stateText = key < today ? (finals ? `、結果${finals}試合` : '') : '';
+      const label = `${m}月${d}日 ${list.length ? list.length+'試合' : '試合なし'}${stateText}${pairs.length ? '、時間重複あり' : ''}`;
       cells += `<button class="${classes.join(' ')}" type="button" data-date-jump="${key}" ${isRelevant?'':'disabled'} aria-label="${esc(label)}"><div class="pulse-month">${monthText}</div><div class="pulse-num">${d}</div><div class="pulse-dots">${dots}</div></button>`;
     }
-    return `<section class="section" aria-labelledby="pulse-title"><div class="section-head"><div><p class="kicker">60 DAYS</p><h2 id="pulse-title">浦和の密度</h2></div><p>横にスワイプ</p></div><div class="pulse-wrap"><div class="pulse">${cells}</div></div><div class="legend"><span><b>棒</b>＝試合数</span><span><b>赤線</b>＝同日開催あり</span><span><b>赤い棒</b>＝時間重複あり</span></div></section>`;
+    return `<section class="section" aria-labelledby="pulse-title"><div class="section-head"><div><p class="kicker">PAST ${pastDays} / NEXT ${futureDays}</p><h2 id="pulse-title">浦和の密度</h2></div><p>過去 ← NOW → 未来</p></div><div class="pulse-wrap"><div class="pulse">${cells}</div></div><div class="legend"><span><b>左側</b>＝最近の結果</span><span><b>黒丸</b>＝今日</span><span><b>赤線</b>＝同日開催</span><span><b>赤い棒</b>＝時間重複</span></div></section>`;
   }
 
   function renderTimeline(base, visible) {
+    const {today,pastDays} = currentWindow();
     const groups = grouped(visible);
     const baseGroups = grouped(base);
     const rows = [...groups.entries()].sort(([a],[b])=>a.localeCompare(b));
@@ -311,14 +361,30 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
       const allDay = baseGroups.get(date) || [];
       const pairs = overlapInfo(allDay);
       const collision = allDay.length>=2;
-      const badges = [collision ? `<span class="badge ${pairs.length?'red':''}">同日 ${allDay.length}</span>` : '', pairs.length ? `<span class="badge red">時間重複 ${esc([...new Set(pairs.map(formatOverlap))].join('・'))}</span>` : ''].join('');
-      const events = list.map(event => `<article class="event">
-        <div><div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div></div>
-        <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}</div><div class="event-comp">${esc(event.competition)}</div><a class="event-source" href="${esc(event.source)}">公式日程で確認</a></div>
-      </article>`).join('');
-      return `<section class="day ${collision?'collision':''}" id="day-${date}"><div class="day-head"><span class="day-date">${esc(formatDay(date,true))}</span><span class="day-badges">${badges}</span></div>${events}</section>`;
+      const isToday = date === today;
+      const badges = [
+        isToday ? '<span class="badge now">NOW</span>' : '',
+        collision ? `<span class="badge ${pairs.length?'red':''}">同日 ${allDay.length}</span>` : '',
+        pairs.length ? `<span class="badge red">時間重複 ${esc([...new Set(pairs.map(formatOverlap))].join('・'))}</span>` : ''
+      ].join('');
+
+      const events = list.map(event => {
+        const final = !!event.resultConfirmed;
+        const left = final
+          ? `<div class="event-state">FINAL</div><div class="event-score">${esc(resultText(event))}</div>${penaltyText(event)?`<div class="event-pk">${esc(penaltyText(event))}</div>`:''}`
+          : `<div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div>`;
+        const url = detailUrl(event);
+        const linkLabel = final ? (event.detail?.label || '公式日程') : '公式日程で確認';
+        return `<article class="event ${final?'final':''}">
+          <div>${left}</div>
+          <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}${final && event.time ? ' · '+esc(event.time) : ''}</div><div class="event-comp">${esc(event.competition)}</div>${url?`<a class="event-source" href="${esc(url)}">${esc(linkLabel)} ↗</a>`:''}</div>
+        </article>`;
+      }).join('');
+
+      return `<section class="day ${collision?'collision ':''}${isToday?'today-day':''}" id="day-${date}"><div class="day-head"><span class="day-date">${esc(formatDay(date,true))}</span><span class="day-badges">${badges}</span></div>${events}</section>`;
     }).join('');
-    return `<section class="section" aria-labelledby="timeline-title"><div class="section-head"><div><p class="kicker">TIMELINE</p><h2 id="timeline-title">次の60日</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の予定はありません。</div>'}</div></section>`;
+
+    return `<section class="section" aria-labelledby="timeline-title"><div class="section-head"><div><p class="kicker">NOW LINE</p><h2 id="timeline-title">過去${pastDays}日と次の${data.windowDays || 60}日</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の試合はありません。</div>'}</div></section>`;
   }
 
   function renderCalendarList() {
@@ -335,9 +401,10 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function render() {
-    const base = windowEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
-    const visible = filteredEvents(base);
-    app.innerHTML = `${renderNextByTeam(base)}<div class="hero-grid">${renderStats(base)}</div>${renderPulse(base,visible)}${renderTimeline(base,visible)}`;
+    const timelineBase = timelineEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
+    const futureBase = futureEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
+    const visible = filteredEvents(timelineBase);
+    app.innerHTML = `${renderNextByTeam(futureBase)}<div class="hero-grid">${renderStats(futureBase)}</div>${renderPulse(timelineBase,visible)}${renderTimeline(timelineBase,visible)}`;
     renderCalendarList();
     document.querySelectorAll('[data-date-jump]').forEach(button => button.addEventListener('click',()=>{
       document.getElementById(`day-${button.dataset.dateJump}`)?.scrollIntoView({behavior:'smooth',block:'start'});
