@@ -29,27 +29,27 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-03T23:46:33.430Z",
-    "canonicalProjects": 74,
-    "reviewableCanonicalProjects": 71,
+    "generatedAt": "2026-10-04T07:40:20.751Z",
+    "canonicalProjects": 75,
+    "reviewableCanonicalProjects": 72,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
     "publicRepositories": 76,
     "visiblePublicRepositories": 61,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 55,
+    "verifiedDocumentation": 56,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
     "missingFirstBuild": 0,
     "missingCurrentAnswer": 0,
     "missingStartedAt": 0,
-    "withoutRelations": 24,
+    "withoutRelations": 25,
     "artifactReviewNeeded": 0,
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
-    "canonicalWithoutPublicRepo": 10,
+    "canonicalWithoutPublicRepo": 11,
     "sourceWithoutCanonical": 0
   },
   "records": [
@@ -964,6 +964,19 @@
       "startedAtPrecision": "day"
     },
     {
+      "id": "xexporter",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 0,
+      "artifactStatus": "extension-no-public-url-expected",
+      "startedAtBasis": "repository-created-at",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "zeldasbsp",
       "score": 10,
       "maxScore": 10,
@@ -993,16 +1006,17 @@
     "quickliks": "quicklinks"
   },
   "canonicalWithoutPublicRepo": [
+    "context-lens",
     "karaoke-db",
     "keygrid",
     "lineworks-logger",
     "lineworks-scroll-copy",
     "payment-case-manager",
     "private-memo",
-    "x-auto-screenshot-scroll",
-    "context-lens",
+    "redscalender",
     "video-navigator",
-    "redscalender"
+    "x-auto-screenshot-scroll",
+    "xexporter"
   ],
   "sourceWithoutCanonical": [],
   "vocabulary": {
@@ -1021,7 +1035,7 @@
       },
       {
         "value": "chrome-extension",
-        "count": 10
+        "count": 11
       },
       {
         "value": "content-page",
@@ -1090,6 +1104,10 @@
         "count": 3
       },
       {
+        "value": "書き出す",
+        "count": 3
+      },
+      {
         "value": "整える",
         "count": 3
       },
@@ -1103,6 +1121,10 @@
       },
       {
         "value": "変換する",
+        "count": 3
+      },
+      {
+        "value": "保存する",
         "count": 3
       },
       {
@@ -1146,10 +1168,6 @@
         "count": 2
       },
       {
-        "value": "書き出す",
-        "count": 2
-      },
-      {
         "value": "組み立てる",
         "count": 2
       },
@@ -1159,10 +1177,6 @@
       },
       {
         "value": "復習する",
-        "count": 2
-      },
-      {
-        "value": "保存する",
         "count": 2
       },
       {
@@ -1239,6 +1253,10 @@
       },
       {
         "value": "守る",
+        "count": 1
+      },
+      {
+        "value": "収集する",
         "count": 1
       },
       {
