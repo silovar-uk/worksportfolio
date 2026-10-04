@@ -20,6 +20,7 @@ import json
 from pathlib import Path
 import re
 import urllib.request
+import urllib.parse
 import unicodedata
 
 from lxml import html as dom
@@ -27,6 +28,8 @@ from lxml import html as dom
 ROOT = Path(__file__).resolve().parent
 JST = dt.timezone(dt.timedelta(hours=9))
 MATCH_DURATION = dt.timedelta(hours=2)
+PAST_WINDOW_DAYS = 14
+YOUTH_NEWS_URL = "https://www.urawa-reds.co.jp/reds_ikusei/news/"
 
 SOURCES = {
     "men": "https://www.urawa-reds.co.jp/game/",
@@ -68,11 +71,72 @@ def fetch(url):
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "RedsCalendar/2.0 (+https://silovar-uk.github.io/worksportfolio/redscalender/)"
+            "User-Agent": "RedsCalendar/3.0 (+https://silovar-uk.github.io/worksportfolio/redscalender/)"
         },
     )
     with urllib.request.urlopen(req, timeout=40) as response:
         return dom.fromstring(response.read())
+
+
+def fetch_optional(url):
+    try:
+        return fetch(url)
+    except Exception as exc:
+        print(f"optional fetch failed: {url}: {exc}")
+        return None
+
+
+def absolute_url(base, href):
+    return urllib.parse.urljoin(base, href) if href else None
+
+
+def result_payload(mark, score_for, score_against, penalty_for=None, penalty_against=None):
+    result = {
+        "mark": norm(mark),
+        "scoreFor": int(score_for),
+        "scoreAgainst": int(score_against),
+    }
+    if penalty_for is not None and penalty_against is not None:
+        result["penaltyFor"] = int(penalty_for)
+        result["penaltyAgainst"] = int(penalty_against)
+    return result
+
+
+def extract_result(value):
+    text = norm(value)
+    match = re.search(r"([○△●■])\s*(\d+)\s*[-−ー]\s*(\d+)", text)
+    if not match:
+        match = re.search(r"([○△●■])\s*(\d+)\s*\([^)]*\)\s*(\d+)", text)
+    if not match:
+        return None
+    penalty = re.search(r"PK\s*(\d+)\s*[-−ー]\s*(\d+)", text, re.I)
+    return result_payload(
+        match.group(1),
+        match.group(2),
+        match.group(3),
+        penalty.group(1) if penalty else None,
+        penalty.group(2) if penalty else None,
+    )
+
+
+def attach_result(row, result, source_url=None, detail_url=None, detail_label=None, detail_source=None, checked_at=None):
+    if not result:
+        return row
+    row["result"] = result
+    row["resultConfirmed"] = True
+    row["status"] = "final"
+    row["resultSource"] = {
+        "url": source_url or row["source"],
+        "checkedAt": checked_at,
+    }
+    url = detail_url or source_url or row["source"]
+    if url:
+        row["detail"] = {
+            "url": url,
+            "label": detail_label or ("公式詳細" if detail_url else "公式日程"),
+            "source": detail_source or "urawa",
+        }
+    return row
 
 
 def infer_season_year(month):
@@ -125,19 +189,33 @@ def parse_ladies(doc):
         t = re.search(r"\b(\d{1,2}:\d{2})\b", datepart)
         side = "HOME" if "home" in heading.get("class", "").split() else "AWAY"
         ambiguous = bool(re.search(r"\bor\b", datepart, re.I))
-        rows.append(
-            make(
-                "ladies",
-                comp,
-                opponent,
-                side,
-                d.groups() if d else None,
-                t.group(1) if t else None,
-                venue,
-                raw,
-                ambiguous,
-            )
+        row = make(
+            "ladies",
+            comp,
+            opponent,
+            side,
+            d.groups() if d else None,
+            t.group(1) if t else None,
+            venue,
+            raw,
+            ambiguous,
         )
+        result = extract_result(txt(block))
+        detail_url = None
+        for anchor in block.xpath(".//a[@href]"):
+            if "公式記録" in txt(anchor):
+                detail_url = absolute_url(SOURCES["ladies"], anchor.get("href"))
+                break
+        if result:
+            attach_result(
+                row,
+                result,
+                source_url=SOURCES["ladies"],
+                detail_url=detail_url,
+                detail_label="公式詳細" if detail_url else "公式日程",
+                detail_source="urawa-ladies",
+            )
+        rows.append(row)
     return rows
 
 
@@ -177,7 +255,7 @@ def parse_game_block(team, block):
         else "NEUTRAL"
     )
     ambiguous = bool(re.search(r"\bor\b", datepart, re.I)) or datepart == "未定"
-    return make(
+    row = make(
         team,
         comp,
         opponent,
@@ -188,6 +266,24 @@ def parse_game_block(team, block):
         datepart,
         ambiguous,
     )
+    result = extract_result(full)
+    if result:
+        detail_url = None
+        for anchor in block.xpath(".//a[@href]"):
+            href = anchor.get("href")
+            anchor_text = txt(anchor)
+            if href and ("試合結果" in anchor_text or "MATCH" in anchor_text.upper() or "/topteamtopics/" in href):
+                detail_url = absolute_url(SOURCES[team], href)
+                break
+        attach_result(
+            row,
+            result,
+            source_url=SOURCES[team],
+            detail_url=detail_url,
+            detail_label="公式詳細" if detail_url else "公式日程",
+            detail_source="urawa",
+        )
+    return row
 
 
 def parse_game_page(team, doc):
@@ -259,22 +355,72 @@ def parse_youth(doc):
             f"{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)} "
             f"{date_match.group(4)}"
         )
-        rows.append(
-            make(
-                "youth",
-                f"{PRINCE_NAME} {round_label}",
-                opponent,
-                "UNSPECIFIED",
-                date_match.groups()[:3],
-                date_match.group(4),
-                venue,
-                raw_date,
-                False,
-            )
+        row = make(
+            "youth",
+            f"{PRINCE_NAME} {round_label}",
+            opponent,
+            "UNSPECIFIED",
+            date_match.groups()[:3],
+            date_match.group(4),
+            venue,
+            raw_date,
+            False,
         )
+        row["round"] = int(round_match.group(1))
+        result = extract_result(chunk)
+        if result:
+            attach_result(
+                row,
+                result,
+                source_url=SOURCES["youth"],
+                detail_label="公式日程",
+                detail_source="urawa-youth",
+            )
+        rows.append(row)
     if not rows:
         raise ValueError(f"youth: parsed 0 fixtures; section sample={section[:1400]!r}")
     return rows
+
+def resolve_youth_news(rows, now):
+    index = fetch_optional(YOUTH_NEWS_URL)
+    if index is None:
+        return
+
+    round_links = {}
+    for anchor in index.xpath("//a[@href]"):
+        label = txt(anchor)
+        match = re.search(r"プリンスリーグ\s*第(\d+)節", label)
+        if not match:
+            continue
+        round_links[int(match.group(1))] = absolute_url(YOUTH_NEWS_URL, anchor.get("href"))
+
+    cutoff = now.date() - dt.timedelta(days=PAST_WINDOW_DAYS + 7)
+    for row in rows:
+        if not row.get("date") or not row.get("round"):
+            continue
+        row_date = dt.date.fromisoformat(row["date"])
+        if row_date < cutoff or row_date > now.date():
+            continue
+        url = round_links.get(row["round"])
+        if not url:
+            continue
+        article = fetch_optional(url)
+        if article is None:
+            continue
+        result = extract_result(txt(article))
+        if result:
+            attach_result(
+                row,
+                result,
+                source_url=url,
+                detail_url=url,
+                detail_label="公式詳細",
+                detail_source="urawa-youth-news",
+                checked_at=now.isoformat(timespec="seconds"),
+            )
+        elif row.get("resultConfirmed"):
+            row["detail"] = {"url": url, "label": "公式詳細", "source": "urawa-youth-news"}
+
 
 def parse(team, doc):
     if team == "ladies":
@@ -384,13 +530,45 @@ def ics(calendar_name, rows, stamp):
     return "\r\n".join(fold(line) for line in lines + ["END:VCALENDAR"]) + "\r\n"
 
 
+def merge_previous_results(all_rows, old):
+    previous_rows = {}
+    for rows in old.get("teams", {}).values():
+        for row in rows:
+            if row.get("uid"):
+                previous_rows[row["uid"]] = row
+
+    for rows in all_rows.values():
+        for row in rows:
+            previous = previous_rows.get(row["uid"])
+            if not previous:
+                continue
+            if not row.get("resultConfirmed") and previous.get("resultConfirmed"):
+                for key in ("result", "resultConfirmed", "resultSource", "detail", "status"):
+                    if key in previous:
+                        row[key] = previous[key]
+            elif row.get("resultConfirmed") and not row.get("detail") and previous.get("detail"):
+                row["detail"] = previous["detail"]
+
+
+def apply_statuses(all_rows, now):
+    today = now.date().isoformat()
+    for rows in all_rows.values():
+        for row in rows:
+            if row.get("resultConfirmed"):
+                row["status"] = "final"
+            elif row.get("date") == today:
+                row["status"] = "today"
+            else:
+                row["status"] = "scheduled"
+
+
 def apply_sequences(all_rows, old):
     previous_rows = {}
     for rows in old.get("teams", {}).values():
         for row in rows:
             previous_rows[row.get("uid")] = row
 
-    tracked = ("date", "time", "venue", "opponent", "side", "competition")
+    tracked = ("date", "time", "venue", "opponent", "side", "competition", "result", "detail")
     for rows in all_rows.values():
         for row in rows:
             previous = previous_rows.get(row["uid"])
@@ -413,12 +591,25 @@ def main():
 
     old_path = ROOT / "schedule.json"
     old = json.loads(old_path.read_text()) if old_path.exists() else {"teams": {}}
+
+    # Youth schedule results can lag behind the same-day official NEWS article.
+    # This enrichment is best-effort and must never break the core schedule build.
+    resolve_youth_news(all_rows["youth"], now)
+    merge_previous_results(all_rows, old)
+    apply_statuses(all_rows, now)
     apply_sequences(all_rows, old)
+
+    checked_at = now.isoformat(timespec="seconds")
+    for rows in all_rows.values():
+        for row in rows:
+            if row.get("resultConfirmed") and row.get("resultSource") and not row["resultSource"].get("checkedAt"):
+                row["resultSource"]["checkedAt"] = checked_at
 
     data = {
         "updated": now.isoformat(timespec="seconds"),
         "season": "2026/27",
         "windowDays": 60,
+        "pastWindowDays": PAST_WINDOW_DAYS,
         "matchDurationMinutes": int(MATCH_DURATION.total_seconds() // 60),
         "teams": all_rows,
         "meta": {
@@ -446,6 +637,7 @@ def main():
         team: {
             "dated": sum(bool(row["date"]) for row in rows),
             "pending": sum(not row["date"] for row in rows),
+            "final": sum(bool(row.get("resultConfirmed")) for row in rows),
         }
         for team, rows in all_rows.items()
     }
