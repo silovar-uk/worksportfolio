@@ -29,7 +29,7 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-04T07:41:13.172Z",
+    "generatedAt": "2026-10-04T07:41:54.745Z",
     "canonicalProjects": 75,
     "reviewableCanonicalProjects": 72,
     "excludedHiddenCanonicalProjects": 3,
@@ -1253,10 +1253,6 @@
       },
       {
         "value": "守る",
-        "count": 1
-      },
-      {
-        "value": "収集する",
         "count": 1
       },
       {
