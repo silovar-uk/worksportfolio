@@ -30,6 +30,7 @@ JST = dt.timezone(dt.timedelta(hours=9))
 MATCH_DURATION = dt.timedelta(hours=2)
 PAST_WINDOW_DAYS = 14
 YOUTH_NEWS_URL = "https://www.urawa-reds.co.jp/reds_ikusei/news/"
+TOPTEAM_NEWS_URL = "https://www.urawa-reds.co.jp/topteamtopics/"
 
 SOURCES = {
     "men": "https://www.urawa-reds.co.jp/game/",
@@ -381,6 +382,45 @@ def parse_youth(doc):
         raise ValueError(f"youth: parsed 0 fixtures; section sample={section[:1400]!r}")
     return rows
 
+def resolve_topteam_news(rows_by_team, now):
+    index = fetch_optional(TOPTEAM_NEWS_URL)
+    if index is None:
+        return
+
+    candidates = []
+    for anchor in index.xpath("//a[@href]"):
+        label = txt(anchor)
+        href = anchor.get("href")
+        if "試合結果" not in label or not href or "/topteamtopics/" not in href:
+            continue
+        candidates.append((label, absolute_url(TOPTEAM_NEWS_URL, href)))
+
+    cutoff = now.date() - dt.timedelta(days=PAST_WINDOW_DAYS + 7)
+    for team in ("men", "u21"):
+        for row in rows_by_team[team]:
+            if not row.get("date") or not row.get("resultConfirmed"):
+                continue
+            row_date = dt.date.fromisoformat(row["date"])
+            if row_date < cutoff or row_date > now.date():
+                continue
+            opponent = re.sub(r"^U-21\s+", "", row["opponent"]).strip()
+            round_match = re.search(r"第(\d+)節", row["competition"])
+            round_token = f"第{round_match.group(1)}節" if round_match else None
+            matches = [
+                (label, url)
+                for label, url in candidates
+                if opponent in label and (not round_token or round_token in label)
+            ]
+            if not matches:
+                matches = [(label, url) for label, url in candidates if opponent in label]
+            if matches:
+                row["detail"] = {
+                    "url": matches[0][1],
+                    "label": "公式詳細",
+                    "source": "urawa-topteam-news",
+                }
+
+
 def resolve_youth_news(rows, now):
     index = fetch_optional(YOUTH_NEWS_URL)
     if index is None:
@@ -592,8 +632,9 @@ def main():
     old_path = ROOT / "schedule.json"
     old = json.loads(old_path.read_text()) if old_path.exists() else {"teams": {}}
 
+    # Detail/result enrichment is best-effort and must never break the core schedule build.
+    resolve_topteam_news(all_rows, now)
     # Youth schedule results can lag behind the same-day official NEWS article.
-    # This enrichment is best-effort and must never break the core schedule build.
     resolve_youth_news(all_rows["youth"], now)
     merge_previous_results(all_rows, old)
     apply_statuses(all_rows, now)
