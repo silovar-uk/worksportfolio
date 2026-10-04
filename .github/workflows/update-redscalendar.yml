@@ -52,7 +52,11 @@ jobs:
           for name in ['men.ics','ladies.ics','u21.ics','youth.ics','all.ics','index.html']:
               assert (root / name).exists(), name
           print({team: len(rows) for team, rows in data['teams'].items()})
+          html = (root / 'index.html').read_text()
+          script = html.split('<script>', 1)[1].rsplit('</script>', 1)[0]
+          Path('/tmp/redscalender.js').write_text(script)
           PY
+          node --check /tmp/redscalender.js
           git diff --check -- redscalender/build.py redscalender/template.html redscalender/index.html redscalender/schedule.json .github/workflows/update-redscalendar.yml
       - name: Commit changed schedule files
         run: |
