@@ -4349,13 +4349,12 @@
     "id": "xexporter",
     "title": "X Local Post Exporter",
     "subtitle": "Xの表示済み投稿を端末内へ保存・書き出しするChrome拡張",
-    "summary": "Xの画面に読み込まれた投稿だけを端末内へ記録し、CSV / TSV / JSONへ書き出すChrome拡張。表示数も取得でき、X APIや外部サーバーを使わない。",
-    "friction": "Xの投稿を保存・分析用に残す際、本文や反応数を手作業で転記する手間が大きかった。",
+    "summary": "Xで表示した投稿を端末内へ記録し、CSV / TSV / JSONへ書き出すChrome拡張。",
+    "friction": "Xの投稿保存を手作業で行う手間が大きかった。",
     "firstBuild": "画面上の投稿をContent Scriptで解析し、IndexedDBへ保存してCSV / TSV / JSONへ出力する形から始めた。",
     "currentAnswer": "Side Panelで収集を開始・停止し、取得件数と表示数取得率を確認して書き出せる。データは端末内だけに保存する。",
     "type": "chrome-extension",
     "verbs": [
-      "収集する",
       "書き出す"
     ],
     "status": "active",
@@ -4371,18 +4370,14 @@
     "githubId": "1404072760",
     "liveUrl": "",
     "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Manifest V3"
+      "Chrome Extension"
     ],
     "documentationState": "verified",
     "relatedProjects": [],
     "updates": [],
     "aside": "APIで取りに行かず、いま画面に見えているものだけを端末内へ残す。",
     "searchAliases": [
-      "xexporter",
-      "X投稿保存",
-      "X投稿収集"
+      "xexporter"
     ],
     "portfolioFamilies": [],
     "makingPrinciples": [],
