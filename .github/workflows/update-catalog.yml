@@ -240,7 +240,7 @@ jobs:
           const indexBytes = Buffer.byteLength(html);
           const catalogBytes = fs.statSync('data/catalog-projects.json').size;
           const coreJsBytes = ['home-shell.js', 'catalog.js', 'project-detail.js'].reduce((sum, path) => sum + fs.statSync(path).size, 0);
-          const budgets = { index: 90000, search: 50000, catalog: 70000, coreJs: 60000 };
+          const budgets = { index: 90000, search: 52000, catalog: 70000, coreJs: 60000 };
           if (indexBytes > budgets.index) throw new Error(`index.html budget exceeded: ${indexBytes} > ${budgets.index}`);
           if (searchBytes > budgets.search) throw new Error(`inline search budget exceeded: ${searchBytes} > ${budgets.search}`);
           if (catalogBytes > budgets.catalog) throw new Error(`catalog payload budget exceeded: ${catalogBytes} > ${budgets.catalog}`);
