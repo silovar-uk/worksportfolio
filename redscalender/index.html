@@ -33,10 +33,13 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .hero-grid{display:grid;gap:10px;margin-top:20px}
 .next-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
 .next-card,.stat-card,.calendar-panel,.source-panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
-.next-card{min-width:0;padding:13px 12px 12px;border-top:3px solid var(--red)}
-.next-label{font-size:10px;font-weight:900;letter-spacing:.11em;color:var(--red)}
+.next-card{min-width:0;padding:13px 12px 12px;border-top:3px solid var(--ink)}
+.next-card.today{border-top-color:var(--red)}
+.next-label{font-size:10px;font-weight:900;letter-spacing:.11em;color:var(--muted)}
+.next-card.today .next-label{color:var(--red)}
 .next-date{margin-top:5px;font-size:11px;font-weight:800}
 .next-main{margin-top:7px}
+.next-match+.next-match{margin-top:10px;padding-top:10px;border-top:1px solid var(--soft)}
 .next-time{font-size:22px;line-height:1;font-weight:900;letter-spacing:-.04em}
 .next-team{margin-top:7px;font-size:9px;font-weight:850;letter-spacing:.1em;color:var(--muted)}
 .next-opponent{margin-top:2px;font-size:14px;line-height:1.32;font-weight:850;letter-spacing:-.015em;overflow-wrap:anywhere}
@@ -178,14 +181,6 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   const addDays = (key, days) => dateKeyJst(new Date(jstDate(key).getTime() + days * 86400000));
   const eventEnd = event => event.time ? new Date(`${event.date}T${event.time}:00+09:00`).getTime() + (data.matchDurationMinutes || 120) * 60000 : null;
   const eventStart = event => event.time ? new Date(`${event.date}T${event.time}:00+09:00`).getTime() : null;
-  const isStillUpcoming = (event, now) => {
-    if (!event.date) return false;
-    const today = dateKeyJst(now);
-    if (event.date > today) return true;
-    if (event.date < today) return false;
-    if (!event.time) return true;
-    return eventEnd(event) > now.getTime();
-  };
   const displayOpponent = event => event.team === 'u21' ? event.opponent.replace(/^U-21\s+/,'') : event.opponent;
   const labels = () => ({...FALLBACK_LABELS,...(data?.meta?.labels || {})});
   const names = () => ({...FALLBACK_NAMES,...(data?.meta?.names || {})});
@@ -217,15 +212,14 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function currentWindow() {
-    const now = new Date();
-    const today = dateKeyJst(now);
+    const today = dateKeyJst(new Date());
     const end = addDays(today, (data.windowDays || 60) - 1);
-    return {now,today,end};
+    return {today,end};
   }
 
   function windowEvents() {
-    const {now,today,end} = currentWindow();
-    return allEvents().filter(event => event.date && event.date >= today && event.date <= end && isStillUpcoming(event, now));
+    const {today,end} = currentWindow();
+    return allEvents().filter(event => event.date && event.date >= today && event.date <= end);
   }
 
   function grouped(events) {
@@ -246,23 +240,31 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
   }
 
   function renderNextByTeam(base) {
+    const {today} = currentWindow();
+    const hasToday = base.some(event => event.date === today);
     const cards = TEAM_ORDER.map(team => {
-      const event = base.find(item => item.team === team);
-      if (!event) {
+      const teamEvents = base.filter(item => item.team === team);
+      const todayEvents = teamEvents.filter(item => item.date === today);
+      const shown = todayEvents.length ? todayEvents : teamEvents.slice(0,1);
+      const mode = todayEvents.length ? 'TODAY' : 'NEXT';
+      if (!shown.length) {
         return `<article class="next-card"><div class="next-label">NEXT · ${esc(labels()[team])}</div><div class="empty">直近60日に予定なし</div></article>`;
       }
-      return `<article class="next-card">
-        <div class="next-label">NEXT · ${esc(labels()[team])}</div>
-        <div class="next-date">${esc(formatDay(event.date,true))}</div>
-        <div class="next-main">
-          <div class="next-time">${esc(event.time || '未定')}</div>
-          <div class="next-team">${esc(names()[team])}</div>
-          <div class="next-opponent">vs ${esc(displayOpponent(event))}</div>
-          <div class="next-venue">${esc(event.venue)}</div>
-        </div>
+      const matches = shown.map(event => `<div class="next-match">
+        <div class="next-time">${esc(event.time || '未定')}</div>
+        <div class="next-opponent">vs ${esc(displayOpponent(event))}</div>
+        <div class="next-venue">${esc(event.venue)}</div>
+      </div>`).join('');
+      return `<article class="next-card ${mode === 'TODAY' ? 'today' : ''}">
+        <div class="next-label">${mode} · ${esc(labels()[team])}</div>
+        <div class="next-date">${esc(formatDay(shown[0].date,true))}</div>
+        <div class="next-team">${esc(names()[team])}</div>
+        <div class="next-main">${matches}</div>
       </article>`;
     }).join('');
-    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">NEXT</p><h2 id="next-title">各カテゴリーの次戦</h2></div><p>4カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
+    const title = hasToday ? '今日と、その次。' : '各カテゴリーの次戦';
+    const kicker = hasToday ? 'TODAY / NEXT' : 'NEXT';
+    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">${kicker}</p><h2 id="next-title">${title}</h2></div><p>4カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
   }
 
   function renderStats(base) {
