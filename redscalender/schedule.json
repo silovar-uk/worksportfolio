@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T17:42:06+09:00",
+  "updated": "2026-10-08T02:26:19+09:00",
   "season": "2026/27",
   "windowDays": 60,
   "pastWindowDays": 14,
@@ -26,7 +26,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -55,7 +55,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -84,7 +84,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -113,7 +113,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -142,7 +142,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -171,7 +171,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -200,7 +200,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -229,7 +229,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -258,7 +258,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -287,7 +287,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/245692.html",
@@ -316,7 +316,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/245822.html",
@@ -332,12 +332,27 @@
         "opponent": "RB大宮アルディージャ",
         "side": "NEUTRAL",
         "date": "2026-10-07",
-        "time": "18:00",
+        "time": "18:03",
         "venue": "NACK5スタジアム大宮",
         "raw_date": "10/7",
         "source": "https://www.urawa-reds.co.jp/game/",
-        "status": "today",
-        "sequence": 0
+        "result": {
+          "mark": "○",
+          "scoreFor": 3,
+          "scoreAgainst": 2
+        },
+        "resultConfirmed": true,
+        "status": "final",
+        "resultSource": {
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "checkedAt": "2026-10-08T02:26:19+09:00"
+        },
+        "detail": {
+          "url": "https://www.urawa-reds.co.jp/topteamtopics/9029490.html",
+          "label": "公式詳細",
+          "source": "urawa-topteam-news"
+        },
+        "sequence": 1
       },
       {
         "uid": "0ca1e75451ee81e4a45e8da6@redscalender",
@@ -767,7 +782,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k_7_jkULahpL/file",
@@ -796,7 +811,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k2PuUFMFfuwc/file",
@@ -825,7 +840,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Ze3Q7gckiGyw/file",
@@ -854,7 +869,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/0R3HuXWG3JUT/file",
@@ -883,7 +898,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Cem9c66l7C3g/file",
@@ -912,7 +927,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/CARO5Vf5OjIf/file",
@@ -943,7 +958,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/2Uxplr8yTpBL/file",
@@ -972,7 +987,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/nrIGLdzYaEMN/file",
@@ -1353,7 +1368,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -1382,7 +1397,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -1411,7 +1426,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/245702.html",
@@ -1440,7 +1455,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/9029446.html",
@@ -1556,7 +1571,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1586,7 +1601,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1616,7 +1631,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1646,7 +1661,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1676,7 +1691,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1706,7 +1721,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1736,7 +1751,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1766,7 +1781,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1796,7 +1811,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1826,7 +1841,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1856,7 +1871,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1886,7 +1901,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14932.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14932.html",
@@ -1916,7 +1931,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
@@ -1946,7 +1961,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
-          "checkedAt": "2026-10-07T17:42:06+09:00"
+          "checkedAt": "2026-10-08T02:26:19+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
