@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08T15:08:13+09:00",
+  "updated": "2026-10-08T22:33:30+09:00",
   "season": "2026/27",
   "windowDays": 60,
   "pastWindowDays": 14,
@@ -26,7 +26,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -55,7 +55,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -84,7 +84,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -113,7 +113,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -142,7 +142,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -171,7 +171,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -200,7 +200,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -229,7 +229,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -258,7 +258,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -287,14 +287,14 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
-          "url": "https://www.urawa-reds.co.jp/topteamtopics/245692.html",
-          "label": "公式詳細",
-          "source": "urawa-topteam-news"
+          "url": "https://www.urawa-reds.co.jp/game/",
+          "label": "公式日程",
+          "source": "urawa"
         },
-        "sequence": 2
+        "sequence": 3
       },
       {
         "uid": "256b4fe785fc01e8d68ce3ba@redscalender",
@@ -316,7 +316,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/245822.html",
@@ -345,7 +345,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/9029490.html",
@@ -782,7 +782,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k_7_jkULahpL/file",
@@ -811,7 +811,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/k2PuUFMFfuwc/file",
@@ -840,7 +840,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Ze3Q7gckiGyw/file",
@@ -869,7 +869,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/0R3HuXWG3JUT/file",
@@ -898,7 +898,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/Cem9c66l7C3g/file",
@@ -927,7 +927,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/CARO5Vf5OjIf/file",
@@ -958,7 +958,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/2Uxplr8yTpBL/file",
@@ -987,7 +987,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://ckbox.cloud/PWz942yrkT06-PY-LG8s/assets/nrIGLdzYaEMN/file",
@@ -1118,6 +1118,76 @@
         "time": "14:00",
         "venue": "長野Uスタジアム",
         "raw_date": "2026/11/23 (月・祝) 14:00・長野Uスタジアム",
+        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "e24b42b2d22df149a5df4106@redscalender",
+        "team": "ladies",
+        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 2回戦",
+        "opponent": "未定",
+        "side": "AWAY",
+        "date": "2026-11-28",
+        "time": "11:00",
+        "venue": "藤枝総合運動公園サッカー場",
+        "raw_date": "2026/11/28 (土) 11:00・藤枝総合運動公園サッカー場",
+        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "e7580a8cc16d6b3362651e3f@redscalender",
+        "team": "ladies",
+        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 3回戦",
+        "opponent": "未定",
+        "side": "AWAY",
+        "date": "2026-12-06",
+        "time": "13:00",
+        "venue": "ラグビー場",
+        "raw_date": "2026/12/06 (日) 13:00・アースケア敷島サッカー・ラグビー場",
+        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "48fd67b29cd3320f98128220@redscalender",
+        "team": "ladies",
+        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 準々決勝",
+        "opponent": "未定",
+        "side": "AWAY",
+        "date": "2026-12-13",
+        "time": "11:00",
+        "venue": "ユアテックスタジアム仙台",
+        "raw_date": "2026/12/13 (日) 11:00・ユアテックスタジアム仙台",
+        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "0018778067ca14ab89858881@redscalender",
+        "team": "ladies",
+        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 準決勝",
+        "opponent": "未定",
+        "side": "AWAY",
+        "date": "2026-12-20",
+        "time": null,
+        "venue": "サンガスタジアム by KYOCERA",
+        "raw_date": "2026/12/20 (日) 未定・サンガスタジアム by KYOCERA",
+        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "da95f2529bd6f35dbcb3ddbe@redscalender",
+        "team": "ladies",
+        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 決勝",
+        "opponent": "未定",
+        "side": "AWAY",
+        "date": "2027-01-01",
+        "time": null,
+        "venue": "MUFGスタジアム",
+        "raw_date": "2027/01/01 (金・祝) 未定・MUFGスタジアム",
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
         "status": "scheduled",
         "sequence": 0
@@ -1345,34 +1415,6 @@
         "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
         "status": "scheduled",
         "sequence": 0
-      },
-      {
-        "uid": "e24b42b2d22df149a5df4106@redscalender",
-        "team": "ladies",
-        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 2回戦",
-        "opponent": "未定",
-        "side": "AWAY",
-        "date": "2026-11-28",
-        "time": "11:00",
-        "venue": "藤枝総合運動公園サッカー場",
-        "raw_date": "2026/11/28 (土) 11:00・藤枝総合運動公園サッカー場",
-        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "status": "scheduled",
-        "sequence": 0
-      },
-      {
-        "uid": "e7580a8cc16d6b3362651e3f@redscalender",
-        "team": "ladies",
-        "competition": "皇后杯 JFA 第48回全日本女子サッカー選手権大会 3回戦",
-        "opponent": "未定",
-        "side": "AWAY",
-        "date": "2026-12-06",
-        "time": "13:00",
-        "venue": "ラグビー場",
-        "raw_date": "2026/12/06 (日) 13:00・アースケア敷島サッカー・ラグビー場",
-        "source": "https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html",
-        "status": "scheduled",
-        "sequence": 0
       }
     ],
     "u21": [
@@ -1396,7 +1438,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -1425,7 +1467,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/game/",
@@ -1454,7 +1496,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/245702.html",
@@ -1483,7 +1525,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/game/",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/topteamtopics/9029446.html",
@@ -1599,7 +1641,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1629,7 +1671,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1659,7 +1701,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1689,7 +1731,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1719,7 +1761,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1749,7 +1791,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1779,7 +1821,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1809,7 +1851,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1839,7 +1881,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1869,7 +1911,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1899,7 +1941,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1929,7 +1971,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html",
@@ -1959,7 +2001,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/14974.html",
@@ -1989,7 +2031,7 @@
         "status": "final",
         "resultSource": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
-          "checkedAt": "2026-10-08T15:08:13+09:00"
+          "checkedAt": "2026-10-08T22:33:30+09:00"
         },
         "detail": {
           "url": "https://www.urawa-reds.co.jp/reds_ikusei/news/9029444.html",
