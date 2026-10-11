@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T00:50:24.805Z",
+  "generatedAt": "2026-10-11T00:14:09.490Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -320,7 +320,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-06-22",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-10",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -402,7 +402,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-14",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-10",
       "hasLiveUrl": false,
       "artifactStatus": "extension-no-public-url-expected",
       "artifactReviewNeeded": false,
@@ -471,7 +471,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-10",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -603,7 +603,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-05-31",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-10",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -806,7 +806,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-10",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
