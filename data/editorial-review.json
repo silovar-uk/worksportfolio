@@ -1,15 +1,32 @@
 {
-  "generatedAt": "2026-10-11T00:14:09.490Z",
+  "generatedAt": "2026-10-12T00:31:55.738Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
-    "total": 76,
+    "total": 77,
+    "discovered": 1,
     "published": 61,
     "hidden": 15,
-    "withWarnings": 0,
-    "artifactReviewNeeded": 0
+    "withWarnings": 1,
+    "artifactReviewNeeded": 1
   },
   "items": [
+    {
+      "id": "roughmaker",
+      "projectId": "roughmaker",
+      "state": "discovered",
+      "reasons": [
+        "no-curation",
+        "generic-summary"
+      ],
+      "families": [],
+      "createdAt": "2026-10-11",
+      "updatedAt": "2026-10-11",
+      "hasLiveUrl": false,
+      "artifactStatus": "review-needed",
+      "artifactReviewNeeded": true,
+      "documentationState": "unreviewed"
+    },
     {
       "id": "100yearvision",
       "projectId": "100yearvision",
@@ -175,7 +192,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -294,7 +311,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-09-25",
-      "updatedAt": "2026-10-09",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -320,7 +337,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-06-22",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -471,7 +488,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -780,7 +797,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-09",
-      "updatedAt": "2026-10-08",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -806,7 +823,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
