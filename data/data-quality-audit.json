@@ -29,13 +29,13 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-10-18T11:47:47.654Z",
+    "generatedAt": "2026-10-18T23:11:33.032Z",
     "canonicalProjects": 75,
     "reviewableCanonicalProjects": 72,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 13,
-    "publicRepositories": 77,
-    "visiblePublicRepositories": 62,
+    "publicRepositories": 78,
+    "visiblePublicRepositories": 63,
     "legacyRepositories": 1,
     "verifiedDocumentation": 56,
     "inferredDocumentation": 16,
@@ -50,7 +50,7 @@
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
     "canonicalWithoutPublicRepo": 11,
-    "sourceWithoutCanonical": 1
+    "sourceWithoutCanonical": 2
   },
   "records": [
     {
@@ -1019,6 +1019,10 @@
     "xexporter"
   ],
   "sourceWithoutCanonical": [
+    {
+      "repoId": "farewell",
+      "projectId": "farewell"
+    },
     {
       "repoId": "roughmaker",
       "projectId": "roughmaker"
