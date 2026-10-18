@@ -250,7 +250,7 @@
     if (badge) badge.textContent = advancedCount ? `（${advancedCount}）` : '';
     panel.innerHTML = list.length
       ? `<div class="catalog-list" data-catalog-list>${list.map(row).join('')}</div>`
-      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>名前だけでなく、困りごと・技術・用途からも検索できます。</p></div>';
+      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>検索語を短くするか、絞り込み条件を解除してください。</p><button type="button" class="subtle-button" data-cat-empty-reset>条件をすべて戻す</button></div>';
     document.documentElement.classList.add('catalog-core-ready');
     saveState();
   }
@@ -304,6 +304,7 @@
     if (!panel || panel.dataset.catalogCoreBound) return;
     panel.dataset.catalogCoreBound = 'true';
     panel.addEventListener('click', (event) => {
+      if (event.target.closest('[data-cat-empty-reset]')) { resetAll(); return; }
       const open = event.target.closest('[data-project-open]');
       if (open) openProject(open.dataset.projectOpen);
     });
