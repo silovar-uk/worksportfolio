@@ -267,6 +267,7 @@ test('an empty catalog offers one-tap filter recovery', async ({ page }) => {
   await expect(page.locator('[data-cat-item]')).toHaveCount(0);
   await expect(page.locator('[data-cat-empty-reset]')).toBeVisible();
   await page.locator('[data-cat-empty-reset]').click();
+  console.log('reset diagnostic', await page.evaluate(() => ({ search: document.querySelector('[data-cat-search]')?.value, rows: document.querySelectorAll('[data-cat-item]').length, url: location.search, emptyButton: Boolean(document.querySelector('[data-cat-empty-reset]')) })));
   await expect(page.locator('[data-cat-search]')).toHaveValue('');
   await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(5);
 });
