@@ -252,7 +252,7 @@ test('discovery never presents an unopenable summary as an action', async ({ pag
   await expect(page.locator(`[data-cat-item="${unavailable[0].i}"]`)).toBeVisible();
 
   const actionableCount = await page.evaluate(() => window.WORKS_PORTFOLIO_SEARCH_INDEX
-    .filter((item) => (!item.s || item.l) && String(item.g || '').split('\\u001f').includes('protect')).length);
+    .filter((item) => (!item.s || item.l) && String(item.g || '').split(String.fromCharCode(31)).includes('protect')).length);
   await expect(page.locator('[data-home-friction="protect"] b')).toHaveText(String(actionableCount));
 });
 
