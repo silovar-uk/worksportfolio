@@ -1,16 +1,33 @@
 {
-  "generatedAt": "2026-10-17T23:07:26.423Z",
+  "generatedAt": "2026-10-18T23:11:18.179Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
-    "total": 77,
-    "discovered": 1,
+    "total": 78,
+    "discovered": 2,
     "published": 61,
     "hidden": 15,
-    "withWarnings": 1,
-    "artifactReviewNeeded": 1
+    "withWarnings": 2,
+    "artifactReviewNeeded": 2
   },
   "items": [
+    {
+      "id": "farewell",
+      "projectId": "farewell",
+      "state": "discovered",
+      "reasons": [
+        "no-curation",
+        "generic-summary",
+        "technology-unknown"
+      ],
+      "families": [],
+      "createdAt": "2026-10-18",
+      "updatedAt": "2026-10-18",
+      "hasLiveUrl": false,
+      "artifactStatus": "review-needed",
+      "artifactReviewNeeded": true,
+      "documentationState": "unreviewed"
+    },
     {
       "id": "roughmaker",
       "projectId": "roughmaker",
@@ -337,7 +354,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-06-22",
-      "updatedAt": "2026-10-15",
+      "updatedAt": "2026-10-18",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -488,7 +505,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-10-17",
+      "updatedAt": "2026-10-18",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -503,7 +520,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-16",
-      "updatedAt": "2026-10-13",
+      "updatedAt": "2026-10-18",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -743,7 +760,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-18",
-      "updatedAt": "2026-10-16",
+      "updatedAt": "2026-10-18",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -823,7 +840,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-10-17",
+      "updatedAt": "2026-10-18",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
