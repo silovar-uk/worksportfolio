@@ -266,7 +266,14 @@ test('an empty catalog offers one-tap filter recovery', async ({ page }) => {
   await page.locator('[data-cat-search]').fill('nothing-matches-this-query-20261018');
   await expect(page.locator('[data-cat-item]')).toHaveCount(0);
   await expect(page.locator('[data-cat-empty-reset]')).toBeVisible();
+  await page.evaluate(() => {
+    window.__catalogResetTrace = [];
+    document.addEventListener('click', (event) => window.__catalogResetTrace.push(event.target?.outerHTML?.slice(0, 200) || 'other'), { capture: true });
+  });
   await page.locator('[data-cat-empty-reset]').click();
+  console.log('reset-after-user-click', await page.evaluate(() => ({ trace: window.__catalogResetTrace, input: document.querySelector('[data-cat-search]')?.value, url: location.search })));
+  await page.evaluate(() => document.querySelector('[data-cat-empty-reset]')?.click());
+  console.log('reset-after-dom-click', await page.evaluate(() => ({ input: document.querySelector('[data-cat-search]')?.value, url: location.search })));
   await expect(page.locator('[data-cat-search]')).toHaveValue('');
   await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(5);
 });
