@@ -270,3 +270,13 @@ test('an empty catalog offers one-tap filter recovery', async ({ page }) => {
   await expect(page.locator('[data-cat-search]')).toHaveValue('');
   await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(5);
 });
+
+test('the three homepage routes point to real sections', async ({ page }) => {
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  const links = page.locator('.home-intent-nav a');
+  await expect(links).toHaveCount(3);
+  for (const target of ['explorer-title', 'home-problem-title', 'principles-title']) {
+    await expect(page.locator(`#${target}`)).toHaveCount(1);
+    await expect(page.locator(`.home-intent-nav a[href="#${target}"]`)).toBeVisible();
+  }
+});
