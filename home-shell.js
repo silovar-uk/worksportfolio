@@ -331,7 +331,8 @@
     }
     const all = projectsForTheme(id);
     activeFrictionId = id; setFrictionButtons(id);
-    holder.innerHTML = `<div class="home-friction-result-head"><div><span>SELECTED FRICTION</span><strong>${esc(theme.label)}</strong><small>${all.length}件のうち、まず3件</small></div><button type="button" data-home-friction-all="${attr(id)}">すべて見る ↓</button></div><div class="home-friction-result-grid">${all.slice(0,3).map(frictionCard).join('')}</div>`;
+    const total = projects().filter((project) => project.frictionIds.includes(id)).length;
+    holder.innerHTML = `<div class="home-friction-result-head"><div><span>SELECTED FRICTION</span><strong>${esc(theme.label)}</strong><small>全${total}件（直接開ける${all.length}件）から${Math.min(3, all.length)}件を表示</small></div><button type="button" data-home-friction-all="${attr(id)}">すべて見る ↓</button></div><div class="home-friction-result-grid">${all.slice(0,3).map(frictionCard).join('')}</div>`;
     holder.hidden = false;
     holder.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
   }
