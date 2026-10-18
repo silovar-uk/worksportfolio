@@ -251,9 +251,13 @@ test('discovery never presents an unopenable summary as an action', async ({ pag
   await page.locator('[data-home-search-all]').click();
   await expect(page.locator(`[data-cat-item="${unavailable[0].i}"]`)).toBeVisible();
 
-  const actionableCount = await page.evaluate(() => window.WORKS_PORTFOLIO_SEARCH_INDEX
-    .filter((item) => (!item.s || item.l) && String(item.g || '').split(String.fromCharCode(31)).includes('protect')).length);
-  await expect(page.locator('[data-home-friction="protect"] b')).toHaveText(String(actionableCount));
+  const counts = await page.evaluate(() => {
+    const tagged = window.WORKS_PORTFOLIO_SEARCH_INDEX.filter((item) => String(item.g || '').split(String.fromCharCode(31)).includes('protect'));
+    return { total: tagged.length, actionable: tagged.filter((item) => !item.s || item.l).length };
+  });
+  await expect(page.locator('[data-home-friction="protect"] b')).toHaveText(String(counts.total));
+  await page.locator('[data-home-friction="protect"]').click();
+  await expect(page.locator('[data-home-friction-results]')).toContainText(`直接開ける${counts.actionable}件`);
 });
 
 test('an empty catalog offers one-tap filter recovery', async ({ page }) => {
