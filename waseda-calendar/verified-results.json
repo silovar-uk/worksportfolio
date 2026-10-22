@@ -9,5 +9,16 @@
     },
     "url": "https://www.jufa-kanto.jp/news/detail/4306/?path=path02",
     "reference": "関東大学サッカー連盟が2026-10-21に公表した第17節1日目公式結果。早稲田大学 3(1-0)0 桐蔭横浜大学。伊藤(猛)×2・大西。"
+  },
+  {
+    "date": "2026-10-03",
+    "round": "第14節",
+    "opponent": "東洋大学",
+    "result": {
+      "for": 0,
+      "against": 1
+    },
+    "url": "https://www.jufa-kanto.jp/news/detail/4273/?path=path02",
+    "reference": "早稲田公式試合レポート（https://www.waseda-afc.jp/news-men/149487）およびJUFA公式結果で対戦相手は東洋大学と確認。月間予定の東海大学表記は不一致。"
   }
 ]
