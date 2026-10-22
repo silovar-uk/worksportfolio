@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-22T00:26:13.107Z",
+  "officialMatches": 31,
+  "datedMatches": 30,
+  "calendarItems": 30,
+  "tests": [
+    {
+      "browser": "Chromium desktop",
+      "passed": true,
+      "seasonMatches": 31,
+      "visibleInitially": 8,
+      "horizontalOverflow": 0
+    },
+    {
+      "browser": "WebKit iPhone viewport",
+      "passed": true,
+      "seasonMatches": 31,
+      "visibleInitially": 8,
+      "horizontalOverflow": 0
+    }
+  ]
+}
