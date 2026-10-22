@@ -1,0 +1,83 @@
+name: Update WASEDA CALENDAR
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 0 * * *' # 09:27 Japan Standard Time, daily
+  push:
+    paths:
+      - 'waseda-calendar/build.py'
+      - '.github/workflows/update-waseda-calendar.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-waseda-calendar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install parser dependency
+        run: python -m pip install --disable-pip-version-check lxml
+      - name: Fetch official schedules and build feed
+        run: python waseda-calendar/build.py
+      - name: Validate published output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("waseda-calendar")
+          data = json.loads((root / "schedule.json").read_text(encoding="utf-8"))
+          events = data["events"]
+          assert len(events) >= 23, "Too few TOP official matches"
+          assert sum(e["competition"] == "関東大学サッカーリーグ" for e in events) >= 20
+          assert len(set(e["id"] for e in events)) == len(events), "Duplicate UID"
+          assert sum(bool(e["date"]) for e in events) >= 20, "Missing match dates"
+          assert all(e["source"] == "https://www.waseda-afc.jp/game-men" for e in events)
+          assert all(e["competition"] in {
+              "関東大学サッカーリーグ", "総理大臣杯", "アミノバイタルカップ",
+              "定期交流戦", "天皇杯"
+          } for e in events)
+          ics = (root / "all.ics").read_text(encoding="utf-8")
+          assert ics.count("BEGIN:VEVENT") == sum(bool(e["date"]) for e in events)
+          assert ics.count("END:VEVENT") == ics.count("BEGIN:VEVENT")
+          assert "TZID=Asia/Tokyo" in ics
+          assert (root / "index.html").exists()
+          print("PASS", {"total": len(events), "dated": sum(bool(e["date"]) for e in events),
+                         "audits": data["audit"]})
+          PY
+      - name: Check front-end JavaScript syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path("waseda-calendar/index.html").read_text(encoding="utf-8")
+          script = text.split("<script>", 1)[1].split("</script>", 1)[0]
+          Path("/tmp/waseda-calendar.js").write_text(script)
+          PY
+          node --check /tmp/waseda-calendar.js
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- waseda-calendar/schedule.json waseda-calendar/all.ics; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add waseda-calendar/schedule.json waseda-calendar/all.ics
+          git commit -m "Update WASEDA CALENDAR official match schedule"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          exit 1
