@@ -7,6 +7,9 @@ on:
   push:
     paths:
       - 'waseda-calendar/build.py'
+      - 'waseda-calendar/jufa.py'
+      - 'waseda-calendar/test_sources.py'
+      - 'waseda-calendar/verified-results.json'
       - '.github/workflows/update-waseda-calendar.yml'
 
 permissions:
@@ -27,6 +30,8 @@ jobs:
           python-version: '3.12'
       - name: Install parser dependency
         run: python -m pip install --disable-pip-version-check lxml
+      - name: Check official source parser regressions
+        run: python -m unittest discover -s waseda-calendar -p 'test_sources.py' -v
       - name: Fetch official schedules and build feed
         run: python waseda-calendar/build.py
       - name: Validate published output
@@ -42,6 +47,12 @@ jobs:
           assert len(set(e["id"] for e in events)) == len(events), "Duplicate UID"
           assert sum(bool(e["date"]) for e in events) >= 20, "Missing match dates"
           assert all(e["source"] == "https://www.waseda-afc.jp/game-men" for e in events)
+          assert all(e.get("resultSource") for e in events if e.get("result"))
+          assert all(not e.get("result") or e["status"] == "final" for e in events)
+          assert not data["audit"].get("unconfirmedFinishedLeagueMatches"), "League result gap detected"
+          if data["year"] == 2026:
+              r17 = [e for e in events if e["competition"] == "関東大学サッカーリーグ" and e["round"] == "第17節"]
+              assert len(r17) == 1 and r17[0]["result"] == {"for": 3, "against": 0}, "Regression: Oct 21 official result is missing"
           assert all(e["competition"] in {
               "関東大学サッカーリーグ", "総理大臣杯", "アミノバイタルカップ",
               "定期交流戦", "天皇杯"
