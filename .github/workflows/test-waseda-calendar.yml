@@ -1,0 +1,73 @@
+name: Test WASEDA CALENDAR (desktop and mobile)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'waseda-calendar/index.html'
+      - 'waseda-calendar/smoke.mjs'
+      - 'waseda-calendar/schedule.json'
+      - 'waseda-calendar/all.ics'
+      - '.github/workflows/test-waseda-calendar.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: test-waseda-calendar
+  cancel-in-progress: false
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium webkit
+      - name: Start server and test all interaction paths
+        env:
+          WASEDA_BASE_URL: http://127.0.0.1:4173/waseda-calendar/
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/waseda-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/waseda-calendar/ >/dev/null; then
+              break
+            fi
+            sleep 0.25
+          done
+          curl -fsS http://127.0.0.1:4173/waseda-calendar/schedule.json >/dev/null
+          node waseda-calendar/smoke.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: waseda-calendar-mobile-and-desktop-screenshots
+          path: |
+            waseda-calendar/qa-*.png
+            waseda-calendar/qa-status.json
+          if-no-files-found: ignore
+      - name: Publish successful browser QA status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add waseda-calendar/qa-status.json
+          if git diff --cached --quiet; then
+            echo "No QA changes"
+            exit 0
+          fi
+          git commit -m "Record successful Waseda calendar browser smoke test"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          exit 1
