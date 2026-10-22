@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5f4f0">
+<meta name="description" content="早稲田大学ア式蹴球部・男子TOPの公式戦日程と試合結果。Apple・Googleカレンダー購読にも対応した非公式ファンカレンダー。">
+<title>WASEDA CALENDAR｜早稲田のいまと、その次</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<style>
+:root{--red:#851b2d;--red-dark:#591222;--gold:#a77b39;--ink:#181818;--muted:#66665f;--paper:#f5f4f0;--card:#fff;--line:#dcdad4;--soft:#efede8;--shadow:0 8px 30px rgba(0,0,0,.048)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;-webkit-text-size-adjust:100%}
+a{color:inherit;text-underline-offset:3px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.shell{max-width:920px;margin:0 auto;padding:22px 16px 76px}
+.masthead{border-top:5px solid var(--red);padding:21px 0 5px}
+.kicker{font-size:10px;color:var(--red);font-weight:950;letter-spacing:.16em}
+h1{margin:5px 0 0;font-size:clamp(35px,8.5vw,62px);font-weight:950;line-height:.94;letter-spacing:-.064em}
+.lede{font-size:14px;color:#494944;line-height:1.6;max-width:640px;margin:16px 0 0}
+.statusline{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:13px;font-size:11px;color:var(--muted)}
+.statusline b{color:var(--ink)}
+.nav{position:sticky;top:0;z-index:10;margin:15px -16px 0;padding:9px 16px;display:flex;gap:7px;overflow-x:auto;background:rgba(245,244,240,.93);backdrop-filter:blur(12px);border-block:1px solid rgba(0,0,0,.07);scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid #c8c5be;padding:8px 12px;background:#fff;font-size:11px;font-weight:850;border-radius:99px;min-height:38px}
+.chip:before{content:"";display:inline-block;vertical-align:middle;width:6px;height:6px;background:var(--red);border-radius:50%;margin-right:6px}
+.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+.chip[aria-pressed=true]:before{background:var(--gold)}
+.section{margin-top:27px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:11px}
+.section-head h2{margin:0;font-size:19px;letter-spacing:-.035em;font-weight:950}
+.section-head p{margin:0;font-size:11px;color:var(--muted)}
+.card,.panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero{display:grid;grid-template-columns:1.4fr .9fr;gap:10px}
+.hero-main{padding:19px 18px 16px;border-top:4px solid var(--red);min-width:0}
+.hero-side{padding:19px 15px;border-top:4px solid var(--gold);min-width:0}
+.overline{font-size:10px;letter-spacing:.1em;font-weight:900;color:var(--red)}
+.hero-side .overline{color:#87601e}
+.hero-date{margin-top:12px;font-size:11px;font-weight:800;color:var(--muted)}
+.hero-time{font-size:31px;font-weight:950;line-height:1.2;letter-spacing:-.04em}
+.hero-opp{font-size:22px;line-height:1.25;font-weight:950;letter-spacing:-.03em;margin-top:9px;overflow-wrap:anywhere}
+.hero-meta{margin-top:9px;color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+.hero-side .hero-opp{font-size:18px}
+.score{font-size:29px;font-weight:950;line-height:1.2;margin-top:7px;font-variant-numeric:tabular-nums}
+.subtle{color:var(--muted);font-size:11px}
+.result-board{background:#fff;border:1px solid var(--line)}
+.result-row{display:grid;grid-template-columns:75px 80px minmax(0,1fr) 15px;gap:8px;align-items:center;padding:10px 12px;min-height:49px;border-bottom:1px solid var(--soft);text-decoration:none}
+.result-row:last-child{border-bottom:0}
+.result-row:hover{background:#fdfbf7}
+.result-date{font-size:10px;color:var(--muted);font-weight:850}
+.result-score{font-weight:950;font-size:15px;font-variant-numeric:tabular-nums}
+.result-opponent{font-size:12px;font-weight:850;overflow-wrap:anywhere}
+.result-arr{color:#9b9a94}
+.pulse-wrap{border-block:1px solid var(--line);background:#fff;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity}
+.pulse{display:flex;min-width:100%;width:max-content;padding:9px 8px}
+.pulse-day{width:40px;flex:0 0 40px;padding:5px 3px;min-height:63px;border:0;background:none;scroll-snap-align:start;border-radius:7px}
+.pulse-day:hover{background:var(--soft)}
+.pulse-month{height:15px;color:var(--red);font-size:9px;font-weight:900}
+.pulse-num{font-size:12px;font-weight:850;line-height:1.25}
+.pulse-tick{margin:9px auto 0;border-radius:9px;background:var(--red);width:5px;height:11px}
+.pulse-day.today .pulse-num{background:var(--ink);color:#fff;width:23px;height:23px;line-height:23px;border-radius:50%;margin:auto}
+.legend{margin-top:8px;font-size:11px;color:var(--muted)}
+.timeline{display:grid;gap:9px}
+.day{border:1px solid var(--line);background:#fff;scroll-margin-top:83px}
+.day.today{border-top:3px solid var(--red)}
+.day-header{padding:10px 13px;border-bottom:1px solid var(--soft);display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:900;font-size:13px}
+.day-header small{font-size:10px;font-weight:750;color:var(--muted)}
+.event{display:grid;grid-template-columns:65px minmax(0,1fr);gap:12px;padding:14px 15px 14px 12px;border-left:4px solid var(--red);border-bottom:1px solid var(--soft)}
+.event:last-child{border-bottom:0}
+.event-time{font-size:17px;font-weight:950;letter-spacing:-.025em;line-height:1.2}
+.event-status{margin-top:5px;font-size:9px;font-weight:900;color:var(--muted)}
+.event-body .smallhead{font-size:9px;font-weight:950;color:var(--red);letter-spacing:.09em}
+.event-body .versus{font-size:17px;font-weight:950;line-height:1.4;margin-top:3px;overflow-wrap:anywhere}
+.event-body .detail{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5}
+.event-body .src{font-size:10px;margin-top:8px;display:inline-block;color:#555}
+.tag{border-radius:4px;background:var(--soft);color:#53504a;font-size:9px;padding:2px 5px;font-weight:800;margin-left:5px}
+.empty{padding:18px 14px;color:var(--muted);font-size:13px}
+.showmore{display:block;width:100%;padding:12px;border:1px solid var(--line);background:white;font-size:12px;font-weight:900}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.action{display:inline-flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;border:1px solid var(--red);background:var(--red);color:#fff;padding:11px 13px;font-weight:900;font-size:12px;min-height:43px;border-radius:4px}
+.action.secondary{background:#fff;color:var(--red)}
+.action.tertiary{border-color:var(--line);background:#fff;color:var(--ink)}
+.action:hover{filter:brightness(.94)}
+.action:disabled{opacity:.5;cursor:wait}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.info-box{padding:17px}
+.info-title{font-size:14px;font-weight:950}
+.info-desc{font-size:11px;color:var(--muted);line-height:1.7;margin-top:6px}
+.info-link{font-size:11px;font-weight:850;color:var(--red);display:inline-block;margin-top:9px}
+details{border:1px solid var(--line);background:#fff;padding:2px 15px}
+details summary{font-size:13px;font-weight:900;padding:12px 0;cursor:pointer}
+details p,details li{font-size:12px;color:#56564f;line-height:1.75}
+details a{color:var(--red)}
+details ul{padding-left:20px}
+details[open] summary{border-bottom:1px solid var(--soft)}
+footer{padding:27px 0;border-top:2px solid var(--ink);margin-top:35px;color:var(--muted);font-size:10px;line-height:1.8}
+footer b{color:var(--red);letter-spacing:.08em}
+.dots{font-size:12px;color:var(--gold);font-weight:900}
+.notice{margin-top:10px;padding:10px 12px;background:#fff8e8;border:1px solid #e4d4b5;font-size:11px;line-height:1.6;color:#665321}
+#loading{padding:35px 10px;text-align:center;color:var(--muted)}
+@media(max-width:540px){
+.shell{padding-top:15px}
+.hero{grid-template-columns:1fr 1fr;gap:7px}
+.hero-main,.hero-side{padding:13px 11px}
+.hero-time{font-size:26px}
+.hero-opp{font-size:18px}
+.hero-side .hero-opp{font-size:15px}
+.score{font-size:23px}
+.result-row{grid-template-columns:53px 65px minmax(0,1fr) 12px;gap:6px;padding:10px 9px}
+.info-grid{grid-template-columns:1fr}
+.section-head h2{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="masthead">
+<div class="kicker">WASEDA UNIVERSITY ASSOCIATION FOOTBALL CLUB · MEN'S TOP</div>
+<h1>WASEDA<br>CALENDAR<span style="color:var(--red)">.</span></h1>
+<p class="lede">早稲田大学ア式蹴球部・男子TOPチームの公式戦を、ひと目で。<br>試合日程、結果、次の一戦。カレンダーにもそのまま登録。</p>
+<div class="statusline"><span>対象 <b>男子TOP・公式戦のみ</b></span><span>更新 <b>毎日＋手動</b></span><span id="updated">データを取得中…</span></div>
+</header>
+<nav class="nav" aria-label="大会フィルタ">
+<button class="chip" data-filter="all" aria-pressed="true">すべて</button>
+<button class="chip" data-filter="league" aria-pressed="false">関東大学リーグ</button>
+<button class="chip" data-filter="cup" aria-pressed="false">カップ戦</button>
+<button class="chip" data-filter="regular" aria-pressed="false">定期戦</button>
+<button class="chip" data-filter="undated" aria-pressed="false">日程未定</button>
+</nav>
+<section class="section">
+<div class="section-head"><h2>次の試合と直近の結果</h2><p>AT A GLANCE</p></div>
+<div class="hero">
+<div class="card hero-main" id="nextMatch"><div class="overline">NEXT MATCH</div><div class="empty">読み込み中…</div></div>
+<div class="card hero-side" id="latestResult"><div class="overline">LATEST RESULT</div><div class="empty">読み込み中…</div></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>最近の試合結果</h2><p>LAST 14 DAYS</p></div>
+<div id="results" class="result-board"><div class="empty">読み込み中…</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>試合カレンダー</h2><p id="windowLabel">前14日・今後60日</p></div>
+<div class="pulse-wrap"><div id="pulse" class="pulse"></div></div>
+<div class="legend"><span class="dots">●</span> 試合日　｜　黒い丸：今日　｜　日時未定の試合は一覧の末尾へ</div>
+<div class="timeline" id="timeline" style="margin-top:14px"><div id="loading">公式日程を読み込んでいます…</div></div>
+<div style="margin-top:10px"><button class="showmore" id="more" type="button">2026シーズンの全試合を表示 ＋</button></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>カレンダーに登録</h2><p>SUBSCRIBE</p></div>
+<div class="panel" style="padding:16px">
+<p style="margin:0;font-size:12px;color:var(--muted)">購読すると日程変更が反映されます。反映までの時間はApple・Google側の更新頻度によって異なります。</p>
+<div class="toolbar">
+<a class="action" href="webcal://silovar-uk.github.io/worksportfolio/waseda-calendar/all.ics" id="appleLink">Appleで購読 ↗</a>
+<a class="action secondary" href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl" target="_blank" rel="noopener">Googleで登録 ↗</a>
+<button class="action tertiary" type="button" id="copyIcs">カレンダーURLをコピー</button>
+</div>
+<div class="subtle" style="margin-top:11px">Googleは「他のカレンダー」→「URLで追加」にコピーしたURLを入力。iPhoneの「購読カレンダー」にも登録可能です。</div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>更新と情報源</h2><p>DATA &amp; SOURCES</p></div>
+<div class="info-grid">
+<div class="panel info-box">
+<div class="info-title">表示を再読み込み</div>
+<div class="info-desc">公開中の最新データを取得し直します。公式サイトからの再収集は行いません。</div>
+<div class="toolbar"><button class="action secondary" id="reload" type="button">最新データを確認 ↻</button></div>
+<div id="reloadStatus" class="subtle" role="status" aria-live="polite" style="margin-top:9px"></div>
+</div>
+<div class="panel info-box">
+<div class="info-title">公式サイトから手動更新</div>
+<div class="info-desc">管理者用。GitHub Actionsを開き、「Run workflow」を押すと再収集・検証・反映します。GitHubへのログインが必要です。</div>
+<a class="info-link" href="https://github.com/silovar-uk/worksportfolio/actions/workflows/update-waseda-calendar.yml" target="_blank" rel="noopener">手動更新を実行する（GitHub） ↗</a>
+</div>
+</div>
+<div id="audit" aria-live="polite"></div>
+<div style="display:grid;gap:9px;margin-top:10px">
+<details>
+<summary>公式情報・掲載ルール</summary>
+<p>一次情報は<a href="https://www.waseda-afc.jp/game-men" target="_blank" rel="noopener">早稲田大学ア式蹴球部｜男子部の試合結果</a>。<a href="https://www.waseda-afc.jp/calendar/calendar-men.cgi" target="_blank" rel="noopener">男子部の月間予定</a>と照合しています。</p>
+<ul>
+<li>対象：男子TOPの関東大学リーグ、総理大臣杯、アミノバイタルカップ、定期戦など。FC、Iリーグ、女子、練習試合は除外。</li>
+<li>主ソースと月間予定に食い違いがある場合、主ソースを優先し警告を記録。</li>
+<li>日時未定は勝手に日付・時刻を補完しません。日時の確定していない試合はiCalに含めません。</li>
+<li>表示結果は公式サイトの更新状況に依存します。会場・開始時刻の最終確認は公式情報をご参照ください。</li>
+</ul>
+</details>
+<details>
+<summary>更新方法・このサイトについて</summary>
+<p>GitHub Actionsにより毎日自動更新。管理者は<a href="https://github.com/silovar-uk/worksportfolio/actions/workflows/update-waseda-calendar.yml" target="_blank" rel="noopener">更新ワークフロー</a>から手動実行できます。公式サイトに接続できない場合や検証が失敗した場合、前回公開データを保持します。</p>
+<p>本サイトはファンによる非公式プロジェクトであり、早稲田大学ア式蹴球部および大会主催者の公式サービスではありません。</p>
+</details>
+</div>
+</section>
+<footer><b>WASEDA CALENDAR</b><br>Made for following the next match. Unofficial fan project. © 2026<br>Official match details: <a href="https://www.waseda-afc.jp/game-men" target="_blank" rel="noopener">waseda-afc.jp</a></footer>
+</main>
+<script>
+(function(){
+'use strict';
+var ICS_URL='https://silovar-uk.github.io/worksportfolio/waseda-calendar/all.ics';
+var all=[], meta={}, filter='all', expanded=false;
+var $=function(s){return document.querySelector(s)};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var today=function(){return new Date(Date.now()+9*3600000).toISOString().slice(0,10)};
+var daydiff=function(date,offset){return new Date(Date.parse(date+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10)};
+var formatDate=function(s){if(!s)return '日時未定';var p=s.split('-');var d=new Date(s+'T00:00:00Z');return Number(p[1])+'/'+Number(p[2])+'（'+'日月火水木金土'[d.getUTCDay()]+'）'};
+var kind=function(e){return e.competition==='関東大学サッカーリーグ'?'league':e.competition==='定期交流戦'?'regular':'cup'};
+var visible=function(e){return filter==='all'||(filter==='undated'&&!e.date)||kind(e)===filter};
+var score=function(e){if(!e.result)return '結果未反映';var r=e.result;var s=r.for+' – '+r.against;return r.pkFor==null?s:s+' (PK '+r.pkFor+'–'+r.pkAgainst+')'};
+var name=function(e){return 'vs '+esc(e.opponent)};
+var sortEvents=function(a,b){return (a.date||'9999').localeCompare(b.date||'9999')||(a.time||'99').localeCompare(b.time||'99')};
+var isFinal=function(e){return !!(e.result&&Number.isInteger(e.result.for)&&Number.isInteger(e.result.against))};
+function renderHero(){
+ var t=today(), upcoming=all.filter(function(e){return e.date&&e.date>=t&&!isFinal(e)}).sort(sortEvents);
+ var previous=all.filter(function(e){return e.date&&e.date<=t&&isFinal(e)}).sort(sortEvents).reverse();
+ var next=upcoming[0],prev=previous[0];
+ $('#nextMatch').innerHTML='<div class="overline">NEXT MATCH</div>'+(next?'<div class="hero-date">'+formatDate(next.date)+' · '+esc(next.round)+'</div><div class="hero-time">'+esc(next.time||'時刻未定')+'</div><div class="hero-opp">'+name(next)+'</div><div class="hero-meta">'+esc(next.competition)+'<br>'+esc(next.venue)+'</div>':'<div class="empty">日程が確定した次の試合はありません。</div>');
+ $('#latestResult').innerHTML='<div class="overline">LATEST RESULT</div>'+(prev?'<div class="hero-date">'+formatDate(prev.date)+'</div><div class="score">'+esc(score(prev))+'</div><div class="hero-opp">'+name(prev)+'</div><div class="hero-meta">'+esc(prev.competition)+'<br>'+esc(prev.round)+'</div>':'<div class="empty">結果はまだありません。</div>');
+}
+function renderRecent(){
+ var t=today(),recent=all.filter(function(e){return e.date&&e.date<=t&&e.date>=daydiff(t,-14)&&isFinal(e)}).sort(sortEvents).reverse();
+ $('#results').innerHTML=recent.length?recent.map(function(e){return '<a class="result-row" href="'+esc(e.source)+'" target="_blank" rel="noopener"><span class="result-date">'+formatDate(e.date)+'</span><span class="result-score">'+esc(score(e))+'</span><span class="result-opponent">'+name(e)+'</span><span class="result-arr">↗</span></a>'}).join(''):'<div class="empty">直近14日間の確定した試合結果はありません。</div>';
+}
+function renderPulse(){
+ var t=today(),days=[],start=daydiff(t,-14),stop=daydiff(t,60);
+ for(var day=start;day<=stop;day=daydiff(day,1)){
+ var matches=all.filter(function(e){return e.date===day&&visible(e)});
+ var p=day.split('-');
+ days.push('<button type="button" class="pulse-day'+(day===t?' today':'')+'" '+(matches.length?'data-scroll="'+day+'"':'disabled')+' title="'+esc(formatDate(day))+'"><div class="pulse-month">'+(p[2]==='01'?Number(p[1])+'月':'')+'</div><div class="pulse-num">'+Number(p[2])+'</div>'+(matches.length?'<div class="pulse-tick"></div>':'')+'</button>');
+ }
+ $('#pulse').innerHTML=days.join('');
+ $$('#pulse [data-scroll]').forEach(function(b){b.addEventListener('click',function(){var el=document.getElementById('d-'+b.getAttribute('data-scroll'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})});
+}
+function renderTimeline(){
+ var t=today(),start=daydiff(t,-14),end=daydiff(t,60),events=all.filter(visible);
+ if(!expanded)events=events.filter(function(e){return !e.date||(e.date>=start&&e.date<=end)});
+ events.sort(sortEvents);
+ var groups={};events.forEach(function(e){var d=e.date||'undated';if(!groups[d])groups[d]=[];groups[d].push(e)});
+ var keys=Object.keys(groups).sort(function(a,b){return (a==='undated'?'9999':a).localeCompare(b==='undated'?'9999':b)});
+ $('#timeline').innerHTML=keys.length?keys.map(function(key){
+ var group=groups[key],isToday=key===t;
+ return '<article id="d-'+esc(key)+'" class="day'+(isToday?' today':'')+'"><div class="day-header"><span>'+esc(formatDate(key==='undated'?null:key))+'</span><small>'+group.length+' MATCH'+(group.length>1?'ES':'')+'</small></div>'+group.map(function(e){
+ var finished=isFinal(e),time=e.date?(e.time||'未定'):'–',status=finished?'FT':e.date&&e.date<t?'結果未反映':'NEXT',subtitle=e.competition+'｜'+e.round;
+ return '<div class="event"><div><div class="event-time">'+esc(finished?score(e):time)+'</div><div class="event-status">'+status+'</div></div><div class="event-body"><div class="smallhead">WASEDA TOP <span class="tag">'+esc(e.homeAway||'')+'</span></div><div class="versus">'+name(e)+'</div><div class="detail">'+esc(subtitle)+'<br>'+esc(e.venue)+'</div><a class="src" href="'+esc(e.source||'https://www.waseda-afc.jp/game-men')+'" target="_blank" rel="noopener">公式情報を確認 ↗</a></div></div>'
+ }).join('')+'</article>'}).join(''):'<div class="day"><div class="empty">この条件に該当する試合はありません。</div></div>';
+ $('#more').textContent=expanded?'直近の試合表示に戻す −':'シーズンの全試合を表示 ＋';
+ $('#windowLabel').textContent=expanded?'2026シーズン':'前14日・今後60日';
+}
+function renderAudit(){
+ var audit=meta.audit||{};
+ var w=audit.warnings||[];
+ $('#audit').innerHTML=w.length?'<div class="notice">公式ソースの照合メモ：'+w.length+'件の差異・確認事項があります。<details style="background:transparent;border:none;padding:0;margin-top:5px"><summary style="padding:3px 0">内容を見る</summary><ul>'+w.slice(0,20).map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul></details></div>':'';
+}
+function render(){
+ $$('.chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.filter===filter))});
+ renderHero();renderRecent();renderPulse();renderTimeline();renderAudit();
+}
+async function loadData(){
+ var r=await fetch('./schedule.json?v='+Date.now(),{cache:'no-store'});
+ if(!r.ok)throw Error('HTTP '+r.status);
+ var j=await r.json();
+ if(!Array.isArray(j.events)||j.events.length<20)throw Error('試合データを確認できません');
+ all=j.events;meta=j;
+ var stamp=new Date(j.updatedAt);
+ $('#updated').innerHTML='公式情報 最終取得 <b>'+esc(isNaN(stamp.valueOf())?j.updatedAt:stamp.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}))+'</b>';
+ render();
+}
+$$('.chip').forEach(function(c){c.addEventListener('click',function(){filter=c.dataset.filter;render()})});
+$('#more').addEventListener('click',function(){expanded=!expanded;renderTimeline()});
+$('#reload').addEventListener('click',async function(){
+ var b=this,old=meta.updatedAt;
+ b.disabled=true;$('#reloadStatus').textContent='最新の公開データを確認しています…';
+ try{await loadData();$('#reloadStatus').textContent=old===meta.updatedAt?'公開データは最新です。':'新しい公開データに更新しました。'}
+ catch(e){$('#reloadStatus').textContent='取得に失敗しました。通信状況を確認してください。'}
+ finally{b.disabled=false}
+});
+$('#copyIcs').addEventListener('click',async function(){try{await navigator.clipboard.writeText(ICS_URL);this.textContent='コピーしました ✓'}catch(e){window.prompt('このURLをコピーしてください',ICS_URL)}});
+loadData().catch(function(e){$('#updated').textContent='取得エラー';$('#timeline').innerHTML='<div class="notice">試合データを読み込めませんでした。ページを再読み込みするか、公式サイトをご確認ください。</div>';$('#results').innerHTML='<div class="empty">データを読み込めません。</div>';$('#nextMatch').innerHTML='<div class="overline">NEXT MATCH</div><div class="empty">取得できませんでした。</div>';$('#latestResult').innerHTML='<div class="overline">LATEST RESULT</div><div class="empty">取得できませんでした。</div>'});
+})();
+</script>
+</body>
+</html>
