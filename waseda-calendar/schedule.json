@@ -1,7 +1,7 @@
 {
   "name": "早稲田大学ア式蹴球部（男子TOP）",
   "year": 2026,
-  "updatedAt": "2026-10-22T09:39:42+09:00",
+  "updatedAt": "2026-10-22T09:44:55+09:00",
   "pastWindowDays": 14,
   "futureWindowDays": 60,
   "events": [
@@ -558,10 +558,15 @@
   ],
   "audit": {
     "calendarItemsChecked": 8,
-    "warnings": [
-      "第14節: 対戦相手の公式情報が不一致（結果表 東洋大学 / 予定 東海大学）"
-    ],
+    "warnings": [],
     "unconfirmedFinishedLeagueMatches": [],
+    "resolvedDiscrepancies": [
+      {
+        "issue": "第14節: 対戦相手の公式情報が不一致（結果表 東洋大学 / 予定 東海大学）",
+        "resolution": "対戦相手は東洋大学と確定（試合結果・大会主催者の公式発表が一致）",
+        "source": "https://www.jufa-kanto.jp/news/detail/4273/?path=path02"
+      }
+    ],
     "officialFederation": {
       "archiveMatchesApplied": 1,
       "previousResultsRecovered": 0,
