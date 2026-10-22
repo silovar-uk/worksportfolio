@@ -250,7 +250,16 @@
     if (badge) badge.textContent = advancedCount ? `（${advancedCount}）` : '';
     panel.innerHTML = list.length
       ? `<div class="catalog-list" data-catalog-list>${list.map(row).join('')}</div>`
-      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>名前だけでなく、困りごと・技術・用途からも検索できます。</p></div>';
+      : '<div class="empty-state"><h3>条件に合う制作物がありません。</h3><p>検索語を短くするか、絞り込み条件を解除してください。</p><button type="button" class="subtle-button" data-cat-empty-reset>条件をすべて戻す</button></div>';
+    // The empty state is recreated on each render. Handle touch/mouse press before
+    // content shift can swallow the synthetic click; retain click for keyboard access.
+    const resetButton = panel.querySelector('[data-cat-empty-reset]');
+    resetButton?.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0 && event.pointerType !== 'touch') return;
+      event.preventDefault();
+      resetAll();
+    });
+    resetButton?.addEventListener('click', () => resetAll());
     document.documentElement.classList.add('catalog-core-ready');
     saveState();
   }

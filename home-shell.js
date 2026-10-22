@@ -50,6 +50,9 @@
     searchText: raw.x || ''
   }));
   const projects = () => projectRecords;
+  // Home discovery should never suggest an item that cannot be opened.
+  // Summary-only items remain available in the full catalog.
+  const isDiscoverable = (project) => Boolean(project && (!project.summaryOnly || project.liveUrl));
 
   function queryTerms(query) {
     return String(query || '').normalize('NFKC').trim().split(/\s+/).map(normalize).filter(Boolean);
@@ -137,7 +140,7 @@
     if (!q) return { hits: [], results: [] };
     const normalizedQuery = normalize(q);
     const hits = problemSignalHits(q);
-    const ranked = projects().map((project) => {
+    const ranked = projects().filter(isDiscoverable).map((project) => {
       const text = problemText(project);
       let score = 0;
       const reasons = [];
@@ -163,7 +166,7 @@
     if (!ranked.length) {
       return {
         hits,
-        results: search(q).slice(0, 3).map((project) => ({ project, score: scoreProject(project, q), reasons: [matchReason(project, q)], matchedWords: [] }))
+        results: search(q).filter(isDiscoverable).slice(0, 3).map((project) => ({ project, score: scoreProject(project, q), reasons: [matchReason(project, q)], matchedWords: [] }))
       };
     }
     return { hits, results: ranked.slice(0, 3) };
@@ -187,7 +190,7 @@
       return;
     }
     const primary = hits[0]?.id || '';
-    holder.innerHTML = `<div class="home-problem-result-head"><div><span>NEARBY ANSWERS</span><strong>近い答えを3つ</strong></div>${primary ? `<button type="button" data-home-problem-all="${attr(primary)}">近い困りごとを一覧で見る ↓</button>` : ''}</div><div class="home-problem-result-grid">${results.map(problemResultCard).join('')}</div>`;
+    holder.innerHTML = `<div class="home-problem-result-head"><div><span>NEARBY ANSWERS</span><strong>近い制作物 ${results.length}件</strong></div>${primary ? `<button type="button" data-home-problem-all="${attr(primary)}">近い困りごとを一覧で見る ↓</button>` : ''}</div><div class="home-problem-result-grid">${results.map(problemResultCard).join('')}</div>`;
     holder.hidden = false;
     holder.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
   }
@@ -219,7 +222,7 @@
 
   function projectsForTheme(id) {
     if (!FRICTIONS[id]) return [];
-    return projects().filter((project) => project.frictionIds.includes(id))
+    return projects().filter((project) => isDiscoverable(project) && project.frictionIds.includes(id))
       .sort((a, b) => dateNumber(b.updatedAt).localeCompare(dateNumber(a.updatedAt)));
   }
 
@@ -245,13 +248,13 @@
   function renderHeaderResults(query = '', explicitList = null, contextLabel = '') {
     const { list } = headerElements();
     if (!list) return;
-    const allResults = explicitList || search(query);
+    const allResults = (explicitList || search(query)).filter(isDiscoverable);
     const results = allResults.slice(0, 7);
     visibleResults = results;
     if (activeIndex >= results.length) activeIndex = results.length ? 0 : -1;
     const heading = contextLabel || (query ? `「${query}」` : '最近更新');
     if (!results.length) {
-      list.innerHTML = `<p class="header-search-empty"><strong>${esc(heading)}</strong><br>見つかりませんでした。名前だけでなく、困りごと・技術・用途でも探せます。</p>`;
+      list.innerHTML = `<p class="header-search-empty"><strong>${esc(heading)}</strong><br>ここから開ける制作物は見つかりませんでした。概要のみの作品は全作品一覧から確認できます。</p>${query ? `<button type="button" class="header-search-all" data-home-search-all>「${esc(query)}」を全作品で見る</button>` : ''}`;
       setPanel(true); return;
     }
     list.innerHTML = `<p class="home-search-context">${esc(heading)} <strong>${allResults.length}件</strong></p>${results.map((project, index) => optionMarkup(project, index, query)).join('')}${query ? `<button type="button" class="header-search-all" data-home-search-all>「${esc(query)}」を全作品で見る</button>` : ''}`;
@@ -328,7 +331,8 @@
     }
     const all = projectsForTheme(id);
     activeFrictionId = id; setFrictionButtons(id);
-    holder.innerHTML = `<div class="home-friction-result-head"><div><span>SELECTED FRICTION</span><strong>${esc(theme.label)}</strong><small>${all.length}件のうち、まず3件</small></div><button type="button" data-home-friction-all="${attr(id)}">すべて見る ↓</button></div><div class="home-friction-result-grid">${all.slice(0,3).map(frictionCard).join('')}</div>`;
+    const total = projects().filter((project) => project.frictionIds.includes(id)).length;
+    holder.innerHTML = `<div class="home-friction-result-head"><div><span>SELECTED FRICTION</span><strong>${esc(theme.label)}</strong><small>全${total}件（直接開ける${all.length}件）から${Math.min(3, all.length)}件を表示</small></div><button type="button" data-home-friction-all="${attr(id)}">すべて見る ↓</button></div><div class="home-friction-result-grid">${all.slice(0,3).map(frictionCard).join('')}</div>`;
     holder.hidden = false;
     holder.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
   }
@@ -348,7 +352,7 @@
       const all = event.target.closest('[data-home-friction-all]');
       if (all) { sendFrictionToCatalog(all.dataset.homeFrictionAll); return; }
       if (event.target.closest('[data-home-surprise]')) {
-        const candidates = projects().filter((project) => !project.summaryOnly || project.liveUrl);
+        const candidates = projects().filter(isDiscoverable);
         openProject(candidates[Math.floor(Math.random() * candidates.length)]);
       }
     });

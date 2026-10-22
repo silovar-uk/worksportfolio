@@ -384,3 +384,9 @@
 .detail-journey span{display:block;margin-bottom:7px;color:var(--red);font:800 .6rem "Roboto Mono",monospace;letter-spacing:.08em}
 .detail-journey p{margin:0;font-size:.8rem;line-height:1.6}
 @media(max-width:640px){.detail-journey{grid-template-columns:1fr}.detail-journey>div{border-right:0;border-bottom:1px solid var(--line)}.detail-journey>div:last-child{border-bottom:0}}
+
+/* Three explicit ways to use the portfolio, without hiding the existing search. */
+.home-intent-nav{display:flex;flex-wrap:wrap;gap:.6rem;padding-top:1rem;padding-bottom:.25rem}
+.home-intent-nav a{display:inline-flex;align-items:center;min-height:44px;padding:.65rem .85rem;border:1px solid var(--line-dark);border-radius:4px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.82rem}
+.home-intent-nav a:hover,.home-intent-nav a:focus-visible{background:var(--ink);color:#fff;outline-offset:3px}
+@media(max-width:600px){.home-intent-nav{display:grid;grid-template-columns:1fr;gap:.45rem}.home-intent-nav a{width:100%}}

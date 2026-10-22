@@ -236,3 +236,47 @@ test('natural-language problem finder recommends explainable answers', async ({ 
   await expect(page.locator('[data-project-dialog]')).toHaveAttribute('open', '');
   await expect(page.locator('[data-project-detail]')).toContainText('Tab Shelter');
 });
+
+
+test('discovery never presents an unopenable summary as an action', async ({ page }) => {
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('search-core-ready'));
+  const unavailable = await page.evaluate(() =>
+    window.WORKS_PORTFOLIO_SEARCH_INDEX.filter((item) => item.s === 1 && !item.l)
+  );
+  expect(unavailable.length).toBeGreaterThan(0);
+  await page.locator('[data-header-search-input]').fill(unavailable[0].t);
+  await expect(page.locator(`[data-home-search-project="${unavailable[0].i}"]`)).toHaveCount(0);
+  await expect(page.locator('[data-home-search-all]')).toBeVisible();
+  await page.locator('[data-home-search-all]').click();
+  await expect(page.locator(`[data-cat-item="${unavailable[0].i}"]`)).toBeVisible();
+
+  const counts = await page.evaluate(() => {
+    const tagged = window.WORKS_PORTFOLIO_SEARCH_INDEX.filter((item) => String(item.g || '').split(String.fromCharCode(31)).includes('protect'));
+    return { total: tagged.length, actionable: tagged.filter((item) => !item.s || item.l).length };
+  });
+  await expect(page.locator('[data-home-friction="protect"] b')).toHaveText(String(counts.total));
+  await page.locator('[data-home-friction="protect"]').click();
+  await expect(page.locator('[data-home-friction-results]')).toContainText(`直接開ける${counts.actionable}件`);
+});
+
+test('an empty catalog offers one-tap filter recovery', async ({ page }) => {
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.documentElement.classList.contains('catalog-core-ready'));
+  await page.locator('[data-cat-search]').fill('nothing-matches-this-query-20261018');
+  await expect(page.locator('[data-cat-item]')).toHaveCount(0);
+  await expect(page.locator('[data-cat-empty-reset]')).toBeVisible();
+  await page.locator('[data-cat-empty-reset]').click();
+  await expect(page.locator('[data-cat-search]')).toHaveValue('');
+  await expect.poll(async () => page.locator('[data-cat-item]').count()).toBeGreaterThan(5);
+});
+
+test('the three homepage routes point to real sections', async ({ page }) => {
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
+  const links = page.locator('.home-intent-nav a');
+  await expect(links).toHaveCount(3);
+  for (const target of ['explorer-title', 'home-problem-title', 'principles-title']) {
+    await expect(page.locator(`#${target}`)).toHaveCount(1);
+    await expect(page.locator(`.home-intent-nav a[href="#${target}"]`)).toBeVisible();
+  }
+});
