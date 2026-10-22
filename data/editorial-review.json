@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T00:00:02.618Z",
+  "generatedAt": "2026-10-22T23:59:07.064Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -505,7 +505,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-07",
-      "updatedAt": "2026-10-21",
+      "updatedAt": "2026-10-22",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -840,7 +840,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-19",
-      "updatedAt": "2026-10-21",
+      "updatedAt": "2026-10-22",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
