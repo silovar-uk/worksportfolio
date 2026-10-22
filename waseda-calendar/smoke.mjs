@@ -27,6 +27,13 @@ assert.equal(icsRes.status, 200, "all.ics should load");
 const ics = await icsRes.text();
 assert.ok(ics.startsWith("BEGIN:VCALENDAR"));
 assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, fixtureData.events.filter(e => e.date).length);
+if (fixtureData.year === 2026) {
+  const r17 = fixtureData.events.find(e => e.competition === "関東大学サッカーリーグ" && e.round === "第17節");
+  assert.deepEqual(r17?.result, { for: 3, against: 0 }, "Oct 21 3-0 should be in JSON");
+  assert.match(r17.resultSource, /^https://www.jufa-kanto.jp/news/detail/4306/);
+  assert.ok(ics.includes("結果: 3–0") || ics.replace(/\r?\n /g,"").includes("結果: 3–0"),
+    "The certified score must be included in iCal event description");
+}
 for (const [browserName, launcher, opts] of cases) {
   const browser = await launcher.launch({ headless: true });
   try {
@@ -52,6 +59,18 @@ for (const [browserName, launcher, opts] of cases) {
     await page.locator("#more").click();
     const seasonTotal = await page.locator(".event").count();
     assert.ok(seasonTotal >= initialAll && seasonTotal >= 23, "full-season toggle should reveal all fixtures");
+    if (fixtureData.year === 2026) {
+      const r17Panel = page.locator("#d-2026-10-21");
+      await r17Panel.waitFor();
+      assert.ok((await r17Panel.innerText()).includes("3 – 0"), "The Oct 21 result must be visible in the timeline");
+      assert.ok((await r17Panel.locator("a.src").getAttribute("href")).includes("jufa-kanto.jp"),
+        "The result details should cite JUFA's official score");
+      const nowTokyo = new Date(Date.now() + 9 * 3600000).toISOString().slice(0,10);
+      if (nowTokyo >= "2026-10-22" && nowTokyo <= "2026-11-04") {
+        assert.ok((await page.locator("#results").innerText()).includes("3 – 0"),
+          "The recent result panel must show Oct 21 score");
+      }
+    }
     await page.locator("[data-filter=undated]").click();
     assert.ok((await page.locator("#timeline").innerText()).includes("日時未定"), "undated filter");
     await page.locator("[data-filter=all]").click();
@@ -73,6 +92,7 @@ const report = {
   officialMatches: fixtureData.events.length,
   datedMatches: fixtureData.events.filter(e => e.date).length,
   calendarItems: (ics.match(/BEGIN:VEVENT/g) || []).length,
+  certifiedRound17: fixtureData.year === 2026 ? { score: "3-0", source: "JUFA Kanto" } : null,
   tests: results,
 };
 fs.writeFileSync("waseda-calendar/qa-status.json", JSON.stringify(report, null, 2) + "\n");
