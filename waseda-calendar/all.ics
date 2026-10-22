@@ -1,0 +1,390 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WASEDA CALENDAR//JP
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:早稲田大学ア式蹴球部 男子TOP
+X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:seed-2026-O07@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 関西学院大学｜定期交流戦
+DESCRIPTION:定期交流戦 第102回早関サッカー定期戦\n会場:
+  東伏見グラウンド\n公式日程: https://www.waseda-afc.jp/game-
+ men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260308T151500
+DTEND;TZID=Asia/Tokyo:20260308T171500
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O08@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 高麗大学校｜定期交流戦
+DESCRIPTION:定期交流戦 第58回早稲田大学・高麗大学定期
+ 交流戦\n会場: Korea University Nokji Stadium\n公式日程: https:/
+ /www.waseda-afc.jp/game-men
+LOCATION:Korea University Nokji Stadium
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260314T140000
+DTEND;TZID=Asia/Tokyo:20260314T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L01@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 筑波大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第1節\n会場: 味の素
+ フィールド西が丘\n公式日程: https://www.waseda-afc.jp/game-m
+ en
+LOCATION:味の素フィールド西が丘
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260404T120000
+DTEND;TZID=Asia/Tokyo:20260404T140000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L02@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 東海大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第2節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260411T140000
+DTEND;TZID=Asia/Tokyo:20260411T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L03@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 中央大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第3節\n会場: 中央大
+ 学多摩キャンパスサッカー場\n公式日程: https://www.wased
+ a-afc.jp/game-men
+LOCATION:中央大学多摩キャンパスサッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260418T140000
+DTEND;TZID=Asia/Tokyo:20260418T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L05@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 明治大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第5節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260502T140000
+DTEND;TZID=Asia/Tokyo:20260502T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L06@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 駒澤大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第6節\n会場: 駒澤大
+ 学玉川キャンパスサッカーグラウンド\n公式日程: https
+ ://www.waseda-afc.jp/game-men
+LOCATION:駒澤大学玉川キャンパスサッカーグラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260505T140000
+DTEND;TZID=Asia/Tokyo:20260505T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L07@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 日本大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第7節\n会場: 日本大
+ 学アスレティックパーク稲城サッカーフィールド\n公
+ 式日程: https://www.waseda-afc.jp/game-men
+LOCATION:日本大学アスレティックパーク稲城サッカーフ
+ ィールド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260509T140000
+DTEND;TZID=Asia/Tokyo:20260509T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L08@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 日本体育大学｜関東大学サッカー
+ リーグ
+DESCRIPTION:関東大学サッカーリーグ 第8節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260516T140000
+DTEND;TZID=Asia/Tokyo:20260516T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L09@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 東洋大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第9節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260523T140000
+DTEND;TZID=Asia/Tokyo:20260523T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L10@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 法政大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第10節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260530T140000
+DTEND;TZID=Asia/Tokyo:20260530T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L11@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 桐蔭横浜大学｜関東大学サッカー
+ リーグ
+DESCRIPTION:関東大学サッカーリーグ 第11節\n会場: 桐蔭学
+ 園多目的グラウンド\n公式日程: https://www.waseda-afc.jp/gam
+ e-men
+LOCATION:桐蔭学園多目的グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260607T140000
+DTEND;TZID=Asia/Tokyo:20260607T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L04@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 国士舘大学｜関東大学サッカーリ
+ ーグ
+DESCRIPTION:関東大学サッカーリーグ 第4節\n会場: 国士舘
+ 大学楓の杜キャンパスサッカー場\n公式日程: https://www
+ .waseda-afc.jp/game-men
+LOCATION:国士舘大学楓の杜キャンパスサッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260613T140000
+DTEND;TZID=Asia/Tokyo:20260613T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O02@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 順天堂大学｜アミノバイタルカッ
+ プ
+DESCRIPTION:アミノバイタルカップ 3回戦\n会場: 時之栖ス
+ ポーツセンター裾野E2グラウンド\n公式日程: https://www.
+ waseda-afc.jp/game-men
+LOCATION:時之栖スポーツセンター裾野E2グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260619T110000
+DTEND;TZID=Asia/Tokyo:20260619T130000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O03@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 産業能率大学｜アミノバイタルカ
+ ップ
+DESCRIPTION:アミノバイタルカップ 4回戦\n会場: 時之栖ス
+ ポーツセンター裾野E2グラウンド\n公式日程: https://www.
+ waseda-afc.jp/game-men
+LOCATION:時之栖スポーツセンター裾野E2グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260621T110000
+DTEND;TZID=Asia/Tokyo:20260621T130000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O04@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 専修大学｜アミノバイタルカップ
+DESCRIPTION:アミノバイタルカップ 準々決勝\n会場: 時之
+ 栖スポーツセンター裾野E2グラウンド\n公式日程: https:
+ //www.waseda-afc.jp/game-men
+LOCATION:時之栖スポーツセンター裾野E2グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260623T110000
+DTEND;TZID=Asia/Tokyo:20260623T130000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O05@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 桐蔭横浜大学｜アミノバイタルカ
+ ップ
+DESCRIPTION:アミノバイタルカップ 順位決定戦\n会場: ス
+ ピアーズえどりくフィールド\n公式日程: https://www.wased
+ a-afc.jp/game-men
+LOCATION:スピアーズえどりくフィールド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260626T180000
+DTEND;TZID=Asia/Tokyo:20260626T200000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O06@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 日本体育大学｜アミノバイタルカ
+ ップ
+DESCRIPTION:アミノバイタルカップ 順位決定戦\n会場: 東
+ 伏見グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260628T110000
+DTEND;TZID=Asia/Tokyo:20260628T130000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O09@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 慶應義塾大学｜定期交流戦
+DESCRIPTION:定期交流戦 第77回早慶サッカー定期戦\n会場: 
+ 国立競技場\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:国立競技場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260811T180000
+DTEND;TZID=Asia/Tokyo:20260811T200000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-O01@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 九州産業大学｜総理大臣杯
+DESCRIPTION:総理大臣杯 1回戦\n会場: セイホクパーク石巻
+ フットボール場\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:セイホクパーク石巻フットボール場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260902T140000
+DTEND;TZID=Asia/Tokyo:20260902T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L12@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 東海大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第12節\n会場: 東海大
+ 学湘南キャンパスサッカー場\n公式日程: https://www.wased
+ a-afc.jp/game-men
+LOCATION:東海大学湘南キャンパスサッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260923T180000
+DTEND;TZID=Asia/Tokyo:20260923T200000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L13@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 国士舘大学｜関東大学サッカーリ
+ ーグ
+DESCRIPTION:関東大学サッカーリーグ 第13節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20260926T180000
+DTEND;TZID=Asia/Tokyo:20260926T200000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L14@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 東洋大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第14節\n会場: 東洋大
+ 学朝霞キャンパス・サッカー場\n公式日程: https://www.wa
+ seda-afc.jp/game-men
+LOCATION:東洋大学朝霞キャンパス・サッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261003T140000
+DTEND;TZID=Asia/Tokyo:20261003T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L15@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 筑波大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第15節\n会場: フカガ
+ ワみらいフィールド\n公式日程: https://www.waseda-afc.jp/gam
+ e-men
+LOCATION:フカガワみらいフィールド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261010T140000
+DTEND;TZID=Asia/Tokyo:20261010T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L16@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 日本大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第16節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261017T140000
+DTEND;TZID=Asia/Tokyo:20261017T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L17@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 桐蔭横浜大学｜関東大学サッカー
+ リーグ
+DESCRIPTION:関東大学サッカーリーグ 第17節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261021T180000
+DTEND;TZID=Asia/Tokyo:20261021T200000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L18@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 法政大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第18節\n会場: 法政大
+ 学城山サッカー場\n公式日程: https://www.waseda-afc.jp/game-m
+ en
+LOCATION:法政大学城山サッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261024T140000
+DTEND;TZID=Asia/Tokyo:20261024T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L19@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 中央大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第19節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261031T140000
+DTEND;TZID=Asia/Tokyo:20261031T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L20@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 駒澤大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第20節\n会場: 東伏見
+ グラウンド\n公式日程: https://www.waseda-afc.jp/game-men
+LOCATION:東伏見グラウンド
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261103T140000
+DTEND;TZID=Asia/Tokyo:20261103T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-2026-L21@waseda-calendar
+DTSTAMP:20261022T000000Z
+SUMMARY:早稲田大学 vs 明治大学｜関東大学サッカーリー
+ グ
+DESCRIPTION:関東大学サッカーリーグ 第21節\n会場: 神奈川
+ 県立保土ケ谷公園サッカー場\n公式日程: https://www.wased
+ a-afc.jp/game-men
+LOCATION:神奈川県立保土ケ谷公園サッカー場
+URL:https://www.waseda-afc.jp/game-men
+DTSTART;TZID=Asia/Tokyo:20261107T140000
+DTEND;TZID=Asia/Tokyo:20261107T160000
+END:VEVENT
+END:VCALENDAR
