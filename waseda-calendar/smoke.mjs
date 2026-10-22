@@ -30,7 +30,7 @@ assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, fixtureData.events.filte
 if (fixtureData.year === 2026) {
   const r17 = fixtureData.events.find(e => e.competition === "関東大学サッカーリーグ" && e.round === "第17節");
   assert.deepEqual(r17?.result, { for: 3, against: 0 }, "Oct 21 3-0 should be in JSON");
-  assert.match(r17.resultSource, /^https://www.jufa-kanto.jp/news/detail/4306/);
+  assert.ok(r17.resultSource.startsWith("https://www.jufa-kanto.jp/news/detail/4306"), "Provenance must link to the JUFA-certified score");
   assert.ok(ics.includes("結果: 3–0") || ics.replace(/\r?\n /g,"").includes("結果: 3–0"),
     "The certified score must be included in iCal event description");
 }
