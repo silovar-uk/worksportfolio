@@ -272,6 +272,31 @@ def main():
         previous = json.loads(previous_path.read_text(encoding="utf-8")).get("events", [])
     federation = merge_federation_results(events, year, now, fetch, archive, previous)
     warnings += federation["warnings"]
+    # A discrepancy between a provisional month calendar and final match sheet
+    # can be RESOLVED when another official source independently confirms it.
+    resolved_discrepancies = []
+    pending_warnings = []
+    for warning in warnings:
+        verified = None
+        for v in archive:
+            e = next((x for x in events if
+                      x["competition"] == COMPETITIONS[0] and
+                      x["date"] == v["date"] and x["round"] == v["round"] and
+                      norm(x["opponent"]) == norm(v["opponent"])), None)
+            if (e and warning.startswith(v["round"] + ":") and
+                    "対戦相手の公式情報が不一致" in warning and
+                    e.get("result") == v["result"]):
+                verified = v
+                break
+        if verified:
+            resolved_discrepancies.append({
+                "issue": warning,
+                "resolution": f"対戦相手は{verified['opponent']}と確定（試合結果・大会主催者の公式発表が一致）",
+                "source": verified["url"],
+            })
+        else:
+            pending_warnings.append(warning)
+    warnings = pending_warnings
     gaps = result_gaps(events, now)
     warnings += ["公式戦の結果未確認: " + msg for msg in gaps]
     # Detect critical source contradictions rather than silently pushing a conflicting score.
@@ -303,6 +328,7 @@ def main():
         "sourceUrls": [RESULTS_URL, CALENDAR_URL, JUFA_LEAGUE_URL],
         "audit": {"calendarItemsChecked": checked, "warnings": warnings,
                   "unconfirmedFinishedLeagueMatches": gaps,
+                  "resolvedDiscrepancies": resolved_discrepancies,
                   "officialFederation": federation},
     }
     encoded_json = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
