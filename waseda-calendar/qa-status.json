@@ -1,8 +1,12 @@
 {
-  "checkedAt": "2026-10-22T00:38:41.541Z",
+  "checkedAt": "2026-10-22T00:42:28.130Z",
   "officialMatches": 31,
   "datedMatches": 30,
   "calendarItems": 30,
+  "certifiedRound17": {
+    "score": "3-0",
+    "source": "JUFA Kanto"
+  },
   "tests": [
     {
       "browser": "Chromium desktop",
