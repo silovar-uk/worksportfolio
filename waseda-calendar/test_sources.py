@@ -63,7 +63,7 @@ class JufaChecks(unittest.TestCase):
         report = jufa.merge_federation_results(
             events, 2026, self.now,
             lambda _url: (_ for _ in ()).throw(RuntimeError("offline")),
-            self.archive, []
+            [v for v in self.archive if v["round"] == "第17節"], []
         )
         self.assertEqual(report["archiveMatchesApplied"], 1)
         self.assertEqual(events[0]["result"], {"for": 3, "against": 0})
