@@ -214,15 +214,15 @@ var name=function(e){return 'vs '+esc(e.opponent)};
 var sortEvents=function(a,b){return (a.date||'9999').localeCompare(b.date||'9999')||(a.time||'99').localeCompare(b.time||'99')};
 var isFinal=function(e){return !!(e.result&&Number.isInteger(e.result.for)&&Number.isInteger(e.result.against))};
 function renderHero(){
- var t=today(), upcoming=all.filter(function(e){return e.date&&e.date>=t&&!isFinal(e)}).sort(sortEvents);
+ var t=today(), currentTime=new Date(Date.now()+9*3600000).toISOString().slice(0,16), upcoming=all.filter(function(e){return e.date&&!isFinal(e)&&(e.date+'T'+(e.time||'23:59'))>=currentTime}).sort(sortEvents);
  var previous=all.filter(function(e){return e.date&&e.date<=t&&isFinal(e)}).sort(sortEvents).reverse();
  var next=upcoming[0],prev=previous[0];
  $('#nextMatch').innerHTML='<div class="overline">NEXT MATCH</div>'+(next?'<div class="hero-date">'+formatDate(next.date)+' · '+esc(next.round)+'</div><div class="hero-time">'+esc(next.time||'時刻未定')+'</div><div class="hero-opp">'+name(next)+'</div><div class="hero-meta">'+esc(next.competition)+'<br>'+esc(next.venue)+'</div>':'<div class="empty">日程が確定した次の試合はありません。</div>');
- $('#latestResult').innerHTML='<div class="overline">LATEST RESULT</div>'+(prev?'<div class="hero-date">'+formatDate(prev.date)+'</div><div class="score">'+esc(score(prev))+'</div><div class="hero-opp">'+name(prev)+'</div><div class="hero-meta">'+esc(prev.competition)+'<br>'+esc(prev.round)+'</div>':'<div class="empty">結果はまだありません。</div>');
+ $('#latestResult').innerHTML='<div class="overline">LATEST RESULT</div>'+(prev?'<div class="hero-date">'+formatDate(prev.date)+'</div><div class="score">'+esc(score(prev))+'</div><div class="hero-opp">'+name(prev)+'</div><div class="hero-meta">'+esc(prev.competition)+'<br>'+esc(prev.round)+'<br><a href="'+esc(prev.resultSource||prev.source)+'" target="_blank" rel="noopener">公式結果 ↗</a></div>':'<div class="empty">結果はまだありません。</div>');
 }
 function renderRecent(){
  var t=today(),recent=all.filter(function(e){return e.date&&e.date<=t&&e.date>=daydiff(t,-14)&&isFinal(e)}).sort(sortEvents).reverse();
- $('#results').innerHTML=recent.length?recent.map(function(e){return '<a class="result-row" href="'+esc(e.source)+'" target="_blank" rel="noopener"><span class="result-date">'+formatDate(e.date)+'</span><span class="result-score">'+esc(score(e))+'</span><span class="result-opponent">'+name(e)+'</span><span class="result-arr">↗</span></a>'}).join(''):'<div class="empty">直近14日間の確定した試合結果はありません。</div>';
+ $('#results').innerHTML=recent.length?recent.map(function(e){return '<a class="result-row" href="'+esc(e.resultSource||e.source)+'" target="_blank" rel="noopener"><span class="result-date">'+formatDate(e.date)+'</span><span class="result-score">'+esc(score(e))+'</span><span class="result-opponent">'+name(e)+'</span><span class="result-arr">↗</span></a>'}).join(''):'<div class="empty">直近14日間の確定した試合結果はありません。</div>';
 }
 function renderPulse(){
  var t=today(),days=[],start=daydiff(t,-14),stop=daydiff(t,60);
@@ -243,8 +243,8 @@ function renderTimeline(){
  $('#timeline').innerHTML=keys.length?keys.map(function(key){
  var group=groups[key],isToday=key===t;
  return '<article id="d-'+esc(key)+'" class="day'+(isToday?' today':'')+'"><div class="day-header"><span>'+esc(formatDate(key==='undated'?null:key))+'</span><small>'+group.length+' MATCH'+(group.length>1?'ES':'')+'</small></div>'+group.map(function(e){
- var finished=isFinal(e),time=e.date?(e.time||'未定'):'–',status=finished?'FT':e.date&&e.date<t?'結果未反映':'NEXT',subtitle=e.competition+'｜'+e.round;
- return '<div class="event"><div><div class="event-time">'+esc(finished?score(e):time)+'</div><div class="event-status">'+status+'</div></div><div class="event-body"><div class="smallhead">WASEDA TOP <span class="tag">'+esc(e.homeAway||'')+'</span></div><div class="versus">'+name(e)+'</div><div class="detail">'+esc(subtitle)+'<br>'+esc(e.venue)+'</div><a class="src" href="'+esc(e.source||'https://www.waseda-afc.jp/game-men')+'" target="_blank" rel="noopener">公式情報を確認 ↗</a></div></div>'
+ var finished=isFinal(e),time=e.date?(e.time||'未定'):'–',status=finished?'FT':e.date&&(e.date+'T'+(e.time||'23:59'))<new Date(Date.now()+9*3600000).toISOString().slice(0,16)?'結果確認中':'NEXT',subtitle=e.competition+'｜'+e.round;
+ return '<div class="event"><div><div class="event-time">'+esc(finished?score(e):time)+'</div><div class="event-status">'+status+'</div></div><div class="event-body"><div class="smallhead">WASEDA TOP <span class="tag">'+esc(e.homeAway||'')+'</span></div><div class="versus">'+name(e)+'</div><div class="detail">'+esc(subtitle)+'<br>'+esc(e.venue)+'</div><a class="src" href="'+esc(e.resultSource||e.source||'https://www.waseda-afc.jp/game-men')+'" target="_blank" rel="noopener">'+(finished?'公式結果':'公式日程')+'を確認 ↗</a></div></div>'
  }).join('')+'</article>'}).join(''):'<div class="day"><div class="empty">この条件に該当する試合はありません。</div></div>';
  $('#more').textContent=expanded?'直近の試合表示に戻す −':'シーズンの全試合を表示 ＋';
  $('#windowLabel').textContent=expanded?'2026シーズン':'前14日・今後60日';
