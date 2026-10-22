@@ -18,6 +18,7 @@ import urllib.request
 from pathlib import Path
 
 from lxml import html
+from jufa import merge_federation_results, result_gaps, JUFA_LEAGUE_URL
 
 ROOT = Path(__file__).resolve().parent
 JST = dt.timezone(dt.timedelta(hours=9))
@@ -144,6 +145,8 @@ def parse_results(doc, year):
                 "status": "final" if result else "scheduled",
                 "result": result,
                 "source": RESULTS_URL,
+                "resultSource": RESULTS_URL if result else None,
+                "resultSourceType": "waseda-results" if result else None,
             })
     league = [e for e in events if e["competition"] == COMPETITIONS[0]]
     if len(league) < 20 or len(events) < 23:
@@ -233,11 +236,14 @@ def make_ics(events, generated_at):
         if e["result"]:
             r = e["result"]
             desc += f"\n結果: {r['for']}–{r['against']}"
+            if r.get("pkFor") is not None:
+                desc += f" (PK {r['pkFor']}–{r['pkAgainst']})"
+            desc += "\n結果出典: " + (e.get("resultSource") or e["source"])
         lines.extend(["BEGIN:VEVENT", f"UID:{e['id']}@waseda-calendar",
                       f"DTSTAMP:{stamp}", f"SUMMARY:{escape_ics(title)}",
                       f"DESCRIPTION:{escape_ics(desc)}",
                       f"LOCATION:{escape_ics(e['venue'])}",
-                      f"URL:{e['source']}"])
+                      f"URL:{e.get('resultSource') or e['source']}"])
         if e["time"]:
             start = dt.datetime.strptime(e["date"] + " " + e["time"], "%Y-%m-%d %H:%M")
             end = start + dt.timedelta(hours=2)
@@ -256,6 +262,36 @@ def main():
     doc = fetch(RESULTS_URL)
     events = parse_results(doc, year)
     warnings, checked = audit_calendar(year, events)
+    # A club fixture list can remain blank a day after the federation posts scores.
+    # Merge independently verified federation reports and preserve previous final scores.
+    archive_path = ROOT / "verified-results.json"
+    archive = json.loads(archive_path.read_text(encoding="utf-8")) if archive_path.exists() else []
+    previous_path = ROOT / "schedule.json"
+    previous = []
+    if previous_path.exists():
+        previous = json.loads(previous_path.read_text(encoding="utf-8")).get("events", [])
+    federation = merge_federation_results(events, year, now, fetch, archive, previous)
+    warnings += federation["warnings"]
+    gaps = result_gaps(events, now)
+    warnings += ["公式戦の結果未確認: " + msg for msg in gaps]
+    # Detect critical source contradictions rather than silently pushing a conflicting score.
+    conflicts = [w for w in warnings if "RESULT CONFLICT" in w]
+    if conflicts:
+        raise RuntimeError("Conflicting certified results: " + " | ".join(conflicts))
+    # Prevent a misleading 'successful refresh' when a concluded league match is still blank.
+    # Give primary/secondary official sources up to 24h to publish.
+    stale = [
+        e for e in events if
+        e["competition"] == COMPETITIONS[0] and e.get("date") and not e.get("result")
+        and dt.datetime.combine(
+            dt.date.fromisoformat(e["date"]),
+            dt.time.fromisoformat(e["time"]) if e.get("time") else dt.time(14),
+            tzinfo=JST,
+        ) + dt.timedelta(hours=26) < now
+    ]
+    if stale:
+        raise RuntimeError("League results missing >24 hours after full time: " +
+                           ", ".join(e["round"] + " " + e["opponent"] for e in stale))
     events.sort(key=lambda e: (e["date"] is None, e["date"] or "9999", e["time"] or "99:99", e["competition"], e["round"]))
     data = {
         "name": SOURCE_NAME,
@@ -264,8 +300,10 @@ def main():
         "pastWindowDays": 14,
         "futureWindowDays": 60,
         "events": events,
-        "sourceUrls": [RESULTS_URL, CALENDAR_URL],
-        "audit": {"calendarItemsChecked": checked, "warnings": warnings},
+        "sourceUrls": [RESULTS_URL, CALENDAR_URL, JUFA_LEAGUE_URL],
+        "audit": {"calendarItemsChecked": checked, "warnings": warnings,
+                  "unconfirmedFinishedLeagueMatches": gaps,
+                  "officialFederation": federation},
     }
     encoded_json = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
     encoded_ics = make_ics(events, now)
@@ -276,7 +314,9 @@ def main():
     (ROOT / "schedule.json").write_text(encoded_json, encoding="utf-8")
     (ROOT / "all.ics").write_bytes(encoded_ics.encode("utf-8"))
     print(json.dumps({"events": len(events), "dated": sum(bool(e["date"]) for e in events),
-                      "calendarAudits": checked, "warnings": warnings[:10]}, ensure_ascii=False))
+                      "calendarAudits": checked, "officialFederation": federation,
+                      "unconfirmedFinishedLeagueMatches": gaps,
+                      "warnings": warnings[:10]}, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()
