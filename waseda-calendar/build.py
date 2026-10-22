@@ -178,7 +178,7 @@ def audit_calendar(year, events):
             cell = cols[2]
             if "関東大学サッカーリーグ" not in cell or "TOP" not in cell:
                 continue
-            for m in re.finditer(r"第\s*(\d+)\s*節[^】]*】\s*TOP\s*(\d{1,2}:\d{2})\s*vs\s*([^＠@【]+)", cell):
+            for m in re.finditer(r"第\s*(\d+)\s*節[^〗】]*[〗】]\s*TOP\s*(\d{1,2}:\d{2})\s*vs\s*([^＠@【]+)", cell):
                 n, tm, opponent = m.groups()
                 found = known_league.get(n)
                 try:
