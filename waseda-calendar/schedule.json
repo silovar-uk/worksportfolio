@@ -1,0 +1,499 @@
+{
+  "name": "早稲田大学ア式蹴球部（男子TOP）",
+  "year": 2026,
+  "updatedAt": "2026-10-22T09:00:00+09:00",
+  "pastWindowDays": 14,
+  "futureWindowDays": 60,
+  "events": [
+    {
+      "id": "seed-2026-O07",
+      "date": "2026-03-08",
+      "time": "15:15",
+      "competition": "定期交流戦",
+      "round": "第102回早関サッカー定期戦",
+      "opponent": "関西学院大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 0
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O08",
+      "date": "2026-03-14",
+      "time": "14:00",
+      "competition": "定期交流戦",
+      "round": "第58回早稲田大学・高麗大学定期交流戦",
+      "opponent": "高麗大学校",
+      "venue": "Korea University Nokji Stadium",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L01",
+      "date": "2026-04-04",
+      "time": "12:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第1節",
+      "opponent": "筑波大学",
+      "venue": "味の素フィールド西が丘",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L02",
+      "date": "2026-04-11",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第2節",
+      "opponent": "東海大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L03",
+      "date": "2026-04-18",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第3節",
+      "opponent": "中央大学",
+      "venue": "中央大学多摩キャンパスサッカー場",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L05",
+      "date": "2026-05-02",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第5節",
+      "opponent": "明治大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L06",
+      "date": "2026-05-05",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第6節",
+      "opponent": "駒澤大学",
+      "venue": "駒澤大学玉川キャンパスサッカーグラウンド",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 3,
+        "against": 0
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L07",
+      "date": "2026-05-09",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第7節",
+      "opponent": "日本大学",
+      "venue": "日本大学アスレティックパーク稲城サッカーフィールド",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L08",
+      "date": "2026-05-16",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第8節",
+      "opponent": "日本体育大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 3,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L09",
+      "date": "2026-05-23",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第9節",
+      "opponent": "東洋大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L10",
+      "date": "2026-05-30",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第10節",
+      "opponent": "法政大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L11",
+      "date": "2026-06-07",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第11節",
+      "opponent": "桐蔭横浜大学",
+      "venue": "桐蔭学園多目的グラウンド",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 3,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L04",
+      "date": "2026-06-13",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第4節",
+      "opponent": "国士舘大学",
+      "venue": "国士舘大学楓の杜キャンパスサッカー場",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O02",
+      "date": "2026-06-19",
+      "time": "11:00",
+      "competition": "アミノバイタルカップ",
+      "round": "3回戦",
+      "opponent": "順天堂大学",
+      "venue": "時之栖スポーツセンター裾野E2グラウンド",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O03",
+      "date": "2026-06-21",
+      "time": "11:00",
+      "competition": "アミノバイタルカップ",
+      "round": "4回戦",
+      "opponent": "産業能率大学",
+      "venue": "時之栖スポーツセンター裾野E2グラウンド",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 0
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O04",
+      "date": "2026-06-23",
+      "time": "11:00",
+      "competition": "アミノバイタルカップ",
+      "round": "準々決勝",
+      "opponent": "専修大学",
+      "venue": "時之栖スポーツセンター裾野E2グラウンド",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 1,
+        "pkFor": 4,
+        "pkAgainst": 5
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O05",
+      "date": "2026-06-26",
+      "time": "18:00",
+      "competition": "アミノバイタルカップ",
+      "round": "順位決定戦",
+      "opponent": "桐蔭横浜大学",
+      "venue": "スピアーズえどりくフィールド",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 5,
+        "against": 4
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O06",
+      "date": "2026-06-28",
+      "time": "11:00",
+      "competition": "アミノバイタルカップ",
+      "round": "順位決定戦",
+      "opponent": "日本体育大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 3,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O09",
+      "date": "2026-08-11",
+      "time": "18:00",
+      "competition": "定期交流戦",
+      "round": "第77回早慶サッカー定期戦",
+      "opponent": "慶應義塾大学",
+      "venue": "国立競技場",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 3
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-O01",
+      "date": "2026-09-02",
+      "time": "14:00",
+      "competition": "総理大臣杯",
+      "round": "1回戦",
+      "opponent": "九州産業大学",
+      "venue": "セイホクパーク石巻フットボール場",
+      "homeAway": "NEUTRAL",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 2
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L12",
+      "date": "2026-09-23",
+      "time": "18:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第12節",
+      "opponent": "東海大学",
+      "venue": "東海大学湘南キャンパスサッカー場",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 3
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L13",
+      "date": "2026-09-26",
+      "time": "18:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第13節",
+      "opponent": "国士舘大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 3
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L14",
+      "date": "2026-10-03",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第14節",
+      "opponent": "東洋大学",
+      "venue": "東洋大学朝霞キャンパス・サッカー場",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L15",
+      "date": "2026-10-10",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第15節",
+      "opponent": "筑波大学",
+      "venue": "フカガワみらいフィールド",
+      "homeAway": "AWAY",
+      "status": "final",
+      "result": {
+        "for": 2,
+        "against": 3
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L16",
+      "date": "2026-10-17",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第16節",
+      "opponent": "日本大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 1
+      },
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L17",
+      "date": "2026-10-21",
+      "time": "18:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第17節",
+      "opponent": "桐蔭横浜大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L18",
+      "date": "2026-10-24",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第18節",
+      "opponent": "法政大学",
+      "venue": "法政大学城山サッカー場",
+      "homeAway": "AWAY",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L19",
+      "date": "2026-10-31",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第19節",
+      "opponent": "中央大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L20",
+      "date": "2026-11-03",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第20節",
+      "opponent": "駒澤大学",
+      "venue": "東伏見グラウンド",
+      "homeAway": "HOME",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L21",
+      "date": "2026-11-07",
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第21節",
+      "opponent": "明治大学",
+      "venue": "神奈川県立保土ケ谷公園サッカー場",
+      "homeAway": "AWAY",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    },
+    {
+      "id": "seed-2026-L22",
+      "date": null,
+      "time": "14:00",
+      "competition": "関東大学サッカーリーグ",
+      "round": "第22節",
+      "opponent": "日本体育大学",
+      "venue": "会場未定",
+      "homeAway": "AWAY",
+      "status": "scheduled",
+      "result": null,
+      "source": "https://www.waseda-afc.jp/game-men"
+    }
+  ],
+  "sourceUrls": [
+    "https://www.waseda-afc.jp/game-men",
+    "https://www.waseda-afc.jp/calendar/calendar-men.cgi"
+  ],
+  "audit": {
+    "calendarItemsChecked": 2,
+    "warnings": [
+      "第14節：公式結果表（10/3 vs東洋大学）と月間予定（10/3 vs東海大学）で対戦相手・会場に不一致。結果表を優先。"
+    ]
+  }
+}
