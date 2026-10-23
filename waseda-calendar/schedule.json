@@ -1,7 +1,7 @@
 {
   "name": "早稲田大学ア式蹴球部（男子TOP）",
   "year": 2026,
-  "updatedAt": "2026-10-22T14:10:33+09:00",
+  "updatedAt": "2026-10-23T14:10:34+09:00",
   "pastWindowDays": 14,
   "futureWindowDays": 60,
   "events": [
@@ -472,8 +472,8 @@
         "against": 0
       },
       "source": "https://www.waseda-afc.jp/game-men",
-      "resultSource": "https://www.jufa-kanto.jp/news/detail/4306/?path=path02",
-      "resultSourceType": "jufa-verified-archive"
+      "resultSource": "https://www.waseda-afc.jp/game-men",
+      "resultSourceType": "waseda-results"
     },
     {
       "id": "e15222b2fea0d55b5dfa",
@@ -568,7 +568,7 @@
       }
     ],
     "officialFederation": {
-      "archiveMatchesApplied": 1,
+      "archiveMatchesApplied": 0,
       "previousResultsRecovered": 0,
       "liveFederationResultsApplied": 0,
       "federationRoundsChecked": 1,
