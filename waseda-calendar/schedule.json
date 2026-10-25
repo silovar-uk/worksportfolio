@@ -1,7 +1,7 @@
 {
   "name": "早稲田大学ア式蹴球部（男子TOP）",
   "year": 2026,
-  "updatedAt": "2026-10-24T13:53:20+09:00",
+  "updatedAt": "2026-10-25T14:04:18+09:00",
   "pastWindowDays": 14,
   "futureWindowDays": 60,
   "events": [
@@ -484,11 +484,14 @@
       "opponent": "法政大学",
       "venue": "法政大学城山サッカー場",
       "homeAway": "AWAY",
-      "status": "scheduled",
-      "result": null,
+      "status": "final",
+      "result": {
+        "for": 1,
+        "against": 1
+      },
       "source": "https://www.waseda-afc.jp/game-men",
-      "resultSource": null,
-      "resultSourceType": null
+      "resultSource": "https://www.waseda-afc.jp/game-men",
+      "resultSourceType": "waseda-results"
     },
     {
       "id": "636a92366fb937f94676",
