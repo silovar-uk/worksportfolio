@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'redscalender/build.py'
+      - 'redscalender/national_teams.py'
       - 'redscalender/template.html'
       - '.github/workflows/update-redscalendar.yml'
 
@@ -36,12 +37,14 @@ jobs:
           from pathlib import Path
           root = Path('redscalender')
           data = json.loads((root / 'schedule.json').read_text())
-          expected = {'men', 'ladies', 'u21', 'youth'}
+          expected = {'men', 'ladies', 'u21', 'youth', 'japan', 'japan_u21'}
           assert set(data['teams']) == expected, data['teams'].keys()
           assert len(data['teams']['men']) >= 20
           assert len(data['teams']['ladies']) >= 20
           assert len(data['teams']['u21']) >= 10
           assert len(data['teams']['youth']) == 18
+          assert len(data['teams']['japan']) >= 5
+          assert len(data['teams']['japan_u21']) >= 2
           assert data.get('pastWindowDays') == 14
           for rows in data['teams'].values():
               for row in rows:
@@ -49,7 +52,7 @@ jobs:
                       assert row.get('result')
                       assert isinstance(row['result'].get('scoreFor'), int)
                       assert isinstance(row['result'].get('scoreAgainst'), int)
-          for name in ['men.ics','ladies.ics','u21.ics','youth.ics','all.ics','index.html']:
+          for name in ['men.ics','ladies.ics','u21.ics','youth.ics','japan.ics','japan_u21.ics','all.ics','index.html']:
               assert (root / name).exists(), name
           print({team: len(rows) for team, rows in data['teams'].items()})
           html = (root / 'index.html').read_text()
