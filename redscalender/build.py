@@ -24,6 +24,7 @@ import urllib.parse
 import unicodedata
 
 from lxml import html as dom
+from national_teams import fixtures as national_fixtures, SOURCES as NATIONAL_SOURCES, NAMES as NATIONAL_NAMES, LABELS as NATIONAL_LABELS
 
 ROOT = Path(__file__).resolve().parent
 JST = dt.timezone(dt.timedelta(hours=9))
@@ -50,7 +51,10 @@ LABELS = {
     "u21": "U-21",
     "youth": "YOUTH",
 }
-TEAM_ORDER = ("men", "ladies", "u21", "youth")
+TEAM_ORDER = ("men", "ladies", "u21", "youth", "japan", "japan_u21")
+SOURCES.update(NATIONAL_SOURCES)
+NAMES.update(NATIONAL_NAMES)
+LABELS.update(NATIONAL_LABELS)
 PRINCE_NAME = "高円宮杯 JFA U-18サッカープリンスリーグ 2026関東1部"
 
 
@@ -727,10 +731,11 @@ def main():
     stamp = now.astimezone(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
     docs = {}
-    for url in sorted(set(SOURCES.values())):
+    for url in sorted(set(SOURCES[team] for team in ("men", "ladies", "u21", "youth"))):
         docs[url] = fetch(url)
 
-    all_rows = {team: parse(team, docs[url]) for team, url in SOURCES.items()}
+    all_rows = {team: parse(team, docs[SOURCES[team]]) for team in ("men", "ladies", "u21", "youth")}
+    all_rows.update(national_fixtures())
 
     old_path = ROOT / "schedule.json"
     old = json.loads(old_path.read_text()) if old_path.exists() else {"teams": {}}
@@ -774,7 +779,7 @@ def main():
     for team in TEAM_ORDER:
         outputs[team + ".ics"] = ics(NAMES[team], all_rows[team], stamp)
     merged = [row for team in TEAM_ORDER for row in all_rows[team]]
-    outputs["all.ics"] = ics("REDS CALENDAR｜4カテゴリー", merged, stamp)
+    outputs["all.ics"] = ics("REDS CALENDAR｜6カテゴリー", merged, stamp)
 
     for name, content in outputs.items():
         (ROOT / name).write_bytes(content.encode())
