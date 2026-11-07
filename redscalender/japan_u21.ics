@@ -7,33 +7,35 @@ X-WR-CALNAME:U-21日本代表
 X-WR-TIMEZONE:Asia/Tokyo
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:national-japan_u21-2026-11-14-84c69a6f@redscalender
-DTSTAMP:20261107T132000Z
-LAST-MODIFIED:20261107T132000Z
+UID:b8a1f1d478ac8b97238059af@redscalender
+DTSTAMP:20261107T162828Z
+LAST-MODIFIED:20261107T162828Z
 SEQUENCE:0
 DTSTART:20261113T180000Z
 DTEND:20261113T200000Z
-SUMMARY:【日本代表】U-21日本代表 vs U-21スペイン代表
+SUMMARY:[NEUTRAL] U-21日本代表 vs U-21スペイン代表
 LOCATION:Estadio Francisco de la Hera（スペイン）
-DESCRIPTION:国際親善試合\n日本時間で表示。公式情報を確
- 認してください。\nhttps://www.jfa.jp/national_team/mens_all_2026/n
- ews/00036989/
+DESCRIPTION:国際親善試合\n終了時刻はキックオフから2時間
+ 後の目安です。\n非公式カレンダー。来場前に公式情報
+ をご確認ください。\nhttps://www.jfa.jp/national_team/mens_all_202
+ 6/news/00036989/
 URL:https://www.jfa.jp/national_team/mens_all_2026/news/00036989/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:national-japan_u21-2026-11-18-b0234a72@redscalender
-DTSTAMP:20261107T132000Z
-LAST-MODIFIED:20261107T132000Z
+UID:5efedbdd9a37f51c40352065@redscalender
+DTSTAMP:20261107T162828Z
+LAST-MODIFIED:20261107T162828Z
 SEQUENCE:0
 DTSTART:20261117T160000Z
 DTEND:20261117T180000Z
-SUMMARY:【日本代表】U-21日本代表 vs U-21エジプト代表
+SUMMARY:[NEUTRAL] U-21日本代表 vs U-21エジプト代表
 LOCATION:Petro Sport Stadium（エジプト）
-DESCRIPTION:国際親善試合\n日本時間で表示。公式情報を確
- 認してください。\nhttps://www.jfa.jp/national_team/mens_all_2026/n
- ews/00036989/
+DESCRIPTION:国際親善試合\n終了時刻はキックオフから2時間
+ 後の目安です。\n非公式カレンダー。来場前に公式情報
+ をご確認ください。\nhttps://www.jfa.jp/national_team/mens_all_202
+ 6/news/00036989/
 URL:https://www.jfa.jp/national_team/mens_all_2026/news/00036989/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
