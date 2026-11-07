@@ -94,6 +94,15 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .badge.red{background:var(--signal);color:#fff}
 .event{--category-color:var(--ink);display:grid;grid-template-columns:58px 1fr;gap:12px;padding:14px 14px 14px 12px;border-bottom:1px solid var(--soft);border-left:4px solid var(--category-color)}
 .event:last-child{border-bottom:0}
+.event.conditional{background:#fffaf2}
+.projected-tag{display:inline-block;border:1px solid #b58b50;border-radius:4px;padding:2px 6px;margin-top:5px;color:#75501c;font-size:10px;font-weight:900;letter-spacing:.015em}
+.cup-outlook{display:grid;gap:7px}
+.cup-outlook-item{--category-color:var(--ink);display:grid;grid-template-columns:125px minmax(0,1fr);gap:10px;padding:12px 13px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--category-color)}
+.cup-outlook-date{font-size:11px;font-weight:900;line-height:1.4}
+.cup-outlook-name{font-size:12px;font-weight:850;line-height:1.5}
+.cup-outlook-info{font-size:10px;color:var(--muted);margin-top:3px}
+.cup-outlook a{font-size:10px}
+@media(max-width:440px){.cup-outlook-item{grid-template-columns:92px minmax(0,1fr)}}
 .event-time{font-size:16px;line-height:1.2;font-weight:900;letter-spacing:-.02em}
 .event-state{font-size:9px;font-weight:950;letter-spacing:.1em;color:var(--muted)}
 .event-score{margin-top:2px;font-size:18px;line-height:1.1;font-weight:950;letter-spacing:-.03em}
@@ -141,8 +150,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <header class="masthead">
 <p class="kicker">2026/27 · UNOFFICIAL</p>
 <h1>REDS<br>CALENDAR</h1>
-<p class="lede">トップ、レディース、U-21、ユース。最近の結果と、これからの予定を分けて見る。</p>
-<div class="statusline"><span id="updated">データ確認中</span><span>結果14日 / 予定60日</span><span>ユースはプリンスリーグのみ</span></div>
+<p class="lede">トップ、レディース、U-21、ユース。試合予定に加え、カップ戦は勝ち上がり時の仮予定も表示。</p>
+<div class="statusline"><span id="updated">データ確認中</span><span>結果14日 / 予定60日＋カップ戦の先行予定</span><span>ユースはプリンスリーグのみ</span></div>
 </header>
 
 <nav class="quick-nav" aria-label="表示する予定">
@@ -165,7 +174,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <ul class="notes">
 <li>「4カテゴリーまとめて」と個別カレンダーを両方追加すると、同じ試合が重複表示されます。</li>
 <li>時刻未定の試合は終日予定として登録します。終了時刻はキックオフから2時間後の目安です。</li>
-<li>日付が複数候補の試合は、日付確定までiCalに入れません。日付確定・時刻未定・対戦相手未定の試合は入れます。</li>
+<li>勝ち上がり時の予定は【勝ち上がり時】と明記し、iCalでは仮予定（TENTATIVE）として登録。敗退が確認された場合は以後の仮予定を削除します。</li>
+<li>日付が複数候補の試合は、日付確定までiCalに入れず、サイト内の参考日程にのみ表示します。日付確定・時刻未定の試合は終日予定にします。</li>
 </ul>
 </details>
 </section>
@@ -312,7 +322,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
         return `<div class="next-match">
           ${primary}
           <div class="next-opponent">vs ${esc(displayOpponent(event))}</div>
-          <div class="next-venue">${esc(event.venue)}</div>
+          <div class="next-venue">${esc(event.venue)}</div>${event.conditional ? '<div class="projected-tag">勝ち上がり時</div>' : ''}
         </div>`;
       }).join('');
 
@@ -390,9 +400,9 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 
       const events = list.map(event => {
         const url = event.source || '';
-        return `<article class="event team-${event.team}">
+        return `<article class="event team-${event.team} ${event.conditional ? 'conditional' : ''}">
           <div><div class="event-time">${esc(event.time || '未定')}</div><div class="event-side">${event.side==='UNSPECIFIED'?'':esc(event.side)}</div></div>
-          <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}</div><div class="event-comp">${esc(event.competition)}</div>${url?`<a class="event-source" href="${esc(url)}">公式日程 ↗</a>`:''}</div>
+          <div><div class="event-team">${esc(labels()[event.team])}</div><div class="event-vs">vs ${esc(displayOpponent(event))}</div><div class="event-meta">${esc(event.venue)}</div><div class="event-comp">${esc(event.competition)}</div>${event.conditional ? '<span class="projected-tag">勝ち上がり時</span>' : ''}${url?`<a class="event-source" href="${esc(url)}">公式日程 ↗</a>`:''}</div>
         </article>`;
       }).join('');
 
@@ -400,6 +410,37 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     }).join('');
 
     return `<section class="section" aria-labelledby="schedule-title"><div class="section-head"><div><p class="kicker">SCHEDULE</p><h2 id="schedule-title">試合予定</h2></div><p>${visible.length}試合</p></div><div class="timeline">${htmlRows || '<div class="empty">この条件の予定はありません。</div>'}</div></section>`;
+  }
+
+
+  function renderCupOutlook() {
+    const {today,end} = currentWindow();
+    if (activeFilter === 'overlap') return '';
+    const applicable = allEvents().filter(event => event.conditional && (
+      (event.date && event.date > end) || (!event.date && /カップ|天皇杯|皇后杯/.test(event.competition))
+    ) && (!event.date || event.date >= today) && (
+      activeFilter === 'all' || activeFilter === event.team
+    ));
+    if (!applicable.length) return '';
+    const sortKey = event => event.date || (
+      event.raw_date.match(/(20\\d{2})\\/(\\d{1,2})\\/(\\d{1,2})/) || []
+    ).slice(1).map((x,i)=>i?x.padStart(2,'0'):x).join('-') || '9999';
+    applicable.sort((a,b)=>sortKey(a).localeCompare(sortKey(b)) || TEAM_ORDER.indexOf(a.team)-TEAM_ORDER.indexOf(b.team));
+    const items = applicable.map(event => {
+      const date = event.date ? formatDay(event.date) : esc(event.raw_date.split(' ')[0]) + '（候補日）';
+      return `<article class="cup-outlook-item team-${event.team}">
+        <div class="cup-outlook-date">${date}<div class="projected-tag">勝ち上がり時</div></div>
+        <div><div class="event-team">${esc(labels()[event.team])}</div>
+          <div class="cup-outlook-name">${esc(event.competition)}</div>
+          <div class="cup-outlook-info">対戦相手：${esc(displayOpponent(event))} ／ ${esc(event.venue)}</div>
+          ${event.source ? `<a href="${esc(event.source)}">公式日程 ↗</a>` : ''}</div>
+      </article>`;
+    }).join('');
+    return `<section class="section section-divider" aria-labelledby="cup-outlook-title">
+      <div class="section-head"><div><p class="kicker">CUP OUTLOOK</p><h2 id="cup-outlook-title">この先のカップ戦</h2></div><p>勝ち上がり時の仮予定</p></div>
+      <p class="event-meta">60日より先のカップ戦日程。勝ち上がりを保証するものではありません。候補日が複数ある試合はiCalに登録しません。</p>
+      <div class="cup-outlook">${items}</div>
+    </section>`;
   }
 
   function renderCalendarList() {
@@ -420,7 +461,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     const nextBase = futureEvents().sort((a,b) => ((a.date || '') + (a.time || '99:99')).localeCompare((b.date || '') + (b.time || '99:99')));
     const upcomingBase = nextBase.filter(event => !event.resultConfirmed);
     const visibleUpcoming = filteredUpcoming(upcomingBase);
-    app.innerHTML = `${renderNextByTeam(nextBase)}${renderResults(resultsBase)}${renderPulse(upcomingBase,visibleUpcoming)}${renderTimeline(upcomingBase,visibleUpcoming)}`;
+    app.innerHTML = `${renderNextByTeam(nextBase)}${renderResults(resultsBase)}${renderPulse(upcomingBase,visibleUpcoming)}${renderTimeline(upcomingBase,visibleUpcoming)}${renderCupOutlook()}`;
     renderCalendarList();
     document.querySelectorAll('[data-date-jump]').forEach(button => button.addEventListener('click',()=>{
       document.getElementById(`day-${button.dataset.dateJump}`)?.scrollIntoView({behavior:'smooth',block:'start'});
