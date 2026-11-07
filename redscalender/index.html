@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f4f1">
 <meta name="description" content="浦和レッズのトップ、レディース、U-21、ユース（プリンスリーグ）の直近14日の結果と今後60日の予定を、分けて素早く確認できる非公式カレンダー。">
-<title>REDS CALENDAR｜浦和のいまと、その次</title>
+<title>REDS CALENDAR｜浦和と日本代表の試合日程</title>
 <style>
-:root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--signal:#8a5200;--c-men:#c8102e;--c-ladies:#8a3561;--c-u21:#24527a;--c-youth:#1f6b57;--shadow:0 8px 30px rgba(0,0,0,.055)}
+:root{--red:#c8102e;--ink:#161616;--muted:#6e6e68;--paper:#f4f4f1;--card:#fff;--line:#d9d9d3;--soft:#ecece7;--signal:#8a5200;--c-men:#c8102e;--c-ladies:#8a3561;--c-u21:#24527a;--c-youth:#1f6b57;--c-japan:#154a91;--c-japan-u21:#4a67a1;--shadow:0 8px 30px rgba(0,0,0,.055)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:86px}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;-webkit-text-size-adjust:100%}
@@ -29,6 +29,8 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .chip[data-filter="ladies"]{--category-color:var(--c-ladies)}
 .chip[data-filter="u21"]{--category-color:var(--c-u21)}
 .chip[data-filter="youth"]{--category-color:var(--c-youth)}
+.chip[data-filter="japan"]{--category-color:var(--c-japan)}
+.chip[data-filter="japan_u21"]{--category-color:var(--c-japan-u21)}
 .chip[data-filter="overlap"]{--category-color:var(--signal)}
 .chip[aria-pressed="true"]{background:var(--category-color);border-color:var(--category-color);color:#fff}
 .chip[aria-pressed="true"]::before{background:#fff}
@@ -42,6 +44,8 @@ h1{margin:0;font-size:clamp(31px,8vw,54px);line-height:.98;letter-spacing:-.055e
 .team-ladies{--category-color:var(--c-ladies)}
 .team-u21{--category-color:var(--c-u21)}
 .team-youth{--category-color:var(--c-youth)}
+.team-japan{--category-color:var(--c-japan)}
+.team-japan_u21{--category-color:var(--c-japan-u21)}
 .next-card{min-width:0;padding:13px 12px 12px;border-top:4px solid var(--category-color,var(--ink))}
 .next-label{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:.09em;color:var(--ink)}
 .next-label::before,.team-tag::before{content:"";width:4px;height:14px;border-radius:3px;background:var(--category-color,var(--ink));flex:0 0 auto}
@@ -150,7 +154,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <header class="masthead">
 <p class="kicker">2026/27 · UNOFFICIAL</p>
 <h1>REDS<br>CALENDAR</h1>
-<p class="lede">トップ、レディース、U-21、ユース。試合予定に加え、カップ戦は勝ち上がり時の仮予定も表示。</p>
+<p class="lede">レッズ4カテゴリー＋日本代表・U-21日本代表。試合予定に加え、カップ戦は勝ち上がり時の仮予定も表示。</p>
 <div class="statusline"><span id="updated">データ確認中</span><span>結果14日 / 予定60日＋カップ戦の先行予定</span><span>ユースはプリンスリーグのみ</span></div>
 </header>
 
@@ -160,6 +164,8 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <button class="chip" type="button" data-filter="ladies" aria-pressed="false">LADIES</button>
 <button class="chip" type="button" data-filter="u21" aria-pressed="false">U-21</button>
 <button class="chip" type="button" data-filter="youth" aria-pressed="false">YOUTH</button>
+<button class="chip" type="button" data-filter="japan" aria-pressed="false">日本代表</button>
+<button class="chip" type="button" data-filter="japan_u21" aria-pressed="false">U-21代表</button>
 <button class="chip overlap" type="button" data-filter="overlap" aria-pressed="false">同日開催</button>
 </nav>
 
@@ -172,7 +178,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <div id="calendar-list" class="calendar-list"></div>
 <p id="notice" class="notice" role="status" aria-live="polite"></p>
 <ul class="notes">
-<li>「4カテゴリーまとめて」と個別カレンダーを両方追加すると、同じ試合が重複表示されます。</li>
+<li>「6カテゴリーまとめて」と個別カレンダーを両方追加すると、同じ試合が重複表示されます。</li>
 <li>時刻未定の試合は終日予定として登録します。終了時刻はキックオフから2時間後の目安です。</li>
 <li>勝ち上がり時の予定は【勝ち上がり時】と明記し、iCalでは仮予定（TENTATIVE）として登録。敗退が確認された場合は以後の仮予定を削除します。</li>
 <li>日付が複数候補の試合は、日付確定までiCalに入れず、サイト内の参考日程にのみ表示します。日付確定・時刻未定の試合は終日予定にします。</li>
@@ -187,6 +193,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <div class="source-item">MEN / U-21：<a href="https://www.urawa-reds.co.jp/game/">浦和レッズ公式 試合日程・結果</a>。直近の公式試合結果記事が見つかる場合は詳細リンクとして使用。</div>
 <div class="source-item">LADIES：<a href="https://www.urawa-reds.co.jp/redsladies/gameresults/2026.html">三菱重工浦和レッズレディース公式 日程・結果</a>。「公式記録」がある試合はそのリンクを使用。</div>
 <div class="source-item">YOUTH：<a href="https://www.urawa-reds.co.jp/reds_ikusei/youth_games/2026.html">浦和レッズ育成公式 ユース試合日程</a>のプリンスリーグ関東1部のみ。直近結果は<a href="https://www.urawa-reds.co.jp/reds_ikusei/news/">育成NEWS</a>でも補完。</div>
+<div class="source-item">JAPAN / JAPAN U-21：<a href="https://www.jfa.jp/samuraiblue/schedule_result/2026.html">JFA A代表公式日程</a>、<a href="https://www.jfa.jp/national_team/u21/schedule_result/2026.html">JFA U-21公式日程</a>。日本時間で表示。延期されたアジアカップは除外。発表済みの代表戦を収録し、変更はデータ更新時に反映します。</div>
 <div class="source-item">同日開催：同じ日付に2試合以上。時間重複：開始時刻が判明している試合を各2時間として計算し、その時間帯が重なる場合。</div>
 </div>
 </details>
@@ -200,9 +207,9 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 <script>
 (() => {
   const BASE = 'https://silovar-uk.github.io/worksportfolio/redscalender/';
-  const TEAM_ORDER = ['men','ladies','u21','youth'];
-  const FALLBACK_LABELS = {men:'MEN',ladies:'LADIES',u21:'U-21',youth:'YOUTH'};
-  const FALLBACK_NAMES = {men:'浦和レッズ',ladies:'三菱重工浦和レッズレディース',u21:'浦和レッズ U-21',youth:'浦和レッズユース'};
+  const TEAM_ORDER = ['men','ladies','u21','youth','japan','japan_u21'];
+  const FALLBACK_LABELS = {men:'MEN',ladies:'LADIES',u21:'U-21',youth:'YOUTH',japan:'JAPAN',japan_u21:'JAPAN U-21'};
+  const FALLBACK_NAMES = {men:'浦和レッズ',ladies:'三菱重工浦和レッズレディース',u21:'浦和レッズ U-21',youth:'浦和レッズユース',japan:'SAMURAI BLUE（日本代表）',japan_u21:'U-21日本代表'};
   const app = document.getElementById('app');
   let data = null;
   let activeFilter = 'all';
@@ -334,7 +341,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     }).join('');
 
     const title = hasToday ? '今日と、その次。' : '各カテゴリーの次戦';
-    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">TODAY / NEXT</p><h2 id="next-title">${title}</h2></div><p>4カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
+    return `<section class="section" aria-labelledby="next-title"><div class="section-head"><div><p class="kicker">TODAY / NEXT</p><h2 id="next-title">${title}</h2></div><p>6カテゴリー</p></div><div class="next-grid">${cards}</div></section>`;
   }
 
   function renderResults(base) {
@@ -445,7 +452,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
 
   function renderCalendarList() {
     const rows = [
-      {key:'all',label:'ALL',name:'4カテゴリーまとめて',note:'トップ / レディース / U-21 / ユース'},
+      {key:'all',label:'ALL',name:'6カテゴリーまとめて',note:'レッズ4カテゴリー / 日本代表 / U-21日本代表'},
       ...TEAM_ORDER.map(key=>({key,label:labels()[key],name:names()[key],note:key==='youth'?'プリンスリーグのみ':''}))
     ];
     document.getElementById('calendar-list').innerHTML = rows.map(row => {
