@@ -170,6 +170,11 @@ def make(team, comp, opp, side, date_parts, time, venue, raw_date, ambiguous=Fal
     }
 
 
+def has_multiple_date_options(raw):
+    """Do not pick just the first date in '17(土)or18(日)'."""
+    return bool(re.search(r"\bor\b|\)\s*or\s*\d", raw, re.I))
+
+
 def parse_ladies(doc):
     rows = []
     for block in cls(doc, "gameresult_list"):
@@ -189,7 +194,7 @@ def parse_ladies(doc):
         d = re.search(r"(\d{4})/(\d{1,2})/(\d{1,2})", datepart)
         t = re.search(r"\b(\d{1,2}:\d{2})\b", datepart)
         side = "HOME" if "home" in heading.get("class", "").split() else "AWAY"
-        ambiguous = bool(re.search(r"\bor\b", datepart, re.I))
+        ambiguous = has_multiple_date_options(datepart)
         row = make(
             "ladies",
             comp,
@@ -255,7 +260,7 @@ def parse_game_block(team, block):
         if re.search(r"\bAWAY\b", full)
         else "NEUTRAL"
     )
-    ambiguous = bool(re.search(r"\bor\b", datepart, re.I)) or datepart == "未定"
+    ambiguous = has_multiple_date_options(datepart) or datepart == "未定"
     row = make(
         team,
         comp,
@@ -509,7 +514,8 @@ def display_opponent(row):
 
 def event_title(row):
     side = "" if row["side"] == "UNSPECIFIED" else f"[{row['side']}] "
-    return f"{side}{NAMES[row['team']]} vs {display_opponent(row)}"
+    prefix = "【勝ち上がり時】" if row.get("conditional") else ""
+    return f"{prefix}{side}{NAMES[row['team']]} vs {display_opponent(row)}"
 
 
 def ics(calendar_name, rows, stamp):
@@ -557,13 +563,14 @@ def ics(calendar_name, rows, stamp):
             "DESCRIPTION:"
             + escape(
                 row["competition"]
+                + ("\n※勝ち上がり時のみ開催。対戦相手・日程は変更の可能性があります。" if row.get("conditional") else "")
                 + "\n"
                 + note
                 + "\n非公式カレンダー。来場前に公式情報をご確認ください。\n"
                 + row["source"]
             ),
             "URL:" + row["source"],
-            "STATUS:CONFIRMED",
+            "STATUS:TENTATIVE" if row.get("conditional") else "STATUS:CONFIRMED",
             "TRANSP:TRANSPARENT",
             "END:VEVENT",
         ]
@@ -590,12 +597,108 @@ def merge_previous_results(all_rows, old):
                 row["detail"] = previous["detail"]
 
 
+def cup_family(row):
+    comp = row["competition"]
+    if row["team"] == "men":
+        if "天皇杯" in comp:
+            return "emperors"
+        if "ルヴァンカップ" in comp:
+            return "levain"
+    if row["team"] == "ladies":
+        if "皇后杯" in comp:
+            return "empress"
+        if "WEリーグクラシエカップ" in comp:
+            return "kracie"
+    return None
+
+
+def is_cup_projection(row):
+    if row.get("resultConfirmed"):
+        return False
+    comp = row["competition"]
+    family = cup_family(row)
+    projected_stage = (
+        (family == "emperors" and any(x in comp for x in ("準々決勝", "準決勝", "決勝")))
+        or (family == "levain" and any(x in comp for x in ("準決勝", "決勝")))
+        or (family == "empress" and any(x in comp for x in ("3回戦", "準々決勝", "準決勝", "決勝")))
+        or (family == "kracie" and "ノックアウトステージ" in comp)
+    )
+    if not projected_stage:
+        return False
+    # An identified opponent and fixed date/time on the club's schedule
+    # indicate a fixture confirmed after progression.
+    opponent = row["opponent"]
+    known_opponent = not any(token in opponent for token in ("未定", "勝者", "敗者"))
+    return not (known_opponent and row.get("date") and row.get("time"))
+
+
+def remove_eliminated_cup_paths(all_rows):
+    """Remove future tentative knockouts only after an unambiguous defeat.
+
+    League-stage qualification is not inferred from a single club's scores:
+    official standings and the club's schedule remain authoritative.
+    """
+    for team, family in (("men", "emperors"), ("ladies", "empress"), ("ladies", "kracie")):
+        losses = [
+            row["date"] for row in all_rows[team]
+            if cup_family(row) == family and row.get("date") and row.get("resultConfirmed")
+            and (family != "kracie" or "ノックアウトステージ" in row["competition"])
+            and row["result"].get("mark") in ("●", "■")
+        ]
+        if not losses:
+            continue
+        first_loss = min(losses)
+        all_rows[team] = [
+            row for row in all_rows[team]
+            if not (cup_family(row) == family and row.get("date")
+                    and row["date"] > first_loss and not row.get("resultConfirmed"))
+        ]
+
+    # Men's Levain Cup knockout is two-legged: compare wins, then goal
+    # difference; where tied, use a recorded second-leg penalty result.
+    for stage in ("準々決勝", "準決勝"):
+        legs = [
+            row for row in all_rows["men"]
+            if cup_family(row) == "levain" and stage in row["competition"]
+            and ("第1戦" in row["competition"] or "第2戦" in row["competition"])
+            and row.get("resultConfirmed")
+        ]
+        if len(legs) != 2:
+            continue
+        wins = sum(1 if r["result"]["mark"] == "○" else -1 if r["result"]["mark"] == "●" else 0 for r in legs)
+        goals = sum(r["result"]["scoreFor"] - r["result"]["scoreAgainst"] for r in legs)
+        second = next((r for r in legs if "第2戦" in r["competition"]), None)
+        penalties = second.get("result", {}) if second else {}
+        lost = wins < 0 or (wins == 0 and goals < 0) or (
+            wins == 0 and goals == 0 and "penaltyFor" in penalties
+            and penalties["penaltyFor"] < penalties["penaltyAgainst"]
+        )
+        if lost:
+            last_date = max(row["date"] for row in legs)
+            all_rows["men"] = [
+                row for row in all_rows["men"]
+                if not (cup_family(row) == "levain" and row.get("date")
+                        and row["date"] > last_date and not row.get("resultConfirmed"))
+            ]
+            break
+
+
+def apply_cup_projections(all_rows):
+    for rows in all_rows.values():
+        for row in rows:
+            if is_cup_projection(row):
+                row["conditional"] = True
+                row["conditionalReason"] = "勝ち上がった場合に開催される試合です。"
+
+
 def apply_statuses(all_rows, now):
     today = now.date().isoformat()
     for rows in all_rows.values():
         for row in rows:
             if row.get("resultConfirmed"):
                 row["status"] = "final"
+            elif row.get("conditional"):
+                row["status"] = "conditional"
             elif row.get("date") == today:
                 row["status"] = "today"
             else:
@@ -608,7 +711,7 @@ def apply_sequences(all_rows, old):
         for row in rows:
             previous_rows[row.get("uid")] = row
 
-    tracked = ("date", "time", "venue", "opponent", "side", "competition", "result", "detail")
+    tracked = ("date", "time", "venue", "opponent", "side", "competition", "result", "detail", "conditional")
     for rows in all_rows.values():
         for row in rows:
             previous = previous_rows.get(row["uid"])
@@ -637,6 +740,8 @@ def main():
     # Youth schedule results can lag behind the same-day official NEWS article.
     resolve_youth_news(all_rows["youth"], now)
     merge_previous_results(all_rows, old)
+    remove_eliminated_cup_paths(all_rows)
+    apply_cup_projections(all_rows)
     apply_statuses(all_rows, now)
     apply_sequences(all_rows, old)
 
