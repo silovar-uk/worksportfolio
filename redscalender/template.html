@@ -423,7 +423,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);color:v
     ));
     if (!applicable.length) return '';
     const sortKey = event => event.date || (
-      event.raw_date.match(/(20\\d{2})\\/(\\d{1,2})\\/(\\d{1,2})/) || []
+      event.raw_date.match(/(20[0-9]{2})[/]([0-9]{1,2})[/]([0-9]{1,2})/) || []
     ).slice(1).map((x,i)=>i?x.padStart(2,'0'):x).join('-') || '9999';
     applicable.sort((a,b)=>sortKey(a).localeCompare(sortKey(b)) || TEAM_ORDER.indexOf(a.team)-TEAM_ORDER.indexOf(b.team));
     const items = applicable.map(event => {
