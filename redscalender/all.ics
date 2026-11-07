@@ -3,7 +3,7 @@ VERSION:2.0
 PRODID:-//redscalender//Urawa fixtures//JA
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:REDS CALENDAR｜4カテゴリー
+X-WR-CALNAME:REDS CALENDAR 6 categories
 X-WR-TIMEZONE:Asia/Tokyo
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
@@ -1693,6 +1693,121 @@ DESCRIPTION:2026/27明治安田J1リーグ 第38節\n開始時刻未定の
  に公式情報をご確認ください。\nhttps://www.urawa-reds.co.jp/g
  ame/
 URL:https://www.urawa-reds.co.jp/game/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan-2026-11-14-5e969af7@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART:20261114T101500Z
+DTEND:20261114T121500Z
+SUMMARY:【日本代表】SAMURAI BLUE（日本代表） vs ブラジル
+LOCATION:シンガポールナショナルスタジアム
+DESCRIPTION:MIZUHO BLUE CHALLENGE\n日本時間で表示。公式情報を
+ 確認してください。\nhttps://www.jfa.jp/samuraiblue/20261117/about
+ .html
+URL:https://www.jfa.jp/samuraiblue/20261117/about.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan-2026-11-17-97dd9740@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART:20261117T131000Z
+DTEND:20261117T151000Z
+SUMMARY:【日本代表】SAMURAI BLUE（日本代表） vs パラグアイ
+LOCATION:シンガポールナショナルスタジアム
+DESCRIPTION:MIZUHO BLUE CHALLENGE\n日本時間で表示。公式情報を
+ 確認してください。\nhttps://www.jfa.jp/samuraiblue/20261117/about
+ .html
+URL:https://www.jfa.jp/samuraiblue/20261117/about.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan-2026-12-30-d171a6c8@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20261230
+DTEND;VALUE=DATE:20261231
+SUMMARY:【日本代表】SAMURAI BLUE（日本代表） vs 対戦相手未
+ 定
+LOCATION:パナソニック スタジアム 吹田
+DESCRIPTION:キリンチャレンジカップ2026\n日本時間で表示。
+ 公式情報を確認してください。\nhttps://www.jfa.jp/samuraiblue
+ /schedule_result/2026.html
+URL:https://www.jfa.jp/samuraiblue/schedule_result/2026.html
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan-2027-03-25-341200ec@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270325
+DTEND;VALUE=DATE:20270326
+SUMMARY:【日本代表】SAMURAI BLUE（日本代表） vs 対戦相手未
+ 定
+LOCATION:エディオンピースウイング広島
+DESCRIPTION:キリンチャレンジカップ2027\n日本時間で表示。
+ 公式情報を確認してください。\nhttps://jfa.jp/samuraiblue_202
+ 6/news/00036981/
+URL:https://jfa.jp/samuraiblue_2026/news/00036981/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan-2027-03-30-48675702@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART;VALUE=DATE:20270330
+DTEND;VALUE=DATE:20270331
+SUMMARY:【日本代表】SAMURAI BLUE（日本代表） vs 対戦相手未
+ 定
+LOCATION:国立競技場
+DESCRIPTION:キリンチャレンジカップ2027\n日本時間で表示。
+ 公式情報を確認してください。\nhttps://jfa.jp/samuraiblue_202
+ 6/news/00036981/
+URL:https://jfa.jp/samuraiblue_2026/news/00036981/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan_u21-2026-11-14-84c69a6f@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART:20261113T180000Z
+DTEND:20261113T200000Z
+SUMMARY:【日本代表】U-21日本代表 vs U-21スペイン代表
+LOCATION:Estadio Francisco de la Hera（スペイン）
+DESCRIPTION:国際親善試合\n日本時間で表示。公式情報を確
+ 認してください。\nhttps://www.jfa.jp/national_team/mens_all_2026/n
+ ews/00036989/
+URL:https://www.jfa.jp/national_team/mens_all_2026/news/00036989/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:national-japan_u21-2026-11-18-b0234a72@redscalender
+DTSTAMP:20261107T132000Z
+LAST-MODIFIED:20261107T132000Z
+SEQUENCE:0
+DTSTART:20261117T160000Z
+DTEND:20261117T180000Z
+SUMMARY:【日本代表】U-21日本代表 vs U-21エジプト代表
+LOCATION:Petro Sport Stadium（エジプト）
+DESCRIPTION:国際親善試合\n日本時間で表示。公式情報を確
+ 認してください。\nhttps://www.jfa.jp/national_team/mens_all_2026/n
+ ews/00036989/
+URL:https://www.jfa.jp/national_team/mens_all_2026/news/00036989/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
