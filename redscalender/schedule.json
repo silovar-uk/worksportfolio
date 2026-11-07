@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T22:11:19+09:00",
+  "updated": "2026-11-07T22:12:43+09:00",
   "season": "2026/27",
   "windowDays": 60,
   "pastWindowDays": 14,
@@ -711,7 +711,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "daf8f56cae501f6dc3d860b8@redscalender",
@@ -727,7 +727,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "903057bec41693105875f3bd@redscalender",
@@ -743,7 +743,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "92bba00577feee3fa777fab2@redscalender",
@@ -801,7 +801,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "de96ccf9880f1395e992ae02@redscalender",
@@ -817,7 +817,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "624d096686a9fdc4b6b8a777@redscalender",
@@ -847,7 +847,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 2
+        "sequence": 3
       },
       {
         "uid": "e53b71895132e7526466481a@redscalender",
@@ -1357,7 +1357,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "48fd67b29cd3320f98128220@redscalender",
@@ -1373,7 +1373,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "0018778067ca14ab89858881@redscalender",
@@ -1389,7 +1389,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "da95f2529bd6f35dbcb3ddbe@redscalender",
@@ -1405,7 +1405,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 1
+        "sequence": 2
       },
       {
         "uid": "a231eaa798762ed9a7cbd214@redscalender",
@@ -1561,7 +1561,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 2
+        "sequence": 3
       },
       {
         "uid": "b1eabf0bf829068ad93e72a4@redscalender",
@@ -1577,7 +1577,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 2
+        "sequence": 3
       },
       {
         "uid": "e12df56b913fa9532b243e0f@redscalender",
@@ -1607,7 +1607,7 @@
         "conditional": true,
         "conditionalReason": "勝ち上がった場合に開催される試合です。",
         "status": "conditional",
-        "sequence": 2
+        "sequence": 3
       },
       {
         "uid": "a6fbffd5b5bae241bbe4ab95@redscalender",
