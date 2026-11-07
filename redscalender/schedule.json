@@ -2366,6 +2366,108 @@
         },
         "sequence": 0
       }
+    ],
+    "japan": [
+      {
+        "uid": "national-japan-2026-11-14-5e969af7@redscalender",
+        "team": "japan",
+        "competition": "MIZUHO BLUE CHALLENGE",
+        "opponent": "ブラジル",
+        "side": "NEUTRAL",
+        "date": "2026-11-14",
+        "time": "19:15",
+        "venue": "シンガポールナショナルスタジアム",
+        "raw_date": "2026-11-14",
+        "source": "https://www.jfa.jp/samuraiblue/20261117/about.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "national-japan-2026-11-17-97dd9740@redscalender",
+        "team": "japan",
+        "competition": "MIZUHO BLUE CHALLENGE",
+        "opponent": "パラグアイ",
+        "side": "NEUTRAL",
+        "date": "2026-11-17",
+        "time": "22:10",
+        "venue": "シンガポールナショナルスタジアム",
+        "raw_date": "2026-11-17",
+        "source": "https://www.jfa.jp/samuraiblue/20261117/about.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "national-japan-2026-12-30-d171a6c8@redscalender",
+        "team": "japan",
+        "competition": "キリンチャレンジカップ2026",
+        "opponent": "対戦相手未定",
+        "side": "NEUTRAL",
+        "date": "2026-12-30",
+        "time": null,
+        "venue": "パナソニック スタジアム 吹田",
+        "raw_date": "2026-12-30",
+        "source": "https://www.jfa.jp/samuraiblue/schedule_result/2026.html",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "national-japan-2027-03-25-341200ec@redscalender",
+        "team": "japan",
+        "competition": "キリンチャレンジカップ2027",
+        "opponent": "対戦相手未定",
+        "side": "NEUTRAL",
+        "date": "2027-03-25",
+        "time": null,
+        "venue": "エディオンピースウイング広島",
+        "raw_date": "2027-03-25",
+        "source": "https://jfa.jp/samuraiblue_2026/news/00036981/",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "national-japan-2027-03-30-48675702@redscalender",
+        "team": "japan",
+        "competition": "キリンチャレンジカップ2027",
+        "opponent": "対戦相手未定",
+        "side": "NEUTRAL",
+        "date": "2027-03-30",
+        "time": null,
+        "venue": "国立競技場",
+        "raw_date": "2027-03-30",
+        "source": "https://jfa.jp/samuraiblue_2026/news/00036981/",
+        "status": "scheduled",
+        "sequence": 0
+      }
+    ],
+    "japan_u21": [
+      {
+        "uid": "national-japan_u21-2026-11-14-84c69a6f@redscalender",
+        "team": "japan_u21",
+        "competition": "国際親善試合",
+        "opponent": "U-21スペイン代表",
+        "side": "NEUTRAL",
+        "date": "2026-11-14",
+        "time": "03:00",
+        "venue": "Estadio Francisco de la Hera（スペイン）",
+        "raw_date": "2026-11-14",
+        "source": "https://www.jfa.jp/national_team/mens_all_2026/news/00036989/",
+        "status": "scheduled",
+        "sequence": 0
+      },
+      {
+        "uid": "national-japan_u21-2026-11-18-b0234a72@redscalender",
+        "team": "japan_u21",
+        "competition": "国際親善試合",
+        "opponent": "U-21エジプト代表",
+        "side": "NEUTRAL",
+        "date": "2026-11-18",
+        "time": "01:00",
+        "venue": "Petro Sport Stadium（エジプト）",
+        "raw_date": "2026-11-18",
+        "source": "https://www.jfa.jp/national_team/mens_all_2026/news/00036989/",
+        "status": "scheduled",
+        "sequence": 0
+      }
     ]
   },
   "meta": {
@@ -2373,19 +2475,25 @@
       "men",
       "ladies",
       "u21",
-      "youth"
+      "youth",
+      "japan",
+      "japan_u21"
     ],
     "names": {
       "men": "浦和レッズ",
       "ladies": "三菱重工浦和レッズレディース",
       "u21": "浦和レッズ U-21",
-      "youth": "浦和レッズユース"
+      "youth": "浦和レッズユース",
+      "japan": "SAMURAI BLUE（日本代表）",
+      "japan_u21": "U-21日本代表"
     },
     "labels": {
       "men": "MEN",
       "ladies": "LADIES",
       "u21": "U-21",
-      "youth": "YOUTH"
+      "youth": "YOUTH",
+      "japan": "JAPAN",
+      "japan_u21": "JAPAN U-21"
     },
     "youthScope": "prince-league-only",
     "youthCompetition": "高円宮杯 JFA U-18サッカープリンスリーグ 2026関東1部"
