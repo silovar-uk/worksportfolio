@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T00:54:02.451Z",
+  "generatedAt": "2026-11-10T03:33:24.807Z",
   "policyVersion": 2,
   "publicRepositoriesOnly": true,
   "summary": {
@@ -209,7 +209,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-10",
-      "updatedAt": "2026-11-08",
+      "updatedAt": "2026-11-09",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -354,7 +354,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-06-22",
-      "updatedAt": "2026-11-08",
+      "updatedAt": "2026-11-09",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -490,7 +490,7 @@
       "reasons": [],
       "families": [],
       "createdAt": "2026-07-17",
-      "updatedAt": "2026-08-16",
+      "updatedAt": "2026-11-09",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -520,7 +520,7 @@
         "learning-practice"
       ],
       "createdAt": "2026-08-16",
-      "updatedAt": "2026-10-18",
+      "updatedAt": "2026-11-09",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
@@ -760,7 +760,7 @@
         "writing-knowledge"
       ],
       "createdAt": "2026-08-18",
-      "updatedAt": "2026-11-08",
+      "updatedAt": "2026-11-09",
       "hasLiveUrl": true,
       "artifactStatus": "live-url-recorded",
       "artifactReviewNeeded": false,
