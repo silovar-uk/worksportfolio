@@ -1,7 +1,7 @@
 {
   "name": "早稲田大学ア式蹴球部（男子TOP）",
   "year": 2026,
-  "updatedAt": "2026-11-10T16:37:05+09:00",
+  "updatedAt": "2026-11-11T15:54:46+09:00",
   "pastWindowDays": 14,
   "futureWindowDays": 60,
   "events": [
@@ -583,7 +583,7 @@
       "archiveMatchesApplied": 0,
       "previousResultsRecovered": 0,
       "liveFederationResultsApplied": 0,
-      "federationRoundsChecked": 1,
+      "federationRoundsChecked": 0,
       "warnings": []
     }
   }
