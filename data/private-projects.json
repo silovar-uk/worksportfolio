@@ -218,34 +218,6 @@
     ]
   },
   {
-    "id": "prompt-launcher",
-    "title": "Prompt Launcher",
-    "subtitle": "短いショートカットから定型プロンプトを呼び出す常駐ランチャー",
-    "summary": "よく使うプロンプトや作業指示を検索・登録し、ショートカットからすぐ呼び出せるデスクトップランチャー。管理画面と実行入口を一つにまとめ、日常的な指示入力の手間を減らす。",
-    "type": "utility",
-    "verbs": [
-      "呼び出す",
-      "探す",
-      "実行する"
-    ],
-    "status": "active",
-    "visibility": "private",
-    "sourceVisibility": "private",
-    "summaryOnly": true,
-    "featured": false,
-    "createdAt": "2026-08-25",
-    "createdAtPrecision": "day",
-    "updatedAt": "2026-08-25",
-    "repositoryUrl": "",
-    "liveUrl": "",
-    "technologies": [
-      "Desktop App"
-    ],
-    "documentationState": "verified",
-    "relatedProjects": [],
-    "updates": []
-  },
-  {
     "id": "prompt-lab",
     "title": "Prompt Lab",
     "subtitle": "プロンプトを保存し、構造を読み解き、比較する個人用ラボ",
@@ -294,6 +266,95 @@
       "プロンプト分析",
       "リバースエンジニアリング",
       "Cloudflare D1"
+    ]
+  },
+  {
+    "id": "prompt-launcher",
+    "title": "Prompt Launcher",
+    "subtitle": "短いショートカットから定型プロンプトを呼び出す常駐ランチャー",
+    "summary": "よく使うプロンプトや作業指示を検索・登録し、ショートカットからすぐ呼び出せるデスクトップランチャー。管理画面と実行入口を一つにまとめ、日常的な指示入力の手間を減らす。",
+    "type": "utility",
+    "verbs": [
+      "呼び出す",
+      "探す",
+      "実行する"
+    ],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-08-25",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-08-25",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "Desktop App"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": []
+  },
+  {
+    "id": "researchbrowser",
+    "title": "リサーチブラウザ｜Research Browser",
+    "subtitle": "URLをまとめて読み、評価し、有望なサイトを取り出すSafari用調査ツール",
+    "summary": "20〜100件のURLを一括登録し、元のWebページを順番に閲覧。5段階評価、確認済み・注目・メモの記録、次のサイトへのワンタップ移動、評価4以上のテキスト抽出に対応するiPhone Safari向けのUserscriptsツール。",
+    "friction": "大量の調査URLをタブやブックマークだけで管理すると、どれを読んだか分からなくなり、次のページへ進むたびに操作が必要だった。",
+    "firstBuild": "URLの一括登録と連続閲覧、確認済み・注目・メモの記録を一つの操作パネルにまとめた。",
+    "currentAnswer": "登録したページではRボタンと次へ操作を表示。閲覧・5段階評価・保存・再開・条件付きテキスト出力をつなぎ、調査途中の記録を保持できる設計へ改善した（v1.2.1）。",
+    "type": "utility",
+    "verbs": [
+      "調べる",
+      "評価する",
+      "整理する"
+    ],
+    "status": "active",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-10",
+    "createdAtPrecision": "month",
+    "updatedAt": "2026-11-04",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "Userscripts",
+      "Safari"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [
+      {
+        "date": "2026-11-04",
+        "title": "v1.2.1：ページ上から次のサイトへ",
+        "description": "登録済みURLではRボタンの隣に移動先の名前と「次へ」を表示。確認済み状態を変えずに移動できる。"
+      }
+    ],
+    "aside": "調査は、集めて終わりではなく、読み進めて判断するところまで。",
+    "searchAliases": [
+      "リサーチブラウザ",
+      "research browser",
+      "researchbrowser",
+      "research queue",
+      "Safari拡張",
+      "Userscripts",
+      "ユーザースクリプト",
+      "URL一括追加",
+      "URL一括登録",
+      "連続閲覧",
+      "サイト評価",
+      "5段階評価",
+      "次へ",
+      "調査リスト",
+      "調査URL",
+      "4以上を抽出",
+      "Webリサーチ",
+      "閲覧履歴"
     ]
   },
   {
