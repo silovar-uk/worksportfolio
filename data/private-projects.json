@@ -175,6 +175,54 @@
     "updates": []
   },
   {
+    "id": "ppt-tools-plus",
+    "title": "PPT Tools+",
+    "subtitle": "表の分割・図形整列・選択内置換をまとめるPowerPointアドイン",
+    "summary": "PowerPointの表を編集可能な図形へ分割し、Smart Rowsで行列を整列。セル位置の手動指定、破線、下線・黒太字、交差選択、選択図形内の文字置換を一つのリボンにまとめたVBAツール。統合版は実機検証中。",
+    "friction": "比較表のセルを図形として編集すると、行列がずれたり、手作業での整列や複数図形内の文字置換に時間がかかった。",
+    "firstBuild": "表の列幅最適化と図形分割から着手し、重なったセルの復元や行列整列、選択範囲内の文字置換へ拡張。",
+    "currentAnswer": "5グループ・12ボタンのPPT Tools+統合リボンを開発中。「選択内で置換」の文字置換アイコン指定も更新済み。自動テストは通過しているが、Windows PowerPointでの表示・コンパイル・操作検証は未完了。",
+    "type": "utility",
+    "verbs": [
+      "整える",
+      "置換する",
+      "効率化する"
+    ],
+    "status": "development",
+    "visibility": "private",
+    "sourceVisibility": "private",
+    "summaryOnly": true,
+    "featured": false,
+    "createdAt": "2026-11",
+    "createdAtPrecision": "estimated-month",
+    "updatedAt": "2026-11-16",
+    "repositoryUrl": "",
+    "liveUrl": "",
+    "technologies": [
+      "PowerPoint",
+      "VBA",
+      "RibbonX"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [],
+    "updates": [],
+    "searchAliases": [
+      "ppt tools",
+      "ppt tools+",
+      "PowerPoint VBA",
+      "Smart Rows",
+      "表を図形に分割",
+      "表分割",
+      "列幅最適化",
+      "セル位置を指定",
+      "選択内で置換",
+      "交差選択",
+      "RibbonX",
+      "PowerPointアドイン",
+      "PPAM"
+    ]
+  },
+  {
     "id": "private-myessays",
     "title": "Private MyEssays",
     "subtitle": "公開を前提としない文章を、認証の内側に残す個人アーカイブ",
