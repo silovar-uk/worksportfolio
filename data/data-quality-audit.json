@@ -29,11 +29,11 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-11-16T01:48:59.832Z",
+    "generatedAt": "2026-11-16T13:16:44.171Z",
     "canonicalProjects": 75,
     "reviewableCanonicalProjects": 72,
     "excludedHiddenCanonicalProjects": 3,
-    "privateSafeProjects": 14,
+    "privateSafeProjects": 15,
     "publicRepositories": 78,
     "visiblePublicRepositories": 63,
     "legacyRepositories": 1,
