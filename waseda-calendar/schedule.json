@@ -1,7 +1,7 @@
 {
   "name": "早稲田大学ア式蹴球部（男子TOP）",
   "year": 2026,
-  "updatedAt": "2026-11-14T15:51:59+09:00",
+  "updatedAt": "2026-11-16T16:01:52+09:00",
   "pastWindowDays": 14,
   "futureWindowDays": 60,
   "events": [
@@ -556,11 +556,14 @@
       "opponent": "日本体育大学",
       "venue": "日本体育大学 横浜・健志台キャンパスグラウンド",
       "homeAway": "AWAY",
-      "status": "scheduled",
-      "result": null,
+      "status": "final",
+      "result": {
+        "for": 0,
+        "against": 1
+      },
       "source": "https://www.waseda-afc.jp/game-men",
-      "resultSource": null,
-      "resultSourceType": null
+      "resultSource": "https://www.waseda-afc.jp/game-men",
+      "resultSourceType": "waseda-results"
     }
   ],
   "sourceUrls": [
@@ -570,9 +573,7 @@
   ],
   "audit": {
     "calendarItemsChecked": 9,
-    "warnings": [
-      "JUFA news listing contained no qualifying recent league-result reports"
-    ],
+    "warnings": [],
     "unconfirmedFinishedLeagueMatches": [],
     "resolvedDiscrepancies": [
       {
@@ -586,9 +587,7 @@
       "previousResultsRecovered": 0,
       "liveFederationResultsApplied": 0,
       "federationRoundsChecked": 0,
-      "warnings": [
-        "JUFA news listing contained no qualifying recent league-result reports"
-      ]
+      "warnings": []
     }
   }
 }
