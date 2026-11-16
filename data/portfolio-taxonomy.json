@@ -46,7 +46,8 @@
         "ui-cleaner",
         "prompt-launcher",
         "context-lens",
-        "video-navigator"
+        "video-navigator",
+        "researchbrowser"
       ]
     },
     {
@@ -83,7 +84,8 @@
         "prompt-launcher",
         "multimemos",
         "context-lens",
-        "video-navigator"
+        "video-navigator",
+        "researchbrowser"
       ]
     },
     {
@@ -117,7 +119,8 @@
         "secure-private-memo",
         "ui-cleaner",
         "context-lens",
-        "video-navigator"
+        "video-navigator",
+        "researchbrowser"
       ]
     },
     {
@@ -173,7 +176,8 @@
         "secure-private-memo",
         "ui-cleaner",
         "context-lens",
-        "video-navigator"
+        "video-navigator",
+        "researchbrowser"
       ]
     },
     {
@@ -215,7 +219,8 @@
         "prompt-lab",
         "secure-private-memo",
         "work-logs",
-        "video-navigator"
+        "video-navigator",
+        "researchbrowser"
       ]
     },
     {
@@ -287,7 +292,8 @@
         "landing-page-prototype",
         "prompt-lab",
         "social-operations-benchmark",
-        "context-lens"
+        "context-lens",
+        "researchbrowser"
       ]
     },
     {
