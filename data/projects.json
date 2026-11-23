@@ -4435,5 +4435,74 @@
     ],
     "portfolioFamilies": [],
     "makingPrinciples": []
+  },
+  {
+    "id": "quick-cantonese",
+    "title": "Quick Lab｜香港広東語100問 × 速成入力",
+    "subtitle": "繁体字の入力練習と香港文化の3択クイズ",
+    "summary": "香港の繁体字を速成（Quick／簡易倉頡）方式で入力しながら、広東語の発音・会話・買い物・交通・歴史・食文化などを100問の3択クイズで学べるブラウザ学習ツール。",
+    "friction": "漢字の字形を見分けて入力する力と、広東語の言葉や香港の生活文化を理解する力は別々に伸びやすい。",
+    "firstBuild": "速成入力の練習画面に、香港広東語と文化を扱う3択クイズを組み合わせた。",
+    "currentAnswer": "速成入力と100問の3択クイズを同じページで練習できる。選択肢は表示時にシャッフルし、回答後に解説と出典リンクを確認できる。",
+    "type": "learning-tool",
+    "verbs": [
+      "入力する",
+      "解く",
+      "学ぶ"
+    ],
+    "status": "active",
+    "visibility": "public",
+    "featured": false,
+    "createdAt": "2026-11-23",
+    "createdAtPrecision": "day",
+    "updatedAt": "2026-11-23",
+    "startedAt": "2026-11-23",
+    "startedAtPrecision": "day",
+    "startedAtBasis": "portfolio-registration",
+    "repositoryUrl": "https://github.com/silovar-uk/dailyenglishchunks/tree/main/quick",
+    "liveUrl": "https://silovar-uk.github.io/dailyenglishchunks/quick/",
+    "liveUrlStatus": "candidate",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "documentationState": "verified",
+    "relatedProjects": [
+      {
+        "id": "dailyenglishchunks",
+        "relation": "同一リポジトリ内の独立した学習ツール"
+      }
+    ],
+    "updates": [
+      {
+        "date": "2026-11-23",
+        "version": "1.0",
+        "change": "速成入力と香港広東語100問クイズを独立作品として登録",
+        "reason": "リポジトリ全体ではなくquickディレクトリだけを作品として紹介するため。"
+      }
+    ],
+    "icon": "⌨️",
+    "searchAliases": [
+      "速成入力",
+      "速成",
+      "簡易倉頡",
+      "倉頡",
+      "Quick Lab",
+      "Quick input",
+      "Cangjie",
+      "香港広東語",
+      "広東語100問",
+      "香港文化",
+      "繁体字",
+      "Cantonese",
+      "trivia"
+    ],
+    "portfolioFamilies": [
+      "Learning & Practice"
+    ],
+    "makingPrinciples": [
+      "Keep practice small"
+    ]
   }
 ]
