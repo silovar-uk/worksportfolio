@@ -29,15 +29,15 @@
     ]
   },
   "summary": {
-    "generatedAt": "2026-11-23T01:41:46.903Z",
-    "canonicalProjects": 75,
-    "reviewableCanonicalProjects": 72,
+    "generatedAt": "2026-11-23T11:18:50.400Z",
+    "canonicalProjects": 76,
+    "reviewableCanonicalProjects": 73,
     "excludedHiddenCanonicalProjects": 3,
     "privateSafeProjects": 15,
     "publicRepositories": 78,
     "visiblePublicRepositories": 63,
     "legacyRepositories": 1,
-    "verifiedDocumentation": 56,
+    "verifiedDocumentation": 57,
     "inferredDocumentation": 16,
     "unreviewedDocumentation": 0,
     "missingFriction": 0,
@@ -49,7 +49,7 @@
     "consistencyIssues": 0,
     "duplicateTitleGroups": 0,
     "unresolvedDuplicateCandidates": 0,
-    "canonicalWithoutPublicRepo": 11,
+    "canonicalWithoutPublicRepo": 12,
     "sourceWithoutCanonical": 2
   },
   "records": [
@@ -782,6 +782,19 @@
       "startedAtPrecision": "month"
     },
     {
+      "id": "quick-cantonese",
+      "score": 10,
+      "maxScore": 10,
+      "quality": "verified-shape",
+      "documentationState": "verified",
+      "missingCore": [],
+      "hasFamily": false,
+      "relationCount": 1,
+      "artifactStatus": "public-url-recorded",
+      "startedAtBasis": "portfolio-registration",
+      "startedAtPrecision": "day"
+    },
+    {
       "id": "quicklinks",
       "score": 10,
       "maxScore": 10,
@@ -1016,7 +1029,8 @@
     "redscalender",
     "video-navigator",
     "x-auto-screenshot-scroll",
-    "xexporter"
+    "xexporter",
+    "quick-cantonese"
   ],
   "sourceWithoutCanonical": [
     {
@@ -1032,7 +1046,7 @@
     "types": [
       {
         "value": "learning-tool",
-        "count": 28
+        "count": 29
       },
       {
         "value": "web-app",
@@ -1062,7 +1076,7 @@
     "verbs": [
       {
         "value": "学ぶ",
-        "count": 20
+        "count": 21
       },
       {
         "value": "整理する",
@@ -1093,6 +1107,10 @@
         "count": 5
       },
       {
+        "value": "解く",
+        "count": 4
+      },
+      {
         "value": "言語化する",
         "count": 4
       },
@@ -1103,10 +1121,6 @@
       {
         "value": "比べる",
         "count": 4
-      },
-      {
-        "value": "解く",
-        "count": 3
       },
       {
         "value": "試す",
@@ -1330,6 +1344,10 @@
       },
       {
         "value": "読み返す",
+        "count": 1
+      },
+      {
+        "value": "入力する",
         "count": 1
       },
       {
