@@ -9,7 +9,7 @@ const scriptJson = (value) => JSON.stringify(value).replace(/<\//g, '<\\/');
 const byteLength = (value) => Buffer.byteLength(typeof value === 'string' ? value : JSON.stringify(value));
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>\"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[char]));
 const escapeAttr = (value) => escapeHtml(value).replace(/'/g, '&#39;');
-const SEARCH_SEP = '\u001f';
+// Multi-value JSON arrays avoid repeated six-byte escaped separators.
 
 const config = readJson('data/portfolio-config.json');
 const canonicalProjects = readJson('data/projects.json');
@@ -83,7 +83,8 @@ function normalizeSearch(value) {
   return kanaToHira(String(value || '').toLowerCase().normalize('NFKC')).replace(/[・･_\-‐‑‒–—―/\\.,:;'\"“”‘’!?！？()（）[\]【】{}<>「」『』]/g, '').replace(/\s+/g, '');
 }
 function truncate(value, max = 120) { const text = String(value || '').trim(); return text.length > max ? `${text.slice(0, max - 1)}…` : text; }
-function normalizedList(values) { return unique(values).map(normalizeSearch).filter(Boolean).join(SEARCH_SEP); }
+function packList(values) { return values.length > 1 ? values : (values[0] || ''); }
+function normalizedList(values) { return packList(unique(values).map(normalizeSearch).filter(Boolean)); }
 
 function buildCanonicalProjects() {
   const map = new Map((Array.isArray(canonicalProjects) ? canonicalProjects : []).filter((project) => project?.id).map((project) => [String(project.id), { ...project }]));
@@ -197,7 +198,7 @@ function searchIndexProject(project) {
   if (project.summaryOnly && project.liveUrl) record.l = project.liveUrl;
   if (project.summaryOnly) record.s = 1;
   const aliases = normalizedList(project.searchAliases || []), verbs = normalizedList(project.verbs || []), technologies = normalizedList(project.technologies || []), families = normalizedList(project.portfolioFamilies || []);
-  const frictionIds = unique(project.frictionIds || []).join(SEARCH_SEP);
+  const frictionIds = packList(unique(project.frictionIds || []));
   if (aliases) record.a = aliases;
   if (verbs) record.v = verbs;
   if (technologies) record.k = technologies;

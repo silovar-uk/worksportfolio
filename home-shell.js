@@ -2,6 +2,8 @@
   'use strict';
 
   const SEARCH_SEP = '\u001f';
+  // Decode both compact arrays and legacy separator-packed strings.
+  const unpackList = (value) => Array.isArray(value) ? value.join(SEARCH_SEP) : String(value || '');
   const TYPE_BY_CODE = { w: 'web-app', c: 'chrome-extension', l: 'learning-tool', d: 'design-system', p: 'content-page', a: 'data-tool', u: 'utility', e: 'experiment', o: 'other' };
   const ALIAS_GROUPS = [
     ['memo', 'メモ', 'めも'],
@@ -41,12 +43,12 @@
     updatedAt: raw.u || '',
     liveUrl: raw.l || '',
     summaryOnly: Boolean(raw.s),
-    aliases: raw.a || '',
-    verbs: raw.v || '',
-    technologies: raw.k || '',
-    families: raw.f || '',
-    familyIds: raw.j ? String(raw.j).split(SEARCH_SEP).filter(Boolean) : [],
-    frictionIds: raw.g ? String(raw.g).split(SEARCH_SEP).filter(Boolean) : [],
+    aliases: unpackList(raw.a),
+    verbs: unpackList(raw.v),
+    technologies: unpackList(raw.k),
+    families: unpackList(raw.f),
+    familyIds: raw.j ? unpackList(raw.j).split(SEARCH_SEP).filter(Boolean) : [],
+    frictionIds: raw.g ? unpackList(raw.g).split(SEARCH_SEP).filter(Boolean) : [],
     searchText: raw.x || ''
   }));
   const projects = () => projectRecords;
